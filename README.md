@@ -48,7 +48,7 @@ https://github.com/user-attachments/assets/7d50e713-bb62-438d-9085-8742f0383184
 
 ## Документация
 
-Все материалы собраны в папке [docs](docs/).
+Все материалы собраны в папке [docs](docs/) а также на [я.диск](https://disk.yandex.ru/d/cPSGvaNNZf0CeA).
 
 - [Руководство пользователя (PDF)](docs/user_guide.pdf) — страницы, кнопки и работа с результатами.
 - [Руководство по развёртыванию (PDF)](docs/deployment_guide.pdf) — запуск Docker, ключи API и подключение моделей.
