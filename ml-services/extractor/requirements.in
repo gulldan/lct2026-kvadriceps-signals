@@ -1,5 +1,5 @@
 # PyTorch ставится первым из Docker build-arg TORCH_INDEX_URL (по умолчанию cu128); здесь та же версия.
-torch==2.8.0
+torch==2.13.0
 fastapi==0.141.1
 uvicorn==0.53.0
 prometheus-client==0.26.0
