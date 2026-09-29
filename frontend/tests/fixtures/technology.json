@@ -1,0 +1,76 @@
+{
+  "technology_id": "tech-1",
+  "canonical_name": "Твердооксидный электролизёр",
+  "name_kind": "term",
+  "description": "Электрохимическая ячейка, разлагающая водяной пар на водород и кислород при 700–850 °C.",
+  "validation_status": "proposed",
+  "method_version": "identity-v1",
+  "aliases": [
+    { "value": "solid oxide electrolyser", "language": "en", "basis": "extraction" },
+    { "value": "ТОТЭ-электролизёр", "language": "ru", "basis": "expert_review" }
+  ],
+  "mentions": [
+    {
+      "mention_id": "m-1",
+      "technology_id": "tech-1",
+      "name": "Твердооксидный электролизёр",
+      "role": "primary",
+      "problem": "Снизить расход электроэнергии на получение водорода.",
+      "mechanism": "Часть энергии подводится теплом, поэтому напряжение разложения ниже, чем в щелочном электролизёре.",
+      "inputs": ["водяной пар", "тепло 700–850 °C"],
+      "outputs": ["водород", "кислород"],
+      "extraction_status": "complete",
+      "source_revision_id": "doc-1",
+      "source_title": "Высокотемпературный электролиз воды: обзор",
+      "source_published_at": "2026-03-10",
+      "evidence": [
+        {
+          "evidence_id": "e-1",
+          "locator": {
+            "section": "abstract",
+            "start_char": 12,
+            "end_char": 96,
+            "snapshot_sha256": "hash-doc-1"
+          },
+          "quote": "Твердооксидный электролизёр снижает удельный расход электроэнергии на 25 % за счёт подвода тепла."
+        }
+      ]
+    },
+    {
+      "mention_id": "m-2",
+      "technology_id": "tech-1",
+      "name": "SOEC",
+      "role": "component",
+      "extraction_status": "needs_review",
+      "source_revision_id": "doc-2",
+      "source_title": "Обзор водородных технологий",
+      "source_published_at": "2025-11-02",
+      "evidence": [
+        {
+          "evidence_id": "e-2",
+          "locator": {
+            "section": "introduction",
+            "page": 3,
+            "start_char": 400,
+            "end_char": 470,
+            "snapshot_sha256": "hash-doc-2"
+          },
+          "quote": "SOEC рассматривается как компонент энергетических комплексов с избыточным теплом."
+        }
+      ]
+    },
+    {
+      "mention_id": "m-3",
+      "technology_id": "tech-1",
+      "name": "solid oxide electrolyser",
+      "role": "background",
+      "extraction_status": "complete",
+      "source_revision_id": "doc-2",
+      "source_title": "Обзор водородных технологий",
+      "source_published_at": "2025-11-02",
+      "evidence": []
+    }
+  ],
+  "readable_revisions": 2,
+  "restricted_revisions": 1
+}

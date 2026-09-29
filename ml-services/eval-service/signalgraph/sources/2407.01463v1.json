@@ -1,0 +1,31 @@
+{
+  "native_id": "2407.01463v1",
+  "canonical_id": "arxiv:2407.01463",
+  "url": "https://arxiv.org/abs/2407.01463v1",
+  "title": "Retrieval-augmented generation in multilingual settings",
+  "authors": [
+    "Nadezhda Chirkova",
+    "David Rau",
+    "Hervé Déjean",
+    "Thibault Formal",
+    "Stéphane Clinchant",
+    "Vassilina Nikoulina"
+  ],
+  "published_at": "2024-07-01T16:56:50Z",
+  "version_updated_at": "2024-07-01T16:56:50Z",
+  "observed_at": "2026-09-08T22:53:13.832374+00:00",
+  "available_at": "2024-07-01T16:56:50Z",
+  "available_basis": "arXiv archived v1 release; historical reconstruction captured later",
+  "source_kind": "paper",
+  "provider": "arxiv",
+  "access_scope": "public",
+  "representation": "versioned_primary_abstract",
+  "text": "Retrieval-augmented generation (RAG) has recently emerged as a promising solution for incorporating up-to-date or domain-specific knowledge into large language models (LLMs) and improving LLM factuality, but is predominantly studied in English-only settings. In this work, we consider RAG in the multilingual setting (mRAG), i.e. with user queries and the datastore in 13 languages, and investigate which components and with which adjustments are needed to build a well-performing mRAG pipeline, that can be used as a strong baseline in future works. Our findings highlight that despite the availability of high-quality off-the-shelf multilingual retrievers and generators, task-specific prompt engineering is needed to enable generation in user languages. Moreover, current evaluation metrics need adjustments for multilingual setting, to account for variations in spelling named entities. The main limitations to be addressed in future works include frequent code-switching in non-Latin alphabet languages, occasional fluency errors, wrong reading of the provided documents, or irrelevant retrieval. We release the code for the resulting mRAG baseline pipeline at https://github.com/naver/bergen.",
+  "text_sha256": "5a6ea84e54971f3b0c78a9b0d744c8c611834bc8b9fbe97c328c6a7988e85225",
+  "raw_sha256": "d9bbf50cf9f4a5c8b0541cc09e33648cf1d5067d04ad980cd4d44f9d8c14086a",
+  "raw_file": "d9bbf50cf9f4a5c8b0541cc09e33648cf1d5067d04ad980cd4d44f9d8c14086a.xml",
+  "limitations": [
+    "Abstract-only evidence; author-reported results, not independent reproduction.",
+    "Later DOI, journal metadata and current citations are excluded from historical input."
+  ]
+}

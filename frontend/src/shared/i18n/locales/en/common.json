@@ -1,0 +1,153 @@
+{
+  "actions": {
+    "save": "Save",
+    "saving": "Saving…",
+    "cancel": "Cancel",
+    "close": "Close",
+    "back": "Back",
+    "retry": "Retry",
+    "reset": "Reset",
+    "resetToDefaults": "Defaults",
+    "copy": "Copy",
+    "download": "Download",
+    "export": "Export",
+    "open": "Open",
+    "refresh": "Refresh"
+  },
+  "states": {
+    "loading": "Loading…",
+    "empty": "Nothing here yet",
+    "notRated": "not rated",
+    "dash": "—"
+  },
+  "units": {
+    "bytes": "B",
+    "kb": "KB",
+    "mb": "MB",
+    "gb": "GB",
+    "tb": "TB",
+    "elapsed": {
+      "today": "today",
+      "ago": "{{value}} ago",
+      "years_one": "{{count}} year",
+      "years_other": "{{count}} years",
+      "months_one": "{{count}} month",
+      "months_other": "{{count}} months",
+      "days_one": "{{count}} day",
+      "days_other": "{{count}} days"
+    }
+  },
+  "counts": {
+    "documents_one": "{{count}} document",
+    "documents_other": "{{count}} documents",
+    "hypotheses_one": "{{count}} hypothesis",
+    "hypotheses_other": "{{count}} hypotheses",
+    "tasks_one": "{{count}} task",
+    "tasks_other": "{{count}} tasks"
+  },
+  "ui": {
+    "copyFailed": "The browser blocked copying. Select the text and copy it manually.",
+    "table": "Scrollable table",
+    "hint": "Hint",
+    "loading": "Loading",
+    "somethingWentWrong": "Could not load the page",
+    "aiNote": "AI estimate from the knowledge base — not a final conclusion",
+    "ofTotal": "{{value}} of {{total}}",
+    "pagination": {
+      "label": "Pages",
+      "prev": "Previous page",
+      "next": "Next page"
+    },
+    "evidence": {
+      "notVerified": "Not yet verified against the knowledge base",
+      "for": "for",
+      "against": "against",
+      "mentions": "mentions",
+      "hint": "How many found fragments support the hypothesis, contradict it, or merely mention the topic without a direct conclusion."
+    },
+    "export": {
+      "word": "Word document",
+      "print": "Print and PDF",
+      "failed": "The file could not be built. Please try again.",
+      "building": "Preparing the file…",
+      "ready": "File downloaded",
+      "tableCaption": "Table {{n}} — {{title}}",
+      "csv": "CSV for Excel",
+      "json": "JSON for integrations"
+    }
+  },
+  "fileTypes": {
+    "pdf": "PDF",
+    "docx": "Word",
+    "eml": "Email",
+    "xlsx": "Excel",
+    "pptx": "Slides",
+    "txt": "Text",
+    "image": "Scan",
+    "db": "Database",
+    "other": "File"
+  },
+  "errorPages": {
+    "toHome": "Go home",
+    "notFound": {
+      "code": "Error 404",
+      "title": "Off the radar",
+      "description": "The page does not exist or has been moved. Check the address or return to the home page.",
+      "hint": "Start with the overview or check the link that brought you here."
+    },
+    "forbidden": {
+      "code": "Error 403",
+      "title": "Restricted sector",
+      "description": "This section is available to a different role. If you need access, contact the administrator.",
+      "hint": "Ask your administrator which role is required for this section."
+    },
+    "serverError": {
+      "code": "Error 500",
+      "title": "We’ve lost our bearings",
+      "description": "Refresh the page; if that does not help, contact the administrator.",
+      "hint": "If the error happens again, send the page address to your administrator."
+    },
+    "toOverview": "Back to overview",
+    "unavailable": {
+      "code": "Error 503",
+      "title": "Radar on pause",
+      "description": "The server cannot respond right now. Try again shortly or return to the overview.",
+      "hint": "If the problem persists, tell your administrator when it happened and share the page address."
+    }
+  },
+  "glossary": {
+    "goal": "A thesis states what we look for on the radar and why, and which indicator tells us the forecast has come true (for example, “two technologies at pilot stage or later by the end of 2027”). The radar finds signals for the thesis, and the system selects and checks hypotheses.",
+    "theme": "A topic is a group of similar documents from the knowledge base that the system assembles automatically. Topics are the \"raw material\" from which hypotheses are born for your thesis.",
+    "hypothesis": "A hypothesis is a testable idea proposed by the system for your thesis: with a rationale, a readiness assessment and links to sources from the knowledge base.",
+    "landscape": "The topic map shows every topic of the knowledge base in one picture: where there is more novelty and maturity, which topics are larger. It helps you see the whole picture and pick where to dig.",
+    "trl": "Technology readiness (TRL) is a maturity scale from 1 to 9: 1 — just an idea, 9 — a finished, field-proven solution. Assessed per GOST R 58048-2017.",
+    "itc": "The theme index compares research directions within your corpus: source recency, semantic difference, use in hypotheses and coverage. It is shown from 0 to 100. Technology readiness (TRL) is assessed separately using evidence from tests.",
+    "verify": "Verification against the knowledge base: the system searches the uploaded documents for passages that support or contradict the hypothesis and issues a verdict. This is an AI assessment based on the available sources, not a final scientific conclusion.",
+    "specialties": "Scientific specialties per official classifiers: GRNTI (the scientific-technical information rubricator), VAK (dissertation specialties) and Scopus/ASJC (the international classification). They help understand which field a hypothesis belongs to.",
+    "ranking": "Why the hypothesis is at the top: the final rating is computed not by a model but by a transparent formula of six factors (KPI fit, evidence base, novelty, value, risk manageability, readiness). The LLM only extracts features — the weights and the total can be changed.",
+    "cmpp": "A cause-and-effect chain: how a controllable factor leads to the target indicator. For materials — composition → process → microstructure → property → KPI. It shows the domain logic, not just text.",
+    "experiment": "An experiment plan: what to vary, which methods to verify with, and what the measurable success criterion is. It makes the hypothesis testable in practice.",
+    "feasibility": "A feasibility check: a sober assessment across aspects — science, scaling, safety/ecology, supply chain — with a risk level. It filters out obviously unrealizable ideas."
+  },
+  "errors": {
+    "sessionExpired": "session expired — sign in again",
+    "jobFailed": "The task failed",
+    "http": {
+      "400": "The request was not accepted: check the entered data.",
+      "401": "The session expired. Sign in again.",
+      "403": "Your account has no access to this data.",
+      "404": "Data not found: it does not exist or was removed.",
+      "409": "The data changed since it was loaded. Reload the page and try again.",
+      "413": "The request or file is too large.",
+      "429": "Too many requests. Wait a minute and try again.",
+      "500": "Server error. Try again later; if it persists, contact the administrator.",
+      "503": "The service is temporarily unavailable. Try again in a minute.",
+      "507": "Storage is full. Contact the administrator.",
+      "network": "No connection to the server. Check the network and try again.",
+      "other": "The request failed (code {{status}}). Try again later."
+    }
+  },
+  "standalone": {
+    "footer": "From sources to testable hypotheses."
+  }
+}

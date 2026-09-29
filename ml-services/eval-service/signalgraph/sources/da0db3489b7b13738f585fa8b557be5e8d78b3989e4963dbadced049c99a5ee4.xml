@@ -1,0 +1,656 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/ody/EgV39/5cmU0MVSFrM4F5xIY</id>
+  <title>arXiv Query: search_query=&amp;id_list=2203.08913v1,2305.01625v1,2306.07174v1,2208.03299v1,2301.12652v1,2310.01352v1,2210.02928v1,2212.05221v1,2302.02313v1,2307.07697v1,2305.09645v1,2305.15334v1,2307.16789v1,2304.08244v1,2305.14788v1,2307.06945v1,2310.04408v1,2310.11511v1,2310.05002v1,2305.19518v1&amp;start=0&amp;max_results=20</title>
+  <updated>2026-09-08T21:43:42Z</updated>
+  <link href="https://arxiv.org/api/query?search_query=&amp;start=0&amp;max_results=20&amp;id_list=2203.08913v1,2305.01625v1,2306.07174v1,2208.03299v1,2301.12652v1,2310.01352v1,2210.02928v1,2212.05221v1,2302.02313v1,2307.07697v1,2305.09645v1,2305.15334v1,2307.16789v1,2304.08244v1,2305.14788v1,2307.06945v1,2310.04408v1,2310.11511v1,2310.05002v1,2305.19518v1" type="application/atom+xml"/>
+  <opensearch:itemsPerPage>20</opensearch:itemsPerPage>
+  <opensearch:totalResults>20</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <entry>
+    <id>http://arxiv.org/abs/2305.01625v1</id>
+    <title>Unlimiformer: Long-Range Transformers with Unlimited Length Input</title>
+    <updated>2023-05-02T17:35:08Z</updated>
+    <link href="https://arxiv.org/abs/2305.01625v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2305.01625v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Transformer-based models typically have a predefined bound to their input length, because of their need to potentially attend to every token in the input. In this work, we propose Unlimiformer: a general approach that can wrap any existing pretrained encoder-decoder transformer, and offload the attention computation across all layers to a single $k$-nearest-neighbor index; this index can be kept on either the GPU or CPU memory and queried in sub-linear time. This way, we can index extremely long input sequences, while every attention head in every decoder layer retrieves its top-$k$ keys, instead of attending to every key. We demonstrate Unlimiformers's efficacy on several long-document and multi-document summarization benchmarks, showing that it can summarize even 350k token-long inputs from the BookSum dataset, without any input truncation at test time. Unlimiformer improves pretrained models such as BART and Longformer by extending them to unlimited inputs without additional learned weights and without modifying their code. We make our code and models publicly available at https://github.com/abertsch72/unlimiformer .</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-05-02T17:35:08Z</published>
+    <arxiv:comment>Preprint</arxiv:comment>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Amanda Bertsch</name>
+    </author>
+    <author>
+      <name>Uri Alon</name>
+    </author>
+    <author>
+      <name>Graham Neubig</name>
+    </author>
+    <author>
+      <name>Matthew R. Gormley</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2307.16789v1</id>
+    <title>ToolLLM: Facilitating Large Language Models to Master 16000+ Real-world APIs</title>
+    <updated>2023-07-31T15:56:53Z</updated>
+    <link href="https://arxiv.org/abs/2307.16789v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2307.16789v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Despite the advancements of open-source large language models (LLMs) and their variants, e.g., LLaMA and Vicuna, they remain significantly limited in performing higher-level tasks, such as following human instructions to use external tools (APIs). This is because current instruction tuning largely focuses on basic language tasks instead of the tool-use domain. This is in contrast to state-of-the-art (SOTA) LLMs, e.g., ChatGPT, which have demonstrated excellent tool-use capabilities but are unfortunately closed source. To facilitate tool-use capabilities within open-source LLMs, we introduce ToolLLM, a general tool-use framework of data construction, model training and evaluation. We first present ToolBench, an instruction-tuning dataset for tool use, which is created automatically using ChatGPT. Specifically, we collect 16,464 real-world RESTful APIs spanning 49 categories from RapidAPI Hub, then prompt ChatGPT to generate diverse human instructions involving these APIs, covering both single-tool and multi-tool scenarios. Finally, we use ChatGPT to search for a valid solution path (chain of API calls) for each instruction. To make the searching process more efficient, we develop a novel depth-first search-based decision tree (DFSDT), enabling LLMs to evaluate multiple reasoning traces and expand the search space. We show that DFSDT significantly enhances the planning and reasoning capabilities of LLMs. For efficient tool-use assessment, we develop an automatic evaluator: ToolEval. We fine-tune LLaMA on ToolBench and obtain ToolLLaMA. Our ToolEval reveals that ToolLLaMA demonstrates a remarkable ability to execute complex instructions and generalize to unseen APIs, and exhibits comparable performance to ChatGPT. To make the pipeline more practical, we devise a neural API retriever to recommend appropriate APIs for each instruction, negating the need for manual API selection.</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-07-31T15:56:53Z</published>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Yujia Qin</name>
+    </author>
+    <author>
+      <name>Shihao Liang</name>
+    </author>
+    <author>
+      <name>Yining Ye</name>
+    </author>
+    <author>
+      <name>Kunlun Zhu</name>
+    </author>
+    <author>
+      <name>Lan Yan</name>
+    </author>
+    <author>
+      <name>Yaxi Lu</name>
+    </author>
+    <author>
+      <name>Yankai Lin</name>
+    </author>
+    <author>
+      <name>Xin Cong</name>
+    </author>
+    <author>
+      <name>Xiangru Tang</name>
+    </author>
+    <author>
+      <name>Bill Qian</name>
+    </author>
+    <author>
+      <name>Sihan Zhao</name>
+    </author>
+    <author>
+      <name>Runchu Tian</name>
+    </author>
+    <author>
+      <name>Ruobing Xie</name>
+    </author>
+    <author>
+      <name>Jie Zhou</name>
+    </author>
+    <author>
+      <name>Mark Gerstein</name>
+    </author>
+    <author>
+      <name>Dahai Li</name>
+    </author>
+    <author>
+      <name>Zhiyuan Liu</name>
+    </author>
+    <author>
+      <name>Maosong Sun</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2203.08913v1</id>
+    <title>Memorizing Transformers</title>
+    <updated>2022-03-16T19:54:35Z</updated>
+    <link href="https://arxiv.org/abs/2203.08913v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2203.08913v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Language models typically need to be trained or finetuned in order to acquire new knowledge, which involves updating their weights. We instead envision language models that can simply read and memorize new data at inference time, thus acquiring new knowledge immediately. In this work, we extend language models with the ability to memorize the internal representations of past inputs. We demonstrate that an approximate kNN lookup into a non-differentiable memory of recent (key, value) pairs improves language modeling across various benchmarks and tasks, including generic webtext (C4), math papers (arXiv), books (PG-19), code (Github), as well as formal theorems (Isabelle). We show that the performance steadily improves when we increase the size of memory up to 262K tokens. On benchmarks including code and mathematics, we find that the model is capable of making use of newly defined functions and theorems during test time.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2022-03-16T19:54:35Z</published>
+    <arxiv:comment>Published as a conference paper at ICLR 2022 (spotlight)</arxiv:comment>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Yuhuai Wu</name>
+    </author>
+    <author>
+      <name>Markus N. Rabe</name>
+    </author>
+    <author>
+      <name>DeLesley Hutchins</name>
+    </author>
+    <author>
+      <name>Christian Szegedy</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2212.05221v1</id>
+    <title>REVEAL: Retrieval-Augmented Visual-Language Pre-Training with Multi-Source Multimodal Knowledge Memory</title>
+    <updated>2022-12-10T06:17:56Z</updated>
+    <link href="https://arxiv.org/abs/2212.05221v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2212.05221v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>In this paper, we propose an end-to-end Retrieval-Augmented Visual Language Model (REVEAL) that learns to encode world knowledge into a large-scale memory, and to retrieve from it to answer knowledge-intensive queries. REVEAL consists of four key components: the memory, the encoder, the retriever and the generator. The large-scale memory encodes various sources of multimodal world knowledge (e.g. image-text pairs, question answering pairs, knowledge graph triplets, etc) via a unified encoder. The retriever finds the most relevant knowledge entries in the memory, and the generator fuses the retrieved knowledge with the input query to produce the output. A key novelty in our approach is that the memory, encoder, retriever and generator are all pre-trained end-to-end on a massive amount of data. Furthermore, our approach can use a diverse set of multimodal knowledge sources, which is shown to result in significant gains. We show that REVEAL achieves state-of-the-art results on visual question answering and image captioning.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2022-12-10T06:17:56Z</published>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Ziniu Hu</name>
+    </author>
+    <author>
+      <name>Ahmet Iscen</name>
+    </author>
+    <author>
+      <name>Chen Sun</name>
+    </author>
+    <author>
+      <name>Zirui Wang</name>
+    </author>
+    <author>
+      <name>Kai-Wei Chang</name>
+    </author>
+    <author>
+      <name>Yizhou Sun</name>
+    </author>
+    <author>
+      <name>Cordelia Schmid</name>
+    </author>
+    <author>
+      <name>David A. Ross</name>
+    </author>
+    <author>
+      <name>Alireza Fathi</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2208.03299v1</id>
+    <title>Few-shot Learning with Retrieval Augmented Language Model</title>
+    <updated>2022-08-05T17:39:22Z</updated>
+    <link href="https://arxiv.org/abs/2208.03299v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2208.03299v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Large language models have shown impressive few-shot results on a wide range of tasks. However, when knowledge is key for such results, as is the case for tasks such as question answering and fact checking, massive parameter counts to store knowledge seem to be needed. Retrieval augmented models are known to excel at knowledge intensive tasks without the need for as many parameters, but it is unclear whether they work in few-shot settings. In this work we present Atlas, a carefully designed and pre-trained retrieval augmented language model able to learn knowledge intensive tasks with very few training examples. We perform evaluations on a wide range of tasks, including MMLU, KILT and NaturalQuestions, and study the impact of the content of the document index, showing that it can easily be updated. Notably, Atlas reaches over 42\% accuracy on Natural Questions using only 64 examples, outperforming a 540B parameters model by 3% despite having 50x fewer parameters.</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2022-08-05T17:39:22Z</published>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Gautier Izacard</name>
+    </author>
+    <author>
+      <name>Patrick Lewis</name>
+    </author>
+    <author>
+      <name>Maria Lomeli</name>
+    </author>
+    <author>
+      <name>Lucas Hosseini</name>
+    </author>
+    <author>
+      <name>Fabio Petroni</name>
+    </author>
+    <author>
+      <name>Timo Schick</name>
+    </author>
+    <author>
+      <name>Jane Yu</name>
+    </author>
+    <author>
+      <name>Armand Joulin</name>
+    </author>
+    <author>
+      <name>Sebastian Riedel</name>
+    </author>
+    <author>
+      <name>Edouard Grave</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2310.04408v1</id>
+    <title>RECOMP: Improving Retrieval-Augmented LMs with Compression and Selective Augmentation</title>
+    <updated>2023-10-06T17:55:36Z</updated>
+    <link href="https://arxiv.org/abs/2310.04408v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2310.04408v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Retrieving documents and prepending them in-context at inference time improves performance of language model (LMs) on a wide range of tasks. However, these documents, often spanning hundreds of words, make inference substantially more expensive. We propose compressing the retrieved documents into textual summaries prior to in-context integration. This not only reduces the computational costs but also relieves the burden of LMs to identify relevant information in long retrieved documents. We present two compressors -- an extractive compressor which selects useful sentences from retrieved documents and an abstractive compressor which generates summaries by synthesizing information from multiple documents. Both compressors are trained to improve LMs' performance on end tasks when the generated summaries are prepended to the LMs' input, while keeping the summary concise.If the retrieved documents are irrelevant to the input or offer no additional information to LM, our compressor can return an empty string, implementing selective augmentation.We evaluate our approach on language modeling task and open domain question answering task. We achieve a compression rate of as low as 6% with minimal loss in performance for both tasks, significantly outperforming the off-the-shelf summarization models. We show that our compressors trained for one LM can transfer to other LMs on the language modeling task and provide summaries largely faithful to the retrieved documents.</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-10-06T17:55:36Z</published>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Fangyuan Xu</name>
+    </author>
+    <author>
+      <name>Weijia Shi</name>
+    </author>
+    <author>
+      <name>Eunsol Choi</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2307.06945v1</id>
+    <title>In-context Autoencoder for Context Compression in a Large Language Model</title>
+    <updated>2023-07-13T17:59:21Z</updated>
+    <link href="https://arxiv.org/abs/2307.06945v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2307.06945v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>We propose the In-context Autoencoder (ICAE) for context compression in a large language model (LLM). The ICAE has two modules: a learnable encoder adapted with LoRA from an LLM for compressing a long context into a limited number of memory slots, and a fixed decoder which is the target LLM that can condition on the memory slots for various purposes. We first pretrain the ICAE using both autoencoding and language modeling objectives on massive text data, enabling it to generate memory slots that accurately and comprehensively represent the original context. Then, we fine-tune the pretrained ICAE on a small amount of instruct data to enhance its interaction with various prompts for producing desirable responses. Our experimental results demonstrate that the ICAE learned with our proposed pretraining and fine-tuning paradigm can effectively produce memory slots with $4\times$ context compression, which can be well conditioned on by the target LLM to respond to various prompts. The promising results demonstrate significant implications of the ICAE for its novel approach to the long context problem and its potential to reduce computation and memory overheads for LLM inference in practice, suggesting further research effort in context management for an LLM. Our code and data will be released shortly.</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-07-13T17:59:21Z</published>
+    <arxiv:comment>Work in progress</arxiv:comment>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Tao Ge</name>
+    </author>
+    <author>
+      <name>Jing Hu</name>
+    </author>
+    <author>
+      <name>Xun Wang</name>
+    </author>
+    <author>
+      <name>Si-Qing Chen</name>
+    </author>
+    <author>
+      <name>Furu Wei</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2310.05002v1</id>
+    <title>Self-Knowledge Guided Retrieval Augmentation for Large Language Models</title>
+    <updated>2023-10-08T04:22:33Z</updated>
+    <link href="https://arxiv.org/abs/2310.05002v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2310.05002v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Large language models (LLMs) have shown superior performance without task-specific fine-tuning. Despite the success, the knowledge stored in the parameters of LLMs could still be incomplete and difficult to update due to the computational costs. As complementary, retrieval-based methods can offer non-parametric world knowledge and improve the performance on tasks such as question answering. However, we find that the retrieved knowledge does not always help and even has a negative impact on original responses occasionally. To better make use of both internal knowledge and external world knowledge, we investigate eliciting the model's ability to recognize what they know and do not know (which is also called self-knowledge) and propose Self-Knowledge guided Retrieval augmentation (SKR), a simple yet effective method which can let LLMs refer to the questions they have previously encountered and adaptively call for external resources when dealing with new questions. We evaluate SKR on multiple datasets and demonstrate that it outperforms chain-of-thought based and fully retrieval-based methods by using either InstructGPT or ChatGPT.</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-10-08T04:22:33Z</published>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Yile Wang</name>
+    </author>
+    <author>
+      <name>Peng Li</name>
+    </author>
+    <author>
+      <name>Maosong Sun</name>
+    </author>
+    <author>
+      <name>Yang Liu</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2301.12652v1</id>
+    <title>REPLUG: Retrieval-Augmented Black-Box Language Models</title>
+    <updated>2023-01-30T04:18:09Z</updated>
+    <link href="https://arxiv.org/abs/2301.12652v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2301.12652v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>We introduce REPLUG, a retrieval-augmented language modeling framework that treats the language model (LM) as a black box and augments it with a tuneable retrieval model. Unlike prior retrieval-augmented LMs that train language models with special cross attention mechanisms to encode the retrieved text, REPLUG simply prepends retrieved documents to the input for the frozen black-box LM. This simple design be can easily applied to any existing retrieval and language models. Furthermore, we show that the LM can be used to supervise the retrieval model, which can then find documents that help the LM make better predictions. Our experiments demonstrate that REPLUG with the tuned retriever significantly improves the performance of GPT-3 (175B) on language modeling by 6.3%, as well as the performance of Codex on five-shot MMLU by 5.1%.</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-01-30T04:18:09Z</published>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Weijia Shi</name>
+    </author>
+    <author>
+      <name>Sewon Min</name>
+    </author>
+    <author>
+      <name>Michihiro Yasunaga</name>
+    </author>
+    <author>
+      <name>Minjoon Seo</name>
+    </author>
+    <author>
+      <name>Rich James</name>
+    </author>
+    <author>
+      <name>Mike Lewis</name>
+    </author>
+    <author>
+      <name>Luke Zettlemoyer</name>
+    </author>
+    <author>
+      <name>Wen-tau Yih</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2305.14788v1</id>
+    <title>Adapting Language Models to Compress Contexts</title>
+    <updated>2023-05-24T06:42:44Z</updated>
+    <link href="https://arxiv.org/abs/2305.14788v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2305.14788v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Transformer-based language models (LMs) are powerful and widely-applicable tools, but their usefulness is constrained by a finite context window and the expensive computational cost of processing long text documents. We propose to adapt pre-trained LMs into AutoCompressors. These models are capable of compressing long contexts into compact summary vectors, which are then accessible to the model as soft prompts. Summary vectors are trained with an unsupervised objective, whereby long documents are processed in segments and summary vectors from all previous segments are used in language modeling. We fine-tune OPT models on sequences of up to 30,720 tokens and show that AutoCompressors can utilize long contexts to improve perplexity. We evaluate AutoCompressors on in-context learning by compressing task demonstrations. We find that summary vectors are good substitutes for plain-text demonstrations, increasing accuracy while reducing inference cost. Finally, we explore the benefits of pre-computing summary vectors for large corpora by applying summary vectors to retrieval-augmented language modeling. Overall, AutoCompressors emerge as a simple and inexpensive solution for extending the context window of LMs while speeding up inference over long contexts.</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-05-24T06:42:44Z</published>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Alexis Chevalier</name>
+    </author>
+    <author>
+      <name>Alexander Wettig</name>
+    </author>
+    <author>
+      <name>Anirudh Ajith</name>
+    </author>
+    <author>
+      <name>Danqi Chen</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2305.15334v1</id>
+    <title>Gorilla: Large Language Model Connected with Massive APIs</title>
+    <updated>2023-05-24T16:48:11Z</updated>
+    <link href="https://arxiv.org/abs/2305.15334v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2305.15334v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Large Language Models (LLMs) have seen an impressive wave of advances recently, with models now excelling in a variety of tasks, such as mathematical reasoning and program synthesis. However, their potential to effectively use tools via API calls remains unfulfilled. This is a challenging task even for today's state-of-the-art LLMs such as GPT-4, largely due to their inability to generate accurate input arguments and their tendency to hallucinate the wrong usage of an API call. We release Gorilla, a finetuned LLaMA-based model that surpasses the performance of GPT-4 on writing API calls. When combined with a document retriever, Gorilla demonstrates a strong capability to adapt to test-time document changes, enabling flexible user updates or version changes. It also substantially mitigates the issue of hallucination, commonly encountered when prompting LLMs directly. To evaluate the model's ability, we introduce APIBench, a comprehensive dataset consisting of HuggingFace, TorchHub, and TensorHub APIs. The successful integration of the retrieval system with Gorilla demonstrates the potential for LLMs to use tools more accurately, keep up with frequently updated documentation, and consequently increase the reliability and applicability of their outputs. Gorilla's code, model, data, and demo are available at https://gorilla.cs.berkeley.edu</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-05-24T16:48:11Z</published>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Shishir G. Patil</name>
+    </author>
+    <author>
+      <name>Tianjun Zhang</name>
+    </author>
+    <author>
+      <name>Xin Wang</name>
+    </author>
+    <author>
+      <name>Joseph E. Gonzalez</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2306.07174v1</id>
+    <title>Augmenting Language Models with Long-Term Memory</title>
+    <updated>2023-06-12T15:13:39Z</updated>
+    <link href="https://arxiv.org/abs/2306.07174v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2306.07174v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Existing large language models (LLMs) can only afford fix-sized inputs due to the input length limit, preventing them from utilizing rich long-context information from past inputs. To address this, we propose a framework, Language Models Augmented with Long-Term Memory (LongMem), which enables LLMs to memorize long history. We design a novel decoupled network architecture with the original backbone LLM frozen as a memory encoder and an adaptive residual side-network as a memory retriever and reader. Such a decoupled memory design can easily cache and update long-term past contexts for memory retrieval without suffering from memory staleness. Enhanced with memory-augmented adaptation training, LongMem can thus memorize long past context and use long-term memory for language modeling. The proposed memory retrieval module can handle unlimited-length context in its memory bank to benefit various downstream tasks. Typically, LongMem can enlarge the long-form memory to 65k tokens and thus cache many-shot extra demonstration examples as long-form memory for in-context learning. Experiments show that our method outperforms strong long-context models on ChapterBreak, a challenging long-context modeling benchmark, and achieves remarkable improvements on memory-augmented in-context learning over LLMs. The results demonstrate that the proposed method is effective in helping language models to memorize and utilize long-form contents. Our code is open-sourced at https://aka.ms/LongMem.</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-06-12T15:13:39Z</published>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Weizhi Wang</name>
+    </author>
+    <author>
+      <name>Li Dong</name>
+    </author>
+    <author>
+      <name>Hao Cheng</name>
+    </author>
+    <author>
+      <name>Xiaodong Liu</name>
+    </author>
+    <author>
+      <name>Xifeng Yan</name>
+    </author>
+    <author>
+      <name>Jianfeng Gao</name>
+    </author>
+    <author>
+      <name>Furu Wei</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2310.01352v1</id>
+    <title>RA-DIT: Retrieval-Augmented Dual Instruction Tuning</title>
+    <updated>2023-10-02T17:16:26Z</updated>
+    <link href="https://arxiv.org/abs/2310.01352v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2310.01352v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Retrieval-augmented language models (RALMs) improve performance by accessing long-tail and up-to-date knowledge from external data stores, but are challenging to build. Existing approaches require either expensive retrieval-specific modifications to LM pre-training or use post-hoc integration of the data store that leads to suboptimal performance. We introduce Retrieval-Augmented Dual Instruction Tuning (RA-DIT), a lightweight fine-tuning methodology that provides a third option by retrofitting any LLM with retrieval capabilities. Our approach operates in two distinct fine-tuning steps: (1) one updates a pre-trained LM to better use retrieved information, while (2) the other updates the retriever to return more relevant results, as preferred by the LM. By fine-tuning over tasks that require both knowledge utilization and contextual awareness, we demonstrate that each stage yields significant performance improvements, and using both leads to additional gains. Our best model, RA-DIT 65B, achieves state-of-the-art performance across a range of knowledge-intensive zero- and few-shot learning benchmarks, significantly outperforming existing in-context RALM approaches by up to +8.9% in 0-shot setting and +1.4% in 5-shot setting on average.</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-10-02T17:16:26Z</published>
+    <arxiv:comment>24 pages</arxiv:comment>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Xi Victoria Lin</name>
+    </author>
+    <author>
+      <name>Xilun Chen</name>
+    </author>
+    <author>
+      <name>Mingda Chen</name>
+    </author>
+    <author>
+      <name>Weijia Shi</name>
+    </author>
+    <author>
+      <name>Maria Lomeli</name>
+    </author>
+    <author>
+      <name>Rich James</name>
+    </author>
+    <author>
+      <name>Pedro Rodriguez</name>
+    </author>
+    <author>
+      <name>Jacob Kahn</name>
+    </author>
+    <author>
+      <name>Gergely Szilvasy</name>
+    </author>
+    <author>
+      <name>Mike Lewis</name>
+    </author>
+    <author>
+      <name>Luke Zettlemoyer</name>
+    </author>
+    <author>
+      <name>Scott Yih</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2307.07697v1</id>
+    <title>Think-on-Graph: Deep and Responsible Reasoning of Large Language Model with Knowledge Graph</title>
+    <updated>2023-07-15T03:31:38Z</updated>
+    <link href="https://arxiv.org/abs/2307.07697v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2307.07697v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Large language models (LLMs) have made significant strides in various tasks, yet they often struggle with complex reasoning and exhibit poor performance in scenarios where knowledge traceability, timeliness, and accuracy are crucial. To address these limitations, we present Think-on-Graph (ToG), a novel framework that leverages knowledge graphs to enhance LLMs' ability for deep and responsible reasoning. By employing ToG, we can identify entities relevant to a given question and conduct exploration and reasoning to retrieve related triples from an external knowledge database. This iterative procedure generates multiple reasoning pathways consisting of sequentially connected triplets until sufficient information is gathered to answer the question or the maximum depth is reached. Through experiments on complex multi-hop reasoning question-answering tasks, we demonstrate that ToG outperforms existing methods, effectively addressing the aforementioned limitations of LLMs without incurring additional training costs.</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-07-15T03:31:38Z</published>
+    <arxiv:comment>11 pages, 2 figures</arxiv:comment>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Jiashuo Sun</name>
+    </author>
+    <author>
+      <name>Chengjin Xu</name>
+    </author>
+    <author>
+      <name>Lumingyuan Tang</name>
+    </author>
+    <author>
+      <name>Saizhuo Wang</name>
+    </author>
+    <author>
+      <name>Chen Lin</name>
+    </author>
+    <author>
+      <name>Yeyun Gong</name>
+    </author>
+    <author>
+      <name>Heung-Yeung Shum</name>
+    </author>
+    <author>
+      <name>Jian Guo</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2310.11511v1</id>
+    <title>Self-RAG: Learning to Retrieve, Generate, and Critique through Self-Reflection</title>
+    <updated>2023-10-17T18:18:32Z</updated>
+    <link href="https://arxiv.org/abs/2310.11511v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2310.11511v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Despite their remarkable capabilities, large language models (LLMs) often produce responses containing factual inaccuracies due to their sole reliance on the parametric knowledge they encapsulate. Retrieval-Augmented Generation (RAG), an ad hoc approach that augments LMs with retrieval of relevant knowledge, decreases such issues. However, indiscriminately retrieving and incorporating a fixed number of retrieved passages, regardless of whether retrieval is necessary, or passages are relevant, diminishes LM versatility or can lead to unhelpful response generation. We introduce a new framework called Self-Reflective Retrieval-Augmented Generation (Self-RAG) that enhances an LM's quality and factuality through retrieval and self-reflection. Our framework trains a single arbitrary LM that adaptively retrieves passages on-demand, and generates and reflects on retrieved passages and its own generations using special tokens, called reflection tokens. Generating reflection tokens makes the LM controllable during the inference phase, enabling it to tailor its behavior to diverse task requirements. Experiments show that Self-RAG (7B and 13B parameters) significantly outperforms state-of-the-art LLMs and retrieval-augmented models on a diverse set of tasks. Specifically, Self-RAG outperforms ChatGPT and retrieval-augmented Llama2-chat on Open-domain QA, reasoning and fact verification tasks, and it shows significant gains in improving factuality and citation accuracy for long-form generations relative to these models.</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-10-17T18:18:32Z</published>
+    <arxiv:comment>30 pages, 2 figures, 12 tables</arxiv:comment>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Akari Asai</name>
+    </author>
+    <author>
+      <name>Zeqiu Wu</name>
+    </author>
+    <author>
+      <name>Yizhong Wang</name>
+    </author>
+    <author>
+      <name>Avirup Sil</name>
+    </author>
+    <author>
+      <name>Hannaneh Hajishirzi</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2305.09645v1</id>
+    <title>StructGPT: A General Framework for Large Language Model to Reason over Structured Data</title>
+    <updated>2023-05-16T17:45:23Z</updated>
+    <link href="https://arxiv.org/abs/2305.09645v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2305.09645v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>In this paper, we study how to improve the zero-shot reasoning ability of large language models~(LLMs) over structured data in a unified way. Inspired by the study on tool augmentation for LLMs, we develop an \emph{Iterative Reading-then-Reasoning~(IRR)} approach for solving question answering tasks based on structured data, called \textbf{StructGPT}. In our approach, we construct the specialized function to collect relevant evidence from structured data (\ie \emph{reading}), and let LLMs concentrate the reasoning task based on the collected information (\ie \emph{reasoning}). Specially, we propose an \emph{invoking-linearization-generation} procedure to support LLMs in reasoning on the structured data with the help of the external interfaces. By iterating this procedures with provided interfaces, our approach can gradually approach the target answer to a given query. Extensive experiments conducted on three types of structured data demonstrate the effectiveness of our approach, which can significantly boost the performance of ChatGPT and achieve comparable performance against the full-data supervised-tuning baselines. Our codes and data are publicly available at~\url{https://github.com/RUCAIBox/StructGPT}.</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-05-16T17:45:23Z</published>
+    <arxiv:comment>13 pages, working in progress</arxiv:comment>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Jinhao Jiang</name>
+    </author>
+    <author>
+      <name>Kun Zhou</name>
+    </author>
+    <author>
+      <name>Zican Dong</name>
+    </author>
+    <author>
+      <name>Keming Ye</name>
+    </author>
+    <author>
+      <name>Wayne Xin Zhao</name>
+    </author>
+    <author>
+      <name>Ji-Rong Wen</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2302.02313v1</id>
+    <title>A Game-Theoretic Approach to Solving the Roman Domination Problem</title>
+    <updated>2023-02-05T06:26:42Z</updated>
+    <link href="https://arxiv.org/abs/2302.02313v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2302.02313v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>The Roamn domination problem is one important combinatorial optimization problem that is derived from an old story of defending the Roman Empire and now regains new significance in cyber space security, considering backups in the face of a dynamic network security requirement. In this paper, firstly, we propose a Roman domination game (RDG) and prove that every Nash equilibrium (NE) of the game corresponds to a strong minimal Roman dominating function (S-RDF), as well as a Pareto-optimal solution. Secondly, we show that RDG is an exact potential game, which guarantees the existence of an NE. Thirdly, we design a game-based synchronous algorithm (GSA), which can be implemented distributively and converge to an NE in $O(n)$ rounds, where $n$ is the number of vertices. In GSA, all players make decisions depending on the local information. Furthermore, we enhance GSA to be enhanced GSA (EGSA), which converges to a better NE in $O(n^2)$ rounds. Finally, we present numerical simulations to demonstrate that EGSA can obtain a better approximate solution in promising computation time compared with state-of-the-art algorithms.</summary>
+    <category term="cs.GT" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.DM" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-02-05T06:26:42Z</published>
+    <arxiv:primary_category term="cs.GT"/>
+    <author>
+      <name>Xiuyang Chen</name>
+    </author>
+    <author>
+      <name>Changbing Tang</name>
+    </author>
+    <author>
+      <name>Zhao Zhang</name>
+    </author>
+    <author>
+      <name>Guanrong Chen</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2305.19518v1</id>
+    <title>Label-Retrieval-Augmented Diffusion Models for Learning from Noisy Labels</title>
+    <updated>2023-05-31T03:01:36Z</updated>
+    <link href="https://arxiv.org/abs/2305.19518v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2305.19518v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Learning from noisy labels is an important and long-standing problem in machine learning for real applications. One of the main research lines focuses on learning a label corrector to purify potential noisy labels. However, these methods typically rely on strict assumptions and are limited to certain types of label noise. In this paper, we reformulate the label-noise problem from a generative-model perspective, $\textit{i.e.}$, labels are generated by gradually refining an initial random guess. This new perspective immediately enables existing powerful diffusion models to seamlessly learn the stochastic generative process. Once the generative uncertainty is modeled, we can perform classification inference using maximum likelihood estimation of labels. To mitigate the impact of noisy labels, we propose the $\textbf{L}$abel-$\textbf{R}$etrieval-$\textbf{A}$ugmented (LRA) diffusion model, which leverages neighbor consistency to effectively construct pseudo-clean labels for diffusion training. Our model is flexible and general, allowing easy incorporation of different types of conditional information, $\textit{e.g.}$, use of pre-trained models, to further boost model performance. Extensive experiments are conducted for evaluation. Our model achieves new state-of-the-art (SOTA) results on all the standard real-world benchmark datasets. Remarkably, by incorporating conditional information from the powerful CLIP model, our method can boost the current SOTA accuracy by 10-20 absolute points in many cases.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-05-31T03:01:36Z</published>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Jian Chen</name>
+    </author>
+    <author>
+      <name>Ruiyi Zhang</name>
+    </author>
+    <author>
+      <name>Tong Yu</name>
+    </author>
+    <author>
+      <name>Rohan Sharma</name>
+    </author>
+    <author>
+      <name>Zhiqiang Xu</name>
+    </author>
+    <author>
+      <name>Tong Sun</name>
+    </author>
+    <author>
+      <name>Changyou Chen</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2210.02928v1</id>
+    <title>MuRAG: Multimodal Retrieval-Augmented Generator for Open Question Answering over Images and Text</title>
+    <updated>2022-10-06T13:58:03Z</updated>
+    <link href="https://arxiv.org/abs/2210.02928v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2210.02928v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>While language Models store a massive amount of world knowledge implicitly in their parameters, even very large models often fail to encode information about rare entities and events, while incurring huge computational costs. Recently, retrieval-augmented models, such as REALM, RAG, and RETRO, have incorporated world knowledge into language generation by leveraging an external non-parametric index and have demonstrated impressive performance with constrained model sizes. However, these methods are restricted to retrieving only textual knowledge, neglecting the ubiquitous amount of knowledge in other modalities like images -- much of which contains information not covered by any text. To address this limitation, we propose the first Multimodal Retrieval-Augmented Transformer (MuRAG), which accesses an external non-parametric multimodal memory to augment language generation. MuRAG is pre-trained with a mixture of large-scale image-text and text-only corpora using a joint contrastive and generative loss. We perform experiments on two different datasets that require retrieving and reasoning over both images and text to answer a given query: WebQA, and MultimodalQA. Our results show that MuRAG achieves state-of-the-art accuracy, outperforming existing models by 10-20\% absolute on both datasets and under both distractor and full-wiki settings.</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2022-10-06T13:58:03Z</published>
+    <arxiv:comment>Accepted to EMNLP 2022 main conference</arxiv:comment>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Wenhu Chen</name>
+    </author>
+    <author>
+      <name>Hexiang Hu</name>
+    </author>
+    <author>
+      <name>Xi Chen</name>
+    </author>
+    <author>
+      <name>Pat Verga</name>
+    </author>
+    <author>
+      <name>William W. Cohen</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2304.08244v1</id>
+    <title>API-Bank: A Benchmark for Tool-Augmented LLMs</title>
+    <updated>2023-04-14T14:05:32Z</updated>
+    <link href="https://arxiv.org/abs/2304.08244v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2304.08244v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Recent research has shown that Large Language Models (LLMs) can utilize external tools to improve their contextual processing abilities, moving away from the pure language modeling paradigm and paving the way for Artificial General Intelligence. Despite this, there has been a lack of systematic evaluation to demonstrate the efficacy of LLMs using tools to respond to human instructions. This paper presents API-Bank, the first benchmark tailored for Tool-Augmented LLMs. API-Bank includes 53 commonly used API tools, a complete Tool-Augmented LLM workflow, and 264 annotated dialogues that encompass a total of 568 API calls. These resources have been designed to thoroughly evaluate LLMs' ability to plan step-by-step API calls, retrieve relevant APIs, and correctly execute API calls to meet human needs. The experimental results show that GPT-3.5 emerges the ability to use the tools relative to GPT3, while GPT-4 has stronger planning performance. Nevertheless, there remains considerable scope for further improvement when compared to human performance. Additionally, detailed error analysis and case studies demonstrate the feasibility of Tool-Augmented LLMs for daily use, as well as the primary challenges that future research needs to address.</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-04-14T14:05:32Z</published>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Minghao Li</name>
+    </author>
+    <author>
+      <name>Feifan Song</name>
+    </author>
+    <author>
+      <name>Bowen Yu</name>
+    </author>
+    <author>
+      <name>Haiyang Yu</name>
+    </author>
+    <author>
+      <name>Zhoujun Li</name>
+    </author>
+    <author>
+      <name>Fei Huang</name>
+    </author>
+    <author>
+      <name>Yongbin Li</name>
+    </author>
+  </entry>
+</feed>

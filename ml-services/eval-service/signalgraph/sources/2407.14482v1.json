@@ -1,0 +1,31 @@
+{
+  "native_id": "2407.14482v1",
+  "canonical_id": "arxiv:2407.14482",
+  "url": "https://arxiv.org/abs/2407.14482v1",
+  "title": "ChatQA 2: Bridging the Gap to Proprietary LLMs in Long Context and RAG Capabilities",
+  "authors": [
+    "Peng Xu",
+    "Wei Ping",
+    "Xianchao Wu",
+    "Zihan Liu",
+    "Mohammad Shoeybi",
+    "Bryan Catanzaro"
+  ],
+  "published_at": "2024-07-19T17:35:47Z",
+  "version_updated_at": "2024-07-19T17:35:47Z",
+  "observed_at": "2026-09-08T22:30:48.756477+00:00",
+  "available_at": "2024-07-19T17:35:47Z",
+  "available_basis": "arXiv archived v1 release; historical reconstruction captured later",
+  "source_kind": "paper",
+  "provider": "arxiv",
+  "access_scope": "public",
+  "representation": "versioned_primary_abstract",
+  "text": "In this work, we introduce ChatQA 2, a Llama3-based model designed to bridge the gap between open-access LLMs and leading proprietary models (e.g., GPT-4-Turbo) in long-context understanding and retrieval-augmented generation (RAG) capabilities. These two capabilities are essential for LLMs to process large volumes of information that cannot fit into a single prompt and are complementary to each other, depending on the downstream tasks and computational budgets. We present a detailed continued training recipe to extend the context window of Llama3-70B-base from 8K to 128K tokens, along with a three-stage instruction tuning process to enhance the model's instruction-following, RAG performance, and long-context understanding capabilities. Our results demonstrate that the Llama3-ChatQA-2-70B model achieves accuracy comparable to GPT-4-Turbo-2024-0409 on many long-context understanding tasks and surpasses it on the RAG benchmark. Interestingly, we find that the state-of-the-art long-context retriever can alleviate the top-k context fragmentation issue in RAG, further improving RAG-based results for long-context understanding tasks. We also provide extensive comparisons between RAG and long-context solutions using state-of-the-art long-context LLMs.",
+  "text_sha256": "23eff854cbec3166e16c50d3ba69a3da01c432fe4d8b6e323691b468b670d818",
+  "raw_sha256": "fed7c85814f0c1ef814a75028e63acf00a3d5eaef67602d6e2123046f52b8f5e",
+  "raw_file": "fed7c85814f0c1ef814a75028e63acf00a3d5eaef67602d6e2123046f52b8f5e.xml",
+  "limitations": [
+    "Abstract-only evidence; author-reported results, not independent reproduction.",
+    "Later DOI, journal metadata and current citations are excluded from historical input."
+  ]
+}

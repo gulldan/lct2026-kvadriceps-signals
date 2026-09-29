@@ -1,0 +1,51 @@
+{
+  "query": "фазовое обнаружение речи",
+  "model_version": "weak-signal-2026-09-21.1",
+  "documents": [
+    {
+      "doc_id": "fixture:0",
+      "source": "fixture",
+      "title": "Phase coherence for synthetic speech",
+      "abstract": "",
+      "text": "Phase coherence for synthetic speech\n\n",
+      "lang": "ru",
+      "source_type": "other",
+      "trust_level": "unknown",
+      "date": "2026-05-10",
+      "url": "",
+      "authors": [
+        "fixture:0"
+      ]
+    },
+    {
+      "doc_id": "fixture:1",
+      "source": "fixture",
+      "title": "Phase coherence for synthetic speech",
+      "abstract": "",
+      "text": "Phase coherence for synthetic speech\n\n",
+      "lang": "ru",
+      "source_type": "other",
+      "trust_level": "unknown",
+      "date": "2026-06-10",
+      "url": "",
+      "authors": [
+        "fixture:1"
+      ]
+    },
+    {
+      "doc_id": "fixture:2",
+      "source": "fixture",
+      "title": "Phase coherence for synthetic speech",
+      "abstract": "",
+      "text": "Phase coherence for synthetic speech\n\n",
+      "lang": "ru",
+      "source_type": "other",
+      "trust_level": "unknown",
+      "date": "2026-07-10",
+      "url": "",
+      "authors": [
+        "fixture:2"
+      ]
+    }
+  ]
+}

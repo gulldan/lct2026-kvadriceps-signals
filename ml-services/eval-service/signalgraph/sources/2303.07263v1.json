@@ -1,0 +1,32 @@
+{
+  "native_id": "2303.07263v1",
+  "canonical_id": "arxiv:2303.07263",
+  "url": "https://arxiv.org/abs/2303.07263v1",
+  "title": "InferFix: End-to-End Program Repair with LLMs",
+  "authors": [
+    "Matthew Jin",
+    "Syed Shahriar",
+    "Michele Tufano",
+    "Xin Shi",
+    "Shuai Lu",
+    "Neel Sundaresan",
+    "Alexey Svyatkovskiy"
+  ],
+  "published_at": "2023-03-13T16:42:47Z",
+  "version_updated_at": "2023-03-13T16:42:47Z",
+  "observed_at": "2026-09-08T22:21:57.265798+00:00",
+  "available_at": "2023-03-13T16:42:47Z",
+  "available_basis": "arXiv archived v1 release; historical reconstruction captured later",
+  "source_kind": "paper",
+  "provider": "arxiv",
+  "access_scope": "public",
+  "representation": "versioned_primary_abstract",
+  "text": "Software development life cycle is profoundly influenced by bugs: their introduction, identification, and eventual resolution account for a significant portion of software cost. This has motivated software engineering researchers and practitioners to propose different approaches for automating the identification and repair of software defects. Large language models have been adapted to the program repair task through few-shot demonstration learning and instruction prompting, treating this as an infilling task. However, these models have only focused on learning general bug-fixing patterns for uncategorized bugs mined from public repositories. In this paper, we propose InferFix: a transformer-based program repair framework paired with a state-of-the-art static analyzer to fix critical security and performance bugs. InferFix combines a Retriever -- transformer encoder model pretrained via contrastive learning objective, which aims at searching for semantically equivalent bugs and corresponding fixes; and a Generator -- a large language model (Codex Cushman) finetuned on supervised bug-fix data with prompts augmented via bug type annotations and semantically similar fixes retrieved from an external non-parametric memory. To train and evaluate our approach, we curated InferredBugs, a novel, metadata-rich dataset of bugs extracted by executing the Infer static analyzer on the change histories of thousands of Java and C# repositories. Our evaluation demonstrates that InferFix outperforms strong LLM baselines, with a top-1 accuracy of 65.6% for generating fixes in C# and 76.8% in Java. We discuss the deployment of InferFix alongside Infer at Microsoft which offers an end-to-end solution for detection, classification, and localization of bugs, as well as fixing and validation of candidate patches, integrated in the continuous integration pipeline to automate the software development workflow.",
+  "text_sha256": "9ab0043fec2490eaf9106e95abd296f9f8e259badf2002528d60fc34d566739d",
+  "raw_sha256": "a21afb62ff2a2b5e5c7fa99d38deb7e33515f2a5050a5002f8218071f1c86a5a",
+  "raw_file": "a21afb62ff2a2b5e5c7fa99d38deb7e33515f2a5050a5002f8218071f1c86a5a.xml",
+  "limitations": [
+    "Abstract-only evidence; author-reported results, not independent reproduction.",
+    "Later DOI, journal metadata and current citations are excluded from historical input."
+  ]
+}

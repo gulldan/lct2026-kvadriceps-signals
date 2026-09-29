@@ -1,0 +1,31 @@
+{
+  "native_id": "2502.12110v1",
+  "canonical_id": "arxiv:2502.12110",
+  "url": "https://arxiv.org/abs/2502.12110v1",
+  "title": "A-MEM: Agentic Memory for LLM Agents",
+  "authors": [
+    "Wujiang Xu",
+    "Zujie Liang",
+    "Kai Mei",
+    "Hang Gao",
+    "Juntao Tan",
+    "Yongfeng Zhang"
+  ],
+  "published_at": "2025-02-17T18:36:14Z",
+  "version_updated_at": "2025-02-17T18:36:14Z",
+  "observed_at": "2026-09-08T22:44:17.493937+00:00",
+  "available_at": "2025-02-17T18:36:14Z",
+  "available_basis": "arXiv archived v1 release; historical reconstruction captured later",
+  "source_kind": "paper",
+  "provider": "arxiv",
+  "access_scope": "public",
+  "representation": "versioned_primary_abstract",
+  "text": "While large language model (LLM) agents can effectively use external tools for complex real-world tasks, they require memory systems to leverage historical experiences. Current memory systems enable basic storage and retrieval but lack sophisticated memory organization, despite recent attempts to incorporate graph databases. Moreover, these systems' fixed operations and structures limit their adaptability across diverse tasks. To address this limitation, this paper proposes a novel agentic memory system for LLM agents that can dynamically organize memories in an agentic way. Following the basic principles of the Zettelkasten method, we designed our memory system to create interconnected knowledge networks through dynamic indexing and linking. When a new memory is added, we generate a comprehensive note containing multiple structured attributes, including contextual descriptions, keywords, and tags. The system then analyzes historical memories to identify relevant connections, establishing links where meaningful similarities exist. Additionally, this process enables memory evolution - as new memories are integrated, they can trigger updates to the contextual representations and attributes of existing historical memories, allowing the memory network to continuously refine its understanding. Our approach combines the structured organization principles of Zettelkasten with the flexibility of agent-driven decision making, allowing for more adaptive and context-aware memory management. Empirical experiments on six foundation models show superior improvement against existing SOTA baselines. The source code is available at https://github.com/WujiangXu/AgenticMemory.",
+  "text_sha256": "8425aeba2cf857a7a3c3b548cbd5a445bd13f4e6a62dab30aa6209a7800debb1",
+  "raw_sha256": "d794dda6b39c851dfacd873ec0a99c27f066067c23f5d12be94a6faa8de16f6c",
+  "raw_file": "d794dda6b39c851dfacd873ec0a99c27f066067c23f5d12be94a6faa8de16f6c.xml",
+  "limitations": [
+    "Abstract-only evidence; author-reported results, not independent reproduction.",
+    "Later DOI, journal metadata and current citations are excluded from historical input."
+  ]
+}

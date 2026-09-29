@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package rag.harvest.v1;
+option go_package = "github.com/example/rag-mvp/pkg/genproto/harvest/v1;harvestv1";
+
+// Internal collection control plane. Payloads are strictly validated v1 JSON
+// envelopes from platform/pkg/harvest; raw files and API pages live in S3.
+service HarvestService {
+  rpc Start(Envelope) returns (Envelope);
+  rpc Quota(Envelope) returns (Envelope);
+  rpc CommitPage(Envelope) returns (Envelope);
+  rpc Pending(Envelope) returns (Envelope);
+  rpc Ack(Envelope) returns (Envelope);
+  rpc Finish(Envelope) returns (Envelope);
+  // Requested lists collections a user asked for through the API, so the
+  // collector's scope is no longer only what its configuration file names.
+  rpc Requested(Envelope) returns (Envelope);
+  // Request records one such collection and is idempotent on request_id.
+  rpc Request(Envelope) returns (Envelope);
+  // Progress reads one collection: its manifests, refusals and continuation.
+  rpc Progress(Envelope) returns (Envelope);
+}
+
+message Envelope { string json = 1; }

@@ -1,0 +1,26 @@
+syntax = "proto3";
+package rag.analysis.v1;
+option go_package = "github.com/example/rag-mvp/pkg/genproto/analysis/v1;analysisv1";
+
+// Private, authenticated-reader-bound control plane. Source vectors and text
+// stay in immutable S3 objects; payloads follow platform/analysisdoc.
+service AnalysisService {
+  rpc Freeze(Envelope) returns (Envelope);
+  rpc Read(Envelope) returns (Envelope);
+  rpc Submit(Envelope) returns (Envelope);
+  rpc ReadJob(Envelope) returns (Envelope);
+  rpc Claim(Envelope) returns (Envelope);
+  rpc Renew(Envelope) returns (Envelope);
+  rpc Validate(Envelope) returns (Envelope);
+  rpc Publish(Envelope) returns (Envelope);
+  rpc Fail(Envelope) returns (Envelope);
+  rpc StartDescription(Envelope) returns (Envelope);
+  rpc ReadDescription(Envelope) returns (Envelope);
+  rpc ClaimDescription(Envelope) returns (Envelope);
+  rpc CompleteDescription(Envelope) returns (Envelope);
+  // Разовый поиск по открытым источникам: сохранённый результат и сырые записи.
+  rpc ReadLiveSearch(Envelope) returns (Envelope);
+  rpc SaveLiveSearch(Envelope) returns (Envelope);
+  rpc ListLiveSearches(Envelope) returns (Envelope);
+}
+message Envelope { string json = 1; }

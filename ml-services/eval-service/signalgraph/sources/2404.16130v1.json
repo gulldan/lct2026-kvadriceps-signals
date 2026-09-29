@@ -1,0 +1,33 @@
+{
+  "native_id": "2404.16130v1",
+  "canonical_id": "arxiv:2404.16130",
+  "url": "https://arxiv.org/abs/2404.16130v1",
+  "title": "From Local to Global: A Graph RAG Approach to Query-Focused Summarization",
+  "authors": [
+    "Darren Edge",
+    "Ha Trinh",
+    "Newman Cheng",
+    "Joshua Bradley",
+    "Alex Chao",
+    "Apurva Mody",
+    "Steven Truitt",
+    "Jonathan Larson"
+  ],
+  "published_at": "2024-04-24T18:38:11Z",
+  "version_updated_at": "2024-04-24T18:38:11Z",
+  "observed_at": "2026-09-08T22:28:42.905805+00:00",
+  "available_at": "2024-04-24T18:38:11Z",
+  "available_basis": "arXiv archived v1 release; historical reconstruction captured later",
+  "source_kind": "paper",
+  "provider": "arxiv",
+  "access_scope": "public",
+  "representation": "versioned_primary_abstract",
+  "text": "The use of retrieval-augmented generation (RAG) to retrieve relevant information from an external knowledge source enables large language models (LLMs) to answer questions over private and/or previously unseen document collections. However, RAG fails on global questions directed at an entire text corpus, such as \"What are the main themes in the dataset?\", since this is inherently a query-focused summarization (QFS) task, rather than an explicit retrieval task. Prior QFS methods, meanwhile, fail to scale to the quantities of text indexed by typical RAG systems. To combine the strengths of these contrasting methods, we propose a Graph RAG approach to question answering over private text corpora that scales with both the generality of user questions and the quantity of source text to be indexed. Our approach uses an LLM to build a graph-based text index in two stages: first to derive an entity knowledge graph from the source documents, then to pregenerate community summaries for all groups of closely-related entities. Given a question, each community summary is used to generate a partial response, before all partial responses are again summarized in a final response to the user. For a class of global sensemaking questions over datasets in the 1 million token range, we show that Graph RAG leads to substantial improvements over a naïve RAG baseline for both the comprehensiveness and diversity of generated answers. An open-source, Python-based implementation of both global and local Graph RAG approaches is forthcoming at https://aka.ms/graphrag.",
+  "text_sha256": "127e4ee27cfe91cc5cb8a6431090783786bffaeeaba4076e2f25c7a4dffbb8e4",
+  "raw_sha256": "761969bd1361209348c93fad02bd6d4c2df715209d933d5edb33e9ba47c64193",
+  "raw_file": "761969bd1361209348c93fad02bd6d4c2df715209d933d5edb33e9ba47c64193.xml",
+  "limitations": [
+    "Abstract-only evidence; author-reported results, not independent reproduction.",
+    "Later DOI, journal metadata and current citations are excluded from historical input."
+  ]
+}

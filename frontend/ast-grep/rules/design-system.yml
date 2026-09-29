@@ -1,0 +1,60 @@
+id: controls-via-ui
+language: Tsx
+severity: error
+message: "Используйте Button, Input, Textarea, Select, Label и Table из shared/ui."
+files: ["src/**"]
+ignores: ["src/shared/ui/**"]
+rule:
+  any:
+    - kind: jsx_opening_element
+    - kind: jsx_self_closing_element
+  has:
+    field: name
+    regex: "^(button|input|textarea|select|label|table|thead|tbody|tr|th|td)$"
+---
+id: ui-packages-via-ui
+language: Tsx
+severity: error
+message: "UI-библиотеки и toast подключаются только в shared/ui; используйте дизайн-систему."
+files: ["src/**"]
+ignores: ["src/shared/ui/**"]
+rule:
+  kind: string
+  regex: '^["''](@radix-ui/|sonner([/"''])|react-pdf([/"''])|react-markdown([/"''])|framer-motion([/"''])|.*_designSystem)'
+  inside:
+    any:
+      - kind: import_statement
+      - kind: export_statement
+      - kind: call_expression
+        has:
+          field: function
+          regex: "^(import|require)$"
+    stopBy: end
+---
+id: surfaces-via-ui
+language: Tsx
+severity: error
+message: "Используйте Card или CardButton вместо копии оформления карточки."
+files: ["src/**"]
+ignores: ["src/shared/ui/**"]
+rule:
+  any:
+    - kind: string
+    - kind: template_string
+  all:
+    - regex: '\bbg-card\b'
+    - regex: '\bborder\b'
+    - regex: '\brounded-(xl|lg)\b'
+  inside:
+    kind: jsx_attribute
+    has:
+      kind: property_identifier
+      regex: "^className$"
+    inside:
+      any:
+        - kind: jsx_opening_element
+        - kind: jsx_self_closing_element
+      has:
+        field: name
+        regex: "^[a-z]"
+    stopBy: end

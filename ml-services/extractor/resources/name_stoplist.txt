@@ -1,0 +1,618 @@
+2d computational fluid dynamics
+325 nm focused laser excitation
+7-layer osi data transport
+absolute localization
+active anomaly detection
+adversarial machine learning techniques
+agent-based ai
+agent-based intelligent systems
+agentic ai
+agentic ai systems
+agentic artificial intelligence
+agentic artificial intelligence (ai) workflows
+agentic artificial intelligence system
+agentic artificial intelligence systems
+agentic based artificial intelligence
+agentic llm systems
+agentic workflow
+ai
+ai-driven matchmaking
+algorithm
+algorithms
+approach
+architecture
+artificial intelligence
+artificial intelligence (ai)
+artificial intelligence (ai) technologies
+artificial intelligence assistants
+artificial intelligence system
+artificial intelligence systems
+autonomous agents
+autonomous network agents
+autonomous or semi-autonomous ai systems
+autonomous research agents
+autonomous systems
+behavioral analytics
+benchmark compression
+bibliographic coupling
+bibliographic mapping techniques
+bibliometric analysis
+bibliometric and reflexive thematic analysis
+big data analysis
+black-box machine learning models
+browsers
+cache read
+cache write
+calibration measurements
+calibration-confidence checks
+cell-cell communication analyses
+certificate validation
+chromaticity coordinate analysis
+classical computing
+classical cryptography
+closed-form two-rate single-call energy model
+cloud-native technologies
+coefficient conditioning
+coefficient-vector
+cognitive computing
+cognitive processing model
+coherence methods
+command-line interfaces
+communication systems
+computational fluid dynamics
+computer equipment
+computer vision
+computer vision models
+connectionist ai/ml
+content analysis
+contextual token-level embeddings
+corpus navigation
+corrected auxiliary-based estimators
+corrected ratio, regression, and exponential-type estimators
+cross-dataset validation
+cross-sectional, survey-based method
+cyber-extraction techniques
+dags
+daily-life health monitoring technologies
+data
+data query method
+data-driven models
+databases
+dataset
+decentralized partially observable markov decision process (dec-pomdp)
+decoder ancillae
+decoder blocks
+deep learning
+deep learning architectures
+deep learning models
+deep learning techniques
+deep learning vision models
+deep learning-based approaches
+delong
+deterministic model
+differential expression analysis
+direct value improvement
+directed acyclic graphs (dags)
+dna analysis
+ds reconstruction (dsr)
+dsr
+dynamics simulations
+econometric analysis
+edge computing
+edge-cloud continuum
+electrochemical measurements
+embedding and generative models
+embedding models
+embeddings
+embodied ai
+encoder-driven approaches
+energy cost of ai lifecycle (ecal)
+equal-weight
+expert review
+expert-elicitation
+explicit anomaly margin
+extended reality
+extraction of symbolic representations
+feature selection
+financial machine learning
+forward pass
+framework
+framework linking data-center load growth, available generation capacity, and market-clearing prices
+gen ai
+genai
+generative ai
+generative ai (genai)
+generative ai systems
+generative artificial intelligence (gen ai)
+generative artificial intelligence (genai)
+generative evaluation
+google scholar
+human-intensive annotation process
+human–ai systems
+hydrogen‐bonded bridging network
+hydrogen‐bonded bridging networks
+image-delivery skill
+industry 4.0
+inertial measurements
+inter-dataset training and validation
+internet of things
+internet of things (iot)
+interpretable machine learning
+iot technology
+kinematic equations used for robotic arm control
+language-tasked teams
+life cycle assessment (lca)
+llm-as-a-judge evaluation
+llm-based approaches
+llm-based methods
+llm-based strategies
+llm-инференс
+local optimization
+machine intelligence
+machine learning
+machine learning (ml)
+machine learning (ml) models
+machine learning algorithms
+machine learning methods
+machine learning model
+machine learning model for critical cooling rates
+machine learning models
+machine learning-based techniques
+machine-learning
+machine-learning models
+machine‐learning
+materials characterization
+mcnemar tests
+method
+methods
+miracl-vision
+ml
+ml-модели
+mllm-driven reduction
+model
+models
+monitoring systems
+multi-agent ai
+multi-omics analysis
+multidimensional continuous-time principal-agent model with separable, nonquadratic effort costs
+narrow ai
+natural language processing
+natural language processing (nlp) strategies
+natural language processing (nlp) techniques
+network
+networks
+neuro-symbolic agentic ai
+neuro-symbolic agentic ai (nsaai)
+nitrogen-vacancy magnetic quenching
+nlp techniques
+nonlinear dynamical system
+novel benchmark
+novel optimization problem
+nsaai
+numerical simulations
+oee
+on-device ai
+onboard global localization
+orthogonal projection
+orthogonal projection technique
+overall equipment effectiveness (oee)
+pcc (population, concept, context) framework
+persistent homology (ph)
+ph
+photovoltaics
+physical cloning
+pico methodology (population, intervention, comparison, outcome)
+pipeline
+plain document retrieval
+platform
+pose alignment
+post quantum cryptography
+post quantum cryptography (pqc)
+post-quantum cryptographic (pqc) frameworks
+post-quantum cryptographic (pqc) solutions
+post-quantum cryptographic algorithms
+post-quantum cryptography
+post-quantum cryptography (pqc)
+post-quantumcryptography (pqc)
+postquantum cryptography (pqc)
+power-dependent pl spectra analysis
+pqc algorithms
+pqc protocols
+predictive analytics
+predictive maintenance
+prefill
+proteomic approaches
+purposive sampling
+pvs
+qc
+qpp (query performance prediction)
+quantitative, cross-sectional research design
+quantum communication
+quantum communications
+quantum computation
+quantum computing
+quantum computing (qc)
+quantum computing technology
+quantum cryptographic technologies
+quantum cryptography
+quantum measurement
+quantum optimization
+quantum random oracle model
+quantum sampling
+quantum sensing
+quantum-inspired optimization
+quantum-resilient cryptographic measures
+quantum-resilient cryptography
+quantum-resistant algorithms
+quantum-resistant cryptography
+quantum-resistant methods
+quantum-resistant techniques
+r libraries
+random-walk
+rapps
+reflexive thematic analysis
+remote sensing
+repo-rift.com
+research agents
+resource estimation
+retraining
+robotic arm control
+robots
+robust statistics
+role specialization
+science mapping
+scoping review
+scopus
+self-rectification
+self-reflection
+signature check
+singular value decomposition (svd)
+solution
+spatial transcriptomics
+stability barrier
+statistical analysis
+statistical testing
+statistical, mainly linear, approaches
+stochastic control problem
+stochastic processes
+storage medium
+strategy
+structured conceptual review methodology
+structured interviews
+structured narrative review
+supervised classification of hyperedges
+swot-анализ
+syndrome measurements
+system
+systems
+tabular machine learning
+technique
+technology
+terminal logical measurement
+thematic synthesis
+tool
+tools
+traditional cryptographic algorithms
+traditional cryptographic schemes
+traditional cryptography
+traditional machine learning
+traditional machine learning (ml)
+train–test split
+uncertainty quantification
+vera c. rubin observatory
+verifier-and-acceptance stage
+virtualization
+web of science
+wireless networks
+word-level attacks
+word-level perturbations
+xapps
+абсолютная локализация
+автоматизации облачных операций
+автоматизация облачных операций
+автоматизированное производство
+автоматизированному производству
+автономная или полуавтономная система искусственного интеллекта
+автономные агенты
+автономные или полуавтономные системы искусственного интеллекта
+автономные исследовательские агенты
+автономные сетевые агенты
+автономные системы
+агентного ии
+агентные системы
+агентные системы на основе больших языковых моделей
+агентный ии
+агентный искусственный интеллект
+агентный искусственный интеллект (ии)
+агентный рабочий процесс
+агентский ии
+агентский искусственный интеллект
+адаптивная обработка аномалий
+адаптивного проектирования
+адаптивное проектирование
+активное обнаружение аномалий
+алгоритм
+алгоритмы мо
+анализ больших данных
+анализ дифференциальной экспрессии
+анализ днк
+анализ зависимости спектров фотолюминесценции от мощности возбуждения
+анализ координат цветности
+анализ межклеточной коммуникации
+архитектура
+ассистент на основе искусственного интеллекта
+атаки на уровне слов
+базы данных
+барьер устойчивости
+бенчмарк научных вопросов
+беспроводные сети
+библиографическое картирование
+библиографическое сопряжение
+библиометрический анализ
+библиометрический и рефлексивный тематический анализ
+библиотеки r
+блоки декодировщика
+браузеры
+вантовым вычислениям
+векторное представление текста
+визуально-языковые базовые методы поиска по границе исследованной области
+визуального подсчета
+визуальный подсчет
+виртуализация
+водородно-связанная мостиковая сеть
+возбуждение сфокусированным лазерным излучением с длиной волны 325 нм
+воплощённый искусственный интеллект
+вспомогательные кубиты декодировщика
+выравнивание позы
+высокоразмерное кодирование данных
+вычислительная гидродинамика
+выявление экспертных оценок
+генеративная оценка
+генеративного ии
+генеративного искусственного интеллекта
+генеративный ии
+генеративный искусственный интеллект
+глубокого обучения
+глубокое обучение
+глубоком обучении
+двумерное численное моделирование гидродинамики
+двухскоростная аналитическая модель энергии одного вызова
+детерминированная модель спроса и предложения
+децентрализованный частично наблюдаемый марковский процесс принятия решений (dec-pomdp)
+дистанционное зондирование
+единая модель кровообращения всего тела
+задача вывода динамики обучения человека по демонстрациям
+задача стохастического управления
+запись в кэш
+извлечение символьных представлений
+измерения синдрома ошибок
+ии
+индустрия 4.0
+инерциальные измерения
+интернет вещей (iot)
+интернета вещей
+интернета вещей (iot)
+интерпретируемое машинное обучение
+интерфейс командной строки
+инференс
+инференс llm
+инференс больших языковых моделей
+искусственного интеллекта
+искусственного интеллекта (ии)
+искусственный интеллект
+искусственный интеллект (ии)
+искусственный интеллект на устройстве
+калибровочные измерения
+квантовая криптография
+квантовая модель случайного оракула
+квантовая обработка информации
+квантовая оптимизация
+квантовая связь
+квантово-вдохновлённая оптимизация
+квантово-устойчивая криптография
+квантово-устойчивой криптографии
+квантовое измерение
+квантовое сенсирование
+квантовое сэмплирование
+квантовой связи
+квантовые блоки декодировщика
+квантовые вычисления
+квантовые и гибридные вычисления
+квантовые коммуникации
+квантовыми вычислениями
+квантовых вычислений
+квантовых вычислениях
+квантовых коммуникаций
+киборг
+киборгов
+кинематические уравнения управления роботизированной рукой
+классификация гиперрёбер с учителем
+классическая криптография
+классические вычисления
+когнитивные вычисления
+количественный поперечный дизайн исследования
+комплементарные протеомные методы идентификации биологических жидкостей
+компьютерное зрение
+компьютерное оборудование
+кондиционирование вектором коэффициентов
+конечное логическое измерение
+коннекционистский искусственный интеллект и машинное обучение
+контекстные эмбеддинги токенов
+контент-анализ
+контент-анализа
+континуум «периферия — облако»
+линейные статистические методы
+локальная оптимизация
+магнитное тушение nv-центров
+макнемара
+машинного обучения
+машинного обучения (мо)
+машинное обучение
+машинное обучение в финансах
+машинное обучение на табличных данных
+машинным обучением
+междатасетная валидация
+междатасетное обучение и валидация
+метод
+метод анализа охвата данных
+метод запроса данных
+метод обнаружения вопросов за пределами контекста
+метод поперечного опросного исследования
+метода анализа охвата данных
+методами предиктивной аналитики
+методика pcc: популяция, концепция, контекст
+методология pico
+методы выбора признаков
+методы глубокого обучения
+методы киберизвлечения данных
+методы когерентности
+методы на основе больших языковых моделей
+методы на основе кодировщика
+методы состязательного машинного обучения
+многоагентный искусственный интеллект
+многомерная модель принципал–агент в непрерывном времени с разделимыми неквадратичными затратами усилий
+мо
+моделей машинного обучения
+моделей эмбеддингов
+модели
+модели глубокого обучения
+модели компьютерного зрения
+модели компьютерного зрения на основе глубокого обучения
+модели машинного обучения
+модели на основе данных
+модели эмбеддингов
+модели эмбеддингов и генеративные модели
+моделирование динамики
+модель
+модель динамики обучения человека
+модель когнитивной обработки
+модель машинного обучения
+модель машинного обучения для идентификации биологических жидкостей
+модель машинного обучения для критических скоростей охлаждения
+модель связи роста нагрузки цод, генерирующих мощностей и рыночных цен
+мультиомный анализ
+навигация по корпусу
+навык доставки изображений
+направление поиска на уровне режимов и решений
+направленный ациклический граф (dag)
+научное картирование
+нейросимвольный агентный ии
+нейросимвольный агентный искусственный интеллект (nsaai)
+нелинейная динамическая система
+носитель данных
+обзор предметного поля
+облачно-нативные технологии
+облачные технологии
+обнаружение данных вне домена
+обработка естественного языка
+обсерватория веры рубин
+общая эффективность оборудования (oee)
+ортогональное проецирование
+отбор признаков
+оценка жизненного цикла
+оценка неопределённости
+оценка ресурсов квантовых вычислений
+оценка с использованием большой языковой модели в качестве судьи
+передача данных по 7-уровневой модели osi
+переобучение моделей
+персистентные гомологии
+платформа
+поведенческая аналитика
+пограничные вычисления
+пограничных вычислений
+подбор партнёров с помощью ии
+подход
+подходы портфельной оптимизации
+поиск документов
+полевые испытания
+полевых испытаниях
+портфельная оптимизация
+постквантовая криптография (pqc)
+предварительная обработка промпта
+предиктивная аналитика
+предиктивное моделирование
+предиктивное обслуживание
+предиктивной аналитики
+предсказание качества поиска
+приложения rapps
+приложения xapps
+проверка сертификатов
+проверка сигнатуры
+проверки достоверности калибровки
+пространственная транскриптомика
+процесс ручной экспертной аннотации
+прямое улучшение ценности
+прямой проход нейронной сети
+рабочий процесс с использованием агентов
+равновесовое распределение
+разделение на обучающую и тестовую выборки
+расширенная реальность
+реконструкция динамических систем (dsr)
+реконструкция динамической системы
+рефлексивный тематический анализ
+робастные статистические методы
+роботизации
+роботизация
+роботов
+робототехнические команды с языковым заданием
+роботы
+самокоррекция
+саморефлексия
+сжатие бенчмарков
+сингулярное разложение
+систем искусственного интеллекта
+система
+система искусственного интеллекта
+система мониторинга
+системы взаимодействия человека и ии
+системы генеративного искусственного интеллекта
+системы мониторинга
+системы связи
+скорректированные оцениватели дисперсии на основе вспомогательных переменных
+скорректированные оцениватели отношения, регрессионного и экспоненциального типа
+случайное блуждание
+слэк-анализ
+слэк-анализа
+сокращение токенов с помощью мультимодальной большой языковой модели
+состязательные атаки
+социальная инженерия
+спасение зародышей
+спасении зародышей
+специализация ролей
+сравнительного анализа
+сравнительный анализ
+статистическая обработка
+статистическая проверка гипотез
+статистической обработки
+стохастические процессы
+структурированное интервью
+структурированный концептуальный обзор
+структурированный нарративный обзор
+тематический синтез
+тест делонга
+тест макнемара
+тесты делонга
+технологии повседневного мониторинга здоровья
+технология
+технология интернета вещей (iot)
+традиционная криптография
+традиционное машинное обучение
+узкоспециализированный искусственный интеллект
+управление роботизированной рукой
+физическое клонирование
+фотовольтаика
+характеризация материалов
+целевая выборка
+целенаправленный отбор выборки
+численное моделирование
+чтение кэша
+эконометрический анализ
+эконометрического анализа
+экспертная проверка
+электрохимические измерения
+эмоциональный ии
+эмоциональный искусственный интеллект
+энергетическая стоимость жизненного цикла ии (ecal)
+этап верификации и приёмки
+этап проверки и принятия результатов
+явный аномальный зазор

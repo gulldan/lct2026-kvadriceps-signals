@@ -1,0 +1,12 @@
+{
+  "created_at": "2026-09-11T05:50:15.738034+00:00",
+  "method": "dated-semantic-leader-v2",
+  "status": "development_selected_before_engineering_validation",
+  "prompt": "none",
+  "join_threshold": 0.75,
+  "seed_threshold": 0.72,
+  "selection_objective": "highest development pair accuracy, without claiming independent scientific acceptance",
+  "development_pairs_sha256": "9d1eaa6537882ef54b94f113db600f43aad98ddff83f4c76a5c131e68a048ac4",
+  "validation_pairs_sha256": "27283f25cb742cd0998f06c887e363d3322511c621bfde83fa4a4476dd475502",
+  "validation_rule": "Report all errors and freeze the chosen settings; no retuning on these validation pairs. This is an engineering check only."
+}

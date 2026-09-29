@@ -1,0 +1,31 @@
+{
+  "native_id": "2502.01549v1",
+  "canonical_id": "arxiv:2502.01549",
+  "url": "https://arxiv.org/abs/2502.01549v1",
+  "title": "VideoRAG: Retrieval-Augmented Generation with Extreme Long-Context Videos",
+  "authors": [
+    "Xubin Ren",
+    "Lingrui Xu",
+    "Long Xia",
+    "Shuaiqiang Wang",
+    "Dawei Yin",
+    "Chao Huang"
+  ],
+  "published_at": "2025-02-03T17:30:19Z",
+  "version_updated_at": "2025-02-03T17:30:19Z",
+  "observed_at": "2026-09-08T22:55:25.406296+00:00",
+  "available_at": "2025-02-03T17:30:19Z",
+  "available_basis": "arXiv archived v1 release; historical reconstruction captured later",
+  "source_kind": "paper",
+  "provider": "arxiv",
+  "access_scope": "public",
+  "representation": "versioned_primary_abstract",
+  "text": "Retrieval-Augmented Generation (RAG) has demonstrated remarkable success in enhancing Large Language Models (LLMs) through external knowledge integration, yet its application has primarily focused on textual content, leaving the rich domain of multi-modal video knowledge predominantly unexplored. This paper introduces VideoRAG, the first retrieval-augmented generation framework specifically designed for processing and understanding extremely long-context videos. Our core innovation lies in its dual-channel architecture that seamlessly integrates (i) graph-based textual knowledge grounding for capturing cross-video semantic relationships, and (ii) multi-modal context encoding for efficiently preserving visual features. This novel design empowers VideoRAG to process unlimited-length videos by constructing precise knowledge graphs that span multiple videos while maintaining semantic dependencies through specialized multi-modal retrieval paradigms. Through comprehensive empirical evaluation on our proposed LongerVideos benchmark-comprising over 160 videos totaling 134+ hours across lecture, documentary, and entertainment categories-VideoRAG demonstrates substantial performance compared to existing RAG alternatives and long video understanding methods. The source code of VideoRAG implementation and the benchmark dataset are openly available at: https://github.com/HKUDS/VideoRAG.",
+  "text_sha256": "f3ae67023adf5ee33dbce7d5221fcecfbbaf882b6e06cce59f9659f0db0d3c69",
+  "raw_sha256": "566bb38630cbd8109e5fdc79fb4828c9c194f37957972e5c96828e6347711bff",
+  "raw_file": "566bb38630cbd8109e5fdc79fb4828c9c194f37957972e5c96828e6347711bff.xml",
+  "limitations": [
+    "Abstract-only evidence; author-reported results, not independent reproduction.",
+    "Later DOI, journal metadata and current citations are excluded from historical input."
+  ]
+}

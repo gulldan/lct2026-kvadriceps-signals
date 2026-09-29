@@ -1,0 +1,30 @@
+{
+  "native_id": "2307.06945v1",
+  "canonical_id": "arxiv:2307.06945",
+  "url": "https://arxiv.org/abs/2307.06945v1",
+  "title": "In-context Autoencoder for Context Compression in a Large Language Model",
+  "authors": [
+    "Tao Ge",
+    "Jing Hu",
+    "Xun Wang",
+    "Si-Qing Chen",
+    "Furu Wei"
+  ],
+  "published_at": "2023-07-13T17:59:21Z",
+  "version_updated_at": "2023-07-13T17:59:21Z",
+  "observed_at": "2026-09-08T21:43:42.308337+00:00",
+  "available_at": "2023-07-13T17:59:21Z",
+  "available_basis": "arXiv archived v1 release; historical reconstruction captured later",
+  "source_kind": "paper",
+  "provider": "arxiv",
+  "access_scope": "public",
+  "representation": "versioned_primary_abstract",
+  "text": "We propose the In-context Autoencoder (ICAE) for context compression in a large language model (LLM). The ICAE has two modules: a learnable encoder adapted with LoRA from an LLM for compressing a long context into a limited number of memory slots, and a fixed decoder which is the target LLM that can condition on the memory slots for various purposes. We first pretrain the ICAE using both autoencoding and language modeling objectives on massive text data, enabling it to generate memory slots that accurately and comprehensively represent the original context. Then, we fine-tune the pretrained ICAE on a small amount of instruct data to enhance its interaction with various prompts for producing desirable responses. Our experimental results demonstrate that the ICAE learned with our proposed pretraining and fine-tuning paradigm can effectively produce memory slots with $4\\times$ context compression, which can be well conditioned on by the target LLM to respond to various prompts. The promising results demonstrate significant implications of the ICAE for its novel approach to the long context problem and its potential to reduce computation and memory overheads for LLM inference in practice, suggesting further research effort in context management for an LLM. Our code and data will be released shortly.",
+  "text_sha256": "cd6dfa11f40ee787c70700c92a4b7068a243a612f047e340254e489c3966d845",
+  "raw_sha256": "da0db3489b7b13738f585fa8b557be5e8d78b3989e4963dbadced049c99a5ee4",
+  "raw_file": "da0db3489b7b13738f585fa8b557be5e8d78b3989e4963dbadced049c99a5ee4.xml",
+  "limitations": [
+    "Abstract-only evidence; author-reported results, not independent reproduction.",
+    "Later DOI, journal metadata and current citations are excluded from historical input."
+  ]
+}

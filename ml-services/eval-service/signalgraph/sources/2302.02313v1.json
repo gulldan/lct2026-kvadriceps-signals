@@ -1,0 +1,29 @@
+{
+  "native_id": "2302.02313v1",
+  "canonical_id": "arxiv:2302.02313",
+  "url": "https://arxiv.org/abs/2302.02313v1",
+  "title": "A Game-Theoretic Approach to Solving the Roman Domination Problem",
+  "authors": [
+    "Xiuyang Chen",
+    "Changbing Tang",
+    "Zhao Zhang",
+    "Guanrong Chen"
+  ],
+  "published_at": "2023-02-05T06:26:42Z",
+  "version_updated_at": "2023-02-05T06:26:42Z",
+  "observed_at": "2026-09-08T21:43:42.308337+00:00",
+  "available_at": "2023-02-05T06:26:42Z",
+  "available_basis": "arXiv archived v1 release; historical reconstruction captured later",
+  "source_kind": "paper",
+  "provider": "arxiv",
+  "access_scope": "public",
+  "representation": "versioned_primary_abstract",
+  "text": "The Roamn domination problem is one important combinatorial optimization problem that is derived from an old story of defending the Roman Empire and now regains new significance in cyber space security, considering backups in the face of a dynamic network security requirement. In this paper, firstly, we propose a Roman domination game (RDG) and prove that every Nash equilibrium (NE) of the game corresponds to a strong minimal Roman dominating function (S-RDF), as well as a Pareto-optimal solution. Secondly, we show that RDG is an exact potential game, which guarantees the existence of an NE. Thirdly, we design a game-based synchronous algorithm (GSA), which can be implemented distributively and converge to an NE in $O(n)$ rounds, where $n$ is the number of vertices. In GSA, all players make decisions depending on the local information. Furthermore, we enhance GSA to be enhanced GSA (EGSA), which converges to a better NE in $O(n^2)$ rounds. Finally, we present numerical simulations to demonstrate that EGSA can obtain a better approximate solution in promising computation time compared with state-of-the-art algorithms.",
+  "text_sha256": "16932b4c1ca8b2b506e9d633b3fc89ce8f786ae5bbc4088f81b38480a2b70539",
+  "raw_sha256": "da0db3489b7b13738f585fa8b557be5e8d78b3989e4963dbadced049c99a5ee4",
+  "raw_file": "da0db3489b7b13738f585fa8b557be5e8d78b3989e4963dbadced049c99a5ee4.xml",
+  "limitations": [
+    "Abstract-only evidence; author-reported results, not independent reproduction.",
+    "Later DOI, journal metadata and current citations are excluded from historical input."
+  ]
+}

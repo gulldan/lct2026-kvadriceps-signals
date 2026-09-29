@@ -1,0 +1,34 @@
+{
+  "brand": "Technology Radar",
+  "skipToContent": "Skip to content",
+  "menu": {
+    "title": "Main menu",
+    "expand": "Expand menu",
+    "collapse": "Collapse menu"
+  },
+  "groups": {
+    "work": "Radar",
+    "corpus": "Own knowledge base",
+    "admin": "Administration"
+  },
+  "nav": {
+    "search": "Document search",
+    "hypotheses": "Forecasts and hypotheses",
+    "topics": "Document topics",
+    "goals": "Theses",
+    "history": "History",
+    "documents": "Documents",
+    "overview": "Overview",
+    "metrics": "Metrics",
+    "users": "Users",
+    "settings": "Settings",
+    "trends": "Weak signals"
+  },
+  "language": "Interface language",
+  "theme": {
+    "label": "Screen theme",
+    "system": "Match the system",
+    "light": "Light",
+    "dark": "Dark"
+  }
+}

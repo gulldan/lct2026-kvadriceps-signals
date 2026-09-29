@@ -1,0 +1,32 @@
+{
+  "native_id": "2310.06839v1",
+  "canonical_id": "arxiv:2310.06839",
+  "url": "https://arxiv.org/abs/2310.06839v1",
+  "title": "LongLLMLingua: Accelerating and Enhancing LLMs in Long Context Scenarios via Prompt Compression",
+  "authors": [
+    "Huiqiang Jiang",
+    "Qianhui Wu",
+    "Xufang Luo",
+    "Dongsheng Li",
+    "Chin-Yew Lin",
+    "Yuqing Yang",
+    "Lili Qiu"
+  ],
+  "published_at": "2023-10-10T17:59:58Z",
+  "version_updated_at": "2023-10-10T17:59:58Z",
+  "observed_at": "2026-09-08T22:34:01.096283+00:00",
+  "available_at": "2023-10-10T17:59:58Z",
+  "available_basis": "arXiv archived v1 release; historical reconstruction captured later",
+  "source_kind": "paper",
+  "provider": "arxiv",
+  "access_scope": "public",
+  "representation": "versioned_primary_abstract",
+  "text": "In long context scenarios, large language models (LLMs) face three main challenges: higher computational/financial cost, longer latency, and inferior performance. Some studies reveal that the performance of LLMs depends on both the density and the position of the key information (question relevant) in the input prompt. Inspired by these findings, we propose LongLLMLingua for prompt compression towards improving LLMs' perception of the key information to simultaneously address the three challenges. We conduct evaluation on a wide range of long context scenarios including single-/multi-document QA, few-shot learning, summarization, synthetic tasks, and code completion. The experimental results show that LongLLMLingua compressed prompt can derive higher performance with much less cost. The latency of the end-to-end system is also reduced. For example, on NaturalQuestions benchmark, LongLLMLingua gains a performance boost of up to 17.1% over the original prompt with ~4x fewer tokens as input to GPT-3.5-Turbo. It can derive cost savings of \\$28.5 and \\$27.4 per 1,000 samples from the LongBench and ZeroScrolls benchmark, respectively. Additionally, when compressing prompts of ~10k tokens at a compression rate of 2x-10x, LongLLMLingua can speed up the end-to-end latency by 1.4x-3.8x. Our code is available at https://aka.ms/LLMLingua.",
+  "text_sha256": "7acb9aa8fb92f0233abc087c6d24efb6130b124c8a6ddc8de05f81bca57280c6",
+  "raw_sha256": "164243191caf415301a761696c18cc084f850a5c7b9d5a8a28ab7c3bc904a077",
+  "raw_file": "164243191caf415301a761696c18cc084f850a5c7b9d5a8a28ab7c3bc904a077.xml",
+  "limitations": [
+    "Abstract-only evidence; author-reported results, not independent reproduction.",
+    "Later DOI, journal metadata and current citations are excluded from historical input."
+  ]
+}

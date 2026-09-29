@@ -1,0 +1,73 @@
+# Local env (real secrets; .env.example IS committed)
+.env
+.env.*
+!.env.example
+!.env.*.example
+# Ключи и сертификаты: корпоративный CA и TLS стенда живут только на сервере.
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+id_rsa*
+id_ed25519*
+.netrc
+datasets
+dataset
+models
+# Local experiment, benchmark and e2e artifacts.
+/.data/
+/reports/
+/artifacts/
+# Build output
+/bin/
+*.out
+/out/
+output
+tmp
+# Go
+/vendor/
+/backend/main-service/radar-analysis
+
+# Node / frontend
+node_modules/
+dist/
+*.local
+.playwright-cli/
+docs/presentation/assets
+# Rust
+target/
+
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.eggs/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+*.bak
+*.bak-*
+*.orig
+*.tmp
+ml-services/eval-service/results*.json
+docs/presentation/*.pdf
+!docs/presentation/hackathon_weak_signals_deck_v10_neobrutalism.pdf
+
+# Editor / OS
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# Claude Code (local agent state, worktrees, transcripts). Навыки репозитория —
+# часть его правил и в Git входят: без них воспроизводима только история, но не
+# работа с ней.
+.claude/*
+!.claude/skills/
+.ruff_cache/
+infra/docker-compose.local.yml
+
+# Визуальные пробы и экспорт дизайна (не код)
+output/

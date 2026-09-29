@@ -1,0 +1,3719 @@
+{
+  "status": "ready",
+  "error": "",
+  "refreshing": false,
+  "version": "arxiv-live-v1",
+  "method": "live-signals-v3",
+  "observed_at": "2026-09-10T10:54:02Z",
+  "categories": "cat:cs.CL OR cat:cs.AI OR cat:cs.IR",
+  "periods": [
+    {
+      "period": "2024-Q4",
+      "start": "2024-10-01",
+      "end_exclusive": "2025-01-01",
+      "complete": true,
+      "population": 13046
+    },
+    {
+      "period": "2025-Q1",
+      "start": "2025-01-01",
+      "end_exclusive": "2025-04-01",
+      "complete": true,
+      "population": 13106
+    },
+    {
+      "period": "2025-Q2",
+      "start": "2025-04-01",
+      "end_exclusive": "2025-07-01",
+      "complete": true,
+      "population": 16138
+    },
+    {
+      "period": "2025-Q3",
+      "start": "2025-07-01",
+      "end_exclusive": "2025-10-01",
+      "complete": true,
+      "population": 15210
+    },
+    {
+      "period": "2025-Q4",
+      "start": "2025-10-01",
+      "end_exclusive": "2026-01-01",
+      "complete": true,
+      "population": 15496
+    },
+    {
+      "period": "2026-Q1",
+      "start": "2026-01-01",
+      "end_exclusive": "2026-04-01",
+      "complete": true,
+      "population": 17714
+    },
+    {
+      "period": "2026-Q2",
+      "start": "2026-04-01",
+      "end_exclusive": "2026-07-01",
+      "complete": true,
+      "population": 22839
+    },
+    {
+      "period": "2026-Q3",
+      "start": "2026-07-01",
+      "end_exclusive": "2026-10-01",
+      "complete": false,
+      "population": 14142
+    }
+  ],
+  "topics": [
+    {
+      "id": "graphrag",
+      "paper_ids": [],
+      "series": [
+        {
+          "period": "2024-Q4",
+          "count": 16,
+          "population": 13046,
+          "share": 0.0012264295569523226,
+          "groups": 16,
+          "new_groups": 16,
+          "retained_groups": 0
+        },
+        {
+          "period": "2025-Q1",
+          "count": 28,
+          "population": 13106,
+          "share": 0.0021364260643979855,
+          "groups": 25,
+          "new_groups": 22,
+          "retained_groups": 3
+        },
+        {
+          "period": "2025-Q2",
+          "count": 41,
+          "population": 16138,
+          "share": 0.0025405874333870367,
+          "groups": 39,
+          "new_groups": 33,
+          "retained_groups": 6
+        },
+        {
+          "period": "2025-Q3",
+          "count": 44,
+          "population": 15210,
+          "share": 0.002892833662064431,
+          "groups": 39,
+          "new_groups": 30,
+          "retained_groups": 9
+        },
+        {
+          "period": "2025-Q4",
+          "count": 37,
+          "population": 15496,
+          "share": 0.002387712958182757,
+          "groups": 37,
+          "new_groups": 28,
+          "retained_groups": 9
+        },
+        {
+          "period": "2026-Q1",
+          "count": 53,
+          "population": 17714,
+          "share": 0.002991983741673253,
+          "groups": 49,
+          "new_groups": 37,
+          "retained_groups": 12
+        },
+        {
+          "period": "2026-Q2",
+          "count": 71,
+          "population": 22839,
+          "share": 0.003108717544550987,
+          "groups": 66,
+          "new_groups": 52,
+          "retained_groups": 14
+        },
+        {
+          "period": "2026-Q3",
+          "count": 45,
+          "population": 14142,
+          "share": 0.003182011030971574,
+          "groups": 44,
+          "new_groups": 33,
+          "retained_groups": 11
+        }
+      ],
+      "stage": "established",
+      "momentum": "up",
+      "growth": {
+        "prior": {
+          "period": "2025-Q3–2025-Q4",
+          "count": 81,
+          "population": 30706,
+          "share": 0.002637920927506025,
+          "groups": 76,
+          "new_groups": 58,
+          "retained_groups": 18
+        },
+        "recent": {
+          "period": "2026-Q1–2026-Q2",
+          "count": 124,
+          "population": 40553,
+          "share": 0.0030577269252583038,
+          "groups": 115,
+          "new_groups": 89,
+          "retained_groups": 26
+        },
+        "delta_pp": 0.04198059977522789,
+        "share_ratio": 1.1591427526787836,
+        "count_ratio": 1.5308641975308641
+      },
+      "reviewed": false,
+      "screening": "query",
+      "evidence_ids": [],
+      "first_year": "2024-Q4",
+      "growth_start": "2026-Q1",
+      "active_years": 8,
+      "groups": 251,
+      "top_group_share": 0.04477611940298507,
+      "signals": {
+        "novelty": "earlier",
+        "momentum": "up",
+        "coherence": "query",
+        "spread": "broad",
+        "application": "implementations",
+        "concentration": "low"
+      },
+      "external": [],
+      "earliest_external": "2024-10-02",
+      "name": "GraphRAG",
+      "query": {
+        "arxiv": "all:\"graph rag\" OR all:graphrag OR all:\"graph-based retrieval-augmented\"",
+        "github": "graphrag",
+        "hn": "graphrag"
+      },
+      "curated": true,
+      "source": "curated",
+      "papers_count": 335,
+      "repos": [289, 296, 376, 500, 695, 1146, 1970, 1637],
+      "discussions": [25, 10, 13, 26, 29, 43, 31, 13],
+      "limits": [],
+      "uniqueness": 0.9671641791044776,
+      "relevance": null
+    },
+    {
+      "id": "deep-research",
+      "paper_ids": [],
+      "series": [
+        {
+          "period": "2024-Q4",
+          "count": 11,
+          "population": 13046,
+          "share": 0.0008431703204047217,
+          "groups": 9,
+          "new_groups": 9,
+          "retained_groups": 0
+        },
+        {
+          "period": "2025-Q1",
+          "count": 20,
+          "population": 13106,
+          "share": 0.0015260186174271325,
+          "groups": 10,
+          "new_groups": 8,
+          "retained_groups": 2
+        },
+        {
+          "period": "2025-Q2",
+          "count": 62,
+          "population": 16138,
+          "share": 0.003841863923658446,
+          "groups": 26,
+          "new_groups": 23,
+          "retained_groups": 3
+        },
+        {
+          "period": "2025-Q3",
+          "count": 92,
+          "population": 15210,
+          "share": 0.0060486522024983565,
+          "groups": 38,
+          "new_groups": 32,
+          "retained_groups": 6
+        },
+        {
+          "period": "2025-Q4",
+          "count": 134,
+          "population": 15496,
+          "share": 0.008647392875580796,
+          "groups": 56,
+          "new_groups": 44,
+          "retained_groups": 12
+        },
+        {
+          "period": "2026-Q1",
+          "count": 168,
+          "population": 17714,
+          "share": 0.009484023935869933,
+          "groups": 55,
+          "new_groups": 42,
+          "retained_groups": 13
+        },
+        {
+          "period": "2026-Q2",
+          "count": 233,
+          "population": 22839,
+          "share": 0.010201847716625072,
+          "groups": 99,
+          "new_groups": 86,
+          "retained_groups": 13
+        },
+        {
+          "period": "2026-Q3",
+          "count": 157,
+          "population": 14142,
+          "share": 0.011101682930278602,
+          "groups": 76,
+          "new_groups": 61,
+          "retained_groups": 15
+        }
+      ],
+      "stage": "emerging_signal",
+      "momentum": "up",
+      "growth": {
+        "prior": {
+          "period": "2025-Q3–2025-Q4",
+          "count": 226,
+          "population": 30706,
+          "share": 0.007360125056992119,
+          "groups": 94,
+          "new_groups": 76,
+          "retained_groups": 18
+        },
+        "recent": {
+          "period": "2026-Q1–2026-Q2",
+          "count": 401,
+          "population": 40553,
+          "share": 0.009888294330875643,
+          "groups": 154,
+          "new_groups": 128,
+          "retained_groups": 26
+        },
+        "delta_pp": 0.2528169273883525,
+        "share_ratio": 1.3434954235569359,
+        "count_ratio": 1.7743362831858407
+      },
+      "reviewed": false,
+      "screening": "query",
+      "evidence_ids": [],
+      "first_year": "2024-Q4",
+      "growth_start": "2025-Q1",
+      "active_years": 8,
+      "groups": 305,
+      "top_group_share": 0.5587229190421893,
+      "signals": {
+        "novelty": "recent",
+        "momentum": "up",
+        "coherence": "query",
+        "spread": "broad",
+        "application": "implementations",
+        "concentration": "high"
+      },
+      "external": [],
+      "earliest_external": "2025-01-09",
+      "name": "Deep research agents",
+      "query": {
+        "arxiv": "all:\"deep research\" OR all:\"agentic rag\" OR all:\"agentic retrieval\" OR all:\"search agent\"",
+        "github": "\"deep research\" agent",
+        "hn": "deep research"
+      },
+      "curated": true,
+      "source": "curated",
+      "papers_count": 877,
+      "repos": [7, 167, 275, 444, 458, 661, 1041, 831],
+      "discussions": [24, 133, 105, 85, 85, 108, 66, 48],
+      "limits": [],
+      "uniqueness": 0.903078677309008,
+      "relevance": null
+    },
+    {
+      "id": "speculative-decoding",
+      "paper_ids": [],
+      "series": [
+        {
+          "period": "2024-Q4",
+          "count": 35,
+          "population": 13046,
+          "share": 0.0026828146558332054,
+          "groups": 21,
+          "new_groups": 21,
+          "retained_groups": 0
+        },
+        {
+          "period": "2025-Q1",
+          "count": 38,
+          "population": 13106,
+          "share": 0.0028994353731115518,
+          "groups": 26,
+          "new_groups": 23,
+          "retained_groups": 3
+        },
+        {
+          "period": "2025-Q2",
+          "count": 58,
+          "population": 16138,
+          "share": 0.0035940017350353202,
+          "groups": 33,
+          "new_groups": 27,
+          "retained_groups": 6
+        },
+        {
+          "period": "2025-Q3",
+          "count": 38,
+          "population": 15210,
+          "share": 0.0024983563445101905,
+          "groups": 23,
+          "new_groups": 15,
+          "retained_groups": 8
+        },
+        {
+          "period": "2025-Q4",
+          "count": 57,
+          "population": 15496,
+          "share": 0.0036783686112545175,
+          "groups": 34,
+          "new_groups": 29,
+          "retained_groups": 5
+        },
+        {
+          "period": "2026-Q1",
+          "count": 54,
+          "population": 17714,
+          "share": 0.00304843626510105,
+          "groups": 31,
+          "new_groups": 19,
+          "retained_groups": 12
+        },
+        {
+          "period": "2026-Q2",
+          "count": 103,
+          "population": 22839,
+          "share": 0.004509829677306362,
+          "groups": 70,
+          "new_groups": 48,
+          "retained_groups": 22
+        },
+        {
+          "period": "2026-Q3",
+          "count": 77,
+          "population": 14142,
+          "share": 0.005444774430773582,
+          "groups": 55,
+          "new_groups": 43,
+          "retained_groups": 12
+        }
+      ],
+      "stage": "established",
+      "momentum": "up",
+      "growth": {
+        "prior": {
+          "period": "2025-Q3–2025-Q4",
+          "count": 95,
+          "population": 30706,
+          "share": 0.003093857877939165,
+          "groups": 57,
+          "new_groups": 44,
+          "retained_groups": 13
+        },
+        "recent": {
+          "period": "2026-Q1–2026-Q2",
+          "count": 157,
+          "population": 40553,
+          "share": 0.0038714768327867237,
+          "groups": 101,
+          "new_groups": 67,
+          "retained_groups": 34
+        },
+        "delta_pp": 0.07776189548475586,
+        "share_ratio": 1.2513428171320962,
+        "count_ratio": 1.6526315789473685
+      },
+      "reviewed": false,
+      "screening": "query",
+      "evidence_ids": [],
+      "first_year": "2024-Q4",
+      "growth_start": "2026-Q2",
+      "active_years": 8,
+      "groups": 225,
+      "top_group_share": 0.33043478260869563,
+      "signals": {
+        "novelty": "earlier",
+        "momentum": "up",
+        "coherence": "query",
+        "spread": "broad",
+        "application": "implementations",
+        "concentration": "medium"
+      },
+      "external": [],
+      "earliest_external": "2024-10-19",
+      "name": "Speculative decoding",
+      "query": {
+        "arxiv": "all:\"speculative decoding\"",
+        "github": "\"speculative decoding\"",
+        "hn": "speculative decoding"
+      },
+      "curated": true,
+      "source": "curated",
+      "papers_count": 460,
+      "repos": [29, 43, 40, 54, 89, 167, 399, 575],
+      "discussions": [6, 3, 4, 3, 9, 13, 13, 21],
+      "limits": [],
+      "uniqueness": 0.9608695652173913,
+      "relevance": null
+    },
+    {
+      "id": "mcp",
+      "paper_ids": [],
+      "series": [
+        {
+          "period": "2024-Q4",
+          "count": 1,
+          "population": 13046,
+          "share": 7.665184730952016e-5,
+          "groups": 1,
+          "new_groups": 1,
+          "retained_groups": 0
+        },
+        {
+          "period": "2025-Q1",
+          "count": 1,
+          "population": 13106,
+          "share": 7.630093087135663e-5,
+          "groups": 1,
+          "new_groups": 1,
+          "retained_groups": 0
+        },
+        {
+          "period": "2025-Q2",
+          "count": 53,
+          "population": 16138,
+          "share": 0.0032841739992564133,
+          "groups": 44,
+          "new_groups": 44,
+          "retained_groups": 0
+        },
+        {
+          "period": "2025-Q3",
+          "count": 52,
+          "population": 15210,
+          "share": 0.003418803418803419,
+          "groups": 44,
+          "new_groups": 40,
+          "retained_groups": 4
+        },
+        {
+          "period": "2025-Q4",
+          "count": 57,
+          "population": 15496,
+          "share": 0.0036783686112545175,
+          "groups": 56,
+          "new_groups": 46,
+          "retained_groups": 10
+        },
+        {
+          "period": "2026-Q1",
+          "count": 72,
+          "population": 17714,
+          "share": 0.0040645816868014,
+          "groups": 68,
+          "new_groups": 57,
+          "retained_groups": 11
+        },
+        {
+          "period": "2026-Q2",
+          "count": 90,
+          "population": 22839,
+          "share": 0.003940627873374491,
+          "groups": 85,
+          "new_groups": 71,
+          "retained_groups": 14
+        },
+        {
+          "period": "2026-Q3",
+          "count": 61,
+          "population": 14142,
+          "share": 0.004313392730872578,
+          "groups": 57,
+          "new_groups": 47,
+          "retained_groups": 10
+        }
+      ],
+      "stage": "emerging_signal",
+      "momentum": "up",
+      "growth": {
+        "prior": {
+          "period": "2025-Q3–2025-Q4",
+          "count": 109,
+          "population": 30706,
+          "share": 0.003549794828372305,
+          "groups": 100,
+          "new_groups": 86,
+          "retained_groups": 14
+        },
+        "recent": {
+          "period": "2026-Q1–2026-Q2",
+          "count": 162,
+          "population": 40553,
+          "share": 0.003994772273321332,
+          "groups": 153,
+          "new_groups": 128,
+          "retained_groups": 25
+        },
+        "delta_pp": 0.044497744494902736,
+        "share_ratio": 1.1253530038954571,
+        "count_ratio": 1.4862385321100917
+      },
+      "reviewed": false,
+      "screening": "query",
+      "evidence_ids": [],
+      "first_year": "2024-Q4",
+      "growth_start": "",
+      "active_years": 8,
+      "groups": 307,
+      "top_group_share": 0.01808785529715762,
+      "signals": {
+        "novelty": "recent",
+        "momentum": "up",
+        "coherence": "query",
+        "spread": "broad",
+        "application": "implementations",
+        "concentration": "low"
+      },
+      "external": [],
+      "earliest_external": "2024-11-19",
+      "name": "Model Context Protocol",
+      "query": {
+        "arxiv": "all:\"model context protocol\"",
+        "github": "\"model context protocol\"",
+        "hn": "model context protocol"
+      },
+      "curated": true,
+      "source": "curated",
+      "papers_count": 387,
+      "repos": [311, 1298, 3675, 4394, 4064, 5323, 5913, 4316],
+      "discussions": [35, 96, 117, 98, 93, 142, 43, 30],
+      "limits": [],
+      "uniqueness": 0.9767441860465116,
+      "relevance": null
+    },
+    {
+      "id": "test-time-scaling",
+      "paper_ids": [],
+      "series": [
+        {
+          "period": "2024-Q4",
+          "count": 20,
+          "population": 13046,
+          "share": 0.0015330369461904031,
+          "groups": 8,
+          "new_groups": 8,
+          "retained_groups": 0
+        },
+        {
+          "period": "2025-Q1",
+          "count": 87,
+          "population": 13106,
+          "share": 0.006638180985808027,
+          "groups": 29,
+          "new_groups": 28,
+          "retained_groups": 1
+        },
+        {
+          "period": "2025-Q2",
+          "count": 166,
+          "population": 16138,
+          "share": 0.01028628082785971,
+          "groups": 60,
+          "new_groups": 57,
+          "retained_groups": 3
+        },
+        {
+          "period": "2025-Q3",
+          "count": 128,
+          "population": 15210,
+          "share": 0.0084155161078238,
+          "groups": 55,
+          "new_groups": 49,
+          "retained_groups": 6
+        },
+        {
+          "period": "2025-Q4",
+          "count": 144,
+          "population": 15496,
+          "share": 0.009292720702116675,
+          "groups": 60,
+          "new_groups": 50,
+          "retained_groups": 10
+        },
+        {
+          "period": "2026-Q1",
+          "count": 165,
+          "population": 17714,
+          "share": 0.009314666365586541,
+          "groups": 62,
+          "new_groups": 48,
+          "retained_groups": 14
+        },
+        {
+          "period": "2026-Q2",
+          "count": 176,
+          "population": 22839,
+          "share": 0.00770611673015456,
+          "groups": 85,
+          "new_groups": 63,
+          "retained_groups": 22
+        },
+        {
+          "period": "2026-Q3",
+          "count": 79,
+          "population": 14142,
+          "share": 0.005586197143261208,
+          "groups": 43,
+          "new_groups": 37,
+          "retained_groups": 6
+        }
+      ],
+      "stage": "unassessed",
+      "momentum": "down",
+      "growth": {
+        "prior": {
+          "period": "2025-Q3–2025-Q4",
+          "count": 272,
+          "population": 30706,
+          "share": 0.008858203608415294,
+          "groups": 115,
+          "new_groups": 99,
+          "retained_groups": 16
+        },
+        "recent": {
+          "period": "2026-Q1–2026-Q2",
+          "count": 341,
+          "population": 40553,
+          "share": 0.008408749044460337,
+          "groups": 147,
+          "new_groups": 111,
+          "retained_groups": 36
+        },
+        "delta_pp": -0.044945456395495756,
+        "share_ratio": 0.9492612064676437,
+        "count_ratio": 1.2536764705882353
+      },
+      "reviewed": false,
+      "screening": "query",
+      "evidence_ids": [],
+      "first_year": "2024-Q4",
+      "growth_start": "",
+      "active_years": 8,
+      "groups": 340,
+      "top_group_share": 0.5730569948186528,
+      "signals": {
+        "novelty": "recent",
+        "momentum": "down",
+        "coherence": "query",
+        "spread": "broad",
+        "application": "implementations",
+        "concentration": "high"
+      },
+      "external": [],
+      "earliest_external": "2024-10-31",
+      "name": "Test-time scaling",
+      "query": {
+        "arxiv": "all:\"test-time scaling\" OR all:\"test-time compute\"",
+        "github": "\"test-time scaling\"",
+        "hn": "test-time compute"
+      },
+      "curated": true,
+      "source": "curated",
+      "papers_count": 965,
+      "repos": [0, 23, 35, 21, 31, 37, 42, 21],
+      "discussions": [5, 7, 6, 3, 5, 1, 3, 0],
+      "limits": [],
+      "uniqueness": 0.960621761658031,
+      "relevance": null
+    },
+    {
+      "id": "rlvr",
+      "paper_ids": [],
+      "series": [
+        {
+          "period": "2024-Q4",
+          "count": 4,
+          "population": 13046,
+          "share": 0.00030660738923808065,
+          "groups": 1,
+          "new_groups": 1,
+          "retained_groups": 0
+        },
+        {
+          "period": "2025-Q1",
+          "count": 8,
+          "population": 13106,
+          "share": 0.000610407446970853,
+          "groups": 3,
+          "new_groups": 2,
+          "retained_groups": 1
+        },
+        {
+          "period": "2025-Q2",
+          "count": 93,
+          "population": 16138,
+          "share": 0.005762795885487669,
+          "groups": 21,
+          "new_groups": 19,
+          "retained_groups": 2
+        },
+        {
+          "period": "2025-Q3",
+          "count": 137,
+          "population": 15210,
+          "share": 0.00900723208415516,
+          "groups": 31,
+          "new_groups": 29,
+          "retained_groups": 2
+        },
+        {
+          "period": "2025-Q4",
+          "count": 160,
+          "population": 15496,
+          "share": 0.010325245224574084,
+          "groups": 50,
+          "new_groups": 48,
+          "retained_groups": 2
+        },
+        {
+          "period": "2026-Q1",
+          "count": 233,
+          "population": 17714,
+          "share": 0.013153437958676753,
+          "groups": 68,
+          "new_groups": 59,
+          "retained_groups": 9
+        },
+        {
+          "period": "2026-Q2",
+          "count": 318,
+          "population": 22839,
+          "share": 0.013923551819256535,
+          "groups": 123,
+          "new_groups": 106,
+          "retained_groups": 17
+        },
+        {
+          "period": "2026-Q3",
+          "count": 144,
+          "population": 14142,
+          "share": 0.010182435299109036,
+          "groups": 70,
+          "new_groups": 55,
+          "retained_groups": 15
+        }
+      ],
+      "stage": "emerging_signal",
+      "momentum": "up",
+      "growth": {
+        "prior": {
+          "period": "2025-Q3–2025-Q4",
+          "count": 297,
+          "population": 30706,
+          "share": 0.009672376734188758,
+          "groups": 81,
+          "new_groups": 77,
+          "retained_groups": 4
+        },
+        "recent": {
+          "period": "2026-Q1–2026-Q2",
+          "count": 551,
+          "population": 40553,
+          "share": 0.013587157546913916,
+          "groups": 191,
+          "new_groups": 165,
+          "retained_groups": 26
+        },
+        "delta_pp": 0.39147808127251577,
+        "share_ratio": 1.4047382479311066,
+        "count_ratio": 1.8552188552188553
+      },
+      "reviewed": false,
+      "screening": "query",
+      "evidence_ids": [],
+      "first_year": "2024-Q4",
+      "growth_start": "2025-Q1",
+      "active_years": 8,
+      "groups": 319,
+      "top_group_share": 0.6545123062898814,
+      "signals": {
+        "novelty": "recent",
+        "momentum": "up",
+        "coherence": "query",
+        "spread": "broad",
+        "application": "implementations",
+        "concentration": "high"
+      },
+      "external": [],
+      "earliest_external": "2025-01-23",
+      "name": "RL with verifiable rewards",
+      "query": {
+        "arxiv": "all:\"verifiable rewards\" OR all:\"verifiable reward\" OR all:RLVR",
+        "github": "\"verifiable rewards\"",
+        "hn": "verifiable rewards"
+      },
+      "curated": true,
+      "source": "curated",
+      "papers_count": 1097,
+      "repos": [0, 4, 10, 5, 12, 11, 39, 31],
+      "discussions": [0, 2, 2, 4, 6, 1, 4, 4],
+      "limits": [],
+      "uniqueness": 0.9653600729261622,
+      "relevance": null
+    },
+    {
+      "id": "kv-cache",
+      "paper_ids": [],
+      "series": [
+        {
+          "period": "2024-Q4",
+          "count": 43,
+          "population": 13046,
+          "share": 0.003296029434309367,
+          "groups": 17,
+          "new_groups": 17,
+          "retained_groups": 0
+        },
+        {
+          "period": "2025-Q1",
+          "count": 58,
+          "population": 13106,
+          "share": 0.004425453990538684,
+          "groups": 27,
+          "new_groups": 25,
+          "retained_groups": 2
+        },
+        {
+          "period": "2025-Q2",
+          "count": 53,
+          "population": 16138,
+          "share": 0.0032841739992564133,
+          "groups": 30,
+          "new_groups": 25,
+          "retained_groups": 5
+        },
+        {
+          "period": "2025-Q3",
+          "count": 48,
+          "population": 15210,
+          "share": 0.003155818540433925,
+          "groups": 25,
+          "new_groups": 15,
+          "retained_groups": 10
+        },
+        {
+          "period": "2025-Q4",
+          "count": 54,
+          "population": 15496,
+          "share": 0.0034847702632937534,
+          "groups": 34,
+          "new_groups": 22,
+          "retained_groups": 12
+        },
+        {
+          "period": "2026-Q1",
+          "count": 77,
+          "population": 17714,
+          "share": 0.004346844303940386,
+          "groups": 52,
+          "new_groups": 42,
+          "retained_groups": 10
+        },
+        {
+          "period": "2026-Q2",
+          "count": 150,
+          "population": 22839,
+          "share": 0.006567713122290818,
+          "groups": 108,
+          "new_groups": 93,
+          "retained_groups": 15
+        },
+        {
+          "period": "2026-Q3",
+          "count": 103,
+          "population": 14142,
+          "share": 0.007283269693112714,
+          "groups": 80,
+          "new_groups": 62,
+          "retained_groups": 18
+        }
+      ],
+      "stage": "established",
+      "momentum": "up",
+      "growth": {
+        "prior": {
+          "period": "2025-Q3–2025-Q4",
+          "count": 102,
+          "population": 30706,
+          "share": 0.003321826353155735,
+          "groups": 59,
+          "new_groups": 37,
+          "retained_groups": 22
+        },
+        "recent": {
+          "period": "2026-Q1–2026-Q2",
+          "count": 227,
+          "population": 40553,
+          "share": 0.00559761300027125,
+          "groups": 160,
+          "new_groups": 135,
+          "retained_groups": 25
+        },
+        "delta_pp": 0.22757866471155144,
+        "share_ratio": 1.6851010273169509,
+        "count_ratio": 2.2254901960784315
+      },
+      "reviewed": false,
+      "screening": "query",
+      "evidence_ids": [],
+      "first_year": "2024-Q4",
+      "growth_start": "2025-Q4",
+      "active_years": 8,
+      "groups": 301,
+      "top_group_share": 0.3293515358361775,
+      "signals": {
+        "novelty": "earlier",
+        "momentum": "up",
+        "coherence": "query",
+        "spread": "broad",
+        "application": "implementations",
+        "concentration": "medium"
+      },
+      "external": [],
+      "earliest_external": "2024-11-06",
+      "name": "KV-cache compression",
+      "query": {
+        "arxiv": "all:\"kv cache\" AND (all:compression OR all:eviction OR all:quantization)",
+        "github": "\"kv cache\" compression",
+        "hn": "kv cache"
+      },
+      "curated": true,
+      "source": "curated",
+      "papers_count": 586,
+      "repos": [7, 9, 12, 9, 20, 130, 192, 101],
+      "discussions": [8, 9, 13, 12, 15, 44, 55, 37],
+      "limits": [],
+      "uniqueness": 0.9778156996587031,
+      "relevance": null
+    },
+    {
+      "id": "mamba-ssm",
+      "paper_ids": [],
+      "series": [
+        {
+          "period": "2024-Q4",
+          "count": 105,
+          "population": 13046,
+          "share": 0.008048443967499617,
+          "groups": 84,
+          "new_groups": 84,
+          "retained_groups": 0
+        },
+        {
+          "period": "2025-Q1",
+          "count": 112,
+          "population": 13106,
+          "share": 0.008545704257591942,
+          "groups": 87,
+          "new_groups": 79,
+          "retained_groups": 8
+        },
+        {
+          "period": "2025-Q2",
+          "count": 109,
+          "population": 16138,
+          "share": 0.006754244639980171,
+          "groups": 75,
+          "new_groups": 59,
+          "retained_groups": 16
+        },
+        {
+          "period": "2025-Q3",
+          "count": 99,
+          "population": 15210,
+          "share": 0.00650887573964497,
+          "groups": 85,
+          "new_groups": 69,
+          "retained_groups": 16
+        },
+        {
+          "period": "2025-Q4",
+          "count": 98,
+          "population": 15496,
+          "share": 0.006324212700051626,
+          "groups": 77,
+          "new_groups": 68,
+          "retained_groups": 9
+        },
+        {
+          "period": "2026-Q1",
+          "count": 101,
+          "population": 17714,
+          "share": 0.005701704866207519,
+          "groups": 84,
+          "new_groups": 63,
+          "retained_groups": 21
+        },
+        {
+          "period": "2026-Q2",
+          "count": 166,
+          "population": 22839,
+          "share": 0.007268269188668505,
+          "groups": 143,
+          "new_groups": 120,
+          "retained_groups": 23
+        },
+        {
+          "period": "2026-Q3",
+          "count": 71,
+          "population": 14142,
+          "share": 0.005020506293310706,
+          "groups": 62,
+          "new_groups": 38,
+          "retained_groups": 24
+        }
+      ],
+      "stage": "established",
+      "momentum": "up",
+      "growth": {
+        "prior": {
+          "period": "2025-Q3–2025-Q4",
+          "count": 197,
+          "population": 30706,
+          "share": 0.0064156842310949,
+          "groups": 162,
+          "new_groups": 137,
+          "retained_groups": 25
+        },
+        "recent": {
+          "period": "2026-Q1–2026-Q2",
+          "count": 267,
+          "population": 40553,
+          "share": 0.006583976524548122,
+          "groups": 227,
+          "new_groups": 183,
+          "retained_groups": 44
+        },
+        "delta_pp": 0.016829229345322223,
+        "share_ratio": 1.0262313866130692,
+        "count_ratio": 1.3553299492385786
+      },
+      "reviewed": false,
+      "screening": "query",
+      "evidence_ids": [],
+      "first_year": "2024-Q4",
+      "growth_start": "2026-Q2",
+      "active_years": 8,
+      "groups": 580,
+      "top_group_share": 0.13472706155632985,
+      "signals": {
+        "novelty": "earlier",
+        "momentum": "up",
+        "coherence": "query",
+        "spread": "broad",
+        "application": "implementations",
+        "concentration": "low"
+      },
+      "external": [],
+      "earliest_external": "2024-10-08",
+      "name": "State space models (Mamba)",
+      "query": {
+        "arxiv": "all:mamba OR all:\"state space model\"",
+        "github": "mamba \"state space\"",
+        "hn": "state space model"
+      },
+      "curated": true,
+      "source": "curated",
+      "papers_count": 861,
+      "repos": [29, 38, 30, 33, 47, 53, 85, 59],
+      "discussions": [10, 6, 8, 8, 11, 28, 11, 7],
+      "limits": [],
+      "uniqueness": 0.9930313588850174,
+      "relevance": null
+    },
+    {
+      "id": "diffusion-lm",
+      "paper_ids": [],
+      "series": [
+        {
+          "period": "2024-Q4",
+          "count": 12,
+          "population": 13046,
+          "share": 0.000919822167714242,
+          "groups": 7,
+          "new_groups": 7,
+          "retained_groups": 0
+        },
+        {
+          "period": "2025-Q1",
+          "count": 12,
+          "population": 13106,
+          "share": 0.0009156111704562796,
+          "groups": 7,
+          "new_groups": 6,
+          "retained_groups": 1
+        },
+        {
+          "period": "2025-Q2",
+          "count": 21,
+          "population": 16138,
+          "share": 0.001301276490271409,
+          "groups": 10,
+          "new_groups": 9,
+          "retained_groups": 1
+        },
+        {
+          "period": "2025-Q3",
+          "count": 59,
+          "population": 15210,
+          "share": 0.003879026955950033,
+          "groups": 31,
+          "new_groups": 25,
+          "retained_groups": 6
+        },
+        {
+          "period": "2025-Q4",
+          "count": 70,
+          "population": 15496,
+          "share": 0.004517294785751162,
+          "groups": 35,
+          "new_groups": 29,
+          "retained_groups": 6
+        },
+        {
+          "period": "2026-Q1",
+          "count": 125,
+          "population": 17714,
+          "share": 0.007056565428474653,
+          "groups": 66,
+          "new_groups": 54,
+          "retained_groups": 12
+        },
+        {
+          "period": "2026-Q2",
+          "count": 165,
+          "population": 22839,
+          "share": 0.0072244844345199,
+          "groups": 92,
+          "new_groups": 65,
+          "retained_groups": 27
+        },
+        {
+          "period": "2026-Q3",
+          "count": 68,
+          "population": 14142,
+          "share": 0.0048083722245792675,
+          "groups": 49,
+          "new_groups": 37,
+          "retained_groups": 12
+        }
+      ],
+      "stage": "emerging_signal",
+      "momentum": "up",
+      "growth": {
+        "prior": {
+          "period": "2025-Q3–2025-Q4",
+          "count": 129,
+          "population": 30706,
+          "share": 0.004201133328991077,
+          "groups": 66,
+          "new_groups": 54,
+          "retained_groups": 12
+        },
+        "recent": {
+          "period": "2026-Q1–2026-Q2",
+          "count": 290,
+          "population": 40553,
+          "share": 0.007151135551007323,
+          "groups": 158,
+          "new_groups": 119,
+          "retained_groups": 39
+        },
+        "delta_pp": 0.2950002222016247,
+        "share_ratio": 1.7021920017769836,
+        "count_ratio": 2.248062015503876
+      },
+      "reviewed": false,
+      "screening": "query",
+      "evidence_ids": [],
+      "first_year": "2024-Q4",
+      "growth_start": "2025-Q2",
+      "active_years": 8,
+      "groups": 232,
+      "top_group_share": 0.38345864661654133,
+      "signals": {
+        "novelty": "recent",
+        "momentum": "up",
+        "coherence": "query",
+        "spread": "broad",
+        "application": "implementations",
+        "concentration": "medium"
+      },
+      "external": [],
+      "earliest_external": "2025-02-27",
+      "name": "Diffusion language models",
+      "query": {
+        "arxiv": "all:\"diffusion language model\" OR all:\"diffusion llm\" OR all:\"masked diffusion model\"",
+        "github": "\"diffusion language model\"",
+        "hn": "diffusion language model"
+      },
+      "curated": true,
+      "source": "curated",
+      "papers_count": 532,
+      "repos": [3, 11, 18, 31, 50, 84, 97, 76],
+      "discussions": [1, 9, 16, 8, 13, 15, 6, 6],
+      "limits": [],
+      "uniqueness": 0.8364661654135338,
+      "relevance": null
+    },
+    {
+      "id": "gui-agents",
+      "paper_ids": [],
+      "series": [
+        {
+          "period": "2024-Q4",
+          "count": 13,
+          "population": 13046,
+          "share": 0.000996474015023762,
+          "groups": 2,
+          "new_groups": 2,
+          "retained_groups": 0
+        },
+        {
+          "period": "2025-Q1",
+          "count": 24,
+          "population": 13106,
+          "share": 0.0018312223409125592,
+          "groups": 7,
+          "new_groups": 6,
+          "retained_groups": 1
+        },
+        {
+          "period": "2025-Q2",
+          "count": 54,
+          "population": 16138,
+          "share": 0.0033461395464121947,
+          "groups": 11,
+          "new_groups": 9,
+          "retained_groups": 2
+        },
+        {
+          "period": "2025-Q3",
+          "count": 59,
+          "population": 15210,
+          "share": 0.003879026955950033,
+          "groups": 14,
+          "new_groups": 12,
+          "retained_groups": 2
+        },
+        {
+          "period": "2025-Q4",
+          "count": 51,
+          "population": 15496,
+          "share": 0.003291171915332989,
+          "groups": 15,
+          "new_groups": 12,
+          "retained_groups": 3
+        },
+        {
+          "period": "2026-Q1",
+          "count": 81,
+          "population": 17714,
+          "share": 0.004572654397651575,
+          "groups": 29,
+          "new_groups": 24,
+          "retained_groups": 5
+        },
+        {
+          "period": "2026-Q2",
+          "count": 121,
+          "population": 22839,
+          "share": 0.0052979552519812605,
+          "groups": 46,
+          "new_groups": 36,
+          "retained_groups": 10
+        },
+        {
+          "period": "2026-Q3",
+          "count": 72,
+          "population": 14142,
+          "share": 0.005091217649554518,
+          "groups": 32,
+          "new_groups": 26,
+          "retained_groups": 6
+        }
+      ],
+      "stage": "emerging_signal",
+      "momentum": "up",
+      "growth": {
+        "prior": {
+          "period": "2025-Q3–2025-Q4",
+          "count": 110,
+          "population": 30706,
+          "share": 0.0035823617534032435,
+          "groups": 29,
+          "new_groups": 24,
+          "retained_groups": 5
+        },
+        "recent": {
+          "period": "2026-Q1–2026-Q2",
+          "count": 202,
+          "population": 40553,
+          "share": 0.004981135797598205,
+          "groups": 75,
+          "new_groups": 60,
+          "retained_groups": 15
+        },
+        "delta_pp": 0.13987740441949612,
+        "share_ratio": 1.390461416373186,
+        "count_ratio": 1.8363636363636364
+      },
+      "reviewed": false,
+      "screening": "query",
+      "evidence_ids": [],
+      "first_year": "2024-Q4",
+      "growth_start": "2026-Q1",
+      "active_years": 8,
+      "groups": 127,
+      "top_group_share": 0.6589473684210526,
+      "signals": {
+        "novelty": "recent",
+        "momentum": "up",
+        "coherence": "query",
+        "spread": "broad",
+        "application": "implementations",
+        "concentration": "high"
+      },
+      "external": [],
+      "earliest_external": "2024-10-23",
+      "name": "GUI and computer-use agents",
+      "query": {
+        "arxiv": "all:\"gui agent\" OR all:\"computer use agent\" OR all:\"computer-use agent\"",
+        "github": "\"computer use\" agent",
+        "hn": "computer use agent"
+      },
+      "curated": true,
+      "source": "curated",
+      "papers_count": 475,
+      "repos": [18, 50, 59, 67, 133, 209, 388, 419],
+      "discussions": [19, 41, 31, 32, 41, 84, 53, 57],
+      "limits": [],
+      "uniqueness": 0.9747368421052631,
+      "relevance": null
+    },
+    {
+      "id": "vla",
+      "paper_ids": [],
+      "series": [
+        {
+          "period": "2024-Q4",
+          "count": 14,
+          "population": 13046,
+          "share": 0.0010731258623332823,
+          "groups": 6,
+          "new_groups": 6,
+          "retained_groups": 0
+        },
+        {
+          "period": "2025-Q1",
+          "count": 19,
+          "population": 13106,
+          "share": 0.0014497176865557759,
+          "groups": 6,
+          "new_groups": 5,
+          "retained_groups": 1
+        },
+        {
+          "period": "2025-Q2",
+          "count": 42,
+          "population": 16138,
+          "share": 0.002602552980542818,
+          "groups": 12,
+          "new_groups": 11,
+          "retained_groups": 1
+        },
+        {
+          "period": "2025-Q3",
+          "count": 50,
+          "population": 15210,
+          "share": 0.003287310979618672,
+          "groups": 17,
+          "new_groups": 16,
+          "retained_groups": 1
+        },
+        {
+          "period": "2025-Q4",
+          "count": 102,
+          "population": 15496,
+          "share": 0.006582343830665978,
+          "groups": 34,
+          "new_groups": 29,
+          "retained_groups": 5
+        },
+        {
+          "period": "2026-Q1",
+          "count": 114,
+          "population": 17714,
+          "share": 0.006435587670768884,
+          "groups": 43,
+          "new_groups": 36,
+          "retained_groups": 7
+        },
+        {
+          "period": "2026-Q2",
+          "count": 189,
+          "population": 22839,
+          "share": 0.008275318534086432,
+          "groups": 79,
+          "new_groups": 64,
+          "retained_groups": 15
+        },
+        {
+          "period": "2026-Q3",
+          "count": 129,
+          "population": 14142,
+          "share": 0.009121764955451845,
+          "groups": 53,
+          "new_groups": 37,
+          "retained_groups": 16
+        }
+      ],
+      "stage": "emerging_signal",
+      "momentum": "up",
+      "growth": {
+        "prior": {
+          "period": "2025-Q3–2025-Q4",
+          "count": 152,
+          "population": 30706,
+          "share": 0.004950172604702664,
+          "groups": 51,
+          "new_groups": 45,
+          "retained_groups": 6
+        },
+        "recent": {
+          "period": "2026-Q1–2026-Q2",
+          "count": 303,
+          "population": 40553,
+          "share": 0.0074717036963973076,
+          "groups": 122,
+          "new_groups": 100,
+          "retained_groups": 22
+        },
+        "delta_pp": 0.2521531091694644,
+        "share_ratio": 1.5093824585629982,
+        "count_ratio": 1.993421052631579
+      },
+      "reviewed": false,
+      "screening": "query",
+      "evidence_ids": [],
+      "first_year": "2024-Q4",
+      "growth_start": "2026-Q2",
+      "active_years": 8,
+      "groups": 204,
+      "top_group_share": 0.6100151745068285,
+      "signals": {
+        "novelty": "recent",
+        "momentum": "up",
+        "coherence": "query",
+        "spread": "broad",
+        "application": "implementations",
+        "concentration": "high"
+      },
+      "external": [],
+      "earliest_external": "2024-10-31",
+      "name": "Vision-language-action models",
+      "query": {
+        "arxiv": "all:\"vision-language-action\"",
+        "github": "\"vision-language-action\"",
+        "hn": "vision-language-action"
+      },
+      "curated": true,
+      "source": "curated",
+      "papers_count": 659,
+      "repos": [11, 25, 60, 57, 120, 187, 262, 268],
+      "discussions": [2, 2, 3, 2, 3, 5, 4, 2],
+      "limits": [],
+      "uniqueness": 0.9848254931714719,
+      "relevance": null
+    },
+    {
+      "id": "agent-memory",
+      "paper_ids": [],
+      "series": [
+        {
+          "period": "2024-Q4",
+          "count": 6,
+          "population": 13046,
+          "share": 0.000459911083857121,
+          "groups": 3,
+          "new_groups": 3,
+          "retained_groups": 0
+        },
+        {
+          "period": "2025-Q1",
+          "count": 11,
+          "population": 13106,
+          "share": 0.000839310239584923,
+          "groups": 7,
+          "new_groups": 5,
+          "retained_groups": 2
+        },
+        {
+          "period": "2025-Q2",
+          "count": 27,
+          "population": 16138,
+          "share": 0.0016730697732060974,
+          "groups": 20,
+          "new_groups": 19,
+          "retained_groups": 1
+        },
+        {
+          "period": "2025-Q3",
+          "count": 22,
+          "population": 15210,
+          "share": 0.0014464168310322155,
+          "groups": 15,
+          "new_groups": 14,
+          "retained_groups": 1
+        },
+        {
+          "period": "2025-Q4",
+          "count": 43,
+          "population": 15496,
+          "share": 0.002774909654104285,
+          "groups": 33,
+          "new_groups": 31,
+          "retained_groups": 2
+        },
+        {
+          "period": "2026-Q1",
+          "count": 100,
+          "population": 17714,
+          "share": 0.005645252342779722,
+          "groups": 58,
+          "new_groups": 50,
+          "retained_groups": 8
+        },
+        {
+          "period": "2026-Q2",
+          "count": 183,
+          "population": 22839,
+          "share": 0.008012610009194798,
+          "groups": 114,
+          "new_groups": 97,
+          "retained_groups": 17
+        },
+        {
+          "period": "2026-Q3",
+          "count": 141,
+          "population": 14142,
+          "share": 0.009970301230377598,
+          "groups": 100,
+          "new_groups": 87,
+          "retained_groups": 13
+        }
+      ],
+      "stage": "emerging_signal",
+      "momentum": "up",
+      "growth": {
+        "prior": {
+          "period": "2025-Q3–2025-Q4",
+          "count": 65,
+          "population": 30706,
+          "share": 0.0021168501270110076,
+          "groups": 48,
+          "new_groups": 45,
+          "retained_groups": 3
+        },
+        "recent": {
+          "period": "2026-Q1–2026-Q2",
+          "count": 283,
+          "population": 40553,
+          "share": 0.006978521934258871,
+          "groups": 172,
+          "new_groups": 147,
+          "retained_groups": 25
+        },
+        "delta_pp": 0.4861671807247864,
+        "share_ratio": 3.2966537617438907,
+        "count_ratio": 4.3538461538461535
+      },
+      "reviewed": false,
+      "screening": "query",
+      "evidence_ids": [],
+      "first_year": "2024-Q4",
+      "growth_start": "2025-Q4",
+      "active_years": 8,
+      "groups": 306,
+      "top_group_share": 0.3058161350844278,
+      "signals": {
+        "novelty": "recent",
+        "momentum": "up",
+        "coherence": "query",
+        "spread": "broad",
+        "application": "implementations",
+        "concentration": "medium"
+      },
+      "external": [],
+      "earliest_external": "2025-01-30",
+      "name": "Agent memory",
+      "query": {
+        "arxiv": "all:\"agent memory\" OR (all:\"long-term memory\" AND all:agents)",
+        "github": "\"agent memory\" llm",
+        "hn": "agent memory"
+      },
+      "curated": true,
+      "source": "curated",
+      "papers_count": 533,
+      "repos": [8, 11, 13, 18, 29, 124, 337, 257],
+      "discussions": [31, 38, 72, 103, 161, 608, 391, 274],
+      "limits": [],
+      "uniqueness": 0.9136960600375235,
+      "relevance": null
+    },
+    {
+      "id": "ngram:coding-agent",
+      "paper_ids": [],
+      "series": [
+        {
+          "period": "2024-Q4",
+          "count": 2,
+          "population": 13046,
+          "share": 0.00015330369461904033,
+          "groups": 2,
+          "new_groups": 2,
+          "retained_groups": 0
+        },
+        {
+          "period": "2025-Q1",
+          "count": 2,
+          "population": 13106,
+          "share": 0.00015260186174271325,
+          "groups": 2,
+          "new_groups": 2,
+          "retained_groups": 0
+        },
+        {
+          "period": "2025-Q2",
+          "count": 7,
+          "population": 16138,
+          "share": 0.0004337588300904697,
+          "groups": 7,
+          "new_groups": 7,
+          "retained_groups": 0
+        },
+        {
+          "period": "2025-Q3",
+          "count": 5,
+          "population": 15210,
+          "share": 0.0003287310979618672,
+          "groups": 5,
+          "new_groups": 4,
+          "retained_groups": 1
+        },
+        {
+          "period": "2025-Q4",
+          "count": 15,
+          "population": 15496,
+          "share": 0.0009679917398038204,
+          "groups": 12,
+          "new_groups": 10,
+          "retained_groups": 2
+        },
+        {
+          "period": "2026-Q1",
+          "count": 31,
+          "population": 17714,
+          "share": 0.0017500282262617138,
+          "groups": 28,
+          "new_groups": 24,
+          "retained_groups": 4
+        },
+        {
+          "period": "2026-Q2",
+          "count": 81,
+          "population": 22839,
+          "share": 0.003546565086037042,
+          "groups": 69,
+          "new_groups": 63,
+          "retained_groups": 6
+        },
+        {
+          "period": "2026-Q3",
+          "count": 90,
+          "population": 14142,
+          "share": 0.006364022061943148,
+          "groups": 76,
+          "new_groups": 66,
+          "retained_groups": 10
+        }
+      ],
+      "stage": "emerging_signal",
+      "momentum": "up",
+      "growth": {
+        "prior": {
+          "period": "2025-Q3–2025-Q4",
+          "count": 20,
+          "population": 30706,
+          "share": 0.0006513385006187716,
+          "groups": 17,
+          "new_groups": 14,
+          "retained_groups": 3
+        },
+        "recent": {
+          "period": "2026-Q1–2026-Q2",
+          "count": 112,
+          "population": 40553,
+          "share": 0.002761817867975242,
+          "groups": 97,
+          "new_groups": 87,
+          "retained_groups": 10
+        },
+        "delta_pp": 0.21104793673564706,
+        "share_ratio": 4.240218972702389,
+        "count_ratio": 5.6
+      },
+      "reviewed": false,
+      "screening": "query",
+      "evidence_ids": [],
+      "first_year": "2024-Q4",
+      "growth_start": "2025-Q4",
+      "active_years": 8,
+      "groups": 178,
+      "top_group_share": 0.05150214592274678,
+      "signals": {
+        "novelty": "new",
+        "momentum": "up",
+        "coherence": "query",
+        "spread": "broad",
+        "application": "implementations",
+        "concentration": "low"
+      },
+      "external": [],
+      "earliest_external": "2025-04-13",
+      "name": "Coding Agents",
+      "query": {
+        "arxiv": "ti:\"coding agents\"",
+        "github": "\"coding agents\"",
+        "hn": "coding agents"
+      },
+      "curated": false,
+      "source": "discovered",
+      "papers_count": 233,
+      "repos": [],
+      "discussions": [38, 102, 259, 422, 505, 1495, 1191, 1031],
+      "limits": [],
+      "uniqueness": 0.9742489270386266,
+      "relevance": null
+    },
+    {
+      "id": "ngram:policy-distillation",
+      "paper_ids": [],
+      "series": [
+        {
+          "period": "2024-Q4",
+          "count": 1,
+          "population": 13046,
+          "share": 7.665184730952016e-5,
+          "groups": 1,
+          "new_groups": 1,
+          "retained_groups": 0
+        },
+        {
+          "period": "2025-Q1",
+          "count": 2,
+          "population": 13106,
+          "share": 0.00015260186174271325,
+          "groups": 2,
+          "new_groups": 2,
+          "retained_groups": 0
+        },
+        {
+          "period": "2025-Q2",
+          "count": 0,
+          "population": 16138,
+          "share": 0,
+          "groups": 0,
+          "new_groups": 0,
+          "retained_groups": 0
+        },
+        {
+          "period": "2025-Q3",
+          "count": 0,
+          "population": 15210,
+          "share": 0,
+          "groups": 0,
+          "new_groups": 0,
+          "retained_groups": 0
+        },
+        {
+          "period": "2025-Q4",
+          "count": 1,
+          "population": 15496,
+          "share": 6.453278265358803e-5,
+          "groups": 1,
+          "new_groups": 1,
+          "retained_groups": 0
+        },
+        {
+          "period": "2026-Q1",
+          "count": 9,
+          "population": 17714,
+          "share": 0.000508072710850175,
+          "groups": 8,
+          "new_groups": 8,
+          "retained_groups": 0
+        },
+        {
+          "period": "2026-Q2",
+          "count": 78,
+          "population": 22839,
+          "share": 0.0034152108235912257,
+          "groups": 51,
+          "new_groups": 49,
+          "retained_groups": 2
+        },
+        {
+          "period": "2026-Q3",
+          "count": 69,
+          "population": 14142,
+          "share": 0.00487908358082308,
+          "groups": 49,
+          "new_groups": 37,
+          "retained_groups": 12
+        }
+      ],
+      "stage": "emerging_signal",
+      "momentum": "up",
+      "growth": {
+        "prior": {
+          "period": "2025-Q3–2025-Q4",
+          "count": 1,
+          "population": 30706,
+          "share": 3.256692503093858e-5,
+          "groups": 1,
+          "new_groups": 1,
+          "retained_groups": 0
+        },
+        "recent": {
+          "period": "2026-Q1–2026-Q2",
+          "count": 87,
+          "population": 40553,
+          "share": 0.002145340665302197,
+          "groups": 59,
+          "new_groups": 57,
+          "retained_groups": 2
+        },
+        "delta_pp": 0.21127737402712585,
+        "share_ratio": 65.87483046876926,
+        "count_ratio": 87
+      },
+      "reviewed": false,
+      "screening": "query",
+      "evidence_ids": [],
+      "first_year": "2024-Q4",
+      "growth_start": "2025-Q4",
+      "active_years": 6,
+      "groups": 98,
+      "top_group_share": 0.175,
+      "signals": {
+        "novelty": "new",
+        "momentum": "up",
+        "coherence": "query",
+        "spread": "broad",
+        "application": "implementations",
+        "concentration": "low"
+      },
+      "external": [],
+      "earliest_external": "2025-10-27",
+      "name": "Policy Distillation",
+      "query": {
+        "arxiv": "ti:\"policy distillation\"",
+        "github": "\"policy distillation\"",
+        "hn": "policy distillation"
+      },
+      "curated": false,
+      "source": "discovered",
+      "papers_count": 160,
+      "repos": [],
+      "discussions": [0, 0, 0, 0, 7, 2, 6, 1],
+      "limits": [],
+      "uniqueness": 0.8875,
+      "relevance": null
+    },
+    {
+      "id": "ngram:agent-skill",
+      "paper_ids": [],
+      "series": [
+        {
+          "period": "2024-Q4",
+          "count": 1,
+          "population": 13046,
+          "share": 7.665184730952016e-5,
+          "groups": 1,
+          "new_groups": 1,
+          "retained_groups": 0
+        },
+        {
+          "period": "2025-Q1",
+          "count": 0,
+          "population": 13106,
+          "share": 0,
+          "groups": 0,
+          "new_groups": 0,
+          "retained_groups": 0
+        },
+        {
+          "period": "2025-Q2",
+          "count": 2,
+          "population": 16138,
+          "share": 0.00012393109431156277,
+          "groups": 2,
+          "new_groups": 2,
+          "retained_groups": 0
+        },
+        {
+          "period": "2025-Q3",
+          "count": 0,
+          "population": 15210,
+          "share": 0,
+          "groups": 0,
+          "new_groups": 0,
+          "retained_groups": 0
+        },
+        {
+          "period": "2025-Q4",
+          "count": 0,
+          "population": 15496,
+          "share": 0,
+          "groups": 0,
+          "new_groups": 0,
+          "retained_groups": 0
+        },
+        {
+          "period": "2026-Q1",
+          "count": 11,
+          "population": 17714,
+          "share": 0.0006209777577057694,
+          "groups": 9,
+          "new_groups": 9,
+          "retained_groups": 0
+        },
+        {
+          "period": "2026-Q2",
+          "count": 67,
+          "population": 22839,
+          "share": 0.0029335785279565657,
+          "groups": 51,
+          "new_groups": 47,
+          "retained_groups": 4
+        },
+        {
+          "period": "2026-Q3",
+          "count": 49,
+          "population": 14142,
+          "share": 0.003464856455946825,
+          "groups": 38,
+          "new_groups": 31,
+          "retained_groups": 7
+        }
+      ],
+      "stage": "emerging_signal",
+      "momentum": "up",
+      "growth": {
+        "prior": {
+          "period": "2025-Q3–2025-Q4",
+          "count": 0,
+          "population": 30706,
+          "share": 0,
+          "groups": 0,
+          "new_groups": 0,
+          "retained_groups": 0
+        },
+        "recent": {
+          "period": "2026-Q1–2026-Q2",
+          "count": 78,
+          "population": 40553,
+          "share": 0.0019234088723399008,
+          "groups": 60,
+          "new_groups": 56,
+          "retained_groups": 4
+        },
+        "delta_pp": 0.19234088723399007,
+        "share_ratio": null,
+        "count_ratio": null
+      },
+      "reviewed": false,
+      "screening": "query",
+      "evidence_ids": [],
+      "first_year": "2024-Q4",
+      "growth_start": "2026-Q1",
+      "active_years": 5,
+      "groups": 90,
+      "top_group_share": 0.1,
+      "signals": {
+        "novelty": "new",
+        "momentum": "up",
+        "coherence": "query",
+        "spread": "broad",
+        "application": "implementations",
+        "concentration": "low"
+      },
+      "external": [],
+      "earliest_external": "2025-09-22",
+      "name": "Agent Skills",
+      "query": {
+        "arxiv": "ti:\"agent skills\"",
+        "github": "\"agent skills\"",
+        "hn": "agent skills"
+      },
+      "curated": false,
+      "source": "discovered",
+      "papers_count": 130,
+      "repos": [],
+      "discussions": [20, 20, 27, 30, 84, 736, 435, 321],
+      "limits": [],
+      "uniqueness": 0.9384615384615385,
+      "relevance": null
+    },
+    {
+      "id": "ngram:research-agent",
+      "paper_ids": [],
+      "series": [
+        {
+          "period": "2024-Q4",
+          "count": 0,
+          "population": 13046,
+          "share": 0,
+          "groups": 0,
+          "new_groups": 0,
+          "retained_groups": 0
+        },
+        {
+          "period": "2025-Q1",
+          "count": 1,
+          "population": 13106,
+          "share": 7.630093087135663e-5,
+          "groups": 1,
+          "new_groups": 1,
+          "retained_groups": 0
+        },
+        {
+          "period": "2025-Q2",
+          "count": 5,
+          "population": 16138,
+          "share": 0.0003098277357789069,
+          "groups": 5,
+          "new_groups": 5,
+          "retained_groups": 0
+        },
+        {
+          "period": "2025-Q3",
+          "count": 12,
+          "population": 15210,
+          "share": 0.0007889546351084812,
+          "groups": 11,
+          "new_groups": 9,
+          "retained_groups": 2
+        },
+        {
+          "period": "2025-Q4",
+          "count": 19,
+          "population": 15496,
+          "share": 0.0012261228704181725,
+          "groups": 16,
+          "new_groups": 12,
+          "retained_groups": 4
+        },
+        {
+          "period": "2026-Q1",
+          "count": 28,
+          "population": 17714,
+          "share": 0.0015806706559783222,
+          "groups": 22,
+          "new_groups": 15,
+          "retained_groups": 7
+        },
+        {
+          "period": "2026-Q2",
+          "count": 35,
+          "population": 22839,
+          "share": 0.001532466395201191,
+          "groups": 31,
+          "new_groups": 25,
+          "retained_groups": 6
+        },
+        {
+          "period": "2026-Q3",
+          "count": 18,
+          "population": 14142,
+          "share": 0.0012728044123886295,
+          "groups": 17,
+          "new_groups": 13,
+          "retained_groups": 4
+        }
+      ],
+      "stage": "emerging_signal",
+      "momentum": "up",
+      "growth": {
+        "prior": {
+          "period": "2025-Q3–2025-Q4",
+          "count": 31,
+          "population": 30706,
+          "share": 0.001009574675959096,
+          "groups": 27,
+          "new_groups": 21,
+          "retained_groups": 6
+        },
+        "recent": {
+          "period": "2026-Q1–2026-Q2",
+          "count": 63,
+          "population": 40553,
+          "share": 0.0015535225507360738,
+          "groups": 53,
+          "new_groups": 40,
+          "retained_groups": 13
+        },
+        "delta_pp": 0.05439478747769778,
+        "share_ratio": 1.5387891433194154,
+        "count_ratio": 2.032258064516129
+      },
+      "reviewed": false,
+      "screening": "query",
+      "evidence_ids": [],
+      "first_year": "2025-Q1",
+      "growth_start": "",
+      "active_years": 7,
+      "groups": 80,
+      "top_group_share": 0.1016949152542373,
+      "signals": {
+        "novelty": "recent",
+        "momentum": "up",
+        "coherence": "query",
+        "spread": "broad",
+        "application": "implementations",
+        "concentration": "low"
+      },
+      "external": [],
+      "earliest_external": "2025-01-09",
+      "name": "Research Agents",
+      "query": {
+        "arxiv": "ti:\"research agents\"",
+        "github": "\"research agents\"",
+        "hn": "research agents"
+      },
+      "curated": false,
+      "source": "discovered",
+      "papers_count": 118,
+      "repos": [],
+      "discussions": [42, 73, 99, 136, 132, 320, 227, 166],
+      "limits": [],
+      "uniqueness": 0.2796610169491526,
+      "relevance": null
+    },
+    {
+      "id": "ngram:masked-diffusion",
+      "paper_ids": [],
+      "series": [
+        {
+          "period": "2024-Q4",
+          "count": 1,
+          "population": 13046,
+          "share": 7.665184730952016e-5,
+          "groups": 1,
+          "new_groups": 1,
+          "retained_groups": 0
+        },
+        {
+          "period": "2025-Q1",
+          "count": 2,
+          "population": 13106,
+          "share": 0.00015260186174271325,
+          "groups": 2,
+          "new_groups": 2,
+          "retained_groups": 0
+        },
+        {
+          "period": "2025-Q2",
+          "count": 2,
+          "population": 16138,
+          "share": 0.00012393109431156277,
+          "groups": 2,
+          "new_groups": 2,
+          "retained_groups": 0
+        },
+        {
+          "period": "2025-Q3",
+          "count": 10,
+          "population": 15210,
+          "share": 0.0006574621959237344,
+          "groups": 10,
+          "new_groups": 9,
+          "retained_groups": 1
+        },
+        {
+          "period": "2025-Q4",
+          "count": 11,
+          "population": 15496,
+          "share": 0.0007098606091894683,
+          "groups": 11,
+          "new_groups": 11,
+          "retained_groups": 0
+        },
+        {
+          "period": "2026-Q1",
+          "count": 31,
+          "population": 17714,
+          "share": 0.0017500282262617138,
+          "groups": 29,
+          "new_groups": 24,
+          "retained_groups": 5
+        },
+        {
+          "period": "2026-Q2",
+          "count": 23,
+          "population": 22839,
+          "share": 0.0010070493454179255,
+          "groups": 22,
+          "new_groups": 17,
+          "retained_groups": 5
+        },
+        {
+          "period": "2026-Q3",
+          "count": 15,
+          "population": 14142,
+          "share": 0.0010606703436571913,
+          "groups": 15,
+          "new_groups": 12,
+          "retained_groups": 3
+        }
+      ],
+      "stage": "emerging_signal",
+      "momentum": "up",
+      "growth": {
+        "prior": {
+          "period": "2025-Q3–2025-Q4",
+          "count": 21,
+          "population": 30706,
+          "share": 0.0006839054256497102,
+          "groups": 21,
+          "new_groups": 20,
+          "retained_groups": 1
+        },
+        "recent": {
+          "period": "2026-Q1–2026-Q2",
+          "count": 54,
+          "population": 40553,
+          "share": 0.0013315907577737774,
+          "groups": 51,
+          "new_groups": 41,
+          "retained_groups": 10
+        },
+        "delta_pp": 0.06476853321240672,
+        "share_ratio": 1.9470393242000765,
+        "count_ratio": 2.5714285714285716
+      },
+      "reviewed": false,
+      "screening": "query",
+      "evidence_ids": [],
+      "first_year": "2024-Q4",
+      "growth_start": "",
+      "active_years": 8,
+      "groups": 78,
+      "top_group_share": 0.042105263157894736,
+      "signals": {
+        "novelty": "recent",
+        "momentum": "up",
+        "coherence": "query",
+        "spread": "broad",
+        "application": "implementations",
+        "concentration": "low"
+      },
+      "external": [],
+      "earliest_external": "2024-10-22",
+      "name": "Masked Diffusion",
+      "query": {
+        "arxiv": "ti:\"masked diffusion\"",
+        "github": "\"masked diffusion\"",
+        "hn": "masked diffusion"
+      },
+      "curated": false,
+      "source": "discovered",
+      "papers_count": 95,
+      "repos": [],
+      "discussions": [0, 1, 0, 3, 0, 2, 0, 0],
+      "limits": [],
+      "uniqueness": 0.08421052631578951,
+      "relevance": null
+    },
+    {
+      "id": "ngram:evolving-agent",
+      "paper_ids": [],
+      "series": [
+        {
+          "period": "2024-Q4",
+          "count": 0,
+          "population": 13046,
+          "share": 0,
+          "groups": 0,
+          "new_groups": 0,
+          "retained_groups": 0
+        },
+        {
+          "period": "2025-Q1",
+          "count": 0,
+          "population": 13106,
+          "share": 0,
+          "groups": 0,
+          "new_groups": 0,
+          "retained_groups": 0
+        },
+        {
+          "period": "2025-Q2",
+          "count": 0,
+          "population": 16138,
+          "share": 0,
+          "groups": 0,
+          "new_groups": 0,
+          "retained_groups": 0
+        },
+        {
+          "period": "2025-Q3",
+          "count": 5,
+          "population": 15210,
+          "share": 0.0003287310979618672,
+          "groups": 5,
+          "new_groups": 5,
+          "retained_groups": 0
+        },
+        {
+          "period": "2025-Q4",
+          "count": 7,
+          "population": 15496,
+          "share": 0.00045172947857511617,
+          "groups": 7,
+          "new_groups": 7,
+          "retained_groups": 0
+        },
+        {
+          "period": "2026-Q1",
+          "count": 12,
+          "population": 17714,
+          "share": 0.0006774302811335666,
+          "groups": 12,
+          "new_groups": 12,
+          "retained_groups": 0
+        },
+        {
+          "period": "2026-Q2",
+          "count": 41,
+          "population": 22839,
+          "share": 0.0017951749200928236,
+          "groups": 38,
+          "new_groups": 36,
+          "retained_groups": 2
+        },
+        {
+          "period": "2026-Q3",
+          "count": 31,
+          "population": 14142,
+          "share": 0.0021920520435581956,
+          "groups": 28,
+          "new_groups": 23,
+          "retained_groups": 5
+        }
+      ],
+      "stage": "emerging_signal",
+      "momentum": "up",
+      "growth": {
+        "prior": {
+          "period": "2025-Q3–2025-Q4",
+          "count": 12,
+          "population": 30706,
+          "share": 0.00039080310037126296,
+          "groups": 12,
+          "new_groups": 12,
+          "retained_groups": 0
+        },
+        "recent": {
+          "period": "2026-Q1–2026-Q2",
+          "count": 53,
+          "population": 40553,
+          "share": 0.0013069316696668557,
+          "groups": 50,
+          "new_groups": 48,
+          "retained_groups": 2
+        },
+        "delta_pp": 0.09161285692955927,
+        "share_ratio": 3.344220320732539,
+        "count_ratio": 4.416666666666667
+      },
+      "reviewed": false,
+      "screening": "query",
+      "evidence_ids": [],
+      "first_year": "2025-Q3",
+      "growth_start": "2025-Q3",
+      "active_years": 5,
+      "groups": 83,
+      "top_group_share": 0.03125,
+      "signals": {
+        "novelty": "recent",
+        "momentum": "up",
+        "coherence": "query",
+        "spread": "broad",
+        "application": "implementations",
+        "concentration": "low"
+      },
+      "external": [],
+      "earliest_external": "2025-03-09",
+      "name": "Evolving Agents",
+      "query": {
+        "arxiv": "ti:\"evolving agents\"",
+        "github": "\"evolving agents\"",
+        "hn": "evolving agents"
+      },
+      "curated": false,
+      "source": "discovered",
+      "papers_count": 96,
+      "repos": [],
+      "discussions": [4, 11, 21, 13, 30, 52, 26, 26],
+      "limits": [],
+      "uniqueness": 0.9166666666666666,
+      "relevance": null
+    },
+    {
+      "id": "ngram:agentic-reinforcement",
+      "paper_ids": [],
+      "series": [
+        {
+          "period": "2024-Q4",
+          "count": 0,
+          "population": 13046,
+          "share": 0,
+          "groups": 0,
+          "new_groups": 0,
+          "retained_groups": 0
+        },
+        {
+          "period": "2025-Q1",
+          "count": 0,
+          "population": 13106,
+          "share": 0,
+          "groups": 0,
+          "new_groups": 0,
+          "retained_groups": 0
+        },
+        {
+          "period": "2025-Q2",
+          "count": 1,
+          "population": 16138,
+          "share": 6.196554715578138e-5,
+          "groups": 1,
+          "new_groups": 1,
+          "retained_groups": 0
+        },
+        {
+          "period": "2025-Q3",
+          "count": 7,
+          "population": 15210,
+          "share": 0.0004602235371466141,
+          "groups": 6,
+          "new_groups": 6,
+          "retained_groups": 0
+        },
+        {
+          "period": "2025-Q4",
+          "count": 10,
+          "population": 15496,
+          "share": 0.0006453278265358802,
+          "groups": 10,
+          "new_groups": 9,
+          "retained_groups": 1
+        },
+        {
+          "period": "2026-Q1",
+          "count": 11,
+          "population": 17714,
+          "share": 0.0006209777577057694,
+          "groups": 9,
+          "new_groups": 9,
+          "retained_groups": 0
+        },
+        {
+          "period": "2026-Q2",
+          "count": 32,
+          "population": 22839,
+          "share": 0.0014011121327553745,
+          "groups": 26,
+          "new_groups": 18,
+          "retained_groups": 8
+        },
+        {
+          "period": "2026-Q3",
+          "count": 29,
+          "population": 14142,
+          "share": 0.00205062933107057,
+          "groups": 20,
+          "new_groups": 13,
+          "retained_groups": 7
+        }
+      ],
+      "stage": "emerging_signal",
+      "momentum": "up",
+      "growth": {
+        "prior": {
+          "period": "2025-Q3–2025-Q4",
+          "count": 17,
+          "population": 30706,
+          "share": 0.0005536377255259559,
+          "groups": 16,
+          "new_groups": 15,
+          "retained_groups": 1
+        },
+        "recent": {
+          "period": "2026-Q1–2026-Q2",
+          "count": 43,
+          "population": 40553,
+          "share": 0.0010603407885976376,
+          "groups": 35,
+          "new_groups": 27,
+          "retained_groups": 8
+        },
+        "delta_pp": 0.05067030630716817,
+        "share_ratio": 1.9152249561575916,
+        "count_ratio": 2.5294117647058822
+      },
+      "reviewed": false,
+      "screening": "query",
+      "evidence_ids": [],
+      "first_year": "2025-Q2",
+      "growth_start": "2026-Q2",
+      "active_years": 6,
+      "groups": 56,
+      "top_group_share": 0.15555555555555556,
+      "signals": {
+        "novelty": "recent",
+        "momentum": "up",
+        "coherence": "query",
+        "spread": "broad",
+        "application": "implementations",
+        "concentration": "low"
+      },
+      "external": [],
+      "earliest_external": "2025-02-24",
+      "name": "Agentic Reinforcement",
+      "query": {
+        "arxiv": "ti:\"agentic reinforcement\"",
+        "github": "\"agentic reinforcement\"",
+        "hn": "agentic reinforcement"
+      },
+      "curated": false,
+      "source": "discovered",
+      "papers_count": 90,
+      "repos": [],
+      "discussions": [2, 6, 8, 16, 1, 15, 5, 3],
+      "limits": [],
+      "uniqueness": 0.9333333333333333,
+      "relevance": null
+    },
+    {
+      "id": "ngram:evidence-grounded",
+      "paper_ids": [],
+      "series": [
+        {
+          "period": "2024-Q4",
+          "count": 0,
+          "population": 13046,
+          "share": 0,
+          "groups": 0,
+          "new_groups": 0,
+          "retained_groups": 0
+        },
+        {
+          "period": "2025-Q1",
+          "count": 0,
+          "population": 13106,
+          "share": 0,
+          "groups": 0,
+          "new_groups": 0,
+          "retained_groups": 0
+        },
+        {
+          "period": "2025-Q2",
+          "count": 3,
+          "population": 16138,
+          "share": 0.00018589664146734415,
+          "groups": 3,
+          "new_groups": 3,
+          "retained_groups": 0
+        },
+        {
+          "period": "2025-Q3",
+          "count": 2,
+          "population": 15210,
+          "share": 0.00013149243918474687,
+          "groups": 2,
+          "new_groups": 2,
+          "retained_groups": 0
+        },
+        {
+          "period": "2025-Q4",
+          "count": 5,
+          "population": 15496,
+          "share": 0.0003226639132679401,
+          "groups": 5,
+          "new_groups": 5,
+          "retained_groups": 0
+        },
+        {
+          "period": "2026-Q1",
+          "count": 11,
+          "population": 17714,
+          "share": 0.0006209777577057694,
+          "groups": 11,
+          "new_groups": 11,
+          "retained_groups": 0
+        },
+        {
+          "period": "2026-Q2",
+          "count": 24,
+          "population": 22839,
+          "share": 0.0010508340995665309,
+          "groups": 24,
+          "new_groups": 21,
+          "retained_groups": 3
+        },
+        {
+          "period": "2026-Q3",
+          "count": 53,
+          "population": 14142,
+          "share": 0.003747701880922076,
+          "groups": 52,
+          "new_groups": 47,
+          "retained_groups": 5
+        }
+      ],
+      "stage": "emerging_signal",
+      "momentum": "up",
+      "growth": {
+        "prior": {
+          "period": "2025-Q3–2025-Q4",
+          "count": 7,
+          "population": 30706,
+          "share": 0.00022796847521657006,
+          "groups": 7,
+          "new_groups": 7,
+          "retained_groups": 0
+        },
+        "recent": {
+          "period": "2026-Q1–2026-Q2",
+          "count": 35,
+          "population": 40553,
+          "share": 0.0008630680837422632,
+          "groups": 35,
+          "new_groups": 32,
+          "retained_groups": 3
+        },
+        "delta_pp": 0.06350996085256931,
+        "share_ratio": 3.7859097970557047,
+        "count_ratio": 5
+      },
+      "reviewed": false,
+      "screening": "query",
+      "evidence_ids": [],
+      "first_year": "2025-Q2",
+      "growth_start": "2025-Q4",
+      "active_years": 6,
+      "groups": 89,
+      "top_group_share": 0.030612244897959183,
+      "signals": {
+        "novelty": "new",
+        "momentum": "up",
+        "coherence": "query",
+        "spread": "broad",
+        "application": "implementations",
+        "concentration": "low"
+      },
+      "external": [],
+      "earliest_external": "2025-04-15",
+      "name": "Evidence Grounded",
+      "query": {
+        "arxiv": "ti:\"evidence grounded\"",
+        "github": "\"evidence grounded\"",
+        "hn": "evidence grounded"
+      },
+      "curated": false,
+      "source": "discovered",
+      "papers_count": 98,
+      "repos": [],
+      "discussions": [0, 0, 5, 6, 3, 14, 8, 3],
+      "limits": [],
+      "uniqueness": 0.9591836734693877,
+      "relevance": null
+    },
+    {
+      "id": "ngram:llm-pipeline",
+      "paper_ids": [],
+      "series": [
+        {
+          "period": "2024-Q4",
+          "count": 0,
+          "population": 13046,
+          "share": 0,
+          "groups": 0,
+          "new_groups": 0,
+          "retained_groups": 0
+        },
+        {
+          "period": "2025-Q1",
+          "count": 0,
+          "population": 13106,
+          "share": 0,
+          "groups": 0,
+          "new_groups": 0,
+          "retained_groups": 0
+        },
+        {
+          "period": "2025-Q2",
+          "count": 0,
+          "population": 16138,
+          "share": 0,
+          "groups": 0,
+          "new_groups": 0,
+          "retained_groups": 0
+        },
+        {
+          "period": "2025-Q3",
+          "count": 3,
+          "population": 15210,
+          "share": 0.0001972386587771203,
+          "groups": 3,
+          "new_groups": 3,
+          "retained_groups": 0
+        },
+        {
+          "period": "2025-Q4",
+          "count": 8,
+          "population": 15496,
+          "share": 0.0005162622612287042,
+          "groups": 8,
+          "new_groups": 8,
+          "retained_groups": 0
+        },
+        {
+          "period": "2026-Q1",
+          "count": 9,
+          "population": 17714,
+          "share": 0.000508072710850175,
+          "groups": 8,
+          "new_groups": 7,
+          "retained_groups": 1
+        },
+        {
+          "period": "2026-Q2",
+          "count": 26,
+          "population": 22839,
+          "share": 0.0011384036078637418,
+          "groups": 26,
+          "new_groups": 25,
+          "retained_groups": 1
+        },
+        {
+          "period": "2026-Q3",
+          "count": 9,
+          "population": 14142,
+          "share": 0.0006364022061943148,
+          "groups": 9,
+          "new_groups": 8,
+          "retained_groups": 1
+        }
+      ],
+      "stage": "emerging_signal",
+      "momentum": "up",
+      "growth": {
+        "prior": {
+          "period": "2025-Q3–2025-Q4",
+          "count": 11,
+          "population": 30706,
+          "share": 0.00035823617534032435,
+          "groups": 11,
+          "new_groups": 11,
+          "retained_groups": 0
+        },
+        "recent": {
+          "period": "2026-Q1–2026-Q2",
+          "count": 35,
+          "population": 40553,
+          "share": 0.0008630680837422632,
+          "groups": 34,
+          "new_groups": 32,
+          "retained_groups": 2
+        },
+        "delta_pp": 0.050483190840193884,
+        "share_ratio": 2.409215325399085,
+        "count_ratio": 3.1818181818181817
+      },
+      "reviewed": false,
+      "screening": "query",
+      "evidence_ids": [],
+      "first_year": "2025-Q3",
+      "growth_start": "2026-Q2",
+      "active_years": 5,
+      "groups": 51,
+      "top_group_share": 0.05454545454545454,
+      "signals": {
+        "novelty": "recent",
+        "momentum": "up",
+        "coherence": "query",
+        "spread": "broad",
+        "application": "implementations",
+        "concentration": "low"
+      },
+      "external": [],
+      "earliest_external": "2025-06-19",
+      "name": "Llm Pipelines",
+      "query": {
+        "arxiv": "ti:\"llm pipelines\"",
+        "github": "\"llm pipelines\"",
+        "hn": "llm pipelines"
+      },
+      "curated": false,
+      "source": "discovered",
+      "papers_count": 55,
+      "repos": [],
+      "discussions": [31, 35, 63, 64, 108, 260, 81, 42],
+      "limits": [],
+      "uniqueness": 0.9818181818181818,
+      "relevance": null
+    },
+    {
+      "id": "ngram:agentic-memory",
+      "paper_ids": [],
+      "series": [
+        {
+          "period": "2024-Q4",
+          "count": 0,
+          "population": 13046,
+          "share": 0,
+          "groups": 0,
+          "new_groups": 0,
+          "retained_groups": 0
+        },
+        {
+          "period": "2025-Q1",
+          "count": 2,
+          "population": 13106,
+          "share": 0.00015260186174271325,
+          "groups": 2,
+          "new_groups": 2,
+          "retained_groups": 0
+        },
+        {
+          "period": "2025-Q2",
+          "count": 1,
+          "population": 16138,
+          "share": 6.196554715578138e-5,
+          "groups": 1,
+          "new_groups": 1,
+          "retained_groups": 0
+        },
+        {
+          "period": "2025-Q3",
+          "count": 1,
+          "population": 15210,
+          "share": 6.574621959237344e-5,
+          "groups": 1,
+          "new_groups": 1,
+          "retained_groups": 0
+        },
+        {
+          "period": "2025-Q4",
+          "count": 5,
+          "population": 15496,
+          "share": 0.0003226639132679401,
+          "groups": 5,
+          "new_groups": 5,
+          "retained_groups": 0
+        },
+        {
+          "period": "2026-Q1",
+          "count": 12,
+          "population": 17714,
+          "share": 0.0006774302811335666,
+          "groups": 11,
+          "new_groups": 10,
+          "retained_groups": 1
+        },
+        {
+          "period": "2026-Q2",
+          "count": 19,
+          "population": 22839,
+          "share": 0.0008319103288235036,
+          "groups": 19,
+          "new_groups": 15,
+          "retained_groups": 4
+        },
+        {
+          "period": "2026-Q3",
+          "count": 6,
+          "population": 14142,
+          "share": 0.00042426813746287653,
+          "groups": 6,
+          "new_groups": 5,
+          "retained_groups": 1
+        }
+      ],
+      "stage": "emerging_signal",
+      "momentum": "up",
+      "growth": {
+        "prior": {
+          "period": "2025-Q3–2025-Q4",
+          "count": 6,
+          "population": 30706,
+          "share": 0.00019540155018563148,
+          "groups": 6,
+          "new_groups": 6,
+          "retained_groups": 0
+        },
+        "recent": {
+          "period": "2026-Q1–2026-Q2",
+          "count": 31,
+          "population": 40553,
+          "share": 0.0007644317313145759,
+          "groups": 30,
+          "new_groups": 25,
+          "retained_groups": 5
+        },
+        "delta_pp": 0.05690301811289444,
+        "share_ratio": 3.9121067902908946,
+        "count_ratio": 5.166666666666667
+      },
+      "reviewed": false,
+      "screening": "query",
+      "evidence_ids": [],
+      "first_year": "2025-Q1",
+      "growth_start": "2025-Q3",
+      "active_years": 7,
+      "groups": 39,
+      "top_group_share": 0.08695652173913043,
+      "signals": {
+        "novelty": "new",
+        "momentum": "up",
+        "coherence": "query",
+        "spread": "broad",
+        "application": "implementations",
+        "concentration": "low"
+      },
+      "external": [],
+      "earliest_external": "2025-01-30",
+      "name": "Agentic Memory",
+      "query": {
+        "arxiv": "ti:\"agentic memory\"",
+        "github": "\"agentic memory\"",
+        "hn": "agentic memory"
+      },
+      "curated": false,
+      "source": "discovered",
+      "papers_count": 46,
+      "repos": [],
+      "discussions": [26, 35, 68, 15, 31, 61, 402, 286],
+      "limits": [],
+      "uniqueness": 0,
+      "relevance": null
+    },
+    {
+      "id": "ngram:agent-orchestration",
+      "paper_ids": [],
+      "series": [
+        {
+          "period": "2024-Q4",
+          "count": 1,
+          "population": 13046,
+          "share": 7.665184730952016e-5,
+          "groups": 1,
+          "new_groups": 1,
+          "retained_groups": 0
+        },
+        {
+          "period": "2025-Q1",
+          "count": 0,
+          "population": 13106,
+          "share": 0,
+          "groups": 0,
+          "new_groups": 0,
+          "retained_groups": 0
+        },
+        {
+          "period": "2025-Q2",
+          "count": 1,
+          "population": 16138,
+          "share": 6.196554715578138e-5,
+          "groups": 1,
+          "new_groups": 1,
+          "retained_groups": 0
+        },
+        {
+          "period": "2025-Q3",
+          "count": 4,
+          "population": 15210,
+          "share": 0.00026298487836949375,
+          "groups": 4,
+          "new_groups": 4,
+          "retained_groups": 0
+        },
+        {
+          "period": "2025-Q4",
+          "count": 3,
+          "population": 15496,
+          "share": 0.00019359834796076406,
+          "groups": 3,
+          "new_groups": 2,
+          "retained_groups": 1
+        },
+        {
+          "period": "2026-Q1",
+          "count": 11,
+          "population": 17714,
+          "share": 0.0006209777577057694,
+          "groups": 11,
+          "new_groups": 11,
+          "retained_groups": 0
+        },
+        {
+          "period": "2026-Q2",
+          "count": 17,
+          "population": 22839,
+          "share": 0.0007443408205262928,
+          "groups": 17,
+          "new_groups": 16,
+          "retained_groups": 1
+        },
+        {
+          "period": "2026-Q3",
+          "count": 8,
+          "population": 14142,
+          "share": 0.000565690849950502,
+          "groups": 8,
+          "new_groups": 8,
+          "retained_groups": 0
+        }
+      ],
+      "stage": "emerging_signal",
+      "momentum": "up",
+      "growth": {
+        "prior": {
+          "period": "2025-Q3–2025-Q4",
+          "count": 7,
+          "population": 30706,
+          "share": 0.00022796847521657006,
+          "groups": 7,
+          "new_groups": 6,
+          "retained_groups": 1
+        },
+        "recent": {
+          "period": "2026-Q1–2026-Q2",
+          "count": 28,
+          "population": 40553,
+          "share": 0.0006904544669938106,
+          "groups": 28,
+          "new_groups": 27,
+          "retained_groups": 1
+        },
+        "delta_pp": 0.04624859917772405,
+        "share_ratio": 3.028727837644564,
+        "count_ratio": 4
+      },
+      "reviewed": false,
+      "screening": "query",
+      "evidence_ids": [],
+      "first_year": "2024-Q4",
+      "growth_start": "2026-Q1",
+      "active_years": 7,
+      "groups": 43,
+      "top_group_share": 0.044444444444444446,
+      "signals": {
+        "novelty": "recent",
+        "momentum": "up",
+        "coherence": "query",
+        "spread": "broad",
+        "application": "implementations",
+        "concentration": "low"
+      },
+      "external": [],
+      "earliest_external": "2025-05-14",
+      "name": "Agent Orchestration",
+      "query": {
+        "arxiv": "ti:\"agent orchestration\"",
+        "github": "\"agent orchestration\"",
+        "hn": "agent orchestration"
+      },
+      "curated": false,
+      "source": "discovered",
+      "papers_count": 45,
+      "repos": [],
+      "discussions": [13, 19, 33, 63, 76, 385, 106, 48],
+      "limits": [],
+      "uniqueness": 0.8666666666666667,
+      "relevance": null
+    },
+    {
+      "id": "ngram:horizon-agent",
+      "paper_ids": [],
+      "series": [
+        {
+          "period": "2024-Q4",
+          "count": 0,
+          "population": 13046,
+          "share": 0,
+          "groups": 0,
+          "new_groups": 0,
+          "retained_groups": 0
+        },
+        {
+          "period": "2025-Q1",
+          "count": 0,
+          "population": 13106,
+          "share": 0,
+          "groups": 0,
+          "new_groups": 0,
+          "retained_groups": 0
+        },
+        {
+          "period": "2025-Q2",
+          "count": 1,
+          "population": 16138,
+          "share": 6.196554715578138e-5,
+          "groups": 1,
+          "new_groups": 1,
+          "retained_groups": 0
+        },
+        {
+          "period": "2025-Q3",
+          "count": 2,
+          "population": 15210,
+          "share": 0.00013149243918474687,
+          "groups": 2,
+          "new_groups": 2,
+          "retained_groups": 0
+        },
+        {
+          "period": "2025-Q4",
+          "count": 3,
+          "population": 15496,
+          "share": 0.00019359834796076406,
+          "groups": 3,
+          "new_groups": 2,
+          "retained_groups": 1
+        },
+        {
+          "period": "2026-Q1",
+          "count": 6,
+          "population": 17714,
+          "share": 0.0003387151405667833,
+          "groups": 6,
+          "new_groups": 6,
+          "retained_groups": 0
+        },
+        {
+          "period": "2026-Q2",
+          "count": 20,
+          "population": 22839,
+          "share": 0.0008756950829721091,
+          "groups": 20,
+          "new_groups": 20,
+          "retained_groups": 0
+        },
+        {
+          "period": "2026-Q3",
+          "count": 28,
+          "population": 14142,
+          "share": 0.0019799179748267574,
+          "groups": 27,
+          "new_groups": 25,
+          "retained_groups": 2
+        }
+      ],
+      "stage": "emerging_signal",
+      "momentum": "up",
+      "growth": {
+        "prior": {
+          "period": "2025-Q3–2025-Q4",
+          "count": 5,
+          "population": 30706,
+          "share": 0.0001628346251546929,
+          "groups": 5,
+          "new_groups": 4,
+          "retained_groups": 1
+        },
+        "recent": {
+          "period": "2026-Q1–2026-Q2",
+          "count": 26,
+          "population": 40553,
+          "share": 0.000641136290779967,
+          "groups": 26,
+          "new_groups": 26,
+          "retained_groups": 0
+        },
+        "delta_pp": 0.04783016656252741,
+        "share_ratio": 3.937346188937933,
+        "count_ratio": 5.2
+      },
+      "reviewed": false,
+      "screening": "query",
+      "evidence_ids": [],
+      "first_year": "2025-Q2",
+      "growth_start": "2025-Q2",
+      "active_years": 6,
+      "groups": 56,
+      "top_group_share": 0.05,
+      "signals": {
+        "novelty": "new",
+        "momentum": "up",
+        "coherence": "query",
+        "spread": "broad",
+        "application": "implementations",
+        "concentration": "low"
+      },
+      "external": [],
+      "earliest_external": "2025-03-03",
+      "name": "Horizon Agents",
+      "query": {
+        "arxiv": "ti:\"horizon agents\"",
+        "github": "\"horizon agents\"",
+        "hn": "horizon agents"
+      },
+      "curated": false,
+      "source": "discovered",
+      "papers_count": 60,
+      "repos": [],
+      "discussions": [2, 1, 4, 6, 9, 31, 27, 34],
+      "limits": [],
+      "uniqueness": 0.85,
+      "relevance": null
+    },
+    {
+      "id": "ngram:augmented-agent",
+      "paper_ids": [],
+      "series": [
+        {
+          "period": "2024-Q4",
+          "count": 1,
+          "population": 13046,
+          "share": 7.665184730952016e-5,
+          "groups": 1,
+          "new_groups": 1,
+          "retained_groups": 0
+        },
+        {
+          "period": "2025-Q1",
+          "count": 0,
+          "population": 13106,
+          "share": 0,
+          "groups": 0,
+          "new_groups": 0,
+          "retained_groups": 0
+        },
+        {
+          "period": "2025-Q2",
+          "count": 0,
+          "population": 16138,
+          "share": 0,
+          "groups": 0,
+          "new_groups": 0,
+          "retained_groups": 0
+        },
+        {
+          "period": "2025-Q3",
+          "count": 0,
+          "population": 15210,
+          "share": 0,
+          "groups": 0,
+          "new_groups": 0,
+          "retained_groups": 0
+        },
+        {
+          "period": "2025-Q4",
+          "count": 4,
+          "population": 15496,
+          "share": 0.0002581311306143521,
+          "groups": 4,
+          "new_groups": 4,
+          "retained_groups": 0
+        },
+        {
+          "period": "2026-Q1",
+          "count": 5,
+          "population": 17714,
+          "share": 0.0002822626171389861,
+          "groups": 5,
+          "new_groups": 5,
+          "retained_groups": 0
+        },
+        {
+          "period": "2026-Q2",
+          "count": 19,
+          "population": 22839,
+          "share": 0.0008319103288235036,
+          "groups": 17,
+          "new_groups": 16,
+          "retained_groups": 1
+        },
+        {
+          "period": "2026-Q3",
+          "count": 7,
+          "population": 14142,
+          "share": 0.0004949794937066893,
+          "groups": 6,
+          "new_groups": 5,
+          "retained_groups": 1
+        }
+      ],
+      "stage": "emerging_signal",
+      "momentum": "up",
+      "growth": {
+        "prior": {
+          "period": "2025-Q3–2025-Q4",
+          "count": 4,
+          "population": 30706,
+          "share": 0.00013026770012375432,
+          "groups": 4,
+          "new_groups": 4,
+          "retained_groups": 0
+        },
+        "recent": {
+          "period": "2026-Q1–2026-Q2",
+          "count": 24,
+          "population": 40553,
+          "share": 0.0005918181145661233,
+          "groups": 22,
+          "new_groups": 21,
+          "retained_groups": 1
+        },
+        "delta_pp": 0.0461550414442369,
+        "share_ratio": 4.543091756466846,
+        "count_ratio": 6
+      },
+      "reviewed": false,
+      "screening": "query",
+      "evidence_ids": [],
+      "first_year": "2024-Q4",
+      "growth_start": "2025-Q4",
+      "active_years": 5,
+      "groups": 31,
+      "top_group_share": 0.05555555555555555,
+      "signals": {
+        "novelty": "new",
+        "momentum": "up",
+        "coherence": "query",
+        "spread": "broad",
+        "application": "implementations",
+        "concentration": "low"
+      },
+      "external": [],
+      "earliest_external": "2024-10-04",
+      "name": "Augmented Agents",
+      "query": {
+        "arxiv": "ti:\"augmented agents\"",
+        "github": "\"augmented agents\"",
+        "hn": "augmented agents"
+      },
+      "curated": false,
+      "source": "discovered",
+      "papers_count": 36,
+      "repos": [],
+      "discussions": [3, 4, 9, 5, 5, 20, 4, 4],
+      "limits": [],
+      "uniqueness": 0.9166666666666666,
+      "relevance": null
+    },
+    {
+      "id": "ngram:horizon-llm",
+      "paper_ids": [],
+      "series": [
+        {
+          "period": "2024-Q4",
+          "count": 0,
+          "population": 13046,
+          "share": 0,
+          "groups": 0,
+          "new_groups": 0,
+          "retained_groups": 0
+        },
+        {
+          "period": "2025-Q1",
+          "count": 0,
+          "population": 13106,
+          "share": 0,
+          "groups": 0,
+          "new_groups": 0,
+          "retained_groups": 0
+        },
+        {
+          "period": "2025-Q2",
+          "count": 0,
+          "population": 16138,
+          "share": 0,
+          "groups": 0,
+          "new_groups": 0,
+          "retained_groups": 0
+        },
+        {
+          "period": "2025-Q3",
+          "count": 3,
+          "population": 15210,
+          "share": 0.0001972386587771203,
+          "groups": 3,
+          "new_groups": 3,
+          "retained_groups": 0
+        },
+        {
+          "period": "2025-Q4",
+          "count": 4,
+          "population": 15496,
+          "share": 0.0002581311306143521,
+          "groups": 4,
+          "new_groups": 3,
+          "retained_groups": 1
+        },
+        {
+          "period": "2026-Q1",
+          "count": 8,
+          "population": 17714,
+          "share": 0.00045162018742237776,
+          "groups": 8,
+          "new_groups": 7,
+          "retained_groups": 1
+        },
+        {
+          "period": "2026-Q2",
+          "count": 16,
+          "population": 22839,
+          "share": 0.0007005560663776873,
+          "groups": 16,
+          "new_groups": 15,
+          "retained_groups": 1
+        },
+        {
+          "period": "2026-Q3",
+          "count": 15,
+          "population": 14142,
+          "share": 0.0010606703436571913,
+          "groups": 15,
+          "new_groups": 15,
+          "retained_groups": 0
+        }
+      ],
+      "stage": "emerging_signal",
+      "momentum": "up",
+      "growth": {
+        "prior": {
+          "period": "2025-Q3–2025-Q4",
+          "count": 7,
+          "population": 30706,
+          "share": 0.00022796847521657006,
+          "groups": 7,
+          "new_groups": 6,
+          "retained_groups": 1
+        },
+        "recent": {
+          "period": "2026-Q1–2026-Q2",
+          "count": 24,
+          "population": 40553,
+          "share": 0.0005918181145661233,
+          "groups": 24,
+          "new_groups": 22,
+          "retained_groups": 2
+        },
+        "delta_pp": 0.03638496393495533,
+        "share_ratio": 2.596052432266769,
+        "count_ratio": 3.4285714285714284
+      },
+      "reviewed": false,
+      "screening": "query",
+      "evidence_ids": [],
+      "first_year": "2025-Q3",
+      "growth_start": "2025-Q3",
+      "active_years": 5,
+      "groups": 43,
+      "top_group_share": 0.06521739130434782,
+      "signals": {
+        "novelty": "recent",
+        "momentum": "up",
+        "coherence": "query",
+        "spread": "broad",
+        "application": "implementations",
+        "concentration": "low"
+      },
+      "external": [],
+      "earliest_external": "2025-09-30",
+      "name": "Horizon Llm",
+      "query": {
+        "arxiv": "ti:\"horizon llm\"",
+        "github": "\"horizon llm\"",
+        "hn": "horizon llm"
+      },
+      "curated": false,
+      "source": "discovered",
+      "papers_count": 46,
+      "repos": [],
+      "discussions": [2, 2, 4, 15, 13, 24, 10, 14],
+      "limits": [],
+      "uniqueness": 0.8913043478260869,
+      "relevance": null
+    },
+    {
+      "id": "ngram:rl-post",
+      "paper_ids": [],
+      "series": [
+        {
+          "period": "2024-Q4",
+          "count": 0,
+          "population": 13046,
+          "share": 0,
+          "groups": 0,
+          "new_groups": 0,
+          "retained_groups": 0
+        },
+        {
+          "period": "2025-Q1",
+          "count": 0,
+          "population": 13106,
+          "share": 0,
+          "groups": 0,
+          "new_groups": 0,
+          "retained_groups": 0
+        },
+        {
+          "period": "2025-Q2",
+          "count": 1,
+          "population": 16138,
+          "share": 6.196554715578138e-5,
+          "groups": 1,
+          "new_groups": 1,
+          "retained_groups": 0
+        },
+        {
+          "period": "2025-Q3",
+          "count": 0,
+          "population": 15210,
+          "share": 0,
+          "groups": 0,
+          "new_groups": 0,
+          "retained_groups": 0
+        },
+        {
+          "period": "2025-Q4",
+          "count": 6,
+          "population": 15496,
+          "share": 0.0003871966959215281,
+          "groups": 5,
+          "new_groups": 5,
+          "retained_groups": 0
+        },
+        {
+          "period": "2026-Q1",
+          "count": 8,
+          "population": 17714,
+          "share": 0.00045162018742237776,
+          "groups": 8,
+          "new_groups": 8,
+          "retained_groups": 0
+        },
+        {
+          "period": "2026-Q2",
+          "count": 16,
+          "population": 22839,
+          "share": 0.0007005560663776873,
+          "groups": 16,
+          "new_groups": 16,
+          "retained_groups": 0
+        },
+        {
+          "period": "2026-Q3",
+          "count": 4,
+          "population": 14142,
+          "share": 0.000282845424975251,
+          "groups": 4,
+          "new_groups": 4,
+          "retained_groups": 0
+        }
+      ],
+      "stage": "emerging_signal",
+      "momentum": "up",
+      "growth": {
+        "prior": {
+          "period": "2025-Q3–2025-Q4",
+          "count": 6,
+          "population": 30706,
+          "share": 0.00019540155018563148,
+          "groups": 5,
+          "new_groups": 5,
+          "retained_groups": 0
+        },
+        "recent": {
+          "period": "2026-Q1–2026-Q2",
+          "count": 24,
+          "population": 40553,
+          "share": 0.0005918181145661233,
+          "groups": 24,
+          "new_groups": 24,
+          "retained_groups": 0
+        },
+        "delta_pp": 0.039641656438049185,
+        "share_ratio": 3.028727837644564,
+        "count_ratio": 4
+      },
+      "reviewed": false,
+      "screening": "query",
+      "evidence_ids": [],
+      "first_year": "2025-Q2",
+      "growth_start": "2025-Q4",
+      "active_years": 5,
+      "groups": 34,
+      "top_group_share": 0.05714285714285714,
+      "signals": {
+        "novelty": "new",
+        "momentum": "up",
+        "coherence": "query",
+        "spread": "broad",
+        "application": "implementations",
+        "concentration": "low"
+      },
+      "external": [],
+      "earliest_external": "2024-10-31",
+      "name": "Rl Post",
+      "query": {
+        "arxiv": "ti:\"rl post\"",
+        "github": "\"rl post\"",
+        "hn": "rl post"
+      },
+      "curated": false,
+      "source": "discovered",
+      "papers_count": 35,
+      "repos": [],
+      "discussions": [1, 6, 9, 10, 8, 14, 13, 16],
+      "limits": [],
+      "uniqueness": 0.8857142857142857,
+      "relevance": null
+    }
+  ],
+  "discovered": [],
+  "papers": [],
+  "limits": [],
+  "github_authenticated": false,
+  "duration": "29m16s"
+}

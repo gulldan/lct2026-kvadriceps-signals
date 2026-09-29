@@ -1,0 +1,33 @@
+{
+  "native_id": "2406.07003v1",
+  "canonical_id": "arxiv:2406.07003",
+  "url": "https://arxiv.org/abs/2406.07003v1",
+  "title": "GraphCoder: Enhancing Repository-Level Code Completion via Code Context Graph-based Retrieval and Language Model",
+  "authors": [
+    "Wei Liu",
+    "Ailun Yu",
+    "Daoguang Zan",
+    "Bo Shen",
+    "Wei Zhang",
+    "Haiyan Zhao",
+    "Zhi Jin",
+    "Qianxiang Wang"
+  ],
+  "published_at": "2024-06-11T06:55:32Z",
+  "version_updated_at": "2024-06-11T06:55:32Z",
+  "observed_at": "2026-09-08T22:28:42.905805+00:00",
+  "available_at": "2024-06-11T06:55:32Z",
+  "available_basis": "arXiv archived v1 release; historical reconstruction captured later",
+  "source_kind": "paper",
+  "provider": "arxiv",
+  "access_scope": "public",
+  "representation": "versioned_primary_abstract",
+  "text": "The performance of repository-level code completion depends upon the effective leverage of both general and repository-specific knowledge. Despite the impressive capability of code LLMs in general code completion tasks, they often exhibit less satisfactory performance on repository-level completion due to the lack of repository-specific knowledge in these LLMs. To address this problem, we propose GraphCoder, a retrieval-augmented code completion framework that leverages LLMs' general code knowledge and the repository-specific knowledge via a graph-based retrieval-generation process. In particular, GraphCoder captures the context of completion target more accurately through code context graph (CCG) that consists of control-flow, data- and control-dependence between code statements, a more structured way to capture the completion target context than the sequence-based context used in existing retrieval-augmented approaches; based on CCG, GraphCoder further employs a coarse-to-fine retrieval process to locate context-similar code snippets with the completion target from the current repository. Experimental results demonstrate both the effectiveness and efficiency of GraphCoder: Compared to baseline retrieval-augmented methods, GraphCoder achieves higher exact match (EM) on average, with increases of +6.06 in code match and +6.23 in identifier match, while using less time and space.",
+  "text_sha256": "c4511b67d745bc21582baee3d8064327a69ce57b434ab45d17f17dd122a71700",
+  "raw_sha256": "761969bd1361209348c93fad02bd6d4c2df715209d933d5edb33e9ba47c64193",
+  "raw_file": "761969bd1361209348c93fad02bd6d4c2df715209d933d5edb33e9ba47c64193.xml",
+  "limitations": [
+    "Abstract-only evidence; author-reported results, not independent reproduction.",
+    "Later DOI, journal metadata and current citations are excluded from historical input."
+  ]
+}

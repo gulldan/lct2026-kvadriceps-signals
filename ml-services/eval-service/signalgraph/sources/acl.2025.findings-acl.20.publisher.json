@@ -1,0 +1,40 @@
+{
+  "native_id": "acl.2025.findings-acl.20.publisher",
+  "canonical_id": "doi:10.18653/v1/2025.findings-acl.20",
+  "url": "https://aclanthology.org/2025.findings-acl.20.pdf",
+  "title": "TreeRAG: Unleashing the Power of Hierarchical Storage for Enhanced Knowledge Retrieval in Long Documents",
+  "authors": [
+    "Wenyu Tao",
+    "Xiaofen Xing",
+    "Yirong Chen",
+    "Linyi Huang",
+    "Xiangmin Xu"
+  ],
+  "published_at": "2025-07-31T23:59:59Z",
+  "publication_date": {
+    "value": "2025-07",
+    "precision": "month",
+    "interval_start": "2025-07-01",
+    "interval_end": "2025-07-31"
+  },
+  "version_updated_at": "2025-08-01T23:59:59Z",
+  "available_at": "2025-08-01T23:59:59Z",
+  "available_basis": "Published ACL 2025 proceedings edition; conservative upper bound at printed conference end, not an asserted exact publication day",
+  "observed_at": "2026-09-08T22:56:03.316387+00:00",
+  "source_kind": "paper",
+  "provider": "acl",
+  "access_scope": "public",
+  "representation": "publisher_pdf_abstract_page_356",
+  "text": "When confronting long document information retrieval for Query-Focused Summarization(QFS), Traditional Retrieval-Augmented Generation(RAG) frameworks struggle to retrieve all relevant chunks, and the chunking and retrieve strategies of existing frameworks may disrupt the connections between chunks and the integrity of the information. To address these issues, we propose TreeRAG, which employs Tree-Chunking for chunking and embedding in a tree-like structure , coupled with \"rootto-leaves\" and \"leaf-to-roots\" retrieve strategy named Bidirectional Traversal Retrieval. This approach effectively preserves the hierarchical structure among chunks and significantly enhances the ability to retrieve while minimizing noise inference. Our experimental results on the Finance, Law, and Medical subsets of the Dragonball dataset demonstrate that TreeRAG achieves significant enhancements in both recall quality and precision compared to traditional and popular existing methods and achieves better performance to corresponding question-answeringtasks, markinganewbreakthrough in long document knowledge retrieval.",
+  "text_sha256": "70f4ef7977483ec6bad50af66c689c5542c682ed5d2c4f0b62917a2f337acbd7",
+  "raw_sha256": "e03ee7745c8a5de43b599cc83dab2e972a2d27eedd3f92545597f6a1bf47165a",
+  "raw_file": "auxiliary/acl.2025.findings-acl.20.pdf",
+  "metadata_file": "sources/auxiliary/e17d71159c9b1d03a8acff7980416181ae98e0d773f51fe86b382796f7c1802c.html",
+  "metadata_sha256": "e17d71159c9b1d03a8acff7980416181ae98e0d773f51fe86b382796f7c1802c",
+  "extraction": "pdftotext -f 1 -l 1 -raw; Abstract to 1 Introduction; join line-end lower-case hyphenation and whitespace only",
+  "limitations": [
+    "Author-reported experiments, not independent reproduction.",
+    "Publisher PDF is authoritative: abstract differs from present landing-page text (chunks vs knowledge points).",
+    "Publication has month precision; timestamp fields are conservative interval bounds for cutoff checks, not exact publication instants."
+  ]
+}

@@ -1,0 +1,950 @@
+{
+  "version": 1,
+  "split": "development",
+  "cutoff": "2023-12-31T23:59:59Z",
+  "queries": {
+    "ai": "технологии в ИИ",
+    "rag": "методы retrieval-augmented generation",
+    "rare_control": "retrieval-augmented generation для измерения квантовой гравитации"
+  },
+  "assessor": "Codex",
+  "independent_human_review": false,
+  "source_ids": [
+    "2112.09332v1",
+    "2202.05144v1",
+    "2203.08913v1",
+    "2203.11147v1",
+    "2203.13224v1",
+    "2206.06520v1",
+    "2208.03299v1",
+    "2209.11755v1",
+    "2210.02928v1",
+    "2210.04873v1",
+    "2212.05221v1",
+    "2301.12652v1",
+    "2302.02313v1",
+    "2304.08244v1",
+    "2304.09542v1",
+    "2305.01625v1",
+    "2305.09645v1",
+    "2305.14627v1",
+    "2305.14788v1",
+    "2305.14795v1",
+    "2305.15334v1",
+    "2305.19518v1",
+    "2306.04136v1",
+    "2306.07174v1",
+    "2307.06945v1",
+    "2307.07697v1",
+    "2307.16789v1",
+    "2309.15088v1",
+    "2309.17133v1",
+    "2310.01352v1",
+    "2310.01558v1",
+    "2310.04408v1",
+    "2310.05002v1",
+    "2310.11511v1"
+  ],
+  "topics": [
+    {
+      "id": "dev-retrieved-memory",
+      "split": "development",
+      "cutoff": "2023-12-31T23:59:59Z",
+      "label": "Извлечение долговременной памяти за пределами окна LM",
+      "distinctness_group": "dev-retrieved-memory",
+      "source_ids": [
+        "2203.08913v1",
+        "2305.01625v1",
+        "2306.07174v1"
+      ],
+      "assessor": "Codex",
+      "review_status": "self_assessed_primary_sources",
+      "relevance": {
+        "ai": 2,
+        "rag": 2,
+        "rare_control": 0
+      },
+      "emergence": "emerging",
+      "decision_basis": "Memorizing Transformers (2022-Q1), Unlimiformer и LongMem (2023-Q2) развивают адресуемую внешнюю память для генерации вместо увеличения полного attention. Есть раздельные авторские группы и последующий период конкретных архитектур.",
+      "counterevidence": "Кэш past activations и внешний индекс документов имеют разные режимы обновления. Это общий механизм retrieval памяти для генерации, а не утверждение об одинаковом качестве трех моделей; не каждое длинное окно является RAG.",
+      "eligible_gold": {
+        "ai": true,
+        "rag": true,
+        "rare_control": false
+      },
+      "brief_support": {
+        "problem": {
+          "source_id": "2306.07174v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "a6fc3276ccdba74f3f76d07113798df291c53b113dd1540d44b05e067987faf8",
+          "char_start": 82,
+          "char_end": 100,
+          "quote": "input length limit",
+          "interpretation": "Ограниченная длина входа мешает использовать прошлый контекст.",
+          "modality": "problem_statement",
+          "conditions": null
+        },
+        "advantage": {
+          "source_id": "2306.07174v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "a6fc3276ccdba74f3f76d07113798df291c53b113dd1540d44b05e067987faf8",
+          "char_start": 1121,
+          "char_end": 1175,
+          "quote": "outperforms strong long-context models on ChapterBreak",
+          "interpretation": "Авторы сообщают преимущество LongMem над сравниваемыми моделями длинного контекста.",
+          "modality": "author_reported_experiment",
+          "conditions": "ChapterBreak; качественное утверждение аннотации v1, не универсальный выигрыш на всех задачах."
+        },
+        "example": {
+          "kind": "research",
+          "source_id": "2306.07174v1",
+          "label": "Augmenting Language Models with Long-Term Memory"
+        }
+      },
+      "independence_limit": "Списки авторов этих трех работ не пересекаются; независимое воспроизведение экспериментов не выполнено."
+    },
+    {
+      "id": "dev-retriever-lm-adaptation",
+      "split": "development",
+      "cutoff": "2023-12-31T23:59:59Z",
+      "label": "Адаптация retriever по сигналу генеративной модели",
+      "distinctness_group": "dev-retriever-lm-adaptation",
+      "source_ids": [
+        "2208.03299v1",
+        "2301.12652v1",
+        "2310.01352v1"
+      ],
+      "assessor": "Codex",
+      "review_status": "self_assessed_primary_sources",
+      "relevance": {
+        "ai": 2,
+        "rag": 2,
+        "rare_control": 0
+      },
+      "emergence": "emerging",
+      "decision_basis": "Atlas (2022-Q3), REPLUG (2023-Q1) и RA-DIT (2023-Q4) исследуют обучение retrieval компонента под использование найденного текста моделью. В отличие от основополагающего RAG, предмет темы — адаптация retrieval к готовой LM и dual instruction tuning.",
+      "counterevidence": "Atlas включает и pretraining, REPLUG сохраняет black-box LM, RA-DIT меняет обе стороны. Их общая новая операция — LM-guided adaptation; это пограничная гранулярность. REPLUG и RA-DIT имеют общих авторов и не считаются полностью независимыми группами.",
+      "eligible_gold": {
+        "ai": true,
+        "rag": true,
+        "rare_control": false
+      },
+      "brief_support": {
+        "problem": {
+          "source_id": "2310.01352v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "87d0805858b7dac26ff8b4129aa7054fbe42075fc8420b2f79752981a4e0a366",
+          "char_start": 204,
+          "char_end": 265,
+          "quote": "expensive retrieval-specific modifications to LM pre-training",
+          "interpretation": "Специализированное переобучение LM для retrieval дорого.",
+          "modality": "problem_statement",
+          "conditions": null
+        },
+        "advantage": {
+          "source_id": "2301.12652v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "63d7303c62f268ef139dc512542e3a521a51e57e186368945c0c9c56e96d1b49",
+          "char_start": 721,
+          "char_end": 777,
+          "quote": "performance of GPT-3 (175B) on language modeling by 6.3%",
+          "interpretation": "REPLUG с настроенным retriever: авторы сообщают улучшение language modeling GPT-3 на 6,3%.",
+          "modality": "author_reported_experiment",
+          "conditions": "GPT-3 175B; метрика и условия именно language modeling из v1, не процент роста качества любого RAG."
+        },
+        "example": {
+          "kind": "research",
+          "source_id": "2301.12652v1",
+          "label": "REPLUG: Retrieval-Augmented Black-Box Language Models"
+        }
+      },
+      "independence_limit": "Atlas и REPLUG имеют непересекающиеся списки авторов; часть авторов RA-DIT пересекается с обеими линиями. Независимая репликация не заявлена."
+    },
+    {
+      "id": "dev-multimodal-evidence",
+      "split": "development",
+      "cutoff": "2023-12-31T23:59:59Z",
+      "label": "Retrieval визуальных и текстовых знаний для ответа",
+      "distinctness_group": "dev-multimodal-evidence",
+      "source_ids": [
+        "2210.02928v1",
+        "2212.05221v1",
+        "2309.17133v1"
+      ],
+      "assessor": "Codex",
+      "review_status": "self_assessed_primary_sources",
+      "relevance": {
+        "ai": 2,
+        "rag": 2,
+        "rare_control": 0
+      },
+      "emergence": "emerging",
+      "decision_basis": "MuRAG и REVEAL (2022-Q4) вводят multimodal memory, FLMR (2023-Q3) улучшает передачу визуального содержания и fine-grained relevance в retrieval для VQA. Два периода и разные исследовательские группы подтверждают развитие конкретной операции.",
+      "counterevidence": "Общий вопрос — retrieval внешних визуальных знаний; MuRAG извлекает изображения и текст, FLMR визуально обусловленный запрос к документам. VQA benchmark не означает производственное внедрение. Это одна тема, не отдельное место за каждый dataset.",
+      "eligible_gold": {
+        "ai": true,
+        "rag": true,
+        "rare_control": false
+      },
+      "brief_support": {
+        "problem": {
+          "source_id": "2210.02928v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "74a423f7731b97d74cc388c3fe031317f64791e3324db83bc9215946ce38c837",
+          "char_start": 503,
+          "char_end": 550,
+          "quote": "restricted to retrieving only textual knowledge",
+          "interpretation": "Текстовый поиск теряет знания, содержащиеся только в изображениях.",
+          "modality": "problem_statement",
+          "conditions": null
+        },
+        "advantage": {
+          "source_id": "2309.17133v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "70d251ae08268a3b1936b7cc64b77eaf2fea9527c61268ecd2adb0e6f4601dd2",
+          "char_start": 1233,
+          "char_end": 1276,
+          "quote": "retriever's PRRecall@5 by approximately 8\\%",
+          "interpretation": "Авторы FLMR сообщают улучшение PRRecall@5 примерно на 8%.",
+          "modality": "author_reported_experiment",
+          "conditions": "Сравнение с исходным RA-VQA retriever; не +8% качества всех ответов и не автоматически процентные пункты."
+        },
+        "example": {
+          "kind": "research",
+          "source_id": "2309.17133v1",
+          "label": "Fine-grained Late-interaction Multi-modal Retrieval for Retrieval Augmented Visual Question Answering"
+        }
+      },
+      "independence_limit": "FLMR представляет другую авторскую группу; результаты MuRAG/REVEAL не считаются независимыми промышленными внедрениями."
+    },
+    {
+      "id": "dev-structured-retrieval",
+      "split": "development",
+      "cutoff": "2023-12-31T23:59:59Z",
+      "label": "Извлечение структурированных фактов для рассуждения LM",
+      "distinctness_group": "dev-structured-retrieval",
+      "source_ids": [
+        "2305.09645v1",
+        "2306.04136v1",
+        "2307.07697v1"
+      ],
+      "assessor": "Codex",
+      "review_status": "self_assessed_primary_sources",
+      "relevance": {
+        "ai": 2,
+        "rag": 2,
+        "rare_control": 0
+      },
+      "emergence": "emerging",
+      "decision_basis": "StructGPT и KAPING (2023-Q2), Think-on-Graph (2023-Q3) передают в LM релевантные структурированные факты и итеративные KG-переходы. Это конкретное соединение генератора с ограниченным чтением графа/таблиц, а не весь knowledge graph.",
+      "counterevidence": "StructGPT охватывает не только KG; zero-shot prepend у KAPING отличается от поиска цепочки ToG. Группа объединена по способу структурированного retrieval, не по названию графа. Ошибочный seed 2302.02313 не входит в поддержку.",
+      "eligible_gold": {
+        "ai": true,
+        "rag": true,
+        "rare_control": false
+      },
+      "brief_support": {
+        "problem": {
+          "source_id": "2306.04136v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "3e9953a2cc8659dccbd8585dc79dd20ae6c53dc62ba84d114711150c09369f3b",
+          "char_start": 193,
+          "char_end": 251,
+          "quote": "internalized knowledge might be insufficient and incorrect",
+          "interpretation": "Внутренних знаний LM может быть недостаточно для фактического ответа.",
+          "modality": "problem_statement",
+          "conditions": null
+        },
+        "advantage": {
+          "source_id": "2306.04136v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "3e9953a2cc8659dccbd8585dc79dd20ae6c53dc62ba84d114711150c09369f3b",
+          "char_start": 1104,
+          "char_end": 1168,
+          "quote": "outperforms relevant zero-shot baselines by up to 48% in average",
+          "interpretation": "Авторы KAPING сообщают улучшение относительно zero-shot baselines до 48% в среднем.",
+          "modality": "author_reported_experiment",
+          "conditions": "KG question answering; авторский диапазон across multiple LLMs, не общий выигрыш на любом графе."
+        },
+        "example": {
+          "kind": "research",
+          "source_id": "2306.04136v1",
+          "label": "Knowledge-Augmented Language Model Prompting for Zero-Shot Knowledge Graph Question Answering"
+        }
+      },
+      "independence_limit": "Три списка авторов не пересекаются; выбор источников не доказывает независимую репликацию."
+    },
+    {
+      "id": "dev-api-document-retrieval",
+      "split": "development",
+      "cutoff": "2023-12-31T23:59:59Z",
+      "label": "Генерация вызовов API по извлеченной документации",
+      "distinctness_group": "dev-api-document-retrieval",
+      "source_ids": [
+        "2305.15334v1",
+        "2307.16789v1",
+        "2304.08244v1"
+      ],
+      "assessor": "Codex",
+      "review_status": "self_assessed_primary_sources",
+      "relevance": {
+        "ai": 2,
+        "rag": 2,
+        "rare_control": 0
+      },
+      "emergence": "emerging",
+      "decision_basis": "Gorilla (2023-Q2) сочетает document retriever с генерацией API calls; ToolLLM (2023-Q3) добавляет retrieval большого каталога API. API-Bank того же раннего периода задает проверяемые ограничения планирования/retrieval/выполнения, но не засчитывается третьей реализацией.",
+      "counterevidence": "Это RAG для генерации API call по документации, не все tool agents. API-Bank — benchmark, не независимое внедрение. Общие demos или имя GitHub owner не подтверждают компанию; качество API calls не тождественно успешному выполнению всей задачи.",
+      "eligible_gold": {
+        "ai": true,
+        "rag": true,
+        "rare_control": false
+      },
+      "brief_support": {
+        "problem": {
+          "source_id": "2305.15334v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "3e03b219fe6ddfb7556e0b4482c8efc8cb990a5813c3999745b8a0201f0d9cec",
+          "char_start": 370,
+          "char_end": 416,
+          "quote": "inability to generate accurate input arguments",
+          "interpretation": "LM ошибается в аргументах вызова API.",
+          "modality": "problem_statement",
+          "conditions": null
+        },
+        "advantage": {
+          "source_id": "2305.15334v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "3e03b219fe6ddfb7556e0b4482c8efc8cb990a5813c3999745b8a0201f0d9cec",
+          "char_start": 680,
+          "char_end": 715,
+          "quote": "adapt to test-time document changes",
+          "interpretation": "Авторы Gorilla сообщают адаптацию к изменениям документации через retrieval.",
+          "modality": "author_reported_experiment",
+          "conditions": "APIBench: HuggingFace, TorchHub, TensorHub; качественное утверждение v1, без обещания безошибочного выполнения."
+        },
+        "example": {
+          "kind": "research",
+          "source_id": "2305.15334v1",
+          "label": "Gorilla: Large Language Model Connected with Massive APIs"
+        }
+      },
+      "independence_limit": "У Gorilla и ToolLLM непересекающиеся авторские списки. API-Bank используется как контекст, не как дополнительная независимая реализация."
+    },
+    {
+      "id": "dev-context-compression",
+      "split": "development",
+      "cutoff": "2023-12-31T23:59:59Z",
+      "label": "Сжатие извлеченного контекста перед генерацией",
+      "distinctness_group": "dev-context-compression",
+      "source_ids": [
+        "2305.14788v1",
+        "2307.06945v1",
+        "2310.04408v1"
+      ],
+      "assessor": "Codex",
+      "review_status": "self_assessed_primary_sources",
+      "relevance": {
+        "ai": 2,
+        "rag": 2,
+        "rare_control": 0
+      },
+      "emergence": "emerging",
+      "decision_basis": "AutoCompressors (2023-Q2), ICAE (Q3) и RECOMP (Q4) исследуют summary vectors, memory slots и текстовые компрессоры. RECOMP явно проверяет retrieval-augmented LM/QA, поэтому задача выделена как сокращение передаваемого контекста, а не общий длинный attention.",
+      "counterevidence": "ICAE — общий context compressor и сам не доказывает улучшение RAG; его вклад смежный. Soft vectors и текстовые summaries нельзя сравнивать одним compression ratio. Селективное удаление RECOMP не отдельное место той же темы.",
+      "eligible_gold": {
+        "ai": true,
+        "rag": true,
+        "rare_control": false
+      },
+      "brief_support": {
+        "problem": {
+          "source_id": "2310.04408v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "07ebe81f008e89e764b35a67214311f62890bfcbe139bd763787080bb1a26c91",
+          "char_start": 201,
+          "char_end": 244,
+          "quote": "make inference substantially more expensive",
+          "interpretation": "Передача длинных найденных документов увеличивает стоимость inference.",
+          "modality": "problem_statement",
+          "conditions": null
+        },
+        "advantage": {
+          "source_id": "2310.04408v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "07ebe81f008e89e764b35a67214311f62890bfcbe139bd763787080bb1a26c91",
+          "char_start": 1160,
+          "char_end": 1225,
+          "quote": "compression rate of as low as 6% with minimal loss in performance",
+          "interpretation": "RECOMP сообщает сжатие до 6% исходного объема с небольшой потерей качества.",
+          "modality": "author_reported_experiment",
+          "conditions": "Language modeling и open-domain QA в аннотации v1; 6% оставшегося объема, не улучшение качества на 94%."
+        },
+        "example": {
+          "kind": "research",
+          "source_id": "2310.04408v1",
+          "label": "RECOMP: Improving Retrieval-Augmented LMs with Compression and Selective Augmentation"
+        }
+      },
+      "independence_limit": "Списки авторов трех работ различаются; результаты не воспроизведены отдельно."
+    },
+    {
+      "id": "dev-retrieval-editing",
+      "split": "development",
+      "cutoff": "2023-12-31T23:59:59Z",
+      "label": "Внешняя память исправлений фактов без переписывания всей LM",
+      "distinctness_group": "dev-retrieval-editing",
+      "source_ids": [
+        "2206.06520v1",
+        "2305.14795v1"
+      ],
+      "assessor": "Codex",
+      "review_status": "self_assessed_primary_sources",
+      "relevance": {
+        "ai": 2,
+        "rag": 2,
+        "rare_control": 0
+      },
+      "emergence": "emerging",
+      "decision_basis": "SERAC (2022-Q2) хранит edits во внешней памяти и выбирает область их применения; MeLLo (2023-Q2) извлекает измененные факты при многошаговом ответе. Это развитие non-parametric model editing с retrieval, отличное от обычного поиска неизмененного корпуса.",
+      "counterevidence": "MQuAKE остается трудным; внешний edit memory не гарантирует логическую согласованность всех следствий. Manning присутствует в обеих работах, поэтому это не две полностью независимые институциональные репликации. Остальные авторские составы и подходы различны.",
+      "eligible_gold": {
+        "ai": true,
+        "rag": true,
+        "rare_control": false
+      },
+      "brief_support": {
+        "problem": {
+          "source_id": "2206.06520v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "d4bed703e3010d8151ac461b9b87747ec4e5e6286f32bf29774f9c6134f59a26",
+          "char_start": 354,
+          "char_end": 407,
+          "quote": "struggle to accurately model an edit's intended scope",
+          "interpretation": "Исправление факта может неправильно менять ответы за пределами своей области.",
+          "modality": "problem_statement",
+          "conditions": null
+        },
+        "advantage": {
+          "source_id": "2305.14795v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "050466b76c5dd9fca9bf13b8a62ed66a41f1c2a320d0032a9b6c6d3ff97f7a9f",
+          "char_start": 1290,
+          "char_end": 1342,
+          "quote": "outperforms previous model editors by a large margin",
+          "interpretation": "Авторы MeLLo сообщают преимущество над сравниваемыми model editors.",
+          "modality": "author_reported_experiment",
+          "conditions": "MQuAKE, модели до 175B в v1; без придуманного процента и без использования позднего GPT-3.5 уточнения аннотации."
+        },
+        "example": {
+          "kind": "research",
+          "source_id": "2305.14795v1",
+          "label": "MQuAKE: Assessing Knowledge Editing in Language Models via Multi-Hop Questions"
+        }
+      },
+      "independence_limit": "Разные канонические работы, один общий соавтор; независимость документальных работ ограничена пересечением исследовательской группы."
+    },
+    {
+      "id": "dev-cited-generation",
+      "split": "development",
+      "cutoff": "2023-12-31T23:59:59Z",
+      "label": "Генерация ответа с проверяемыми цитатами и воздержанием",
+      "distinctness_group": "dev-cited-generation",
+      "source_ids": [
+        "2112.09332v1",
+        "2203.11147v1",
+        "2305.14627v1"
+      ],
+      "assessor": "Codex",
+      "review_status": "self_assessed_primary_sources",
+      "relevance": {
+        "ai": 2,
+        "rag": 2,
+        "rare_control": 0
+      },
+      "emergence": "emerging",
+      "decision_basis": "WebGPT (2021-Q4), GopherCite (2022-Q1) и ALCE (2023-Q2) развивают end-to-end retrieval→answer→evidence: от сбора references к обучению цитированию, воздержанию и автоматической проверке citation coverage. Это конкретный способ поддерживать утверждения, а не просто наличие ссылки в интерфейсе.",
+      "counterevidence": "ALCE — benchmark с prompting approaches и анализом ошибок; он не третье подтвержденное внедрение. GopherCite показывает, что поддержанная цитатой фраза может оставаться ложной; ALCE v1 на ELI5 обнаруживает 49% ответов без полной поддержки. Тема не означает решенную factuality.",
+      "eligible_gold": {
+        "ai": true,
+        "rag": true,
+        "rare_control": false
+      },
+      "brief_support": {
+        "problem": {
+          "source_id": "2203.11147v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "d3043fa83a9d5ac4b7096ac49078a882c19bb2d0f0cf6e33e55c8f043af85167",
+          "char_start": 75,
+          "char_end": 108,
+          "quote": "users can't trust any given claim",
+          "interpretation": "Пользователю нужно проверять отдельные утверждения LM.",
+          "modality": "problem_statement",
+          "conditions": null
+        },
+        "advantage": {
+          "source_id": "2203.11147v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "d3043fa83a9d5ac4b7096ac49078a882c19bb2d0f0cf6e33e55c8f043af85167",
+          "char_start": 609,
+          "char_end": 701,
+          "quote": "produce answers with high quality supporting evidence and abstain from answering when unsure",
+          "interpretation": "GopherCite умеет давать supporting evidence и воздерживаться при неуверенности.",
+          "modality": "author_reported_experiment",
+          "conditions": "Авторская оценка на subsets NaturalQuestions и ELI5; условия отказа и ограничения TruthfulQA сохраняются."
+        },
+        "example": {
+          "kind": "research",
+          "source_id": "2203.11147v1",
+          "label": "Teaching language models to support answers with verified quotes"
+        }
+      },
+      "independence_limit": "WebGPT и GopherCite — разные авторские группы; ALCE — отдельная группа оценки. Независимая репликация не заявлена."
+    },
+    {
+      "id": "dev-synthetic-retrieval-training",
+      "split": "development",
+      "cutoff": "2023-12-31T23:59:59Z",
+      "label": "Обучение retriever на синтетических запросах LLM",
+      "distinctness_group": "dev-synthetic-retrieval-training",
+      "source_ids": [
+        "2202.05144v1",
+        "2209.11755v1"
+      ],
+      "assessor": "Codex",
+      "review_status": "self_assessed_primary_sources",
+      "relevance": {
+        "ai": 2,
+        "rag": 1,
+        "rare_control": 0
+      },
+      "emergence": "emerging",
+      "decision_basis": "InPars (2022-Q1) и Promptagator (2022-Q3) используют few-shot LLM для создания task-specific retrieval training data, а не расширения текущего пользовательского запроса на inference. Разные авторские группы и несколько периодов.",
+      "counterevidence": "Проверены IR metrics, не качество end-to-end RAG генерации; поэтому для узкого запроса RAG relevance=1 и тема не заполняет пятнадцатку. Более ранняя генерация queries существует; новизна ограничена few-shot LLM task adaptation.",
+      "eligible_gold": {
+        "ai": true,
+        "rag": false,
+        "rare_control": false
+      },
+      "brief_support": {
+        "problem": {
+          "source_id": "2202.05144v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "8d63a65881b55c2988a54cb5d076e3d1c2cc9ad41b62220e1d924b19ea4b0c8a",
+          "char_start": 278,
+          "char_end": 350,
+          "quote": "not all IR tasks and domains can benefit from one single dataset equally",
+          "interpretation": "Один общий dataset не обеспечивает перенос на все поисковые задачи.",
+          "modality": "problem_statement",
+          "conditions": null
+        },
+        "advantage": {
+          "source_id": "2209.11755v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "1451730b4e45cad86f7bc898885d4954b3406f897b9e6055b76dc433ac3e82c0",
+          "char_start": 1227,
+          "char_end": 1280,
+          "quote": "by more than 1.2 nDCG on average on 11 retrieval sets",
+          "interpretation": "Promptagator сообщает преимущество более 1,2 nDCG в среднем.",
+          "modality": "author_reported_experiment",
+          "conditions": "Сравнение dual encoder с ColBERT v2, не более 8 примеров; 11 retrieval sets, не ответное качество RAG."
+        },
+        "example": {
+          "kind": "research",
+          "source_id": "2209.11755v1",
+          "label": "Promptagator: Few-shot Dense Retrieval From 8 Examples"
+        }
+      },
+      "independence_limit": "Списки авторов InPars и Promptagator не пересекаются; эксперименты не реплицированы."
+    },
+    {
+      "id": "dev-llm-listwise-rerank",
+      "split": "development",
+      "cutoff": "2023-12-31T23:59:59Z",
+      "label": "Listwise reranking документов генеративной LLM",
+      "distinctness_group": "dev-llm-listwise-rerank",
+      "source_ids": [
+        "2304.09542v1",
+        "2309.15088v1"
+      ],
+      "assessor": "Codex",
+      "review_status": "self_assessed_primary_sources",
+      "relevance": {
+        "ai": 2,
+        "rag": 1,
+        "rare_control": 0
+      },
+      "emergence": "emerging",
+      "decision_basis": "RankGPT (2023-Q2) проверяет инструкции generative LM для ranking; RankVicuna (Q3) переносит listwise reranking в открытый 7B model. Это конкретная операция ранжирования passage, а не любая поисковая нейросеть.",
+      "counterevidence": "Исследования оценивают retrieval ranking, а не полный RAG answer pipeline: RAG relevance=1. RankVicuna немного уступает GPT-4, proprietary API недетерминированы; открытая модель не означает универсальное превосходство.",
+      "eligible_gold": {
+        "ai": true,
+        "rag": false,
+        "rare_control": false
+      },
+      "brief_support": {
+        "problem": {
+          "source_id": "2309.15088v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "e01662abbb9513236d37bf2b828f2a7a03f6a89b28107ddff96cedc9275c557c",
+          "char_start": 181,
+          "char_end": 234,
+          "quote": "proprietary models hidden behind opaque API endpoints",
+          "interpretation": "Закрытые API затрудняют воспроизводимость reranking.",
+          "modality": "problem_statement",
+          "conditions": null
+        },
+        "advantage": {
+          "source_id": "2309.15088v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "e01662abbb9513236d37bf2b828f2a7a03f6a89b28107ddff96cedc9275c557c",
+          "char_start": 669,
+          "char_end": 729,
+          "quote": "effectiveness comparable to zero-shot reranking with GPT-3.5",
+          "interpretation": "RankVicuna сообщает сопоставимость с GPT-3.5 reranking при 7B параметрах.",
+          "modality": "author_reported_experiment",
+          "conditions": "TREC DL 2019/2020; в той же аннотации указано отставание от GPT-4."
+        },
+        "example": {
+          "kind": "research",
+          "source_id": "2309.15088v1",
+          "label": "RankVicuna: Zero-Shot Listwise Document Reranking with Open-Source Large Language Models"
+        }
+      },
+      "independence_limit": "Списки авторов RankGPT и RankVicuna не пересекаются; независимость model API не гарантируется."
+    },
+    {
+      "id": "dev-self-reflection",
+      "split": "development",
+      "cutoff": "2023-12-31T23:59:59Z",
+      "label": "Самокритика и выбор необходимости retrieval",
+      "distinctness_group": "dev-self-reflection",
+      "source_ids": [
+        "2310.11511v1",
+        "2310.05002v1"
+      ],
+      "assessor": "Codex",
+      "review_status": "self_assessed_primary_sources",
+      "relevance": {
+        "ai": 2,
+        "rag": 2,
+        "rare_control": 0
+      },
+      "emergence": "disputed",
+      "decision_basis": "Self-RAG и SKR — реальные методы выбора retrieval по внутреннему состоянию/критике LM. Но оба v1 опубликованы в 2023-Q4, поэтому этот отдельный пакет не дает развития в нескольких периодах до cutoff.",
+      "counterevidence": "On-demand retrieval близок к уже замороженной теме interleaved retrieval. Разделять его на несколько eligible тем ради fill нельзя; для статуса emerging нужны предшественники/развитие и отдельное решение о гранулярности.",
+      "eligible_gold": {
+        "ai": false,
+        "rag": false,
+        "rare_control": false
+      },
+      "brief_support": {
+        "problem": {
+          "source_id": "2310.11511v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "814a0385136a61001126f1bf731b56ffa68fd09e048d30a5d9272706cfdc64c4",
+          "char_start": 374,
+          "char_end": 424,
+          "quote": "incorporating a fixed number of retrieved passages",
+          "interpretation": "Фиксированное число найденных passages может мешать полезному ответу.",
+          "modality": "problem_statement",
+          "conditions": null
+        },
+        "advantage": {
+          "source_id": "2310.11511v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "814a0385136a61001126f1bf731b56ffa68fd09e048d30a5d9272706cfdc64c4",
+          "char_start": 1290,
+          "char_end": 1345,
+          "quote": "outperforms ChatGPT and retrieval-augmented Llama2-chat",
+          "interpretation": "Авторы Self-RAG сообщают преимущество над указанными baselines.",
+          "modality": "author_reported_experiment",
+          "conditions": "Open-domain QA, reasoning, fact verification; 7B/13B, не универсальная гарантия."
+        },
+        "example": {
+          "kind": "research",
+          "source_id": "2310.11511v1",
+          "label": "Self-RAG: Learning to Retrieve, Generate, and Critique through Self-Reflection"
+        }
+      },
+      "independence_limit": "Две работы в одном квартале не считаются временно устойчивой поддержкой."
+    },
+    {
+      "id": "dev-robust-context",
+      "split": "development",
+      "cutoff": "2023-12-31T23:59:59Z",
+      "label": "Устойчивость генератора к нерелевантным найденным passages",
+      "distinctness_group": "dev-robust-context",
+      "source_ids": [
+        "2310.01558v1"
+      ],
+      "assessor": "Codex",
+      "review_status": "self_assessed_primary_sources",
+      "relevance": {
+        "ai": 2,
+        "rag": 2,
+        "rare_control": 0
+      },
+      "emergence": "insufficient_evidence",
+      "decision_basis": "Одна v1 работа в 2023-Q4 проверяет NLI filtering и обучение на смеси релевантного/нерелевантного контекста. Проблема и преимущество подтверждены, временная поддержка одиночная.",
+      "counterevidence": "Один результат и 1000 training examples не являются тысячей независимых подтверждений; без других периодов кандидат не проходит emergence.",
+      "eligible_gold": {
+        "ai": false,
+        "rag": false,
+        "rare_control": false
+      },
+      "brief_support": {
+        "problem": {
+          "source_id": "2310.01558v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "9ad286ca10d31f290b3e9dc31b9dfa9089ba1647405e94f6a4f9dbc48aedb880",
+          "char_start": 471,
+          "char_end": 545,
+          "quote": "retrieval augmentation can sometimes have a negative effect on performance",
+          "interpretation": "Нерелевантный контекст может ухудшать ответ.",
+          "modality": "problem_statement",
+          "conditions": null
+        },
+        "advantage": {
+          "source_id": "2310.01558v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "9ad286ca10d31f290b3e9dc31b9dfa9089ba1647405e94f6a4f9dbc48aedb880",
+          "char_start": 1237,
+          "char_end": 1264,
+          "quote": "even 1,000 examples suffice",
+          "interpretation": "Авторы сообщают, что 1000 примеров достаточно для обучения устойчивости в их эксперименте.",
+          "modality": "author_reported_experiment",
+          "conditions": "Пять open-domain QA benchmarks; не обещание такого sample complexity для любого корпуса."
+        },
+        "example": {
+          "kind": "research",
+          "source_id": "2310.01558v1",
+          "label": "Making Retrieval-Augmented Language Models Robust to Irrelevant Context"
+        }
+      },
+      "independence_limit": "Одна каноническая работа; независимой временной поддержки нет."
+    },
+    {
+      "id": "dev-counterfactual-retrieve-edit",
+      "split": "development",
+      "cutoff": "2023-12-31T23:59:59Z",
+      "label": "Retrieve-then-edit для контрфактуальных обучающих данных",
+      "distinctness_group": "dev-counterfactual-retrieve-edit",
+      "source_ids": [
+        "2210.04873v1"
+      ],
+      "assessor": "Codex",
+      "review_status": "self_assessed_primary_sources",
+      "relevance": {
+        "ai": 2,
+        "rag": 2,
+        "rare_control": 0
+      },
+      "emergence": "insufficient_evidence",
+      "decision_basis": "CORE предлагает конкретный retrieval-augmented generation pipeline для контрфактуальных perturbations. Сохранен один источник 2022-Q4; этого недостаточно для emerging к cutoff.",
+      "counterevidence": "Контрфактуальные примеры для classifier training отличаются от редактирования знаний LM (SERAC/MeLLo); названия counterfactual не дают автоматического merge.",
+      "eligible_gold": {
+        "ai": false,
+        "rag": false,
+        "rare_control": false
+      },
+      "brief_support": {
+        "problem": {
+          "source_id": "2210.04873v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "5ccfcd854e4f8de4a51b44645882fef70106a1485654ab589ac89ae2c6fb22c8",
+          "char_start": 274,
+          "char_end": 309,
+          "quote": "restricted classes of perturbations",
+          "interpretation": "Ограниченный набор perturbations снижает разнообразие augmentation.",
+          "modality": "problem_statement",
+          "conditions": null
+        },
+        "advantage": {
+          "source_id": "2210.04873v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "5ccfcd854e4f8de4a51b44645882fef70106a1485654ab589ac89ae2c6fb22c8",
+          "char_start": 1035,
+          "char_end": 1089,
+          "quote": "more effective at improving generalization to OOD data",
+          "interpretation": "Авторы CORE сообщают улучшение обобщения на OOD относительно других DA approaches.",
+          "modality": "author_reported_experiment",
+          "conditions": "NLI и sentiment analysis; генерация training data, не исправление всех фактов LM."
+        },
+        "example": {
+          "kind": "research",
+          "source_id": "2210.04873v1",
+          "label": "CORE: A Retrieve-then-Edit Framework for Counterfactual Data Generation"
+        }
+      },
+      "independence_limit": "Одна работа, повторение результатов не выполнено."
+    },
+    {
+      "id": "dev-modular-web-dialogue",
+      "split": "development",
+      "cutoff": "2023-12-31T23:59:59Z",
+      "label": "Модульный поиск знаний для диалоговой генерации",
+      "distinctness_group": "dev-modular-web-dialogue",
+      "source_ids": [
+        "2203.13224v1"
+      ],
+      "assessor": "Codex",
+      "review_status": "self_assessed_primary_sources",
+      "relevance": {
+        "ai": 2,
+        "rag": 2,
+        "rare_control": 0
+      },
+      "emergence": "insufficient_evidence",
+      "decision_basis": "SeeKeR объединяет search→knowledge→response в одной LM и проверяет диалоговую factuality. В этой отдельной группе сохранена одна работа.",
+      "counterevidence": "Общий web-search pipeline перекрывается с более конкретными темами interleaved retrieval и cited generation. Не создается еще один eligible пункт из той же функциональности.",
+      "eligible_gold": {
+        "ai": false,
+        "rag": false,
+        "rare_control": false
+      },
+      "brief_support": {
+        "problem": {
+          "source_id": "2203.13224v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "90324c7759d66b6c2ee873d5763d7a3a783a78b255b26489579bdf97c2764fca",
+          "char_start": 59,
+          "char_end": 81,
+          "quote": "more factual responses",
+          "interpretation": "Исследование направлено на более фактические ответы диалоговой LM.",
+          "modality": "problem_statement",
+          "conditions": null
+        },
+        "advantage": {
+          "source_id": "2203.13224v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "90324c7759d66b6c2ee873d5763d7a3a783a78b255b26489579bdf97c2764fca",
+          "char_start": 632,
+          "char_end": 665,
+          "quote": "for the same number of parameters",
+          "interpretation": "Авторы SeeKeR сообщают улучшение диалоговых оценок относительно BlenderBot 2 при том же числе параметров.",
+          "modality": "author_reported_experiment",
+          "conditions": "Open-domain knowledge-grounded conversations; consistency, knowledge, per-turn engagingness."
+        },
+        "example": {
+          "kind": "research",
+          "source_id": "2203.13224v1",
+          "label": "Language Models that Seek for Knowledge: Modular Search & Generation for Dialogue and Prompt Completion"
+        }
+      },
+      "independence_limit": "Одна работа; зрелость и distinctness без дополнительной разметки неизвестны."
+    },
+    {
+      "id": "dev-wrong-kaping-id",
+      "split": "development",
+      "cutoff": "2023-12-31T23:59:59Z",
+      "label": "Ошибочный ID: Roman domination game",
+      "distinctness_group": "dev-wrong-kaping-id",
+      "source_ids": [
+        "2302.02313v1"
+      ],
+      "assessor": "Codex",
+      "review_status": "self_assessed_primary_sources",
+      "relevance": {
+        "ai": 0,
+        "rag": 0,
+        "rare_control": 0
+      },
+      "emergence": "noise",
+      "decision_basis": "Первичная v1 относится к Roman domination и game-theoretic graph optimization; это не KAPING и не RAG. Ошибочный seed сохранен как реальный отрицательный контроль сопоставления.",
+      "counterevidence": "Слова graph и knowledge в поисковых окрестностях не подтверждают RAG. Алгоритм может быть полезен сам по себе, но не подходит выбранным направлениям.",
+      "eligible_gold": {
+        "ai": false,
+        "rag": false,
+        "rare_control": false
+      },
+      "brief_support": {
+        "problem": {
+          "source_id": "2302.02313v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "16932b4c1ca8b2b506e9d633b3fc89ce8f786ae5bbc4088f81b38480a2b70539",
+          "char_start": 46,
+          "char_end": 80,
+          "quote": "combinatorial optimization problem",
+          "interpretation": "Работа решает задачу комбинаторной оптимизации.",
+          "modality": "problem_statement",
+          "conditions": null
+        },
+        "advantage": {
+          "source_id": "2302.02313v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "16932b4c1ca8b2b506e9d633b3fc89ce8f786ae5bbc4088f81b38480a2b70539",
+          "char_start": 1034,
+          "char_end": 1061,
+          "quote": "better approximate solution",
+          "interpretation": "Авторы сообщают улучшенную приближенную оптимизационную оценку.",
+          "modality": "author_reported_experiment",
+          "conditions": "EGSA vs state-of-the-art algorithms по численным симуляциям; никакого преимущества RAG."
+        },
+        "example": {
+          "kind": "research",
+          "source_id": "2302.02313v1",
+          "label": "A Game-Theoretic Approach to Solving the Roman Domination Problem"
+        }
+      },
+      "independence_limit": "Один нерелевантный источник; не входит в поддержку KAPING."
+    },
+    {
+      "id": "dev-label-diffusion",
+      "split": "development",
+      "cutoff": "2023-12-31T23:59:59Z",
+      "label": "Retrieval соседних меток для noisy-label diffusion",
+      "distinctness_group": "dev-label-diffusion",
+      "source_ids": [
+        "2305.19518v1"
+      ],
+      "assessor": "Codex",
+      "review_status": "self_assessed_primary_sources",
+      "relevance": {
+        "ai": 2,
+        "rag": 0,
+        "rare_control": 0
+      },
+      "emergence": "insufficient_evidence",
+      "decision_basis": "Реальная v1 исследует classification с noisy labels и neighbor-consistent pseudo-clean labels. Это AI, но не retrieval-conditioned image generation и не методы RAG для ответа.",
+      "counterevidence": "Совпадающие слова retrieval и diffusion не объединяют эту статью с RDM/Re-Imagen. Одна работа не дает развития по периодам.",
+      "eligible_gold": {
+        "ai": false,
+        "rag": false,
+        "rare_control": false
+      },
+      "brief_support": {
+        "problem": {
+          "source_id": "2305.19518v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "7aa1d6fead67239050e9b54d62f8cf81c5a9195ca91119509fdbfa8424801112",
+          "char_start": 283,
+          "char_end": 322,
+          "quote": "limited to certain types of label noise",
+          "interpretation": "Предыдущие label correctors ограничены видами label noise.",
+          "modality": "problem_statement",
+          "conditions": null
+        },
+        "advantage": {
+          "source_id": "2305.19518v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "7aa1d6fead67239050e9b54d62f8cf81c5a9195ca91119509fdbfa8424801112",
+          "char_start": 1451,
+          "char_end": 1507,
+          "quote": "boost the current SOTA accuracy by 10-20 absolute points",
+          "interpretation": "Авторы сообщают повышение accuracy на 10–20 абсолютных пунктов в ряде случаев.",
+          "modality": "author_reported_experiment",
+          "conditions": "Noisy-label classification с CLIP conditional information; не качество генерации изображений и не RAG."
+        },
+        "example": {
+          "kind": "research",
+          "source_id": "2305.19518v1",
+          "label": "Label-Retrieval-Augmented Diffusion Models for Learning from Noisy Labels"
+        }
+      },
+      "independence_limit": "Одна каноническая работа; независимая временная поддержка отсутствует."
+    }
+  ],
+  "selection_basis": "Append-only primary-source extension before TR-015 implementation; no ranker outputs viewed or used. Curated exposure, not provider census.",
+  "frozen_at": "2026-09-08T22:09:06.603971+00:00"
+}

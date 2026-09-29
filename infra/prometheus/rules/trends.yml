@@ -1,0 +1,77 @@
+# Правила на три тихих суточных дефекта радара: ничего не падает, просто перестаёт наполняться.
+# Своих метрик у контура трендов нет — только `up`, rag_messages_processed_total,
+# rag_processing_duration_seconds и rag_stage_duration_seconds, поэтому правила стоят на них.
+# Где выражение грубее дефекта, это сказано в description.
+groups:
+  - name: trends
+    rules:
+      - alert: TrendSourceChannelStale
+        expr: sum_over_time(up{job="trend-collectors"}[12h]) == 0
+        for: 30m
+        labels:
+          severity: critical
+          area: trends
+        annotations:
+          summary: "Канал источников {{ $labels.instance }} мог не обновиться за 12 часов"
+          description: >-
+            Сборщик {{ $labels.instance }} не отвечал Prometheus НИ РАЗУ за последние 12 часов.
+            Его цикл сбора — 6 часов, значит минимум один цикл не отработал: радар продолжает
+            показывать прошлый снимок и при этом ничего не падает. Условие намеренно требует
+            полного молчания окна, а не одного нуля: точечная пересборка сборщика
+            иначе держала бы алерт красным полсуток, а погасить его нечем —
+            Alertmanager с его silence в контуре не поднят.
+            Грубее дефекта: метрики «время последнего снимка» в стеке нет, правило видит
+            только недоступность канала, а не остановившееся наполнение.
+            Смотреть: docker compose logs <имя сервиса из {{ $labels.instance }}>;
+            фактическое время снимка — изнутри сети контура, наружу порт сборщика не проброшен:
+            docker compose exec <сервис> wget -qO- http://127.0.0.1:<порт из instance>/v1/status,
+            поле observed_at.
+
+      - alert: TrendAnalysisNot200
+        expr: |
+          up{job="rag-services", instance="main-service:9090"} == 0
+            or up{job="trend-collectors", instance="radar-collector:8091"} == 0
+        for: 5m
+        labels:
+          severity: critical
+          area: trends
+        annotations:
+          summary: "Ручка анализа радара не может ответить 200 ({{ $labels.instance }})"
+          description: >-
+            {{ $labels.instance }} не отвечает Prometheus пять минут. Пока это так,
+            POST /api/v1/trends/analyses и GET /api/v1/trends/analyses/{id} возвращают 5xx:
+            ручку обслуживает main-service, саму работу анализа ведёт radar-collector.
+            Грубее дефекта: счётчика HTTP-кодов в стеке нет ни у одного сервиса, поэтому
+            доля не-200 недоступна и правило стоит на доступности сервисов пути анализа.
+            Третий участник, radar-analysis, вообще не наблюдаем — его /healthz пишет "ok\n"
+            вместо пустого тела, из-за чего его нельзя скрейпить.
+            Смотреть: docker compose logs main-service radar-collector radar-analysis;
+            вручную с хоста стенда — порт шлюза берётся из HTTP_PORT в infra/.env и на общем
+            сервере это НЕ 8080 (8080 занят чужим проектом):
+            curl -s -o /dev/null -w '%{http_code}' http://127.0.0.1:${HTTP_PORT}/api/v1/trends/live.
+
+      - alert: TrendCardsWithoutText
+        expr: |
+          sum without (stage) (increase(rag_stage_duration_seconds_count{stage="live_card_missing"}[1h]))
+          / clamp_min(
+              sum without (stage) (
+                increase(rag_stage_duration_seconds_count{stage=~"live_card|live_card_missing"}[1h])), 1)
+          > 0
+        for: 15m
+        labels:
+          severity: warning
+          area: trends
+        annotations:
+          summary: "Доля показанных технологий без текста карточки больше нуля ({{ $value | humanizePercentage }} за час)"
+          description: >-
+            Поиск отдал выдачу, но у части технологий пусто описание, преимущество или
+            кейс-пример. Снаружи это неотличимо от исправной работы: страница открывается,
+            пятнадцать строк на месте, а читать в них нечего. main-service считает обе
+            величины по завершении каждого успешного поиска: live_card — карточка написана
+            целиком, live_card_missing — хотя бы одно обязательное поле пустое.
+            Типовая причина — LLM-шлюз отвечает ошибкой (протухший корпоративный CA, x509);
+            эмбеддинги идут через f2llm и продолжают работать, поэтому поиск не падает.
+            Метка stage снимается суммой: без неё числитель и знаменатель — разные серии,
+            бинарный оператор не находит пары и правило молчит при любом дефекте.
+            Смотреть: docker compose logs main-service | grep -i "card"; проверить шлюз —
+            scripts/check-llm.sh.

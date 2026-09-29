@@ -1,0 +1,29 @@
+{
+  "native_id": "2403.10517v1",
+  "canonical_id": "arxiv:2403.10517",
+  "url": "https://arxiv.org/abs/2403.10517v1",
+  "title": "VideoAgent: Long-form Video Understanding with Large Language Model as Agent",
+  "authors": [
+    "Xiaohan Wang",
+    "Yuhui Zhang",
+    "Orr Zohar",
+    "Serena Yeung-Levy"
+  ],
+  "published_at": "2024-03-15T17:57:52Z",
+  "version_updated_at": "2024-03-15T17:57:52Z",
+  "observed_at": "2026-09-08T22:44:17.493937+00:00",
+  "available_at": "2024-03-15T17:57:52Z",
+  "available_basis": "arXiv archived v1 release; historical reconstruction captured later",
+  "source_kind": "paper",
+  "provider": "arxiv",
+  "access_scope": "public",
+  "representation": "versioned_primary_abstract",
+  "text": "Long-form video understanding represents a significant challenge within computer vision, demanding a model capable of reasoning over long multi-modal sequences. Motivated by the human cognitive process for long-form video understanding, we emphasize interactive reasoning and planning over the ability to process lengthy visual inputs. We introduce a novel agent-based system, VideoAgent, that employs a large language model as a central agent to iteratively identify and compile crucial information to answer a question, with vision-language foundation models serving as tools to translate and retrieve visual information. Evaluated on the challenging EgoSchema and NExT-QA benchmarks, VideoAgent achieves 54.1% and 71.3% zero-shot accuracy with only 8.4 and 8.2 frames used on average. These results demonstrate superior effectiveness and efficiency of our method over the current state-of-the-art methods, highlighting the potential of agent-based approaches in advancing long-form video understanding.",
+  "text_sha256": "5bc48eb4500868d4172678fbd304102f6ae6515b4cf575cb4128e02ade1ff1be",
+  "raw_sha256": "d794dda6b39c851dfacd873ec0a99c27f066067c23f5d12be94a6faa8de16f6c",
+  "raw_file": "d794dda6b39c851dfacd873ec0a99c27f066067c23f5d12be94a6faa8de16f6c.xml",
+  "limitations": [
+    "Abstract-only evidence; author-reported results, not independent reproduction.",
+    "Later DOI, journal metadata and current citations are excluded from historical input."
+  ]
+}

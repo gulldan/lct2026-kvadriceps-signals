@@ -1,0 +1,33 @@
+{
+  "native_id": "2407.01796v1",
+  "canonical_id": "arxiv:2407.01796",
+  "url": "https://arxiv.org/abs/2407.01796v1",
+  "title": "Ground Every Sentence: Improving Retrieval-Augmented LLMs with Interleaved Reference-Claim Generation",
+  "authors": [
+    "Sirui Xia",
+    "Xintao Wang",
+    "Jiaqing Liang",
+    "Yifei Zhang",
+    "Weikang Zhou",
+    "Jiaji Deng",
+    "Fei Yu",
+    "Yanghua Xiao"
+  ],
+  "published_at": "2024-07-01T20:47:47Z",
+  "version_updated_at": "2024-07-01T20:47:47Z",
+  "observed_at": "2026-09-08T22:53:53.312098+00:00",
+  "available_at": "2024-07-01T20:47:47Z",
+  "available_basis": "arXiv archived v1 release; historical reconstruction captured later",
+  "source_kind": "paper",
+  "provider": "arxiv",
+  "access_scope": "public",
+  "representation": "versioned_primary_abstract",
+  "text": "Retrieval-Augmented Generation (RAG) has been widely adopted to enhance Large Language Models (LLMs) in knowledge-intensive tasks. Recently, Attributed Text Generation (ATG) has attracted growing attention, which provides citations to support the model's responses in RAG, so as to enhance the credibility of LLM-generated content and facilitate verification. Prior methods mainly adopt coarse-grained attributions, linking to passage-level references or providing paragraph-level citations. However, these methods still fall short in verifiability and require certain time costs for fact checking. This paper proposes a fine-grained ATG method called ReClaim(Refer & Claim), which alternates the generation of references and answers step by step. Unlike traditional coarse-grained attribution, ReClaim allows the model to add sentence-level fine-grained citations to each answer sentence in long-form question-answering tasks. Our experiments encompass various training and inference methods and multiple LLMs, verifying the effectiveness of our approach.",
+  "text_sha256": "0af4b8242b8675552a902e4c82d680c2c52210907a01bd6d30274031d84accf7",
+  "raw_sha256": "96fe8363abc1e05a90db810c4303428814dc1250b90ff0534d4c44e4fc0f3129",
+  "raw_file": "96fe8363abc1e05a90db810c4303428814dc1250b90ff0534d4c44e4fc0f3129.xml",
+  "limitations": [
+    "Abstract-only evidence; author-reported results, not independent reproduction.",
+    "Later DOI, journal metadata and current citations are excluded from historical input."
+  ]
+}

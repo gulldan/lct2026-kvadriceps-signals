@@ -1,0 +1,115 @@
+{
+  "header": {
+    "kicker": "Knowledge base",
+    "title": "Topics",
+    "hintLabel": "What is a topic",
+    "withCount_one": "Topics in the library: {{count}}. Compare research areas and open source documents.",
+    "withCount_other": "Topics in the library: {{count}}. Compare research areas and open source documents.",
+    "empty": "Groups of related documents and their research scores.",
+    "description": "Research directions and their sources."
+  },
+  "loading": "Loading topics",
+  "error": "Failed to load topics",
+  "map": {
+    "title": "Topic map",
+    "description": "Select a region or circle to explore topics and sources.",
+    "pending": "Topic scores are not available yet. Topics and documents are available below.",
+    "awaiting_one": "{{count}} more topic awaits scoring:",
+    "awaiting_other": "{{count}} more topics await scoring:",
+    "aria": "Theme map: source recency and difference from corpus",
+    "axisX": "More recent sources →",
+    "axisY": "More distinct from corpus →",
+    "excluded_one": "{{count}} topic with incomplete data is available in Topic comparison.",
+    "excluded_other": "{{count}} topics with incomplete data are available in Topic comparison.",
+    "listHint": "All topics",
+    "skipToList": "Skip to topic list",
+    "keyboardHint": "←/→ — previous/next topic by source count. Home/End — first/last; Enter — select.",
+    "reset": "Full map",
+    "openTheme": "{{label}} — show nearby topics",
+    "selected": "{{documents}} docs · recency {{freshness}} · difference {{novelty}}",
+    "selectedCount_one": "Nearby on the map: {{count}} topic",
+    "selectedCount_other": "Nearby on the map: {{count}} topics",
+    "sizeLegend": "Circle size shows source count",
+    "openRegion_one": "{{label}}: {{count}} topic — show list",
+    "openRegion_other": "{{label}}: {{count}} topics — show list",
+    "regionCount_one": "{{label}} · {{count}} topic",
+    "regionCount_other": "{{label}} · {{count}} topics",
+    "regions": {
+      "earlierDistinct": {
+        "label": "Earlier · distinct",
+        "description": "Recency below 50 · difference at least 50 out of 100. Scores are relative to your corpus."
+      },
+      "recentDistinct": {
+        "label": "Recent · distinct",
+        "description": "Recency and difference at least 50 out of 100. Scores are relative to your corpus."
+      },
+      "earlierSimilar": {
+        "label": "Earlier · similar",
+        "description": "Recency and difference below 50 out of 100. Scores are relative to your corpus."
+      },
+      "recentSimilar": {
+        "label": "Recent · similar",
+        "description": "Recency at least 50 · difference below 50 out of 100. Scores are relative to your corpus."
+      }
+    }
+  },
+  "stats": "{{docs}} docs · {{chunks}} fragments",
+  "hover": {
+    "techScore": "technology index {{score}}/10",
+    "maturity": "Maturity and scale",
+    "potential": "Potential",
+    "open": "Click to open the topic"
+  },
+  "sort": {
+    "tech": "By theme index",
+    "size": "By document count",
+    "fresh": "By source recency",
+    "novelty": "By difference from corpus"
+  },
+  "section": {
+    "all": "All topics"
+  },
+  "empty": {
+    "title": "No topics yet",
+    "description": "Published groups of related documents appear here. No topics are currently available."
+  },
+  "filters": {
+    "searchPlaceholder": "Theme name or keywords",
+    "searchAria": "Search topics",
+    "sortAria": "Sort topics",
+    "scoredOnly": "With an index",
+    "reset": "Reset"
+  },
+  "noResults": {
+    "title": "Nothing found",
+    "description": "No topics match the current search and filters. Change the query or reset the filters.",
+    "resetFilters": "Reset filters"
+  },
+  "list": {
+    "range": "{{from}}–{{to}} of {{total}}",
+    "totalNote": "(total topics: {{count}})",
+    "techBadge": "Technology index {{score}}/10"
+  },
+  "views": {
+    "comparison": "Compare themes",
+    "map": "Theme map"
+  },
+  "comparison": {
+    "theme": "Theme and sources",
+    "index": "Index",
+    "SM": "Recency",
+    "NV": "Difference",
+    "IP": "Links",
+    "HR": "Coverage",
+    "description": "Scores within your base: 0–100. Expand a row for the basis.",
+    "documents_one": "{{count}} document",
+    "documents_other": "{{count}} documents",
+    "dates": "dated: {{known}} of {{total}}"
+  },
+  "detail": {
+    "open": "Open theme and documents",
+    "error": "Could not load the theme assessment",
+    "loading": "Loading theme assessment",
+    "pending": "The index has not been calculated yet. Source documents are available."
+  }
+}

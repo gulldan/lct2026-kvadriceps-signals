@@ -1,0 +1,201 @@
+{
+  "model": {
+    "model": "weak-signal-logreg",
+    "version": "weak-signal-2026-09-24.1",
+    "feature_schema": "weak-signal-features-v1",
+    "threshold": 0.35,
+    "intercept": -2.6382821524537214,
+    "inputs": [
+      "broad_log_documents",
+      "broad_active_periods",
+      "broad_groups_per_document",
+      "broad_top_group_share",
+      "broad_growth_per_document",
+      "broad_months_observed",
+      "broad_window_empty",
+      "narrow_log_documents",
+      "narrow_active_periods",
+      "narrow_groups_per_document",
+      "narrow_top_group_share",
+      "narrow_growth_per_document",
+      "narrow_months_observed",
+      "narrow_window_empty",
+      "broad_history_log_works",
+      "broad_history_share_before",
+      "broad_history_growth",
+      "broad_history_log_recent",
+      "broad_history_age_years",
+      "broad_history_slope",
+      "broad_history_share_last3",
+      "narrow_history_log_works",
+      "narrow_history_share_before",
+      "narrow_history_growth",
+      "narrow_history_log_recent",
+      "narrow_history_age_years",
+      "narrow_history_slope",
+      "narrow_history_share_last3",
+      "broad_hn_log_total",
+      "broad_hn_share_before",
+      "broad_hn_growth",
+      "broad_hn_log_recent",
+      "broad_hn_log_recent_story",
+      "broad_hn_story_growth",
+      "narrow_hn_log_total",
+      "narrow_hn_share_before",
+      "narrow_hn_growth",
+      "narrow_hn_log_recent",
+      "narrow_hn_log_recent_story",
+      "narrow_hn_story_growth",
+      "broad_llm_stage",
+      "broad_llm_failed",
+      "broad_llm_confidence",
+      "narrow_llm_stage",
+      "narrow_llm_failed",
+      "narrow_llm_confidence"
+    ],
+    "coef": [
+      0.26769407292857583, 0.10685085743042831, -0.22408870248440244, -0.01799713932153995,
+      -0.0018777704287231667, -0.06563561053809304, -0.3688029326051045, -0.16198169674340107,
+      0.02698880609114639, 0.04526925288379323, -0.008864537657876244, 0.09826792842453462,
+      -0.038572095078842156, -0.3688029326051045, -0.042683070965788154, -0.039239237722744194,
+      0.10172752656005436, 0.12265761481061728, 0.07908297883061885, -0.22084916128890217,
+      0.2090451947177698, -0.6290136536330645, -0.09479202159074952, 0.28062981159991746,
+      -0.4494768653937987, 0.012368068450613192, -0.14819679444175676, 0.21947446025739384,
+      0.13043506448519465, -0.03485686915966664, 0.15025373072401607, 0.07438222894585704,
+      -0.026434895702055573, -0.013871718561760461, -0.11161249336920274, -0.2759054550906625,
+      0.2388616564694345, -0.11662357579031797, -0.42398370924535383, 0.04950516177660991,
+      0.0669348927036268, -0.08557303158683385, 0.011465092693571637, -0.39808633282748906,
+      -0.2585175274307415, -0.5079264437007592
+    ],
+    "embedding": {
+      "model": "codefuse-ai/F2LLM-v2-0.6B",
+      "coef": [
+        0.3587192043815193, -0.1194744113709622, 0.14467905177305196, 0.26431589749027606,
+        0.2575516084842134, -0.3882319104692305, -0.33721706376403193, 0.045772141938909064,
+        0.1700141648506233, -0.0594310603475572, -0.12740614252935012, 0.12610444695272183,
+        -0.019226751103993075, 0.15378295025134994, -0.009871980503581027, -0.08327385731645598
+      ]
+    },
+    "training": {
+      "c": 0.1,
+      "method": "L2-логистическая регрессия; вход — две фразы шлюза и средний эмбеддинг F2LLM",
+      "month": "2026-09",
+      "pca": 16,
+      "rows": 520,
+      "seed": 20260924,
+      "threshold_basis": "максимум F1 на групповой кросс-валидации"
+    }
+  },
+  "evaluation": {
+    "baseline_all_weak": {
+      "f1": 0.625,
+      "fn": 0,
+      "fp": 120,
+      "precision": 0.45454545454545453,
+      "recall": 1.0,
+      "tn": 0,
+      "tp": 100
+    },
+    "dataset": {
+      "cosmos": 180,
+      "etalon": 100,
+      "hype": 42,
+      "mullany": 78,
+      "team": 120
+    },
+    "leave_area_out_recall": {
+      "Edge": 0.875,
+      "Защита ИИ": 0.875,
+      "Индустриальный ИИ": 0.7058823529411765,
+      "Инфраструктура ИИ": 0.6470588235294118,
+      "Роботы": 0.5294117647058824,
+      "Финтех": 0.5294117647058824
+    },
+    "leave_source_out_false_signal": {
+      "cosmos": 0.17222222222222222,
+      "hype": 0.5714285714285714,
+      "mullany": 0.20512820512820512,
+      "team": 0.09166666666666666
+    },
+    "month": "2026-09",
+    "nested_cv": {
+      "auc_mean": 0.9332416666666667,
+      "f1_mean": 0.8135377443255924,
+      "f1_min": 0.7885714285714286,
+      "f1_sd": 0.012230818123558371,
+      "first_repeat": {
+        "f1": 0.8222222222222222,
+        "fn": 26,
+        "fp": 6,
+        "precision": 0.925,
+        "recall": 0.74,
+        "tn": 114,
+        "tp": 74
+      },
+      "folds": 5,
+      "precision_mean": 0.9240305452034994,
+      "recall_mean": 0.727,
+      "repeats": 10,
+      "scope": ["etalon", "team"]
+    },
+    "threshold": 0.35,
+    "version": "weak-signal-2026-09-24.1",
+    "items": [
+      {
+        "area": "Edge",
+        "class": "weak_signal",
+        "id": "etalon-001",
+        "name": "Квантово-инспирированное сжатие моделей для запуска LLM на edge-железе",
+        "phrases": ["model compression", "quantum-inspired compression"],
+        "shipped": 0.9943606244170681,
+        "source": "etalon",
+        "validation": 0.9899136723081207,
+        "validation_weak": true
+      },
+      {
+        "area": "Защита ИИ",
+        "class": "weak_signal",
+        "id": "etalon-002",
+        "name": "Identity & access management для ИИ-агентов (agent identity, scoped permissions)",
+        "phrases": ["agent identity", "scoped permissions"],
+        "shipped": 0.9536777096278903,
+        "source": "etalon",
+        "validation": 0.9059412494195751,
+        "validation_weak": true
+      },
+      {
+        "area": "Индустриальный ИИ",
+        "class": "weak_signal",
+        "id": "etalon-007",
+        "name": "Проактивные ИИ-агенты теплового управления: упреждающее охлаждение ЦОД/AI-фабрик по прогнозу нагрузки, а не по факту нагрева",
+        "phrases": ["thermal management", "load forecasting"],
+        "shipped": 0.06506807202855687,
+        "source": "etalon",
+        "validation": 0.04417696104251197,
+        "validation_weak": false
+      },
+      {
+        "area": "Edge",
+        "class": "mature",
+        "id": "mature-016",
+        "name": "Фотоплетизмография в носимых устройствах",
+        "phrases": ["photoplethysmography", "wearable photoplethysmography"],
+        "shipped": 0.6023461487682762,
+        "source": "team",
+        "validation": 0.6610643094146492,
+        "validation_weak": true
+      },
+      {
+        "area": "Cosmos",
+        "class": "mature",
+        "id": "cosmos-001",
+        "name": "social crm",
+        "phrases": ["social crm"],
+        "shipped": 0.009265134973690978,
+        "source": "cosmos",
+        "validation": 0.013525332436937534,
+        "validation_weak": false
+      }
+    ]
+  }
+}

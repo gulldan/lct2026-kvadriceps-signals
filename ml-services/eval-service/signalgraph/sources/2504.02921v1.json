@@ -1,0 +1,29 @@
+{
+  "native_id": "2504.02921v1",
+  "canonical_id": "arxiv:2504.02921",
+  "url": "https://arxiv.org/abs/2504.02921v1",
+  "title": "HyperRAG: Enhancing Quality-Efficiency Tradeoffs in Retrieval-Augmented Generation with Reranker KV-Cache Reuse",
+  "authors": [
+    "Yuwei An",
+    "Yihua Cheng",
+    "Seo Jin Park",
+    "Junchen Jiang"
+  ],
+  "published_at": "2025-04-03T17:08:42Z",
+  "version_updated_at": "2025-04-03T17:08:42Z",
+  "observed_at": "2026-09-08T22:53:53.312098+00:00",
+  "available_at": "2025-04-03T17:08:42Z",
+  "available_basis": "arXiv archived v1 release; historical reconstruction captured later",
+  "source_kind": "paper",
+  "provider": "arxiv",
+  "access_scope": "public",
+  "representation": "versioned_primary_abstract",
+  "text": "Retrieval-Augmented Generation (RAG) has emerged as a powerful paradigm for enhancing the performance of large language models (LLMs) by integrating external knowledge into the generation process. A key component of RAG pipelines is the reranker, which selects the most relevant documents from a pool of retrieved candidates and significantly improves the quality of the generated responses. While rerankers refine the selection of retrieved documents in RAG pipelines, they introduce computational challenges that hinder high throughput and low latency. To address this problem, we propose HyperRAG, a system that optimizes the trade-off between quality and efficiency in RAG pipelines by leveraging KV-cache reuse for efficient reranker inference. By reusing document-side KV-cache, HyperRAG achieves both high-quality generation and system-level efficiency. To fully realize the benefits of KV-cache reuse, HyperRAG incorporates a range of system-level optimizations designed to enhance efficiency and scalability. Experiments show that HyperRAG achieves a 2 - 3 throughput improvement with decoder-only rerankers while also delivering higher downstream performance compared with traditional RAG service.",
+  "text_sha256": "b0f525f2c0e5282de89a080aba888c2865f8e552481210e11887b33acf60f77d",
+  "raw_sha256": "96fe8363abc1e05a90db810c4303428814dc1250b90ff0534d4c44e4fc0f3129",
+  "raw_file": "96fe8363abc1e05a90db810c4303428814dc1250b90ff0534d4c44e4fc0f3129.xml",
+  "limitations": [
+    "Abstract-only evidence; author-reported results, not independent reproduction.",
+    "Later DOI, journal metadata and current citations are excluded from historical input."
+  ]
+}

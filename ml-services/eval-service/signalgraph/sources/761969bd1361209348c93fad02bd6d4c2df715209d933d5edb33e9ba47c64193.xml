@@ -1,0 +1,688 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/Dmn5nULVcHdltvc1LzSLqQF4obU</id>
+  <title>arXiv Query: search_query=&amp;id_list=2404.16130v1,2410.05779v1,2402.07630v1,2405.14831v1,2404.12457v1,2405.16444v1,2403.10081v1,2406.19215v1,2407.01449v1,2410.10594v1,2401.18059v1,2409.05591v1,2410.04739v1,2308.14043v1,2309.15217v1,2408.08067v1,2403.10059v1,2403.07372v1,2406.07003v1,2406.15319v1&amp;start=0&amp;max_results=20</title>
+  <updated>2026-09-08T22:28:42Z</updated>
+  <link href="https://arxiv.org/api/query?search_query=&amp;start=0&amp;max_results=20&amp;id_list=2404.16130v1,2410.05779v1,2402.07630v1,2405.14831v1,2404.12457v1,2405.16444v1,2403.10081v1,2406.19215v1,2407.01449v1,2410.10594v1,2401.18059v1,2409.05591v1,2410.04739v1,2308.14043v1,2309.15217v1,2408.08067v1,2403.10059v1,2403.07372v1,2406.07003v1,2406.15319v1" type="application/atom+xml"/>
+  <opensearch:itemsPerPage>20</opensearch:itemsPerPage>
+  <opensearch:totalResults>20</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <entry>
+    <id>http://arxiv.org/abs/2403.07372v1</id>
+    <title>Eliminating Cross-modal Conflicts in BEV Space for LiDAR-Camera 3D Object Detection</title>
+    <updated>2024-03-12T07:16:20Z</updated>
+    <link href="https://arxiv.org/abs/2403.07372v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2403.07372v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Recent 3D object detectors typically utilize multi-sensor data and unify multi-modal features in the shared bird's-eye view (BEV) representation space. However, our empirical findings indicate that previous methods have limitations in generating fusion BEV features free from cross-modal conflicts. These conflicts encompass extrinsic conflicts caused by BEV feature construction and inherent conflicts stemming from heterogeneous sensor signals. Therefore, we propose a novel Eliminating Conflicts Fusion (ECFusion) method to explicitly eliminate the extrinsic/inherent conflicts in BEV space and produce improved multi-modal BEV features. Specifically, we devise a Semantic-guided Flow-based Alignment (SFA) module to resolve extrinsic conflicts via unifying spatial distribution in BEV space before fusion. Moreover, we design a Dissolved Query Recovering (DQR) mechanism to remedy inherent conflicts by preserving objectness clues that are lost in the fusion BEV feature. In general, our method maximizes the effective information utilization of each modality and leverages inter-modal complementarity. Our method achieves state-of-the-art performance in the highly competitive nuScenes 3D object detection dataset. The code is released at https://github.com/fjhzhixi/ECFusion.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-03-12T07:16:20Z</published>
+    <arxiv:comment>Accepted by ICRA 2024</arxiv:comment>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Jiahui Fu</name>
+    </author>
+    <author>
+      <name>Chen Gao</name>
+    </author>
+    <author>
+      <name>Zitian Wang</name>
+    </author>
+    <author>
+      <name>Lirong Yang</name>
+    </author>
+    <author>
+      <name>Xiaofei Wang</name>
+    </author>
+    <author>
+      <name>Beipeng Mu</name>
+    </author>
+    <author>
+      <name>Si Liu</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2406.07003v1</id>
+    <title>GraphCoder: Enhancing Repository-Level Code Completion via Code Context Graph-based Retrieval and Language Model</title>
+    <updated>2024-06-11T06:55:32Z</updated>
+    <link href="https://arxiv.org/abs/2406.07003v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2406.07003v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>The performance of repository-level code completion depends upon the effective leverage of both general and repository-specific knowledge. Despite the impressive capability of code LLMs in general code completion tasks, they often exhibit less satisfactory performance on repository-level completion due to the lack of repository-specific knowledge in these LLMs. To address this problem, we propose GraphCoder, a retrieval-augmented code completion framework that leverages LLMs' general code knowledge and the repository-specific knowledge via a graph-based retrieval-generation process. In particular, GraphCoder captures the context of completion target more accurately through code context graph (CCG) that consists of control-flow, data- and control-dependence between code statements, a more structured way to capture the completion target context than the sequence-based context used in existing retrieval-augmented approaches; based on CCG, GraphCoder further employs a coarse-to-fine retrieval process to locate context-similar code snippets with the completion target from the current repository. Experimental results demonstrate both the effectiveness and efficiency of GraphCoder: Compared to baseline retrieval-augmented methods, GraphCoder achieves higher exact match (EM) on average, with increases of +6.06 in code match and +6.23 in identifier match, while using less time and space.</summary>
+    <category term="cs.SE" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-06-11T06:55:32Z</published>
+    <arxiv:primary_category term="cs.SE"/>
+    <author>
+      <name>Wei Liu</name>
+    </author>
+    <author>
+      <name>Ailun Yu</name>
+    </author>
+    <author>
+      <name>Daoguang Zan</name>
+    </author>
+    <author>
+      <name>Bo Shen</name>
+    </author>
+    <author>
+      <name>Wei Zhang</name>
+    </author>
+    <author>
+      <name>Haiyan Zhao</name>
+    </author>
+    <author>
+      <name>Zhi Jin</name>
+    </author>
+    <author>
+      <name>Qianxiang Wang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2410.04739v1</id>
+    <title>TableRAG: Million-Token Table Understanding with Language Models</title>
+    <updated>2024-10-07T04:15:02Z</updated>
+    <link href="https://arxiv.org/abs/2410.04739v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2410.04739v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Recent advancements in language models (LMs) have notably enhanced their ability to reason with tabular data, primarily through program-aided mechanisms that manipulate and analyze tables. However, these methods often require the entire table as input, leading to scalability challenges due to the positional bias or context length constraints. In response to these challenges, we introduce TableRAG, a Retrieval-Augmented Generation (RAG) framework specifically designed for LM-based table understanding. TableRAG leverages query expansion combined with schema and cell retrieval to pinpoint crucial information before providing it to the LMs. This enables more efficient data encoding and precise retrieval, significantly reducing prompt lengths and mitigating information loss. We have developed two new million-token benchmarks from the Arcade and BIRD-SQL datasets to thoroughly evaluate TableRAG's effectiveness at scale. Our results demonstrate that TableRAG's retrieval design achieves the highest retrieval quality, leading to the new state-of-the-art performance on large-scale table understanding.</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.IR" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-10-07T04:15:02Z</published>
+    <arxiv:comment>Accepted to NeurIPS 2024</arxiv:comment>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Si-An Chen</name>
+    </author>
+    <author>
+      <name>Lesly Miculicich</name>
+    </author>
+    <author>
+      <name>Julian Martin Eisenschlos</name>
+    </author>
+    <author>
+      <name>Zifeng Wang</name>
+    </author>
+    <author>
+      <name>Zilong Wang</name>
+    </author>
+    <author>
+      <name>Yanfei Chen</name>
+    </author>
+    <author>
+      <name>Yasuhisa Fujii</name>
+    </author>
+    <author>
+      <name>Hsuan-Tien Lin</name>
+    </author>
+    <author>
+      <name>Chen-Yu Lee</name>
+    </author>
+    <author>
+      <name>Tomas Pfister</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2406.19215v1</id>
+    <title>SeaKR: Self-aware Knowledge Retrieval for Adaptive Retrieval Augmented Generation</title>
+    <updated>2024-06-27T14:38:33Z</updated>
+    <link href="https://arxiv.org/abs/2406.19215v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2406.19215v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>This paper introduces Self-aware Knowledge Retrieval (SeaKR), a novel adaptive RAG model that extracts self-aware uncertainty of LLMs from their internal states. SeaKR activates retrieval when the LLMs present high self-aware uncertainty for generation. To effectively integrate retrieved knowledge snippets, SeaKR re-ranks them based on LLM's self-aware uncertainty to preserve the snippet that reduces their uncertainty to the utmost. To facilitate solving complex tasks that require multiple retrievals, SeaKR utilizes their self-aware uncertainty to choose among different reasoning strategies. Our experiments on both complex and simple Question Answering datasets show that SeaKR outperforms existing adaptive RAG methods. We release our code at https://github.com/THU-KEG/SeaKR.</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-06-27T14:38:33Z</published>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Zijun Yao</name>
+    </author>
+    <author>
+      <name>Weijian Qi</name>
+    </author>
+    <author>
+      <name>Liangming Pan</name>
+    </author>
+    <author>
+      <name>Shulin Cao</name>
+    </author>
+    <author>
+      <name>Linmei Hu</name>
+    </author>
+    <author>
+      <name>Weichuan Liu</name>
+    </author>
+    <author>
+      <name>Lei Hou</name>
+    </author>
+    <author>
+      <name>Juanzi Li</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2410.10594v1</id>
+    <title>VisRAG: Vision-based Retrieval-augmented Generation on Multi-modality Documents</title>
+    <updated>2024-10-14T15:04:18Z</updated>
+    <link href="https://arxiv.org/abs/2410.10594v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2410.10594v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Retrieval-augmented generation (RAG) is an effective technique that enables large language models (LLMs) to utilize external knowledge sources for generation. However, current RAG systems are solely based on text, rendering it impossible to utilize vision information like layout and images that play crucial roles in real-world multi-modality documents. In this paper, we introduce VisRAG, which tackles this issue by establishing a vision-language model (VLM)-based RAG pipeline. In this pipeline, instead of first parsing the document to obtain text, the document is directly embedded using a VLM as an image and then retrieved to enhance the generation of a VLM. Compared to traditional text-based RAG, VisRAG maximizes the retention and utilization of the data information in the original documents, eliminating the information loss introduced during the parsing process. We collect both open-source and synthetic data to train the retriever in VisRAG and explore a variety of generation methods. Experiments demonstrate that VisRAG outperforms traditional RAG in both the retrieval and generation stages, achieving a 25--39\% end-to-end performance gain over traditional text-based RAG pipeline. Further analysis reveals that VisRAG is effective in utilizing training data and demonstrates strong generalization capability, positioning it as a promising solution for RAG on multi-modality documents. Our code and data are available at https://github.com/openbmb/visrag .</summary>
+    <category term="cs.IR" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-10-14T15:04:18Z</published>
+    <arxiv:primary_category term="cs.IR"/>
+    <author>
+      <name>Shi Yu</name>
+    </author>
+    <author>
+      <name>Chaoyue Tang</name>
+    </author>
+    <author>
+      <name>Bokai Xu</name>
+    </author>
+    <author>
+      <name>Junbo Cui</name>
+    </author>
+    <author>
+      <name>Junhao Ran</name>
+    </author>
+    <author>
+      <name>Yukun Yan</name>
+    </author>
+    <author>
+      <name>Zhenghao Liu</name>
+    </author>
+    <author>
+      <name>Shuo Wang</name>
+    </author>
+    <author>
+      <name>Xu Han</name>
+    </author>
+    <author>
+      <name>Zhiyuan Liu</name>
+    </author>
+    <author>
+      <name>Maosong Sun</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2405.14831v1</id>
+    <title>HippoRAG: Neurobiologically Inspired Long-Term Memory for Large Language Models</title>
+    <updated>2024-05-23T17:47:55Z</updated>
+    <link href="https://arxiv.org/abs/2405.14831v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2405.14831v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>In order to thrive in hostile and ever-changing natural environments, mammalian brains evolved to store large amounts of knowledge about the world and continually integrate new information while avoiding catastrophic forgetting. Despite the impressive accomplishments, large language models (LLMs), even with retrieval-augmented generation (RAG), still struggle to efficiently and effectively integrate a large amount of new experiences after pre-training. In this work, we introduce HippoRAG, a novel retrieval framework inspired by the hippocampal indexing theory of human long-term memory to enable deeper and more efficient knowledge integration over new experiences. HippoRAG synergistically orchestrates LLMs, knowledge graphs, and the Personalized PageRank algorithm to mimic the different roles of neocortex and hippocampus in human memory. We compare HippoRAG with existing RAG methods on multi-hop question answering and show that our method outperforms the state-of-the-art methods remarkably, by up to 20%. Single-step retrieval with HippoRAG achieves comparable or better performance than iterative retrieval like IRCoT while being 10-30 times cheaper and 6-13 times faster, and integrating HippoRAG into IRCoT brings further substantial gains. Finally, we show that our method can tackle new types of scenarios that are out of reach of existing methods. Code and data are available at https://github.com/OSU-NLP-Group/HippoRAG.</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-05-23T17:47:55Z</published>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Bernal Jiménez Gutiérrez</name>
+    </author>
+    <author>
+      <name>Yiheng Shu</name>
+    </author>
+    <author>
+      <name>Yu Gu</name>
+    </author>
+    <author>
+      <name>Michihiro Yasunaga</name>
+    </author>
+    <author>
+      <name>Yu Su</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2404.16130v1</id>
+    <title>From Local to Global: A Graph RAG Approach to Query-Focused Summarization</title>
+    <updated>2024-04-24T18:38:11Z</updated>
+    <link href="https://arxiv.org/abs/2404.16130v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2404.16130v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>The use of retrieval-augmented generation (RAG) to retrieve relevant information from an external knowledge source enables large language models (LLMs) to answer questions over private and/or previously unseen document collections. However, RAG fails on global questions directed at an entire text corpus, such as "What are the main themes in the dataset?", since this is inherently a query-focused summarization (QFS) task, rather than an explicit retrieval task. Prior QFS methods, meanwhile, fail to scale to the quantities of text indexed by typical RAG systems. To combine the strengths of these contrasting methods, we propose a Graph RAG approach to question answering over private text corpora that scales with both the generality of user questions and the quantity of source text to be indexed. Our approach uses an LLM to build a graph-based text index in two stages: first to derive an entity knowledge graph from the source documents, then to pregenerate community summaries for all groups of closely-related entities. Given a question, each community summary is used to generate a partial response, before all partial responses are again summarized in a final response to the user. For a class of global sensemaking questions over datasets in the 1 million token range, we show that Graph RAG leads to substantial improvements over a naïve RAG baseline for both the comprehensiveness and diversity of generated answers. An open-source, Python-based implementation of both global and local Graph RAG approaches is forthcoming at https://aka.ms/graphrag.</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.IR" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-04-24T18:38:11Z</published>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Darren Edge</name>
+    </author>
+    <author>
+      <name>Ha Trinh</name>
+    </author>
+    <author>
+      <name>Newman Cheng</name>
+    </author>
+    <author>
+      <name>Joshua Bradley</name>
+    </author>
+    <author>
+      <name>Alex Chao</name>
+    </author>
+    <author>
+      <name>Apurva Mody</name>
+    </author>
+    <author>
+      <name>Steven Truitt</name>
+    </author>
+    <author>
+      <name>Jonathan Larson</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2404.12457v1</id>
+    <title>RAGCache: Efficient Knowledge Caching for Retrieval-Augmented Generation</title>
+    <updated>2024-04-18T18:32:30Z</updated>
+    <link href="https://arxiv.org/abs/2404.12457v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2404.12457v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Retrieval-Augmented Generation (RAG) has shown significant improvements in various natural language processing tasks by integrating the strengths of large language models (LLMs) and external knowledge databases. However, RAG introduces long sequence generation and leads to high computation and memory costs. We propose Thoth, a novel multilevel dynamic caching system tailored for RAG. Our analysis benchmarks current RAG systems, pinpointing the performance bottleneck (i.e., long sequence due to knowledge injection) and optimization opportunities (i.e., caching knowledge's intermediate states). Based on these insights, we design Thoth, which organizes the intermediate states of retrieved knowledge in a knowledge tree and caches them in the GPU and host memory hierarchy. Thoth proposes a replacement policy that is aware of LLM inference characteristics and RAG retrieval patterns. It also dynamically overlaps the retrieval and inference steps to minimize the end-to-end latency. We implement Thoth and evaluate it on vLLM, a state-of-the-art LLM inference system and Faiss, a state-of-the-art vector database. The experimental results show that Thoth reduces the time to first token (TTFT) by up to 4x and improves the throughput by up to 2.1x compared to vLLM integrated with Faiss.</summary>
+    <category term="cs.DC" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-04-18T18:32:30Z</published>
+    <arxiv:primary_category term="cs.DC"/>
+    <author>
+      <name>Chao Jin</name>
+    </author>
+    <author>
+      <name>Zili Zhang</name>
+    </author>
+    <author>
+      <name>Xuanlin Jiang</name>
+    </author>
+    <author>
+      <name>Fangyue Liu</name>
+    </author>
+    <author>
+      <name>Xin Liu</name>
+    </author>
+    <author>
+      <name>Xuanzhe Liu</name>
+    </author>
+    <author>
+      <name>Xin Jin</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2403.10081v1</id>
+    <title>DRAGIN: Dynamic Retrieval Augmented Generation based on the Real-time Information Needs of Large Language Models</title>
+    <updated>2024-03-15T07:45:37Z</updated>
+    <link href="https://arxiv.org/abs/2403.10081v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2403.10081v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Dynamic retrieval augmented generation (RAG) paradigm actively decides when and what to retrieve during the text generation process of Large Language Models (LLMs). There are two key elements of this paradigm: identifying the optimal moment to activate the retrieval module (deciding when to retrieve) and crafting the appropriate query once retrieval is triggered (determining what to retrieve). However, current dynamic RAG methods fall short in both aspects. Firstly, the strategies for deciding when to retrieve often rely on static rules. Moreover, the strategies for deciding what to retrieve typically limit themselves to the LLM's most recent sentence or the last few tokens, while the LLM's real-time information needs may span across the entire context. To overcome these limitations, we introduce a new framework, DRAGIN, i.e., Dynamic Retrieval Augmented Generation based on the real-time Information Needs of LLMs. Our framework is specifically designed to make decisions on when and what to retrieve based on the LLM's real-time information needs during the text generation process. We evaluate DRAGIN along with existing methods comprehensively over 4 knowledge-intensive generation datasets. Experimental results show that DRAGIN achieves superior performance on all tasks, demonstrating the effectiveness of our method. We have open-sourced all the code, data, and models in GitHub: https://github.com/oneal2000/DRAGIN/tree/main</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.IR" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-03-15T07:45:37Z</published>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Weihang Su</name>
+    </author>
+    <author>
+      <name>Yichen Tang</name>
+    </author>
+    <author>
+      <name>Qingyao Ai</name>
+    </author>
+    <author>
+      <name>Zhijing Wu</name>
+    </author>
+    <author>
+      <name>Yiqun Liu</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2309.15217v1</id>
+    <title>RAGAS: Automated Evaluation of Retrieval Augmented Generation</title>
+    <updated>2023-09-26T19:23:54Z</updated>
+    <link href="https://arxiv.org/abs/2309.15217v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2309.15217v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>We introduce RAGAs (Retrieval Augmented Generation Assessment), a framework for reference-free evaluation of Retrieval Augmented Generation (RAG) pipelines. RAG systems are composed of a retrieval and an LLM based generation module, and provide LLMs with knowledge from a reference textual database, which enables them to act as a natural language layer between a user and textual databases, reducing the risk of hallucinations. Evaluating RAG architectures is, however, challenging because there are several dimensions to consider: the ability of the retrieval system to identify relevant and focused context passages, the ability of the LLM to exploit such passages in a faithful way, or the quality of the generation itself. With RAGAs, we put forward a suite of metrics which can be used to evaluate these different dimensions \textit{without having to rely on ground truth human annotations}. We posit that such a framework can crucially contribute to faster evaluation cycles of RAG architectures, which is especially important given the fast adoption of LLMs.</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-09-26T19:23:54Z</published>
+    <arxiv:comment>Reference-free (not tied to having ground truth available) evaluation framework for retrieval agumented generation</arxiv:comment>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Shahul Es</name>
+    </author>
+    <author>
+      <name>Jithin James</name>
+    </author>
+    <author>
+      <name>Luis Espinosa-Anke</name>
+    </author>
+    <author>
+      <name>Steven Schockaert</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2402.07630v1</id>
+    <title>G-Retriever: Retrieval-Augmented Generation for Textual Graph Understanding and Question Answering</title>
+    <updated>2024-02-12T13:13:04Z</updated>
+    <link href="https://arxiv.org/abs/2402.07630v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2402.07630v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Given a graph with textual attributes, we enable users to `chat with their graph': that is, to ask questions about the graph using a conversational interface. In response to a user's questions, our method provides textual replies and highlights the relevant parts of the graph. While existing works integrate large language models (LLMs) and graph neural networks (GNNs) in various ways, they mostly focus on either conventional graph tasks (such as node, edge, and graph classification), or on answering simple graph queries on small or synthetic graphs. In contrast, we develop a flexible question-answering framework targeting real-world textual graphs, applicable to multiple applications including scene graph understanding, common sense reasoning, and knowledge graph reasoning. Toward this goal, we first develop our Graph Question Answering (GraphQA) benchmark with data collected from different tasks. Then, we propose our G-Retriever approach, which integrates the strengths of GNNs, LLMs, and Retrieval-Augmented Generation (RAG), and can be fine-tuned to enhance graph understanding via soft prompting. To resist hallucination and to allow for textual graphs that greatly exceed the LLM's context window size, G-Retriever performs RAG over a graph by formulating this task as a Prize-Collecting Steiner Tree optimization problem. Empirical evaluations show that our method outperforms baselines on textual graph tasks from multiple domains, scales well with larger graph sizes, and resists hallucination. (Our codes and datasets are available at: https://github.com/XiaoxinHe/G-Retriever.)</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-02-12T13:13:04Z</published>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Xiaoxin He</name>
+    </author>
+    <author>
+      <name>Yijun Tian</name>
+    </author>
+    <author>
+      <name>Yifei Sun</name>
+    </author>
+    <author>
+      <name>Nitesh V. Chawla</name>
+    </author>
+    <author>
+      <name>Thomas Laurent</name>
+    </author>
+    <author>
+      <name>Yann LeCun</name>
+    </author>
+    <author>
+      <name>Xavier Bresson</name>
+    </author>
+    <author>
+      <name>Bryan Hooi</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2409.05591v1</id>
+    <title>MemoRAG: Moving towards Next-Gen RAG Via Memory-Inspired Knowledge Discovery</title>
+    <updated>2024-09-09T13:20:31Z</updated>
+    <link href="https://arxiv.org/abs/2409.05591v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2409.05591v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Retrieval-Augmented Generation (RAG) leverages retrieval tools to access external databases, thereby enhancing the generation quality of large language models (LLMs) through optimized context. However, the existing retrieval methods are constrained inherently, as they can only perform relevance matching between explicitly stated queries and well-formed knowledge, but unable to handle tasks involving ambiguous information needs or unstructured knowledge. Consequently, existing RAG systems are primarily effective for straightforward question-answering tasks. In this work, we propose \textbf{MemoRAG}, a novel retrieval-augmented generation paradigm empowered by long-term memory. MemoRAG adopts a dual-system architecture. On the one hand, it employs a \textit{light but long-range} LLM to form the global memory of database. Once a task is presented, it generates draft answers, cluing the retrieval tools to locate useful information within the database. On the other hand, it leverages an \textit{expensive but expressive} LLM, which generates the ultimate answer based on the retrieved information. Building on this general framework, we further optimize MemoRAG's performance by enhancing its cluing mechanism and memorization capacity. In our experiment, MemoRAG achieves superior performance across a variety of evaluation tasks, including both complex ones where conventional RAG fails and straightforward ones where RAG is commonly applied.</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-09-09T13:20:31Z</published>
+    <arxiv:comment>Codes and models are in https://github.com/qhjqhj00/MemoRAG</arxiv:comment>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Hongjin Qian</name>
+    </author>
+    <author>
+      <name>Peitian Zhang</name>
+    </author>
+    <author>
+      <name>Zheng Liu</name>
+    </author>
+    <author>
+      <name>Kelong Mao</name>
+    </author>
+    <author>
+      <name>Zhicheng Dou</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2410.05779v1</id>
+    <title>LightRAG: Simple and Fast Retrieval-Augmented Generation</title>
+    <updated>2024-10-08T08:00:12Z</updated>
+    <link href="https://arxiv.org/abs/2410.05779v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2410.05779v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Retrieval-Augmented Generation (RAG) systems enhance large language models (LLMs) by integrating external knowledge sources, enabling more accurate and contextually relevant responses tailored to user needs. However, existing RAG systems have significant limitations, including reliance on flat data representations and inadequate contextual awareness, which can lead to fragmented answers that fail to capture complex inter-dependencies. To address these challenges, we propose LightRAG, which incorporates graph structures into text indexing and retrieval processes. This innovative framework employs a dual-level retrieval system that enhances comprehensive information retrieval from both low-level and high-level knowledge discovery. Additionally, the integration of graph structures with vector representations facilitates efficient retrieval of related entities and their relationships, significantly improving response times while maintaining contextual relevance. This capability is further enhanced by an incremental update algorithm that ensures the timely integration of new data, allowing the system to remain effective and responsive in rapidly changing data environments. Extensive experimental validation demonstrates considerable improvements in retrieval accuracy and efficiency compared to existing approaches. We have made our LightRAG open-source and available at the link: https://github.com/HKUDS/LightRAG.</summary>
+    <category term="cs.IR" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-10-08T08:00:12Z</published>
+    <arxiv:primary_category term="cs.IR"/>
+    <author>
+      <name>Zirui Guo</name>
+    </author>
+    <author>
+      <name>Lianghao Xia</name>
+    </author>
+    <author>
+      <name>Yanhua Yu</name>
+    </author>
+    <author>
+      <name>Tu Ao</name>
+    </author>
+    <author>
+      <name>Chao Huang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2403.10059v1</id>
+    <title>Repoformer: Selective Retrieval for Repository-Level Code Completion</title>
+    <updated>2024-03-15T06:59:43Z</updated>
+    <link href="https://arxiv.org/abs/2403.10059v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2403.10059v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Recent advances in retrieval-augmented generation (RAG) have initiated a new era in repository-level code completion. However, the invariable use of retrieval in existing methods exposes issues in both efficiency and robustness, with a large proportion of the retrieved contexts proving unhelpful or harmful to code language models (code LMs). To tackle the challenges, this paper proposes a selective RAG framework where retrieval is avoided when unnecessary. To power this framework, we design a self-supervised learning approach that enables a code LM to accurately self-evaluate whether retrieval can improve its output quality and robustly leverage the potentially noisy retrieved contexts. Using this LM as both the selective retrieval policy and the generation model, our framework consistently outperforms the state-of-the-art prompting with an invariable retrieval approach on diverse benchmarks including RepoEval, CrossCodeEval, and a new benchmark. Meanwhile, our selective retrieval strategy results in strong efficiency improvements by as much as 70% inference speedup without harming the performance. We demonstrate that our framework effectively accommodates different generation models, retrievers, and programming languages. These advancements position our framework as an important step towards more accurate and efficient repository-level code completion.</summary>
+    <category term="cs.SE" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-03-15T06:59:43Z</published>
+    <arxiv:primary_category term="cs.SE"/>
+    <author>
+      <name>Di Wu</name>
+    </author>
+    <author>
+      <name>Wasi Uddin Ahmad</name>
+    </author>
+    <author>
+      <name>Dejiao Zhang</name>
+    </author>
+    <author>
+      <name>Murali Krishna Ramanathan</name>
+    </author>
+    <author>
+      <name>Xiaofei Ma</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2408.08067v1</id>
+    <title>RAGChecker: A Fine-grained Framework for Diagnosing Retrieval-Augmented Generation</title>
+    <updated>2024-08-15T10:20:54Z</updated>
+    <link href="https://arxiv.org/abs/2408.08067v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2408.08067v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Despite Retrieval-Augmented Generation (RAG) has shown promising capability in leveraging external knowledge, a comprehensive evaluation of RAG systems is still challenging due to the modular nature of RAG, evaluation of long-form responses and reliability of measurements. In this paper, we propose a fine-grained evaluation framework, RAGChecker, that incorporates a suite of diagnostic metrics for both the retrieval and generation modules. Meta evaluation verifies that RAGChecker has significantly better correlations with human judgments than other evaluation metrics. Using RAGChecker, we evaluate 8 RAG systems and conduct an in-depth analysis of their performance, revealing insightful patterns and trade-offs in the design choices of RAG architectures. The metrics of RAGChecker can guide researchers and practitioners in developing more effective RAG systems.</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-08-15T10:20:54Z</published>
+    <arxiv:comment>Under Review</arxiv:comment>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Dongyu Ru</name>
+    </author>
+    <author>
+      <name>Lin Qiu</name>
+    </author>
+    <author>
+      <name>Xiangkun Hu</name>
+    </author>
+    <author>
+      <name>Tianhang Zhang</name>
+    </author>
+    <author>
+      <name>Peng Shi</name>
+    </author>
+    <author>
+      <name>Shuaichen Chang</name>
+    </author>
+    <author>
+      <name>Jiayang Cheng</name>
+    </author>
+    <author>
+      <name>Cunxiang Wang</name>
+    </author>
+    <author>
+      <name>Shichao Sun</name>
+    </author>
+    <author>
+      <name>Huanyu Li</name>
+    </author>
+    <author>
+      <name>Zizhao Zhang</name>
+    </author>
+    <author>
+      <name>Binjie Wang</name>
+    </author>
+    <author>
+      <name>Jiarong Jiang</name>
+    </author>
+    <author>
+      <name>Tong He</name>
+    </author>
+    <author>
+      <name>Zhiguo Wang</name>
+    </author>
+    <author>
+      <name>Pengfei Liu</name>
+    </author>
+    <author>
+      <name>Yue Zhang</name>
+    </author>
+    <author>
+      <name>Zheng Zhang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2405.16444v1</id>
+    <title>CacheBlend: Fast Large Language Model Serving with Cached Knowledge Fusion</title>
+    <updated>2024-05-26T06:00:17Z</updated>
+    <link href="https://arxiv.org/abs/2405.16444v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2405.16444v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Large language models (LLMs) often incorporate multiple text chunks in their inputs to provide the necessary contexts. To speed up the prefill of the long LLM inputs, one can pre-compute the KV cache of a text and re-use the KV cache when the context is reused as the prefix of another LLM input. However, the reused text chunks are not always the input prefix, and when they are not, their precomputed KV caches cannot be directly used since they ignore the text's cross-attention with the preceding text in the LLM input. Thus, the benefits of reusing KV caches remain largely unrealized.
+  This paper tackles just one question: when an LLM input contains multiple text chunks, how to quickly combine their precomputed KV caches in order to achieve the same generation quality as the expensive full prefill (i.e., without reusing KV cache)? We present CacheBlend, a scheme that reuses the pre-computed KV caches, regardless prefix or not, and selectively recomputes the KV values of a small subset of tokens to partially update each reused KV cache. In the meantime,the small extra delay for recomputing some tokens can be pipelined with the retrieval of KV caches within the same job,allowing CacheBlend to store KV caches in slower devices with more storage capacity while retrieving them without increasing the inference delay. By comparing CacheBlend with the state-of-the-art KV cache reusing schemes on three open-source LLMs of various sizes and four popular benchmark datasets of different tasks, we show that CacheBlend reduces time-to-first-token (TTFT) by 2.2-3.3X and increases the inference throughput by 2.8-5X, compared with full KV recompute, without compromising generation quality or incurring more storage cost.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-05-26T06:00:17Z</published>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Jiayi Yao</name>
+    </author>
+    <author>
+      <name>Hanchen Li</name>
+    </author>
+    <author>
+      <name>Yuhan Liu</name>
+    </author>
+    <author>
+      <name>Siddhant Ray</name>
+    </author>
+    <author>
+      <name>Yihua Cheng</name>
+    </author>
+    <author>
+      <name>Qizheng Zhang</name>
+    </author>
+    <author>
+      <name>Kuntai Du</name>
+    </author>
+    <author>
+      <name>Shan Lu</name>
+    </author>
+    <author>
+      <name>Junchen Jiang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2308.14043v1</id>
+    <title>Reconstruction changes drive surface diffusion and determine the flatness of oxide surfaces</title>
+    <updated>2023-08-27T08:39:23Z</updated>
+    <link href="https://arxiv.org/abs/2308.14043v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2308.14043v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Surface diffusion on metal oxides is key in many areas of materials technology, yet it has been scarcely explored at the atomic scale. This work provides phenomenological insights from scanning tunneling microscopy on the link between surface diffusion, surface atomic structure, and oxygen chemical potential based on three model oxide surfaces: Fe$_2$O$_3(1\overline{1}02)$, La$_{1-x}$Sr$_x$MnO$_3$(110), and In$_2$O$_3$(111). In all instances, changing the oxygen chemical potential used for annealing stabilizes reconstructions of different compositions while promoting the flattening of the surface morphology -- a sign of enhanced surface diffusion. It is argued that thermodynamics, rather than kinetics, rules surface diffusion under these conditions: The composition change of the surface reconstructions formed at differently oxidizing conditions drives mass transport across the surface.</summary>
+    <category term="cond-mat.mtrl-sci" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-08-27T08:39:23Z</published>
+    <arxiv:comment>20 pages, 3 figures</arxiv:comment>
+    <arxiv:primary_category term="cond-mat.mtrl-sci"/>
+    <arxiv:journal_ref>Journal of Vacuum Science &amp; Technology A 40, 023206 (2022)</arxiv:journal_ref>
+    <author>
+      <name>Giada Franceschi</name>
+    </author>
+    <author>
+      <name>Michael Schmid</name>
+    </author>
+    <author>
+      <name>Ulrike Diebold</name>
+    </author>
+    <author>
+      <name>Michele Riva</name>
+    </author>
+    <arxiv:doi>10.1116/6.0001704</arxiv:doi>
+    <link rel="related" href="https://doi.org/10.1116/6.0001704" title="doi"/>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2406.15319v1</id>
+    <title>LongRAG: Enhancing Retrieval-Augmented Generation with Long-context LLMs</title>
+    <updated>2024-06-21T17:23:21Z</updated>
+    <link href="https://arxiv.org/abs/2406.15319v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2406.15319v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>In traditional RAG framework, the basic retrieval units are normally short. The common retrievers like DPR normally work with 100-word Wikipedia paragraphs. Such a design forces the retriever to search over a large corpus to find the `needle' unit. In contrast, the readers only need to extract answers from the short retrieved units. Such an imbalanced `heavy' retriever and `light' reader design can lead to sub-optimal performance. In order to alleviate the imbalance, we propose a new framework LongRAG, consisting of a `long retriever' and a `long reader'. LongRAG processes the entire Wikipedia into 4K-token units, which is 30x longer than before. By increasing the unit size, we significantly reduce the total units from 22M to 700K. This significantly lowers the burden of retriever, which leads to a remarkable retrieval score: answer recall@1=71% on NQ (previously 52%) and answer recall@2=72% (previously 47%) on HotpotQA (full-wiki). Then we feed the top-k retrieved units ($\approx$ 30K tokens) to an existing long-context LLM to perform zero-shot answer extraction. Without requiring any training, LongRAG achieves an EM of 62.7% on NQ, which is the best known result. LongRAG also achieves 64.3% on HotpotQA (full-wiki), which is on par of the SoTA model. Our study offers insights into the future roadmap for combining RAG with long-context LLMs.</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-06-21T17:23:21Z</published>
+    <arxiv:comment>Technical Report</arxiv:comment>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Ziyan Jiang</name>
+    </author>
+    <author>
+      <name>Xueguang Ma</name>
+    </author>
+    <author>
+      <name>Wenhu Chen</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2401.18059v1</id>
+    <title>RAPTOR: Recursive Abstractive Processing for Tree-Organized Retrieval</title>
+    <updated>2024-01-31T18:30:21Z</updated>
+    <link href="https://arxiv.org/abs/2401.18059v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2401.18059v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Retrieval-augmented language models can better adapt to changes in world state and incorporate long-tail knowledge. However, most existing methods retrieve only short contiguous chunks from a retrieval corpus, limiting holistic understanding of the overall document context. We introduce the novel approach of recursively embedding, clustering, and summarizing chunks of text, constructing a tree with differing levels of summarization from the bottom up. At inference time, our RAPTOR model retrieves from this tree, integrating information across lengthy documents at different levels of abstraction. Controlled experiments show that retrieval with recursive summaries offers significant improvements over traditional retrieval-augmented LMs on several tasks. On question-answering tasks that involve complex, multi-step reasoning, we show state-of-the-art results; for example, by coupling RAPTOR retrieval with the use of GPT-4, we can improve the best performance on the QuALITY benchmark by 20% in absolute accuracy.</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-01-31T18:30:21Z</published>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Parth Sarthi</name>
+    </author>
+    <author>
+      <name>Salman Abdullah</name>
+    </author>
+    <author>
+      <name>Aditi Tuli</name>
+    </author>
+    <author>
+      <name>Shubh Khanna</name>
+    </author>
+    <author>
+      <name>Anna Goldie</name>
+    </author>
+    <author>
+      <name>Christopher D. Manning</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2407.01449v1</id>
+    <title>ColPali: Efficient Document Retrieval with Vision Language Models</title>
+    <updated>2024-06-27T15:45:29Z</updated>
+    <link href="https://arxiv.org/abs/2407.01449v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2407.01449v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Documents are visually rich structures that convey information through text, as well as tables, figures, page layouts, or fonts. While modern document retrieval systems exhibit strong performance on query-to-text matching, they struggle to exploit visual cues efficiently, hindering their performance on practical document retrieval applications such as Retrieval Augmented Generation. To benchmark current systems on visually rich document retrieval, we introduce the Visual Document Retrieval Benchmark ViDoRe, composed of various page-level retrieving tasks spanning multiple domains, languages, and settings. The inherent shortcomings of modern systems motivate the introduction of a new retrieval model architecture, ColPali, which leverages the document understanding capabilities of recent Vision Language Models to produce high-quality contextualized embeddings solely from images of document pages. Combined with a late interaction matching mechanism, ColPali largely outperforms modern document retrieval pipelines while being drastically faster and end-to-end trainable.</summary>
+    <category term="cs.IR" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-06-27T15:45:29Z</published>
+    <arxiv:comment>Under Review</arxiv:comment>
+    <arxiv:primary_category term="cs.IR"/>
+    <author>
+      <name>Manuel Faysse</name>
+    </author>
+    <author>
+      <name>Hugues Sibille</name>
+    </author>
+    <author>
+      <name>Tony Wu</name>
+    </author>
+    <author>
+      <name>Gautier Viaud</name>
+    </author>
+    <author>
+      <name>Céline Hudelot</name>
+    </author>
+    <author>
+      <name>Pierre Colombo</name>
+    </author>
+  </entry>
+</feed>

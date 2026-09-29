@@ -1,0 +1,29 @@
+{
+  "native_id": "2305.01625v1",
+  "canonical_id": "arxiv:2305.01625",
+  "url": "https://arxiv.org/abs/2305.01625v1",
+  "title": "Unlimiformer: Long-Range Transformers with Unlimited Length Input",
+  "authors": [
+    "Amanda Bertsch",
+    "Uri Alon",
+    "Graham Neubig",
+    "Matthew R. Gormley"
+  ],
+  "published_at": "2023-05-02T17:35:08Z",
+  "version_updated_at": "2023-05-02T17:35:08Z",
+  "observed_at": "2026-09-08T21:43:42.308337+00:00",
+  "available_at": "2023-05-02T17:35:08Z",
+  "available_basis": "arXiv archived v1 release; historical reconstruction captured later",
+  "source_kind": "paper",
+  "provider": "arxiv",
+  "access_scope": "public",
+  "representation": "versioned_primary_abstract",
+  "text": "Transformer-based models typically have a predefined bound to their input length, because of their need to potentially attend to every token in the input. In this work, we propose Unlimiformer: a general approach that can wrap any existing pretrained encoder-decoder transformer, and offload the attention computation across all layers to a single $k$-nearest-neighbor index; this index can be kept on either the GPU or CPU memory and queried in sub-linear time. This way, we can index extremely long input sequences, while every attention head in every decoder layer retrieves its top-$k$ keys, instead of attending to every key. We demonstrate Unlimiformers's efficacy on several long-document and multi-document summarization benchmarks, showing that it can summarize even 350k token-long inputs from the BookSum dataset, without any input truncation at test time. Unlimiformer improves pretrained models such as BART and Longformer by extending them to unlimited inputs without additional learned weights and without modifying their code. We make our code and models publicly available at https://github.com/abertsch72/unlimiformer .",
+  "text_sha256": "8fea31efef77d4549ac09eb39765e2d79eb52d8aa50fc3ba3f7652c91aa5a41d",
+  "raw_sha256": "da0db3489b7b13738f585fa8b557be5e8d78b3989e4963dbadced049c99a5ee4",
+  "raw_file": "da0db3489b7b13738f585fa8b557be5e8d78b3989e4963dbadced049c99a5ee4.xml",
+  "limitations": [
+    "Abstract-only evidence; author-reported results, not independent reproduction.",
+    "Later DOI, journal metadata and current citations are excluded from historical input."
+  ]
+}

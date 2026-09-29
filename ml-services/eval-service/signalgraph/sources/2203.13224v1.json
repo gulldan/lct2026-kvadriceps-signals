@@ -1,0 +1,31 @@
+{
+  "native_id": "2203.13224v1",
+  "canonical_id": "arxiv:2203.13224",
+  "url": "https://arxiv.org/abs/2203.13224v1",
+  "title": "Language Models that Seek for Knowledge: Modular Search & Generation for Dialogue and Prompt Completion",
+  "authors": [
+    "Kurt Shuster",
+    "Mojtaba Komeili",
+    "Leonard Adolphs",
+    "Stephen Roller",
+    "Arthur Szlam",
+    "Jason Weston"
+  ],
+  "published_at": "2022-03-24T17:31:26Z",
+  "version_updated_at": "2022-03-24T17:31:26Z",
+  "observed_at": "2026-09-08T22:03:58.895762+00:00",
+  "available_at": "2022-03-24T17:31:26Z",
+  "available_basis": "arXiv archived v1 release; historical reconstruction captured later",
+  "source_kind": "paper",
+  "provider": "arxiv",
+  "access_scope": "public",
+  "representation": "versioned_primary_abstract",
+  "text": "Language models (LMs) have recently been shown to generate more factual responses by employing modularity (Zhou et al., 2021) in combination with retrieval (Adolphs et al., 2021). We extend the recent approach of Adolphs et al. (2021) to include internet search as a module. Our SeeKeR (Search engine->Knowledge->Response) method thus applies a single LM to three modular tasks in succession: search, generating knowledge, and generating a final response. We show that, when using SeeKeR as a dialogue model, it outperforms the state-of-the-art model BlenderBot 2 (Chen et al., 2021) on open-domain knowledge-grounded conversations for the same number of parameters, in terms of consistency, knowledge and per-turn engagingness. SeeKeR applied to topical prompt completions as a standard language model outperforms GPT2 (Radford et al., 2019) and GPT3 (Brown et al., 2020) in terms of factuality and topicality, despite GPT3 being a vastly larger model. Our code and models are made publicly available.",
+  "text_sha256": "90324c7759d66b6c2ee873d5763d7a3a783a78b255b26489579bdf97c2764fca",
+  "raw_sha256": "cebcac3f6b33d75b1197162d17bbefeab5f1430f443a663bf2fde424ea298fe0",
+  "raw_file": "cebcac3f6b33d75b1197162d17bbefeab5f1430f443a663bf2fde424ea298fe0.xml",
+  "limitations": [
+    "Abstract-only evidence; author-reported results, not independent reproduction.",
+    "Later DOI, journal metadata and current citations are excluded from historical input."
+  ]
+}

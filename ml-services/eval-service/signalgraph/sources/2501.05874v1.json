@@ -1,0 +1,29 @@
+{
+  "native_id": "2501.05874v1",
+  "canonical_id": "arxiv:2501.05874",
+  "url": "https://arxiv.org/abs/2501.05874v1",
+  "title": "VideoRAG: Retrieval-Augmented Generation over Video Corpus",
+  "authors": [
+    "Soyeong Jeong",
+    "Kangsan Kim",
+    "Jinheon Baek",
+    "Sung Ju Hwang"
+  ],
+  "published_at": "2025-01-10T11:17:15Z",
+  "version_updated_at": "2025-01-10T11:17:15Z",
+  "observed_at": "2026-09-08T22:44:17.493937+00:00",
+  "available_at": "2025-01-10T11:17:15Z",
+  "available_basis": "arXiv archived v1 release; historical reconstruction captured later",
+  "source_kind": "paper",
+  "provider": "arxiv",
+  "access_scope": "public",
+  "representation": "versioned_primary_abstract",
+  "text": "Retrieval-Augmented Generation (RAG) is a powerful strategy to address the issue of generating factually incorrect outputs in foundation models by retrieving external knowledge relevant to queries and incorporating it into their generation process. However, existing RAG approaches have primarily focused on textual information, with some recent advancements beginning to consider images, and they largely overlook videos, a rich source of multimodal knowledge capable of representing events, processes, and contextual details more effectively than any other modality. While a few recent studies explore the integration of videos in the response generation process, they either predefine query-associated videos without retrieving them according to queries, or convert videos into the textual descriptions without harnessing their multimodal richness. To tackle these, we introduce VideoRAG, a novel framework that not only dynamically retrieves relevant videos based on their relevance with queries but also utilizes both visual and textual information of videos in the output generation. Further, to operationalize this, our method revolves around the recent advance of Large Video Language Models (LVLMs), which enable the direct processing of video content to represent it for retrieval and seamless integration of the retrieved videos jointly with queries. We experimentally validate the effectiveness of VideoRAG, showcasing that it is superior to relevant baselines.",
+  "text_sha256": "acd6aad91d0983bc7c54904ad73227899ed190445810bc7f314bb5205bb19f7b",
+  "raw_sha256": "d794dda6b39c851dfacd873ec0a99c27f066067c23f5d12be94a6faa8de16f6c",
+  "raw_file": "d794dda6b39c851dfacd873ec0a99c27f066067c23f5d12be94a6faa8de16f6c.xml",
+  "limitations": [
+    "Abstract-only evidence; author-reported results, not independent reproduction.",
+    "Later DOI, journal metadata and current citations are excluded from historical input."
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "native_id": "2410.18050v1",
+  "canonical_id": "arxiv:2410.18050",
+  "url": "https://arxiv.org/abs/2410.18050v1",
+  "title": "LongRAG: A Dual-Perspective Retrieval-Augmented Generation Paradigm for Long-Context Question Answering",
+  "authors": [
+    "Qingfei Zhao",
+    "Ruobing Wang",
+    "Yukuo Cen",
+    "Daren Zha",
+    "Shicheng Tan",
+    "Yuxiao Dong",
+    "Jie Tang"
+  ],
+  "published_at": "2024-10-23T17:24:58Z",
+  "version_updated_at": "2024-10-23T17:24:58Z",
+  "observed_at": "2026-09-08T22:30:48.756477+00:00",
+  "available_at": "2024-10-23T17:24:58Z",
+  "available_basis": "arXiv archived v1 release; historical reconstruction captured later",
+  "source_kind": "paper",
+  "provider": "arxiv",
+  "access_scope": "public",
+  "representation": "versioned_primary_abstract",
+  "text": "Long-Context Question Answering (LCQA), a challenging task, aims to reason over long-context documents to yield accurate answers to questions. Existing long-context Large Language Models (LLMs) for LCQA often struggle with the \"lost in the middle\" issue. Retrieval-Augmented Generation (RAG) mitigates this issue by providing external factual evidence. However, its chunking strategy disrupts the global long-context information, and its low-quality retrieval in long contexts hinders LLMs from identifying effective factual details due to substantial noise. To this end, we propose LongRAG, a general, dual-perspective, and robust LLM-based RAG system paradigm for LCQA to enhance RAG's understanding of complex long-context knowledge (i.e., global information and factual details). We design LongRAG as a plug-and-play paradigm, facilitating adaptation to various domains and LLMs. Extensive experiments on three multi-hop datasets demonstrate that LongRAG significantly outperforms long-context LLMs (up by 6.94%), advanced RAG (up by 6.16%), and Vanilla RAG (up by 17.25%). Furthermore, we conduct quantitative ablation studies and multi-dimensional analyses, highlighting the effectiveness of the system's components and fine-tuning strategies. Data and code are available at https://github.com/QingFei1/LongRAG.",
+  "text_sha256": "0b0c65788154d22c778adef0653585f84340946d77a5477a7826561164daa35c",
+  "raw_sha256": "fed7c85814f0c1ef814a75028e63acf00a3d5eaef67602d6e2123046f52b8f5e",
+  "raw_file": "fed7c85814f0c1ef814a75028e63acf00a3d5eaef67602d6e2123046f52b8f5e.xml",
+  "limitations": [
+    "Abstract-only evidence; author-reported results, not independent reproduction.",
+    "Later DOI, journal metadata and current citations are excluded from historical input."
+  ]
+}

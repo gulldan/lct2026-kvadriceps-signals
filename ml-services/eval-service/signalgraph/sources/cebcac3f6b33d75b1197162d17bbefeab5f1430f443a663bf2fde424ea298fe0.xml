@@ -1,0 +1,446 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/H7RIrVw2Mkur1630X8B7cHE4tIg</id>
+  <title>arXiv Query: search_query=&amp;id_list=2306.04136v1,2206.06520v1,2305.14795v1,2309.17133v1,2203.11147v1,2305.14627v1,2209.11755v1,2202.05144v1,2304.09542v1,2309.15088v1,2112.09332v1,2203.13224v1,2310.01558v1,2210.04873v1&amp;start=0&amp;max_results=14</title>
+  <updated>2026-09-08T22:03:58Z</updated>
+  <link href="https://arxiv.org/api/query?search_query=&amp;start=0&amp;max_results=14&amp;id_list=2306.04136v1,2206.06520v1,2305.14795v1,2309.17133v1,2203.11147v1,2305.14627v1,2209.11755v1,2202.05144v1,2304.09542v1,2309.15088v1,2112.09332v1,2203.13224v1,2310.01558v1,2210.04873v1" type="application/atom+xml"/>
+  <opensearch:itemsPerPage>14</opensearch:itemsPerPage>
+  <opensearch:totalResults>14</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <entry>
+    <id>http://arxiv.org/abs/2202.05144v1</id>
+    <title>InPars: Data Augmentation for Information Retrieval using Large Language Models</title>
+    <updated>2022-02-10T16:52:45Z</updated>
+    <link href="https://arxiv.org/abs/2202.05144v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2202.05144v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>The information retrieval community has recently witnessed a revolution due to large pretrained transformer models. Another key ingredient for this revolution was the MS MARCO dataset, whose scale and diversity has enabled zero-shot transfer learning to various tasks. However, not all IR tasks and domains can benefit from one single dataset equally. Extensive research in various NLP tasks has shown that using domain-specific training data, as opposed to a general-purpose one, improves the performance of neural models. In this work, we harness the few-shot capabilities of large pretrained language models as synthetic data generators for IR tasks. We show that models finetuned solely on our unsupervised dataset outperform strong baselines such as BM25 as well as recently proposed self-supervised dense retrieval methods. Furthermore, retrievers finetuned on both supervised and our synthetic data achieve better zero-shot transfer than models finetuned only on supervised data. Code, models, and data are available at https://github.com/zetaalphavector/inpars .</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2022-02-10T16:52:45Z</published>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Luiz Bonifacio</name>
+    </author>
+    <author>
+      <name>Hugo Abonizio</name>
+    </author>
+    <author>
+      <name>Marzieh Fadaee</name>
+    </author>
+    <author>
+      <name>Rodrigo Nogueira</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2112.09332v1</id>
+    <title>WebGPT: Browser-assisted question-answering with human feedback</title>
+    <updated>2021-12-17T05:43:43Z</updated>
+    <link href="https://arxiv.org/abs/2112.09332v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2112.09332v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>We fine-tune GPT-3 to answer long-form questions using a text-based web-browsing environment, which allows the model to search and navigate the web. By setting up the task so that it can be performed by humans, we are able to train models on the task using imitation learning, and then optimize answer quality with human feedback. To make human evaluation of factual accuracy easier, models must collect references while browsing in support of their answers. We train and evaluate our models on ELI5, a dataset of questions asked by Reddit users. Our best model is obtained by fine-tuning GPT-3 using behavior cloning, and then performing rejection sampling against a reward model trained to predict human preferences. This model's answers are preferred by humans 56% of the time to those of our human demonstrators, and 69% of the time to the highest-voted answer from Reddit.</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2021-12-17T05:43:43Z</published>
+    <arxiv:comment>30 pages</arxiv:comment>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Reiichiro Nakano</name>
+    </author>
+    <author>
+      <name>Jacob Hilton</name>
+    </author>
+    <author>
+      <name>Suchir Balaji</name>
+    </author>
+    <author>
+      <name>Jeff Wu</name>
+    </author>
+    <author>
+      <name>Long Ouyang</name>
+    </author>
+    <author>
+      <name>Christina Kim</name>
+    </author>
+    <author>
+      <name>Christopher Hesse</name>
+    </author>
+    <author>
+      <name>Shantanu Jain</name>
+    </author>
+    <author>
+      <name>Vineet Kosaraju</name>
+    </author>
+    <author>
+      <name>William Saunders</name>
+    </author>
+    <author>
+      <name>Xu Jiang</name>
+    </author>
+    <author>
+      <name>Karl Cobbe</name>
+    </author>
+    <author>
+      <name>Tyna Eloundou</name>
+    </author>
+    <author>
+      <name>Gretchen Krueger</name>
+    </author>
+    <author>
+      <name>Kevin Button</name>
+    </author>
+    <author>
+      <name>Matthew Knight</name>
+    </author>
+    <author>
+      <name>Benjamin Chess</name>
+    </author>
+    <author>
+      <name>John Schulman</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2203.13224v1</id>
+    <title>Language Models that Seek for Knowledge: Modular Search &amp; Generation for Dialogue and Prompt Completion</title>
+    <updated>2022-03-24T17:31:26Z</updated>
+    <link href="https://arxiv.org/abs/2203.13224v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2203.13224v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Language models (LMs) have recently been shown to generate more factual responses by employing modularity (Zhou et al., 2021) in combination with retrieval (Adolphs et al., 2021). We extend the recent approach of Adolphs et al. (2021) to include internet search as a module. Our SeeKeR (Search engine-&gt;Knowledge-&gt;Response) method thus applies a single LM to three modular tasks in succession: search, generating knowledge, and generating a final response. We show that, when using SeeKeR as a dialogue model, it outperforms the state-of-the-art model BlenderBot 2 (Chen et al., 2021) on open-domain knowledge-grounded conversations for the same number of parameters, in terms of consistency, knowledge and per-turn engagingness. SeeKeR applied to topical prompt completions as a standard language model outperforms GPT2 (Radford et al., 2019) and GPT3 (Brown et al., 2020) in terms of factuality and topicality, despite GPT3 being a vastly larger model. Our code and models are made publicly available.</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2022-03-24T17:31:26Z</published>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Kurt Shuster</name>
+    </author>
+    <author>
+      <name>Mojtaba Komeili</name>
+    </author>
+    <author>
+      <name>Leonard Adolphs</name>
+    </author>
+    <author>
+      <name>Stephen Roller</name>
+    </author>
+    <author>
+      <name>Arthur Szlam</name>
+    </author>
+    <author>
+      <name>Jason Weston</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2210.04873v1</id>
+    <title>CORE: A Retrieve-then-Edit Framework for Counterfactual Data Generation</title>
+    <updated>2022-10-10T17:45:38Z</updated>
+    <link href="https://arxiv.org/abs/2210.04873v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2210.04873v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Counterfactual data augmentation (CDA) -- i.e., adding minimally perturbed inputs during training -- helps reduce model reliance on spurious correlations and improves generalization to out-of-distribution (OOD) data. Prior work on generating counterfactuals only considered restricted classes of perturbations, limiting their effectiveness. We present COunterfactual Generation via Retrieval and Editing (CORE), a retrieval-augmented generation framework for creating diverse counterfactual perturbations for CDA. For each training example, CORE first performs a dense retrieval over a task-related unlabeled text corpus using a learned bi-encoder and extracts relevant counterfactual excerpts. CORE then incorporates these into prompts to a large language model with few-shot learning capabilities, for counterfactual editing. Conditioning language model edits on naturally occurring data results in diverse perturbations. Experiments on natural language inference and sentiment analysis benchmarks show that CORE counterfactuals are more effective at improving generalization to OOD data compared to other DA approaches. We also show that the CORE retrieval framework can be used to encourage diversity in manually authored perturbations</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2022-10-10T17:45:38Z</published>
+    <arxiv:comment>Findings EMNLP 2022</arxiv:comment>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Tanay Dixit</name>
+    </author>
+    <author>
+      <name>Bhargavi Paranjape</name>
+    </author>
+    <author>
+      <name>Hannaneh Hajishirzi</name>
+    </author>
+    <author>
+      <name>Luke Zettlemoyer</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2306.04136v1</id>
+    <title>Knowledge-Augmented Language Model Prompting for Zero-Shot Knowledge Graph Question Answering</title>
+    <updated>2023-06-07T04:15:21Z</updated>
+    <link href="https://arxiv.org/abs/2306.04136v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2306.04136v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Large Language Models (LLMs) are capable of performing zero-shot closed-book question answering tasks, based on their internal knowledge stored in parameters during pre-training. However, such internalized knowledge might be insufficient and incorrect, which could lead LLMs to generate factually wrong answers. Furthermore, fine-tuning LLMs to update their knowledge is expensive. To this end, we propose to augment the knowledge directly in the input of LLMs. Specifically, we first retrieve the relevant facts to the input question from the knowledge graph based on semantic similarities between the question and its associated facts. After that, we prepend the retrieved facts to the input question in the form of the prompt, which is then forwarded to LLMs to generate the answer. Our framework, Knowledge-Augmented language model PromptING (KAPING), requires no model training, thus completely zero-shot. We validate the performance of our KAPING framework on the knowledge graph question answering task, that aims to answer the user's question based on facts over a knowledge graph, on which ours outperforms relevant zero-shot baselines by up to 48% in average, across multiple LLMs of various sizes.</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-06-07T04:15:21Z</published>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Jinheon Baek</name>
+    </author>
+    <author>
+      <name>Alham Fikri Aji</name>
+    </author>
+    <author>
+      <name>Amir Saffari</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2309.15088v1</id>
+    <title>RankVicuna: Zero-Shot Listwise Document Reranking with Open-Source Large Language Models</title>
+    <updated>2023-09-26T17:31:57Z</updated>
+    <link href="https://arxiv.org/abs/2309.15088v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2309.15088v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Researchers have successfully applied large language models (LLMs) such as ChatGPT to reranking in an information retrieval context, but to date, such work has mostly been built on proprietary models hidden behind opaque API endpoints. This approach yields experimental results that are not reproducible and non-deterministic, threatening the veracity of outcomes that build on such shaky foundations. To address this significant shortcoming, we present RankVicuna, the first fully open-source LLM capable of performing high-quality listwise reranking in a zero-shot setting. Experimental results on the TREC 2019 and 2020 Deep Learning Tracks show that we can achieve effectiveness comparable to zero-shot reranking with GPT-3.5 with a much smaller 7B parameter model, although our effectiveness remains slightly behind reranking with GPT-4. We hope our work provides the foundation for future research on reranking with modern LLMs. All the code necessary to reproduce our results is available at https://github.com/castorini/rank_llm.</summary>
+    <category term="cs.IR" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-09-26T17:31:57Z</published>
+    <arxiv:primary_category term="cs.IR"/>
+    <author>
+      <name>Ronak Pradeep</name>
+    </author>
+    <author>
+      <name>Sahel Sharifymoghaddam</name>
+    </author>
+    <author>
+      <name>Jimmy Lin</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2304.09542v1</id>
+    <title>Is ChatGPT Good at Search? Investigating Large Language Models as Re-Ranking Agent</title>
+    <updated>2023-04-19T10:16:03Z</updated>
+    <link href="https://arxiv.org/abs/2304.09542v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2304.09542v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Large Language Models (LLMs) have demonstrated a remarkable ability to generalize zero-shot to various language-related tasks. This paper focuses on the study of exploring generative LLMs such as ChatGPT and GPT-4 for relevance ranking in Information Retrieval (IR). Surprisingly, our experiments reveal that properly instructed ChatGPT and GPT-4 can deliver competitive, even superior results than supervised methods on popular IR benchmarks. Notably, GPT-4 outperforms the fully fine-tuned monoT5-3B on MS MARCO by an average of 2.7 nDCG on TREC datasets, an average of 2.3 nDCG on eight BEIR datasets, and an average of 2.7 nDCG on ten low-resource languages Mr.TyDi. Subsequently, we delve into the potential for distilling the ranking capabilities of ChatGPT into a specialized model. Our small specialized model that trained on 10K ChatGPT generated data outperforms monoT5 trained on 400K annotated MS MARCO data on BEIR. The code to reproduce our results is available at www.github.com/sunnweiwei/RankGPT</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.IR" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-04-19T10:16:03Z</published>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Weiwei Sun</name>
+    </author>
+    <author>
+      <name>Lingyong Yan</name>
+    </author>
+    <author>
+      <name>Xinyu Ma</name>
+    </author>
+    <author>
+      <name>Pengjie Ren</name>
+    </author>
+    <author>
+      <name>Dawei Yin</name>
+    </author>
+    <author>
+      <name>Zhaochun Ren</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2310.01558v1</id>
+    <title>Making Retrieval-Augmented Language Models Robust to Irrelevant Context</title>
+    <updated>2023-10-02T18:52:35Z</updated>
+    <link href="https://arxiv.org/abs/2310.01558v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2310.01558v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Retrieval-augmented language models (RALMs) hold promise to produce language understanding systems that are are factual, efficient, and up-to-date. An important desideratum of RALMs, is that retrieved information helps model performance when it is relevant, and does not harm performance when it is not. This is particularly important in multi-hop reasoning scenarios, where misuse of irrelevant evidence can lead to cascading errors. However, recent work has shown that retrieval augmentation can sometimes have a negative effect on performance. In this work, we present a thorough analysis on five open-domain question answering benchmarks, characterizing cases when retrieval reduces accuracy. We then propose two methods to mitigate this issue. First, a simple baseline that filters out retrieved passages that do not entail question-answer pairs according to a natural language inference (NLI) model. This is effective in preventing performance reduction, but at a cost of also discarding relevant passages. Thus, we propose a method for automatically generating data to fine-tune the language model to properly leverage retrieved passages, using a mix of relevant and irrelevant contexts at training time. We empirically show that even 1,000 examples suffice to train the model to be robust to irrelevant contexts while maintaining high performance on examples with relevant ones.</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-10-02T18:52:35Z</published>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Ori Yoran</name>
+    </author>
+    <author>
+      <name>Tomer Wolfson</name>
+    </author>
+    <author>
+      <name>Ori Ram</name>
+    </author>
+    <author>
+      <name>Jonathan Berant</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2209.11755v1</id>
+    <title>Promptagator: Few-shot Dense Retrieval From 8 Examples</title>
+    <updated>2022-09-23T17:59:06Z</updated>
+    <link href="https://arxiv.org/abs/2209.11755v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2209.11755v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Much recent research on information retrieval has focused on how to transfer from one task (typically with abundant supervised data) to various other tasks where supervision is limited, with the implicit assumption that it is possible to generalize from one task to all the rest. However, this overlooks the fact that there are many diverse and unique retrieval tasks, each targeting different search intents, queries, and search domains. In this paper, we suggest to work on Few-shot Dense Retrieval, a setting where each task comes with a short description and a few examples. To amplify the power of a few examples, we propose Prompt-base Query Generation for Retriever (Promptagator), which leverages large language models (LLM) as a few-shot query generator, and creates task-specific retrievers based on the generated data. Powered by LLM's generalization ability, Promptagator makes it possible to create task-specific end-to-end retrievers solely based on a few examples {without} using Natural Questions or MS MARCO to train %question generators or dual encoders. Surprisingly, LLM prompting with no more than 8 examples allows dual encoders to outperform heavily engineered models trained on MS MARCO like ColBERT v2 by more than 1.2 nDCG on average on 11 retrieval sets. Further training standard-size re-rankers using the same generated data yields another 5.0 point nDCG improvement. Our studies determine that query generation can be far more effective than previously observed, especially when a small amount of task-specific knowledge is given.</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.IR" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2022-09-23T17:59:06Z</published>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Zhuyun Dai</name>
+    </author>
+    <author>
+      <name>Vincent Y. Zhao</name>
+    </author>
+    <author>
+      <name>Ji Ma</name>
+    </author>
+    <author>
+      <name>Yi Luan</name>
+    </author>
+    <author>
+      <name>Jianmo Ni</name>
+    </author>
+    <author>
+      <name>Jing Lu</name>
+    </author>
+    <author>
+      <name>Anton Bakalov</name>
+    </author>
+    <author>
+      <name>Kelvin Guu</name>
+    </author>
+    <author>
+      <name>Keith B. Hall</name>
+    </author>
+    <author>
+      <name>Ming-Wei Chang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2309.17133v1</id>
+    <title>Fine-grained Late-interaction Multi-modal Retrieval for Retrieval Augmented Visual Question Answering</title>
+    <updated>2023-09-29T10:54:10Z</updated>
+    <link href="https://arxiv.org/abs/2309.17133v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2309.17133v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Knowledge-based Visual Question Answering (KB-VQA) requires VQA systems to utilize knowledge from existing knowledge bases to answer visually-grounded questions. Retrieval-Augmented Visual Question Answering (RA-VQA), a strong framework to tackle KB-VQA, first retrieves related documents with Dense Passage Retrieval (DPR) and then uses them to answer questions. This paper proposes Fine-grained Late-interaction Multi-modal Retrieval (FLMR) which significantly improves knowledge retrieval in RA-VQA. FLMR addresses two major limitations in RA-VQA's retriever: (1) the image representations obtained via image-to-text transforms can be incomplete and inaccurate and (2) relevance scores between queries and documents are computed with one-dimensional embeddings, which can be insensitive to finer-grained relevance. FLMR overcomes these limitations by obtaining image representations that complement those from the image-to-text transforms using a vision model aligned with an existing text-based retriever through a simple alignment network. FLMR also encodes images and questions using multi-dimensional embeddings to capture finer-grained relevance between queries and documents. FLMR significantly improves the original RA-VQA retriever's PRRecall@5 by approximately 8\%. Finally, we equipped RA-VQA with two state-of-the-art large multi-modal/language models to achieve $\sim61\%$ VQA score in the OK-VQA dataset.</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-09-29T10:54:10Z</published>
+    <arxiv:comment>To appear at NeurIPS 2023. This is a submission version, and the camera-ready version will be updated soon</arxiv:comment>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Weizhe Lin</name>
+    </author>
+    <author>
+      <name>Jinghong Chen</name>
+    </author>
+    <author>
+      <name>Jingbiao Mei</name>
+    </author>
+    <author>
+      <name>Alexandru Coca</name>
+    </author>
+    <author>
+      <name>Bill Byrne</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2305.14627v1</id>
+    <title>Enabling Large Language Models to Generate Text with Citations</title>
+    <updated>2023-05-24T01:53:49Z</updated>
+    <link href="https://arxiv.org/abs/2305.14627v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2305.14627v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Large language models (LLMs) have emerged as a widely-used tool for information seeking, but their generated outputs are prone to hallucination. In this work, we aim to enable LLMs to generate text with citations, improving their factual correctness and verifiability. Existing work mainly relies on commercial search engines and human evaluation, making it challenging to reproduce and compare with different modeling approaches. We propose ALCE, the first benchmark for Automatic LLMs' Citation Evaluation. ALCE collects a diverse set of questions and retrieval corpora and requires building end-to-end systems to retrieve supporting evidence and generate answers with citations. We build automatic metrics along three dimensions -- fluency, correctness, and citation quality -- and demonstrate their strong correlation with human judgements. Our experiments with state-of-the-art LLMs and novel prompting strategies show that current systems have considerable room for improvements -- for example, on the ELI5 dataset, even the best model has 49% of its generations lacking complete citation support. Our extensive analyses further highlight promising future directions, including developing better retrievers, advancing long-context LLMs, and improving the ability to synthesize information from multiple sources.</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.IR" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-05-24T01:53:49Z</published>
+    <arxiv:comment>Code and data are available at https://github.com/princeton-nlp/ALCE</arxiv:comment>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Tianyu Gao</name>
+    </author>
+    <author>
+      <name>Howard Yen</name>
+    </author>
+    <author>
+      <name>Jiatong Yu</name>
+    </author>
+    <author>
+      <name>Danqi Chen</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2203.11147v1</id>
+    <title>Teaching language models to support answers with verified quotes</title>
+    <updated>2022-03-21T17:26:29Z</updated>
+    <link href="https://arxiv.org/abs/2203.11147v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2203.11147v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Recent large language models often answer factual questions correctly. But users can't trust any given claim a model makes without fact-checking, because language models can hallucinate convincing nonsense. In this work we use reinforcement learning from human preferences (RLHP) to train "open-book" QA models that generate answers whilst also citing specific evidence for their claims, which aids in the appraisal of correctness. Supporting evidence is drawn from multiple documents found via a search engine, or from a single user-provided document. Our 280 billion parameter model, GopherCite, is able to produce answers with high quality supporting evidence and abstain from answering when unsure. We measure the performance of GopherCite by conducting human evaluation of answers to questions in a subset of the NaturalQuestions and ELI5 datasets. The model's response is found to be high-quality 80\% of the time on this Natural Questions subset, and 67\% of the time on the ELI5 subset. Abstaining from the third of questions for which it is most unsure improves performance to 90\% and 80\% respectively, approaching human baselines. However, analysis on the adversarial TruthfulQA dataset shows why citation is only one part of an overall strategy for safety and trustworthiness: not all claims supported by evidence are true.</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2022-03-21T17:26:29Z</published>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Jacob Menick</name>
+    </author>
+    <author>
+      <name>Maja Trebacz</name>
+    </author>
+    <author>
+      <name>Vladimir Mikulik</name>
+    </author>
+    <author>
+      <name>John Aslanides</name>
+    </author>
+    <author>
+      <name>Francis Song</name>
+    </author>
+    <author>
+      <name>Martin Chadwick</name>
+    </author>
+    <author>
+      <name>Mia Glaese</name>
+    </author>
+    <author>
+      <name>Susannah Young</name>
+    </author>
+    <author>
+      <name>Lucy Campbell-Gillingham</name>
+    </author>
+    <author>
+      <name>Geoffrey Irving</name>
+    </author>
+    <author>
+      <name>Nat McAleese</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2206.06520v1</id>
+    <title>Memory-Based Model Editing at Scale</title>
+    <updated>2022-06-13T23:40:34Z</updated>
+    <link href="https://arxiv.org/abs/2206.06520v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2206.06520v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Even the largest neural networks make errors, and once-correct predictions can become invalid as the world changes. Model editors make local updates to the behavior of base (pre-trained) models to inject updated knowledge or correct undesirable behaviors. Existing model editors have shown promise, but also suffer from insufficient expressiveness: they struggle to accurately model an edit's intended scope (examples affected by the edit), leading to inaccurate predictions for test inputs loosely related to the edit, and they often fail altogether after many edits. As a higher-capacity alternative, we propose Semi-Parametric Editing with a Retrieval-Augmented Counterfactual Model (SERAC), which stores edits in an explicit memory and learns to reason over them to modulate the base model's predictions as needed. To enable more rigorous evaluation of model editors, we introduce three challenging language model editing problems based on question answering, fact-checking, and dialogue generation. We find that only SERAC achieves high performance on all three problems, consistently outperforming existing approaches to model editing by a significant margin. Code, data, and additional project information will be made available at https://sites.google.com/view/serac-editing.</summary>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2022-06-13T23:40:34Z</published>
+    <arxiv:comment>ICML 2022. Project site at https://sites.google.com/view/serac-editing</arxiv:comment>
+    <arxiv:primary_category term="cs.AI"/>
+    <author>
+      <name>Eric Mitchell</name>
+    </author>
+    <author>
+      <name>Charles Lin</name>
+    </author>
+    <author>
+      <name>Antoine Bosselut</name>
+    </author>
+    <author>
+      <name>Christopher D. Manning</name>
+    </author>
+    <author>
+      <name>Chelsea Finn</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2305.14795v1</id>
+    <title>MQuAKE: Assessing Knowledge Editing in Language Models via Multi-Hop Questions</title>
+    <updated>2023-05-24T06:48:41Z</updated>
+    <link href="https://arxiv.org/abs/2305.14795v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2305.14795v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>The information stored in large language models (LLMs) falls out of date quickly, and retraining from scratch is often not an option. This has recently given rise to a range of techniques for injecting new facts through updating model weights. Current evaluation paradigms are extremely limited, mainly validating the recall of edited facts, but changing one fact should cause rippling changes to the model's related beliefs. If we edit the UK Prime Minister to now be Rishi Sunak, then we should get a different answer to Who is married to the British Prime Minister? In this work, we present a benchmark MQuAKE (Multi-hop Question Answering for Knowledge Editing) comprising multi-hop questions that assess whether edited models correctly answer questions where the answer should change as an entailed consequence of edited facts. While we find that current knowledge-editing approaches can recall edited facts accurately, they fail catastrophically on the constructed multi-hop questions. We thus propose a simple memory-based approach, MeLLo, which stores all edited facts externally while prompting the language model iteratively to generate answers that are consistent with the edited facts. While MQuAKE remains challenging, we show that MeLLo scales well with LLMs (up to 175B) and outperforms previous model editors by a large margin.</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-05-24T06:48:41Z</published>
+    <arxiv:comment>Our code and datasets are available at https://github.com/princeton-nlp/MQuAKE</arxiv:comment>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Zexuan Zhong</name>
+    </author>
+    <author>
+      <name>Zhengxuan Wu</name>
+    </author>
+    <author>
+      <name>Christopher D. Manning</name>
+    </author>
+    <author>
+      <name>Christopher Potts</name>
+    </author>
+    <author>
+      <name>Danqi Chen</name>
+    </author>
+  </entry>
+</feed>

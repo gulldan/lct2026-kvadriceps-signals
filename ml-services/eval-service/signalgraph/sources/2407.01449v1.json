@@ -1,0 +1,31 @@
+{
+  "native_id": "2407.01449v1",
+  "canonical_id": "arxiv:2407.01449",
+  "url": "https://arxiv.org/abs/2407.01449v1",
+  "title": "ColPali: Efficient Document Retrieval with Vision Language Models",
+  "authors": [
+    "Manuel Faysse",
+    "Hugues Sibille",
+    "Tony Wu",
+    "Gautier Viaud",
+    "Céline Hudelot",
+    "Pierre Colombo"
+  ],
+  "published_at": "2024-06-27T15:45:29Z",
+  "version_updated_at": "2024-06-27T15:45:29Z",
+  "observed_at": "2026-09-08T22:28:42.905805+00:00",
+  "available_at": "2024-06-27T15:45:29Z",
+  "available_basis": "arXiv archived v1 release; historical reconstruction captured later",
+  "source_kind": "paper",
+  "provider": "arxiv",
+  "access_scope": "public",
+  "representation": "versioned_primary_abstract",
+  "text": "Documents are visually rich structures that convey information through text, as well as tables, figures, page layouts, or fonts. While modern document retrieval systems exhibit strong performance on query-to-text matching, they struggle to exploit visual cues efficiently, hindering their performance on practical document retrieval applications such as Retrieval Augmented Generation. To benchmark current systems on visually rich document retrieval, we introduce the Visual Document Retrieval Benchmark ViDoRe, composed of various page-level retrieving tasks spanning multiple domains, languages, and settings. The inherent shortcomings of modern systems motivate the introduction of a new retrieval model architecture, ColPali, which leverages the document understanding capabilities of recent Vision Language Models to produce high-quality contextualized embeddings solely from images of document pages. Combined with a late interaction matching mechanism, ColPali largely outperforms modern document retrieval pipelines while being drastically faster and end-to-end trainable.",
+  "text_sha256": "7902ee06ac2ec874fb9b9a51c6619cfe983d574fc375ac33dec3eacf0fdab3f2",
+  "raw_sha256": "761969bd1361209348c93fad02bd6d4c2df715209d933d5edb33e9ba47c64193",
+  "raw_file": "761969bd1361209348c93fad02bd6d4c2df715209d933d5edb33e9ba47c64193.xml",
+  "limitations": [
+    "Abstract-only evidence; author-reported results, not independent reproduction.",
+    "Later DOI, journal metadata and current citations are excluded from historical input."
+  ]
+}

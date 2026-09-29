@@ -1,0 +1,34 @@
+{
+  "native_id": "1910.10683v1",
+  "canonical_id": "arxiv:1910.10683",
+  "url": "https://arxiv.org/abs/1910.10683v1",
+  "title": "Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer",
+  "authors": [
+    "Colin Raffel",
+    "Noam Shazeer",
+    "Adam Roberts",
+    "Katherine Lee",
+    "Sharan Narang",
+    "Michael Matena",
+    "Yanqi Zhou",
+    "Wei Li",
+    "Peter J. Liu"
+  ],
+  "published_at": "2019-10-23T17:37:36Z",
+  "version_updated_at": "2019-10-23T17:37:36Z",
+  "observed_at": "2026-09-08T22:55:25.406296+00:00",
+  "available_at": "2019-10-23T17:37:36Z",
+  "available_basis": "arXiv archived v1 release; historical reconstruction captured later",
+  "source_kind": "paper",
+  "provider": "arxiv",
+  "access_scope": "public",
+  "representation": "versioned_primary_abstract",
+  "text": "Transfer learning, where a model is first pre-trained on a data-rich task before being fine-tuned on a downstream task, has emerged as a powerful technique in natural language processing (NLP). The effectiveness of transfer learning has given rise to a diversity of approaches, methodology, and practice. In this paper, we explore the landscape of transfer learning techniques for NLP by introducing a unified framework that converts every language problem into a text-to-text format. Our systematic study compares pre-training objectives, architectures, unlabeled datasets, transfer approaches, and other factors on dozens of language understanding tasks. By combining the insights from our exploration with scale and our new \"Colossal Clean Crawled Corpus\", we achieve state-of-the-art results on many benchmarks covering summarization, question answering, text classification, and more. To facilitate future work on transfer learning for NLP, we release our dataset, pre-trained models, and code.",
+  "text_sha256": "fb1ca40413f10a5334ab84dfd8ee137f8a15f85f2c7a8930c36b1d2e1d4fa633",
+  "raw_sha256": "566bb38630cbd8109e5fdc79fb4828c9c194f37957972e5c96828e6347711bff",
+  "raw_file": "566bb38630cbd8109e5fdc79fb4828c9c194f37957972e5c96828e6347711bff.xml",
+  "limitations": [
+    "Abstract-only evidence; author-reported results, not independent reproduction.",
+    "Later DOI, journal metadata and current citations are excluded from historical input."
+  ]
+}

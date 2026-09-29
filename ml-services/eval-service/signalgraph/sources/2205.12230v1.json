@@ -1,0 +1,28 @@
+{
+  "native_id": "2205.12230v1",
+  "canonical_id": "arxiv:2205.12230",
+  "url": "https://arxiv.org/abs/2205.12230v1",
+  "title": "Chunk-based Nearest Neighbor Machine Translation",
+  "authors": [
+    "Pedro Henrique Martins",
+    "Zita Marinho",
+    "André F. T. Martins"
+  ],
+  "published_at": "2022-05-24T17:39:25Z",
+  "version_updated_at": "2022-05-24T17:39:25Z",
+  "observed_at": "2026-09-08T22:21:57.265798+00:00",
+  "available_at": "2022-05-24T17:39:25Z",
+  "available_basis": "arXiv archived v1 release; historical reconstruction captured later",
+  "source_kind": "paper",
+  "provider": "arxiv",
+  "access_scope": "public",
+  "representation": "versioned_primary_abstract",
+  "text": "Semi-parametric models, which augment generation with retrieval, have led to impressive results in language modeling and machine translation, due to their ability to leverage information retrieved from a datastore of examples. One of the most prominent approaches, $k$NN-MT, has an outstanding performance on domain adaptation by retrieving tokens from a domain-specific datastore \\citep{khandelwal2020nearest}. However, $k$NN-MT requires retrieval for every single generated token, leading to a very low decoding speed (around 8 times slower than a parametric model). In this paper, we introduce a \\textit{chunk-based} $k$NN-MT model which retrieves chunks of tokens from the datastore, instead of a single token. We propose several strategies for incorporating the retrieved chunks into the generation process, and for selecting the steps at which the model needs to search for neighbors in the datastore. Experiments on machine translation in two settings, static domain adaptation and ``on-the-fly'' adaptation, show that the chunk-based $k$NN-MT model leads to a significant speed-up (up to 4 times) with only a small drop in translation quality.",
+  "text_sha256": "5e81ecbed7f0131c6e6783b8c0b9a90e66b4882ccc360a37e17ac5ece6b119df",
+  "raw_sha256": "a21afb62ff2a2b5e5c7fa99d38deb7e33515f2a5050a5002f8218071f1c86a5a",
+  "raw_file": "a21afb62ff2a2b5e5c7fa99d38deb7e33515f2a5050a5002f8218071f1c86a5a.xml",
+  "limitations": [
+    "Abstract-only evidence; author-reported results, not independent reproduction.",
+    "Later DOI, journal metadata and current citations are excluded from historical input."
+  ]
+}

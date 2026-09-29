@@ -1,0 +1,57 @@
+{
+  "jobs": {
+    "generate": "假设生成",
+    "verify": "基于知识库的自动验证",
+    "enrich": "假设补充",
+    "assess_trl": "技术成熟度自动评估",
+    "competitors": "竞争对手分析",
+    "refine": "假设细化",
+    "tag": "假设分类",
+    "fallback": "假设任务"
+  },
+  "workers": {
+    "clusters": "主题：文档分组",
+    "discovery": "主题间桥接",
+    "raptor": "文档摘要",
+    "itc": "技术指数",
+    "eval": "回答质量检查"
+  },
+  "toasts": {
+    "done": "任务已完成",
+    "failed": "任务执行失败",
+    "insufficientContext": "来源中的信息不足，无法补充假设。请添加资料或明确假设的表述。"
+  },
+  "notifications": {
+    "bellAria": "后台任务：{{count}}",
+    "bellAriaWatch": "关注项有新内容：{{count}}",
+    "bellAriaIdle": "通知",
+    "title": "通知",
+    "inProgress": "{{count}} 个进行中",
+    "system": "系统",
+    "allDone": "系统后台处理程序当前没有运行计算任务。",
+    "empty": "暂无后台任务。",
+    "clearFinished": "清除已完成"
+  },
+  "watch": {
+    "follow": "关注",
+    "following": "已关注",
+    "added": "已关注。夜间采集后出现的新内容将显示在通知中。",
+    "removed": "已取消关注",
+    "failed": "无法更改关注，请重试。",
+    "title": "我的关注",
+    "quiet": "暂无新内容",
+    "digest": {
+      "technologies_other": "新技术：{{names}}",
+      "stage": "阶段：{{from}} → {{to}}",
+      "techStage": "{{name}}：{{from}} → {{to}}",
+      "sources_other": "新增 {{count}} 个来源",
+      "market_other": "新增 {{count}} 条新闻或登记记录",
+      "bet": "预测{{status}}"
+    },
+    "betStatus": {
+      "confirming": "正在得到证实",
+      "unchanged": "无变化",
+      "weakening": "正在减弱"
+    }
+  }
+}

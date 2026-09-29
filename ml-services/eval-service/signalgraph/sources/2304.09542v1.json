@@ -1,0 +1,31 @@
+{
+  "native_id": "2304.09542v1",
+  "canonical_id": "arxiv:2304.09542",
+  "url": "https://arxiv.org/abs/2304.09542v1",
+  "title": "Is ChatGPT Good at Search? Investigating Large Language Models as Re-Ranking Agent",
+  "authors": [
+    "Weiwei Sun",
+    "Lingyong Yan",
+    "Xinyu Ma",
+    "Pengjie Ren",
+    "Dawei Yin",
+    "Zhaochun Ren"
+  ],
+  "published_at": "2023-04-19T10:16:03Z",
+  "version_updated_at": "2023-04-19T10:16:03Z",
+  "observed_at": "2026-09-08T22:03:58.895762+00:00",
+  "available_at": "2023-04-19T10:16:03Z",
+  "available_basis": "arXiv archived v1 release; historical reconstruction captured later",
+  "source_kind": "paper",
+  "provider": "arxiv",
+  "access_scope": "public",
+  "representation": "versioned_primary_abstract",
+  "text": "Large Language Models (LLMs) have demonstrated a remarkable ability to generalize zero-shot to various language-related tasks. This paper focuses on the study of exploring generative LLMs such as ChatGPT and GPT-4 for relevance ranking in Information Retrieval (IR). Surprisingly, our experiments reveal that properly instructed ChatGPT and GPT-4 can deliver competitive, even superior results than supervised methods on popular IR benchmarks. Notably, GPT-4 outperforms the fully fine-tuned monoT5-3B on MS MARCO by an average of 2.7 nDCG on TREC datasets, an average of 2.3 nDCG on eight BEIR datasets, and an average of 2.7 nDCG on ten low-resource languages Mr.TyDi. Subsequently, we delve into the potential for distilling the ranking capabilities of ChatGPT into a specialized model. Our small specialized model that trained on 10K ChatGPT generated data outperforms monoT5 trained on 400K annotated MS MARCO data on BEIR. The code to reproduce our results is available at www.github.com/sunnweiwei/RankGPT",
+  "text_sha256": "38d028ac394f74ce5707efa4185a2b583b8c2edc136911da7c506b03070bea45",
+  "raw_sha256": "cebcac3f6b33d75b1197162d17bbefeab5f1430f443a663bf2fde424ea298fe0",
+  "raw_file": "cebcac3f6b33d75b1197162d17bbefeab5f1430f443a663bf2fde424ea298fe0.xml",
+  "limitations": [
+    "Abstract-only evidence; author-reported results, not independent reproduction.",
+    "Later DOI, journal metadata and current citations are excluded from historical input."
+  ]
+}

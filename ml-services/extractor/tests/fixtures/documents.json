@@ -1,0 +1,49 @@
+{
+ "_provenance": "Два открытых реферата (PMC и eco-vector) с разметкой спанов демонстрационного прогона 21.09.2026, приведённые к схемам extractor.schemas. Офсеты посчитаны по Document.text = title + \\n\\n + abstract.",
+ "documents": [
+  {
+   "doc_id": "pmc-13474794",
+   "source": "pmc",
+   "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC13474794/",
+   "title": "Bio-process development for sustainable, large-scale production of LAB-oligosaccharides as a potential anti-colon-cancer metabolites produced by Lactobacillus acidophilus 20079",
+   "abstract": "Abstract\n\nLactic acid bacteria and their metabolites have shown promising biological activities against different types of cancer, esspecially, colon cancer. In our previouse study, we extracted and optimized the production of a mixture of three oligosaccharides from Lactobacillus acidophilus DSMZ 20079 at the laboratory scale using statistical experimental designs and the active oligosaccharide HPLC fraction was identified as LA-EPS-20079. Also, the anticancer activity of the extracted LA-EPS-20079 against colon cancer CaCo-2 cell line was confirmed via the downregulation of the gene expression of Bcl2 and Survivin genes (6). In the present study, we produced a mixture of bioactive oligosaccharides from L. acidophilus DSMZ 20079 in 10 L bioreactor that maintained the anti-colon cancer against CaCo-2 cell line effects, which is a major transition towards the semi industrial level. To that end, a batch fermentation was carried out in a 10 L bioreactor under uncontrolled pH condition, starting at pH 6.0. During the fermentation process, the bacterial cell mass was increased exponentially with a constant specific growth rate (µ) of 0.07 h−1, reaching a maximum biomass of 6.93 g L−1 at 44 h. Also, the concentration of the produced total exooligosaccharides gradually increased and reached a maximum concentration of 1461.43 µg mL−1 at 40 h post-incubation. Furthermore, the glucose consumption rate was 1.21 g L−1 h−1, while the LAB-oligosaccharide production rate reached 96.22 µg mL−1 h−1. Moreover, oligosaccharides chemical composition was studied after scaling up the production process using 1D and 2D proton and carbon NMR, along with monomeric composition analysis.",
+   "text": "Bio-process development for sustainable, large-scale production of LAB-oligosaccharides as a potential anti-colon-cancer metabolites produced by Lactobacillus acidophilus 20079\n\nAbstract\n\nLactic acid bacteria and their metabolites have shown promising biological activities against different types of cancer, esspecially, colon cancer. In our previouse study, we extracted and optimized the production of a mixture of three oligosaccharides from Lactobacillus acidophilus DSMZ 20079 at the laboratory scale using statistical experimental designs and the active oligosaccharide HPLC fraction was identified as LA-EPS-20079. Also, the anticancer activity of the extracted LA-EPS-20079 against colon cancer CaCo-2 cell line was confirmed via the downregulation of the gene expression of Bcl2 and Survivin genes (6). In the present study, we produced a mixture of bioactive oligosaccharides from L. acidophilus DSMZ 20079 in 10 L bioreactor that maintained the anti-colon cancer against CaCo-2 cell line effects, which is a major transition towards the semi industrial level. To that end, a batch fermentation was carried out in a 10 L bioreactor under uncontrolled pH condition, starting at pH 6.0. During the fermentation process, the bacterial cell mass was increased exponentially with a constant specific growth rate (µ) of 0.07 h−1, reaching a maximum biomass of 6.93 g L−1 at 44 h. Also, the concentration of the produced total exooligosaccharides gradually increased and reached a maximum concentration of 1461.43 µg mL−1 at 40 h post-incubation. Furthermore, the glucose consumption rate was 1.21 g L−1 h−1, while the LAB-oligosaccharide production rate reached 96.22 µg mL−1 h−1. Moreover, oligosaccharides chemical composition was studied after scaling up the production process using 1D and 2D proton and carbon NMR, along with monomeric composition analysis.",
+   "text_sha256": "036353774d796368bb05c9760e7170a2c1a57698e25d9ffaba3da03a80cb2df5",
+   "lang": "en",
+   "source_type": "journal_article",
+   "publisher_type": "publisher",
+   "trust_level": "high",
+   "date": "2025-01-01",
+   "authors": [],
+   "orgs": [
+    "Ain Shams University"
+   ],
+   "areas": [
+    "биотехнологии"
+   ],
+   "etalon_blacklist": false
+  },
+  {
+   "doc_id": "eco-vector-67885",
+   "source": "eco-vector",
+   "url": "https://journals.eco-vector.com/2074-0530/article/view/67885",
+   "title": "Разработка технологии повышения стойкости крупногабаритных матриц штампов",
+   "abstract": "Детали, изготовленные методами холодной листовой штамповки, нашли широкое применение в современном мире. Холодная листовая штамповка применяется для изготовления деталей из листового материала, это различные сферические и эллиптические днища, корпусные детали автомобилей, самолётов, вагонов, химического и нефтеперерабатывающего оборудования, электроприборов, а также товаров народного потребления (столовые приборы, и т.д.). Штамповочные способы обеспечивают необходимую точность изготовления деталей, высокую производительность и низкую себестоимость [\n4\n,\n6\n,\n7\n]. Днища, изготовленные холодной штамповкой, используются в пищевой, нефтехимической, газовой и атомной промышленности, а также для: аппаратов, работающих под давлением, сосудов, емкостей и других промышленных установок. Днища изготавливают по ГОСТ 6533-78, а также по стандартам, принятым на предприятии в зависимости от отрасли. Днища изготавливают из различных материалов, таких как конструкционные стали (10, 20, 45 и т.д.), нержавеющие стали (12Х18Н9Т, 15Х18Н12С4ТЮ и т.д.), цветные металлы (АМг6М, ЛС59-1 и т.д.) [\n7\n]. Серьёзным недостатком технологии изготовления днищ является повышенный износ штамповой оснастки (таблица 1) [\n7\n].",
+   "text": "Разработка технологии повышения стойкости крупногабаритных матриц штампов\n\nДетали, изготовленные методами холодной листовой штамповки, нашли широкое применение в современном мире. Холодная листовая штамповка применяется для изготовления деталей из листового материала, это различные сферические и эллиптические днища, корпусные детали автомобилей, самолётов, вагонов, химического и нефтеперерабатывающего оборудования, электроприборов, а также товаров народного потребления (столовые приборы, и т.д.). Штамповочные способы обеспечивают необходимую точность изготовления деталей, высокую производительность и низкую себестоимость [\n4\n,\n6\n,\n7\n]. Днища, изготовленные холодной штамповкой, используются в пищевой, нефтехимической, газовой и атомной промышленности, а также для: аппаратов, работающих под давлением, сосудов, емкостей и других промышленных установок. Днища изготавливают по ГОСТ 6533-78, а также по стандартам, принятым на предприятии в зависимости от отрасли. Днища изготавливают из различных материалов, таких как конструкционные стали (10, 20, 45 и т.д.), нержавеющие стали (12Х18Н9Т, 15Х18Н12С4ТЮ и т.д.), цветные металлы (АМг6М, ЛС59-1 и т.д.) [\n7\n]. Серьёзным недостатком технологии изготовления днищ является повышенный износ штамповой оснастки (таблица 1) [\n7\n].",
+   "text_sha256": "014cf251ba99b3fdabe61b03e807ac319b16a05a52f4fdfdf217e1ad009705b1",
+   "lang": "ru",
+   "source_type": "journal_article",
+   "publisher_type": "publisher",
+   "trust_level": "high",
+   "date": "2024-01-01",
+   "authors": [],
+   "orgs": [
+    "МГТУ им. Н.Э. Баумана"
+   ],
+   "areas": [
+    "машиностроение"
+   ],
+   "etalon_blacklist": false
+  }
+ ]
+}

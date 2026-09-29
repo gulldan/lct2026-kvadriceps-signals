@@ -1,0 +1,29 @@
+{
+  "native_id": "2212.10509v1",
+  "canonical_id": "arxiv:2212.10509",
+  "url": "https://arxiv.org/abs/2212.10509v1",
+  "title": "Interleaving Retrieval with Chain-of-Thought Reasoning for Knowledge-Intensive Multi-Step Questions",
+  "authors": [
+    "Harsh Trivedi",
+    "Niranjan Balasubramanian",
+    "Tushar Khot",
+    "Ashish Sabharwal"
+  ],
+  "published_at": "2022-12-20T18:26:34Z",
+  "version_updated_at": "2022-12-20T18:26:34Z",
+  "observed_at": "2026-09-08T18:09:18.827256+00:00",
+  "available_at": "2022-12-20T18:26:34Z",
+  "available_basis": "arXiv archived v1 release; historical reconstruction captured later",
+  "source_kind": "paper",
+  "provider": "arxiv",
+  "access_scope": "public",
+  "representation": "versioned_primary_abstract",
+  "text": "Recent work has shown that large language models are capable of generating natural language reasoning steps or Chains-of-Thoughts (CoT) to answer a multi-step question when prompted to do so. This is insufficient, however, when the necessary knowledge is not available or up-to-date within a model's parameters. A straightforward approach to address this is to retrieve text from an external knowledge source using the question as a query and prepend it as context to the model's input. This, however, is also insufficient for multi-step QA where \\textit{what to retrieve} depends on \\textit{what has already been derived}. To address this issue we propose IRCoT, a new approach that interleaves retrieval with CoT for multi-step QA, guiding the retrieval with CoT and in turn using retrieved results to improve CoT. Our experiments with GPT3 show substantial improvements in retrieval (up to 22 points) and downstream QA (up to 16 points) over the baselines on four datasets: HotpotQA, 2WikiMultihopQA, MuSiQue, and IIRC. Notably, our method also works well for much smaller models such as T5-Flan-large (0.7B) without any additional training.",
+  "text_sha256": "54b1b68758b19514f597baf0f43b25e310cbcc96edf3fa762d575ef64ce92c78",
+  "raw_sha256": "b2ccdda092ad9769f5a57419eecf08128cda0a4de3cf9c2012d6beef72b464d8",
+  "raw_file": "b2ccdda092ad9769f5a57419eecf08128cda0a4de3cf9c2012d6beef72b464d8.xml",
+  "limitations": [
+    "Abstract-only evidence; author-reported results, not independent reproduction.",
+    "Later DOI, journal metadata and current citations are excluded from historical input."
+  ]
+}

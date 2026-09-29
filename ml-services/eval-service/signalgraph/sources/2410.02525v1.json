@@ -1,0 +1,27 @@
+{
+  "native_id": "2410.02525v1",
+  "canonical_id": "arxiv:2410.02525",
+  "url": "https://arxiv.org/abs/2410.02525v1",
+  "title": "Contextual Document Embeddings",
+  "authors": [
+    "John X. Morris",
+    "Alexander M. Rush"
+  ],
+  "published_at": "2024-10-03T14:33:34Z",
+  "version_updated_at": "2024-10-03T14:33:34Z",
+  "observed_at": "2026-09-08T22:44:17.493937+00:00",
+  "available_at": "2024-10-03T14:33:34Z",
+  "available_basis": "arXiv archived v1 release; historical reconstruction captured later",
+  "source_kind": "paper",
+  "provider": "arxiv",
+  "access_scope": "public",
+  "representation": "versioned_primary_abstract",
+  "text": "Dense document embeddings are central to neural retrieval. The dominant paradigm is to train and construct embeddings by running encoders directly on individual documents. In this work, we argue that these embeddings, while effective, are implicitly out-of-context for targeted use cases of retrieval, and that a contextualized document embedding should take into account both the document and neighboring documents in context - analogous to contextualized word embeddings. We propose two complementary methods for contextualized document embeddings: first, an alternative contrastive learning objective that explicitly incorporates the document neighbors into the intra-batch contextual loss; second, a new contextual architecture that explicitly encodes neighbor document information into the encoded representation. Results show that both methods achieve better performance than biencoders in several settings, with differences especially pronounced out-of-domain. We achieve state-of-the-art results on the MTEB benchmark with no hard negative mining, score distillation, dataset-specific instructions, intra-GPU example-sharing, or extremely large batch sizes. Our method can be applied to improve performance on any contrastive learning dataset and any biencoder.",
+  "text_sha256": "6920a2a6309d3154f2369148ce47f256c750829cb9097281be7f47551880ad54",
+  "raw_sha256": "d794dda6b39c851dfacd873ec0a99c27f066067c23f5d12be94a6faa8de16f6c",
+  "raw_file": "d794dda6b39c851dfacd873ec0a99c27f066067c23f5d12be94a6faa8de16f6c.xml",
+  "limitations": [
+    "Abstract-only evidence; author-reported results, not independent reproduction.",
+    "Later DOI, journal metadata and current citations are excluded from historical input."
+  ]
+}

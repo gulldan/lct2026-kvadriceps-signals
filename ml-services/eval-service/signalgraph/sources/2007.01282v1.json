@@ -1,0 +1,27 @@
+{
+  "native_id": "2007.01282v1",
+  "canonical_id": "arxiv:2007.01282",
+  "url": "https://arxiv.org/abs/2007.01282v1",
+  "title": "Leveraging Passage Retrieval with Generative Models for Open Domain Question Answering",
+  "authors": [
+    "Gautier Izacard",
+    "Edouard Grave"
+  ],
+  "published_at": "2020-07-02T17:44:57Z",
+  "version_updated_at": "2020-07-02T17:44:57Z",
+  "observed_at": "2026-09-08T22:33:32.830032+00:00",
+  "available_at": "2020-07-02T17:44:57Z",
+  "available_basis": "arXiv archived v1 release; historical reconstruction captured later",
+  "source_kind": "paper",
+  "provider": "arxiv",
+  "access_scope": "public",
+  "representation": "versioned_primary_abstract",
+  "text": "Generative models for open domain question answering have proven to be competitive, without resorting to external knowledge. While promising, this approach requires to use models with billions of parameters, which are expensive to train and query. In this paper, we investigate how much these models can benefit from retrieving text passages, potentially containing evidence. We obtain state-of-the-art results on the Natural Questions and TriviaQA open benchmarks. Interestingly, we observe that the performance of this method significantly improves when increasing the number of retrieved passages. This is evidence that generative models are good at aggregating and combining evidence from multiple passages.",
+  "text_sha256": "6a2761de45678f85877801c08576553c7ecdd6c60b7d679265b0ca4d2eab4452",
+  "raw_sha256": "0656bb447019582a74312f651d3348f481c9e2459bc6b6b5a9df9db6dbcde587",
+  "raw_file": "0656bb447019582a74312f651d3348f481c9e2459bc6b6b5a9df9db6dbcde587.xml",
+  "limitations": [
+    "Abstract-only evidence; author-reported results, not independent reproduction.",
+    "Later DOI, journal metadata and current citations are excluded from historical input."
+  ]
+}

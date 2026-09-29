@@ -1,0 +1,255 @@
+{
+  "version": "arxiv-live-v1",
+  "method": "live-signals-v1",
+  "observed_at": "2026-09-10T09:00:00Z",
+  "categories": "cat:cs.CL OR cat:cs.AI OR cat:cs.IR",
+  "periods": [
+    {
+      "period": "2024-Q4",
+      "start": "2024-10-01",
+      "end_exclusive": "2025-01-01",
+      "complete": true,
+      "population": 12000
+    },
+    {
+      "period": "2025-Q1",
+      "start": "2025-01-01",
+      "end_exclusive": "2025-04-01",
+      "complete": true,
+      "population": 12500
+    },
+    {
+      "period": "2025-Q2",
+      "start": "2025-04-01",
+      "end_exclusive": "2025-07-01",
+      "complete": true,
+      "population": 13000
+    },
+    {
+      "period": "2025-Q3",
+      "start": "2025-07-01",
+      "end_exclusive": "2025-10-01",
+      "complete": true,
+      "population": 13500
+    },
+    {
+      "period": "2025-Q4",
+      "start": "2025-10-01",
+      "end_exclusive": "2026-01-01",
+      "complete": true,
+      "population": 14000
+    },
+    {
+      "period": "2026-Q1",
+      "start": "2026-01-01",
+      "end_exclusive": "2026-04-01",
+      "complete": true,
+      "population": 14500
+    },
+    {
+      "period": "2026-Q2",
+      "start": "2026-04-01",
+      "end_exclusive": "2026-07-01",
+      "complete": true,
+      "population": 15000
+    },
+    {
+      "period": "2026-Q3",
+      "start": "2026-07-01",
+      "end_exclusive": "2026-10-01",
+      "complete": false,
+      "population": 15500
+    }
+  ],
+  "limits": [],
+  "github_authenticated": false,
+  "topic": {
+    "id": "mcp",
+    "paper_ids": ["arxiv:2505.00001", "arxiv:2601.00002"],
+    "series": [
+      {
+        "period": "2024-Q4",
+        "count": 0,
+        "population": 12000,
+        "share": 0.0,
+        "groups": 0,
+        "new_groups": 0,
+        "retained_groups": 0
+      },
+      {
+        "period": "2025-Q1",
+        "count": 0,
+        "population": 12500,
+        "share": 0.0,
+        "groups": 0,
+        "new_groups": 0,
+        "retained_groups": 0
+      },
+      {
+        "period": "2025-Q2",
+        "count": 3,
+        "population": 13000,
+        "share": 0.00023076923076923076,
+        "groups": 3,
+        "new_groups": 3,
+        "retained_groups": 0
+      },
+      {
+        "period": "2025-Q3",
+        "count": 12,
+        "population": 13500,
+        "share": 0.0008888888888888889,
+        "groups": 10,
+        "new_groups": 9,
+        "retained_groups": 1
+      },
+      {
+        "period": "2025-Q4",
+        "count": 30,
+        "population": 14000,
+        "share": 0.002142857142857143,
+        "groups": 24,
+        "new_groups": 20,
+        "retained_groups": 4
+      },
+      {
+        "period": "2026-Q1",
+        "count": 48,
+        "population": 14500,
+        "share": 0.003310344827586207,
+        "groups": 40,
+        "new_groups": 30,
+        "retained_groups": 10
+      },
+      {
+        "period": "2026-Q2",
+        "count": 70,
+        "population": 15000,
+        "share": 0.004666666666666667,
+        "groups": 55,
+        "new_groups": 40,
+        "retained_groups": 15
+      },
+      {
+        "period": "2026-Q3",
+        "count": 20,
+        "population": 15500,
+        "share": 0.0012903225806451613,
+        "groups": 18,
+        "new_groups": 12,
+        "retained_groups": 6
+      }
+    ],
+    "stage": "emerging_signal",
+    "momentum": "up",
+    "growth": {
+      "prior": {
+        "period": "2026-Q1",
+        "count": 48,
+        "population": 14500,
+        "share": 0.003310344827586207,
+        "groups": 40,
+        "new_groups": 30,
+        "retained_groups": 10
+      },
+      "recent": {
+        "period": "2026-Q2",
+        "count": 70,
+        "population": 15000,
+        "share": 0.004666666666666667,
+        "groups": 55,
+        "new_groups": 40,
+        "retained_groups": 15
+      },
+      "delta_pp": 0.13563218390804602,
+      "share_ratio": 1.4097222222222223,
+      "count_ratio": 1.4583333333333333
+    },
+    "reviewed": false,
+    "screening": "query",
+    "evidence_ids": [],
+    "first_year": "2025-Q2",
+    "growth_start": "2025-Q2",
+    "active_years": 6,
+    "groups": 114,
+    "top_group_share": 0.08,
+    "signals": {
+      "novelty": "recent",
+      "momentum": "up",
+      "coherence": "query",
+      "spread": "several",
+      "application": "implementations",
+      "concentration": "low"
+    },
+    "external": [
+      {
+        "topic": "mcp",
+        "kind": "implementation",
+        "community": "organization",
+        "date": "2025-06-01",
+        "title": "org/mcp",
+        "org": "org",
+        "url": "https://github.com/org/mcp",
+        "stars": 1200
+      },
+      {
+        "topic": "mcp",
+        "kind": "discussion",
+        "community": "discussion",
+        "date": "2025-07-15",
+        "title": "Show HN: Model Context Protocol",
+        "org": "Hacker News",
+        "url": "https://news.ycombinator.com/item?id=1",
+        "stars": 80
+      }
+    ],
+    "earliest_external": "2025-06-01",
+    "name": "Model Context Protocol",
+    "query": {
+      "arxiv": "all:\"mcp\"",
+      "github": "mcp",
+      "hn": "mcp"
+    },
+    "curated": true,
+    "papers_count": 183,
+    "repos": [0, 1, 40, 300, 900, 1400, 1800, 600],
+    "discussions": [0, 2, 15, 60, 120, 180, 210, 70],
+    "limits": [],
+    "source": "curated",
+    "branch": "computing",
+    "citations": {
+      "source": "openalex",
+      "observed_at": "2026-09-13T12:00:00Z",
+      "papers": 40,
+      "missing": 3,
+      "total": 180,
+      "cited": 31,
+      "expected": 100.0,
+      "normalized": 1.8
+    }
+  },
+  "papers": [
+    {
+      "id": "arxiv:2505.00001",
+      "title": "Tool protocols for agents",
+      "date": "2025-05-02",
+      "canonical_id": "arxiv:2505.00001",
+      "content_hash": "",
+      "url": "https://arxiv.org/abs/2505.00001",
+      "authors": ["A One", "B Two"],
+      "document_id": "",
+      "snapshot_id": ""
+    },
+    {
+      "id": "arxiv:2601.00002",
+      "title": "MCP security",
+      "date": "2026-01-20",
+      "canonical_id": "arxiv:2601.00002",
+      "content_hash": "",
+      "url": "https://arxiv.org/abs/2601.00002",
+      "authors": ["C Three"],
+      "document_id": "",
+      "snapshot_id": ""
+    }
+  ]
+}

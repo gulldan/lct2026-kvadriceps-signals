@@ -1,0 +1,29 @@
+{
+  "native_id": "2309.15217v1",
+  "canonical_id": "arxiv:2309.15217",
+  "url": "https://arxiv.org/abs/2309.15217v1",
+  "title": "RAGAS: Automated Evaluation of Retrieval Augmented Generation",
+  "authors": [
+    "Shahul Es",
+    "Jithin James",
+    "Luis Espinosa-Anke",
+    "Steven Schockaert"
+  ],
+  "published_at": "2023-09-26T19:23:54Z",
+  "version_updated_at": "2023-09-26T19:23:54Z",
+  "observed_at": "2026-09-08T22:28:42.905805+00:00",
+  "available_at": "2023-09-26T19:23:54Z",
+  "available_basis": "arXiv archived v1 release; historical reconstruction captured later",
+  "source_kind": "paper",
+  "provider": "arxiv",
+  "access_scope": "public",
+  "representation": "versioned_primary_abstract",
+  "text": "We introduce RAGAs (Retrieval Augmented Generation Assessment), a framework for reference-free evaluation of Retrieval Augmented Generation (RAG) pipelines. RAG systems are composed of a retrieval and an LLM based generation module, and provide LLMs with knowledge from a reference textual database, which enables them to act as a natural language layer between a user and textual databases, reducing the risk of hallucinations. Evaluating RAG architectures is, however, challenging because there are several dimensions to consider: the ability of the retrieval system to identify relevant and focused context passages, the ability of the LLM to exploit such passages in a faithful way, or the quality of the generation itself. With RAGAs, we put forward a suite of metrics which can be used to evaluate these different dimensions \\textit{without having to rely on ground truth human annotations}. We posit that such a framework can crucially contribute to faster evaluation cycles of RAG architectures, which is especially important given the fast adoption of LLMs.",
+  "text_sha256": "5b21e29a7425088d38044789e85ebb9c500b6cda080f7d7185936e6ddec369ea",
+  "raw_sha256": "761969bd1361209348c93fad02bd6d4c2df715209d933d5edb33e9ba47c64193",
+  "raw_file": "761969bd1361209348c93fad02bd6d4c2df715209d933d5edb33e9ba47c64193.xml",
+  "limitations": [
+    "Abstract-only evidence; author-reported results, not independent reproduction.",
+    "Later DOI, journal metadata and current citations are excluded from historical input."
+  ]
+}

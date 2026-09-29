@@ -1,0 +1,1360 @@
+{
+  "version": "acl-family-abstract-screening-v1",
+  "corpus_revision": "3ea0b566dfaee462915563ef1bd0f6586257b384",
+  "reviewed_at": "2026-09-11",
+  "assessor": "Codex",
+  "review_status": "documentary_primary_abstract_review_not_independent_expert_validation",
+  "scope": "All 120 title-matching family-membership decisions in the pinned 462-work ACL corpus, including a repeated primary-abstract review of all 39 graph candidates. No recall claim outside lexical candidates. Relevance screening is separate from method-quality labels.",
+  "families": [
+    {
+      "id": "graph",
+      "criterion": "Граф внешних сведений, документов, памяти или предметной структуры используется для извлечения либо организации контекста при ответе; исключаются только обучение, создание benchmark, граф как выход и структурный поиск размеченных примеров разбора. При неустановленном поиске основание недостаточно.",
+      "decisions": [
+        {
+          "paper_id": "2023.findings-emnlp.419",
+          "content_hash": "110fbaf3cc429b863429a4eeb95ef20d6b6ea9c5113e9438c178dba7deb853f8",
+          "included": false,
+          "reason": "Поиск размеченных примеров по структуре предсказываемого графа; граф внешних знаний для контекстного ответа не строится и не извлекается.",
+          "evidence": {
+            "url": "https://aclanthology.org/2023.findings-emnlp.419/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "4b1fb70d79841f1ea4774c12f599bee74a1453484521e22c2229e167555e22b2"
+          }
+        },
+        {
+          "paper_id": "2024.acl-long.115",
+          "content_hash": "d1772a31cd4d85ab417583f04bf034de1f0c0e35d5d3d429b33d54da4c7e6e2d",
+          "included": true,
+          "reason": "REANO строит граф связей найденных пассажей и использует его вместе с пассажами при генерации ответа.",
+          "evidence": {
+            "url": "https://aclanthology.org/2024.acl-long.115/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "4f83f564484721485d2f7ffc2dd64a37cb6c2999ee2bbb63d1eb8186620e8acd"
+          }
+        },
+        {
+          "paper_id": "2024.findings-acl.655",
+          "content_hash": "588f6081574311b238bbbd005a1c3babf57cd4aff71b961e9b9bab07908856ca",
+          "included": false,
+          "reason": "Описаны retrieval-pretraining и интеграция графа для генерации дистракторов; извлечение графового контекста при ответе аннотацией не установлено.",
+          "evidence": {
+            "url": "https://aclanthology.org/2024.findings-acl.655/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "7f0bff03b2670ef626530be2f3acb4e0ba2c3af2d37c9bd5636aa8fc9f626da9"
+          }
+        },
+        {
+          "paper_id": "2024.emnlp-main.281",
+          "content_hash": "b8ca0762bdfdc1325b1d5aa47e8146429972aac832b72ade69225b7bbcec6660",
+          "included": true,
+          "reason": "EMG-RAG извлекает персональные сведения из редактируемого графа памяти для работы агента.",
+          "evidence": {
+            "url": "https://aclanthology.org/2024.emnlp-main.281/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "ea4edd7a8ca3a169092ec5f252b58f3def72392bdf97912d1d14dfceb2468a8e"
+          }
+        },
+        {
+          "paper_id": "2024.emnlp-main.394",
+          "content_hash": "979571e420155977693d37d7caa350d15a75efcba4a1cfe1581c99054019ba6c",
+          "included": true,
+          "reason": "TimeR4 извлекает и ранжирует факты временного графа знаний по семантике и временным ограничениям вопроса.",
+          "evidence": {
+            "url": "https://aclanthology.org/2024.emnlp-main.394/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "9a9641996e9f8a43c6e2d0b7a528b4d7425f80d115e138e119125175466d8e73"
+          }
+        },
+        {
+          "paper_id": "2024.emnlp-main.914",
+          "content_hash": "e6989c97cfca00195eeb1fbad537cfd3623351d5b0f624f0d1f0d71617de1ff3",
+          "included": true,
+          "reason": "KG-MT плотным поиском извлекает сведения из многоязычного графа знаний для перевода имён сущностей.",
+          "evidence": {
+            "url": "https://aclanthology.org/2024.emnlp-main.914/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "c8c9d43e94eb74f75e77bcf8e148f685d63a8937ab6487ae758f2857001f54a4"
+          }
+        },
+        {
+          "paper_id": "2024.findings-emnlp.459",
+          "content_hash": "09f3d75945e9a3a4276bf9aa116e6935ad91c51f0ca85f89d19953e9650bda76",
+          "included": false,
+          "reason": "Граф служит источником обучающих планов для fine-tuning; графовый поиск при ответе не установлен.",
+          "evidence": {
+            "url": "https://aclanthology.org/2024.findings-emnlp.459/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "f5754bc708b622e0e779d43d8ecdafaf964d82cdf63e39670243e03b793c9eda"
+          }
+        },
+        {
+          "paper_id": "2025.findings-naacl.201",
+          "content_hash": "39a980da6010dd5279cd569a6802785693455111c07390b47925d0b55a65b056",
+          "included": true,
+          "reason": "GraPPI извлекает пути взаимодействия белков из большого графа знаний и разбирает их рёбра для объяснения.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.findings-naacl.201/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "1126f2bade146b53686b4cfde2dad3d182b2882fce5f6f22e6613bcf76d6374f"
+          }
+        },
+        {
+          "paper_id": "2025.findings-naacl.232",
+          "content_hash": "29c347397c2ce4325b5fa3ea5bd53cb5a1478166bef981d2ba2041946ff3755e",
+          "included": true,
+          "reason": "GRAG извлекает текстовые подграфы и передаёт их текстовую и топологическую структуру генератору.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.findings-naacl.232/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "7f42b7b9ad3b2105ecfb67d24b5f2d92e20a092dbca049a3b8882752c4a41eae"
+          }
+        },
+        {
+          "paper_id": "2025.naacl-industry.45",
+          "content_hash": "b9e0523582eff2da40a4c5a60e6f09312ffef5fbba46bdc26c5ec3579adc14ca",
+          "included": true,
+          "reason": "SuperRAG сохраняет связи текста, таблиц и рисунков в графе документа для мультимодального ответа.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.naacl-industry.45/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "8841548d8c10a5afd80f5c0a9d9d34ea6d4676facfbed43d4d02971e1195e186"
+          }
+        },
+        {
+          "paper_id": "2025.naacl-long.449",
+          "content_hash": "8a756ad41e6b923ab55da78ba034ddd9849cc97434c1a8300112431d3f465f76",
+          "included": true,
+          "reason": "KG2RAG расширяет исходные найденные фрагменты и организует контекст по связям графа знаний.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.naacl-long.449/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "09da2505b4b274422da2ff8e327d5ca08ee867a8d3d30826426259735a25cc25"
+          }
+        },
+        {
+          "paper_id": "2025.acl-demo.58",
+          "content_hash": "1766c86468ca38aab7b62cfb1d25842f7dd0497cfdad213b479a28080478a81b",
+          "included": true,
+          "reason": "ROGRAG использует граф доменных знаний и несколько уровней поиска, включая логические формы.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.acl-demo.58/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "af4749c6d8c88698ebf5bf0cd1f828ae0569c6d83d67927036f20c8562653092"
+          }
+        },
+        {
+          "paper_id": "2025.acl-long.1159",
+          "content_hash": "32b73a08621bc3e898aa8ab233f03572119872658b785864f8c73a42c10e0a18",
+          "included": true,
+          "reason": "GoR связывает найденные фрагменты с предыдущими ответами в графе и использует связи для последующей суммаризации.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.acl-long.1159/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "0c18ec90ff38253e6cbcaecfc1859c87c542ec0b1cdd8e01f2ba1ea5ebf56ef2"
+          }
+        },
+        {
+          "paper_id": "2025.acl-long.1317",
+          "content_hash": "dfd2457f4989489f45541a1e06fdec268f22ba0981dc8fc7e01423563a435239",
+          "included": true,
+          "reason": "K-RagRec извлекает структурные сведения из внешнего графа знаний для формирования рекомендаций.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.acl-long.1317/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "17f8b5aef897e710589929b3148ec22ee4c25f5f611b86f61fe0f2ef6b06a3e3"
+          }
+        },
+        {
+          "paper_id": "2025.acl-long.1381",
+          "content_hash": "2fb224ec101e3d2384512354eb45e732de89b8c628239427ad15aa7de6278378",
+          "included": true,
+          "reason": "MedGraphRAG связывает пользовательские документы с медицинскими источниками и извлекает контекст через тройной граф и U-Retrieval.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.acl-long.1381/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "d1a2fc8b3150270429e6d8e0fb1515482c57a40aef7ad642cf28459b1ad25a28"
+          }
+        },
+        {
+          "paper_id": "2025.acl-long.358",
+          "content_hash": "8866d7542c945646c17623f07f072f3388abbc508422922e5076001ece07c251",
+          "included": false,
+          "reason": "Граф задаёт структурное основание дистилляции знаний в малую модель; отдельное извлечение графового контекста при ответе не описано.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.acl-long.358/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "87de30285457cbb52dcacaf8a870917a374d62a879ef37ac15e65393e42b6adf"
+          }
+        },
+        {
+          "paper_id": "2025.acl-long.580",
+          "content_hash": "d33df01a91bd4f79524645cb4897e0ab76079dec453aa79212acd15af8fd4d2a",
+          "included": true,
+          "reason": "HyKGE расширяет направления поиска по графу медицинских знаний с помощью гипотез и ранжирует найденные фрагменты.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.acl-long.580/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "8cce7fd73c349dbf10baa5a34fab3958dfbafd23b48bda3e36ff34e6ee57c73b"
+          }
+        },
+        {
+          "paper_id": "2025.acl-long.830",
+          "content_hash": "f70c0050d0a839d45bc69b8b3e6f3a18b14eafb0f39e220970ddc8e82cfa2d7a",
+          "included": true,
+          "reason": "EventRAG строит граф событий между документами и итеративно извлекает их временные и логические связи.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.acl-long.830/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "14a48cf9e1a69cd015981921df22ebade9d18ceb86d9544cc6b304c47a8029e4"
+          }
+        },
+        {
+          "paper_id": "2025.findings-acl.1100",
+          "content_hash": "027d8ba1e0c94c86a35904a384e97c3dd374eeb27f2afc7c958542db6d427267",
+          "included": true,
+          "reason": "Запрос задаёт локальный мультимодальный граф; многопутевой поиск извлекает знание и дополняет недостающие модальности.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.findings-acl.1100/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "eed83e311d09cb2dfce6810cd374a9c3b47da90135d5d7c48396ad1fdbd87d3b"
+          }
+        },
+        {
+          "paper_id": "2025.findings-acl.1165",
+          "content_hash": "bb6e3487a625d4a285be4faad41951987f7898853b3e3f4936b6d3cde3080497",
+          "included": true,
+          "reason": "CausalRAG строит и прослеживает причинные связи в графе для извлечения связного контекста.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.findings-acl.1165/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "2d9a56d338fb3f74e56c30940a7588543b4fcf1f99ca09c12a1be65a6fd52e8d"
+          }
+        },
+        {
+          "paper_id": "2025.findings-acl.163",
+          "content_hash": "20b103422b4be1e62fdd08e6b4209312bf2a7575c23fee684504a9155d03a16c",
+          "included": true,
+          "reason": "SimGRAG преобразует запрос в графовый шаблон и извлекает соответствующие подграфы по структурному расстоянию.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.findings-acl.163/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "9103364df45b4d357ad3f938a892e1f426b75e88b4f04d39c53142746b69a4b9"
+          }
+        },
+        {
+          "paper_id": "2025.findings-acl.321",
+          "content_hash": "07ef336e2e3b4e555107ed1f009a3e19e9d7e780fc9d32c498c3b74f3c69a5f9",
+          "included": true,
+          "reason": "FRAG выбирает процедуру извлечения путей рассуждения из графа в зависимости от сложности запроса.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.findings-acl.321/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "bf196f5e9ea9e5aa5c5404405d6462b55b748f0acb059e495751a64044b56cbf"
+          }
+        },
+        {
+          "paper_id": "2025.findings-acl.624",
+          "content_hash": "5e7910e10ea2d995e971805c9a3c10bae52926932bd4a82232031a74602dadef",
+          "included": true,
+          "reason": "GeAR расширяет обычную поисковую выдачу по графу и использует её в многошаговом агентном поиске.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.findings-acl.624/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "9ef0689052dc816e266a0b7cbbe8bbc50ee48066ecdb5ae1f74f868cb34debc5"
+          }
+        },
+        {
+          "paper_id": "2025.findings-acl.659",
+          "content_hash": "ddd356ac389d62227d329cafbb08b43ff060ee35ebeeec8661ecc772e56a9f94",
+          "included": true,
+          "reason": "GRAF использует построенный граф румынского законодательства как источник фактов для юридических вопросов.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.findings-acl.659/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "0b5c0356b9fc4502467a54b666a9bd4bf2768e797103937bb6de9b9e00840ae3"
+          }
+        },
+        {
+          "paper_id": "2025.findings-acl.678",
+          "content_hash": "704eb1b22d3054bf3e2e29516342e7ccbb427ea061f699b809108de5af2d8236",
+          "included": false,
+          "reason": "Граф является выходом задачи заполнения недостающих связей; описанный поиск выполняется BM25, без установленного графового извлечения.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.findings-acl.678/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "50c1253c8915e7e9936fcdf3777423e88017a9d3b55afe6782d027f17d0a2085"
+          }
+        },
+        {
+          "paper_id": "2025.findings-acl.856",
+          "content_hash": "aa90a043484d3ee08e6315f231c034e087bb0958678d4457e87d8930f7091047",
+          "included": true,
+          "reason": "GNN-RAG оценивает узлы графовой сетью и извлекает кратчайшие пути от сущностей вопроса к кандидатам ответа.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.findings-acl.856/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "ab164bd38f1ddbdef3b7cd05af15eaf9fae72d53965ecaa387ce989e17ea4fb7"
+          }
+        },
+        {
+          "paper_id": "2025.emnlp-industry.93",
+          "content_hash": "771662c9ab03867edf5d43f70b771519df913a006140fcd2e00e514887f711e9",
+          "included": true,
+          "reason": "TOBUGraph строит граф из неструктурированных данных и получает контекст обходом его связей.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.emnlp-industry.93/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "32cb308e86e9470fcf1a42f1fc719a5b75265a9d4097b6e9fb7c9be11802ea5c"
+          }
+        },
+        {
+          "paper_id": "2025.emnlp-main.1293",
+          "content_hash": "0796ff8cb2e9de244831ee1bd26e9166ec3eafb7ac59a80e8c06568d7bd6d570",
+          "included": true,
+          "reason": "GraphRAG-FI фильтрует извлечённые сведения внешнего графа и дозирует их использование при генерации.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.emnlp-main.1293/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "240eab1f3f8d02a53416b0709b87bf5a8f6a264c13f23a558bdca405401d7272"
+          }
+        },
+        {
+          "paper_id": "2025.emnlp-main.1417",
+          "content_hash": "b45bed1ade57c7f6587d4be9191fde5222bf0768f756845abf41928e559a7728",
+          "included": true,
+          "reason": "BYOKG-RAG связывает сущности, пути и запросы OpenCypher с графом и извлекает контекст несколькими графовыми инструментами.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.emnlp-main.1417/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "b05c4381ca7f18f8f270c25f35dea02ba76e1a6bcee48fe32c265a32885ae672"
+          }
+        },
+        {
+          "paper_id": "2025.emnlp-main.1793",
+          "content_hash": "6eba58980020c74fc26d58838c2775478ed30b5f5314a8dacf6357e4a462962b",
+          "included": true,
+          "reason": "D-RAG выбирает связанный с вопросом подграф и передаёт его генератору через дифференцируемый модуль.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.emnlp-main.1793/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "d78cb4adbf7bd6f623bd1f84f1d53f029e19d02e5899852d861b189077443dd6"
+          }
+        },
+        {
+          "paper_id": "2025.emnlp-main.274",
+          "content_hash": "56fb81c538022899e1877ec7b6788bb263a7dc7d6d60d719bb60af3a1a7e7290",
+          "included": true,
+          "reason": "KG-RAG извлекает пути навигации из структурированного представления графов переходов интерфейса.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.emnlp-main.274/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "c22f63bb5de22dd922ba37ea45df9404def017fee492e8ade03c83ab8b4f9b58"
+          }
+        },
+        {
+          "paper_id": "2025.emnlp-main.836",
+          "content_hash": "6f6c99363a8d3589f1f17a36ac1d0cc2e001221948c8b5a643ba58cf057aa695",
+          "included": true,
+          "reason": "RAGvis при работе с новым набором данных извлекает операции анализа из графа знаний ноутбуков.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.emnlp-main.836/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "d68439b26069ae87fd467ce839db928737637ea228fefe6c268c6be3496ec3d5"
+          }
+        },
+        {
+          "paper_id": "2025.findings-emnlp.279",
+          "content_hash": "0c72ecde90a6ef51ca0e5c6c596d0d622dff64e26ade3325c265b33f16a98dc5",
+          "included": true,
+          "reason": "MaGiX выполняет поиск и переранжирование в многоуровневом межъязыковом графе знаний.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.findings-emnlp.279/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "a0a802135869d19625776ed01f75c40cefdbcaf388b5f0a7559f9473e169513e"
+          }
+        },
+        {
+          "paper_id": "2025.findings-emnlp.290",
+          "content_hash": "6d0fb03ca81b2742ab7d233e813bc0c2e45115939fc312271699113690871257",
+          "included": true,
+          "reason": "ReGraphRAG восстанавливает связи фрагментированного графа, расширяет перспективы и ранжирует контекст по запросу.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.findings-emnlp.290/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "ab16891b3a668344fde2cbbdb52510404958f47e7905a6216d32cf46da047076"
+          }
+        },
+        {
+          "paper_id": "2025.findings-emnlp.466",
+          "content_hash": "0eb931e8307033ffd4517d7872d155222a8a9cd9e5bde02d763a3bf0e3c67cee",
+          "included": false,
+          "reason": "Граф используется для создания конфликтных контекстов benchmark; новый графовый поиск при выводе не предлагается.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.findings-emnlp.466/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "ed462688e0872f3d71dcd7cb3c0b1ac2b8cb7fee8227112dc1487c885b4d9fa9"
+          }
+        },
+        {
+          "paper_id": "2025.findings-emnlp.606",
+          "content_hash": "7dd6267f622f88f0d9c94bc6dd620e1518e7a0fbfc23da8edaa5ac22a2af1bc5",
+          "included": true,
+          "reason": "SkewRoute маршрутизирует запросы к моделям на основе оценок контекста, извлечённого из графа знаний; графовый RAG является явным рабочим контуром.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.findings-emnlp.606/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "917bb9e54c6f8bd586b74498f6fbc7d2d81847dc18aee5929d7c8e017429268c"
+          }
+        },
+        {
+          "paper_id": "2025.findings-emnlp.752",
+          "content_hash": "11e2ac2ff5148b3868b498f91a239295b2d2f838d94b399430f77a73a3a5fc87",
+          "included": true,
+          "reason": "SKRAG строит каркас рассуждения, направляет извлечение подграфа и передаёт его генератору; есть эксперимент в космической предметной области.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.findings-emnlp.752/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "e3936ad544f7b8f47c829d816061a6dce2263a1c9a95ff1c391dfe5b2d9efd44"
+          }
+        },
+        {
+          "paper_id": "2025.findings-emnlp.892",
+          "content_hash": "53450fc0a479cbf17c8ec2a770050ee39863e91e32b0634453a22142e92f999a",
+          "included": true,
+          "reason": "DrKGC извлекает подграф для каждого запроса по выученным правилам и использует его структурные представления; граф не ограничен целевым выходом задачи.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.findings-emnlp.892/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "dd804a11ae6c661159742bd280e7fcbcab052e63d97bb3780279abd7da0f275b"
+          }
+        },
+        {
+          "paper_id": "2025.findings-emnlp.924",
+          "content_hash": "c79374f8ec1f7a8c13dd13da0bb9e72e94da6342bc2b4c8081e3965661f34708",
+          "included": true,
+          "reason": "GRRAF хранит целевой граф во внешней графовой БД и извлекает нужные сведения исполняемыми запросами для решения графовых задач.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.findings-emnlp.924/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "ec40c81b64902dd39991a440f961905fe7f5ec97309699bdebfa5e5dee2ea89e"
+          }
+        }
+      ]
+    },
+    {
+      "id": "adaptive",
+      "criterion": "Решения при ответе: искать ли, когда, какой запрос или стратегию выбрать; оптимизация явно итеративного adaptive-RAG. Обучение доменной адаптации, только декодирование или сжатие контекста отдельно не включаются.",
+      "decisions": [
+        {
+          "paper_id": "2023.emnlp-demo.5",
+          "content_hash": "414b7c1442c2b68851953e8e4a0ecc709abe787b948c2e567d15c2e4bf3e737a",
+          "included": false,
+          "reason": "Адаптация интерфейса и библиотеки визуализации; выбор момента или стратегии поиска в аннотации не установлен.",
+          "evidence": {
+            "url": "https://aclanthology.org/2023.emnlp-demo.5/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "4f5404a6d24c9bb9c79f181ff6c3227f27699663783614d4b1271ab297d075de"
+          }
+        },
+        {
+          "paper_id": "2023.emnlp-main.495",
+          "content_hash": "06a5ddd16a531f44a190ff7c96f6c058aba95c8639b9670a45fae8c893b50117",
+          "included": true,
+          "reason": "FLARE инициирует повторный поиск по неопределённости следующего предложения.",
+          "evidence": {
+            "url": "https://aclanthology.org/2023.emnlp-main.495/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "36ae17676c416f24bd30bdb8bcb25a710ddece8befb9516e2f0f98ed98e5b8cf"
+          }
+        },
+        {
+          "paper_id": "2023.findings-emnlp.339",
+          "content_hash": "7c6ce99005f57a945895f3ee04fbf02d603239317aed8e8c634fb6ccec0b7816",
+          "included": false,
+          "reason": "Адаптивное подавление токсичности при декодировании; управление поисковым циклом не описано.",
+          "evidence": {
+            "url": "https://aclanthology.org/2023.findings-emnlp.339/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "574522f2d65160ab94c4d6dcfaafd591dce95a355bedd0cb80c1879ef1096b13"
+          }
+        },
+        {
+          "paper_id": "2024.naacl-long.389",
+          "content_hash": "2d004b50b5bce8c4c650f3340ac73b631ee1818e7bbcd69a278692a4aa778ff6",
+          "included": true,
+          "reason": "Классификатор сложности выбирает отсутствие поиска, одношаговый или итеративный поиск.",
+          "evidence": {
+            "url": "https://aclanthology.org/2024.naacl-long.389/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "7cf7754759968edf588302a5c3efad87bec86231946dee6631e804e89a87929e"
+          }
+        },
+        {
+          "paper_id": "2024.acl-long.540",
+          "content_hash": "d7b1530bbf421952f81d925eedf1cb9cc9c72f13477e48216154743bbffb1969",
+          "included": false,
+          "reason": "Адаптируется adversarial-обучение генератора, а не стратегия поиска при ответе.",
+          "evidence": {
+            "url": "https://aclanthology.org/2024.acl-long.540/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "48197befe7e7862dbaa69c9d8aa1cf96af7697d830393630a768cd0192857e71"
+          }
+        },
+        {
+          "paper_id": "2024.findings-acl.415",
+          "content_hash": "5f8d9c5fd0f8025d0a38d1391ed01a31c93c40c474adaf295a4613357ef53f86",
+          "included": true,
+          "reason": "Кроме benchmark, представлен TA-ARE для принятия решения о необходимости поиска.",
+          "evidence": {
+            "url": "https://aclanthology.org/2024.findings-acl.415/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "83cdebe77d4218729b08b047ca4d4eb5224f5367236a399e53bf49bc1e091615"
+          }
+        },
+        {
+          "paper_id": "2024.findings-emnlp.136",
+          "content_hash": "106d22d2ca8072fffed92278da26b28c4d1b37be71dcf9ef9e3a17c43187b685",
+          "included": false,
+          "reason": "Адаптивное контрастное декодирование при шумном контексте; поиск не управляется.",
+          "evidence": {
+            "url": "https://aclanthology.org/2024.findings-emnlp.136/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "a14a8f1e4c25ee712b2bd8b6e4072c5bfa760c82a05790fef9997f3b97f755df"
+          }
+        },
+        {
+          "paper_id": "2024.findings-emnlp.999",
+          "content_hash": "53fc8a7bb96f6ed93ba06c16c782ce1ead16c93a26c12fb0ac5ab285a98f9fd3",
+          "included": true,
+          "reason": "Четыре критерия UAR определяют момент вызова поиска.",
+          "evidence": {
+            "url": "https://aclanthology.org/2024.findings-emnlp.999/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "e3b58a72071766563440d264d1a1e30c2638235fb31c042af73696ffd3327094"
+          }
+        },
+        {
+          "paper_id": "2025.findings-naacl.30",
+          "content_hash": "7f29fb73c2590225ad373bfa50e15b364c8e5c8c62d1901283de78c836c7fbf7",
+          "included": true,
+          "reason": "RAGate решает, нужен ли внешний поиск на текущем шаге диалога.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.findings-naacl.30/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "06cee0dfa9c177daae8fa5c4a85c62f7cbebcf7d35edccd74fb6ec5c822b53bf"
+          }
+        },
+        {
+          "paper_id": "2025.naacl-industry.79",
+          "content_hash": "b06222b514e91d204792bcaa4c54e513bea2e561eaa3165b7e61736e24f8d347",
+          "included": true,
+          "reason": "Сложность запроса определяет параметры гибридного поиска HyPA-RAG.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.naacl-industry.79/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "89e9d82a469d1f847dfe75337628ab6094c5ce7f9ad4679aba6097db4be5c17d"
+          }
+        },
+        {
+          "paper_id": "2025.naacl-long.334",
+          "content_hash": "be71b8a7eb96f323f04df0da57f6780dcb30e5abe660a0e8de3c10cf5e6d1459",
+          "included": false,
+          "reason": "Генерация терминов для доменной адаптации retrieval-модели; не адаптивный цикл ответа.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.naacl-long.334/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "a8904833d93ac713b90aa8d2769871fea420d33e1b75f6d98cc66931c9c13ee3"
+          }
+        },
+        {
+          "paper_id": "2025.acl-long.1312",
+          "content_hash": "4ef5859a2198a77dd31a1ef87683ef102816cb4d46a833bf0acc8a9887ca0c96",
+          "included": true,
+          "reason": "SeaKR использует неопределённость для запуска поиска и выбора стратегии рассуждения.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.acl-long.1312/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "04d23d44d45318475e33c8197ab4f95627c8eaa4f259f9151927aeaad12c07ec"
+          }
+        },
+        {
+          "paper_id": "2025.acl-long.148",
+          "content_hash": "3b4325096889777349f7cca6a778ff8fb6872aab9e60e006d886e408e867c460",
+          "included": true,
+          "reason": "DioR определяет, когда искать и какой контекст полезен при генерации.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.acl-long.148/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "90969980b8597dfa0c20ec483ccd7563846934ceadc7de2cb7071464610a990c"
+          }
+        },
+        {
+          "paper_id": "2025.acl-long.440",
+          "content_hash": "944d5ca449979ab1a50d830416bc9f43ce3d0062aaaa1a4bab0c0515f475af82",
+          "included": false,
+          "reason": "Поиск постов по пунктам опросника описан, но адаптивное решение о поиске в аннотации не подтверждено.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.acl-long.440/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "c47de96ab4ce64b769e0621c27baf2a858591f7707da6cc8cc15f19d5b9b060b"
+          }
+        },
+        {
+          "paper_id": "2025.findings-acl.1384",
+          "content_hash": "d2a9afa1b6ce19e2b6f944e10cd30ce41d2d0730068288fcc2b1754a7df7a688",
+          "included": true,
+          "reason": "Оптимизируется явно итеративный Adaptive-RAG: повторно используются перекрывающиеся результаты нескольких поисков.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.findings-acl.1384/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "52516a33b883c4cf64b383cc8869bb08c7df29b795b8260129842aae975857b0"
+          }
+        },
+        {
+          "paper_id": "2025.findings-acl.418",
+          "content_hash": "8c1b37c633572fe3046d3a3dd00b36a9fb577b486fe981d5623f541d9d3f6e7d",
+          "included": true,
+          "reason": "Amber меняет поисковые запросы и решает, когда остановиться, по накопленной памяти.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.findings-acl.418/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "21a7f3ffb17619057b2ba21318770c5734deb8df329902de43ad120de54fc885"
+          }
+        },
+        {
+          "paper_id": "2025.findings-acl.652",
+          "content_hash": "c759dd6e05312bb5db519cec523c2611c242e6547fc5a39c39d16458660a515b",
+          "included": true,
+          "reason": "CtrlA управляет моментом поиска через представления честности и уверенности модели.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.findings-acl.652/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "548abd51d5cc2345be77a4b60a0bd016bccf2f19350b1a2000b0d7565e4e7a1b"
+          }
+        },
+        {
+          "paper_id": "2025.emnlp-industry.72",
+          "content_hash": "fe57e579056902486fc3026cd20765d182465e124900170b0d302579974bdd7f",
+          "included": true,
+          "reason": "Исследуются две стратегии разметки решений adaptive retrieval и переформулировка запросов для многошагового RAG.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.emnlp-industry.72/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "018b59c0911a9d5fc8a9cb423f4ace2468b587c70ca959b4629abd4c404e33de"
+          }
+        },
+        {
+          "paper_id": "2025.emnlp-main.439",
+          "content_hash": "be5b8954c15b060e103c7923e73c6d2bc6b8288d2c6a053df117b0e4c81ddee0",
+          "included": true,
+          "reason": "Внешние признаки вопроса используются для решения, нужен ли поиск.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.emnlp-main.439/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "ff00db0ae1f144c0b1a1589f5a49af0db701ab9e15dc6cc3f9908c2f4553c21d"
+          }
+        },
+        {
+          "paper_id": "2025.findings-emnlp.1307",
+          "content_hash": "e6922e9e4795111f64c592c80b30a0a59f16c5b5c4fabf21013d48881965a376",
+          "included": false,
+          "reason": "Адаптируется сжатие уже полученного контекста; отдельное семейство эффективности контекста.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.findings-emnlp.1307/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "785d2edb69ea49fee77150f0cc19c8adbb163368c8a3463b0290be70d421d90b"
+          }
+        },
+        {
+          "paper_id": "2025.findings-emnlp.279",
+          "content_hash": "0c72ecde90a6ef51ca0e5c6c596d0d622dff64e26ade3325c265b33f16a98dc5",
+          "included": false,
+          "reason": "Графовая межъязыковая релевантность и выравнивание; динамическое управление циклом поиска не установлено.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.findings-emnlp.279/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "a0a802135869d19625776ed01f75c40cefdbcaf388b5f0a7559f9473e169513e"
+          }
+        },
+        {
+          "paper_id": "2025.findings-emnlp.419",
+          "content_hash": "46c4ba1da3f746368c3431cbcc1eedfcfa13e4a6f25c5b13933f7e710364dbf0",
+          "included": false,
+          "reason": "Поиск схем для извлечения событий; адаптация схем не является управлением поисковым циклом RAG.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.findings-emnlp.419/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "3ad26599938cf6a74416e52ae53902a3285a305a7043e6fd726f493e23c76286"
+          }
+        },
+        {
+          "paper_id": "2025.findings-emnlp.449",
+          "content_hash": "79e0b14e853ae058012884c10153889280273b987314ce0350c27739d3531ed7",
+          "included": false,
+          "reason": "Компрессия уже найденных документов по attention; момент и стратегия поиска не меняются.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.findings-emnlp.449/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "0870ece7a4d755c67ee1b55ccd1b6d249609f022c3f20d778a794685a86a0c2c"
+          }
+        },
+        {
+          "paper_id": "2025.findings-emnlp.769",
+          "content_hash": "063dde1f6cd9eef1c4679ed3e8ffd83d8e4419c7d5628c1e8c7c9f252737fc0e",
+          "included": false,
+          "reason": "Адаптивная глубина федеративного обучения эмбеддингов; не адаптивный поиск во время ответа.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.findings-emnlp.769/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "cea05321f5d95905ac63728a87504800e0cf7f0959105942bcef5442338ac09f"
+          }
+        },
+        {
+          "paper_id": "2025.findings-emnlp.817",
+          "content_hash": "916d1ce91e0b6d7d9aa385519181abf7030dc2011c54de43d79948ec2572a108",
+          "included": true,
+          "reason": "Q-PRM управляет последовательностью атомарных переформулировок по сложности запроса при поиске.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.findings-emnlp.817/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "1d32e419024552426ffcb0d63522af8182c2fcf8273510a675c0e0a1088fad5d"
+          }
+        }
+      ]
+    },
+    {
+      "id": "multimodal",
+      "criterion": "Первичное исследование retrieval-generation с визуальным или иным нетекстовым входом, поиском, документами или evidence. Обзоры, вывод диаграмм интерфейсом и retrieval только для training-данных исключены.",
+      "decisions": [
+        {
+          "paper_id": "2022.emnlp-main.375",
+          "content_hash": "94f23fcc2a8b27b37a6714241010c625f3a282e8bc50c3ce69e0e7863ef01efa",
+          "included": true,
+          "reason": "MuRAG извлекает изображения и текст из внешней мультимодальной памяти для ответа.",
+          "evidence": {
+            "url": "https://aclanthology.org/2022.emnlp-main.375/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "43ba142dd072364e10a3da5a36e85945da9850a80545450adb4efa36c7df68d9"
+          }
+        },
+        {
+          "paper_id": "2022.emnlp-main.772",
+          "content_hash": "5ef239ddd30fc20add085876711fd00a37c4648206271b994babd9f9023e2935",
+          "included": true,
+          "reason": "Визуальный вопрос совместно с внешними документами используется в обучаемом retrieval-generation цикле.",
+          "evidence": {
+            "url": "https://aclanthology.org/2022.emnlp-main.772/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "c82f1791ed9a09c42a085c6c375d91b7526fb0da05c0f8c0f6144d79dc475f6c"
+          }
+        },
+        {
+          "paper_id": "2023.emnlp-demo.5",
+          "content_hash": "414b7c1442c2b68851953e8e4a0ecc709abe787b948c2e567d15c2e4bf3e737a",
+          "included": false,
+          "reason": "Визуализация является выводом диалоговой системы; мультимодальный поиск или вход не описан.",
+          "evidence": {
+            "url": "https://aclanthology.org/2023.emnlp-demo.5/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "4f5404a6d24c9bb9c79f181ff6c3227f27699663783614d4b1271ab297d075de"
+          }
+        },
+        {
+          "paper_id": "2023.findings-emnlp.793",
+          "content_hash": "a4527f3158514f82bb37bc27dcff992eafdd9bf5e509d0e707f94d1bfca93eb5",
+          "included": true,
+          "reason": "Re-ViLM использует внешнюю базу при генерации подписей к изображениям.",
+          "evidence": {
+            "url": "https://aclanthology.org/2023.findings-emnlp.793/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "9112c49f2df15c34647316e34049eb2a41c545c2e2581f61945019f976c322b4"
+          }
+        },
+        {
+          "paper_id": "2024.findings-acl.69",
+          "content_hash": "fe17d592bec421d9f85919e4f9e6039c2bd6076a2ac879a932bebab9f4311092",
+          "included": true,
+          "reason": "В аннотации первичного PDF MORE явно объединяет поиск текстов и изображений.",
+          "evidence": {
+            "url": "https://aclanthology.org/2024.findings-acl.69.pdf",
+            "locator": "page 1, Abstract",
+            "sha256": "30904c691e8b850933ac264d039a5924f6566846f8f934c7461741fadbf59a15"
+          }
+        },
+        {
+          "paper_id": "2024.emnlp-demo.33",
+          "content_hash": "2a3981e5971ac24955e04639d51a34683877197d0664551d1f3c5fe313b1dd6f",
+          "included": false,
+          "reason": "RAGViz визуализирует attention текстового RAG; это диагностика интерфейса, а не мультимодальный поиск.",
+          "evidence": {
+            "url": "https://aclanthology.org/2024.emnlp-demo.33/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "e8bd6bb8afd2b66e518fe4fccccc5e0ff63876f820a44b2029d7cb463cb97aef"
+          }
+        },
+        {
+          "paper_id": "2024.emnlp-main.62",
+          "content_hash": "448bf5089925961cf7d1f0d2b6be33f1ddd05581d3098ad016589cd9f389b0bc",
+          "included": true,
+          "reason": "RULE исследует поиск внешнего контекста и его калибровку в медицинском visual QA.",
+          "evidence": {
+            "url": "https://aclanthology.org/2024.emnlp-main.62/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "def22f90959ebf36064940c4652a0497919009eb03fd43b26cc858ccc421484b"
+          }
+        },
+        {
+          "paper_id": "2024.emnlp-main.922",
+          "content_hash": "91fc422ab9357c4563e2ae3a10021f43647267682da2a5412ec934b1a47a3550",
+          "included": true,
+          "reason": "Визуальная и текстовая информация совместно используется для извлечения сущностей и ответов.",
+          "evidence": {
+            "url": "https://aclanthology.org/2024.emnlp-main.922/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "640dada5f3bc06b7f02b507de41e2e4e531b4980eac4f66b2080cef3b2380316"
+          }
+        },
+        {
+          "paper_id": "2024.findings-emnlp.14",
+          "content_hash": "743af73e2b2708a3a841545d221fec3a4e6231f4c43d8071569d1fb85170a722",
+          "included": true,
+          "reason": "SnapNTell включает первичный dataset и retrieval-augmented мультимодальную модель для visual QA.",
+          "evidence": {
+            "url": "https://aclanthology.org/2024.findings-emnlp.14/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "a766bb7ac9039757ba3a037471fb12fd27631b12addece3f1f71bdc37a0da197"
+          }
+        },
+        {
+          "paper_id": "2025.findings-naacl.108",
+          "content_hash": "c960ef8ccf3e66d3a15b433e625eaef88d49c0c92816a73bf5c902578d71039c",
+          "included": true,
+          "reason": "UniRAG добавляет результаты vision-language retrieval в мультимодальные запросы при inference.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.findings-naacl.108/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "93df4c8028e562218454ce365331175bb77198ba2d68a4d6407dad7d0cea4789"
+          }
+        },
+        {
+          "paper_id": "2025.findings-naacl.241",
+          "content_hash": "87f9ace1abfe9806259a56273faf32292c507fd1191ff863a40d6966233111f5",
+          "included": false,
+          "reason": "Описаны мультимодальные выходы, но участие нетекстовых данных в поиске или reasoning не установлено аннотацией.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.findings-naacl.241/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "0fc3e9d5bca4db43069c844d070bd720bc060f8bb31738d84ac9a023684b36bc"
+          }
+        },
+        {
+          "paper_id": "2025.findings-naacl.60",
+          "content_hash": "7383a6851fdbffd1931201e0ff9da6e80f63a8cb4b97699ffef5ff6052f857bf",
+          "included": true,
+          "reason": "RAMQA объединяет мультимодальный ranker и генератор ответов для изображений и текста.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.findings-naacl.60/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "c776bacd9f254543acb1bfab3f16541eb0b80310097969297daf7d51978cf586"
+          }
+        },
+        {
+          "paper_id": "2025.naacl-long.310",
+          "content_hash": "1b581e98391d16d8912c664d0728ee16095570698370156e659d53424de642d5",
+          "included": true,
+          "reason": "VisDoMRAG совмещает визуальный и текстовый поиск с согласованием модальностей.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.naacl-long.310/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "bc5377f5ab8744ec4cd84e2046b727163b1b81388a70e90a93c34e47d33406d1"
+          }
+        },
+        {
+          "paper_id": "2025.acl-long.1106",
+          "content_hash": "6b6780b48155451154a94dd8eb66147a45524f7a739b84f0644a5343e42871bd",
+          "included": false,
+          "reason": "Visual program означает язык программирования Ladder Diagram; мультимодальный RAG не описан.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.acl-long.1106/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "26237fbbbe821bf7aeaa152e3d2f48793de77dd1d8acfc7519a2e375a3d33ff0"
+          }
+        },
+        {
+          "paper_id": "2025.acl-long.1456",
+          "content_hash": "140603004ef1c0c934ae3924bc46dd6cdb1a124fb2a987119a46d94db4bc3651",
+          "included": true,
+          "reason": "VISA использует screenshots документов и VLM для визуальной атрибуции источника ответа.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.acl-long.1456/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "9b89ef728f0f88bfb9b2741c4c10ea33bb97658cb58875de6a0c7ac5d7747669"
+          }
+        },
+        {
+          "paper_id": "2025.acl-long.1528",
+          "content_hash": "81f5e7a51c7b38b49daf5a4a5f37796e8cb5409f0225b93e6790a0ec7a9a927e",
+          "included": true,
+          "reason": "Первичное эмпирическое исследование retrieval по мультимодальным документам и его улучшение обучением.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.acl-long.1528/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "3ac9d98d1e7cc1287afb4c1b5756f5708108675d92f19724d9477e19f1e00bbc"
+          }
+        },
+        {
+          "paper_id": "2025.acl-long.1583",
+          "content_hash": "42cef20770e5e0f6e46d8d3d6c6ab8fd4d4428960a7979d5cd9131e59cfeb5d8",
+          "included": true,
+          "reason": "CoRe-MMRAG согласует визуальные, текстовые и параметрические знания после мультимодального поиска.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.acl-long.1583/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "b6a75ac6fe71eae93e2bc2b194307c90a8e159b10461588d70c18940a645c652"
+          }
+        },
+        {
+          "paper_id": "2025.findings-acl.1100",
+          "content_hash": "027d8ba1e0c94c86a35904a384e97c3dd374eeb27f2afc7c958542db6d427267",
+          "included": true,
+          "reason": "Локальный GraphRAG дополняет отсутствующие мультимодальные сведения при онлайн reasoning.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.findings-acl.1100/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "eed83e311d09cb2dfce6810cd374a9c3b47da90135d5d7c48396ad1fdbd87d3b"
+          }
+        },
+        {
+          "paper_id": "2025.findings-acl.861",
+          "content_hash": "946eab1a46b141e5d73262a7a5377642afbc2aa0c899d61b4582bc6cba7b923c",
+          "included": false,
+          "reason": "Обзор существующих методов; не отдельное первичное исследование или новая реализация.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.findings-acl.861/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "1d5d5490d8916205e5fc9fca508621fc8610fccf35a7e61f8912eae597538f29"
+          }
+        },
+        {
+          "paper_id": "2025.emnlp-industry.99",
+          "content_hash": "15ecc79d78cbfc182fb555e251e22cc2cfc75e4de23c71ffc0cfbc678b019a1a",
+          "included": false,
+          "reason": "Совпадение vision внутри слова supervision; аннотация описывает текстовый агентный RAG.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.emnlp-industry.99/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "848d721fe2006c518355726aaea6ad5c497dccc4cee05890e627dc8473972ec9"
+          }
+        },
+        {
+          "paper_id": "2025.emnlp-main.1062",
+          "content_hash": "306db340bcbf1f5a984d7a287e932843cac3f73e9e72436761623a39dff5e911",
+          "included": true,
+          "reason": "Зрительный разбор, OCR и структура документа совместно определяют retrieval chunks.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.emnlp-main.1062/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "289e18b3018e28b3ad5336f44cfe24751525ee95245de584dcc514b160c2a580"
+          }
+        },
+        {
+          "paper_id": "2025.emnlp-main.121",
+          "content_hash": "654c5f7474fef0a684ee154007179b8eb443c290e5b814070ddbe0da2e04fa02",
+          "included": false,
+          "reason": "Поиск изображений формирует preference-данные для обучения VLM; inference с retrieval не подтверждён.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.emnlp-main.121/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "b21110cbd159f2e1f460aba5dc9d4d88e6268c10560ead25fe4d3b5ac8c58197"
+          }
+        },
+        {
+          "paper_id": "2025.emnlp-main.1215",
+          "content_hash": "6b9b6290e62dc8740b47fb03f1c0a90e40e5c74cf425cc2e02b6df014b2038cd",
+          "included": false,
+          "reason": "Аннотация описывает адаптацию LMM и robustness, но не устанавливает использование внешнего поиска; состав не подтверждён.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.emnlp-main.1215/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "f528e42fecc1228fd392eae19efab025c308fe94031b107eabab924c2394c9e6"
+          }
+        },
+        {
+          "paper_id": "2025.emnlp-main.1259",
+          "content_hash": "8bba4f2b071a53114226a7449ba393a4fb449ffc0f625442c9645dffc9953c28",
+          "included": true,
+          "reason": "Первичное исследование приватности реальных vision-language и speech-language RAG, а не обзор.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.emnlp-main.1259/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "f66c41c6cdb61f8813b34c7a0972d435beb4773de20f6cd58fbff97a12f60a7c"
+          }
+        },
+        {
+          "paper_id": "2025.emnlp-main.211",
+          "content_hash": "eedfba111d2b253afb39cdde96400123be4d73bacf882469f631a1bac7d07c68",
+          "included": true,
+          "reason": "FinRAGBench-V и RGenCite исследуют визуальный retrieval и citation в финансовых документах.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.emnlp-main.211/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "bf74f9fcea7a1dea38ef05e2b075143b151fc67379b361911642ac4e1db2dcb5"
+          }
+        },
+        {
+          "paper_id": "2025.emnlp-main.436",
+          "content_hash": "abbec9aaa67c796ac6f567d3f6854522e670d3d8ca03805dea5c90c8bdc5d6c5",
+          "included": true,
+          "reason": "DocReRank обучает reranker мультимодальных документов по специально построенным hard negatives.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.emnlp-main.436/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "9aa69bcbd1d509140ced415a992860e7f7febc9988099f83f7e97e5a060b6de9"
+          }
+        },
+        {
+          "paper_id": "2025.emnlp-main.464",
+          "content_hash": "42c3fbec02e3e5d512640d884b61b46c522a613f0181b52405418212abfdc0cb",
+          "included": true,
+          "reason": "ViDoRAG явно объединяет текстовые и визуальные признаки в multi-agent retrieval.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.emnlp-main.464/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "b4ede30c2b06b98331c600ac354f42358144d597489fcb1cabcfb3e29f2f4f7b"
+          }
+        },
+        {
+          "paper_id": "2025.emnlp-main.708",
+          "content_hash": "590e6331399670ccecf93add2d7a0e188327bfbaf18c382f1840102ff62d2462",
+          "included": true,
+          "reason": "MoLoRAG извлекает визуальные страницы по графу логических связей для LVLM.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.emnlp-main.708/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "ed8f69a595abb2edef7c0dd1c4c6970107c7de1bf6d9b06e60b65f4f0b7485ce"
+          }
+        },
+        {
+          "paper_id": "2025.emnlp-main.768",
+          "content_hash": "6ba39c5da1ff1f8497798b68d84003087f6a718c41c464f3c7095171e756df7d",
+          "included": true,
+          "reason": "Первичное исследование position bias в текстовых, визуальных и смешанных retrieval задачах.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.emnlp-main.768/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "c28dd4d702fe684649237b7b6b63d32625b4d63326136fee14e2edd066c0f13b"
+          }
+        },
+        {
+          "paper_id": "2025.findings-emnlp.24",
+          "content_hash": "023a1bc0ba41b7de6daea59b7f57100343503a66928ae82a6d0f087a6ff1f388",
+          "included": true,
+          "reason": "Query translator и adaptive reranker оптимизируют мультимодальный retrieval-generation цикл.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.findings-emnlp.24/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "4c3ff3c54d517fc4e6fe4210a52bf8e7053c51c317aa982093ffc1268020520c"
+          }
+        },
+        {
+          "paper_id": "2025.findings-emnlp.432",
+          "content_hash": "43a011b2f4d1a033541c3ea00fc1bf2c80828c1f4624d6238fa1b9e2809fe80e",
+          "included": true,
+          "reason": "RagVL ранжирует найденные изображения через VLM и обучает устойчивый генератор.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.findings-emnlp.432/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "24a8e0fbdd830996a00703db1c0b128849e8f4c72ba8f682c5eb8a719053d99d"
+          }
+        },
+        {
+          "paper_id": "2025.findings-emnlp.817",
+          "content_hash": "916d1ce91e0b6d7d9aa385519181abf7030dc2011c54de43d79948ec2572a108",
+          "included": false,
+          "reason": "Совпадение vision внутри supervision; рассматривается переформулировка текстовых запросов.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.findings-emnlp.817/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "1d32e419024552426ffcb0d63522af8182c2fcf8273510a675c0e0a1088fad5d"
+          }
+        },
+        {
+          "paper_id": "2025.findings-ijcnlp.80",
+          "content_hash": "9bb7fcc7f7c9683d7430cb0730235eec8413f5e81f1e37b5bd9d79ce92356101",
+          "included": true,
+          "reason": "TelcoAI объединяет текст и диаграммы в поиске по техническим спецификациям 3GPP.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.findings-ijcnlp.80/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "9a769d8648b96fce8d5c4727246fcc6c128f5d9dcc25732d1eba825ef9b1a951"
+          }
+        }
+      ]
+    },
+    {
+      "id": "agentic",
+      "criterion": "Первичный метод с LLM-агентами, которые выполняют задачи, планируют или совместно контролируют retrieval-generation при inference. Название agent, обзор или агенты только при обучении недостаточны.",
+      "decisions": [
+        {
+          "paper_id": "2024.findings-acl.802",
+          "content_hash": "55465be38c5cbf0aa316305961c630ee339b620a589549a551a46b91398a8a3c",
+          "included": true,
+          "reason": "RaDA выполняет decomposition и итеративно извлекает примеры для действий Web-агента.",
+          "evidence": {
+            "url": "https://aclanthology.org/2024.findings-acl.802/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "283657803078db6d17210734610aa7bb76f8197ba3246258a945b3d286d2d3f1"
+          }
+        },
+        {
+          "paper_id": "2024.emnlp-main.281",
+          "content_hash": "b8ca0762bdfdc1325b1d5aa47e8146429972aac832b72ade69225b7bbcec6660",
+          "included": false,
+          "reason": "Персональная память RAG подтверждена, но автономный многошаговый управляющий цикл не установлен аннотацией.",
+          "evidence": {
+            "url": "https://aclanthology.org/2024.emnlp-main.281/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "ea4edd7a8ca3a169092ec5f252b58f3def72392bdf97912d1d14dfceb2468a8e"
+          }
+        },
+        {
+          "paper_id": "2024.emnlp-main.610",
+          "content_hash": "1d697cab128cdd6dff1d15addb2677220356631652a40e3c643f88564b820951",
+          "included": false,
+          "reason": "Агенты Generator и Attacker используются при adversarial-обучении, а не в поисковом workflow inference.",
+          "evidence": {
+            "url": "https://aclanthology.org/2024.emnlp-main.610/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "359ffe75608779853b78e8cb36d77cda09f353010ad4a42cef07c96806af0de7"
+          }
+        },
+        {
+          "paper_id": "2025.naacl-industry.53",
+          "content_hash": "0672f91576177c1d0a72c019832a44fbcaaa00cdf352e8e469ed6d96bedd4867",
+          "included": false,
+          "reason": "Сравнение Assistants API и обычного RAG не описывает конкретный агентный механизм поиска; недостаточно состава.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.naacl-industry.53/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "7ea593a3f417a1c2950b94cd1b8eacc54c124e661ebf3b622c19d231b9fdd09e"
+          }
+        },
+        {
+          "paper_id": "2025.acl-long.131",
+          "content_hash": "c35a8cb221a1f25fe16b8ae0c806f22988caf66d361c4b26f3fcf0649e6d30b2",
+          "included": true,
+          "reason": "Несколько LLM-агентов совместно фильтруют и оценивают документы при обработке запроса.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.acl-long.131/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "dd9ebbb36b81cc07b1ae80def754d3942a89fe3e8c6d4aad8c086208005b28b5"
+          }
+        },
+        {
+          "paper_id": "2025.acl-long.179",
+          "content_hash": "ebd6a947ba314fc2aac2196abd09b882382a6c36f5de1bbbc96915d6c578c01e",
+          "included": true,
+          "reason": "Агентный executor меняет ход RAG по обратной связи critic-модели.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.acl-long.179/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "0c670cdee38419a27a40f738ed2c319cede9738b260057f6f5a8969524cd3093"
+          }
+        },
+        {
+          "paper_id": "2025.findings-acl.624",
+          "content_hash": "5e7910e10ea2d995e971805c9a3c10bae52926932bd4a82232031a74602dadef",
+          "included": true,
+          "reason": "GeAR включает графовый поиск в явно многошаговый агентный retrieval workflow.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.findings-acl.624/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "9ef0689052dc816e266a0b7cbbe8bbc50ee48066ecdb5ae1f74f868cb34debc5"
+          }
+        },
+        {
+          "paper_id": "2025.emnlp-industry.99",
+          "content_hash": "15ecc79d78cbfc182fb555e251e22cc2cfc75e4de23c71ffc0cfbc678b019a1a",
+          "included": true,
+          "reason": "DecEx-RAG учит решения и исполнение для автономной декомпозиции и динамического поиска.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.emnlp-industry.99/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "848d721fe2006c518355726aaea6ad5c497dccc4cee05890e627dc8473972ec9"
+          }
+        },
+        {
+          "paper_id": "2025.emnlp-main.274",
+          "content_hash": "56fb81c538022899e1877ec7b6788bb263a7dc7d6d60d719bb60af3a1a7e7290",
+          "included": true,
+          "reason": "GUI-агент извлекает навигационные пути из графа при принятии решений.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.emnlp-main.274/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "c22f63bb5de22dd922ba37ea45df9404def017fee492e8ade03c83ab8b4f9b58"
+          }
+        },
+        {
+          "paper_id": "2025.emnlp-main.464",
+          "content_hash": "42c3fbec02e3e5d512640d884b61b46c522a613f0181b52405418212abfdc0cb",
+          "included": true,
+          "reason": "Агенты exploration, summarization и reflection образуют итеративный visual RAG workflow.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.emnlp-main.464/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "b4ede30c2b06b98331c600ac354f42358144d597489fcb1cabcfb3e29f2f4f7b"
+          }
+        },
+        {
+          "paper_id": "2025.emnlp-main.626",
+          "content_hash": "c75bc2d87b07bb43d57802a9ba57530e2099cb027988f82beac18d97c6a68e52",
+          "included": true,
+          "reason": "EvoRAG использует найденные маршруты в итеративной оптимизации travel-planning агента.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.emnlp-main.626/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "0e59b9e25adcbf2d6effa1d1c05c77ff46b2df025228c5c3b08146c5ee2a0b68"
+          }
+        },
+        {
+          "paper_id": "2025.emnlp-main.675",
+          "content_hash": "2fb1dadb9e3c97271e31fd62b05332bd69c4bac2e6ba49ddc5d9a53e4a994c41",
+          "included": true,
+          "reason": "Учитель и ученики образуют многоагентный цикл с Persona-RAG для индивидуального поиска знаний.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.emnlp-main.675/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "845c8c3b8d84b6df1d93157a506e2016a9d7f288732216d07fed5d2d23543c39"
+          }
+        },
+        {
+          "paper_id": "2025.emnlp-main.902",
+          "content_hash": "506d1acdc1637ad9857e28168191c1999598a7cb644f52bdfb8ddc9b6fde4729",
+          "included": true,
+          "reason": "RAG-GUI подключает Web-инструкции к VLM-агенту непосредственно при выполнении действий.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.emnlp-main.902/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "e04ee20800fa2c944a36267010e2b370770e1e776a690013458b5e8bef086cc3"
+          }
+        },
+        {
+          "paper_id": "2025.findings-ijcnlp.122",
+          "content_hash": "62b213936bde18bb1a107287fd886f2f3fa305974de214ebde513bc3edc8aaac",
+          "included": false,
+          "reason": "Обзор agentic RAG, не дополнительная первичная работа с самостоятельным агентным методом.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.findings-ijcnlp.122/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "283953a5c568cc2aa94b01e5f53565a3fd3bc2af253d731ce4883850f4d2e17c"
+          }
+        },
+        {
+          "paper_id": "2025.findings-ijcnlp.80",
+          "content_hash": "9bb7fcc7f7c9683d7430cb0730235eec8413f5e81f1e37b5bd9d79ce92356101",
+          "included": true,
+          "reason": "TelcoAI применяет structured query planning и управляемый metadata retrieval в агентной системе.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.findings-ijcnlp.80/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "9a769d8648b96fce8d5c4727246fcc6c128f5d9dcc25732d1eba825ef9b1a951"
+          }
+        }
+      ]
+    },
+    {
+      "id": "memory",
+      "criterion": "Первичное управление сохраняемой, редактируемой или временной памятью с retrieval: знания, события, диалог или память поисковых шагов. Статическая база примеров и общий анализ параметрической памяти исключены.",
+      "decisions": [
+        {
+          "paper_id": "2024.findings-naacl.151",
+          "content_hash": "7550f8f82654a2df0ebe5b7aa48cf7ac3ca86d4efb3caaafea9034cdf5568a49",
+          "included": true,
+          "reason": "Аннотация первичного PDF COMEM подтверждает retrieval-augmented хранение и обновление knowledge edits.",
+          "evidence": {
+            "url": "https://aclanthology.org/2024.findings-naacl.151.pdf",
+            "locator": "page 1, Abstract",
+            "sha256": "9b729b60065cb1e7b69c14b6faf40630b2f0665c394cd0d8f43082f72f9f532c"
+          }
+        },
+        {
+          "paper_id": "2024.findings-naacl.190",
+          "content_hash": "b3075a9fc852204563c91c3b3d45a4e1fb36bb1e8649929bf95499d2d47c32da",
+          "included": false,
+          "reason": "Статическая память примеров перевода; управление обновляемой или временной памятью не исследуется.",
+          "evidence": {
+            "url": "https://aclanthology.org/2024.findings-naacl.190/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "89e4010cc05b729ea0fc521d7e10e77583589fbbdf0e5dce68b75709763059b2"
+          }
+        },
+        {
+          "paper_id": "2024.emnlp-main.281",
+          "content_hash": "b8ca0762bdfdc1325b1d5aa47e8146429972aac832b72ade69225b7bbcec6660",
+          "included": true,
+          "reason": "EMG-RAG собирает, редактирует и выбирает воспоминания пользователя через editable memory graph.",
+          "evidence": {
+            "url": "https://aclanthology.org/2024.emnlp-main.281/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "ea4edd7a8ca3a169092ec5f252b58f3def72392bdf97912d1d14dfceb2468a8e"
+          }
+        },
+        {
+          "paper_id": "2024.emnlp-main.751",
+          "content_hash": "2f5de003c11ee24f0ecb85145ab7565c27428ff9a106e6f00db7256d3f0a355d",
+          "included": true,
+          "reason": "RECIPE хранит редактируемые знания и извлекает continuous prompts для lifelong knowledge editing.",
+          "evidence": {
+            "url": "https://aclanthology.org/2024.emnlp-main.751/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "f9857cc2ffe123fa0d7aa130b81fccf5958e4c555f3338f2ee471c3396fc59c1"
+          }
+        },
+        {
+          "paper_id": "2024.emnlp-main.943",
+          "content_hash": "b6f7800af7cb811f023ab952382bf148cf824af9dbd900639a137e435bd116cb",
+          "included": false,
+          "reason": "Анализ существующих параметрических и непараметрических представлений Atlas; метод обновляемой памяти не предложен.",
+          "evidence": {
+            "url": "https://aclanthology.org/2024.emnlp-main.943/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "164240aa58930f2ed7cb3a267b2f9a8f0f56b4f513139c68eaa911aa2d07b1b7"
+          }
+        },
+        {
+          "paper_id": "2025.acl-long.1127",
+          "content_hash": "e9362709efaf5a9ea21beb98df01ebf79d5cda0dbf2f8767d8fed1509a7141bd",
+          "included": false,
+          "reason": "Заявлены lifelong learning и parametric retrieval, но отдельная извлекаемая память и её обновление не установлены аннотацией.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.acl-long.1127/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "0d64a940d7e9e47237a4594d7005f73c955adcf70cd4d807de35d1273fbf1427"
+          }
+        },
+        {
+          "paper_id": "2025.findings-acl.1048",
+          "content_hash": "7996b94cd118fc6950a20b3272658a7d6aeb17422598eb013e6c8e6d517f2ebe",
+          "included": true,
+          "reason": "SynapticRAG использует временные связи для выбора памяти диалога.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.findings-acl.1048/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "86368086f0e496a657598c9c210f06e6f1b6d1e8a2590bfb040e713f5500de46"
+          }
+        },
+        {
+          "paper_id": "2025.findings-acl.418",
+          "content_hash": "8c1b37c633572fe3046d3a3dd00b36a9fb577b486fe981d5623f541d9d3f6e7d",
+          "included": true,
+          "reason": "Amber сохраняет и обновляет сводную память между шагами поиска.",
+          "evidence": {
+            "url": "https://aclanthology.org/2025.findings-acl.418/",
+            "locator": "abstract in pinned ACL XML",
+            "sha256": "21a7f3ffb17619057b2ba21318770c5734deb8df329902de43ad120de54fc885"
+          }
+        }
+      ]
+    }
+  ]
+}

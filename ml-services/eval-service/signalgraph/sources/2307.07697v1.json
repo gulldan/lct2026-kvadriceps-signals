@@ -1,0 +1,33 @@
+{
+  "native_id": "2307.07697v1",
+  "canonical_id": "arxiv:2307.07697",
+  "url": "https://arxiv.org/abs/2307.07697v1",
+  "title": "Think-on-Graph: Deep and Responsible Reasoning of Large Language Model with Knowledge Graph",
+  "authors": [
+    "Jiashuo Sun",
+    "Chengjin Xu",
+    "Lumingyuan Tang",
+    "Saizhuo Wang",
+    "Chen Lin",
+    "Yeyun Gong",
+    "Heung-Yeung Shum",
+    "Jian Guo"
+  ],
+  "published_at": "2023-07-15T03:31:38Z",
+  "version_updated_at": "2023-07-15T03:31:38Z",
+  "observed_at": "2026-09-08T21:43:42.308337+00:00",
+  "available_at": "2023-07-15T03:31:38Z",
+  "available_basis": "arXiv archived v1 release; historical reconstruction captured later",
+  "source_kind": "paper",
+  "provider": "arxiv",
+  "access_scope": "public",
+  "representation": "versioned_primary_abstract",
+  "text": "Large language models (LLMs) have made significant strides in various tasks, yet they often struggle with complex reasoning and exhibit poor performance in scenarios where knowledge traceability, timeliness, and accuracy are crucial. To address these limitations, we present Think-on-Graph (ToG), a novel framework that leverages knowledge graphs to enhance LLMs' ability for deep and responsible reasoning. By employing ToG, we can identify entities relevant to a given question and conduct exploration and reasoning to retrieve related triples from an external knowledge database. This iterative procedure generates multiple reasoning pathways consisting of sequentially connected triplets until sufficient information is gathered to answer the question or the maximum depth is reached. Through experiments on complex multi-hop reasoning question-answering tasks, we demonstrate that ToG outperforms existing methods, effectively addressing the aforementioned limitations of LLMs without incurring additional training costs.",
+  "text_sha256": "e47207c7ade032473e364eb58d8aff182f33659c61819c715766a80ab4524531",
+  "raw_sha256": "da0db3489b7b13738f585fa8b557be5e8d78b3989e4963dbadced049c99a5ee4",
+  "raw_file": "da0db3489b7b13738f585fa8b557be5e8d78b3989e4963dbadced049c99a5ee4.xml",
+  "limitations": [
+    "Abstract-only evidence; author-reported results, not independent reproduction.",
+    "Later DOI, journal metadata and current citations are excluded from historical input."
+  ]
+}

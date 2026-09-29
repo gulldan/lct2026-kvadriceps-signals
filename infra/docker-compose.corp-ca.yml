@@ -1,0 +1,34 @@
+# Доверенный пакет для OpenAI-совместимого шлюза, подписанного частной CA; подключается поверх
+# docker-compose.yml. RAG_CA_BUNDLE должен включать и публичные корни.
+x-corporate-ca: &corporate-ca
+  environment:
+    SSL_CERT_FILE: /etc/rag/trust-bundle.pem
+    REQUESTS_CA_BUNDLE: /etc/rag/trust-bundle.pem
+  volumes:
+    - type: bind
+      source: ${RAG_CA_BUNDLE:?Set RAG_CA_BUNDLE to the absolute PEM bundle path}
+      target: /etc/rag/trust-bundle.pem
+      read_only: true
+      bind:
+        create_host_path: false
+
+services:
+  source-harvester: *corporate-ca
+  archive-worker: *corporate-ca
+  auth: *corporate-ca
+  chunk-splitter: *corporate-ca
+  cluster-worker: *corporate-ca
+  db-parser: *corporate-ca
+  db-service: *corporate-ca
+  discovery-worker: *corporate-ca
+  email-parser: *corporate-ca
+  eval-service: *corporate-ca
+  graph-compute: *corporate-ca
+  llm-service: *corporate-ca
+  main-service: *corporate-ca
+  ocr-service: *corporate-ca
+  office-parser: *corporate-ca
+  pdf-parser: *corporate-ca
+  radar-collector: *corporate-ca
+  raptor-worker: *corporate-ca
+  vlm-service: *corporate-ca

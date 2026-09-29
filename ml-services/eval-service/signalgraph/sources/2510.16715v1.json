@@ -1,0 +1,29 @@
+{
+  "native_id": "2510.16715v1",
+  "canonical_id": "arxiv:2510.16715",
+  "url": "https://arxiv.org/abs/2510.16715v1",
+  "title": "Right Answer at the Right Time - Temporal Retrieval-Augmented Generation via Graph Summarization",
+  "authors": [
+    "Zulun Zhu",
+    "Haoyu Liu",
+    "Mengke He",
+    "Siqiang Luo"
+  ],
+  "published_at": "2025-10-19T05:00:04Z",
+  "version_updated_at": "2025-10-19T05:00:04Z",
+  "observed_at": "2026-09-08T22:52:12.195898+00:00",
+  "available_at": "2025-10-19T05:00:04Z",
+  "available_basis": "arXiv archived v1 release; historical reconstruction captured later",
+  "source_kind": "paper",
+  "provider": "arxiv",
+  "access_scope": "public",
+  "representation": "versioned_primary_abstract",
+  "text": "Question answering in temporal knowledge graphs requires retrieval that is both time-consistent and efficient. Existing RAG methods are largely semantic and typically neglect explicit temporal constraints, which leads to time-inconsistent answers and inflated token usage. We propose STAR-RAG, a temporal GraphRAG framework that relies on two key ideas: building a time-aligned rule graph and conducting propagation on this graph to narrow the search space and prioritize semantically relevant, time-consistent evidence. This design enforces temporal proximity during retrieval, reduces the candidate set of retrieval results, and lowers token consumption without sacrificing accuracy. Compared with existing temporal RAG approaches, STAR-RAG eliminates the need for heavy model training and fine-tuning, thereby reducing computational cost and significantly simplifying deployment.Extensive experiments on real-world temporal KG datasets show that our method achieves improved answer accuracy while consuming fewer tokens than strong GraphRAG baselines.",
+  "text_sha256": "e449efd7f88dc06214b24ceee8c67d762715c02f7cf76cd50332bc8677b57b3c",
+  "raw_sha256": "e9cf2610ee63d5ed13ed8186244b12d017fc0b08860465833e21c8f98a5d8bbd",
+  "raw_file": "e9cf2610ee63d5ed13ed8186244b12d017fc0b08860465833e21c8f98a5d8bbd.xml",
+  "limitations": [
+    "Abstract-only evidence; author-reported results, not independent reproduction.",
+    "Later DOI, journal metadata and current citations are excluded from historical input."
+  ]
+}

@@ -1,0 +1,24 @@
+# make deploy подключает этот оверлей, когда в ENV_FILE задан FRONTEND_TLS_CERT.
+# Сертификат должен быть доверенным браузером и выписанным на имя из STAND_URL.
+services:
+  frontend:
+    ports:
+      - "${FRONTEND_TLS_BIND:-127.0.0.1}:${FRONTEND_HTTPS_PORT:-8443}:443"
+      - "${FRONTEND_TLS_BIND:-127.0.0.1}:${S3_HTTPS_PORT:-8444}:444"
+    environment:
+      S3_PUBLIC_ENDPOINT: ${S3_PUBLIC_ENDPOINT:?set the HTTPS S3 origin before enabling TLS}
+    volumes:
+      - ./nginx/frontend-tls.conf:/etc/nginx/tls/listener.conf:ro
+      - ./nginx/storage-tls.conf:/etc/nginx/conf.d/storage.conf:ro
+      - type: bind
+        source: ${FRONTEND_TLS_CERT:?set an absolute path to the trusted certificate chain}
+        target: /run/frontend-tls/fullchain.pem
+        read_only: true
+        bind:
+          create_host_path: false
+      - type: bind
+        source: ${FRONTEND_TLS_KEY:?set an absolute path to the certificate private key}
+        target: /run/frontend-tls/private.key
+        read_only: true
+        bind:
+          create_host_path: false

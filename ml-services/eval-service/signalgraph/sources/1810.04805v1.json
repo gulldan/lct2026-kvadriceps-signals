@@ -1,0 +1,29 @@
+{
+  "native_id": "1810.04805v1",
+  "canonical_id": "arxiv:1810.04805",
+  "url": "https://arxiv.org/abs/1810.04805v1",
+  "title": "BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding",
+  "authors": [
+    "Jacob Devlin",
+    "Ming-Wei Chang",
+    "Kenton Lee",
+    "Kristina Toutanova"
+  ],
+  "published_at": "2018-10-11T00:50:01Z",
+  "version_updated_at": "2018-10-11T00:50:01Z",
+  "observed_at": "2026-09-08T18:10:31.302820+00:00",
+  "available_at": "2018-10-11T00:50:01Z",
+  "available_basis": "arXiv archived v1 release; historical reconstruction captured later",
+  "source_kind": "paper",
+  "provider": "arxiv",
+  "access_scope": "public",
+  "representation": "versioned_primary_abstract",
+  "text": "We introduce a new language representation model called BERT, which stands for Bidirectional Encoder Representations from Transformers. Unlike recent language representation models, BERT is designed to pre-train deep bidirectional representations by jointly conditioning on both left and right context in all layers. As a result, the pre-trained BERT representations can be fine-tuned with just one additional output layer to create state-of-the-art models for a wide range of tasks, such as question answering and language inference, without substantial task-specific architecture modifications. BERT is conceptually simple and empirically powerful. It obtains new state-of-the-art results on eleven natural language processing tasks, including pushing the GLUE benchmark to 80.4% (7.6% absolute improvement), MultiNLI accuracy to 86.7 (5.6% absolute improvement) and the SQuAD v1.1 question answering Test F1 to 93.2 (1.5% absolute improvement), outperforming human performance by 2.0%.",
+  "text_sha256": "06712886292eb32a13b6c5b4e70f5859d0eb74c534a7bd1e4c22bace67f22615",
+  "raw_sha256": "8d1ebc59929373538f2e077a61a46433013182aaced11356733efb2cec86bb6b",
+  "raw_file": "8d1ebc59929373538f2e077a61a46433013182aaced11356733efb2cec86bb6b.xml",
+  "limitations": [
+    "Abstract-only evidence; author-reported results, not independent reproduction.",
+    "Later DOI, journal metadata and current citations are excluded from historical input."
+  ]
+}

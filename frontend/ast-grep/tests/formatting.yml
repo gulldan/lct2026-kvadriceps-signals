@@ -1,0 +1,18 @@
+id: dates-via-format
+valid:
+  - "formatDate(date);"
+  - "// date.toLocaleDateString()"
+  - 'const note = "date.toLocaleString()";'
+invalid:
+  - "date.toLocaleDateString();"
+  - 'new Date().toLocaleString("ru");'
+  - "date?.toLocaleTimeString();"
+---
+id: sizes-via-format
+valid:
+  - "humanSize(file.size);"
+  - "const breakpoint = 1024;"
+  - "// bytes / 1024"
+invalid:
+  - "file.size / 1024"
+  - 'if (bytes >= 1024) return "KB";'

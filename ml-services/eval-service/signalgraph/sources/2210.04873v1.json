@@ -1,0 +1,29 @@
+{
+  "native_id": "2210.04873v1",
+  "canonical_id": "arxiv:2210.04873",
+  "url": "https://arxiv.org/abs/2210.04873v1",
+  "title": "CORE: A Retrieve-then-Edit Framework for Counterfactual Data Generation",
+  "authors": [
+    "Tanay Dixit",
+    "Bhargavi Paranjape",
+    "Hannaneh Hajishirzi",
+    "Luke Zettlemoyer"
+  ],
+  "published_at": "2022-10-10T17:45:38Z",
+  "version_updated_at": "2022-10-10T17:45:38Z",
+  "observed_at": "2026-09-08T22:03:58.895762+00:00",
+  "available_at": "2022-10-10T17:45:38Z",
+  "available_basis": "arXiv archived v1 release; historical reconstruction captured later",
+  "source_kind": "paper",
+  "provider": "arxiv",
+  "access_scope": "public",
+  "representation": "versioned_primary_abstract",
+  "text": "Counterfactual data augmentation (CDA) -- i.e., adding minimally perturbed inputs during training -- helps reduce model reliance on spurious correlations and improves generalization to out-of-distribution (OOD) data. Prior work on generating counterfactuals only considered restricted classes of perturbations, limiting their effectiveness. We present COunterfactual Generation via Retrieval and Editing (CORE), a retrieval-augmented generation framework for creating diverse counterfactual perturbations for CDA. For each training example, CORE first performs a dense retrieval over a task-related unlabeled text corpus using a learned bi-encoder and extracts relevant counterfactual excerpts. CORE then incorporates these into prompts to a large language model with few-shot learning capabilities, for counterfactual editing. Conditioning language model edits on naturally occurring data results in diverse perturbations. Experiments on natural language inference and sentiment analysis benchmarks show that CORE counterfactuals are more effective at improving generalization to OOD data compared to other DA approaches. We also show that the CORE retrieval framework can be used to encourage diversity in manually authored perturbations",
+  "text_sha256": "5ccfcd854e4f8de4a51b44645882fef70106a1485654ab589ac89ae2c6fb22c8",
+  "raw_sha256": "cebcac3f6b33d75b1197162d17bbefeab5f1430f443a663bf2fde424ea298fe0",
+  "raw_file": "cebcac3f6b33d75b1197162d17bbefeab5f1430f443a663bf2fde424ea298fe0.xml",
+  "limitations": [
+    "Abstract-only evidence; author-reported results, not independent reproduction.",
+    "Later DOI, journal metadata and current citations are excluded from historical input."
+  ]
+}

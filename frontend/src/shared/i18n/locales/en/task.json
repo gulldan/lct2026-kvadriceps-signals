@@ -1,0 +1,60 @@
+{
+  "jobs": {
+    "generate": "Hypothesis generation",
+    "verify": "Auto-verification against the knowledge base",
+    "enrich": "Hypothesis enrichment",
+    "assess_trl": "Automatic TRL assessment",
+    "competitors": "Competitor analysis",
+    "refine": "Hypothesis refinement",
+    "tag": "Hypothesis classification",
+    "fallback": "Hypothesis task"
+  },
+  "workers": {
+    "clusters": "Topics: document grouping",
+    "discovery": "Bridges between topics",
+    "raptor": "Document summaries",
+    "itc": "Technology index",
+    "eval": "Answer quality check"
+  },
+  "toasts": {
+    "done": "Task completed",
+    "failed": "Failed to complete the task",
+    "insufficientContext": "The sources do not contain enough information to enrich the hypothesis. Add materials or clarify the wording."
+  },
+  "notifications": {
+    "bellAria": "Background tasks: {{count}}",
+    "bellAriaWatch": "New in watched items: {{count}}",
+    "bellAriaIdle": "Notifications",
+    "title": "Notifications",
+    "inProgress": "{{count}} in progress",
+    "system": "System",
+    "allDone": "System background services are currently idle.",
+    "empty": "No background tasks yet.",
+    "clearFinished": "Clear finished"
+  },
+  "watch": {
+    "follow": "Watch",
+    "following": "Watching",
+    "added": "You are watching this. Changes after the nightly collection will appear in notifications.",
+    "removed": "No longer watching",
+    "failed": "Could not change the subscription. Please try again.",
+    "title": "Watching",
+    "quiet": "Nothing new yet",
+    "digest": {
+      "technologies_one": "New technology: {{names}}",
+      "technologies_other": "New technologies: {{names}}",
+      "stage": "Stage: {{from}} → {{to}}",
+      "techStage": "{{name}}: {{from}} → {{to}}",
+      "sources_one": "+{{count}} source",
+      "sources_other": "+{{count}} sources",
+      "market_one": "+{{count}} news or registry record",
+      "market_other": "+{{count}} news or registry records",
+      "bet": "Forecast is {{status}}"
+    },
+    "betStatus": {
+      "confirming": "confirming",
+      "unchanged": "unchanged",
+      "weakening": "weakening"
+    }
+  }
+}

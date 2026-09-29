@@ -1,0 +1,31 @@
+{
+  "native_id": "2503.09516v1",
+  "canonical_id": "arxiv:2503.09516",
+  "url": "https://arxiv.org/abs/2503.09516v1",
+  "title": "Search-R1: Training LLMs to Reason and Leverage Search Engines with Reinforcement Learning",
+  "authors": [
+    "Bowen Jin",
+    "Hansi Zeng",
+    "Zhenrui Yue",
+    "Dong Wang",
+    "Hamed Zamani",
+    "Jiawei Han"
+  ],
+  "published_at": "2025-03-12T16:26:39Z",
+  "version_updated_at": "2025-03-12T16:26:39Z",
+  "observed_at": "2026-09-08T22:44:17.493937+00:00",
+  "available_at": "2025-03-12T16:26:39Z",
+  "available_basis": "arXiv archived v1 release; historical reconstruction captured later",
+  "source_kind": "paper",
+  "provider": "arxiv",
+  "access_scope": "public",
+  "representation": "versioned_primary_abstract",
+  "text": "Efficiently acquiring external knowledge and up-to-date information is essential for effective reasoning and text generation in large language models (LLMs). Retrieval augmentation and tool-use training approaches where a search engine is treated as a tool lack complex multi-turn retrieval flexibility or require large-scale supervised data. Prompting advanced LLMs with reasoning capabilities during inference to use search engines is not optimal, since the LLM does not learn how to optimally interact with the search engine. This paper introduces Search-R1, an extension of the DeepSeek-R1 model where the LLM learns -- solely through reinforcement learning (RL) -- to autonomously generate (multiple) search queries during step-by-step reasoning with real-time retrieval. Search-R1 optimizes LLM rollouts with multi-turn search interactions, leveraging retrieved token masking for stable RL training and a simple outcome-based reward function. Experiments on seven question-answering datasets show that Search-R1 improves performance by 26% (Qwen2.5-7B), 21% (Qwen2.5-3B), and 10% (LLaMA3.2-3B) over SOTA baselines. This paper further provides empirical insights into RL optimization methods, LLM choices, and response length dynamics in retrieval-augmented reasoning. The code and model checkpoints are available at https://github.com/PeterGriffinJin/Search-R1.",
+  "text_sha256": "f90eb8abbf96ebbe2ff65cdc426c9b4407eba215870ba42ea07c41d9754e17c2",
+  "raw_sha256": "d794dda6b39c851dfacd873ec0a99c27f066067c23f5d12be94a6faa8de16f6c",
+  "raw_file": "d794dda6b39c851dfacd873ec0a99c27f066067c23f5d12be94a6faa8de16f6c.xml",
+  "limitations": [
+    "Abstract-only evidence; author-reported results, not independent reproduction.",
+    "Later DOI, journal metadata and current citations are excluded from historical input."
+  ]
+}

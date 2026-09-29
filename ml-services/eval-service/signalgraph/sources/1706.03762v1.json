@@ -1,0 +1,33 @@
+{
+  "native_id": "1706.03762v1",
+  "canonical_id": "arxiv:1706.03762",
+  "url": "https://arxiv.org/abs/1706.03762v1",
+  "title": "Attention Is All You Need",
+  "authors": [
+    "Ashish Vaswani",
+    "Noam Shazeer",
+    "Niki Parmar",
+    "Jakob Uszkoreit",
+    "Llion Jones",
+    "Aidan N. Gomez",
+    "Lukasz Kaiser",
+    "Illia Polosukhin"
+  ],
+  "published_at": "2017-06-12T17:57:34Z",
+  "version_updated_at": "2017-06-12T17:57:34Z",
+  "observed_at": "2026-09-08T18:10:31.302820+00:00",
+  "available_at": "2017-06-12T17:57:34Z",
+  "available_basis": "arXiv archived v1 release; historical reconstruction captured later",
+  "source_kind": "paper",
+  "provider": "arxiv",
+  "access_scope": "public",
+  "representation": "versioned_primary_abstract",
+  "text": "The dominant sequence transduction models are based on complex recurrent or convolutional neural networks in an encoder-decoder configuration. The best performing models also connect the encoder and decoder through an attention mechanism. We propose a new simple network architecture, the Transformer, based solely on attention mechanisms, dispensing with recurrence and convolutions entirely. Experiments on two machine translation tasks show these models to be superior in quality while being more parallelizable and requiring significantly less time to train. Our model achieves 28.4 BLEU on the WMT 2014 English-to-German translation task, improving over the existing best results, including ensembles by over 2 BLEU. On the WMT 2014 English-to-French translation task, our model establishes a new single-model state-of-the-art BLEU score of 41.0 after training for 3.5 days on eight GPUs, a small fraction of the training costs of the best models from the literature. We show that the Transformer generalizes well to other tasks by applying it successfully to English constituency parsing both with large and limited training data.",
+  "text_sha256": "881f177dcd8bfbb761efbc024c00a29d9d35d26e4c7bfdf7a6054ace3026f002",
+  "raw_sha256": "8d1ebc59929373538f2e077a61a46433013182aaced11356733efb2cec86bb6b",
+  "raw_file": "8d1ebc59929373538f2e077a61a46433013182aaced11356733efb2cec86bb6b.xml",
+  "limitations": [
+    "Abstract-only evidence; author-reported results, not independent reproduction.",
+    "Later DOI, journal metadata and current citations are excluded from historical input."
+  ]
+}

@@ -1,0 +1,23 @@
+{"version":"acl-rag-study-external-v1","observed_at":"2026-09-10","events":[
+{"topic":"graph","kind":"implementation","community":"vendor","date":"2024-01-11","title":"neo4j-labs/llm-graph-builder","org":"Neo4j","url":"https://github.com/neo4j-labs/llm-graph-builder","stars":5227},
+{"topic":"graph","kind":"implementation","community":"vendor","date":"2024-02-27","title":"neo4j/neo4j-graphrag-python","org":"Neo4j","url":"https://github.com/neo4j/neo4j-graphrag-python","stars":1283},
+{"topic":"graph","kind":"implementation","community":"vendor","date":"2024-03-27","title":"microsoft/graphrag","org":"Microsoft","url":"https://github.com/microsoft/graphrag","stars":35924},
+{"topic":"graph","kind":"preprint","community":"vendor","date":"2024-04-24","title":"From Local to Global: A Graph RAG Approach to Query-Focused Summarization","org":"Microsoft Research","url":"https://arxiv.org/abs/2404.16130"},
+{"topic":"graph","kind":"release","community":"vendor","date":"2024-07-02","title":"microsoft/graphrag v0.1.1","org":"Microsoft","url":"https://github.com/microsoft/graphrag/releases/tag/v0.1.1"},
+{"topic":"graph","kind":"release","community":"vendor","date":"2024-07-02","title":"neo4j-graphrag-python 0.3.0","org":"Neo4j","url":"https://github.com/neo4j/neo4j-graphrag-python/releases/tag/0.3.0"},
+{"topic":"graph","kind":"implementation","community":"open_source","date":"2024-07-25","title":"gusye1234/nano-graphrag","org":"Independent","url":"https://github.com/gusye1234/nano-graphrag","stars":3985},
+{"topic":"graph","kind":"implementation","community":"academia","date":"2024-10-02","title":"HKUDS/LightRAG","org":"University of Hong Kong","url":"https://github.com/HKUDS/LightRAG","stars":39533},
+{"topic":"graph","kind":"preprint","community":"academia","date":"2024-10-08","title":"LightRAG: Simple and Fast Retrieval-Augmented Generation","org":"University of Hong Kong","url":"https://arxiv.org/abs/2410.05779"},
+{"topic":"graph","kind":"implementation","community":"startup","date":"2024-10-30","title":"circlemind-ai/fast-graphrag","org":"Circlemind","url":"https://github.com/circlemind-ai/fast-graphrag","stars":3857},
+{"topic":"graph","kind":"release","community":"academia","date":"2024-12-05","title":"HKUDS/LightRAG v1.0.3","org":"University of Hong Kong","url":"https://github.com/HKUDS/LightRAG/releases/tag/v1.0.3"},
+{"topic":"agentic","kind":"implementation","community":"open_source","date":"2023-05-12","title":"assafelovic/gpt-researcher","org":"Independent","url":"https://github.com/assafelovic/gpt-researcher","stars":29385},
+{"topic":"agentic","kind":"implementation","community":"vendor","date":"2024-11-20","title":"langchain-ai/open_deep_research","org":"LangChain","url":"https://github.com/langchain-ai/open_deep_research","stars":12675},
+{"topic":"agentic","kind":"implementation","community":"vendor","date":"2025-01-09","title":"Alibaba-NLP/DeepResearch","org":"Alibaba Tongyi","url":"https://github.com/Alibaba-NLP/DeepResearch","stars":19925},
+{"topic":"agentic","kind":"implementation","community":"vendor","date":"2025-01-26","title":"jina-ai/node-DeepResearch","org":"Jina AI","url":"https://github.com/jina-ai/node-DeepResearch","stars":5225},
+{"topic":"agentic","kind":"vendor_material","community":"vendor","date":"2025-02-02","title":"Introducing deep research","org":"OpenAI","url":"https://openai.com/index/introducing-deep-research/"},
+{"topic":"agentic","kind":"implementation","community":"open_source","date":"2025-02-04","title":"dzhng/deep-research","org":"Independent","url":"https://github.com/dzhng/deep-research","stars":19656},
+{"topic":"agentic","kind":"implementation","community":"vendor","date":"2025-02-08","title":"zilliztech/deep-searcher","org":"Zilliz","url":"https://github.com/zilliztech/deep-searcher","stars":8260},
+{"topic":"agentic","kind":"implementation","community":"academia","date":"2025-02-26","title":"RUCAIBox/R1-Searcher","org":"Renmin University","url":"https://github.com/RUCAIBox/R1-Searcher","stars":725},
+{"topic":"agentic","kind":"implementation","community":"academia","date":"2025-02-28","title":"PeterGriffinJin/Search-R1","org":"UIUC","url":"https://github.com/PeterGriffinJin/Search-R1","stars":5399},
+{"topic":"agentic","kind":"preprint","community":"academia","date":"2025-03-12","title":"Search-R1: Training LLMs to Reason and Leverage Search Engines with Reinforcement Learning","org":"UIUC","url":"https://arxiv.org/abs/2503.09516"}
+]}

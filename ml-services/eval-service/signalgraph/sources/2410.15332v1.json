@@ -1,0 +1,35 @@
+{
+  "native_id": "2410.15332v1",
+  "canonical_id": "arxiv:2410.15332",
+  "url": "https://arxiv.org/abs/2410.15332v1",
+  "title": "EPIC: Efficient Position-Independent Context Caching for Serving Large Language Models",
+  "authors": [
+    "Junhao Hu",
+    "Wenrui Huang",
+    "Haoyi Wang",
+    "Weidong Wang",
+    "Tiancheng Hu",
+    "Qin Zhang",
+    "Hao Feng",
+    "Xusheng Chen",
+    "Yizhou Shan",
+    "Tao Xie"
+  ],
+  "published_at": "2024-10-20T08:42:29Z",
+  "version_updated_at": "2024-10-20T08:42:29Z",
+  "observed_at": "2026-09-08T22:30:48.756477+00:00",
+  "available_at": "2024-10-20T08:42:29Z",
+  "available_basis": "arXiv archived v1 release; historical reconstruction captured later",
+  "source_kind": "paper",
+  "provider": "arxiv",
+  "access_scope": "public",
+  "representation": "versioned_primary_abstract",
+  "text": "Large Language Models (LLMs) are critical for a wide range of applications, but serving them efficiently becomes increasingly challenging as inputs become more complex. Context caching improves serving performance by exploiting inter-request dependency and reusing key-value (KV) cache across requests, thus improving time-to-first-token (TTFT). However, existing prefix-based context caching requires exact token prefix matches, limiting cache reuse in few-shot learning, multi-document QA, or retrieval-augmented generation, where prefixes may vary. In this paper, we present EPIC, an LLM serving system that introduces position-independent context caching (PIC), enabling modular KV cache reuse regardless of token chunk position (or prefix). EPIC features two key designs: AttnLink, which leverages static attention sparsity to minimize recomputation for accuracy recovery, and KVSplit, a customizable chunking method that preserves semantic coherence. Our experiments demonstrate that Epic delivers up to 8x improvements in TTFT and 7x throughput over existing systems, with negligible or no accuracy loss. By addressing the limitations of traditional caching approaches, Epic enables more scalable and efficient LLM inference.",
+  "text_sha256": "ebf7c99d6c5ce21a1b2220d3b44ca27b75b2cf485cd01d89f4c8c4e7cfa1b0e0",
+  "raw_sha256": "fed7c85814f0c1ef814a75028e63acf00a3d5eaef67602d6e2123046f52b8f5e",
+  "raw_file": "fed7c85814f0c1ef814a75028e63acf00a3d5eaef67602d6e2123046f52b8f5e.xml",
+  "limitations": [
+    "Abstract-only evidence; author-reported results, not independent reproduction.",
+    "Later DOI, journal metadata and current citations are excluded from historical input."
+  ]
+}

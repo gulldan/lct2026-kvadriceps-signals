@@ -1,0 +1,47 @@
+# Каждый Go-сервис отдаёт /metrics на :9090 (pkg/observability). Масштабированный воркер
+# через DNS Docker даёт одну реплику за опрос.
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+rule_files:
+  - rules/*.yml
+
+scrape_configs:
+  - job_name: prometheus
+    static_configs:
+      - targets: ["localhost:9090"]
+
+  - job_name: rag-services
+    metrics_path: /metrics
+    static_configs:
+      - targets:
+          - "db-service:9090"
+          - "auth:9090"
+          - "main-service:9090"
+          - "llm-service:9090"
+          - "chunk-splitter:9090"
+          - "pdf-parser:9090"
+          - "office-parser:9090"
+          - "email-parser:9090"
+          - "db-parser:9090"
+          - "ocr-service:9090"
+          - "vlm-service:9090"
+          - "archive-worker:9090"
+
+  # Контур трендов: ops-сервера у его сервисов нет, и метрики для них не выдумываются.
+  # /healthz отвечает 200 с пустым телом — это корректная пустая выдача, так что `up` по каналу
+  # честный. fallback_scrape_protocol обязателен: без Content-Type Prometheus 3 цель отвергает.
+  # page-renderer, source-harvester, signal-worker и workbook-parser-service не указаны намеренно:
+  # у них нет HTTP-адреса, доступного из ragnet.
+  - job_name: trend-collectors
+    metrics_path: /healthz
+    fallback_scrape_protocol: PrometheusText0.0.4
+    static_configs:
+      - targets:
+          - "arxiv-gateway:8090"
+          - "patent-collector:8090"
+          - "cn-patent-collector:8090"
+          - "web-collector:8090"
+          - "radar-collector:8091"
+          - "radar-analysis:8080"

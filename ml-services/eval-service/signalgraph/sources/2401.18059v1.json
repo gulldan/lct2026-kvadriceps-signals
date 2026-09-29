@@ -1,0 +1,31 @@
+{
+  "native_id": "2401.18059v1",
+  "canonical_id": "arxiv:2401.18059",
+  "url": "https://arxiv.org/abs/2401.18059v1",
+  "title": "RAPTOR: Recursive Abstractive Processing for Tree-Organized Retrieval",
+  "authors": [
+    "Parth Sarthi",
+    "Salman Abdullah",
+    "Aditi Tuli",
+    "Shubh Khanna",
+    "Anna Goldie",
+    "Christopher D. Manning"
+  ],
+  "published_at": "2024-01-31T18:30:21Z",
+  "version_updated_at": "2024-01-31T18:30:21Z",
+  "observed_at": "2026-09-08T22:28:42.905805+00:00",
+  "available_at": "2024-01-31T18:30:21Z",
+  "available_basis": "arXiv archived v1 release; historical reconstruction captured later",
+  "source_kind": "paper",
+  "provider": "arxiv",
+  "access_scope": "public",
+  "representation": "versioned_primary_abstract",
+  "text": "Retrieval-augmented language models can better adapt to changes in world state and incorporate long-tail knowledge. However, most existing methods retrieve only short contiguous chunks from a retrieval corpus, limiting holistic understanding of the overall document context. We introduce the novel approach of recursively embedding, clustering, and summarizing chunks of text, constructing a tree with differing levels of summarization from the bottom up. At inference time, our RAPTOR model retrieves from this tree, integrating information across lengthy documents at different levels of abstraction. Controlled experiments show that retrieval with recursive summaries offers significant improvements over traditional retrieval-augmented LMs on several tasks. On question-answering tasks that involve complex, multi-step reasoning, we show state-of-the-art results; for example, by coupling RAPTOR retrieval with the use of GPT-4, we can improve the best performance on the QuALITY benchmark by 20% in absolute accuracy.",
+  "text_sha256": "a19b7fdf3d7103b0be78795c9fd7a47476c3eb661aec411ef6fbcf5adc3a4110",
+  "raw_sha256": "761969bd1361209348c93fad02bd6d4c2df715209d933d5edb33e9ba47c64193",
+  "raw_file": "761969bd1361209348c93fad02bd6d4c2df715209d933d5edb33e9ba47c64193.xml",
+  "limitations": [
+    "Abstract-only evidence; author-reported results, not independent reproduction.",
+    "Later DOI, journal metadata and current citations are excluded from historical input."
+  ]
+}

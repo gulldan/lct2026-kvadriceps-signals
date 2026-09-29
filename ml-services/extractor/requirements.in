@@ -1,0 +1,15 @@
+# PyTorch ставится первым из Docker build-arg TORCH_INDEX_URL (по умолчанию cu128); здесь та же версия.
+torch==2.8.0
+fastapi==0.141.1
+uvicorn==0.53.0
+prometheus-client==0.26.0
+asyncpg==0.31.0
+pydantic==2.13.5
+PyYAML==6.0.3
+transformers==4.57.6
+numpy==2.5.3
+scikit-learn==1.9.1
+pymorphy3==2.0.6
+safetensors==0.8.0
+sentencepiece==0.2.2
+gdown==5.2.0

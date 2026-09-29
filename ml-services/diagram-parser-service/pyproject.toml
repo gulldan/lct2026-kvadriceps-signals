@@ -1,0 +1,38 @@
+[project]
+name = "diagram-parser-service"
+version = "0.1.0"
+description = "HTTP adapter for local diagram graph extraction used by vlm-service"
+requires-python = ">=3.12"
+dependencies = [
+    "pillow>=12,<14",
+    "fastapi>=0.141.1,<1",
+    # PaddleX 3.7 требует NumPy <2.4 и OpenCV contrib 4.10; поставщик cv2 должен быть один.
+    "numpy>=2.3.5,<2.4",
+    "opencv-contrib-python>=4.10.0.84,<5",
+    "uvicorn[standard]>=0.52.4,<1",
+]
+
+[project.optional-dependencies]
+paddle5 = [
+    "paddleocr==3.7.0",
+]
+
+[dependency-groups]
+dev = [
+    "ruff==0.16.6",
+    "ty==0.0.79",
+]
+
+[build-system]
+requires = ["setuptools>=84,<85"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["diagram_parser_service*"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["B", "E", "F", "I", "SIM", "UP"]

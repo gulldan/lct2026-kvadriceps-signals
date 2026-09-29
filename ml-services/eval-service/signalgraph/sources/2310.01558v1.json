@@ -1,0 +1,29 @@
+{
+  "native_id": "2310.01558v1",
+  "canonical_id": "arxiv:2310.01558",
+  "url": "https://arxiv.org/abs/2310.01558v1",
+  "title": "Making Retrieval-Augmented Language Models Robust to Irrelevant Context",
+  "authors": [
+    "Ori Yoran",
+    "Tomer Wolfson",
+    "Ori Ram",
+    "Jonathan Berant"
+  ],
+  "published_at": "2023-10-02T18:52:35Z",
+  "version_updated_at": "2023-10-02T18:52:35Z",
+  "observed_at": "2026-09-08T22:03:58.895762+00:00",
+  "available_at": "2023-10-02T18:52:35Z",
+  "available_basis": "arXiv archived v1 release; historical reconstruction captured later",
+  "source_kind": "paper",
+  "provider": "arxiv",
+  "access_scope": "public",
+  "representation": "versioned_primary_abstract",
+  "text": "Retrieval-augmented language models (RALMs) hold promise to produce language understanding systems that are are factual, efficient, and up-to-date. An important desideratum of RALMs, is that retrieved information helps model performance when it is relevant, and does not harm performance when it is not. This is particularly important in multi-hop reasoning scenarios, where misuse of irrelevant evidence can lead to cascading errors. However, recent work has shown that retrieval augmentation can sometimes have a negative effect on performance. In this work, we present a thorough analysis on five open-domain question answering benchmarks, characterizing cases when retrieval reduces accuracy. We then propose two methods to mitigate this issue. First, a simple baseline that filters out retrieved passages that do not entail question-answer pairs according to a natural language inference (NLI) model. This is effective in preventing performance reduction, but at a cost of also discarding relevant passages. Thus, we propose a method for automatically generating data to fine-tune the language model to properly leverage retrieved passages, using a mix of relevant and irrelevant contexts at training time. We empirically show that even 1,000 examples suffice to train the model to be robust to irrelevant contexts while maintaining high performance on examples with relevant ones.",
+  "text_sha256": "9ad286ca10d31f290b3e9dc31b9dfa9089ba1647405e94f6a4f9dbc48aedb880",
+  "raw_sha256": "cebcac3f6b33d75b1197162d17bbefeab5f1430f443a663bf2fde424ea298fe0",
+  "raw_file": "cebcac3f6b33d75b1197162d17bbefeab5f1430f443a663bf2fde424ea298fe0.xml",
+  "limitations": [
+    "Abstract-only evidence; author-reported results, not independent reproduction.",
+    "Later DOI, journal metadata and current citations are excluded from historical input."
+  ]
+}

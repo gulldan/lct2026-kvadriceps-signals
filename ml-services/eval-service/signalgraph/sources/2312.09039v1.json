@@ -1,0 +1,32 @@
+{
+  "native_id": "2312.09039v1",
+  "canonical_id": "arxiv:2312.09039",
+  "url": "https://arxiv.org/abs/2312.09039v1",
+  "title": "TAP4LLM: Table Provider on Sampling, Augmenting, and Packing Semi-structured Data for Large Language Model Reasoning",
+  "authors": [
+    "Yuan Sui",
+    "Jiaru Zou",
+    "Mengyu Zhou",
+    "Xinyi He",
+    "Lun Du",
+    "Shi Han",
+    "Dongmei Zhang"
+  ],
+  "published_at": "2023-12-14T15:37:04Z",
+  "version_updated_at": "2023-12-14T15:37:04Z",
+  "observed_at": "2026-09-08T22:30:48.756477+00:00",
+  "available_at": "2023-12-14T15:37:04Z",
+  "available_basis": "arXiv archived v1 release; historical reconstruction captured later",
+  "source_kind": "paper",
+  "provider": "arxiv",
+  "access_scope": "public",
+  "representation": "versioned_primary_abstract",
+  "text": "Table reasoning has shown remarkable progress in a wide range of table-based tasks. These challenging tasks require reasoning over both free-form natural language (NL) questions and semi-structured tabular data. However, previous table reasoning solutions suffer from significant performance degradation on \"huge\" tables. In addition, most existing methods struggle to reason over complex questions since they lack essential information or they are scattered in different places. To alleviate these challenges, we exploit a table provider, namely TAP4LLM, on versatile sampling, augmentation, and packing methods to achieve effective semi-structured data reasoning using large language models (LLMs), which 1) decompose raw tables into sub-tables with specific rows or columns based on the rules or semantic similarity; 2) augment table information by extracting semantic and statistical metadata from raw tables while retrieving relevant knowledge from trustworthy knowledge sources (e.g., Wolfram Alpha, Wikipedia); 3) pack sampled tables with augmented knowledge into sequence prompts for LLMs reasoning while balancing the token allocation trade-off. We show that TAP4LLM allows for different components as plug-ins, enhancing LLMs' understanding of structured data in diverse tabular tasks.",
+  "text_sha256": "39140e91191a69bd1f80d5cf2ea8bd9df8d3681b9158e969ef10f38b1360ed0d",
+  "raw_sha256": "fed7c85814f0c1ef814a75028e63acf00a3d5eaef67602d6e2123046f52b8f5e",
+  "raw_file": "fed7c85814f0c1ef814a75028e63acf00a3d5eaef67602d6e2123046f52b8f5e.xml",
+  "limitations": [
+    "Abstract-only evidence; author-reported results, not independent reproduction.",
+    "Later DOI, journal metadata and current citations are excluded from historical input."
+  ]
+}

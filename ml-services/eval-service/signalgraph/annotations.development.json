@@ -1,0 +1,464 @@
+{
+  "version": 1,
+  "assessor": "Codex",
+  "independent_human_review": false,
+  "cutoff": "2023-12-31T23:59:59Z",
+  "queries": {
+    "ai": "технологии в ИИ",
+    "rag": "методы retrieval-augmented generation",
+    "rare_control": "retrieval-augmented generation для измерения квантовой гравитации"
+  },
+  "topics": [
+    {
+      "id": "dev-query-expansion",
+      "split": "development",
+      "cutoff": "2023-12-31T23:59:59Z",
+      "label": "Расширение запроса гипотетическими документами LLM",
+      "distinctness_group": "dev-query-expansion",
+      "source_ids": [
+        "2212.10496v1",
+        "2303.07678v1"
+      ],
+      "assessor": "Codex",
+      "review_status": "self_assessed_primary_sources",
+      "relevance": {
+        "ai": 2,
+        "rag": 2,
+        "rare_control": 0
+      },
+      "emergence": "emerging",
+      "decision_basis": "HyDE (декабрь 2022) и query2doc (март 2023) развивают конкретный способ использовать сгенерированный псевдодокумент для поиска. Списки авторов не пересекаются; есть работа в следующем квартале и сравнения с исходными retrieval baselines.",
+      "counterevidence": "Sparse expansion и dense hypothetical embeddings различаются реализацией. Они объединены по общей операции генерации псевдодокумента перед поиском, но это пограничное решение о гранулярности. Генерация псевдодокумента не делает его фактическим источником.",
+      "eligible_gold": {
+        "ai": true,
+        "rag": true,
+        "rare_control": false
+      },
+      "brief_support": {
+        "problem": {
+          "source_id": "2212.10496v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "8e63a0b4e12a085d6ab549264f7c09ca28b834e7c53029f33f9abcad43045af8",
+          "char_start": 170,
+          "char_end": 206,
+          "quote": "when no relevance label is available",
+          "interpretation": "Нужен релевантный поиск без размеченных пар запрос–документ.",
+          "modality": "problem_statement",
+          "conditions": null
+        },
+        "advantage": {
+          "source_id": "2303.07678v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "0b7cac4d489841692a229ddc34b94779a21cc013e91a3e6bfc1ca42fc9ee5900",
+          "char_start": 578,
+          "char_end": 621,
+          "quote": "boosts the performance of BM25 by 3% to 15%",
+          "interpretation": "Авторы сообщают улучшение BM25 на 3–15% без fine-tuning.",
+          "modality": "author_reported_experiment",
+          "conditions": "Ad-hoc IR: MS-MARCO и TREC DL; это заявленный диапазон по benchmark, не универсальный выигрыш RAG."
+        },
+        "example": {
+          "kind": "research",
+          "source_id": "2303.07678v1",
+          "label": "Query2doc: Query Expansion with Large Language Models"
+        }
+      },
+      "independence_limit": "Distinct canonical works and author lists were checked; experiments were not independently replicated."
+    },
+    {
+      "id": "dev-interleaved-retrieval",
+      "split": "development",
+      "cutoff": "2023-12-31T23:59:59Z",
+      "label": "Выбор следующего поиска в ходе генерации и рассуждения",
+      "distinctness_group": "dev-interleaved-retrieval",
+      "source_ids": [
+        "2210.03629v1",
+        "2212.10509v1",
+        "2305.06983v1"
+      ],
+      "assessor": "Codex",
+      "review_status": "self_assessed_primary_sources",
+      "relevance": {
+        "ai": 2,
+        "rag": 2,
+        "rare_control": 0
+      },
+      "emergence": "emerging",
+      "decision_basis": "ReAct и IRCoT в конце 2022 связывают поисковые действия с текущим рассуждением. FLARE в мае 2023 переносит выбор запроса и момента поиска на продолжение генерации. Есть раздельные авторские группы и последующий период развития.",
+      "counterevidence": "ReAct охватывает также действия без retrieval; ALFWorld/WebShop не считаются результатами RAG. FLARE имеет иной trigger, поэтому в более узком направлении может требовать отдельного кандидата; здесь единица — итеративный цикл retrieval во время построения ответа.",
+      "eligible_gold": {
+        "ai": true,
+        "rag": true,
+        "rare_control": false
+      },
+      "brief_support": {
+        "problem": {
+          "source_id": "2212.10509v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "54b1b68758b19514f597baf0f43b25e310cbcc96edf3fa762d575ef64ce92c78",
+          "char_start": 555,
+          "char_end": 571,
+          "quote": "what to retrieve",
+          "interpretation": "Следующий нужный источник зависит от уже выведенных шагов ответа.",
+          "modality": "problem_statement",
+          "conditions": null
+        },
+        "advantage": {
+          "source_id": "2212.10509v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "54b1b68758b19514f597baf0f43b25e310cbcc96edf3fa762d575ef64ce92c78",
+          "char_start": 860,
+          "char_end": 939,
+          "quote": "improvements in retrieval (up to 22 points) and downstream QA (up to 16 points)",
+          "interpretation": "В v1 авторы сообщают до +22 пунктов retrieval и +16 пунктов QA.",
+          "modality": "author_reported_experiment",
+          "conditions": "GPT3; HotpotQA, 2WikiMultihopQA, MuSiQue и IIRC. Только численные значения версии v1, не поздней аннотации."
+        },
+        "example": {
+          "kind": "research",
+          "source_id": "2212.10509v1",
+          "label": "Interleaving Retrieval with Chain-of-Thought Reasoning for Knowledge-Intensive Multi-Step Questions"
+        }
+      },
+      "independence_limit": "Distinct canonical works and author lists were checked; experiments were not independently replicated."
+    },
+    {
+      "id": "dev-repository-code",
+      "split": "development",
+      "cutoff": "2023-12-31T23:59:59Z",
+      "label": "Генерация продолжения кода с извлечением контекста репозитория",
+      "distinctness_group": "dev-repository-code",
+      "source_ids": [
+        "2203.07722v1",
+        "2303.12570v1",
+        "2306.10998v1"
+      ],
+      "assessor": "Codex",
+      "review_status": "self_assessed_primary_sources",
+      "relevance": {
+        "ai": 2,
+        "rag": 2,
+        "rare_control": 0
+      },
+      "emergence": "emerging",
+      "decision_basis": "ReACC (2022) вводит внешний контекст; RepoCoder (март 2023) итеративно улучшает найденный контекст; RepoFusion (июнь 2023) обучает кодовую модель его учитывать. Три канонические работы и непересекающиеся авторские списки, развитие в нескольких кварталах.",
+      "counterevidence": "ReACC и RepoCoder связаны с одной промышленной исследовательской экосистемой, поэтому не доказывают независимую репликацию. RepoFusion добавляет отдельную авторскую группу. Обучение на repo context и inference retrieval здесь одна тема, не три места TOP-15.",
+      "eligible_gold": {
+        "ai": true,
+        "rag": true,
+        "rare_control": false
+      },
+      "brief_support": {
+        "problem": {
+          "source_id": "2306.10998v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "e943f3e98dba6aa0ce87de6a65392c14cee2fc21b63fe84c249c2ecea8c730de",
+          "char_start": 105,
+          "char_end": 172,
+          "quote": "models struggle to understand the context present in the repository",
+          "interpretation": "Кодовая модель недостаточно учитывает информацию из других файлов проекта.",
+          "modality": "problem_statement",
+          "conditions": null
+        },
+        "advantage": {
+          "source_id": "2303.12570v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "0329758d19bd7b7cb27ce0d9abc83a02bbedb77268f2be0b2aaac8e89174997d",
+          "char_start": 1169,
+          "char_end": 1228,
+          "quote": "improves the zero-shot code completion baseline by over 10%",
+          "interpretation": "RepoCoder сообщает выигрыш относительно zero-shot completion более 10%.",
+          "modality": "author_reported_experiment",
+          "conditions": "RepoEval: line, API invocation и function body completion; набор сочетаний retriever/generator из работы. Не доказательство повышения продуктивности разработчика на тот же процент."
+        },
+        "example": {
+          "kind": "research",
+          "source_id": "2303.12570v1",
+          "label": "RepoCoder: Repository-Level Code Completion Through Iterative Retrieval and Generation"
+        }
+      },
+      "independence_limit": "Distinct canonical works and author lists were checked; experiments were not independently replicated."
+    },
+    {
+      "id": "dev-retrieved-image-diffusion",
+      "split": "development",
+      "cutoff": "2023-12-31T23:59:59Z",
+      "label": "Диффузионная генерация изображений с внешними визуальными соседями",
+      "distinctness_group": "dev-retrieved-image-diffusion",
+      "source_ids": [
+        "2204.02849v1",
+        "2204.11824v1",
+        "2207.13038v1",
+        "2209.14491v1"
+      ],
+      "assessor": "Codex",
+      "review_status": "self_assessed_primary_sources",
+      "relevance": {
+        "ai": 2,
+        "rag": 2,
+        "rare_control": 0
+      },
+      "emergence": "disputed",
+      "decision_basis": "В 2022 несколько разных авторских групп исследуют conditioning диффузии на найденных изображениях. В собранном development pool нет последующего источника 2023: техническая новизна подтверждается, продолжающееся зарождение к cutoff не установлено.",
+      "counterevidence": "KNN-Diffusion, RDM и Re-Imagen подтверждают несколько подходов, а не один рекламный всплеск. RDM и artistic-style note имеют общих авторов и не считаются двумя независимыми группами. Недостаток свежих данных не означает, что развитие отсутствовало в мире.",
+      "eligible_gold": {
+        "ai": false,
+        "rag": false,
+        "rare_control": false
+      },
+      "brief_support": {
+        "problem": {
+          "source_id": "2209.14491v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "e7921efa658a6d1a05759b022aa77ab4a3cbfc4eb7f8aa6ba136de656d80fc21",
+          "char_start": 309,
+          "char_end": 358,
+          "quote": "difficulty generating images of uncommon entities",
+          "interpretation": "Генераторы плохо воспроизводят внешний вид редких сущностей.",
+          "modality": "problem_statement",
+          "conditions": null
+        },
+        "advantage": {
+          "source_id": "2209.14491v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "e7921efa658a6d1a05759b022aa77ab4a3cbfc4eb7f8aa6ba136de656d80fc21",
+          "char_start": 1843,
+          "char_end": 1914,
+          "quote": "significantly better faithfulness, especially on less frequent entities",
+          "interpretation": "Re-Imagen сообщает более точную передачу редких сущностей.",
+          "modality": "author_reported_experiment",
+          "conditions": "Human evaluation на EntityDrawBench; photorealism сопоставим с prior models, claim ограничен данным экспериментом."
+        },
+        "example": {
+          "kind": "research",
+          "source_id": "2209.14491v1",
+          "label": "Re-Imagen: Retrieval-Augmented Text-to-Image Generator"
+        }
+      },
+      "independence_limit": "Distinct canonical works and author lists were checked; experiments were not independently replicated."
+    },
+    {
+      "id": "dev-foundational-rag",
+      "split": "development",
+      "cutoff": "2023-12-31T23:59:59Z",
+      "label": "Базовая генерация с внешней непараметрической памятью",
+      "distinctness_group": "dev-foundational-rag",
+      "source_ids": [
+        "2002.08909v1",
+        "2005.11401v1"
+      ],
+      "assessor": "Codex",
+      "review_status": "self_assessed_primary_sources",
+      "relevance": {
+        "ai": 2,
+        "rag": 2,
+        "rare_control": 0
+      },
+      "emergence": "mature",
+      "decision_basis": "REALM и исходный RAG опубликованы в 2020. К концу 2023 это предшествующий общий retrieval-plus-language-model подход, на который опираются новые специализированные темы, а не отдельный ранний тренд.",
+      "counterevidence": "Технология активно развивается; mature относится к этой общей постановке, а не запрещает новые дочерние методы.",
+      "eligible_gold": {
+        "ai": false,
+        "rag": false,
+        "rare_control": false
+      },
+      "brief_support": {
+        "problem": {
+          "source_id": "2005.11401v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "766b22c091b5e3c8cdd736cd8c8d1529a5abe2f4895f6bd8f01df31f93851d55",
+          "char_start": 375,
+          "char_end": 450,
+          "quote": "providing provenance for their decisions and updating their world knowledge",
+          "interpretation": "Параметрической модели трудно показывать основания ответа и обновлять знания.",
+          "modality": "problem_statement",
+          "conditions": null
+        },
+        "advantage": {
+          "source_id": "2005.11401v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "766b22c091b5e3c8cdd736cd8c8d1529a5abe2f4895f6bd8f01df31f93851d55",
+          "char_start": 1529,
+          "char_end": 1572,
+          "quote": "more specific, diverse and factual language",
+          "interpretation": "Авторы RAG сообщают улучшение фактичности, конкретности и разнообразия.",
+          "modality": "author_reported_experiment",
+          "conditions": "Сравнение с parametric-only seq2seq baseline в генеративных задачах статьи; не гарантия отсутствия ошибок."
+        },
+        "example": {
+          "kind": "research",
+          "source_id": "2005.11401v1",
+          "label": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks"
+        }
+      },
+      "independence_limit": "Distinct canonical works and author lists were checked; experiments were not independently replicated."
+    },
+    {
+      "id": "dev-static-encoder",
+      "split": "development",
+      "cutoff": "2023-12-31T23:59:59Z",
+      "label": "Общее предобучение Transformer-энкодеров",
+      "distinctness_group": "dev-static-encoder",
+      "source_ids": [
+        "1706.03762v1",
+        "1810.04805v1"
+      ],
+      "assessor": "Codex",
+      "review_status": "self_assessed_primary_sources",
+      "relevance": {
+        "ai": 2,
+        "rag": 1,
+        "rare_control": 0
+      },
+      "emergence": "mature",
+      "decision_basis": "Transformer 2017 и BERT 2018 — зрелые основания на cutoff 2023. Названия всей архитектуры/предобучения слишком широки для раннего технологического результата.",
+      "counterevidence": "Новые способы retrieval или адаптации этих моделей могут быть ранними темами; данный кандидат их не выделяет.",
+      "eligible_gold": {
+        "ai": false,
+        "rag": false,
+        "rare_control": false
+      },
+      "brief_support": {
+        "problem": {
+          "source_id": "1810.04805v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "06712886292eb32a13b6c5b4e70f5859d0eb74c534a7bd1e4c22bace67f22615",
+          "char_start": 535,
+          "char_end": 595,
+          "quote": "without substantial task-specific architecture modifications",
+          "interpretation": "Для разных NLP-задач требуется перенос представлений без существенной перестройки архитектуры.",
+          "modality": "stated_design_goal",
+          "conditions": null
+        },
+        "advantage": {
+          "source_id": "1810.04805v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "06712886292eb32a13b6c5b4e70f5859d0eb74c534a7bd1e4c22bace67f22615",
+          "char_start": 666,
+          "char_end": 734,
+          "quote": "state-of-the-art results on eleven natural language processing tasks",
+          "interpretation": "В исходной работе заявлены лучшие результаты на 11 NLP-задачах.",
+          "modality": "author_reported_experiment",
+          "conditions": "Результаты 2018 года и набор задач BERT; не относить их к современному RAG."
+        },
+        "example": {
+          "kind": "research",
+          "source_id": "1810.04805v1",
+          "label": "BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding"
+        }
+      },
+      "independence_limit": "Distinct canonical works and author lists were checked; experiments were not independently replicated."
+    },
+    {
+      "id": "dev-dense-passage",
+      "split": "development",
+      "cutoff": "2023-12-31T23:59:59Z",
+      "label": "Статический dense passage retrieval для открытых вопросов",
+      "distinctness_group": "dev-dense-passage",
+      "source_ids": [
+        "2004.04906v1"
+      ],
+      "assessor": "Codex",
+      "review_status": "self_assessed_primary_sources",
+      "relevance": {
+        "ai": 2,
+        "rag": 2,
+        "rare_control": 0
+      },
+      "emergence": "mature",
+      "decision_basis": "DPR 2020 — отдельный научный источник, показывающий зрелый retrieval-компонент. Наличие одного источника в этом pool не является свидетельством рождения DPR в 2023.",
+      "counterevidence": "Не заявляется полнота истории dense retrieval. Кандидат не смешивается с новыми LLM-generated query expansion методами.",
+      "eligible_gold": {
+        "ai": false,
+        "rag": false,
+        "rare_control": false
+      },
+      "brief_support": {
+        "problem": {
+          "source_id": "2004.04906v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "1d92ab3f358bc517ca0fd9d5169dfe04832dadfdb47fd8baf2488f9d9f76fbc2",
+          "char_start": 268,
+          "char_end": 295,
+          "quote": "dense representations alone",
+          "interpretation": "Работа проверяет поиск только по плотным представлениям.",
+          "modality": "method_description",
+          "conditions": null
+        },
+        "advantage": {
+          "source_id": "2004.04906v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "1d92ab3f358bc517ca0fd9d5169dfe04832dadfdb47fd8baf2488f9d9f76fbc2",
+          "char_start": 538,
+          "char_end": 553,
+          "quote": "9%-19% absolute",
+          "interpretation": "Авторы сообщают улучшение top-20 passage retrieval accuracy на 9–19 процентных пунктов относительно Lucene-BM25.",
+          "modality": "author_reported_experiment",
+          "conditions": "Open-domain QA datasets статьи DPR; абсолютная разница top-20 passage retrieval accuracy, не относительный рост итогового QA."
+        },
+        "example": {
+          "kind": "research",
+          "source_id": "2004.04906v1",
+          "label": "Dense Passage Retrieval for Open-Domain Question Answering"
+        }
+      },
+      "independence_limit": "Distinct canonical works and author lists were checked; experiments were not independently replicated."
+    },
+    {
+      "id": "dev-read-write-memory",
+      "split": "development",
+      "cutoff": "2023-12-31T23:59:59Z",
+      "label": "Читаемая и записываемая тройковая память LLM",
+      "distinctness_group": "dev-read-write-memory",
+      "source_ids": [
+        "2305.14322v1"
+      ],
+      "assessor": "Codex",
+      "review_status": "self_assessed_primary_sources",
+      "relevance": {
+        "ai": 2,
+        "rag": 2,
+        "rare_control": 0
+      },
+      "emergence": "insufficient_evidence",
+      "decision_basis": "RET-LLM 2023 даёт конкретную разработку и качественные результаты, но одна работа не подтверждает временной тренд и несколько независимых исследований.",
+      "counterevidence": "Это недостаток подтверждений в данном pool, а не отрицание технической состоятельности подхода. Нельзя повысить статус только из-за свежей даты.",
+      "eligible_gold": {
+        "ai": false,
+        "rag": false,
+        "rare_control": false
+      },
+      "brief_support": {
+        "problem": {
+          "source_id": "2305.14322v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "fd2c3d0ada1aa407133724bc109e45b94dec731cd31c8db427f893cc615ab61c",
+          "char_start": 198,
+          "char_end": 226,
+          "quote": "lack a dedicated memory unit",
+          "interpretation": "Нужна явная обновляемая память знаний за пределами параметров.",
+          "modality": "problem_statement",
+          "conditions": null
+        },
+        "advantage": {
+          "source_id": "2305.14322v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "fd2c3d0ada1aa407133724bc109e45b94dec731cd31c8db427f893cc615ab61c",
+          "char_start": 706,
+          "char_end": 737,
+          "quote": "Through qualitative evaluations",
+          "interpretation": "Авторы описывают преимущества по качественным QA-примерам.",
+          "modality": "author_reported_qualitative",
+          "conditions": "В аннотации нет количественного benchmark для заявленного выигрыша; не называть измеренным превосходством."
+        },
+        "example": {
+          "kind": "research",
+          "source_id": "2305.14322v1",
+          "label": "RET-LLM: Towards a General Read-Write Memory for Large Language Models"
+        }
+      },
+      "independence_limit": "Distinct canonical works and author lists were checked; experiments were not independently replicated."
+    }
+  ],
+  "coverage": "Curated historical development pool, not exhaustive scientific coverage. Only three eligible themes; cannot test normal TOP-15 fill."
+}

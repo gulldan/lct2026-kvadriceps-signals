@@ -1,0 +1,150 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/npTCYbdrpDPqVN1JwIL6XwFclZY</id>
+  <title>arXiv Query: search_query=&amp;id_list=2407.01463v1,2504.03616v1,2412.04697v1,2511.07637v1,2410.08815v1&amp;start=0&amp;max_results=5</title>
+  <updated>2026-09-08T22:53:13Z</updated>
+  <link href="https://arxiv.org/api/query?search_query=&amp;start=0&amp;max_results=5&amp;id_list=2407.01463v1,2504.03616v1,2412.04697v1,2511.07637v1,2410.08815v1" type="application/atom+xml"/>
+  <opensearch:itemsPerPage>5</opensearch:itemsPerPage>
+  <opensearch:totalResults>5</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <entry>
+    <id>http://arxiv.org/abs/2511.07637v1</id>
+    <title>Private-RAG: Answering Multiple Queries with LLMs while Keeping Your Data Private</title>
+    <updated>2025-11-10T21:12:32Z</updated>
+    <link href="https://arxiv.org/abs/2511.07637v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2511.07637v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Retrieval-augmented generation (RAG) enhances large language models (LLMs) by retrieving documents from an external corpus at inference time. When this corpus contains sensitive information, however, unprotected RAG systems are at risk of leaking private information. Prior work has introduced differential privacy (DP) guarantees for RAG, but only in single-query settings, which fall short of realistic usage. In this paper, we study the more practical multi-query setting and propose two DP-RAG algorithms. The first, MURAG, leverages an individual privacy filter so that the accumulated privacy loss only depends on how frequently each document is retrieved rather than the total number of queries. The second, MURAG-ADA, further improves utility by privately releasing query-specific thresholds, enabling more precise selection of relevant documents. Our experiments across multiple LLMs and datasets demonstrate that the proposed methods scale to hundreds of queries within a practical DP budget ($\varepsilon\approx10$), while preserving meaningful utility.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CR" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-11-10T21:12:32Z</published>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Ruihan Wu</name>
+    </author>
+    <author>
+      <name>Erchi Wang</name>
+    </author>
+    <author>
+      <name>Zhiyuan Zhang</name>
+    </author>
+    <author>
+      <name>Yu-Xiang Wang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2407.01463v1</id>
+    <title>Retrieval-augmented generation in multilingual settings</title>
+    <updated>2024-07-01T16:56:50Z</updated>
+    <link href="https://arxiv.org/abs/2407.01463v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2407.01463v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Retrieval-augmented generation (RAG) has recently emerged as a promising solution for incorporating up-to-date or domain-specific knowledge into large language models (LLMs) and improving LLM factuality, but is predominantly studied in English-only settings. In this work, we consider RAG in the multilingual setting (mRAG), i.e. with user queries and the datastore in 13 languages, and investigate which components and with which adjustments are needed to build a well-performing mRAG pipeline, that can be used as a strong baseline in future works. Our findings highlight that despite the availability of high-quality off-the-shelf multilingual retrievers and generators, task-specific prompt engineering is needed to enable generation in user languages. Moreover, current evaluation metrics need adjustments for multilingual setting, to account for variations in spelling named entities. The main limitations to be addressed in future works include frequent code-switching in non-Latin alphabet languages, occasional fluency errors, wrong reading of the provided documents, or irrelevant retrieval. We release the code for the resulting mRAG baseline pipeline at https://github.com/naver/bergen.</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-07-01T16:56:50Z</published>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Nadezhda Chirkova</name>
+    </author>
+    <author>
+      <name>David Rau</name>
+    </author>
+    <author>
+      <name>Hervé Déjean</name>
+    </author>
+    <author>
+      <name>Thibault Formal</name>
+    </author>
+    <author>
+      <name>Stéphane Clinchant</name>
+    </author>
+    <author>
+      <name>Vassilina Nikoulina</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2504.03616v1</id>
+    <title>Multilingual Retrieval-Augmented Generation for Knowledge-Intensive Task</title>
+    <updated>2025-04-04T17:35:43Z</updated>
+    <link href="https://arxiv.org/abs/2504.03616v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2504.03616v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Retrieval-augmented generation (RAG) has become a cornerstone of contemporary NLP, enhancing large language models (LLMs) by allowing them to access richer factual contexts through in-context retrieval. While effective in monolingual settings, especially in English, its use in multilingual tasks remains unexplored. This paper investigates the effectiveness of RAG across multiple languages by proposing novel approaches for multilingual open-domain question-answering. We evaluate the performance of various multilingual RAG strategies, including question-translation (tRAG), which translates questions into English before retrieval, and Multilingual RAG (MultiRAG), where retrieval occurs directly across multiple languages. Our findings reveal that tRAG, while useful, suffers from limited coverage. In contrast, MultiRAG improves efficiency by enabling multilingual retrieval but introduces inconsistencies due to cross-lingual variations in the retrieved content. To address these issues, we propose Crosslingual RAG (CrossRAG), a method that translates retrieved documents into a common language (e.g., English) before generating the response. Our experiments show that CrossRAG significantly enhances performance on knowledge-intensive tasks, benefiting both high-resource and low-resource languages.</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-04-04T17:35:43Z</published>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Leonardo Ranaldi</name>
+    </author>
+    <author>
+      <name>Barry Haddow</name>
+    </author>
+    <author>
+      <name>Alexandra Birch</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2412.04697v1</id>
+    <title>Privacy-Preserving Retrieval Augmented Generation with Differential Privacy</title>
+    <updated>2024-12-06T01:20:16Z</updated>
+    <link href="https://arxiv.org/abs/2412.04697v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2412.04697v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>With the recent remarkable advancement of large language models (LLMs), there has been a growing interest in utilizing them in the domains with highly sensitive data that lies outside their training data. For this purpose, retrieval augmented generation (RAG) is particularly effective -- it assists LLMs by directly providing relevant information from the external knowledge sources. However, without extra privacy safeguards, RAG outputs risk leaking sensitive information from the external data source. In this work, we explore RAG under differential privacy (DP), a formal guarantee of data privacy. The main challenge with differentially private RAG is how to generate long accurate answers within a moderate privacy budget. We address this by proposing an algorithm that smartly spends privacy budget only for the tokens that require the sensitive information and uses the non-private LLM for other tokens. Our extensive empirical evaluations reveal that our algorithm outperforms the non-RAG baseline under a reasonable privacy budget of $ε\approx 10$ across different models and datasets.</summary>
+    <category term="cs.CR" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-12-06T01:20:16Z</published>
+    <arxiv:primary_category term="cs.CR"/>
+    <author>
+      <name>Tatsuki Koga</name>
+    </author>
+    <author>
+      <name>Ruihan Wu</name>
+    </author>
+    <author>
+      <name>Kamalika Chaudhuri</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2410.08815v1</id>
+    <title>StructRAG: Boosting Knowledge Intensive Reasoning of LLMs via Inference-time Hybrid Information Structurization</title>
+    <updated>2024-10-11T13:52:44Z</updated>
+    <link href="https://arxiv.org/abs/2410.08815v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2410.08815v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Retrieval-augmented generation (RAG) is a key means to effectively enhance large language models (LLMs) in many knowledge-based tasks. However, existing RAG methods struggle with knowledge-intensive reasoning tasks, because useful information required to these tasks are badly scattered. This characteristic makes it difficult for existing RAG methods to accurately identify key information and perform global reasoning with such noisy augmentation. In this paper, motivated by the cognitive theories that humans convert raw information into various structured knowledge when tackling knowledge-intensive reasoning, we proposes a new framework, StructRAG, which can identify the optimal structure type for the task at hand, reconstruct original documents into this structured format, and infer answers based on the resulting structure. Extensive experiments across various knowledge-intensive tasks show that StructRAG achieves state-of-the-art performance, particularly excelling in challenging scenarios, demonstrating its potential as an effective solution for enhancing LLMs in complex real-world applications.</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-10-11T13:52:44Z</published>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Zhuoqun Li</name>
+    </author>
+    <author>
+      <name>Xuanang Chen</name>
+    </author>
+    <author>
+      <name>Haiyang Yu</name>
+    </author>
+    <author>
+      <name>Hongyu Lin</name>
+    </author>
+    <author>
+      <name>Yaojie Lu</name>
+    </author>
+    <author>
+      <name>Qiaoyu Tang</name>
+    </author>
+    <author>
+      <name>Fei Huang</name>
+    </author>
+    <author>
+      <name>Xianpei Han</name>
+    </author>
+    <author>
+      <name>Le Sun</name>
+    </author>
+    <author>
+      <name>Yongbin Li</name>
+    </author>
+  </entry>
+</feed>

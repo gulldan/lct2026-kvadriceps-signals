@@ -1,0 +1,34 @@
+{
+  "native_id": "2305.06983v1",
+  "canonical_id": "arxiv:2305.06983",
+  "url": "https://arxiv.org/abs/2305.06983v1",
+  "title": "Active Retrieval Augmented Generation",
+  "authors": [
+    "Zhengbao Jiang",
+    "Frank F. Xu",
+    "Luyu Gao",
+    "Zhiqing Sun",
+    "Qian Liu",
+    "Jane Dwivedi-Yu",
+    "Yiming Yang",
+    "Jamie Callan",
+    "Graham Neubig"
+  ],
+  "published_at": "2023-05-11T17:13:40Z",
+  "version_updated_at": "2023-05-11T17:13:40Z",
+  "observed_at": "2026-09-08T18:26:21.557709+00:00",
+  "available_at": "2023-05-11T17:13:40Z",
+  "available_basis": "arXiv archived v1 release; historical reconstruction captured later",
+  "source_kind": "paper",
+  "provider": "arxiv",
+  "access_scope": "public",
+  "representation": "versioned_primary_abstract",
+  "text": "Despite the remarkable ability of large language models (LMs) to comprehend and generate language, they have a tendency to hallucinate and create factually inaccurate output. Augmenting LMs by retrieving information from external knowledge resources is one promising solution. Most existing retrieval-augmented LMs employ a retrieve-and-generate setup that only retrieves information once based on the input. This is limiting, however, in more general scenarios involving generation of long texts, where continually gathering information throughout the generation process is essential. There have been some past efforts to retrieve information multiple times while generating outputs, which mostly retrieve documents at fixed intervals using the previous context as queries. In this work, we provide a generalized view of active retrieval augmented generation, methods that actively decide when and what to retrieve across the course of the generation. We propose Forward-Looking Active REtrieval augmented generation (FLARE), a generic retrieval-augmented generation method which iteratively uses a prediction of the upcoming sentence to anticipate future content, which is then utilized as a query to retrieve relevant documents to regenerate the sentence if it contains low-confidence tokens. We test FLARE along with baselines comprehensively over 4 long-form knowledge-intensive generation tasks/datasets. FLARE achieves superior or competitive performance on all tasks, demonstrating the effectiveness of our method. Code and datasets are available at https://github.com/jzbjyb/FLARE.",
+  "text_sha256": "a396191f1b69cb5545df6658eafd0b7e162d56cb4f9eb03bff8d1423f310847d",
+  "raw_sha256": "b34f72b71eb5663d7d56e4219cc6bd43e8a803b50d2fcce0b75aaf98b354a770",
+  "raw_file": "b34f72b71eb5663d7d56e4219cc6bd43e8a803b50d2fcce0b75aaf98b354a770.xml",
+  "limitations": [
+    "Abstract-only evidence; author-reported results, not independent reproduction.",
+    "Later DOI, journal metadata and current citations are excluded from historical input."
+  ]
+}

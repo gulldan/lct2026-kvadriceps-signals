@@ -1,0 +1,1076 @@
+{
+  "version": 1,
+  "synthetic": true,
+  "cutoff": "2026-08-31T23:59:59Z",
+  "records": [
+    {
+      "id": "early-1",
+      "source": {
+        "version": 1,
+        "source_kind": "paper",
+        "provider": "manual",
+        "native_id": "early-1",
+        "url": "https://example.org/signalgraph-fixtures/early-1",
+        "canonical_id": "early-a",
+        "publication": {
+          "value": "2025-01-15",
+          "precision": "day",
+          "basis": "synthetic fixture publication"
+        },
+        "observed_at": "2026-08-31T00:00:00Z",
+        "available_at": null,
+        "revision": "v1",
+        "content_hash": "e15be4b04d9bcfea7565848f05ff719cf146d8060e7a3b0899b1d5758314b5e9",
+        "hash_algorithm": "sha256",
+        "access_scope": "public",
+        "test_run_id": "tr-test-fixture-v1",
+        "priority": null,
+        "filing": null,
+        "arxiv": null,
+        "github": null
+      },
+      "text": "The proposed sparse retrieval method addresses redundant context. On the fixture benchmark it reduces retrieved tokens by 20% versus dense top-20 retrieval.",
+      "anchors": [
+        {
+          "start": 0,
+          "end": 156,
+          "quote": "The proposed sparse retrieval method addresses redundant context. On the fixture benchmark it reduces retrieved tokens by 20% versus dense top-20 retrieval.",
+          "locator": "paragraph:1"
+        }
+      ]
+    },
+    {
+      "id": "early-2",
+      "source": {
+        "version": 1,
+        "source_kind": "paper",
+        "provider": "manual",
+        "native_id": "early-2",
+        "url": "https://example.org/signalgraph-fixtures/early-2",
+        "canonical_id": "early-b",
+        "publication": {
+          "value": "2025-05-12",
+          "precision": "day",
+          "basis": "synthetic fixture publication"
+        },
+        "observed_at": "2026-08-31T00:00:00Z",
+        "available_at": null,
+        "revision": "v1",
+        "content_hash": "63b0c61f1c4c6994973c647d3cfd6532e93d41a83a94046557d68e49de08fd6c",
+        "hash_algorithm": "sha256",
+        "access_scope": "public",
+        "test_run_id": "tr-test-fixture-v1",
+        "priority": null,
+        "filing": null,
+        "arxiv": null,
+        "github": null
+      },
+      "text": "An independent study evaluates sparse retrieval with unchanged answer accuracy and fewer retrieved tokens.",
+      "anchors": [
+        {
+          "start": 0,
+          "end": 106,
+          "quote": "An independent study evaluates sparse retrieval with unchanged answer accuracy and fewer retrieved tokens.",
+          "locator": "paragraph:1"
+        }
+      ]
+    },
+    {
+      "id": "early-3",
+      "source": {
+        "version": 1,
+        "source_kind": "paper",
+        "provider": "manual",
+        "native_id": "early-3",
+        "url": "https://example.org/signalgraph-fixtures/early-3",
+        "canonical_id": "early-c",
+        "publication": {
+          "value": "2025-07-09",
+          "precision": "day",
+          "basis": "synthetic fixture publication"
+        },
+        "observed_at": "2026-08-31T00:00:00Z",
+        "available_at": null,
+        "revision": "v1",
+        "content_hash": "0f49caca07e5705f0239e914febd0daedda193f20d6a2e37c42e9bd03ae69f03",
+        "hash_algorithm": "sha256",
+        "access_scope": "public",
+        "test_run_id": "tr-test-fixture-v1",
+        "priority": null,
+        "filing": null,
+        "arxiv": null,
+        "github": null
+      },
+      "text": "A third study reproduces sparse retrieval on a different corpus.",
+      "anchors": [
+        {
+          "start": 0,
+          "end": 64,
+          "quote": "A third study reproduces sparse retrieval on a different corpus.",
+          "locator": "paragraph:1"
+        }
+      ]
+    },
+    {
+      "id": "mature-1",
+      "source": {
+        "version": 1,
+        "source_kind": "paper",
+        "provider": "manual",
+        "native_id": "mature-1",
+        "url": "https://example.org/signalgraph-fixtures/mature-1",
+        "canonical_id": "mature-a",
+        "publication": {
+          "value": "2020-01-12",
+          "precision": "day",
+          "basis": "synthetic fixture publication"
+        },
+        "observed_at": "2026-08-31T00:00:00Z",
+        "available_at": null,
+        "revision": "v1",
+        "content_hash": "957fe301031142184a4da7832cadae881a97562a4cb0aa9f6334e6ca1b039b4e",
+        "hash_algorithm": "sha256",
+        "access_scope": "public",
+        "test_run_id": "tr-test-fixture-v1",
+        "priority": null,
+        "filing": null,
+        "arxiv": null,
+        "github": null
+      },
+      "text": "A long established method is already used in many studies.",
+      "anchors": [
+        {
+          "start": 0,
+          "end": 58,
+          "quote": "A long established method is already used in many studies.",
+          "locator": "paragraph:1"
+        }
+      ]
+    },
+    {
+      "id": "mature-2",
+      "source": {
+        "version": 1,
+        "source_kind": "paper",
+        "provider": "manual",
+        "native_id": "mature-2",
+        "url": "https://example.org/signalgraph-fixtures/mature-2",
+        "canonical_id": "mature-b",
+        "publication": {
+          "value": "2023-04-12",
+          "precision": "day",
+          "basis": "synthetic fixture publication"
+        },
+        "observed_at": "2026-08-31T00:00:00Z",
+        "available_at": null,
+        "revision": "v1",
+        "content_hash": "afb56c0634c108bcaab0b62a7b8f01898e69c25796f1772bc95fc288d712a630",
+        "hash_algorithm": "sha256",
+        "access_scope": "public",
+        "test_run_id": "tr-test-fixture-v1",
+        "priority": null,
+        "filing": null,
+        "arxiv": null,
+        "github": null
+      },
+      "text": "The established method remains widely studied.",
+      "anchors": [
+        {
+          "start": 0,
+          "end": 46,
+          "quote": "The established method remains widely studied.",
+          "locator": "paragraph:1"
+        }
+      ]
+    },
+    {
+      "id": "mature-3",
+      "source": {
+        "version": 1,
+        "source_kind": "paper",
+        "provider": "manual",
+        "native_id": "mature-3",
+        "url": "https://example.org/signalgraph-fixtures/mature-3",
+        "canonical_id": "mature-c",
+        "publication": {
+          "value": "2024-07-12",
+          "precision": "day",
+          "basis": "synthetic fixture publication"
+        },
+        "observed_at": "2026-08-31T00:00:00Z",
+        "available_at": null,
+        "revision": "v1",
+        "content_hash": "b3b79c351502e0a8744f6e4a8dd89dc74bdf14a54a87dd6ee10c346307125d8f",
+        "hash_algorithm": "sha256",
+        "access_scope": "public",
+        "test_run_id": "tr-test-fixture-v1",
+        "priority": null,
+        "filing": null,
+        "arxiv": null,
+        "github": null
+      },
+      "text": "Large publication volume does not establish emergence.",
+      "anchors": [
+        {
+          "start": 0,
+          "end": 54,
+          "quote": "Large publication volume does not establish emergence.",
+          "locator": "paragraph:1"
+        }
+      ]
+    },
+    {
+      "id": "hype-1",
+      "source": {
+        "version": 1,
+        "source_kind": "paper",
+        "provider": "manual",
+        "native_id": "hype-1",
+        "url": "https://example.org/signalgraph-fixtures/hype-1",
+        "canonical_id": "hype-1",
+        "publication": {
+          "value": "2026-02-02",
+          "precision": "day",
+          "basis": "synthetic fixture publication"
+        },
+        "observed_at": "2026-08-31T00:00:00Z",
+        "available_at": null,
+        "revision": "v1",
+        "content_hash": "726574136e2a86d5b6a74abc0ea50179eff9581b13883b0bdb052247e4aadfd5",
+        "hash_algorithm": "sha256",
+        "access_scope": "public",
+        "test_run_id": "tr-test-fixture-v1",
+        "priority": null,
+        "filing": null,
+        "arxiv": null,
+        "github": null
+      },
+      "text": "A one-day announcement burst, record 1.",
+      "anchors": [
+        {
+          "start": 0,
+          "end": 39,
+          "quote": "A one-day announcement burst, record 1.",
+          "locator": "paragraph:1"
+        }
+      ]
+    },
+    {
+      "id": "hype-2",
+      "source": {
+        "version": 1,
+        "source_kind": "paper",
+        "provider": "manual",
+        "native_id": "hype-2",
+        "url": "https://example.org/signalgraph-fixtures/hype-2",
+        "canonical_id": "hype-2",
+        "publication": {
+          "value": "2026-02-02",
+          "precision": "day",
+          "basis": "synthetic fixture publication"
+        },
+        "observed_at": "2026-08-31T00:00:00Z",
+        "available_at": null,
+        "revision": "v1",
+        "content_hash": "443111f359de59ca7aab597c88e9b0073945beccb37032f54620412b8a79d3ad",
+        "hash_algorithm": "sha256",
+        "access_scope": "public",
+        "test_run_id": "tr-test-fixture-v1",
+        "priority": null,
+        "filing": null,
+        "arxiv": null,
+        "github": null
+      },
+      "text": "A one-day announcement burst, record 2.",
+      "anchors": [
+        {
+          "start": 0,
+          "end": 39,
+          "quote": "A one-day announcement burst, record 2.",
+          "locator": "paragraph:1"
+        }
+      ]
+    },
+    {
+      "id": "hype-3",
+      "source": {
+        "version": 1,
+        "source_kind": "paper",
+        "provider": "manual",
+        "native_id": "hype-3",
+        "url": "https://example.org/signalgraph-fixtures/hype-3",
+        "canonical_id": "hype-3",
+        "publication": {
+          "value": "2026-02-02",
+          "precision": "day",
+          "basis": "synthetic fixture publication"
+        },
+        "observed_at": "2026-08-31T00:00:00Z",
+        "available_at": null,
+        "revision": "v1",
+        "content_hash": "145d71d2756086b26b018d4dd803601d7f11a80baa1fbc222aad0d90e89e0f17",
+        "hash_algorithm": "sha256",
+        "access_scope": "public",
+        "test_run_id": "tr-test-fixture-v1",
+        "priority": null,
+        "filing": null,
+        "arxiv": null,
+        "github": null
+      },
+      "text": "A one-day announcement burst, record 3.",
+      "anchors": [
+        {
+          "start": 0,
+          "end": 39,
+          "quote": "A one-day announcement burst, record 3.",
+          "locator": "paragraph:1"
+        }
+      ]
+    },
+    {
+      "id": "year-only",
+      "source": {
+        "version": 1,
+        "source_kind": "paper",
+        "provider": "manual",
+        "native_id": "year-only",
+        "url": "https://example.org/signalgraph-fixtures/year-only",
+        "canonical_id": "year-work",
+        "publication": {
+          "value": "2025",
+          "precision": "year",
+          "basis": "synthetic fixture publication"
+        },
+        "observed_at": "2026-08-31T00:00:00Z",
+        "available_at": null,
+        "revision": "v1",
+        "content_hash": "110294ae7279820aa6b842c53fed4f078749e14b8ff4291022085b6295bbc467",
+        "hash_algorithm": "sha256",
+        "access_scope": "public",
+        "test_run_id": "tr-test-fixture-v1",
+        "priority": null,
+        "filing": null,
+        "arxiv": null,
+        "github": null
+      },
+      "text": "The report gives only a publication year, with no month or day.",
+      "anchors": [
+        {
+          "start": 0,
+          "end": 63,
+          "quote": "The report gives only a publication year, with no month or day.",
+          "locator": "paragraph:1"
+        }
+      ]
+    },
+    {
+      "id": "unknown-date",
+      "source": {
+        "version": 1,
+        "source_kind": "paper",
+        "provider": "manual",
+        "native_id": "unknown-date",
+        "url": "https://example.org/signalgraph-fixtures/unknown-date",
+        "canonical_id": "unknown-work",
+        "publication": null,
+        "observed_at": "2026-08-31T00:00:00Z",
+        "available_at": null,
+        "revision": "v1",
+        "content_hash": "fd0e6fdea92131a6aa8e0670b120d241144961d04c82bb31b2ea4c1afdae48f4",
+        "hash_algorithm": "sha256",
+        "access_scope": "public",
+        "test_run_id": "tr-test-fixture-v1",
+        "priority": null,
+        "filing": null,
+        "arxiv": null,
+        "github": null
+      },
+      "text": "No supported publication date is known.",
+      "anchors": [
+        {
+          "start": 0,
+          "end": 39,
+          "quote": "No supported publication date is known.",
+          "locator": "paragraph:1"
+        }
+      ]
+    },
+    {
+      "id": "company-only",
+      "source": {
+        "version": 1,
+        "source_kind": "company_material",
+        "provider": "manual",
+        "native_id": "company-only",
+        "url": "https://example.org/signalgraph-fixtures/company-only",
+        "canonical_id": "company-case",
+        "publication": {
+          "value": "2025-06-01",
+          "precision": "day",
+          "basis": "synthetic fixture publication"
+        },
+        "observed_at": "2026-08-31T00:00:00Z",
+        "available_at": null,
+        "revision": "v1",
+        "content_hash": "9e606d3d84b7a7a8f0e9e08b73f492124d5c6553428e23c43fb7e4f3e2a03a7c",
+        "hash_algorithm": "sha256",
+        "access_scope": "public",
+        "test_run_id": "tr-test-fixture-v1",
+        "priority": null,
+        "filing": null,
+        "arxiv": null,
+        "github": null
+      },
+      "text": "Fixture Company claims its compact sensor reduces energy use by 12% versus its previous prototype under the same workload. No paper is provided.",
+      "anchors": [
+        {
+          "start": 0,
+          "end": 144,
+          "quote": "Fixture Company claims its compact sensor reduces energy use by 12% versus its previous prototype under the same workload. No paper is provided.",
+          "locator": "paragraph:1"
+        }
+      ]
+    },
+    {
+      "id": "unsupported-advantage",
+      "source": {
+        "version": 1,
+        "source_kind": "paper",
+        "provider": "manual",
+        "native_id": "unsupported-advantage",
+        "url": "https://example.org/signalgraph-fixtures/unsupported-advantage",
+        "canonical_id": "unsupported",
+        "publication": {
+          "value": "2025-06-02",
+          "precision": "day",
+          "basis": "synthetic fixture publication"
+        },
+        "observed_at": "2026-08-31T00:00:00Z",
+        "available_at": null,
+        "revision": "v1",
+        "content_hash": "b0fada7276819b21549bd5de9d05e2994042b85df70a1f17b29541c565f3524a",
+        "hash_algorithm": "sha256",
+        "access_scope": "public",
+        "test_run_id": "tr-test-fixture-v1",
+        "priority": null,
+        "filing": null,
+        "arxiv": null,
+        "github": null
+      },
+      "text": "A research study describes a problem and prototype; it gives no comparison or advantage.",
+      "anchors": [
+        {
+          "start": 0,
+          "end": 88,
+          "quote": "A research study describes a problem and prototype; it gives no comparison or advantage.",
+          "locator": "paragraph:1"
+        }
+      ]
+    },
+    {
+      "id": "private-paper",
+      "source": {
+        "version": 1,
+        "source_kind": "paper",
+        "provider": "manual",
+        "native_id": "private-paper",
+        "url": "https://example.org/signalgraph-fixtures/private-paper",
+        "canonical_id": "private",
+        "publication": {
+          "value": "2025-06-03",
+          "precision": "day",
+          "basis": "synthetic fixture publication"
+        },
+        "observed_at": "2026-08-31T00:00:00Z",
+        "available_at": null,
+        "revision": "v1",
+        "content_hash": "fc3924de0bd3e9bc383cc27c442691a885960aefcf1d51d2c05bfef6d20abdf8",
+        "hash_algorithm": "sha256",
+        "access_scope": "owner",
+        "test_run_id": "tr-test-fixture-v1",
+        "priority": null,
+        "filing": null,
+        "arxiv": null,
+        "github": null
+      },
+      "text": "Private study title and evidence must remain within the owner scope.",
+      "anchors": [
+        {
+          "start": 0,
+          "end": 68,
+          "quote": "Private study title and evidence must remain within the owner scope.",
+          "locator": "paragraph:1"
+        }
+      ]
+    },
+    {
+      "id": "arxiv-v1",
+      "source": {
+        "version": 1,
+        "source_kind": "paper",
+        "provider": "arxiv",
+        "native_id": "2501.00001",
+        "url": "https://arxiv.org/abs/2501.00001v1",
+        "canonical_id": "versioned-paper",
+        "publication": {
+          "value": "2025-01-15",
+          "precision": "day",
+          "basis": "synthetic fixture publication"
+        },
+        "observed_at": "2026-08-31T00:00:00Z",
+        "available_at": null,
+        "revision": "2501.00001v1",
+        "content_hash": "0966a8311456dff244fa9acff717bbed971bec3e92378e33c676da239cbc37de",
+        "hash_algorithm": "sha256",
+        "access_scope": "public",
+        "test_run_id": "tr-test-fixture-v1",
+        "priority": null,
+        "filing": null,
+        "arxiv": {
+          "base_id": "2501.00001",
+          "version": 1,
+          "first_published": "2025-01-15T12:00:00Z",
+          "version_updated": "2025-01-15T12:00:00Z",
+          "doi": "10.5555/fixture.paper"
+        },
+        "github": null
+      },
+      "text": "A synthetic preprint reports a retrieval method. Code: https://github.com/fixture-lab/retrieval .",
+      "anchors": [
+        {
+          "start": 0,
+          "end": 97,
+          "quote": "A synthetic preprint reports a retrieval method. Code: https://github.com/fixture-lab/retrieval .",
+          "locator": "paragraph:1"
+        }
+      ]
+    },
+    {
+      "id": "arxiv-v2",
+      "source": {
+        "version": 1,
+        "source_kind": "paper",
+        "provider": "arxiv",
+        "native_id": "2501.00001",
+        "url": "https://arxiv.org/abs/2501.00001v2",
+        "canonical_id": "versioned-paper",
+        "publication": {
+          "value": "2025-01-15",
+          "precision": "day",
+          "basis": "synthetic fixture publication"
+        },
+        "observed_at": "2026-08-31T00:00:00Z",
+        "available_at": null,
+        "revision": "2501.00001v2",
+        "content_hash": "13fa9cebc9605ff947a75e613b96d7be8494760e4a39b86e8f43c11685ee7888",
+        "hash_algorithm": "sha256",
+        "access_scope": "public",
+        "test_run_id": "tr-test-fixture-v1",
+        "priority": null,
+        "filing": null,
+        "arxiv": {
+          "base_id": "2501.00001",
+          "version": 2,
+          "first_published": "2025-01-15T12:00:00Z",
+          "version_updated": "2025-05-15T12:00:00Z",
+          "doi": "10.5555/fixture.paper"
+        },
+        "github": null
+      },
+      "text": "The second version corrects the comparison: up to 10%, not 10x. Code: https://github.com/fixture-lab/retrieval .",
+      "anchors": [
+        {
+          "start": 0,
+          "end": 112,
+          "quote": "The second version corrects the comparison: up to 10%, not 10x. Code: https://github.com/fixture-lab/retrieval .",
+          "locator": "paragraph:1"
+        }
+      ]
+    },
+    {
+      "id": "journal-version",
+      "source": {
+        "version": 1,
+        "source_kind": "paper",
+        "provider": "crossref",
+        "native_id": "10.5555/fixture.paper",
+        "url": "https://example.org/signalgraph-fixtures/journal-version",
+        "canonical_id": "versioned-paper",
+        "publication": {
+          "value": "2025-06-15",
+          "precision": "day",
+          "basis": "synthetic fixture publication"
+        },
+        "observed_at": "2026-08-31T00:00:00Z",
+        "available_at": null,
+        "revision": "v1",
+        "content_hash": "98809f6ce66b7214a2393805f803f6f5694e94f502860c2b07a307124b4c7dfe",
+        "hash_algorithm": "sha256",
+        "access_scope": "public",
+        "test_run_id": "tr-test-fixture-v1",
+        "priority": null,
+        "filing": null,
+        "arxiv": null,
+        "github": null
+      },
+      "text": "Journal version explicitly identifies the preprint 2501.00001 and DOI 10.5555/fixture.paper.",
+      "anchors": [
+        {
+          "start": 0,
+          "end": 92,
+          "quote": "Journal version explicitly identifies the preprint 2501.00001 and DOI 10.5555/fixture.paper.",
+          "locator": "paragraph:1"
+        }
+      ]
+    },
+    {
+      "id": "repo-original",
+      "source": {
+        "version": 1,
+        "source_kind": "software_repository",
+        "provider": "github",
+        "native_id": "101",
+        "url": "https://github.com/fixture-lab/retrieval",
+        "canonical_id": "repository:101",
+        "publication": null,
+        "observed_at": "2025-03-01T00:00:00Z",
+        "available_at": null,
+        "revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa@2025-03-01T00:00:00Z",
+        "content_hash": "f9b2286630a303ee68aaf6eb0a986c716aeeb8b15a78bafb2c8bd514fbb3f3d3",
+        "hash_algorithm": "sha256",
+        "access_scope": "public",
+        "test_run_id": "tr-test-fixture-v1",
+        "priority": null,
+        "filing": null,
+        "arxiv": null,
+        "github": {
+          "repository_id": 101,
+          "commit_sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "blob_sha": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "readme_path": "README.md",
+          "fork": false,
+          "root_id": null,
+          "archived": false,
+          "created_at": "2025-02-01T00:00:00Z",
+          "updated_at": "2025-03-01T00:00:00Z",
+          "pushed_at": null,
+          "released_at": null,
+          "release_id": null,
+          "stars": 12,
+          "forks": 2
+        }
+      },
+      "text": "Implementation of https://arxiv.org/abs/2501.00001v1 . This README claims neither a company nor production use.",
+      "anchors": [
+        {
+          "start": 0,
+          "end": 111,
+          "quote": "Implementation of https://arxiv.org/abs/2501.00001v1 . This README claims neither a company nor production use.",
+          "locator": "paragraph:1"
+        }
+      ]
+    },
+    {
+      "id": "repo-renamed",
+      "source": {
+        "version": 1,
+        "source_kind": "software_repository",
+        "provider": "github",
+        "native_id": "101",
+        "url": "https://github.com/fixture-lab/renamed-retrieval",
+        "canonical_id": "repository:101",
+        "publication": null,
+        "observed_at": "2025-05-01T00:00:00Z",
+        "available_at": null,
+        "revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa@2025-05-01T00:00:00Z",
+        "content_hash": "f9b2286630a303ee68aaf6eb0a986c716aeeb8b15a78bafb2c8bd514fbb3f3d3",
+        "hash_algorithm": "sha256",
+        "access_scope": "public",
+        "test_run_id": "tr-test-fixture-v1",
+        "priority": null,
+        "filing": null,
+        "arxiv": null,
+        "github": {
+          "repository_id": 101,
+          "commit_sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "blob_sha": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "readme_path": "README.md",
+          "fork": false,
+          "root_id": null,
+          "archived": false,
+          "created_at": "2025-02-01T00:00:00Z",
+          "updated_at": "2025-05-01T00:00:00Z",
+          "pushed_at": null,
+          "released_at": null,
+          "release_id": null,
+          "stars": 12,
+          "forks": 2
+        }
+      },
+      "text": "Implementation of https://arxiv.org/abs/2501.00001v1 . This README claims neither a company nor production use.",
+      "anchors": [
+        {
+          "start": 0,
+          "end": 111,
+          "quote": "Implementation of https://arxiv.org/abs/2501.00001v1 . This README claims neither a company nor production use.",
+          "locator": "paragraph:1"
+        }
+      ]
+    },
+    {
+      "id": "repo-new-readme",
+      "source": {
+        "version": 1,
+        "source_kind": "software_repository",
+        "provider": "github",
+        "native_id": "101",
+        "url": "https://github.com/fixture-lab/renamed-retrieval",
+        "canonical_id": "repository:101",
+        "publication": null,
+        "observed_at": "2026-09-02T00:00:00Z",
+        "available_at": null,
+        "revision": "cccccccccccccccccccccccccccccccccccccccc@2026-09-02T00:00:00Z",
+        "content_hash": "7c5b5fca5da94d91447600b69e7bc24cc762dbdf90ccd64ad1608fb043fad4da",
+        "hash_algorithm": "sha256",
+        "access_scope": "public",
+        "test_run_id": "tr-test-fixture-v1",
+        "priority": null,
+        "filing": null,
+        "arxiv": null,
+        "github": {
+          "repository_id": 101,
+          "commit_sha": "cccccccccccccccccccccccccccccccccccccccc",
+          "blob_sha": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "readme_path": "README.md",
+          "fork": false,
+          "root_id": null,
+          "archived": false,
+          "created_at": "2025-02-01T00:00:00Z",
+          "updated_at": "2026-09-02T00:00:00Z",
+          "pushed_at": null,
+          "released_at": null,
+          "release_id": null,
+          "stars": 12,
+          "forks": 2
+        }
+      },
+      "text": "A late README adds a link to a second paper. This text is unavailable at the August cutoff.",
+      "anchors": [
+        {
+          "start": 0,
+          "end": 91,
+          "quote": "A late README adds a link to a second paper. This text is unavailable at the August cutoff.",
+          "locator": "paragraph:1"
+        }
+      ]
+    },
+    {
+      "id": "repo-fork-a",
+      "source": {
+        "version": 1,
+        "source_kind": "software_repository",
+        "provider": "github",
+        "native_id": "102",
+        "url": "https://github.com/fixture-lab/retrieval",
+        "canonical_id": "repository:102",
+        "publication": null,
+        "observed_at": "2025-04-01T00:00:00Z",
+        "available_at": null,
+        "revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa@2025-04-01T00:00:00Z",
+        "content_hash": "f3916461c4741f3a4421333f90f6bb46a7b0ea229e4f315d507bea39243e8bee",
+        "hash_algorithm": "sha256",
+        "access_scope": "public",
+        "test_run_id": "tr-test-fixture-v1",
+        "priority": null,
+        "filing": null,
+        "arxiv": null,
+        "github": {
+          "repository_id": 102,
+          "commit_sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "blob_sha": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "readme_path": "README.md",
+          "fork": true,
+          "root_id": 101,
+          "archived": false,
+          "created_at": "2025-02-01T00:00:00Z",
+          "updated_at": "2025-04-01T00:00:00Z",
+          "pushed_at": null,
+          "released_at": null,
+          "release_id": null,
+          "stars": 12,
+          "forks": 2
+        }
+      },
+      "text": "Fork of repository 101.",
+      "anchors": [
+        {
+          "start": 0,
+          "end": 23,
+          "quote": "Fork of repository 101.",
+          "locator": "paragraph:1"
+        }
+      ]
+    },
+    {
+      "id": "repo-fork-b",
+      "source": {
+        "version": 1,
+        "source_kind": "software_repository",
+        "provider": "github",
+        "native_id": "103",
+        "url": "https://github.com/fixture-lab/retrieval",
+        "canonical_id": "repository:103",
+        "publication": null,
+        "observed_at": "2025-04-01T00:00:00Z",
+        "available_at": null,
+        "revision": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa@2025-04-01T00:00:00Z",
+        "content_hash": "ee03c8dcd3a00537bc80952dfeaf57c42350104e741ef301ae9e33c757e830d9",
+        "hash_algorithm": "sha256",
+        "access_scope": "public",
+        "test_run_id": "tr-test-fixture-v1",
+        "priority": null,
+        "filing": null,
+        "arxiv": null,
+        "github": {
+          "repository_id": 103,
+          "commit_sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "blob_sha": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "readme_path": "README.md",
+          "fork": true,
+          "root_id": 101,
+          "archived": false,
+          "created_at": "2025-02-01T00:00:00Z",
+          "updated_at": "2025-04-01T00:00:00Z",
+          "pushed_at": null,
+          "released_at": null,
+          "release_id": null,
+          "stars": 12,
+          "forks": 2
+        }
+      },
+      "text": "Another fork of repository 101.",
+      "anchors": [
+        {
+          "start": 0,
+          "end": 31,
+          "quote": "Another fork of repository 101.",
+          "locator": "paragraph:1"
+        }
+      ]
+    },
+    {
+      "id": "star-burst",
+      "source": {
+        "version": 1,
+        "source_kind": "software_repository",
+        "provider": "github",
+        "native_id": "104",
+        "url": "https://github.com/fixture-lab/retrieval",
+        "canonical_id": "repository:104",
+        "publication": null,
+        "observed_at": "2026-08-01T00:00:00Z",
+        "available_at": null,
+        "revision": "dddddddddddddddddddddddddddddddddddddddd@2026-08-01T00:00:00Z",
+        "content_hash": "b3b5692f2ece0d457963432d725448d2136007190ae1e54380cd036ca5daf024",
+        "hash_algorithm": "sha256",
+        "access_scope": "public",
+        "test_run_id": "tr-test-fixture-v1",
+        "priority": null,
+        "filing": null,
+        "arxiv": null,
+        "github": {
+          "repository_id": 104,
+          "commit_sha": "dddddddddddddddddddddddddddddddddddddddd",
+          "blob_sha": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "readme_path": "README.md",
+          "fork": false,
+          "root_id": null,
+          "archived": false,
+          "created_at": "2025-02-01T00:00:00Z",
+          "updated_at": "2026-08-01T00:00:00Z",
+          "pushed_at": null,
+          "released_at": null,
+          "release_id": null,
+          "stars": 100000,
+          "forks": 2
+        }
+      },
+      "text": "A popular repository with no paper or established company example.",
+      "anchors": [
+        {
+          "start": 0,
+          "end": 66,
+          "quote": "A popular repository with no paper or established company example.",
+          "locator": "paragraph:1"
+        }
+      ]
+    },
+    {
+      "id": "false-paper-link",
+      "source": {
+        "version": 1,
+        "source_kind": "software_repository",
+        "provider": "github",
+        "native_id": "105",
+        "url": "https://github.com/fixture-lab/retrieval",
+        "canonical_id": "repository:105",
+        "publication": null,
+        "observed_at": "2026-08-01T00:00:00Z",
+        "available_at": null,
+        "revision": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee@2026-08-01T00:00:00Z",
+        "content_hash": "9f46b41a8fb8f05047c2cf8d5407939237ebf7551208cc2a12b1277c853ca8b5",
+        "hash_algorithm": "sha256",
+        "access_scope": "public",
+        "test_run_id": "tr-test-fixture-v1",
+        "priority": null,
+        "filing": null,
+        "arxiv": null,
+        "github": {
+          "repository_id": 105,
+          "commit_sha": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+          "blob_sha": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+          "readme_path": "README.md",
+          "fork": false,
+          "root_id": null,
+          "archived": false,
+          "created_at": "2025-02-01T00:00:00Z",
+          "updated_at": "2026-08-01T00:00:00Z",
+          "pushed_at": null,
+          "released_at": null,
+          "release_id": null,
+          "stars": 12,
+          "forks": 2
+        }
+      },
+      "text": "A similarly named method. There is no explicit research identifier in this README.",
+      "anchors": [
+        {
+          "start": 0,
+          "end": 82,
+          "quote": "A similarly named method. There is no explicit research identifier in this README.",
+          "locator": "paragraph:1"
+        }
+      ]
+    },
+    {
+      "id": "generated-hypothesis",
+      "source": {
+        "version": 1,
+        "source_kind": "hypothesis",
+        "provider": "generated",
+        "native_id": "generated-hypothesis",
+        "url": "https://example.org/fixtures/generated-hypothesis",
+        "canonical_id": "generated-hypothesis",
+        "publication": null,
+        "observed_at": "2026-08-31T00:00:00Z",
+        "available_at": null,
+        "revision": "v1",
+        "content_hash": "785200f1a99c8181ce6bf9af8137b5bb62136b65c480490aeb23a91b027f7f46",
+        "hash_algorithm": "sha256",
+        "access_scope": "public",
+        "test_run_id": "tr-test-fixture-v1",
+        "priority": null,
+        "filing": null,
+        "arxiv": null,
+        "github": null
+      },
+      "text": "Synthetic generated hypothesis, excluded from scientific work counts.",
+      "anchors": [
+        {
+          "start": 0,
+          "end": 69,
+          "quote": "Synthetic generated hypothesis, excluded from scientific work counts.",
+          "locator": "paragraph:1"
+        }
+      ]
+    },
+    {
+      "id": "patent-publication",
+      "source": {
+        "version": 1,
+        "source_kind": "patent",
+        "provider": "manual",
+        "native_id": "patent-publication",
+        "url": "https://example.org/fixtures/patent-publication",
+        "canonical_id": "patent-publication",
+        "publication": {
+          "value": "2025-03-20",
+          "precision": "day",
+          "basis": "fixture publication page"
+        },
+        "observed_at": "2026-08-31T00:00:00Z",
+        "available_at": null,
+        "revision": "v1",
+        "content_hash": "99873d77d515cc80b30bfc3c8949e969ee812a09a7ab266435e583a368d3564f",
+        "hash_algorithm": "sha256",
+        "access_scope": "public",
+        "test_run_id": "tr-test-fixture-v1",
+        "priority": {
+          "value": "2023-01-10",
+          "precision": "day",
+          "basis": "patent priority field"
+        },
+        "filing": {
+          "value": "2024-02-11",
+          "precision": "day",
+          "basis": "patent filing field"
+        },
+        "arxiv": null,
+        "github": null
+      },
+      "text": "The patent publication is public in March 2025; filing and priority are earlier distinct events.",
+      "anchors": [
+        {
+          "start": 0,
+          "end": 96,
+          "quote": "The patent publication is public in March 2025; filing and priority are earlier distinct events.",
+          "locator": "paragraph:1"
+        }
+      ]
+    }
+  ],
+  "oracle": {
+    "canonical_scientific_works": 14,
+    "independent_repositories": 3,
+    "excluded_future_revisions": ["repo-new-readme"],
+    "owner_only": ["private-paper"],
+    "same_work": ["arxiv-v1", "arxiv-v2", "journal-version"],
+    "same_repository": ["repo-original", "repo-renamed", "repo-new-readme"],
+    "dependent_forks": ["repo-fork-a", "repo-fork-b"],
+    "confirmed_paper_repo_link": {
+      "paper": "arxiv-v1",
+      "repository": "repo-original",
+      "evidence": ["arxiv-v1", "repo-original"],
+      "official": false
+    },
+    "unconfirmed_link": "false-paper-link",
+    "patterns": {
+      "early": "sustained_across_three_quarters",
+      "mature": "established_before_window",
+      "hype": "three_works_on_one_day",
+      "star_burst": "no_scientific_temporal_support"
+    },
+    "early_quarter_counts": {
+      "2025-Q1": 1,
+      "2025-Q2": 1,
+      "2025-Q3": 1,
+      "2025-Q4": 0,
+      "2026-Q1": null
+    },
+    "coverage": {
+      "2025-Q1": "complete",
+      "2025-Q2": "complete",
+      "2025-Q3": "complete",
+      "2025-Q4": "complete",
+      "2026-Q1": "unknown"
+    },
+    "early_counting_units": "canonical_scientific_works",
+    "company_only_case": "company-only",
+    "research_without_company": "early-1",
+    "incomplete_advantage": "unsupported-advantage",
+    "notes": "Labels and counts hand-authored before the implementation. These are fixture facts, not acceptance of a trained emergence method. GitHub units never add to scientific works.",
+    "scientific_count_scope": "all fixture owners and dates; eligibility applied separately",
+    "generated_exclusions": ["generated-hypothesis"],
+    "patent_publications": 1
+  }
+}

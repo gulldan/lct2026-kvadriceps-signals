@@ -1,0 +1,63 @@
+{
+  "candidates": [
+    {
+      "id": "cand-ml-acoustic",
+      "name": "Acoustic watermark",
+      "canonical_ru": "Акустический водяной знак",
+      "doc_ids": [
+        "fixture:0",
+        "fixture:2"
+      ],
+      "stage": {
+        "code": 2,
+        "quote": "Phase coherence for synthetic speech",
+        "doc_id": "fixture:2",
+        "prob": 0.91,
+        "single_source": true,
+        "label": "прототип / PoC",
+        "quotes": [
+          {
+            "doc_id": "fixture:2",
+            "start": 0,
+            "end": 36,
+            "text": "Phase coherence for synthetic speech"
+          }
+        ]
+      },
+      "evidence": [
+        {
+          "doc_id": "fixture:2",
+          "start": 0,
+          "end": 36,
+          "sentence": "Phase coherence for synthetic speech",
+          "role": "contribution",
+          "in_title": true
+        }
+      ],
+      "trend": {
+        "code": 2
+      },
+      "score": 4,
+      "label": "weak_signal",
+      "value": 0.82,
+      "explanation": [
+        {
+          "name": "Стадия технологии",
+          "value": "2",
+          "contribution": 0.1
+        }
+      ]
+    }
+  ],
+  "coverage": {
+    "documents_in": 3,
+    "documents_processed": 3,
+    "candidates_total": 1,
+    "stage_confirmed": 1
+  },
+  "model_versions": {
+    "service": "weak-signal-2026-09-21.1",
+    "tagger": "fixture-tagger",
+    "stage": "fixture-stage"
+  }
+}

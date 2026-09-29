@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/T/mZNitbiPHRcfBntLGAb9roojA</id>
+  <title>arXiv Query: search_query=&amp;id_list=2311.12955v1,2504.02921v1,2403.17104v1,2407.01796v1&amp;start=0&amp;max_results=4</title>
+  <updated>2026-09-08T22:53:53Z</updated>
+  <link href="https://arxiv.org/api/query?search_query=&amp;start=0&amp;max_results=4&amp;id_list=2311.12955v1,2504.02921v1,2403.17104v1,2407.01796v1" type="application/atom+xml"/>
+  <opensearch:itemsPerPage>4</opensearch:itemsPerPage>
+  <opensearch:totalResults>4</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <entry>
+    <id>http://arxiv.org/abs/2407.01796v1</id>
+    <title>Ground Every Sentence: Improving Retrieval-Augmented LLMs with Interleaved Reference-Claim Generation</title>
+    <updated>2024-07-01T20:47:47Z</updated>
+    <link href="https://arxiv.org/abs/2407.01796v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2407.01796v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Retrieval-Augmented Generation (RAG) has been widely adopted to enhance Large Language Models (LLMs) in knowledge-intensive tasks. Recently, Attributed Text Generation (ATG) has attracted growing attention, which provides citations to support the model's responses in RAG, so as to enhance the credibility of LLM-generated content and facilitate verification. Prior methods mainly adopt coarse-grained attributions, linking to passage-level references or providing paragraph-level citations. However, these methods still fall short in verifiability and require certain time costs for fact checking. This paper proposes a fine-grained ATG method called ReClaim(Refer &amp; Claim), which alternates the generation of references and answers step by step. Unlike traditional coarse-grained attribution, ReClaim allows the model to add sentence-level fine-grained citations to each answer sentence in long-form question-answering tasks. Our experiments encompass various training and inference methods and multiple LLMs, verifying the effectiveness of our approach.</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-07-01T20:47:47Z</published>
+    <arxiv:comment>15 pages,2 figures</arxiv:comment>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Sirui Xia</name>
+    </author>
+    <author>
+      <name>Xintao Wang</name>
+    </author>
+    <author>
+      <name>Jiaqing Liang</name>
+    </author>
+    <author>
+      <name>Yifei Zhang</name>
+    </author>
+    <author>
+      <name>Weikang Zhou</name>
+    </author>
+    <author>
+      <name>Jiaji Deng</name>
+    </author>
+    <author>
+      <name>Fei Yu</name>
+    </author>
+    <author>
+      <name>Yanghua Xiao</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2311.12955v1</id>
+    <title>Don't forget private retrieval: distributed private similarity search for large language models</title>
+    <updated>2023-11-21T19:41:46Z</updated>
+    <link href="https://arxiv.org/abs/2311.12955v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2311.12955v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>While the flexible capabilities of large language models (LLMs) allow them to answer a range of queries based on existing learned knowledge, information retrieval to augment generation is an important tool to allow LLMs to answer questions on information not included in pre-training data. Such private information is increasingly being generated in a wide array of distributed contexts by organizations and individuals. Performing such information retrieval using neural embeddings of queries and documents always leaked information about queries and database content unless both were stored locally. We present Private Retrieval Augmented Generation (PRAG), an approach that uses multi-party computation (MPC) to securely transmit queries to a distributed set of servers containing a privately constructed database to return top-k and approximate top-k documents. This is a first-of-its-kind approach to dense information retrieval that ensures no server observes a client's query or can see the database content. The approach introduces a novel MPC friendly protocol for inverted file approximate search (IVF) that allows for fast document search over distributed and private data in sublinear communication complexity. This work presents new avenues through which data for use in LLMs can be accessed and used without needing to centralize or forgo privacy.</summary>
+    <category term="cs.IR" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-11-21T19:41:46Z</published>
+    <arxiv:primary_category term="cs.IR"/>
+    <author>
+      <name>Guy Zyskind</name>
+    </author>
+    <author>
+      <name>Tobin South</name>
+    </author>
+    <author>
+      <name>Alex Pentland</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2403.17104v1</id>
+    <title>Attribute First, then Generate: Locally-attributable Grounded Text Generation</title>
+    <updated>2024-03-25T18:41:47Z</updated>
+    <link href="https://arxiv.org/abs/2403.17104v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2403.17104v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Recent efforts to address hallucinations in Large Language Models (LLMs) have focused on attributed text generation, which supplements generated texts with citations of supporting sources for post-generation fact-checking and corrections. Yet, these citations often point to entire documents or paragraphs, burdening users with extensive verification work. In this paper, we introduce a locally-attributable text generation approach, prioritizing concise attributions. Our method, named ``Attribute First, then Generate'', breaks down the conventional end-to-end generation process into three intuitive steps: content selection, sentence planning, and sequential sentence generation. By initially identifying relevant source segments (``select first'') and then conditioning the generation process on them (``then generate''), we ensure these segments also act as the output's fine-grained attributions (``select'' becomes ``attribute''). Tested on Multi-document Summarization and Long-form Question-answering, our method not only yields more concise citations than the baselines but also maintains - and in some cases enhances - both generation quality and attribution accuracy. Furthermore, it significantly reduces the time required for fact verification by human assessors.</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-03-25T18:41:47Z</published>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Aviv Slobodkin</name>
+    </author>
+    <author>
+      <name>Eran Hirsch</name>
+    </author>
+    <author>
+      <name>Arie Cattan</name>
+    </author>
+    <author>
+      <name>Tal Schuster</name>
+    </author>
+    <author>
+      <name>Ido Dagan</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2504.02921v1</id>
+    <title>HyperRAG: Enhancing Quality-Efficiency Tradeoffs in Retrieval-Augmented Generation with Reranker KV-Cache Reuse</title>
+    <updated>2025-04-03T17:08:42Z</updated>
+    <link href="https://arxiv.org/abs/2504.02921v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2504.02921v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Retrieval-Augmented Generation (RAG) has emerged as a powerful paradigm for enhancing the performance of large language models (LLMs) by integrating external knowledge into the generation process. A key component of RAG pipelines is the reranker, which selects the most relevant documents from a pool of retrieved candidates and significantly improves the quality of the generated responses. While rerankers refine the selection of retrieved documents in RAG pipelines, they introduce computational challenges that hinder high throughput and low latency. To address this problem, we propose HyperRAG, a system that optimizes the trade-off between quality and efficiency in RAG pipelines by leveraging KV-cache reuse for efficient reranker inference. By reusing document-side KV-cache, HyperRAG achieves both high-quality generation and system-level efficiency. To fully realize the benefits of KV-cache reuse, HyperRAG incorporates a range of system-level optimizations designed to enhance efficiency and scalability. Experiments show that HyperRAG achieves a 2 - 3 throughput improvement with decoder-only rerankers while also delivering higher downstream performance compared with traditional RAG service.</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-04-03T17:08:42Z</published>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Yuwei An</name>
+    </author>
+    <author>
+      <name>Yihua Cheng</name>
+    </author>
+    <author>
+      <name>Seo Jin Park</name>
+    </author>
+    <author>
+      <name>Junchen Jiang</name>
+    </author>
+  </entry>
+</feed>

@@ -1,0 +1,29 @@
+{
+  "native_id": "2209.14491v1",
+  "canonical_id": "arxiv:2209.14491",
+  "url": "https://arxiv.org/abs/2209.14491v1",
+  "title": "Re-Imagen: Retrieval-Augmented Text-to-Image Generator",
+  "authors": [
+    "Wenhu Chen",
+    "Hexiang Hu",
+    "Chitwan Saharia",
+    "William W. Cohen"
+  ],
+  "published_at": "2022-09-29T00:57:28Z",
+  "version_updated_at": "2022-09-29T00:57:28Z",
+  "observed_at": "2026-09-08T18:09:18.827256+00:00",
+  "available_at": "2022-09-29T00:57:28Z",
+  "available_basis": "arXiv archived v1 release; historical reconstruction captured later",
+  "source_kind": "paper",
+  "provider": "arxiv",
+  "access_scope": "public",
+  "representation": "versioned_primary_abstract",
+  "text": "Research on text-to-image generation has witnessed significant progress in generating diverse and photo-realistic images, driven by diffusion and auto-regressive models trained on large-scale image-text data. Though state-of-the-art models can generate high-quality images of common entities, they often have difficulty generating images of uncommon entities, such as `Chortai (dog)' or `Picarones (food)'. To tackle this issue, we present the Retrieval-Augmented Text-to-Image Generator (Re-Imagen), a generative model that uses retrieved information to produce high-fidelity and faithful images, even for rare or unseen entities. Given a text prompt, Re-Imagen accesses an external multi-modal knowledge base to retrieve relevant (image, text) pairs, and uses them as references to generate the image. With this retrieval step, Re-Imagen is augmented with the knowledge of high-level semantics and low-level visual details of the mentioned entities, and thus improves its accuracy in generating the entities' visual appearances. We train Re-Imagen on a constructed dataset containing (image, text, retrieval) triples to teach the model to ground on both text prompt and retrieval. Furthermore, we develop a new sampling strategy to interleave the classifier-free guidance for text and retrieval condition to balance the text and retrieval alignment. Re-Imagen achieves new SoTA FID results on two image generation benchmarks, such as COCO (ie, FID = 5.25) and WikiImage (ie, FID = 5.82) without fine-tuning. To further evaluate the capabilities of the model, we introduce EntityDrawBench, a new benchmark that evaluates image generation for diverse entities, from frequent to rare, across multiple visual domains. Human evaluation on EntityDrawBench shows that Re-Imagen performs on par with the best prior models in photo-realism, but with significantly better faithfulness, especially on less frequent entities.",
+  "text_sha256": "e7921efa658a6d1a05759b022aa77ab4a3cbfc4eb7f8aa6ba136de656d80fc21",
+  "raw_sha256": "b2ccdda092ad9769f5a57419eecf08128cda0a4de3cf9c2012d6beef72b464d8",
+  "raw_file": "b2ccdda092ad9769f5a57419eecf08128cda0a4de3cf9c2012d6beef72b464d8.xml",
+  "limitations": [
+    "Abstract-only evidence; author-reported results, not independent reproduction.",
+    "Later DOI, journal metadata and current citations are excluded from historical input."
+  ]
+}

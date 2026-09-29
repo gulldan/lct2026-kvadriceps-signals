@@ -1,0 +1,30 @@
+{
+  "native_id": "2502.20330v1",
+  "canonical_id": "arxiv:2502.20330",
+  "url": "https://arxiv.org/abs/2502.20330v1",
+  "title": "Long-Context Inference with Retrieval-Augmented Speculative Decoding",
+  "authors": [
+    "Guanzheng Chen",
+    "Qilong Feng",
+    "Jinjie Ni",
+    "Xin Li",
+    "Michael Qizhe Shieh"
+  ],
+  "published_at": "2025-02-27T17:59:36Z",
+  "version_updated_at": "2025-02-27T17:59:36Z",
+  "observed_at": "2026-09-08T22:52:12.195898+00:00",
+  "available_at": "2025-02-27T17:59:36Z",
+  "available_basis": "arXiv archived v1 release; historical reconstruction captured later",
+  "source_kind": "paper",
+  "provider": "arxiv",
+  "access_scope": "public",
+  "representation": "versioned_primary_abstract",
+  "text": "The emergence of long-context large language models (LLMs) offers a promising alternative to traditional retrieval-augmented generation (RAG) for processing extensive documents. However, the computational overhead of long-context inference, particularly in managing key-value (KV) caches, presents significant efficiency challenges. While Speculative Decoding (SD) traditionally accelerates inference using smaller draft models, its effectiveness diminishes substantially in long-context scenarios due to memory-bound KV cache operations. We present Retrieval-Augmented Speculative Decoding (RAPID), which leverages RAG for both accelerating and enhancing generation quality in long-context inference. RAPID introduces the RAG drafter-a draft LLM operating on shortened retrieval contexts-to speculate on the generation of long-context target LLMs. Our approach enables a new paradigm where same-scale or even larger LLMs can serve as RAG drafters while maintaining computational efficiency. To fully leverage the potentially superior capabilities from stronger RAG drafters, we develop an inference-time knowledge transfer dynamic that enriches the target distribution by RAG. Extensive experiments on the LLaMA-3.1 and Qwen2.5 backbones demonstrate that RAPID effectively integrates the strengths of both approaches, achieving significant performance improvements (e.g., from 39.33 to 42.83 on InfiniteBench for LLaMA-3.1-8B) with more than 2x speedups. Our analyses reveal that RAPID achieves robust acceleration beyond 32K context length and demonstrates superior generation quality in real-world applications.",
+  "text_sha256": "0d757be48649713ed5ca92746e4b5e6a286c87e75148719109dd6cc65e21fa4a",
+  "raw_sha256": "e9cf2610ee63d5ed13ed8186244b12d017fc0b08860465833e21c8f98a5d8bbd",
+  "raw_file": "e9cf2610ee63d5ed13ed8186244b12d017fc0b08860465833e21c8f98a5d8bbd.xml",
+  "limitations": [
+    "Abstract-only evidence; author-reported results, not independent reproduction.",
+    "Later DOI, journal metadata and current citations are excluded from historical input."
+  ]
+}

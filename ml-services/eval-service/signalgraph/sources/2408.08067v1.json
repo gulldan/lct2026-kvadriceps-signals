@@ -1,0 +1,43 @@
+{
+  "native_id": "2408.08067v1",
+  "canonical_id": "arxiv:2408.08067",
+  "url": "https://arxiv.org/abs/2408.08067v1",
+  "title": "RAGChecker: A Fine-grained Framework for Diagnosing Retrieval-Augmented Generation",
+  "authors": [
+    "Dongyu Ru",
+    "Lin Qiu",
+    "Xiangkun Hu",
+    "Tianhang Zhang",
+    "Peng Shi",
+    "Shuaichen Chang",
+    "Jiayang Cheng",
+    "Cunxiang Wang",
+    "Shichao Sun",
+    "Huanyu Li",
+    "Zizhao Zhang",
+    "Binjie Wang",
+    "Jiarong Jiang",
+    "Tong He",
+    "Zhiguo Wang",
+    "Pengfei Liu",
+    "Yue Zhang",
+    "Zheng Zhang"
+  ],
+  "published_at": "2024-08-15T10:20:54Z",
+  "version_updated_at": "2024-08-15T10:20:54Z",
+  "observed_at": "2026-09-08T22:28:42.905805+00:00",
+  "available_at": "2024-08-15T10:20:54Z",
+  "available_basis": "arXiv archived v1 release; historical reconstruction captured later",
+  "source_kind": "paper",
+  "provider": "arxiv",
+  "access_scope": "public",
+  "representation": "versioned_primary_abstract",
+  "text": "Despite Retrieval-Augmented Generation (RAG) has shown promising capability in leveraging external knowledge, a comprehensive evaluation of RAG systems is still challenging due to the modular nature of RAG, evaluation of long-form responses and reliability of measurements. In this paper, we propose a fine-grained evaluation framework, RAGChecker, that incorporates a suite of diagnostic metrics for both the retrieval and generation modules. Meta evaluation verifies that RAGChecker has significantly better correlations with human judgments than other evaluation metrics. Using RAGChecker, we evaluate 8 RAG systems and conduct an in-depth analysis of their performance, revealing insightful patterns and trade-offs in the design choices of RAG architectures. The metrics of RAGChecker can guide researchers and practitioners in developing more effective RAG systems.",
+  "text_sha256": "f7ba77701c636a10cd57e5b548fa79528049e5d15efbce22170238e1d6d3078f",
+  "raw_sha256": "761969bd1361209348c93fad02bd6d4c2df715209d933d5edb33e9ba47c64193",
+  "raw_file": "761969bd1361209348c93fad02bd6d4c2df715209d933d5edb33e9ba47c64193.xml",
+  "limitations": [
+    "Abstract-only evidence; author-reported results, not independent reproduction.",
+    "Later DOI, journal metadata and current citations are excluded from historical input."
+  ]
+}

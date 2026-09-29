@@ -1,0 +1,10 @@
+# Белый список только из файловых шаблонов: исключение `!<каталог>` вернуло бы
+# каталог целиком, включая tests/, README и локальные __pycache__/.venv.
+**
+!ml-services/extractor/*.py
+!ml-services/extractor/models.yaml
+!ml-services/extractor/requirements.txt
+!ml-services/extractor/resources/*.txt
+!ml-services/extractor/runtime/*.py
+!ml-services/extractor/store/*.py
+!ml-services/extractor/store/migrations/*.sql

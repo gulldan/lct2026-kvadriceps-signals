@@ -1,0 +1,11 @@
+export * from "./api";
+export { SourceVersionLink } from "./ui/SourceVersionLink";
+export { sourcePath } from "./sourceApi";
+export type { SourceMetadata } from "./sourceApi";
+export * from "./docAdapter";
+export * from "./useDocPreview";
+export { DocPreviewSheet } from "./ui/DocPreviewSheet";
+export { useAttachedUploads, type AttachedUpload } from "./useAttachedUploads";
+export { DocumentPreview } from "./ui/DocumentPreview";
+export { OriginalDocViewer } from "./ui/OriginalDocViewer";
+export type { PdfHighlight } from "@/shared/ui/PdfViewer";

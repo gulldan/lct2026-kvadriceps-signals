@@ -1,0 +1,20 @@
+# Сборщик логов: читает логи всех контейнеров через сокет Docker и печатает их JSON в stdout.
+# Включение: docker compose --profile logging up -d vector
+sources:
+  docker:
+    type: docker_logs
+
+transforms:
+  tag:
+    type: remap
+    inputs: [docker]
+    source: |
+      .platform = "rag"
+      .service = .container_name
+
+sinks:
+  stdout:
+    type: console
+    inputs: [tag]
+    encoding:
+      codec: json

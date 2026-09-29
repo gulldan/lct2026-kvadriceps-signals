@@ -1,0 +1,43 @@
+{
+  "native_id": "2307.16789v1",
+  "canonical_id": "arxiv:2307.16789",
+  "url": "https://arxiv.org/abs/2307.16789v1",
+  "title": "ToolLLM: Facilitating Large Language Models to Master 16000+ Real-world APIs",
+  "authors": [
+    "Yujia Qin",
+    "Shihao Liang",
+    "Yining Ye",
+    "Kunlun Zhu",
+    "Lan Yan",
+    "Yaxi Lu",
+    "Yankai Lin",
+    "Xin Cong",
+    "Xiangru Tang",
+    "Bill Qian",
+    "Sihan Zhao",
+    "Runchu Tian",
+    "Ruobing Xie",
+    "Jie Zhou",
+    "Mark Gerstein",
+    "Dahai Li",
+    "Zhiyuan Liu",
+    "Maosong Sun"
+  ],
+  "published_at": "2023-07-31T15:56:53Z",
+  "version_updated_at": "2023-07-31T15:56:53Z",
+  "observed_at": "2026-09-08T21:43:42.308337+00:00",
+  "available_at": "2023-07-31T15:56:53Z",
+  "available_basis": "arXiv archived v1 release; historical reconstruction captured later",
+  "source_kind": "paper",
+  "provider": "arxiv",
+  "access_scope": "public",
+  "representation": "versioned_primary_abstract",
+  "text": "Despite the advancements of open-source large language models (LLMs) and their variants, e.g., LLaMA and Vicuna, they remain significantly limited in performing higher-level tasks, such as following human instructions to use external tools (APIs). This is because current instruction tuning largely focuses on basic language tasks instead of the tool-use domain. This is in contrast to state-of-the-art (SOTA) LLMs, e.g., ChatGPT, which have demonstrated excellent tool-use capabilities but are unfortunately closed source. To facilitate tool-use capabilities within open-source LLMs, we introduce ToolLLM, a general tool-use framework of data construction, model training and evaluation. We first present ToolBench, an instruction-tuning dataset for tool use, which is created automatically using ChatGPT. Specifically, we collect 16,464 real-world RESTful APIs spanning 49 categories from RapidAPI Hub, then prompt ChatGPT to generate diverse human instructions involving these APIs, covering both single-tool and multi-tool scenarios. Finally, we use ChatGPT to search for a valid solution path (chain of API calls) for each instruction. To make the searching process more efficient, we develop a novel depth-first search-based decision tree (DFSDT), enabling LLMs to evaluate multiple reasoning traces and expand the search space. We show that DFSDT significantly enhances the planning and reasoning capabilities of LLMs. For efficient tool-use assessment, we develop an automatic evaluator: ToolEval. We fine-tune LLaMA on ToolBench and obtain ToolLLaMA. Our ToolEval reveals that ToolLLaMA demonstrates a remarkable ability to execute complex instructions and generalize to unseen APIs, and exhibits comparable performance to ChatGPT. To make the pipeline more practical, we devise a neural API retriever to recommend appropriate APIs for each instruction, negating the need for manual API selection.",
+  "text_sha256": "b1538ce91d9c9d37ddc47267f26a14efca248b82f0ce3ea0a8b9467d2f9e6fe0",
+  "raw_sha256": "da0db3489b7b13738f585fa8b557be5e8d78b3989e4963dbadced049c99a5ee4",
+  "raw_file": "da0db3489b7b13738f585fa8b557be5e8d78b3989e4963dbadced049c99a5ee4.xml",
+  "limitations": [
+    "Abstract-only evidence; author-reported results, not independent reproduction.",
+    "Later DOI, journal metadata and current citations are excluded from historical input."
+  ]
+}

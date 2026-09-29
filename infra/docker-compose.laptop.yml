@@ -1,0 +1,34 @@
+# Оверлей «ноутбук»: только радар, поверх docker-compose.nogpu.yml. Подключает `make laptop`.
+#
+#   docker compose --env-file infra/.env -f infra/docker-compose.yml \
+#     -f infra/docker-compose.nogpu.yml -f infra/docker-compose.laptop.yml \
+#     up -d --build frontend radar-collector cn-patent-collector page-renderer
+#
+# Замер чистого развёртывания 27.09 на Docker с 8 ГБ: пока окно arXiv собирается, набору хватает
+# 6 ГБ, но с готовым окном radar-collector держит 2,5 ГБ, а эмбеддер на CPU с весами во float32 —
+# 2,4 ГБ и до 3,9 ГБ при загрузке; вместе с хранилищами это больше 8 ГБ, и виртуальная машина убивает
+# их по кругу. Настройки ниже срезают пики, но набору нужно 12 ГБ памяти Docker.
+services:
+  # Реранкер нужен только поиску по загруженным документам, а на CPU занимает около двух гигабайт.
+  # Без него llm-service упорядочивает фрагменты по RRF без порога, радар этого не замечает.
+  llm-service:
+    depends_on: !override
+      valkey: { condition: service_healthy }
+      qdrant: { condition: service_started }
+      opensearch: { condition: service_started }
+      f2llm-service: { condition: service_healthy }
+
+  # Меньший пакет — меньше промежуточных тензоров на CPU; векторы от размера пакета не зависят.
+  f2llm-service:
+    environment:
+      F2LLM_BATCH: "2"
+
+  # Живая куча с окном — около 2,5 ГБ; мягкий предел не даёт сборщику мусора отпускать кучу вдвое выше.
+  radar-collector:
+    environment:
+      GOMEMLIMIT: 3GiB
+
+  # Индекс OpenSearch на ноутбуке пуст: документы не загружаются, половины кучи хватает.
+  opensearch:
+    environment:
+      OPENSEARCH_JAVA_OPTS: "-Xms256m -Xmx256m"

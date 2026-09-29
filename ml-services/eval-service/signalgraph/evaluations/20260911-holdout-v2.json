@@ -1,0 +1,214 @@
+{
+  "version": "signalgraph-holdout-failed-v1",
+  "candidate_freeze_sha256": "b26449d3472aaf8ce92610ac7c74a499aaf2f80546934077464f4c53968dfae8",
+  "method_sha256": "80bd0d579cc18961ce326aeb1572f6e81ceaad9e80c9f294c9d8776ecb3af744",
+  "method_code_sha256": "a66e773278ac65a2a79161f0f0fa10a008471d237a0cc69274fb07f85d47dfbd",
+  "quality_accepted": false,
+  "run_once": true,
+  "method_tuned_after_viewing_scores": false,
+  "label_source": "Codex primary-source documentary labels; not an independent expert",
+  "gold_pool": {
+    "ai": 16,
+    "rag": 15,
+    "rare_control": 0
+  },
+  "metrics": {
+    "ai": {
+      "keyword_count": {
+        "p_at_15": 0.0,
+        "true_positive": 0,
+        "denominator": 15,
+        "ndcg_at_15": 0.0,
+        "filled": 0,
+        "false_or_unknown": 0,
+        "distinct_gold_groups": 0,
+        "completeness": "insufficient_coverage"
+      },
+      "keyword_count_shared_clusters": {
+        "p_at_15": 0.0,
+        "true_positive": 0,
+        "denominator": 15,
+        "ndcg_at_15": 0.0,
+        "filled": 0,
+        "false_or_unknown": 0,
+        "distinct_gold_groups": 0,
+        "completeness": "insufficient_coverage"
+      },
+      "temporal_mmr": {
+        "p_at_15": 0.13333333333333333,
+        "true_positive": 2,
+        "denominator": 15,
+        "ndcg_at_15": 0.25591382741790714,
+        "filled": 5,
+        "false_or_unknown": 3,
+        "distinct_gold_groups": 2,
+        "completeness": "insufficient_coverage"
+      },
+      "without_mmr": {
+        "p_at_15": 0.13333333333333333,
+        "true_positive": 2,
+        "denominator": 15,
+        "ndcg_at_15": 0.25591382741790714,
+        "filled": 5,
+        "false_or_unknown": 3,
+        "distinct_gold_groups": 2,
+        "completeness": "insufficient_coverage"
+      },
+      "without_temporal": {
+        "p_at_15": 0.2,
+        "true_positive": 3,
+        "denominator": 15,
+        "ndcg_at_15": 0.21207749390819164,
+        "filled": 6,
+        "false_or_unknown": 3,
+        "distinct_gold_groups": 3,
+        "completeness": "insufficient_coverage"
+      }
+    },
+    "rag": {
+      "keyword_count": {
+        "p_at_15": 0.2,
+        "true_positive": 3,
+        "denominator": 15,
+        "ndcg_at_15": 0.3635562594634462,
+        "filled": 3,
+        "false_or_unknown": 0,
+        "distinct_gold_groups": 3,
+        "completeness": "insufficient_coverage"
+      },
+      "keyword_count_shared_clusters": {
+        "p_at_15": 0.2,
+        "true_positive": 3,
+        "denominator": 15,
+        "ndcg_at_15": 0.21207749390819164,
+        "filled": 6,
+        "false_or_unknown": 3,
+        "distinct_gold_groups": 3,
+        "completeness": "insufficient_coverage"
+      },
+      "temporal_mmr": {
+        "p_at_15": 0.13333333333333333,
+        "true_positive": 2,
+        "denominator": 15,
+        "ndcg_at_15": 0.25591382741790714,
+        "filled": 5,
+        "false_or_unknown": 3,
+        "distinct_gold_groups": 2,
+        "completeness": "insufficient_coverage"
+      },
+      "without_mmr": {
+        "p_at_15": 0.13333333333333333,
+        "true_positive": 2,
+        "denominator": 15,
+        "ndcg_at_15": 0.25591382741790714,
+        "filled": 5,
+        "false_or_unknown": 3,
+        "distinct_gold_groups": 2,
+        "completeness": "insufficient_coverage"
+      },
+      "without_temporal": {
+        "p_at_15": 0.2,
+        "true_positive": 3,
+        "denominator": 15,
+        "ndcg_at_15": 0.21207749390819164,
+        "filled": 6,
+        "false_or_unknown": 3,
+        "distinct_gold_groups": 3,
+        "completeness": "insufficient_coverage"
+      }
+    },
+    "rare_control": {
+      "keyword_count": {
+        "p_at_15": 0.0,
+        "true_positive": 0,
+        "denominator": 15,
+        "ndcg_at_15": 0.0,
+        "filled": 0,
+        "false_or_unknown": 0,
+        "distinct_gold_groups": 0,
+        "completeness": "insufficient_coverage"
+      },
+      "keyword_count_shared_clusters": {
+        "p_at_15": 0.0,
+        "true_positive": 0,
+        "denominator": 15,
+        "ndcg_at_15": 0.0,
+        "filled": 0,
+        "false_or_unknown": 0,
+        "distinct_gold_groups": 0,
+        "completeness": "insufficient_coverage"
+      },
+      "temporal_mmr": {
+        "p_at_15": 0.0,
+        "true_positive": 0,
+        "denominator": 15,
+        "ndcg_at_15": 0.0,
+        "filled": 2,
+        "false_or_unknown": 2,
+        "distinct_gold_groups": 0,
+        "completeness": "insufficient_coverage"
+      },
+      "without_mmr": {
+        "p_at_15": 0.0,
+        "true_positive": 0,
+        "denominator": 15,
+        "ndcg_at_15": 0.0,
+        "filled": 2,
+        "false_or_unknown": 2,
+        "distinct_gold_groups": 0,
+        "completeness": "insufficient_coverage"
+      },
+      "without_temporal": {
+        "p_at_15": 0.0,
+        "true_positive": 0,
+        "denominator": 15,
+        "ndcg_at_15": 0.0,
+        "filled": 2,
+        "false_or_unknown": 2,
+        "distinct_gold_groups": 0,
+        "completeness": "insufficient_coverage"
+      }
+    }
+  },
+  "mandatory_fields_gate": false,
+  "source_span_integrity": {
+    "verified": 27,
+    "shown": 27
+  },
+  "field_role_support": {
+    "supported": 26,
+    "shown": 27
+  },
+  "leakage_checks": {
+    "source_work_count": 42,
+    "future_source_revisions": 0,
+    "cross_split_canonical_works": 0,
+    "scope": "frozen primary source text/date/canonical integrity; not provider-wide completeness"
+  },
+  "computation": {
+    "source_encoding_seconds": 0.258,
+    "ranking_seconds": 0.135,
+    "graph_compute_ms": 3,
+    "semantic_clusters": 11,
+    "keyword_clusters": 9,
+    "semantic_unassigned": 3,
+    "keyword_unassigned": 23,
+    "cold_cache_claim": false
+  },
+  "production_mutations": {
+    "database": false,
+    "source_object_store": false,
+    "activation": false
+  },
+  "execution_note": "First vectorization reached artifact write but failed with PermissionError because container UID did not own the artifact directory; repeated unchanged embedding code/config/input as host UID. No ranking or labels were evaluated during the failed encoding attempt. Ranking was run once.",
+  "hashes": {
+    "candidate-freeze.json": "b26449d3472aaf8ce92610ac7c74a499aaf2f80546934077464f4c53968dfae8",
+    "candidate-freeze.opened.json": "1eac8bbb84b1102b15148c932a41a652b131f5e90d039bc1392ad35912338456",
+    "holdout.json": "2633fab88d0e98b9c8ed465425853a617465aa2831a55f5dc6a57b8d076ba957",
+    "holdout-vectors.json": "7f8e86c74b9fa91bebe3064ae91a5062376a2678cdb81185dccb03bb7a6820f8",
+    "holdout-ranking.json": "b3230e350cc6bc8f69a4da1017e0dc15effc42ee87d0b6dd0cf80e8312007133",
+    "holdout-assessment.json": "c5b80702b7bc9fc8dbc8ae1b5f7b152c4d7bf852d03afe7adcbca1ac714c3bcc",
+    "holdout-claim-review.json": "d54e7eb75e97610c838d6aa2a4b29ad94d9f06e8b67c4d8512d9286a1ae58cde",
+    "holdout-bundle.tar.gz": "21354927c198fe6e52fce58d99e5b22ca14ad9017ded0adfd89736dba010595d"
+  }
+}

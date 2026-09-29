@@ -1,0 +1,30 @@
+{
+  "native_id": "2412.12775v1",
+  "canonical_id": "arxiv:2412.12775",
+  "url": "https://arxiv.org/abs/2412.12775v1",
+  "title": "RemoteRAG: A Privacy-Preserving LLM Cloud RAG Service",
+  "authors": [
+    "Yihang Cheng",
+    "Lan Zhang",
+    "Junyang Wang",
+    "Mu Yuan",
+    "Yunhao Yao"
+  ],
+  "published_at": "2024-12-17T10:36:52Z",
+  "version_updated_at": "2024-12-17T10:36:52Z",
+  "observed_at": "2026-09-08T22:52:12.195898+00:00",
+  "available_at": "2024-12-17T10:36:52Z",
+  "available_basis": "arXiv archived v1 release; historical reconstruction captured later",
+  "source_kind": "paper",
+  "provider": "arxiv",
+  "access_scope": "public",
+  "representation": "versioned_primary_abstract",
+  "text": "Retrieval-augmented generation (RAG) improves the service quality of large language models by retrieving relevant documents from credible literature and integrating them into the context of the user query. Recently, the rise of the cloud RAG service has made it possible for users to query relevant documents conveniently. However, directly sending queries to the cloud brings potential privacy leakage. In this paper, we are the first to formally define the privacy-preserving cloud RAG service to protect the user query and propose RemoteRAG as a solution regarding privacy, efficiency, and accuracy. For privacy, we introduce $(n,ε)$-DistanceDP to characterize privacy leakage of the user query and the leakage inferred from relevant documents. For efficiency, we limit the search range from the total documents to a small number of selected documents related to a perturbed embedding generated from $(n,ε)$-DistanceDP, so that computation and communication costs required for privacy protection significantly decrease. For accuracy, we ensure that the small range includes target documents related to the user query with detailed theoretical analysis. Experimental results also demonstrate that RemoteRAG can resist existing embedding inversion attack methods while achieving no loss in retrieval under various settings. Moreover, RemoteRAG is efficient, incurring only $0.67$ seconds and $46.66$KB of data transmission ($2.72$ hours and $1.43$ GB with the non-optimized privacy-preserving scheme) when retrieving from a total of $10^6$ documents.",
+  "text_sha256": "ba1cdf27c716909d700ef2e3e2f8569ea9f650b3ea8bf9b925bc08b79a9bf049",
+  "raw_sha256": "e9cf2610ee63d5ed13ed8186244b12d017fc0b08860465833e21c8f98a5d8bbd",
+  "raw_file": "e9cf2610ee63d5ed13ed8186244b12d017fc0b08860465833e21c8f98a5d8bbd.xml",
+  "limitations": [
+    "Abstract-only evidence; author-reported results, not independent reproduction.",
+    "Later DOI, journal metadata and current citations are excluded from historical input."
+  ]
+}

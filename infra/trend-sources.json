@@ -1,0 +1,1372 @@
+{
+  "history_months": 13,
+  "request_budget": 1800,
+  "render_budget": 40,
+  "ep_documents": 40,
+  "ops_documents": 4000,
+  "ru_documents": 400,
+  "patent_terms": [
+    "retrieval augmented",
+    "speculative decoding",
+    "mixture of experts",
+    "model context protocol",
+    "hydrogen",
+    "perovskite",
+    "solid state batter",
+    "sodium ion",
+    "carbon capture",
+    "gene editing",
+    "crispr",
+    "bioprint",
+    "additive manufactur",
+    "large language model",
+    "人工智能",
+    "大语言模型",
+    "量子计算",
+    "autonomous driving",
+    "lidar sensor",
+    "electric vehicle charging",
+    "battery management system",
+    "satellite constellation",
+    "reusable launch vehicle",
+    "ion thruster",
+    "precision agriculture",
+    "vertical farming",
+    "cultivated meat",
+    "cold chain",
+    "continuous glucose",
+    "mrna vaccine",
+    "chimeric antigen receptor",
+    "surgical robot",
+    "homomorphic encryption",
+    "post quantum cryptography",
+    "zero knowledge proof",
+    "intrusion detection",
+    "collaborative robot",
+    "autonomous mobile robot",
+    "warehouse automation",
+    "contactless payment",
+    "central bank digital currency",
+    "biometric authentication"
+  ],
+  "web": [
+    {
+      "name": "MIT Energy",
+      "url": "https://news.mit.edu/rss/topic/energy",
+      "kind": "rss",
+      "industry": "Energy"
+    },
+    {
+      "name": "MIT Materials",
+      "url": "https://news.mit.edu/rss/topic/materialsscienceandengineering",
+      "kind": "rss",
+      "industry": "Materials"
+    },
+    {
+      "name": "MIT Biotechnology",
+      "url": "https://news.mit.edu/rss/topic/biology",
+      "kind": "rss",
+      "industry": "Biotechnology"
+    },
+    {
+      "name": "MIT Manufacturing",
+      "url": "https://news.mit.edu/rss/topic/manufacturing",
+      "kind": "rss",
+      "industry": "Manufacturing"
+    },
+    {
+      "name": "MIT AI",
+      "url": "https://news.mit.edu/rss/topic/artificial-intelligence2",
+      "kind": "rss",
+      "industry": "AI"
+    },
+    {
+      "name": "MIT Health",
+      "url": "https://news.mit.edu/rss/topic/health-sciences-and-technology",
+      "kind": "rss",
+      "industry": "Health"
+    },
+    {
+      "name": "Google Research",
+      "url": "https://research.google/blog/rss/",
+      "kind": "feed",
+      "industry": "AI",
+      "pages": 20
+    },
+    {
+      "name": "Hugging Face",
+      "url": "https://huggingface.co/blog/feed.xml",
+      "kind": "feed",
+      "industry": "AI",
+      "pages": 20
+    },
+    {
+      "name": "Hugging Face, статьи дня",
+      "url": "https://huggingface.co/api/daily_papers?limit=100",
+      "kind": "hf_papers",
+      "industry": "Статьи с оценкой практиков",
+      "pages": 3
+    },
+    {
+      "name": "Hugging Face, модели в тренде",
+      "url": "https://huggingface.co/api/models?sort=trendingScore&limit=100",
+      "kind": "hf_models",
+      "industry": "Открытые модели ИИ",
+      "pages": 3
+    },
+    {
+      "name": "SpaceNews",
+      "url": "https://spacenews.com/feed/",
+      "kind": "rss",
+      "industry": "Космическая индустрия",
+      "pages": 6
+    },
+    {
+      "name": "Reddit r/MachineLearning",
+      "url": "https://www.reddit.com/r/MachineLearning/new/.rss",
+      "kind": "rss",
+      "industry": "Сообщество ИИ",
+      "pages": 3
+    },
+    {
+      "name": "PLOS Computational Biology",
+      "url": "https://journals.plos.org/ploscompbiol/feed/atom",
+      "kind": "feed",
+      "industry": "Computational biology and biotechnology",
+      "pages": 3
+    },
+    {
+      "name": "PLOS ONE",
+      "url": "https://journals.plos.org/plosone/feed/atom",
+      "kind": "feed",
+      "industry": "Scientific research",
+      "pages": 3
+    },
+    {
+      "name": "Frontiers in Materials",
+      "url": "https://www.frontiersin.org/journals/materials/rss",
+      "kind": "feed",
+      "industry": "Materials",
+      "pages": 3
+    },
+    {
+      "name": "Frontiers in Energy Research",
+      "url": "https://www.frontiersin.org/journals/energy-research/rss",
+      "kind": "feed",
+      "industry": "Energy",
+      "pages": 3
+    },
+    {
+      "name": "Frontiers in Artificial Intelligence",
+      "url": "https://www.frontiersin.org/journals/artificial-intelligence/rss",
+      "kind": "feed",
+      "industry": "AI",
+      "pages": 3
+    },
+    {
+      "name": "Quantum Journal",
+      "url": "https://quantum-journal.org/feed/",
+      "kind": "feed",
+      "industry": "Quantum computing",
+      "pages": 3
+    },
+    {
+      "name": "Google DeepMind Research",
+      "url": "https://deepmind.google/blog/rss.xml",
+      "kind": "feed",
+      "industry": "AI",
+      "pages": 3
+    },
+    {
+      "name": "NASASpaceflight",
+      "url": "https://www.nasaspaceflight.com/feed/",
+      "kind": "rss",
+      "industry": "Космические запуски",
+      "pages": 6
+    },
+    {
+      "name": "NVIDIA Technical Research",
+      "url": "https://developer.nvidia.com/blog/feed/",
+      "kind": "feed",
+      "industry": "AI, computing and engineering",
+      "pages": 3
+    },
+    {
+      "name": "Lobsters",
+      "url": "https://lobste.rs/rss",
+      "kind": "rss",
+      "industry": "Инженерные обсуждения",
+      "pages": 3
+    },
+    {
+      "name": "LessWrong",
+      "url": "https://www.lesswrong.com/feed.xml?view=frontpage-rss&karmaThreshold=30",
+      "kind": "rss",
+      "industry": "Безопасность ИИ и прогнозы",
+      "pages": 3
+    },
+    {
+      "name": "SciML Research Software",
+      "url": "https://sciml.ai/feed.xml",
+      "kind": "feed",
+      "industry": "Scientific machine learning",
+      "pages": 3
+    },
+    {
+      "name": "NASA features",
+      "url": "https://www.nasa.gov/wp-json/wp/v2/feature",
+      "kind": "wordpress",
+      "industry": "Space, energy, materials and manufacturing"
+    },
+    {
+      "name": "NASA news releases",
+      "url": "https://www.nasa.gov/wp-json/wp/v2/press-release",
+      "kind": "wordpress",
+      "industry": "Space, energy, materials and manufacturing"
+    },
+    {
+      "name": "Банк России, новости",
+      "url": "https://www.cbr.ru/rss/RssNews",
+      "kind": "rss",
+      "industry": "Финтех и регулирование",
+      "pages": 6
+    },
+    {
+      "name": "Банк России, события",
+      "url": "https://www.cbr.ru/rss/eventrss",
+      "kind": "rss",
+      "industry": "Финтех и регулирование",
+      "pages": 6
+    },
+    {
+      "name": "FDA, пресс-релизы",
+      "url": "https://www.fda.gov/about-fda/contact-fda/stay-informed/rss-feeds/press-releases/rss.xml",
+      "kind": "rss",
+      "industry": "Медицина и медизделия",
+      "pages": 6
+    },
+    {
+      "name": "Inside Climate News",
+      "url": "https://insideclimatenews.org/feed/",
+      "kind": "rss",
+      "industry": "Климат",
+      "pages": 6
+    },
+    {
+      "name": "Европол",
+      "url": "https://www.europol.europa.eu/rss.xml",
+      "kind": "rss",
+      "industry": "Кибербезопасность и право",
+      "pages": 6
+    },
+    {
+      "name": "Роспатент",
+      "url": "https://rospatent.gov.ru/ru/news/rss",
+      "kind": "rss",
+      "industry": "Интеллектуальная собственность",
+      "pages": 6
+    },
+    {
+      "name": "Reddit r/LocalLLaMA",
+      "url": "https://www.reddit.com/r/LocalLLaMA/new/.rss",
+      "kind": "rss",
+      "industry": "Локальные модели",
+      "pages": 3
+    },
+    {
+      "name": "ВОЗ",
+      "url": "https://www.who.int/rss-feeds/news-english.xml",
+      "kind": "rss",
+      "industry": "Здравоохранение",
+      "pages": 6
+    },
+    {
+      "name": "ВОИС",
+      "url": "https://www.wipo.int/pressroom/en/rss.xml",
+      "kind": "rss",
+      "industry": "Интеллектуальная собственность",
+      "pages": 6
+    },
+    {
+      "name": "ESA, технологии",
+      "url": "https://www.esa.int/rssfeed/technology",
+      "kind": "rss",
+      "industry": "Космос и технологии",
+      "pages": 6
+    },
+    {
+      "name": "NIST",
+      "url": "https://www.nist.gov/news-events/news/rss.xml",
+      "kind": "rss",
+      "industry": "Стандарты и метрология",
+      "pages": 6
+    },
+    {
+      "name": "Министерство энергетики США",
+      "url": "https://www.energy.gov/rss/articles.xml",
+      "kind": "rss",
+      "industry": "Энергетика",
+      "pages": 6
+    },
+    {
+      "name": "Fierce Biotech",
+      "url": "https://www.fiercebiotech.com/rss/xml",
+      "kind": "rss",
+      "industry": "Биотехнологии",
+      "pages": 6
+    },
+    {
+      "name": "CNCF",
+      "url": "https://www.cncf.io/feed/",
+      "kind": "feed",
+      "industry": "Инфраструктура и облака",
+      "pages": 6
+    },
+    {
+      "name": "IETF",
+      "url": "https://www.ietf.org/blog/feed/",
+      "kind": "feed",
+      "industry": "Сетевые стандарты",
+      "pages": 6
+    },
+    {
+      "name": "IEEE Spectrum",
+      "url": "https://spectrum.ieee.org/feeds/feed.rss",
+      "kind": "rss",
+      "industry": "Инженерия и электроника",
+      "pages": 6
+    },
+    {
+      "name": "Product Hunt",
+      "url": "https://www.producthunt.com/feed",
+      "kind": "rss",
+      "industry": "Запуски продуктов",
+      "pages": 3
+    },
+    {
+      "name": "Nature",
+      "url": "https://www.nature.com/nature.rss",
+      "kind": "rss",
+      "industry": "Научные публикации",
+      "pages": 6
+    },
+    {
+      "name": "N+1",
+      "url": "https://nplus1.ru/rss",
+      "kind": "rss",
+      "industry": "Наука и технологии",
+      "pages": 6
+    },
+    {
+      "name": "CNews",
+      "url": "https://www.cnews.ru/inc/rss/news.xml",
+      "kind": "rss",
+      "industry": "ИТ-рынок России",
+      "pages": 6
+    },
+    {
+      "name": "ТАСС Наука",
+      "url": "https://nauka.tass.ru/rss/v2.xml",
+      "kind": "rss",
+      "industry": "Наука и технологии",
+      "pages": 6
+    },
+    {
+      "name": "STAT News",
+      "url": "https://www.statnews.com/feed/",
+      "kind": "rss",
+      "industry": "Медицина и здравоохранение",
+      "pages": 6
+    },
+    {
+      "name": "Хабр, искусственный интеллект",
+      "url": "https://habr.com/ru/rss/hubs/artificial_intelligence/articles/",
+      "kind": "rss",
+      "industry": "ИИ",
+      "pages": 6
+    },
+    {
+      "name": "Хабр, машинное обучение",
+      "url": "https://habr.com/ru/rss/hubs/machine_learning/articles/",
+      "kind": "rss",
+      "industry": "ИИ",
+      "pages": 6
+    },
+    {
+      "name": "Хабр, информационная безопасность",
+      "url": "https://habr.com/ru/rss/hubs/infosecurity/articles/",
+      "kind": "rss",
+      "industry": "Кибербезопасность",
+      "pages": 6
+    },
+    {
+      "name": "Rusbase",
+      "url": "https://rb.ru/feeds/all/",
+      "kind": "rss",
+      "industry": "Стартапы и венчур",
+      "pages": 6
+    },
+    {
+      "name": "Reddit r/QuantumComputing",
+      "url": "https://www.reddit.com/r/QuantumComputing/new/.rss",
+      "kind": "rss",
+      "industry": "Квантовые вычисления",
+      "pages": 3
+    },
+    {
+      "name": "TechCrunch",
+      "url": "https://techcrunch.com/feed/",
+      "kind": "rss",
+      "industry": "Стартапы и венчур"
+    },
+    {
+      "name": "Sifted",
+      "url": "https://sifted.eu/feed",
+      "kind": "rss",
+      "industry": "Стартапы и венчур"
+    },
+    {
+      "name": "Pulse 2",
+      "url": "https://pulse2.com/feed/",
+      "kind": "rss",
+      "industry": "Стартапы и венчур"
+    },
+    {
+      "name": "bioRxiv",
+      "url": "https://connect.biorxiv.org/biorxiv_xml.php?subject=all",
+      "kind": "rss",
+      "industry": "Биомедицинские препринты",
+      "pages": 6
+    },
+    {
+      "name": "The SaaS News",
+      "url": "https://thesaasnews.com/feed",
+      "kind": "rss",
+      "industry": "Корпоративное ПО"
+    },
+    {
+      "name": "DataCenterDynamics",
+      "url": "https://www.datacenterdynamics.com/en/rss/",
+      "kind": "rss",
+      "industry": "Инфраструктура ИИ"
+    },
+    {
+      "name": "The New Stack",
+      "url": "https://thenewstack.io/feed/",
+      "kind": "rss",
+      "industry": "Инфраструктура и облака"
+    },
+    {
+      "name": "InfoQ",
+      "url": "https://feed.infoq.com/",
+      "kind": "rss",
+      "industry": "Разработка и архитектура"
+    },
+    {
+      "name": "The Decoder",
+      "url": "https://the-decoder.com/feed/",
+      "kind": "rss",
+      "industry": "ИИ"
+    },
+    {
+      "name": "vc.ru",
+      "url": "https://vc.ru/rss",
+      "kind": "rss",
+      "industry": "Стартапы и венчур, Россия",
+      "pages": 6
+    },
+    {
+      "name": "MIT Technology Review",
+      "url": "https://www.technologyreview.com/feed/",
+      "kind": "rss",
+      "industry": "Технологии"
+    },
+    {
+      "name": "IEEE Spectrum Robotics",
+      "url": "https://spectrum.ieee.org/feeds/topic/robotics.rss",
+      "kind": "rss",
+      "industry": "Робототехника"
+    },
+    {
+      "name": "medRxiv",
+      "url": "https://connect.medrxiv.org/medrxiv_xml.php?subject=all",
+      "kind": "rss",
+      "industry": "Клинические препринты",
+      "pages": 6
+    },
+    {
+      "name": "Fierce Electronics",
+      "url": "https://www.fiercesensors.com/rss/xml",
+      "kind": "rss",
+      "industry": "Электроника и edge"
+    },
+    {
+      "name": "Electronics Weekly",
+      "url": "https://www.electronicsweekly.com/feed/",
+      "kind": "rss",
+      "industry": "Электроника и edge"
+    },
+    {
+      "name": "Tom's Hardware",
+      "url": "https://www.tomshardware.com/feeds.xml",
+      "kind": "rss",
+      "industry": "Вычислительное железо"
+    },
+    {
+      "name": "PYMNTS",
+      "url": "https://www.pymnts.com/feed/",
+      "kind": "rss",
+      "industry": "Финтех и платежи"
+    },
+    {
+      "name": "BleepingComputer",
+      "url": "https://www.bleepingcomputer.com/feed/",
+      "kind": "rss",
+      "industry": "Кибербезопасность"
+    },
+    {
+      "name": "Silicon Republic",
+      "url": "https://www.siliconrepublic.com/feed",
+      "kind": "rss",
+      "industry": "Технологии"
+    },
+    {
+      "name": "Y Combinator",
+      "url": "https://www.ycombinator.com/blog/rss",
+      "kind": "rss",
+      "industry": "Стартапы и венчур",
+      "pages": 3
+    },
+    {
+      "name": "Nikkei Asia Technology",
+      "url": "https://asia.nikkei.com/rss/feed/nar",
+      "kind": "rss",
+      "industry": "Азия, технологии"
+    },
+    {
+      "name": "CISA Advisories",
+      "url": "https://www.cisa.gov/cybersecurity-advisories/all.xml",
+      "kind": "rss",
+      "industry": "Уязвимости и предупреждения",
+      "pages": 6
+    },
+    {
+      "name": "Interesting Engineering",
+      "url": "https://interestingengineering.com/rss",
+      "kind": "rss",
+      "industry": "Инженерия"
+    },
+    {
+      "name": "Tech Xplore",
+      "url": "https://techxplore.com/rss-feed/",
+      "kind": "rss",
+      "industry": "Наука и технологии"
+    },
+    {
+      "name": "Интерфакс",
+      "url": "https://www.interfax.ru/rss.asp",
+      "kind": "rss",
+      "industry": "Деловые новости"
+    },
+    {
+      "name": "3DNews",
+      "url": "https://3dnews.ru/news/rss/",
+      "kind": "rss",
+      "industry": "ИТ и электроника"
+    },
+    {
+      "name": "ComNews",
+      "url": "https://www.comnews.ru/rss.xml",
+      "kind": "rss",
+      "industry": "Телеком и ИТ-рынок"
+    },
+    {
+      "name": "RSpectr",
+      "url": "https://rspectr.com/feed",
+      "kind": "rss",
+      "industry": "Связь и регулирование"
+    },
+    {
+      "name": "Naked Science",
+      "url": "https://naked-science.ru/feed",
+      "kind": "rss",
+      "industry": "Наука и технологии"
+    },
+    {
+      "name": "IEEE Spectrum, полупроводники",
+      "url": "https://spectrum.ieee.org/feeds/topic/semiconductors.rss",
+      "kind": "rss",
+      "industry": "Полупроводники",
+      "pages": 3
+    },
+    {
+      "name": "The Robot Report",
+      "url": "https://www.therobotreport.com/feed/",
+      "kind": "rss",
+      "industry": "Робототехника",
+      "pages": 6
+    },
+    {
+      "name": "Хайтек",
+      "url": "https://hightech.fm/feed",
+      "kind": "rss",
+      "industry": "Технологии"
+    },
+    {
+      "name": "IT World",
+      "url": "https://www.it-world.ru/rss/",
+      "kind": "rss",
+      "industry": "Корпоративные ИТ"
+    },
+    {
+      "name": "Intelligent Enterprise",
+      "url": "https://www.iemag.ru/rss/",
+      "kind": "rss",
+      "industry": "Корпоративные ИТ"
+    },
+    {
+      "name": "CNCF Landscape",
+      "url": "https://raw.githubusercontent.com/cncf/landscape/master/landscape.yml",
+      "kind": "cncf",
+      "industry": "Инфраструктура и облака"
+    },
+    {
+      "name": "NASA TechPort",
+      "url": "https://techport.nasa.gov/api/projects",
+      "kind": "techport",
+      "industry": "Космос, материалы и энергетика"
+    },
+    {
+      "name": "AgFunderNews",
+      "url": "https://agfundernews.com/feed",
+      "kind": "rss",
+      "industry": "Агротехнологии",
+      "pages": 6
+    },
+    {
+      "name": "FreightWaves",
+      "url": "https://www.freightwaves.com/feed",
+      "kind": "rss",
+      "industry": "Логистика и перевозки",
+      "pages": 6
+    },
+    {
+      "name": "InsideEVs",
+      "url": "https://insideevs.com/rss/articles/all/",
+      "kind": "rss",
+      "industry": "Электротранспорт",
+      "pages": 6
+    },
+    {
+      "name": "3D Printing Industry",
+      "url": "https://3dprintingindustry.com/feed/",
+      "kind": "rss",
+      "industry": "Аддитивное производство",
+      "pages": 6
+    },
+    {
+      "name": "ESA Space Transportation",
+      "url": "https://www.esa.int/rssfeed/Our_Activities/Space_Transportation",
+      "kind": "rss",
+      "industry": "Средства выведения",
+      "pages": 6
+    },
+    {
+      "name": "TAdviser",
+      "url": "https://www.tadviser.ru/xml/tadviser.xml",
+      "kind": "rss",
+      "industry": "ИТ-рынок России",
+      "pages": 6
+    },
+    {
+      "name": "Frank Media",
+      "url": "https://frankmedia.ru/feed",
+      "kind": "rss",
+      "industry": "Финтех и банки",
+      "pages": 6
+    },
+    {
+      "name": "Ведомости, технологии",
+      "url": "https://www.vedomosti.ru/rss/rubric/technology",
+      "kind": "rss",
+      "industry": "Технологии и бизнес",
+      "pages": 6
+    },
+    {
+      "name": "Inc. Russia",
+      "url": "https://incrussia.ru/feed/all/",
+      "kind": "rss",
+      "industry": "Стартапы и бизнес",
+      "pages": 6
+    },
+    {
+      "name": "Хабр, новости",
+      "url": "https://habr.com/ru/rss/news/?fl=ru",
+      "kind": "rss",
+      "industry": "ИТ-рынок России",
+      "pages": 6
+    },
+    {
+      "name": "Хабр, блог Сбера",
+      "url": "https://habr.com/ru/rss/companies/sberbank/articles/",
+      "kind": "rss",
+      "industry": "Блоги компаний-разработчиков",
+      "pages": 3
+    },
+    {
+      "name": "Хабр, блог Яндекса",
+      "url": "https://habr.com/ru/rss/companies/yandex/articles/",
+      "kind": "rss",
+      "industry": "Блоги компаний-разработчиков",
+      "pages": 3
+    },
+    {
+      "name": "Хабр, блог Т-Банка",
+      "url": "https://habr.com/ru/rss/companies/tbank/articles/",
+      "kind": "rss",
+      "industry": "Блоги компаний-разработчиков",
+      "pages": 3
+    },
+    {
+      "name": "Хабр, блог МТС",
+      "url": "https://habr.com/ru/rss/companies/ru_mts/articles/",
+      "kind": "rss",
+      "industry": "Блоги компаний-разработчиков",
+      "pages": 3
+    },
+    {
+      "name": "Хабр, блог VK",
+      "url": "https://habr.com/ru/rss/companies/vk/articles/",
+      "kind": "rss",
+      "industry": "Блоги компаний-разработчиков",
+      "pages": 3
+    },
+    {
+      "name": "Хабр, блог Positive Technologies",
+      "url": "https://habr.com/ru/rss/companies/pt/articles/",
+      "kind": "rss",
+      "industry": "Блоги компаний-разработчиков",
+      "pages": 3
+    },
+    {
+      "name": "Хабр, блог «Лаборатории Касперского»",
+      "url": "https://habr.com/ru/rss/companies/kaspersky/articles/",
+      "kind": "rss",
+      "industry": "Блоги компаний-разработчиков",
+      "pages": 3
+    },
+    {
+      "name": "Хабр, блог Альфа-Банка",
+      "url": "https://habr.com/ru/rss/companies/alfa/articles/",
+      "kind": "rss",
+      "industry": "Блоги компаний-разработчиков",
+      "pages": 3
+    },
+    {
+      "name": "Хабр, блог Газпромбанка",
+      "url": "https://habr.com/ru/rss/companies/gazprombank/articles/",
+      "kind": "rss",
+      "industry": "Блоги компаний-разработчиков",
+      "pages": 3
+    },
+    {
+      "name": "Хабр, блог Cloud.ru",
+      "url": "https://habr.com/ru/rss/companies/cloud_ru/articles/",
+      "kind": "rss",
+      "industry": "Блоги компаний-разработчиков",
+      "pages": 3
+    },
+    {
+      "name": "Crunchbase News",
+      "url": "https://news.crunchbase.com/feed/",
+      "kind": "rss",
+      "industry": "Стартапы и венчур",
+      "pages": 6
+    },
+    {
+      "name": "TechCrunch, венчур",
+      "url": "https://techcrunch.com/category/venture/feed/",
+      "kind": "rss",
+      "industry": "Стартапы и венчур",
+      "pages": 6
+    },
+    {
+      "name": "PE Hub",
+      "url": "https://www.pehub.com/feed/",
+      "kind": "rss",
+      "industry": "Сделки частного капитала",
+      "pages": 6
+    },
+    {
+      "name": "Bloomberg, технологии",
+      "url": "https://feeds.bloomberg.com/technology/news.rss",
+      "kind": "rss",
+      "industry": "Технологии и бизнес",
+      "pages": 3
+    },
+    {
+      "name": "CNBC, технологии",
+      "url": "https://www.cnbc.com/id/19854910/device/rss/rss.html",
+      "kind": "rss",
+      "industry": "Технологии и бизнес",
+      "pages": 3
+    },
+    {
+      "name": "Fintech News Switzerland",
+      "url": "https://fintechnews.ch/feed/",
+      "kind": "rss",
+      "industry": "Финтех и платежи",
+      "pages": 6
+    },
+    {
+      "name": "Electrek",
+      "url": "https://electrek.co/feed/",
+      "kind": "rss",
+      "industry": "Электротранспорт и накопители",
+      "pages": 6
+    },
+    {
+      "name": "OpenAI, новости",
+      "url": "https://openai.com/news/rss.xml",
+      "kind": "rss",
+      "industry": "Пресс-материалы компаний-разработчиков",
+      "pages": 3
+    },
+    {
+      "name": "NVIDIA, блог",
+      "url": "https://blogs.nvidia.com/feed/",
+      "kind": "rss",
+      "industry": "Пресс-материалы компаний-разработчиков",
+      "pages": 3
+    },
+    {
+      "name": "Samsung Newsroom",
+      "url": "https://news.samsung.com/global/feed",
+      "kind": "rss",
+      "industry": "Пресс-материалы компаний-разработчиков",
+      "pages": 3
+    },
+    {
+      "name": "Google, блог",
+      "url": "https://blog.google/rss/",
+      "kind": "rss",
+      "industry": "Пресс-материалы компаний-разработчиков",
+      "pages": 3
+    },
+    {
+      "name": "IBM Research",
+      "url": "https://research.ibm.com/rss",
+      "kind": "rss",
+      "industry": "Исследования компаний-разработчиков",
+      "pages": 3
+    },
+    {
+      "name": "SiliconANGLE",
+      "url": "https://siliconangle.com/feed/",
+      "kind": "rss",
+      "industry": "Инфраструктура и облака",
+      "pages": 3
+    },
+    {
+      "name": "The AI Insider",
+      "url": "https://theaiinsider.tech/feed/",
+      "kind": "rss",
+      "industry": "Стартапы и венчур",
+      "pages": 6
+    },
+    {
+      "name": "The Quantum Insider",
+      "url": "https://thequantuminsider.com/feed/",
+      "kind": "rss",
+      "industry": "Квантовые вычисления",
+      "pages": 3
+    },
+    {
+      "name": "GeekWire",
+      "url": "https://www.geekwire.com/feed/",
+      "kind": "rss",
+      "industry": "Стартапы и венчур",
+      "pages": 3
+    },
+    {
+      "name": "Pandaily",
+      "url": "https://pandaily.com/feed/",
+      "kind": "rss",
+      "industry": "Азия, технологии",
+      "pages": 3
+    },
+    {
+      "name": "EE Times",
+      "url": "https://www.eetimes.com/feed/",
+      "kind": "rss",
+      "industry": "Электроника и edge",
+      "pages": 6
+    },
+    {
+      "name": "Edge AI and Vision Alliance",
+      "url": "https://www.edge-ai-vision.com/feed/",
+      "kind": "rss",
+      "industry": "Электроника и edge",
+      "pages": 3
+    },
+    {
+      "name": "SemiWiki",
+      "url": "https://semiwiki.com/feed/",
+      "kind": "rss",
+      "industry": "Полупроводники",
+      "pages": 3
+    },
+    {
+      "name": "ServeTheHome",
+      "url": "https://www.servethehome.com/feed/",
+      "kind": "rss",
+      "industry": "Инфраструктура ИИ",
+      "pages": 3
+    },
+    {
+      "name": "TechStartups",
+      "url": "https://techstartups.com/feed/",
+      "kind": "rss",
+      "industry": "Стартапы и венчур",
+      "pages": 3
+    },
+    {
+      "name": "The Block",
+      "url": "https://www.theblock.co/rss.xml",
+      "kind": "rss",
+      "industry": "Финтех и платежи",
+      "pages": 3
+    },
+    {
+      "name": "Crowdfund Insider",
+      "url": "https://www.crowdfundinsider.com/feed/",
+      "kind": "rss",
+      "industry": "Финтех и платежи",
+      "pages": 3
+    },
+    {
+      "name": "FinTech Global",
+      "url": "https://fintech.global/feed/",
+      "kind": "rss",
+      "industry": "Финтех и платежи",
+      "pages": 3
+    },
+    {
+      "name": "PR Newswire, технологии",
+      "url": "https://www.prnewswire.com/rss/technology-latest-news/technology-latest-news-list.rss",
+      "kind": "rss",
+      "industry": "Пресс-материалы компаний-разработчиков",
+      "pages": 3
+    },
+    {
+      "name": "PR Newswire, финансы",
+      "url": "https://www.prnewswire.com/rss/financial-services-latest-news/financial-services-latest-news-list.rss",
+      "kind": "rss",
+      "industry": "Пресс-материалы компаний-разработчиков",
+      "pages": 3
+    },
+    {
+      "name": "Google Cloud, блог",
+      "url": "https://cloudblog.withgoogle.com/rss/",
+      "kind": "rss",
+      "industry": "Блоги компаний-разработчиков",
+      "pages": 3
+    },
+    {
+      "name": "Microsoft, официальный блог",
+      "url": "https://blogs.microsoft.com/feed/",
+      "kind": "rss",
+      "industry": "Пресс-материалы компаний-разработчиков",
+      "pages": 3
+    },
+    {
+      "name": "Cloudflare, блог",
+      "url": "https://blog.cloudflare.com/rss/",
+      "kind": "rss",
+      "industry": "Блоги компаний-разработчиков",
+      "pages": 3
+    },
+    {
+      "name": "SecurityLab",
+      "url": "https://www.securitylab.ru/_services/export/rss/",
+      "kind": "rss",
+      "industry": "Кибербезопасность",
+      "pages": 6
+    },
+    {
+      "name": "Банки.ру, новости",
+      "url": "https://www.banki.ru/xml/news.rss",
+      "kind": "rss",
+      "industry": "Финтех и банки",
+      "pages": 3
+    },
+    {
+      "name": "Fortune",
+      "url": "https://fortune.com/feed/fortune-feeds/?id=3230629",
+      "kind": "rss",
+      "industry": "Технологии и бизнес",
+      "pages": 3
+    },
+    {
+      "name": "TechRadar",
+      "url": "https://www.techradar.com/feeds.xml",
+      "kind": "rss",
+      "industry": "Технологии",
+      "pages": 3
+    },
+    {
+      "name": "ZDNet",
+      "url": "https://www.zdnet.com/rss/news/",
+      "kind": "rss",
+      "industry": "Корпоративные ИТ",
+      "pages": 3
+    },
+    {
+      "name": "Ars Technica",
+      "url": "https://arstechnica.com/feed/",
+      "kind": "rss",
+      "industry": "Технологии",
+      "pages": 3
+    },
+    {
+      "name": "Computer Weekly",
+      "url": "https://www.computerweekly.com/rss/All-Computer-Weekly-content.xml",
+      "kind": "rss",
+      "industry": "Корпоративные ИТ",
+      "pages": 3
+    },
+    {
+      "name": "RuntimeWire",
+      "url": "https://runtimewire.com/rss",
+      "kind": "rss",
+      "industry": "Инфраструктура ИИ",
+      "pages": 6
+    },
+    {
+      "name": "VentureBeat",
+      "url": "https://venturebeat.com/feed/",
+      "kind": "rss",
+      "industry": "AI",
+      "pages": 6
+    },
+    {
+      "name": "SecurityWeek",
+      "url": "https://www.securityweek.com/feed/",
+      "kind": "rss",
+      "industry": "Кибербезопасность",
+      "pages": 3
+    },
+    {
+      "name": "Semiconductor Digest",
+      "url": "https://www.semiconductor-digest.com/feed/",
+      "kind": "rss",
+      "industry": "Полупроводники",
+      "pages": 3
+    },
+    {
+      "name": "eeNews Europe",
+      "url": "https://www.eenewseurope.com/en/feed/",
+      "kind": "rss",
+      "industry": "Электроника и edge",
+      "pages": 3
+    },
+    {
+      "name": "IoT Now",
+      "url": "https://iot-now.com/feed/",
+      "kind": "rss",
+      "industry": "Электроника и edge",
+      "pages": 3
+    },
+    {
+      "name": "RCR Wireless",
+      "url": "https://rcrwireless.com/feed",
+      "kind": "rss",
+      "industry": "Телеком и ИТ-рынок",
+      "pages": 3
+    },
+    {
+      "name": "CoinDesk",
+      "url": "https://www.coindesk.com/arc/outboundfeeds/rss",
+      "kind": "rss",
+      "industry": "Финтех и платежи",
+      "pages": 3
+    },
+    {
+      "name": "Fierce Healthcare",
+      "url": "https://www.fiercehealthcare.com/rss/xml",
+      "kind": "rss",
+      "industry": "Здравоохранение",
+      "pages": 3
+    },
+    {
+      "name": "Anti-Malware.ru",
+      "url": "https://www.anti-malware.ru/news1/feed",
+      "kind": "rss",
+      "industry": "Кибербезопасность",
+      "pages": 3
+    },
+    {
+      "name": "IT Week",
+      "url": "https://www.itweek.ru/rss/",
+      "kind": "rss",
+      "industry": "ИТ-рынок России",
+      "pages": 3
+    },
+    {
+      "name": "iXBT",
+      "url": "https://www.ixbt.com/export/news/rss.xml",
+      "kind": "rss",
+      "industry": "ИТ и электроника",
+      "pages": 3
+    },
+    {
+      "name": "The Hacker News",
+      "url": "https://feeds.feedburner.com/TheHackersNews",
+      "kind": "rss",
+      "industry": "Кибербезопасность",
+      "pages": 3
+    },
+    {
+      "name": "Infosecurity Magazine",
+      "url": "https://www.infosecurity-magazine.com/rss/news/",
+      "kind": "rss",
+      "industry": "Кибербезопасность",
+      "pages": 3
+    },
+    {
+      "name": "Krebs on Security",
+      "url": "https://krebsonsecurity.com/feed/",
+      "kind": "rss",
+      "industry": "Кибербезопасность",
+      "pages": 3
+    },
+    {
+      "name": "CyberScoop",
+      "url": "https://www.cyberscoop.com/feed/",
+      "kind": "rss",
+      "industry": "Кибербезопасность",
+      "pages": 3
+    },
+    {
+      "name": "Alignment Forum",
+      "url": "https://www.alignmentforum.org/feed.xml",
+      "kind": "rss",
+      "industry": "Безопасность ИИ и прогнозы",
+      "pages": 3
+    },
+    {
+      "name": "AI as Normal Technology",
+      "url": "https://www.normaltech.ai/feed",
+      "kind": "rss",
+      "industry": "Безопасность ИИ и прогнозы",
+      "pages": 3
+    },
+    {
+      "name": "SemiAnalysis",
+      "url": "https://newsletter.semianalysis.com/feed",
+      "kind": "rss",
+      "industry": "Инфраструктура ИИ",
+      "pages": 3
+    },
+    {
+      "name": "Edge IR",
+      "url": "https://www.edgeir.com/feed",
+      "kind": "rss",
+      "industry": "Электроника и edge",
+      "pages": 3
+    },
+    {
+      "name": "IEEE Spectrum, ИИ",
+      "url": "https://spectrum.ieee.org/feeds/topic/artificial-intelligence.rss",
+      "kind": "rss",
+      "industry": "AI",
+      "pages": 3
+    },
+    {
+      "name": "Import AI",
+      "url": "https://importai.substack.com/feed",
+      "kind": "rss",
+      "industry": "AI",
+      "pages": 3
+    },
+    {
+      "name": "Interconnects",
+      "url": "https://www.interconnects.ai/feed",
+      "kind": "rss",
+      "industry": "AI",
+      "pages": 3
+    },
+    {
+      "name": "The Information",
+      "url": "https://www.theinformation.com/feed",
+      "kind": "rss",
+      "industry": "Стартапы и венчур",
+      "pages": 3
+    },
+    {
+      "name": "Financial Times, технологии",
+      "url": "https://www.ft.com/technology?format=rss",
+      "kind": "rss",
+      "industry": "Технологии и бизнес",
+      "pages": 3
+    },
+    {
+      "name": "The Economist, наука и технологии",
+      "url": "https://www.economist.com/science-and-technology/rss.xml",
+      "kind": "rss",
+      "industry": "Наука и технологии",
+      "pages": 3
+    },
+    {
+      "name": "Bing News",
+      "url": "https://www.bing.com/news/search",
+      "kind": "bing_news",
+      "industry": "Новости по имени технологии"
+    }
+  ],
+  "allowed_domains": [
+    "3dnews.ru",
+    "3dprintingindustry.com",
+    "agfundernews.com",
+    "alignmentforum.org",
+    "anti-malware.ru",
+    "arstechnica.com",
+    "asia.nikkei.com",
+    "banki.ru",
+    "bing.com",
+    "biorxiv.org",
+    "bleepingcomputer.com",
+    "blog.cloudflare.com",
+    "blog.google",
+    "blogs.microsoft.com",
+    "blogs.nvidia.com",
+    "bloomberg.com",
+    "cbr.ru",
+    "cisa.gov",
+    "cloudblog.withgoogle.com",
+    "cnbc.com",
+    "cncf.io",
+    "cnews.ru",
+    "coindesk.com",
+    "comnews.ru",
+    "computerweekly.com",
+    "crowdfundinsider.com",
+    "cyberscoop.com",
+    "datacenterdynamics.com",
+    "deepmind.google",
+    "developer.nvidia.com",
+    "economist.com",
+    "edge-ai-vision.com",
+    "edgeir.com",
+    "eenewseurope.com",
+    "eetimes.com",
+    "electrek.co",
+    "electronicsweekly.com",
+    "energy.gov",
+    "esa.int",
+    "europol.europa.eu",
+    "fda.gov",
+    "feed.infoq.com",
+    "feeds.feedburner.com",
+    "fiercebiotech.com",
+    "fierceelectronics.com",
+    "fiercehealthcare.com",
+    "fiercesensors.com",
+    "fintech.global",
+    "fintechnews.ch",
+    "fortune.com",
+    "frankmedia.ru",
+    "freightwaves.com",
+    "ft.com",
+    "geekwire.com",
+    "habr.com",
+    "hightech.fm",
+    "huggingface.co",
+    "iemag.ru",
+    "ietf.org",
+    "importai.substack.com",
+    "incrussia.ru",
+    "infosecurity-magazine.com",
+    "insideclimatenews.org",
+    "insideevs.com",
+    "interconnects.ai",
+    "interestingengineering.com",
+    "interfax.ru",
+    "iot-now.com",
+    "it-world.ru",
+    "itweek.ru",
+    "ixbt.com",
+    "journals.plos.org",
+    "krebsonsecurity.com",
+    "lesswrong.com",
+    "lobste.rs",
+    "medrxiv.org",
+    "naked-science.ru",
+    "nasa.gov",
+    "nasaspaceflight.com",
+    "nature.com",
+    "nauka.tass.ru",
+    "news.crunchbase.com",
+    "news.mit.edu",
+    "news.samsung.com",
+    "newsletter.semianalysis.com",
+    "nist.gov",
+    "normaltech.ai",
+    "nplus1.ru",
+    "openai.com",
+    "pandaily.com",
+    "pehub.com",
+    "phys.org",
+    "prnewswire.com",
+    "producthunt.com",
+    "pulse2.com",
+    "pymnts.com",
+    "quantum-journal.org",
+    "raw.githubusercontent.com",
+    "rb.ru",
+    "rcrwireless.com",
+    "reddit.com",
+    "research.google",
+    "research.ibm.com",
+    "rospatent.gov.ru",
+    "rspectr.com",
+    "runtimewire.com",
+    "sciml.ai",
+    "securitylab.ru",
+    "securityweek.com",
+    "semiconductor-digest.com",
+    "semiwiki.com",
+    "servethehome.com",
+    "sifted.eu",
+    "siliconangle.com",
+    "siliconrepublic.com",
+    "spacenews.com",
+    "spectrum.ieee.org",
+    "statnews.com",
+    "tadviser.ru",
+    "techcrunch.com",
+    "technologyreview.com",
+    "techport.nasa.gov",
+    "techradar.com",
+    "techstartups.com",
+    "techxplore.com",
+    "the-decoder.com",
+    "theaiinsider.tech",
+    "theblock.co",
+    "theinformation.com",
+    "thenewstack.io",
+    "thequantuminsider.com",
+    "therobotreport.com",
+    "thesaasnews.com",
+    "tomshardware.com",
+    "vc.ru",
+    "vedomosti.ru",
+    "venturebeat.com",
+    "who.int",
+    "wipo.int",
+    "www.frontiersin.org",
+    "ycombinator.com",
+    "zdnet.com"
+  ],
+  "cn_documents": 40
+}

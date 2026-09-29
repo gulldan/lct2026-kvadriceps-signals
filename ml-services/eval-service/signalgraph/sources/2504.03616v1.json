@@ -1,0 +1,28 @@
+{
+  "native_id": "2504.03616v1",
+  "canonical_id": "arxiv:2504.03616",
+  "url": "https://arxiv.org/abs/2504.03616v1",
+  "title": "Multilingual Retrieval-Augmented Generation for Knowledge-Intensive Task",
+  "authors": [
+    "Leonardo Ranaldi",
+    "Barry Haddow",
+    "Alexandra Birch"
+  ],
+  "published_at": "2025-04-04T17:35:43Z",
+  "version_updated_at": "2025-04-04T17:35:43Z",
+  "observed_at": "2026-09-08T22:53:13.832374+00:00",
+  "available_at": "2025-04-04T17:35:43Z",
+  "available_basis": "arXiv archived v1 release; historical reconstruction captured later",
+  "source_kind": "paper",
+  "provider": "arxiv",
+  "access_scope": "public",
+  "representation": "versioned_primary_abstract",
+  "text": "Retrieval-augmented generation (RAG) has become a cornerstone of contemporary NLP, enhancing large language models (LLMs) by allowing them to access richer factual contexts through in-context retrieval. While effective in monolingual settings, especially in English, its use in multilingual tasks remains unexplored. This paper investigates the effectiveness of RAG across multiple languages by proposing novel approaches for multilingual open-domain question-answering. We evaluate the performance of various multilingual RAG strategies, including question-translation (tRAG), which translates questions into English before retrieval, and Multilingual RAG (MultiRAG), where retrieval occurs directly across multiple languages. Our findings reveal that tRAG, while useful, suffers from limited coverage. In contrast, MultiRAG improves efficiency by enabling multilingual retrieval but introduces inconsistencies due to cross-lingual variations in the retrieved content. To address these issues, we propose Crosslingual RAG (CrossRAG), a method that translates retrieved documents into a common language (e.g., English) before generating the response. Our experiments show that CrossRAG significantly enhances performance on knowledge-intensive tasks, benefiting both high-resource and low-resource languages.",
+  "text_sha256": "b05de1c2344d42005779e572a76162b6a00869cc721c75519a3de71e7cdefbe9",
+  "raw_sha256": "d9bbf50cf9f4a5c8b0541cc09e33648cf1d5067d04ad980cd4d44f9d8c14086a",
+  "raw_file": "d9bbf50cf9f4a5c8b0541cc09e33648cf1d5067d04ad980cd4d44f9d8c14086a.xml",
+  "limitations": [
+    "Abstract-only evidence; author-reported results, not independent reproduction.",
+    "Later DOI, journal metadata and current citations are excluded from historical input."
+  ]
+}

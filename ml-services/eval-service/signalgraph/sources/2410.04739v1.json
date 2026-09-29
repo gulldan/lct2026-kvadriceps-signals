@@ -1,0 +1,35 @@
+{
+  "native_id": "2410.04739v1",
+  "canonical_id": "arxiv:2410.04739",
+  "url": "https://arxiv.org/abs/2410.04739v1",
+  "title": "TableRAG: Million-Token Table Understanding with Language Models",
+  "authors": [
+    "Si-An Chen",
+    "Lesly Miculicich",
+    "Julian Martin Eisenschlos",
+    "Zifeng Wang",
+    "Zilong Wang",
+    "Yanfei Chen",
+    "Yasuhisa Fujii",
+    "Hsuan-Tien Lin",
+    "Chen-Yu Lee",
+    "Tomas Pfister"
+  ],
+  "published_at": "2024-10-07T04:15:02Z",
+  "version_updated_at": "2024-10-07T04:15:02Z",
+  "observed_at": "2026-09-08T22:28:42.905805+00:00",
+  "available_at": "2024-10-07T04:15:02Z",
+  "available_basis": "arXiv archived v1 release; historical reconstruction captured later",
+  "source_kind": "paper",
+  "provider": "arxiv",
+  "access_scope": "public",
+  "representation": "versioned_primary_abstract",
+  "text": "Recent advancements in language models (LMs) have notably enhanced their ability to reason with tabular data, primarily through program-aided mechanisms that manipulate and analyze tables. However, these methods often require the entire table as input, leading to scalability challenges due to the positional bias or context length constraints. In response to these challenges, we introduce TableRAG, a Retrieval-Augmented Generation (RAG) framework specifically designed for LM-based table understanding. TableRAG leverages query expansion combined with schema and cell retrieval to pinpoint crucial information before providing it to the LMs. This enables more efficient data encoding and precise retrieval, significantly reducing prompt lengths and mitigating information loss. We have developed two new million-token benchmarks from the Arcade and BIRD-SQL datasets to thoroughly evaluate TableRAG's effectiveness at scale. Our results demonstrate that TableRAG's retrieval design achieves the highest retrieval quality, leading to the new state-of-the-art performance on large-scale table understanding.",
+  "text_sha256": "3edf596e1213fbd54810d8ad36c4cdd9e20fb2b1f54578a78bf2e312365ba385",
+  "raw_sha256": "761969bd1361209348c93fad02bd6d4c2df715209d933d5edb33e9ba47c64193",
+  "raw_file": "761969bd1361209348c93fad02bd6d4c2df715209d933d5edb33e9ba47c64193.xml",
+  "limitations": [
+    "Abstract-only evidence; author-reported results, not independent reproduction.",
+    "Later DOI, journal metadata and current citations are excluded from historical input."
+  ]
+}

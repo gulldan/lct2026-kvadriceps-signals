@@ -1,0 +1,40 @@
+id: controls-via-ui
+valid:
+  - "<Button onClick={save}>Сохранить</Button>"
+  - '<Input type="file" hidden />'
+  - "<CardButton>Открыть</CardButton>"
+  - "<Table><TableBody><TableRow><TableCell>Текст</TableCell></TableRow></TableBody></Table>"
+  - "// <button> — пример в комментарии"
+invalid:
+  - "<button onClick={save}>Сохранить</button>"
+  - '<input type="file" hidden />'
+  - "<textarea />"
+  - "<select><option>PDF</option></select>"
+  - '<label htmlFor="name">Название</label>'
+  - "<table><tbody><tr><td>Текст</td></tr></tbody></table>"
+---
+id: ui-packages-via-ui
+valid:
+  - 'import { Button } from "@/shared/ui/Button";'
+  - 'import { toast } from "@/shared/ui/Sonner";'
+  - 'import { Search } from "lucide-react";'
+  - 'const note = "sonner";'
+invalid:
+  - 'import * as Dialog from "@radix-ui/react-dialog";'
+  - 'import { toast } from "sonner";'
+  - 'import "react-pdf/dist/Page/TextLayer.css";'
+  - 'const Dialog = await import("@radix-ui/react-dialog");'
+  - 'const Markdown = require("react-markdown");'
+  - 'export { Toaster } from "sonner";'
+  - 'import type { DialogProps } from "@radix-ui/react-dialog";'
+  - 'import { Select } from "../_designSystem/Select";'
+---
+id: surfaces-via-ui
+valid:
+  - '<Card className="rounded-xl border bg-card" />'
+  - '<section className="grid gap-4"><Card /></section>'
+  - 'const example = "rounded-xl border bg-card";'
+invalid:
+  - '<div className="rounded-xl border bg-card p-4" />'
+  - '<section className={cn(active && "border rounded-lg bg-card")} />'
+  - '<aside className={`rounded-xl border bg-card ${active ? "ring-1" : ""}`} />'

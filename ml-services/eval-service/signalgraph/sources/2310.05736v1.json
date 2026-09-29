@@ -1,0 +1,30 @@
+{
+  "native_id": "2310.05736v1",
+  "canonical_id": "arxiv:2310.05736",
+  "url": "https://arxiv.org/abs/2310.05736v1",
+  "title": "LLMLingua: Compressing Prompts for Accelerated Inference of Large Language Models",
+  "authors": [
+    "Huiqiang Jiang",
+    "Qianhui Wu",
+    "Chin-Yew Lin",
+    "Yuqing Yang",
+    "Lili Qiu"
+  ],
+  "published_at": "2023-10-09T14:10:21Z",
+  "version_updated_at": "2023-10-09T14:10:21Z",
+  "observed_at": "2026-09-08T22:30:48.756477+00:00",
+  "available_at": "2023-10-09T14:10:21Z",
+  "available_basis": "arXiv archived v1 release; historical reconstruction captured later",
+  "source_kind": "paper",
+  "provider": "arxiv",
+  "access_scope": "public",
+  "representation": "versioned_primary_abstract",
+  "text": "Large language models (LLMs) have been applied in various applications due to their astonishing capabilities. With advancements in technologies such as chain-of-thought (CoT) prompting and in-context learning (ICL), the prompts fed to LLMs are becoming increasingly lengthy, even exceeding tens of thousands of tokens. To accelerate model inference and reduce cost, this paper presents LLMLingua, a coarse-to-fine prompt compression method that involves a budget controller to maintain semantic integrity under high compression ratios, a token-level iterative compression algorithm to better model the interdependence between compressed contents, and an instruction tuning based method for distribution alignment between language models. We conduct experiments and analysis over four datasets from different scenarios, i.e., GSM8K, BBH, ShareGPT, and Arxiv-March23; showing that the proposed approach yields state-of-the-art performance and allows for up to 20x compression with little performance loss. Our code is available at https://aka.ms/LLMLingua.",
+  "text_sha256": "da058349a61c818ab0cbb0f56efc166961a47e0796e243472ddd9a165c84cb4c",
+  "raw_sha256": "fed7c85814f0c1ef814a75028e63acf00a3d5eaef67602d6e2123046f52b8f5e",
+  "raw_file": "fed7c85814f0c1ef814a75028e63acf00a3d5eaef67602d6e2123046f52b8f5e.xml",
+  "limitations": [
+    "Abstract-only evidence; author-reported results, not independent reproduction.",
+    "Later DOI, journal metadata and current citations are excluded from historical input."
+  ]
+}

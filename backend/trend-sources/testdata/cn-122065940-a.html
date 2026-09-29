@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>CN122065940A - 一种基于大语言模型的多源复杂文本数据知识抽取方法 
+        - Google Patents</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="referrer" content="origin-when-crossorigin">
+    <link rel="canonical" href="https://patents.google.com/patent/CN122065940A/zh">
+    <meta name="description" content="
+     本发明公开了一种基于大语言模型的多源复杂文本数据知识抽取方法，根据实际业务需求，构建矛盾纠纷知识抽取数据集；其中，所述数据集包括实体和实体之间的关系；基于所构建的数据集，采用负样例数据增强技术增强对实体和关系的区分能力；设计长思考多步推理框架，实现事件分类知识学习、命名实体识别、关系抽取和自查纠错。上述方法通过引入数据增强、多步推理等技术，训练知识抽取大语言模型，满足多源复杂文本数据知识抽取的准确率和效率，实现高效、准确的知识抽取。 
+     
+   
+   ">
+    <meta name="DC.type" content="patent">
+    <meta name="DC.title" content="一种基于大语言模型的多源复杂文本数据知识抽取方法 
+       ">
+    <meta name="DC.date" content="2026-01-07" scheme="dateSubmitted">
+    <meta name="DC.description" content="
+     本发明公开了一种基于大语言模型的多源复杂文本数据知识抽取方法，根据实际业务需求，构建矛盾纠纷知识抽取数据集；其中，所述数据集包括实体和实体之间的关系；基于所构建的数据集，采用负样例数据增强技术增强对实体和关系的区分能力；设计长思考多步推理框架，实现事件分类知识学习、命名实体识别、关系抽取和自查纠错。上述方法通过引入数据增强、多步推理等技术，训练知识抽取大语言模型，满足多源复杂文本数据知识抽取的准确率和效率，实现高效、准确的知识抽取。 
+     
+   
+   ">
+    <meta name="citation_patent_application_number" content="CN:202610017595.4A">
+    <meta name="citation_patent_publication_number" content="CN:122065940:A">
+    <meta name="DC.date" content="2026-05-19">
+    <meta name="DC.contributor" content="廖勇" scheme="inventor">
+    <meta name="DC.contributor" content="尚宇翔" scheme="inventor">
+    <meta name="DC.contributor" content="马龙" scheme="inventor">
+    <meta name="DC.contributor" content="李栋华" scheme="inventor">
+    <meta name="DC.contributor" content="刘跃" scheme="inventor">
+    <meta name="DC.contributor" content="费维新" scheme="inventor">
+    <meta name="DC.contributor" content="沙海峰" scheme="inventor">
+    <meta name="DC.contributor" content="Anhui Provincial Public Security Department" scheme="assignee">
+    <meta name="DC.contributor" content="Flash It Co ltd" scheme="assignee">
+    <meta name="DC.contributor" content="Hefei Public Security Bureau" scheme="assignee">
+    <meta name="DC.contributor" content="University of Science and Technology of China USTC" scheme="assignee">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,400italic,500,500italic,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Product+Sans">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700">
+
+    <style>
+      
+      #gb { top: 15px; left: auto; right: 0; width: auto; min-width: 135px !important; }   
+      body { transition: none; }
+    </style>
+    <script></script>
+
+    <script>
+      window.version = 'patent-search.search_20260819_RC00';
+
+      function sendFeedback() {
+        userfeedback.api.startFeedback({
+          'productId': '713680',
+          'bucket': 'patent-search-web',
+          'productVersion': window.version,
+        });
+      }
+
+      window.experiments = {};
+      window.experiments.patentCountries = "ae,ag,al,am,ao,ap,ar,at,au,aw,az,ba,bb,bd,be,bf,bg,bh,bj,bn,bo,br,bw,bx,by,bz,ca,cf,cg,ch,ci,cl,cm,cn,co,cr,cs,cu,cy,cz,dd,de,dj,dk,dm,do,dz,ea,ec,ee,eg,em,ep,es,fi,fr,ga,gb,gc,gd,ge,gh,gm,gn,gq,gr,gt,gw,hk,hn,hr,hu,ib,id,ie,il,in,ir,is,it,jo,jp,ke,kg,kh,km,kn,kp,kr,kw,kz,la,lc,li,lk,lr,ls,lt,lu,lv,ly,ma,mc,md,me,mg,mk,ml,mn,mo,mr,mt,mw,mx,my,mz,na,ne,ng,ni,nl,no,nz,oa,om,pa,pe,pg,ph,pl,pt,py,qa,ro,rs,ru,rw,sa,sc,sd,se,sg,si,sk,sl,sm,sn,st,su,sv,sy,sz,td,tg,th,tj,tm,tn,tr,tt,tw,tz,ua,ug,us,uy,uz,vc,ve,vn,wo,yu,za,zm,zw";
+      
+      
+      window.experiments.keywordWizard = true;
+      
+      
+      
+      window.experiments.definitions = true;
+      window.experiments.plogs = true;
+
+      window.Polymer = {
+        dom: 'shady',
+        lazyRegister: true,
+      };
+    </script>
+
+    <script src="//www.gstatic.com/patent-search/frontend/patent-search.search_20260819_RC00/scs/compiled_dir/webcomponentsjs/webcomponents-lite.min.js"></script>
+    <link rel="import" href="//www.gstatic.com/patent-search/frontend/patent-search.search_20260819_RC00/scs/compiled_dir/search-app-vulcanized.html">
+  </head>
+  <body unresolved>
+    
+    
+    <script></script>
+    <script src="//www.gstatic.com/patent-search/frontend/patent-search.search_20260819_RC00/scs/compiled_dir/search-app-vulcanized.js"></script>
+    <search-app>
+      
+      
+
+      <article class="result" itemscope itemtype="http://schema.org/ScholarlyArticle">
+  <h1 itemprop="pageTitle">CN122065940A - 一种基于大语言模型的多源复杂文本数据知识抽取方法 
+        - Google Patents</h1>
+  <span itemprop="title">一种基于大语言模型的多源复杂文本数据知识抽取方法 
+       </span>
+
+  <meta itemprop="type" content="patent">
+  
+  <h2>Info</h2>
+
+  <dl>
+    <dt>Publication number</dt>
+    <dd itemprop="publicationNumber">CN122065940A</dd>
+    <meta itemprop="numberWithoutCodes" content="122065940">
+    <meta itemprop="kindCode" content="A">
+    <meta itemprop="publicationDescription" content="Unexaminded application">
+    <span>CN122065940A</span>
+    <span>CN202610017595.4A</span>
+    <span>CN202610017595A</span>
+    <span>CN122065940A</span>
+    <span>CN 122065940 A</span>
+    <span>CN122065940 A</span>
+    <span>CN 122065940A</span>
+    <span>  </span>
+    <span> </span>
+    <span> </span>
+    <span>CN 202610017595 A</span>
+    <span>CN202610017595 A</span>
+    <span>CN 202610017595A</span>
+    <span>CN 122065940 A</span>
+    <span>CN122065940 A</span>
+    <span>CN 122065940A</span>
+
+    <dt>Authority</dt>
+    <dd itemprop="countryCode">CN</dd>
+    <dd itemprop="countryName">China</dd>
+
+    <dt>Prior art keywords</dt>
+    <dd itemprop="priorArtKeywords" repeat>entity</dd>
+    <dd itemprop="priorArtKeywords" repeat>entities</dd>
+    <dd itemprop="priorArtKeywords" repeat>extraction</dd>
+    <dd itemprop="priorArtKeywords" repeat>language model</dd>
+    <dd itemprop="priorArtKeywords" repeat>relationships</dd>
+
+    <dt>Prior art date</dt>
+    <dd><time itemprop="priorArtDate" datetime="2026-01-07">2026-01-07</time></dd>
+
+    <dt>Legal status (The legal status is an assumption and is not a legal conclusion. Google has not performed a legal analysis and makes no representation as to the accuracy of the status listed.)</dt>
+    <dd itemprop="legalStatusIfi" itemscope>
+      <span itemprop="status">Pending</span>
+    </dd>
+  </dl>
+
+  <dt>Application number</dt>
+  <dd itemprop="applicationNumber">CN202610017595.4A</dd>
+
+  <dt>Other languages</dt>
+  <dd itemprop="otherLanguages" itemscope repeat>
+    <a href="/patent/CN122065940A/en">
+      <span itemprop="name">English</span> (<span itemprop="code">en</span>)
+    </a>
+  </dd>
+
+  
+
+  <dt>Inventor</dt>
+  <dd itemprop="inventor" repeat>廖勇</dd>
+  <dd itemprop="inventor" repeat>尚宇翔</dd>
+  <dd itemprop="inventor" repeat>马龙</dd>
+  <dd itemprop="inventor" repeat>李栋华</dd>
+  <dd itemprop="inventor" repeat>刘跃</dd>
+  <dd itemprop="inventor" repeat>费维新</dd>
+  <dd itemprop="inventor" repeat>沙海峰</dd>
+
+  <dt>Current Assignee (The listed assignees may be inaccurate. Google has not performed a legal analysis and makes no representation or warranty as to the accuracy of the list.)</dt>
+  <dd itemprop="assigneeCurrent" repeat>
+    Anhui Provincial Public Security Department
+  </dd>
+  <dd itemprop="assigneeCurrent" repeat>
+    Flash It Co ltd
+  </dd>
+  <dd itemprop="assigneeCurrent" repeat>
+    Hefei Public Security Bureau
+  </dd>
+  <dd itemprop="assigneeCurrent" repeat>
+    University of Science and Technology of China USTC
+  </dd>
+
+  <dt>Original Assignee</dt>
+  <dd itemprop="assigneeOriginal" repeat>Anhui Provincial Public Security Department</dd>
+  <dd itemprop="assigneeOriginal" repeat>Flash It Co ltd</dd>
+  <dd itemprop="assigneeOriginal" repeat>Hefei Public Security Bureau</dd>
+  <dd itemprop="assigneeOriginal" repeat>University of Science and Technology of China USTC</dd>
+
+  
+
+  <dt>Filing date</dt>
+  <dd><time itemprop="filingDate" datetime="2026-01-07">2026-01-07</time></dd>
+
+  <dt>Publication date</dt>
+  <dd><time itemprop="publicationDate" datetime="2026-05-19">2026-05-19</time></dd>
+
+  
+  <dd itemprop="events" itemscope repeat>
+    <time itemprop="date" datetime="2026-01-07">2026-01-07</time>
+    <span itemprop="title">Application filed by Anhui Provincial Public Security Department, Flash It Co ltd, Hefei Public Security Bureau, University of Science and Technology of China USTC</span>
+    <span itemprop="type">filed</span>
+    <span itemprop="critical" content="true" bool>Critical</span>
+    
+    
+    
+    <span itemprop="assigneeSearch">Anhui Provincial Public Security Department</span>
+  </dd>
+  <dd itemprop="events" itemscope repeat>
+    <time itemprop="date" datetime="2026-05-19">2026-05-19</time>
+    <span itemprop="title">Publication of CN122065940A</span>
+    <span itemprop="type">publication</span>
+    <span itemprop="critical" content="true" bool>Critical</span>
+    
+    
+    <span itemprop="documentId">patent/CN122065940A/zh</span>
+    
+  </dd>
+  <dd itemprop="events" itemscope repeat>
+    <time itemprop="date">Status</time>
+    <span itemprop="title">Pending</span>
+    <span itemprop="type">legal-status</span>
+    <span itemprop="critical" content="true" bool>Critical</span>
+    <span itemprop="current" content="true" bool>Current</span>
+    
+    
+    
+  </dd>
+
+  <h2>Links</h2>
+  <ul>
+    
+
+    <li itemprop="links" itemscope repeat>
+        <meta itemprop="id" content="espacenetLink">
+        <a href="https://worldwide.espacenet.com/publicationDetails/biblio?CC=CN&amp;NR=122065940A&amp;KC=A&amp;FT=D" itemprop="url" target="_blank"><span itemprop="text">Espacenet</span></a>
+      </li>
+      
+
+    
+
+    <li itemprop="links" itemscope repeat>
+      <meta itemprop="id" content="globalDossierLink">
+      <a href="https://globaldossier.uspto.gov/result/application/CN/202610017595/1" itemprop="url" target="_blank"><span itemprop="text">Global Dossier</span></a>
+    </li>
+
+    
+
+      
+
+      
+
+      
+      <li itemprop="links" itemscope repeat>
+        <meta itemprop="id" content="stackexchangeLink">
+        <a href="https://patents.stackexchange.com/questions/tagged/CN122065940A" itemprop="url"><span itemprop="text">Discuss</span></a>
+      </li>
+  </ul>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  <section itemprop="abstract" itemscope>
+    <h2>Abstract</h2>
+    
+    <div itemprop="content" html><abstract mxw-id="PA780027381" lang="ZH" load-source="patent-office">
+    <div num="0001" class="abstract">本发明公开了一种基于大语言模型的多源复杂文本数据知识抽取方法，根据实际业务需求，构建矛盾纠纷知识抽取数据集；其中，所述数据集包括实体和实体之间的关系；基于所构建的数据集，采用负样例数据增强技术增强对实体和关系的区分能力；设计长思考多步推理框架，实现事件分类知识学习、命名实体识别、关系抽取和自查纠错。上述方法通过引入数据增强、多步推理等技术，训练知识抽取大语言模型，满足多源复杂文本数据知识抽取的准确率和效率，实现高效、准确的知识抽取。</div>
+    </abstract>
+  </div>
+  </section>
+
+  <section itemprop="description" itemscope>
+    <h2>Description</h2>
+    
+    <div itemprop="content" html><div mxw-id="PDES529945498" lang="ZH" load-source="patent-office" class="description">
+    <invention-title lang="ZH" id="title1">一种基于大语言模型的多源复杂文本数据知识抽取方法</invention-title>
+    <technical-field>
+      <div id="p0001" class="description-paragraph">技术领域</div>
+      <div id="p0002" num="0001" class="description-paragraph">本发明涉及数据提取技术领域，尤其涉及一种基于大语言模型的多源复杂文本数据知识抽取方法。</div>
+    </technical-field>
+    <background-art>
+      <div id="p0003" class="description-paragraph">背景技术</div>
+      <div id="p0004" num="0002" class="description-paragraph">随着信息技术的飞速发展，各行业积累了海量的多源文本数据，这些数据在结构上存在差异，内容上也呈现出复杂多变的特点。非结构化记录中蕴含着大量隐藏信息和待分析补全的内容，例如事件细节、人员关系、行为动机等。这些信息对于实现行业内的知识管理和决策支持具有极其重要的价值。然而，在多源复杂文本数据处理中，传统的人工标注和分析方式效率低下，面对复杂的数据处理需求需要很高的人工成本。现有的小模型和通用大语言模型在抽取特定领域的语义内容时，专业理解能力不足，难以分辨文本中的关键信息，准确率无法满足特定业务的严格需求。</div>
+      <div id="p0005" num="0003" class="description-paragraph">当前的多源复杂文本数据知识抽取技术在实际应用中存在显著缺陷，具体来说，主要存在以下几点问题：</div>
+      <div id="p0006" class="description-paragraph">第一，标注效率低。多源复杂文本数据结构复杂、内容多样，且关键信息往往隐藏于非结构化数据之中。传统的人工标注方式不仅效率低下，还容易因主观性导致标注不一致。</div>
+      <div id="p0007" num="0004" class="description-paragraph">第二，泛化能力弱。使用传统机器学习方法和小模型抽取信息，虽在一定程度上满足了抽取效率的需求，但面对海量多源复杂文本数据，其结构格式、表达方式差异化明显。语义理解能力差的小模型难以保障抽取能力的跨域表现，导致训练成本成倍增加。例如，基于小模型的UIE（Universal Information Extraction，通用信息抽取），在公安领域的矛盾纠纷记录的抽取中，不同来源的记录格式和表述方式差异较大，需要针对每种数据类型重新训练模型，增加了开发和维护成本。</div>
+      <div id="p0008" num="0005" class="description-paragraph">第三，专业能力不足。现有的通用大语言模型虽具备常见实体关系的抽取能力，但在抽取特定领域的语义内容时，缺乏对专业知识的深度理解。难以准确抽取业务关注的关键信息，导致抽取效果无法满足特定业务的严格需求。例如，在公安领域的警情记录和案件报告抽取中，通用大语言模型可能无法准确区分“报警人”“嫌疑人”等角色，也无法准确识别案件中的关键信息，如犯罪动机、作案手段、涉案物品等。此外，通用大语言模型在处理公安领域的专业术语和复杂语义关系时，容易出现误判或遗漏，导致抽取结果的准确率较低。</div>
+    </background-art>
+    <disclosure>
+      <div id="p0009" class="description-paragraph">发明内容</div>
+      <div id="p0010" num="0006" class="description-paragraph">本发明的目的是提供一种基于大语言模型的多源复杂文本数据知识抽取方法，该方法通过引入数据增强、多步推理等技术，训练知识抽取大语言模型，满足多源复杂文本数据知识抽取的准确率和效率，实现高效、准确的知识抽取。</div>
+      <div id="p0011" num="0007" class="description-paragraph">本发明的目的是通过以下技术方案实现的：</div>
+      <div id="p0012" class="description-paragraph">一种基于大语言模型的多源复杂文本数据知识抽取方法，所述方法包括：</div>
+      <div id="p0013" class="description-paragraph">步骤1、根据实际业务需求，构建矛盾纠纷知识抽取数据集；其中，所述数据集包括实体和实体之间的关系；</div>
+      <div id="p0014" class="description-paragraph">步骤2、基于所构建的数据集，采用负样例数据增强技术增强对实体和关系的区分能力；</div>
+      <div id="p0015" class="description-paragraph">步骤3、设计长思考多步推理框架，实现事件分类知识学习、命名实体识别、关系抽取和自查纠错。</div>
+      <div id="p0016" num="0008" class="description-paragraph">由上述本发明提供的技术方案可以看出，上述方法通过引入数据增强、多步推理等技术，训练知识抽取大语言模型，满足多源复杂文本数据知识抽取的准确率和效率，实现高效、准确的知识抽取。</div>
+    </disclosure>
+    <description-of-drawings>
+      <div id="p0017" class="description-paragraph">附图说明</div>
+      <div id="p0018" num="0009" class="description-paragraph">为了更清楚地说明本发明实施例的技术方案，下面将对实施例描述中所需要使用的附图作简单地介绍，显而易见地，下面描述中的附图仅仅是本发明的一些实施例，对于本领域的普通技术人员来讲，在不付出创造性劳动的前提下，还可以根据这些附图获得其他附图。</div>
+      <div id="p0019" num="0010" class="description-paragraph">图1为本发明实施例提供的基于大语言模型的多源复杂文本数据知识抽取方法流程示意图。</div>
+    </description-of-drawings>
+    <mode-for-invention>
+      <div id="p0020" class="description-paragraph">具体实施方式</div>
+      <div id="p0021" num="0011" class="description-paragraph">下面结合本发明实施例中的附图，对本发明实施例中的技术方案进行清楚、完整地描述，显然，所描述的实施例仅仅是本发明一部分实施例，而不是全部的实施例，这并不构成对本发明的限制。基于本发明的实施例，本领域普通技术人员在没有做出创造性劳动前提下所获得的所有其他实施例，都属于本发明的保护范围。</div>
+      <div id="p0022" num="0012" class="description-paragraph">如图1所示为本发明实施例提供的基于大语言模型的多源复杂文本数据知识抽取方法流程示意图，所述方法包括：</div>
+      <div id="p0023" class="description-paragraph">步骤1、根据实际业务需求，构建矛盾纠纷知识抽取数据集；其中，所述数据集包括实体和实体之间的关系；</div>
+      <div id="p0024" class="description-paragraph">在该步骤中，所构建的数据集中的实体包括：人、物、组织、事件、行为；</div>
+      <div id="p0025" class="description-paragraph">实体之间的关系包括：人人关系、人组织关系、人事关系、人物关系、人行为关系、组织间关系、组织事关系、组织物关系、事物关系。</div>
+      <div id="p0026" num="0013" class="description-paragraph">以公安领域的业务需求为例，实体定义如下表1所示：</div>
+      <div id="p0027" class="description-paragraph">表1</div>
+      <div id="p0028" class="description-paragraph">
+        <span class="patent-image-not-available"></span>
+      </div>
+      <div id="p0029" num="0014" class="description-paragraph">实体之间的关系定义如下表2所示：</div>
+      <div id="p0030" class="description-paragraph">表2</div>
+      <div id="p0031" class="description-paragraph">
+        <span class="patent-image-not-available"></span>
+      </div>
+      <div id="p0032" num="0015" class="description-paragraph">步骤2、基于所构建的数据集，采用负样例数据增强技术增强模型对实体和关系的区分能力；</div>
+      <div id="p0033" class="description-paragraph">在该步骤中，负样例数据增强是一种通过引入负样本，即不包含目标信息的样本，来提升大语言模型区分能力和准确率的技术，在知识抽取任务中，负样例数据增强可以帮助模型更好地识别和区分真实的知识点与干扰信息，从实体关系定义表中可以看出，对于公安领域的矛盾纠纷数据，大语言模型需要区分以下几种情况：</div>
+      <div id="p0034" class="description-paragraph">1）不同纠纷类型涉及的关键实体</div>
+      <div id="p0035" class="description-paragraph">不同类型的矛盾纠纷涉及的实体各不相同，矛盾纠纷事件记录数据包含18类典型纠纷，例如健康权纠纷、交通纠纷、劳务劳资纠纷等。同类事件的记录表述通常相似，所涉及的实体关系类型也相近。例如，健康权纠纷中常涉及二至多个人实体、“打架”等危险行为实体，以及纠纷关系和存在行为关系；而交通纠纷则多涉及一至多个人实体、一至多个机动车实体，以及“醉驾”“肇事逃逸”等违法犯罪行为。在模型训练数据中引入与本条数据不同的其他纠纷类型的实体关系作为负例样本，有助于增强模型对纠纷类型及相关实体关系类别的区分能力。</div>
+      <div id="p0036" num="0016" class="description-paragraph">设样本的纠纷类型为d，其对应的典型关系类型集合为R<sub>d</sub>；从其他纠纷类型的典型关系集合中采样的负例关系类型集合为R<sub>neg </sub>，在模型预测时，构建扩展的预测目标集T<sub>extend</sub>如下：</div>
+      <div id="p0037" class="description-paragraph"> <span class="patent-image-not-available"></span> （1）</div>
+      <div id="p0038" class="description-paragraph">构建扩展标签，表示为Y′[r]：</div>
+      <div id="p0039" class="description-paragraph"> <span class="patent-image-not-available"></span>（2）</div>
+      <div id="p0040" class="description-paragraph">其中，Y[r]表示原始标签函数，表示关系类型r在样本中实际出现的标签值；r表示特定的关系类型变量；</div>
+      <div id="p0041" class="description-paragraph">通过该公式（2）构建的负例关系数据集，使大语言模型能够学习“在某类纠纷的上下文中，哪些关系是合理的，哪些是不相关的”；</div>
+      <div id="p0042" class="description-paragraph">2）相似数据格式的不同实体区分</div>
+      <div id="p0043" class="description-paragraph">某些实体在数据格式上高度相似，如身份证号、手机号和银行卡号均为数字序列，但它们属于完全不同的实体类型。在模型训练数据中引入本条数据中不包含的其他相似格式的实体作为负例样本，有助于增强模型对于这些相似格式实体的区分能力，如通过代码识别到本条数据中包含身份证号实体时，在抽取的实体目标中加入手机号、银行卡号实体，而结果中加入对应的空值。</div>
+      <div id="p0044" num="0017" class="description-paragraph">定义格式相似实体组G为：</div>
+      <div id="p0045" class="description-paragraph"> <span class="patent-image-not-available"></span>（3）</div>
+      <div id="p0046" class="description-paragraph">其中，t<sub>i</sub>表示格式相似实体组中的第i个实体类型，例如：t<sub>1</sub>=身份证号，t<sub>2</sub>=手机号，t<sub>3</sub>=银行卡号；k表示格式相似实体组中实体类型的总数；</div>
+      <div id="p0047" class="description-paragraph">对于包含其中部分实体类型的样本，要求大语言模型同时对组内所有类型进行预测，但仅对实际存在的类型赋予正标签，对于样本中实际出现的实体类型集合<span class="patent-image-not-available"></span>，构建扩展标签，表示为Y[t]：</div>
+      <div id="p0048" class="description-paragraph"> <span class="patent-image-not-available"></span>（4）</div>
+      <div id="p0049" class="description-paragraph">其中，t表示特定的实体类型变量，属于格式相似实体组G中的某个元素；E<sub>pos</sub>表示当前样本中实际出现的实体类型集合，是G的一个子集；G\Epos为集合的差集运算，表示属于G但不属于E<sub>pos</sub>的实体类型集合；</div>
+      <div id="p0050" class="description-paragraph">通过该公式（4）构建的负例关系数据集，使大语言模型能够学习到不同角色在上下文中的细微差异，提高角色分类的准确性。</div>
+      <div id="p0051" num="0018" class="description-paragraph">3）相同类型实体的关系分类</div>
+      <div id="p0052" class="description-paragraph">相同类型的实体会被分类为不同角色。例如“人”这一实体在矛盾纠纷中可能被分为“报警人”“纠纷当事人”“纠纷相关人”等。在大语言模型训练数据中引入本条数据中不包含的其他相似格式的实体作为负例样本，有助于增强模型对于这些相似格式实体的区分能力。</div>
+      <div id="p0053" num="0019" class="description-paragraph">设某一实体类型（如“人”）的所有可能角色集合P表示为：</div>
+      <div id="p0054" class="description-paragraph"> <span class="patent-image-not-available"></span>（5）</div>
+      <div id="p0055" class="description-paragraph">其中，p<sub>i</sub>表示第i个可能角色，例如p<sub>1</sub>=报警人，p<sub>2</sub>=纠纷当事人；m表示角色总数；</div>
+      <div id="p0056" class="description-paragraph">对于样本中该实体类型实际扮演的角色集合<span class="patent-image-not-available"></span>，构建扩展标签，表示为Y′[p]：</div>
+      <div id="p0057" class="description-paragraph"> <span class="patent-image-not-available"></span>（6）</div>
+      <div id="p0058" class="description-paragraph">其中，p表示特定角色变量；P<sub>pos</sub>表示样本中该实体类型实际扮演的角色集合；<span class="patent-image-not-available"></span>表示可能角色中但未在当前样本出现的集合；</div>
+      <div id="p0059" class="description-paragraph">通过该公式（6）构建的负例关系数据集，使大语言模型能够学习到不同角色在上下文中的细微差异，提高角色分类的准确性。</div>
+      <div id="p0060" num="0020" class="description-paragraph">通过引入负样例数据增强技术，对未出现在数据文本中的实体，也会给出字段名称并标记为空，从而标注出文本中实体关系的存在情况。这有助于模型学习实体间的区别，从而提高对相似实体的识别准确率。</div>
+      <div id="p0061" num="0021" class="description-paragraph">上述方案能够提高模型对干扰信息的识别能力，从而显著提高抽取结果的准确率。</div>
+      <div id="p0062" num="0022" class="description-paragraph">步骤3、设计长思考多步推理框架，实现事件分类知识学习、命名实体识别、关系抽取和自查纠错；</div>
+      <div id="p0063" class="description-paragraph">在该步骤中，长思考是一种模拟人类推理过程的技术，通过多步推理逐步解决复杂问题。在知识抽取中，长思考多步推理框架是将复杂任务分解为多个子任务，并通过多个智能体逐步推导出结果，具体是设计多组提示词和抽取框架实现长思考，并针对每一步的智能体构建任务数据集并进行针对性训练，具体包括：</div>
+      <div id="p0064" class="description-paragraph">1）事件分类知识学习：事件分类是长思考的第一步，事件内容经过事件分类模型后会被打上分类标签，根据分类标签得到所需抽取的实体和关系框架，具体来说：</div>
+      <div id="p0065" class="description-paragraph">对于一个输入文本t，通过事件分类模型M<sub>cls</sub>将文本t映射到一个预定义的纠纷类型标签d，表示为：</div>
+      <div id="p0066" class="description-paragraph"> <span class="patent-image-not-available"></span>（7）</div>
+      <div id="p0067" class="description-paragraph">其中，<span class="patent-image-not-available"></span>表示系统预定义的k类纠纷标签的集合；</div>
+      <div id="p0068" class="description-paragraph">每个纠纷类型标签d都对应一个预设的实体与关系框架F<sub>d</sub>，表示为：</div>
+      <div id="p0069" class="description-paragraph"> <span class="patent-image-not-available"></span>（8）</div>
+      <div id="p0070" class="description-paragraph">其中，E<sub>d</sub>表示该纠纷类型标签d可能出现的实体类型集合；R<sub>d</sub>表示该纠纷类型标签d可能存在的实体关系集合；</div>
+      <div id="p0071" class="description-paragraph">通过训练，大语言模型能够学习到不同事件类型的特征，从而在抽取过程中更具针对性，提升整体准确率；</div>
+      <div id="p0072" class="description-paragraph">2）命名实体识别：命名实体识别是长思考的第二步。作为传统自然语言处理任务，根据上一步的实体与关系框架F<sub>d</sub>，从文本中提取实体（如人名、地名、组织名），并根据上下文信息对实体进行分类，通过提示词引导大语言模型进行多步推理，包含实体提取、实体分类、格式检查，大语言模型会逐步分析文本中的语义信息，获得命名实体识别结果；</div>
+      <div id="p0073" class="description-paragraph">举例来说，提示词：</div>
+      <div id="p0074" class="description-paragraph">基于命名实体识别NER系统，大语言模型按照以下步骤对输入的事件文本进行分析：</div>
+      <div id="p0075" class="description-paragraph">**任务背景**：</div>
+      <div id="p0076" class="description-paragraph">- 当前事件的纠纷类型已被判定为：【{d}】。</div>
+      <div id="p0077" num="0023" class="description-paragraph">- 该纠纷类型的**核心实体类型框架**为：{E<sub>d</sub>}。</div>
+      <div id="p0078" num="0024" class="description-paragraph">从以下文本中，准确识别出所有属于上述框架的实体，按顺序执行以下三步推理：</div>
+      <div id="p0079" class="description-paragraph">**步骤一：实体提取**</div>
+      <div id="p0080" class="description-paragraph">- 逐句阅读文本，标记出所有可能的候选实体片段。这些片段通常是特定的名词短语、专有名词、数字序列或描述特定事物的表达。</div>
+      <div id="p0081" num="0025" class="description-paragraph">**步骤二：实体分类**</div>
+      <div id="p0082" class="description-paragraph">- 对在“步骤一”中提取出的每一个候选实体，将其归类到“核心实体类型框架”中最贴切的一个类别。包括：</div>
+      <div id="p0083" class="description-paragraph">1. 这个实体在当前的纠纷上下文中扮演什么角色？</div>
+      <div id="p0084" class="description-paragraph">2. 它最符合框架中哪个类型的定义？</div>
+      <div id="p0085" class="description-paragraph">**步骤三：格式与逻辑校验**</div>
+      <div id="p0086" class="description-paragraph">- 在完成初步分类后，对结果进行最后检查：</div>
+      <div id="p0087" class="description-paragraph">1. **格式检查**：对于某些类别（如身份证号、电话号码、车牌号），检查其格式是否符合常规标准。</div>
+      <div id="p0088" num="0026" class="description-paragraph">2. **逻辑检查**：检查是否存在明显的分类矛盾（例如，同一个实体片段被赋予了两种类型）。</div>
+      <div id="p0089" num="0027" class="description-paragraph">3. **完整性检查**：基于你对“{d}”纠纷的理解，判断是否有显而易见的、属于{E_d}的实体在文本中存在但被遗漏了。</div>
+      <div id="p0090" num="0028" class="description-paragraph">**输出要求**：</div>
+      <div id="p0091" class="description-paragraph">将最终结果以严格的JSON格式输出，且仅输出JSON，不要附加任何解释。</div>
+      <div id="p0092" num="0029" class="description-paragraph">- 如果未识别出任何实体，输出空列表。</div>
+      <div id="p0093" num="0030" class="description-paragraph">3）关系抽取：关系抽取是长思考的第三步，同样是传统自然语言处理任务。通过提示词引导大语言模型进行多步推理，逐一识别实体之间的关系，并验证关系的合理性，大语言模型结合上下文信息和已识别的实体，逐步推断实体之间的关系，确保关系抽取的准确性和逻辑性；</div>
+      <div id="p0094" class="description-paragraph">举例来说，提示词：</div>
+      <div id="p0095" class="description-paragraph">基于关系抽取RE系统，大语言模型遵循以下步骤对输入的事件文本进行分析。</div>
+      <div id="p0096" num="0031" class="description-paragraph">**任务背景**：</div>
+      <div id="p0097" class="description-paragraph">- 当前事件的纠纷类型为：【{d}】。</div>
+      <div id="p0098" num="0032" class="description-paragraph">- 该纠纷类型的**核心关系框架**为：{ E<sub>d</sub>}（定义说明：{关系定义说明}）。</div>
+      <div id="p0099" num="0033" class="description-paragraph">- 上一步已从文本中识别出以下实体：{entities_json}。</div>
+      <div id="p0100" num="0034" class="description-paragraph">- 文本内容：{t}</div>
+      <div id="p0101" class="description-paragraph">**任务**：</div>
+      <div id="p0102" class="description-paragraph">基于以上信息，从文本中识别出所有符合核心关系框架的实体间关系，按顺序执行以下三步推理：</div>
+      <div id="p0103" class="description-paragraph">**步骤一：关系候选对生成**</div>
+      <div id="p0104" class="description-paragraph">- 基于已识别的实体列表，列举出文本中可能构成关系的**实体对**（实体A, 实体B）。</div>
+      <div id="p0105" num="0035" class="description-paragraph">**步骤二：关系语义判断与归类**</div>
+      <div id="p0106" class="description-paragraph">- 针对“步骤一”生成的每一个候选实体对，执行以下操作：</div>
+      <div id="p0107" class="description-paragraph">1.**上下文定位**：仔细阅读包含这两个实体的所有相关句子，理解它们在事件中的具体角色和互动。</div>
+      <div id="p0108" num="0036" class="description-paragraph">2.**关系推断**：判断两者之间是否存在语义关系。如果存在，用一句话描述这种关系。</div>
+      <div id="p0109" num="0037" class="description-paragraph">3.**框架映射**：将描述的关系匹配到“核心关系框架”中最贴切的关系类型。如果不存在匹配，则标记为“无”。</div>
+      <div id="p0110" num="0038" class="description-paragraph">**步骤三：逻辑一致性验证**</div>
+      <div id="p0111" class="description-paragraph">- 在初步确定关系后进行最终审查：</div>
+      <div id="p0112" class="description-paragraph">1.**自洽性检查**：检查抽取出的关系之间是否存在逻辑矛盾。</div>
+      <div id="p0113" num="0039" class="description-paragraph">2.**完备性检查**：基于核心关系框架和事件常识，判断是否有明显存在但未被抽取出的关键关系。</div>
+      <div id="p0114" num="0040" class="description-paragraph">3.**锚定性检查**：确保每个被抽取的关系，都能在原文中找到明确的文字描述或强烈的语义暗示作为支撑，而非主观臆断。</div>
+      <div id="p0115" num="0041" class="description-paragraph">**输出要求**：</div>
+      <div id="p0116" class="description-paragraph">将最终结果以严格的JSON格式输出，且仅输出JSON，不要附加任何解释。</div>
+      <div id="p0117" num="0042" class="description-paragraph">- 每个关系为一个对象，包含“head”（头实体文本）、“head_type”（头实体类型）、“relation”（关系类型）、“tail”（尾实体文本）、“tail_type”（尾实体类型）。</div>
+      <div id="p0118" num="0043" class="description-paragraph">- 关系类型必须严格来自提供的关系框架列表。</div>
+      <div id="p0119" num="0044" class="description-paragraph">4）自查纠错：设计提示词，对抽取结果进行分析自查，确保抽取结果符合文段表达的事件真实情况和逻辑。具体而言，通过大语言模型判断抽取的实体关系是否在原文中拥有强语义支持，通过计算置信度对抽取结果进行量化分析，并对置信度不足的结果重新抽取，具体来说：</div>
+      <div id="p0120" class="description-paragraph">对于输入文本t，信息抽取系统给出的结果为：</div>
+      <div id="p0121" class="description-paragraph">实体集合：E={e<sub>1</sub>,e<sub>2</sub>,...,e<sub>m</sub>}，其中m=∣E∣；</div>
+      <div id="p0122" class="description-paragraph">关系集合：R={r<sub>1</sub>,r<sub>2</sub>,...,r<sub>n</sub>}，其中n=∣R∣；</div>
+      <div id="p0123" class="description-paragraph">定义验证函数<span class="patent-image-not-available"></span>返回布尔值：</div>
+      <div id="p0124" class="description-paragraph">Valid(e<sub>i</sub>)=1当且仅当实体集合中的实体e<sub>i</sub>的文本在输入文本t中精确存在；</div>
+      <div id="p0125" class="description-paragraph">Valid(r<sub>j</sub>)=1当且仅当关系集合中的关系r<sub>j</sub>的语义在输入文本t中有明确支持；</div>
+      <div id="p0126" class="description-paragraph">则本次抽取的整体置信度分数C计算为：</div>
+      <div id="p0127" class="description-paragraph"> <span class="patent-image-not-available"></span>（9）</div>
+      <div id="p0128" class="description-paragraph">置信度分数<span class="patent-image-not-available"></span>，其值越接近1，则表明抽取结果与输入文本t的一致性越高，可靠性越强。</div>
+      <div id="p0129" num="0045" class="description-paragraph">举例来说，提示词：</div>
+      <div id="p0130" class="description-paragraph">大语言模型验证以下抽取结果与原文的一致性，并计算一个置信度分数。</div>
+      <div id="p0131" num="0046" class="description-paragraph">**任务背景**：</div>
+      <div id="p0132" class="description-paragraph">- 原文：“{t}”</div>
+      <div id="p0133" class="description-paragraph">- 抽取的实体列表：{entities_json}</div>
+      <div id="p0134" class="description-paragraph">- 抽取的关系列表：{relations_json}</div>
+      <div id="p0135" class="description-paragraph">**验证与评分规则**：</div>
+      <div id="p0136" class="description-paragraph">按以下步骤计算本次抽取的整体置信度：</div>
+      <div id="p0137" class="description-paragraph">1.**验证实体**：</div>
+      <div id="p0138" class="description-paragraph">- 对每个实体，判断其文本是否**精确、无歧义**地出现在原文中。</div>
+      <div id="p0139" num="0047" class="description-paragraph">- 统计**完全匹配的实体数量**为“correct_entities”。</div>
+      <div id="p0140" num="0048" class="description-paragraph">2.**验证关系**：</div>
+      <div id="p0141" class="description-paragraph">- 对每个关系，判断其语义（头实体、关系类型、尾实体）是否在原文中**有明确描述或强烈语义支持**。</div>
+      <div id="p0142" num="0049" class="description-paragraph">- 统计**完全正确的关系数量**为“correct_relations”。</div>
+      <div id="p0143" num="0050" class="description-paragraph">3.**计算置信度**：</div>
+      <div id="p0144" class="description-paragraph">- 总抽取项数 = 实体数量 + 关系数量。</div>
+      <div id="p0145" num="0051" class="description-paragraph">- 正确抽取项数 = 完全匹配的实体数 + 完全正确的关系数。</div>
+      <div id="p0146" num="0052" class="description-paragraph">- **整体置信度** = 正确抽取项数 / 总抽取项数。</div>
+      <div id="p0147" num="0053" class="description-paragraph">- 如果总抽取项数为0，则置信度为1.0（默认完美，因为无错误可能）。</div>
+      <div id="p0148" num="0054" class="description-paragraph">**输出要求**：</div>
+      <div id="p0149" class="description-paragraph">请严格按照以下JSON格式输出，且仅输出JSON。</div>
+      <div id="p0150" num="0055" class="description-paragraph">通过这一机制，模型能够及时发现并纠正错误，进一步提升抽取结果的质量。</div>
+      <div id="p0151" num="0056" class="description-paragraph">值得注意的是，本发明实施例中未作详细描述的内容属于本领域专业技术人员公知的现有技术。</div>
+      <div id="p0152" num="0057" class="description-paragraph">本发明实施例还提供了一种电子设备，包括存储器和处理器，所述存储器中存储有计算机程序，所述处理器被设置为运行所述计算机程序以执行所述方法。</div>
+      <div id="p0153" num="0058" class="description-paragraph">本发明实施例还提供了一种计算机存储介质，所述计算机存储介质存储有多条指令，所述指令适于由处理器加载并执行所述方法。</div>
+      <div id="p0154" num="0059" class="description-paragraph">综上所述，本发明实施例所述方法通过领域数据增强与负样例技术，有效体现复杂领域多源数据的结构差异与语义特征，构建复杂领域矛盾纠纷训练数据集和评价标准，为矛盾纠纷知识抽取提供高精度、高一致性的特征表示；同时，本方法基于思维链提示词设计和多步推理技术，有效满足矛盾纠纷复杂抽取任务的准确率需求，通过纠纷类型分类和知识学习，保障模型的通用性和泛化能力，提升模型在复杂场景下的长期稳定性和可靠性。</div>
+      <div id="p0155" num="0060" class="description-paragraph">本发明实施例所述方法能够适应动态环境中的数据变化，解决传统方法在动态场景中的局限性，为复杂领域多源矛盾纠纷数据的知识抽取提供了一种高效、准确的解决方案。</div>
+      <div id="p0156" num="0061" class="description-paragraph">另外，本领域普通技术人员可以理解实现上述实施例方法中的全部或部分步骤是可以通过程序来指令相关的硬件完成，相应的程序可以存储于一种计算机可读存储介质中，上述提到的存储介质可以是只读存储器，磁盘或光盘等。</div>
+      <div id="p0157" num="0062" class="description-paragraph">以上所述，仅为本发明较佳的具体实施方式，但本发明的保护范围并不局限于此，任何熟悉本技术领域的技术人员在本发明披露的技术范围内，可轻易想到的变化或替换，都应涵盖在本发明的保护范围之内。因此，本发明的保护范围应该以权利要求书的保护范围为准。本文背景技术部分公开的信息仅仅旨在加深对本发明的总体背景技术的理解，而不应当被视为承认或以任何形式暗示该信息构成已为本领域技术人员所公知的现有技术。</div>
+    </mode-for-invention>
+  </div>
+  </div>
+  </section>
+
+  <section itemprop="claims" itemscope>
+    <h2>Claims (<span itemprop="count">7</span>)</h2>
+    
+    <div itemprop="content" html><div mxw-id="PCLM524448983" lang="ZH" load-source="patent-office" class="claims">
+    <div class="claim"> <div id="zh-cl0001" num="0001" class="claim">
+      <div class="claim-text">1.一种基于大语言模型的多源复杂文本数据知识抽取方法，其特征在于，所述方法包括：</div>
+      <div class="claim-text">步骤1、根据实际业务需求，构建矛盾纠纷知识抽取数据集；其中，所述数据集包括实体和实体之间的关系；</div>
+      <div class="claim-text">步骤2、基于所构建的数据集，采用负样例数据增强技术增强对实体和关系的区分能力；</div>
+      <div class="claim-text">步骤3、设计长思考多步推理框架，实现事件分类知识学习、命名实体识别、关系抽取和自查纠错。</div>
+    </div>
+    </div> <div class="claim-dependent"> <div id="zh-cl0002" num="0002" class="claim">
+      <div class="claim-text">
+        <claim-ref idref="zh-cl0001"> </claim-ref>
+      </div>
+      <div class="claim-text">2.根据权利要求1所述基于大语言模型的多源复杂文本数据知识抽取方法，其特征在于，在步骤1中，所构建的数据集中的实体包括：人、物、组织、事件、行为；</div>
+      <div class="claim-text">实体之间的关系包括：人人关系、人组织关系、人事关系、人物关系、人行为关系、组织间关系、组织事关系、组织物关系、事物关系。</div>
+    </div>
+    </div> <div class="claim-dependent"> <div id="zh-cl0003" num="0003" class="claim">
+      <div class="claim-text">
+        <claim-ref idref="zh-cl0001"> </claim-ref>
+      </div>
+      <div class="claim-text">3.根据权利要求1所述基于大语言模型的多源复杂文本数据知识抽取方法，其特征在于，在步骤2中，负样例数据增强是一种通过引入负样本，即不包含目标信息的样本，来提升大语言模型区分能力和准确率的技术，大语言模型具体需要区分以下几种情况：</div>
+      <div class="claim-text">1）不同纠纷类型涉及的关键实体</div>
+      <div class="claim-text">不同类型的矛盾纠纷涉及的实体各不相同，大语言模型根据具体纠纷类型区分出相关实体，同时排除无关实体，具体来说：</div>
+      <div class="claim-text">设样本的纠纷类型为d，其对应的典型关系类型集合为R<sub>d</sub>；从其他纠纷类型的典型关系集合中采样的负例关系类型集合为R<sub>neg </sub>，在模型预测时，构建扩展的预测目标集T<sub>extend</sub>如下：</div>
+      <div class="claim-text"> <span class="patent-image-not-available"></span> （1）</div>
+      <div class="claim-text">构建扩展标签，表示为Y′[r]：</div>
+      <div class="claim-text"> <span class="patent-image-not-available"></span>（2）</div>
+      <div class="claim-text">其中，Y[r]表示原始标签函数，表示关系类型r在样本中实际出现的标签值；r表示特定的关系类型变量；</div>
+      <div class="claim-text">通过该公式（2）构建的负例关系数据集，使大语言模型能够学习“在某类纠纷的上下文中，哪些关系是合理的，哪些是不相关的”；</div>
+      <div class="claim-text">2）相似数据格式的不同实体区分</div>
+      <div class="claim-text">大语言模型通过上下文和序列特点区分在数据格式上相似的实体，具体来说：</div>
+      <div class="claim-text">定义格式相似实体组G为：</div>
+      <div class="claim-text"> <span class="patent-image-not-available"></span>（3）</div>
+      <div class="claim-text">其中，t<sub>i</sub>表示格式相似实体组中的第i个实体类型；k表示格式相似实体组中实体类型的总数；</div>
+      <div class="claim-text">对于包含其中部分实体类型的样本，要求大语言模型同时对组内所有类型进行预测，但仅对实际存在的类型赋予正标签，对于样本中实际出现的实体类型集合<span class="patent-image-not-available"></span>，构建扩展标签，表示为Y[t]：</div>
+      <div class="claim-text"> <span class="patent-image-not-available"></span>（4）</div>
+      <div class="claim-text">其中，t表示特定的实体类型变量，属于格式相似实体组G中的某个元素；E<sub>pos</sub>表示当前样本中实际出现的实体类型集合，是G的一个子集；G\Epos为集合的差集运算，表示属于G但不属于E<sub>pos</sub>的实体类型集合；</div>
+      <div class="claim-text">通过该公式（4）构建的负例关系数据集，使大语言模型能够学习到不同角色在上下文中的细微差异；</div>
+      <div class="claim-text">3）相同类型实体的关系分类</div>
+      <div class="claim-text">相同类型的实体会被分类为不同角色，大语言模型通过关系定义和上下文来区分这些角色，具体来说：</div>
+      <div class="claim-text">设某一实体类型的所有可能角色集合P表示为：</div>
+      <div class="claim-text"> <span class="patent-image-not-available"></span>（5）</div>
+      <div class="claim-text">其中，p<sub>i</sub>表示第i个可能角色；m表示角色总数；</div>
+      <div class="claim-text">对于样本中该实体类型实际扮演的角色集合<span class="patent-image-not-available"></span>，构建扩展标签，表示为Y′[p]：</div>
+      <div class="claim-text"> <span class="patent-image-not-available"></span>（6）</div>
+      <div class="claim-text">其中，p表示特定角色变量；P<sub>pos</sub>表示样本中该实体类型实际扮演的角色集合；<span class="patent-image-not-available"></span>表示可能角色中但未在当前样本出现的集合；</div>
+      <div class="claim-text">通过该公式（6）构建的负例关系数据集，使大语言模型能够学习到不同角色在上下文中的细微差异；</div>
+      <div class="claim-text">通过引入负样例数据增强技术，对未出现在数据文本中的实体，也会给出字段名称并标记为空，从而标注出文本中实体关系的存在情况。</div>
+    </div>
+    </div> <div class="claim-dependent"> <div id="zh-cl0004" num="0004" class="claim">
+      <div class="claim-text">
+        <claim-ref idref="zh-cl0001"> </claim-ref>
+      </div>
+      <div class="claim-text">4.根据权利要求1所述基于大语言模型的多源复杂文本数据知识抽取方法，其特征在于，在步骤3中，长思考多步推理框架是将复杂任务分解为多个子任务，并通过多个智能体逐步推导出结果，具体是设计多组提示词和抽取框架实现长思考，并针对每一步的智能体构建任务数据集并进行针对性训练，具体包括：</div>
+      <div class="claim-text">1）事件分类知识学习：事件分类是长思考的第一步，事件内容经过事件分类模型后会被打上分类标签，根据分类标签得到所需抽取的实体和关系框架，具体来说：</div>
+      <div class="claim-text">对于一个输入文本t，通过事件分类模型M<sub>cls</sub>将文本t映射到一个预定义的纠纷类型标签d，表示为：</div>
+      <div class="claim-text"> <span class="patent-image-not-available"></span>（7）</div>
+      <div class="claim-text">其中，<span class="patent-image-not-available"></span>表示系统预定义的k类纠纷标签的集合；</div>
+      <div class="claim-text">每个纠纷类型标签d都对应一个预设的实体与关系框架F<sub>d</sub>，表示为：</div>
+      <div class="claim-text"> <span class="patent-image-not-available"></span>（8）</div>
+      <div class="claim-text">其中，E<sub>d</sub>表示该纠纷类型标签d可能出现的实体类型集合；R<sub>d</sub>表示该纠纷类型标签d可能存在的实体关系集合；</div>
+      <div class="claim-text">通过训练，大语言模型能够学习到不同事件类型的特征，从而在抽取过程中更具针对性，提升整体准确率；</div>
+      <div class="claim-text">2）命名实体识别：根据上一步的实体与关系框架F<sub>d</sub>，从文本中提取实体，并根据上下文信息对实体进行分类，通过提示词引导大语言模型进行多步推理，包含实体提取、实体分类、格式检查，大语言模型会逐步分析文本中的语义信息，获得命名实体识别结果；</div>
+      <div class="claim-text">3）关系抽取：通过提示词引导大语言模型进行多步推理，逐一识别实体之间的关系，并验证关系的合理性，大语言模型结合上下文信息和已识别的实体，逐步推断实体之间的关系，确保关系抽取的准确性和逻辑性；</div>
+      <div class="claim-text">4）自查纠错：设计提示词，对抽取结果进行分析自查，确保抽取结果符合文段表达的事件真实情况和逻辑，并还原事件描述的信息。</div>
+    </div>
+    </div> <div class="claim-dependent"> <div id="zh-cl0005" num="0005" class="claim">
+      <div class="claim-text">
+        <claim-ref idref="zh-cl0004"> </claim-ref>
+      </div>
+      <div class="claim-text">5.根据权利要求4所述基于大语言模型的多源复杂文本数据知识抽取方法，其特征在于，在自查纠错过程中，通过大语言模型判断抽取的实体关系是否在原文中拥有强语义支持，通过计算置信度对抽取结果进行量化分析，并对置信度不足的结果重新抽取，具体来说：</div>
+      <div class="claim-text">对于输入文本t，信息抽取系统给出的结果为：</div>
+      <div class="claim-text">实体集合：E={e<sub>1</sub>,e<sub>2</sub>,...,e<sub>m</sub>}，其中m=∣E∣；</div>
+      <div class="claim-text">关系集合：R={r<sub>1</sub>,r<sub>2</sub>,...,r<sub>n</sub>}，其中n=∣R∣；</div>
+      <div class="claim-text">定义验证函数<span class="patent-image-not-available"></span>返回布尔值：</div>
+      <div class="claim-text">Valid(e<sub>i</sub>)=1当且仅当实体集合中的实体e<sub>i</sub>的文本在输入文本t中精确存在；</div>
+      <div class="claim-text">Valid(r<sub>j</sub>)=1当且仅当关系集合中的关系r<sub>j</sub>的语义在输入文本t中有明确支持；</div>
+      <div class="claim-text">则本次抽取的整体置信度分数C计算为：</div>
+      <div class="claim-text"> <span class="patent-image-not-available"></span>（9）</div>
+      <div class="claim-text">置信度分数<span class="patent-image-not-available"></span>，其值越接近1，则表明抽取结果与输入文本t的一致性越高，可靠性越强。</div>
+    </div>
+    </div> <div class="claim-dependent"> <div id="zh-cl0006" num="0006" class="claim">
+      <div class="claim-text">6.一种电子设备，包括存储器和处理器，其特征在于，所述存储器中存储有计算机程序，所述处理器被设置为运行所述计算机程序以执行权利要求1至5中任意一项所述方法。</div>
+    </div>
+    </div> <div class="claim-dependent"> <div id="zh-cl0007" num="0007" class="claim">
+      <div class="claim-text">7.一种计算机存储介质，其特征在于，所述计算机存储介质存储有多条指令，所述指令适于由处理器加载并执行权利要求1至5中任意一项所述方法。</div>
+    </div>
+  </div> </div>
+  </div>
+  </section>
+
+  <section itemprop="application" itemscope>
+
+    <section itemprop="metadata" itemscope>
+      <span itemprop="applicationNumber">CN202610017595.4A</span>
+      <span itemprop="priorityDate"></span>
+      <span itemprop="filingDate">2026-01-07</span>
+      <span itemprop="title">一种基于大语言模型的多源复杂文本数据知识抽取方法 
+       </span>
+      <span itemprop="ifiStatus">Pending</span>
+      
+      <a href="/patent/CN122065940A/zh">
+        <span itemprop="representativePublication">CN122065940A</span>
+        (<span itemprop="primaryLanguage">zh</span>)
+      </a>
+    </section>
+
+    
+
+    
+
+    
+
+    
+
+    <h2>Publications (1)</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Publication Number</th>
+          <th>Publication Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr itemprop="pubs" itemscope repeat>
+          <td>
+            <span itemprop="publicationNumber">CN122065940A</span>
+            
+            <span itemprop="thisPatent">true</span>
+            <a href="/patent/CN122065940A/zh">
+              CN122065940A
+              (<span itemprop="primaryLanguage">zh</span>)
+            </a>
+          </td>
+          <td itemprop="publicationDate">2026-05-19</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </section>
+
+  <section itemprop="family" itemscope>
+    <h1>Family</h1>
+    <h2>ID=</h2>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    </section>
+
+  
+
+  
+
+  
+
+  
+
+  <section>
+    <h2>Similar Documents</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Publication</th>
+          <th>Publication Date</th>
+          <th>Title</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr itemprop="similarDocuments" itemscope repeat>
+          <td>
+            
+            <meta itemprop="isScholar" content="true">
+              <meta itemprop="scholarID" content="9911633140451311665">
+              <a href="/scholar/9911633140451311665"><span itemprop="scholarAuthors">Ansari et al.</span></a>
+            
+          </td>
+          <td>
+            
+            <time itemprop="publicationDate" datetime="2022">2022</time>
+            
+          </td>
+          <td itemprop="title">Ensemble hybrid learning methods for automated depression detection</td>
+        </tr>
+        <tr itemprop="similarDocuments" itemscope repeat>
+          <td>
+            <meta itemprop="isPatent" content="true">
+              <a href="/patent/CN112686036B/zh">
+                <span itemprop="publicationNumber">CN112686036B</span>
+                (<span itemprop="primaryLanguage">zh</span>)
+              </a>
+            
+            
+          </td>
+          <td>
+            <time itemprop="publicationDate" datetime="2022-04-01">2022-04-01</time>
+            
+            
+          </td>
+          <td itemprop="title">风险文本识别方法、装置、计算机设备及存储介质 
+       </td>
+        </tr>
+        <tr itemprop="similarDocuments" itemscope repeat>
+          <td>
+            
+            <meta itemprop="isScholar" content="true">
+              <meta itemprop="scholarID" content="15963852702376638643">
+              <a href="/scholar/15963852702376638643"><span itemprop="scholarAuthors">Gongane et al.</span></a>
+            
+          </td>
+          <td>
+            
+            <time itemprop="publicationDate" datetime="2024">2024</time>
+            
+          </td>
+          <td itemprop="title">A survey of explainable AI techniques for detection of fake news and hate speech on social media platforms</td>
+        </tr>
+        <tr itemprop="similarDocuments" itemscope repeat>
+          <td>
+            <meta itemprop="isPatent" content="true">
+              <a href="/patent/CN120340042B/zh">
+                <span itemprop="publicationNumber">CN120340042B</span>
+                (<span itemprop="primaryLanguage">zh</span>)
+              </a>
+            
+            
+          </td>
+          <td>
+            <time itemprop="publicationDate" datetime="2025-09-26">2025-09-26</time>
+            
+            
+          </td>
+          <td itemprop="title">一种基于人工智能的企业审计信息提取方法 
+       </td>
+        </tr>
+        <tr itemprop="similarDocuments" itemscope repeat>
+          <td>
+            <meta itemprop="isPatent" content="true">
+              <a href="/patent/CN114648392A/zh">
+                <span itemprop="publicationNumber">CN114648392A</span>
+                (<span itemprop="primaryLanguage">zh</span>)
+              </a>
+            
+            
+          </td>
+          <td>
+            <time itemprop="publicationDate" datetime="2022-06-21">2022-06-21</time>
+            
+            
+          </td>
+          <td itemprop="title">基于用户画像的产品推荐方法、装置、电子设备及介质 
+       </td>
+        </tr>
+        <tr itemprop="similarDocuments" itemscope repeat>
+          <td>
+            <meta itemprop="isPatent" content="true">
+              <a href="/patent/CN118627623B/zh">
+                <span itemprop="publicationNumber">CN118627623B</span>
+                (<span itemprop="primaryLanguage">zh</span>)
+              </a>
+            
+            
+          </td>
+          <td>
+            <time itemprop="publicationDate" datetime="2025-01-17">2025-01-17</time>
+            
+            
+          </td>
+          <td itemprop="title">一种基于因果推断的多模态事实核查方法 
+       </td>
+        </tr>
+        <tr itemprop="similarDocuments" itemscope repeat>
+          <td>
+            <meta itemprop="isPatent" content="true">
+              <a href="/patent/US12266077B2/en">
+                <span itemprop="publicationNumber">US12266077B2</span>
+                (<span itemprop="primaryLanguage">en</span>)
+              </a>
+            
+            
+          </td>
+          <td>
+            <time itemprop="publicationDate" datetime="2025-04-01">2025-04-01</time>
+            
+            
+          </td>
+          <td itemprop="title">Deep learning of entity resolution rules 
+       </td>
+        </tr>
+        <tr itemprop="similarDocuments" itemscope repeat>
+          <td>
+            <meta itemprop="isPatent" content="true">
+              <a href="/patent/CN120163237A/zh">
+                <span itemprop="publicationNumber">CN120163237A</span>
+                (<span itemprop="primaryLanguage">zh</span>)
+              </a>
+            
+            
+          </td>
+          <td>
+            <time itemprop="publicationDate" datetime="2025-06-17">2025-06-17</time>
+            
+            
+          </td>
+          <td itemprop="title">一种大语言模型的提示词生成方法、装置及电子设备 
+       </td>
+        </tr>
+        <tr itemprop="similarDocuments" itemscope repeat>
+          <td>
+            <meta itemprop="isPatent" content="true">
+              <a href="/patent/CN120850997A/zh">
+                <span itemprop="publicationNumber">CN120850997A</span>
+                (<span itemprop="primaryLanguage">zh</span>)
+              </a>
+            
+            
+          </td>
+          <td>
+            <time itemprop="publicationDate" datetime="2025-10-28">2025-10-28</time>
+            
+            
+          </td>
+          <td itemprop="title">基于自然语言的签证材料合规性校验方法、装置、设备及介质 
+       </td>
+        </tr>
+        <tr itemprop="similarDocuments" itemscope repeat>
+          <td>
+            <meta itemprop="isPatent" content="true">
+              <a href="/patent/CN119003780B/zh">
+                <span itemprop="publicationNumber">CN119003780B</span>
+                (<span itemprop="primaryLanguage">zh</span>)
+              </a>
+            
+            
+          </td>
+          <td>
+            <time itemprop="publicationDate" datetime="2025-03-04">2025-03-04</time>
+            
+            
+          </td>
+          <td itemprop="title">一种基于大数据的政务数据提取分析方法及系统 
+       </td>
+        </tr>
+        <tr itemprop="similarDocuments" itemscope repeat>
+          <td>
+            <meta itemprop="isPatent" content="true">
+              <a href="/patent/CN113157871A/zh">
+                <span itemprop="publicationNumber">CN113157871A</span>
+                (<span itemprop="primaryLanguage">zh</span>)
+              </a>
+            
+            
+          </td>
+          <td>
+            <time itemprop="publicationDate" datetime="2021-07-23">2021-07-23</time>
+            
+            
+          </td>
+          <td itemprop="title">应用人工智能的新闻舆情文本处理方法、服务器及介质 
+       </td>
+        </tr>
+        <tr itemprop="similarDocuments" itemscope repeat>
+          <td>
+            <meta itemprop="isPatent" content="true">
+              <a href="/patent/US11573968B2/en">
+                <span itemprop="publicationNumber">US11573968B2</span>
+                (<span itemprop="primaryLanguage">en</span>)
+              </a>
+            
+            
+          </td>
+          <td>
+            <time itemprop="publicationDate" datetime="2023-02-07">2023-02-07</time>
+            
+            
+          </td>
+          <td itemprop="title">Systems and methods of creating and using a transparent, computable contractual natural language 
+       </td>
+        </tr>
+        <tr itemprop="similarDocuments" itemscope repeat>
+          <td>
+            
+            <meta itemprop="isScholar" content="true">
+              <meta itemprop="scholarID" content="10701056596425582586">
+              <a href="/scholar/10701056596425582586"><span itemprop="scholarAuthors">Zhang et al.</span></a>
+            
+          </td>
+          <td>
+            
+            <time itemprop="publicationDate" datetime="2024">2024</time>
+            
+          </td>
+          <td itemprop="title">Chinese generation and security index evaluation based on large language model</td>
+        </tr>
+        <tr itemprop="similarDocuments" itemscope repeat>
+          <td>
+            <meta itemprop="isPatent" content="true">
+              <a href="/patent/CN117540714A/zh">
+                <span itemprop="publicationNumber">CN117540714A</span>
+                (<span itemprop="primaryLanguage">zh</span>)
+              </a>
+            
+            
+          </td>
+          <td>
+            <time itemprop="publicationDate" datetime="2024-02-09">2024-02-09</time>
+            
+            
+          </td>
+          <td itemprop="title">一种表单质量检测方法、装置、电子设备及存储介质 
+       </td>
+        </tr>
+        <tr itemprop="similarDocuments" itemscope repeat>
+          <td>
+            
+            <meta itemprop="isScholar" content="true">
+              <meta itemprop="scholarID" content="16674843015084565803">
+              <a href="/scholar/16674843015084565803"><span itemprop="scholarAuthors">Pillala et al.</span></a>
+            
+          </td>
+          <td>
+            
+            <time itemprop="publicationDate" datetime="2025">2025</time>
+            
+          </td>
+          <td itemprop="title">Sentiment analysis of hate speech on women in social media platform using multi label classification</td>
+        </tr>
+        <tr itemprop="similarDocuments" itemscope repeat>
+          <td>
+            <meta itemprop="isPatent" content="true">
+              <a href="/patent/CN116346458A/zh">
+                <span itemprop="publicationNumber">CN116346458A</span>
+                (<span itemprop="primaryLanguage">zh</span>)
+              </a>
+            
+            
+          </td>
+          <td>
+            <time itemprop="publicationDate" datetime="2023-06-27">2023-06-27</time>
+            
+            
+          </td>
+          <td itemprop="title">网络安全的预测方法、装置、计算设备及存储介质 
+       </td>
+        </tr>
+        <tr itemprop="similarDocuments" itemscope repeat>
+          <td>
+            <meta itemprop="isPatent" content="true">
+              <a href="/patent/CN114065748A/zh">
+                <span itemprop="publicationNumber">CN114065748A</span>
+                (<span itemprop="primaryLanguage">zh</span>)
+              </a>
+            
+            
+          </td>
+          <td>
+            <time itemprop="publicationDate" datetime="2022-02-18">2022-02-18</time>
+            
+            
+          </td>
+          <td itemprop="title">识别风险数据的方法、装置、和电子设备 
+       </td>
+        </tr>
+        <tr itemprop="similarDocuments" itemscope repeat>
+          <td>
+            <meta itemprop="isPatent" content="true">
+              <a href="/patent/CN121145876B/zh">
+                <span itemprop="publicationNumber">CN121145876B</span>
+                (<span itemprop="primaryLanguage">zh</span>)
+              </a>
+            
+            
+          </td>
+          <td>
+            <time itemprop="publicationDate" datetime="2026-02-27">2026-02-27</time>
+            
+            
+          </td>
+          <td itemprop="title">文本判别方法、装置、电子设备、可读存储介质和芯片 
+       </td>
+        </tr>
+        <tr itemprop="similarDocuments" itemscope repeat>
+          <td>
+            <meta itemprop="isPatent" content="true">
+              <a href="/patent/CN121030809B/zh">
+                <span itemprop="publicationNumber">CN121030809B</span>
+                (<span itemprop="primaryLanguage">zh</span>)
+              </a>
+            
+            
+          </td>
+          <td>
+            <time itemprop="publicationDate" datetime="2026-02-03">2026-02-03</time>
+            
+            
+          </td>
+          <td itemprop="title">一种基于数据分析的法律文书数据共享方法 
+       </td>
+        </tr>
+        <tr itemprop="similarDocuments" itemscope repeat>
+          <td>
+            <meta itemprop="isPatent" content="true">
+              <a href="/patent/CN118035098B/zh">
+                <span itemprop="publicationNumber">CN118035098B</span>
+                (<span itemprop="primaryLanguage">zh</span>)
+              </a>
+            
+            
+          </td>
+          <td>
+            <time itemprop="publicationDate" datetime="2025-03-21">2025-03-21</time>
+            
+            
+          </td>
+          <td itemprop="title">人工智能系统失效表征分析方法、装置和计算机设备 
+       </td>
+        </tr>
+        <tr itemprop="similarDocuments" itemscope repeat>
+          <td>
+            <meta itemprop="isPatent" content="true">
+              <a href="/patent/CN115641072B/zh">
+                <span itemprop="publicationNumber">CN115641072B</span>
+                (<span itemprop="primaryLanguage">zh</span>)
+              </a>
+            
+            
+          </td>
+          <td>
+            <time itemprop="publicationDate" datetime="2026-03-20">2026-03-20</time>
+            
+            
+          </td>
+          <td itemprop="title">合规模型训练及合规判断方法、装置、设备和介质 
+       </td>
+        </tr>
+        <tr itemprop="similarDocuments" itemscope repeat>
+          <td>
+            <meta itemprop="isPatent" content="true">
+              <a href="/patent/CN119047466B/zh">
+                <span itemprop="publicationNumber">CN119047466B</span>
+                (<span itemprop="primaryLanguage">zh</span>)
+              </a>
+            
+            
+          </td>
+          <td>
+            <time itemprop="publicationDate" datetime="2025-02-14">2025-02-14</time>
+            
+            
+          </td>
+          <td itemprop="title">基于文本掩码与对比策略的多角色识别方法 
+       </td>
+        </tr>
+        <tr itemprop="similarDocuments" itemscope repeat>
+          <td>
+            <meta itemprop="isPatent" content="true">
+              <a href="/patent/CN121836941A/zh">
+                <span itemprop="publicationNumber">CN121836941A</span>
+                (<span itemprop="primaryLanguage">zh</span>)
+              </a>
+            
+            
+          </td>
+          <td>
+            <time itemprop="publicationDate" datetime="2026-04-10">2026-04-10</time>
+            
+            
+          </td>
+          <td itemprop="title">风险控制决策生成方法、装置、电子设备及存储介质 
+       </td>
+        </tr>
+        <tr itemprop="similarDocuments" itemscope repeat>
+          <td>
+            <meta itemprop="isPatent" content="true">
+              <a href="/patent/CN120910268A/zh">
+                <span itemprop="publicationNumber">CN120910268A</span>
+                (<span itemprop="primaryLanguage">zh</span>)
+              </a>
+            
+            
+          </td>
+          <td>
+            <time itemprop="publicationDate" datetime="2025-11-07">2025-11-07</time>
+            
+            
+          </td>
+          <td itemprop="title">文本内容风险识别方法及系统、计算机装置、介质、产品 
+       </td>
+        </tr>
+        <tr itemprop="similarDocuments" itemscope repeat>
+          <td>
+            <meta itemprop="isPatent" content="true">
+              <a href="/patent/CN120523954A/zh">
+                <span itemprop="publicationNumber">CN120523954A</span>
+                (<span itemprop="primaryLanguage">zh</span>)
+              </a>
+            
+            
+          </td>
+          <td>
+            <time itemprop="publicationDate" datetime="2025-08-22">2025-08-22</time>
+            
+            
+          </td>
+          <td itemprop="title">一种基于偏见知识图谱与大语言模型的偏见检测方法及设备 
+       </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Legal Events</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Code</th>
+          <th>Title</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr itemprop="legalEvents" itemscope repeat>
+          <td><time itemprop="date" datetime="2026-05-19">2026-05-19</time></td>
+          <td itemprop="code">PB01</td>
+          <td itemprop="title">Publication</td>
+          <td>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+</article>
+
+    </search-app>
+    
+    <script></script>
+    <script type="text/javascript" src="//www.gstatic.com/feedback/api.js"></script>
+    <script type="text/javascript" src="//www.gstatic.com/feedback/js/help/prod/service/lazy.min.js"></script>
+    <script type="text/javascript">
+      if (window.help && window.help.service) {
+        helpApi = window.help.service.Lazy.create(0, {apiKey: 'fixture-public-widget-key', locale: 'en-US'});
+        window.requestedSurveys = new Set();
+        window.requestSurvey = function(triggerId) {
+          if (window.requestedSurveys.has(triggerId)) {
+            return;
+          }
+          window.requestedSurveys.add(triggerId);
+          helpApi.requestSurvey({
+            triggerId: triggerId,
+            enableTestingMode: false,
+            callback: (requestSurveyCallbackParam) => {
+              if (!requestSurveyCallbackParam.surveyData) {
+                return;
+              }
+              helpApi.presentSurvey({
+                productData: {
+                  productVersion: window.version,
+                  customData: {
+                    "experiments": "",
+                  },
+                },
+                surveyData: requestSurveyCallbackParam.surveyData,
+                colorScheme: 1,
+                customZIndex: 10000,
+              });
+            }
+          });
+        };
+
+        window.requestSurvey('YXTwAsvoW0kedxbuTdH0RArc9VhT');
+      }
+    </script>
+    <script src="/sw/null_loader.js"></script>
+  </body>
+</html>

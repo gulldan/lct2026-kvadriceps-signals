@@ -1,0 +1,632 @@
+[
+  {
+    "id": "USD1095908",
+    "title": "Vehicle light",
+    "date": "2025-09-30",
+    "filing": "2024-02-22",
+    "filing_basis": "USPTO US application filing",
+    "application": "US29929598",
+    "family_id": "application:US29929598",
+    "family_basis": "same US application only; wider family unknown",
+    "parser_version": "gazette-primary-v2",
+    "text_status": "representative_claim"
+  },
+  {
+    "id": "US12425013",
+    "title": "Implementing optimal coarse programmable delay setting in skew adjust closed loop control",
+    "date": "2025-09-23",
+    "filing": "2024-03-21",
+    "filing_basis": "USPTO US application filing",
+    "application": "US18612496",
+    "family_id": "application:US18612496",
+    "family_basis": "same US application only; wider family unknown",
+    "parser_version": "gazette-primary-v2",
+    "text_status": "representative_claim"
+  },
+  {
+    "id": "US12420278",
+    "title": "Method of manufacturing microfluidic channel with membrane formed therein and apparatus for forming membrane inside the microfluidic channel",
+    "date": "2025-09-23",
+    "filing": "2022-11-01",
+    "filing_basis": "USPTO US application filing",
+    "priority": "2022-04-22",
+    "priority_ids": [
+      "KR1020220050181"
+    ],
+    "priority_claims": [
+      "Claims priority of application No. 10-2022-0050181 (KR), filed on Apr. 22, 2022."
+    ],
+    "application": "US17978212",
+    "family_id": "us-priority-set:c332bc966b56914c3045b977cc43959ba4753b95883382e9e2e79be40f999386",
+    "family_basis": "identical explicitly cited priority claims; not a worldwide family",
+    "parser_version": "gazette-primary-v2",
+    "text_status": "representative_claim"
+  },
+  {
+    "id": "USD1098389",
+    "title": "Tankless water heater drain pan",
+    "date": "2025-10-14",
+    "filing": "2024-10-18",
+    "filing_basis": "USPTO US application filing",
+    "application": "US29968926",
+    "family_id": "application:US29968926",
+    "family_basis": "same US application only; wider family unknown",
+    "parser_version": "gazette-primary-v2",
+    "text_status": "representative_claim"
+  },
+  {
+    "id": "US12446508",
+    "title": "Canola hybrid 21GG1082N",
+    "date": "2025-10-21",
+    "filing": "2022-09-15",
+    "filing_basis": "USPTO US application filing",
+    "application": "US17932502",
+    "family_id": "application:US17932502",
+    "family_basis": "same US application only; wider family unknown",
+    "parser_version": "gazette-primary-v2",
+    "text_status": "representative_claim"
+  },
+  {
+    "id": "US12445450",
+    "title": "Managing version sharing in a data exchange",
+    "date": "2025-10-14",
+    "filing": "2024-05-24",
+    "filing_basis": "USPTO US application filing",
+    "priority": "2019-09-12",
+    "priority_claims": [
+      "Claims priority of provisional application 62/899,571, filed on Sep. 12, 2019."
+    ],
+    "application": "US18673681",
+    "family_id": "application:US18673681",
+    "family_basis": "same US application only; wider family unknown",
+    "parser_version": "gazette-primary-v2",
+    "text_status": "representative_claim"
+  },
+  {
+    "id": "US12478701",
+    "title": "Light emission control device and display device",
+    "date": "2025-11-25",
+    "filing": "2023-04-14",
+    "filing_basis": "USPTO US application filing",
+    "priority": "2020-12-22",
+    "priority_ids": [
+      "JP2020212994"
+    ],
+    "priority_claims": [
+      "Claims priority of application No. 2020-212994 (JP), filed on Dec. 22, 2020."
+    ],
+    "application": "US18300450",
+    "family_id": "us-priority-set:fa015f05efe0457ee228cbc0a5a1c680ef16e3a629581fe0a1d3a8c2622e5ac7",
+    "family_basis": "identical explicitly cited priority claims; not a worldwide family",
+    "parser_version": "gazette-primary-v2",
+    "text_status": "representative_claim"
+  },
+  {
+    "id": "USD1100436",
+    "title": "Footwear",
+    "date": "2025-11-04",
+    "filing": "2024-07-31",
+    "filing_basis": "USPTO US application filing",
+    "application": "US29955241",
+    "family_id": "application:US29955241",
+    "family_basis": "same US application only; wider family unknown",
+    "parser_version": "gazette-primary-v2",
+    "text_status": "representative_claim"
+  },
+  {
+    "id": "US12474751",
+    "title": "System for cooling circuit boards",
+    "date": "2025-11-18",
+    "filing": "2022-03-09",
+    "filing_basis": "USPTO PCT filing for a national-stage US application",
+    "priority": "2021-03-11",
+    "priority_claims": [
+      "Claims priority of provisional application 63/159,709, filed on Mar. 11, 2021."
+    ],
+    "application": "US18286993",
+    "family_id": "application:US18286993",
+    "family_basis": "same US application only; wider family unknown",
+    "parser_version": "gazette-primary-v2",
+    "text_status": "representative_claim"
+  },
+  {
+    "id": "US12497639",
+    "title": "Method for preparing kestose-containing fructooligosaccharides",
+    "date": "2025-12-16",
+    "filing": "2020-10-30",
+    "filing_basis": "USPTO PCT filing for a national-stage US application",
+    "priority": "2019-10-31",
+    "priority_ids": [
+      "KR1020190138215"
+    ],
+    "priority_claims": [
+      "Claims priority of application No. 10-2019-0138215 (KR), filed on Oct. 31, 2019."
+    ],
+    "application": "US17772721",
+    "family_id": "us-priority-set:8de5894fa30c167a1294b791e88cf07df5bc159308b14fcdf95d25a79ddaee27",
+    "family_basis": "identical explicitly cited priority claims; not a worldwide family",
+    "parser_version": "gazette-primary-v2",
+    "text_status": "representative_claim"
+  },
+  {
+    "id": "US12491751",
+    "title": "HVAC system",
+    "date": "2025-12-09",
+    "filing": "2023-08-22",
+    "filing_basis": "USPTO US application filing",
+    "priority": "2022-02-25",
+    "priority_claims": [
+      "Claims priority of provisional application 63/362,215, filed on Mar. 31, 2022.",
+      "Claims priority of provisional application 63/268,538, filed on Feb. 25, 2022."
+    ],
+    "application": "US18236510",
+    "family_id": "application:US18236510",
+    "family_basis": "same US application only; wider family unknown",
+    "parser_version": "gazette-primary-v2",
+    "text_status": "representative_claim"
+  },
+  {
+    "id": "US12506398",
+    "title": "Buck converter using ultra-low working current",
+    "date": "2025-12-23",
+    "filing": "2023-02-23",
+    "filing_basis": "USPTO US application filing",
+    "priority": "2022-11-23",
+    "priority_ids": [
+      "TW111144710"
+    ],
+    "priority_claims": [
+      "Claims priority of application No. 111144710 (TW), filed on Nov. 23, 2022."
+    ],
+    "application": "US18113134",
+    "family_id": "us-priority-set:200bead5187d3e67bd4a8b4b90ea209940070057f15a739d384f30bcd5a3282b",
+    "family_basis": "identical explicitly cited priority claims; not a worldwide family",
+    "parser_version": "gazette-primary-v2",
+    "text_status": "representative_claim"
+  },
+  {
+    "id": "US12535009",
+    "title": "Airfoil assembly",
+    "date": "2026-01-27",
+    "filing": "2025-02-13",
+    "filing_basis": "USPTO US application filing",
+    "application": "US19052888",
+    "family_id": "application:US19052888",
+    "family_basis": "same US application only; wider family unknown",
+    "parser_version": "gazette-primary-v2",
+    "text_status": "representative_claim"
+  },
+  {
+    "id": "US12532401",
+    "title": "EUV light generation system and electronic device manufacturing method",
+    "date": "2026-01-20",
+    "filing": "2023-06-01",
+    "filing_basis": "USPTO US application filing",
+    "priority": "2022-07-13",
+    "priority_ids": [
+      "JP2022112655"
+    ],
+    "priority_claims": [
+      "Claims priority of application No. 2022-112655 (JP), filed on Jul. 13, 2022."
+    ],
+    "application": "US18327814",
+    "family_id": "us-priority-set:a1ffa1319d401b69f741534354016219e9d3938d25403a3d97d0b4b74eb3eae5",
+    "family_basis": "identical explicitly cited priority claims; not a worldwide family",
+    "parser_version": "gazette-primary-v2",
+    "text_status": "representative_claim"
+  },
+  {
+    "id": "US12529262",
+    "title": "Beam-steering system based on a MEMS-actuated vertical-coupler array",
+    "date": "2026-01-20",
+    "filing": "2023-09-20",
+    "filing_basis": "USPTO US application filing",
+    "priority": "2018-06-19",
+    "priority_claims": [
+      "Claims priority of provisional application 62/686,848, filed on Jun. 19, 2018."
+    ],
+    "application": "US18370600",
+    "family_id": "application:US18370600",
+    "family_basis": "same US application only; wider family unknown",
+    "parser_version": "gazette-primary-v2",
+    "text_status": "representative_claim"
+  },
+  {
+    "id": "US12551814",
+    "title": "Fasteners for foam construction elements",
+    "date": "2026-02-17",
+    "filing": "2023-10-31",
+    "filing_basis": "USPTO US application filing",
+    "priority": "2022-10-31",
+    "priority_claims": [
+      "Claims priority of provisional application 63/381,695, filed on Oct. 31, 2022."
+    ],
+    "application": "US18498909",
+    "family_id": "application:US18498909",
+    "family_basis": "same US application only; wider family unknown",
+    "parser_version": "gazette-primary-v2",
+    "text_status": "representative_claim"
+  },
+  {
+    "id": "USD1112197",
+    "title": "Mobile phone holder",
+    "date": "2026-02-10",
+    "filing": "2024-11-06",
+    "filing_basis": "USPTO US application filing",
+    "application": "US29971828",
+    "family_id": "application:US29971828",
+    "family_basis": "same US application only; wider family unknown",
+    "parser_version": "gazette-primary-v2",
+    "text_status": "representative_claim"
+  },
+  {
+    "id": "US12547680",
+    "title": "Deriving input restrictions for artificial intelligence agents",
+    "date": "2026-02-10",
+    "filing": "2025-07-15",
+    "filing_basis": "USPTO US application filing",
+    "priority": "2024-06-10",
+    "priority_claims": [
+      "Claims priority of provisional application 63/658,434, filed on Jun. 10, 2024."
+    ],
+    "application": "US19269354",
+    "family_id": "application:US19269354",
+    "family_basis": "same US application only; wider family unknown",
+    "parser_version": "gazette-primary-v2",
+    "text_status": "representative_claim"
+  },
+  {
+    "id": "US12583947",
+    "title": "Method for producing fluoropolymer",
+    "date": "2026-03-24",
+    "filing": "2019-03-07",
+    "filing_basis": "USPTO PCT filing for a national-stage US application",
+    "priority": "2018-03-07",
+    "priority_ids": [
+      "JP2018041337"
+    ],
+    "priority_claims": [
+      "Claims priority of application No. 2018-041337 (JP), filed on Mar. 7, 2018."
+    ],
+    "application": "US16978395",
+    "family_id": "us-priority-set:f191f48f96e292697d107a4365756f81f92932d0f183e767fd735d378c61f1fa",
+    "family_basis": "identical explicitly cited priority claims; not a worldwide family",
+    "parser_version": "gazette-primary-v2",
+    "text_status": "representative_claim"
+  },
+  {
+    "id": "US12575892",
+    "title": "Ultrasound detection system",
+    "date": "2026-03-17",
+    "filing": "2022-06-21",
+    "filing_basis": "USPTO US application filing",
+    "priority": "2021-06-22",
+    "priority_claims": [
+      "Claims priority of provisional application 63/213,576, filed on Jun. 22, 2021."
+    ],
+    "application": "US17845818",
+    "family_id": "application:US17845818",
+    "family_basis": "same US application only; wider family unknown",
+    "parser_version": "gazette-primary-v2",
+    "text_status": "representative_claim"
+  },
+  {
+    "id": "USD1119205",
+    "title": "Slipper",
+    "date": "2026-03-24",
+    "filing": "2025-05-28",
+    "filing_basis": "USPTO US application filing",
+    "application": "US30005825",
+    "family_id": "application:US30005825",
+    "family_basis": "same US application only; wider family unknown",
+    "parser_version": "gazette-primary-v2",
+    "text_status": "representative_claim"
+  },
+  {
+    "id": "US12602076",
+    "title": "Electronic device comprising hinge module",
+    "date": "2026-04-14",
+    "filing": "2024-04-03",
+    "filing_basis": "USPTO US application filing",
+    "priority": "2021-10-06",
+    "priority_ids": [
+      "KR1020210132155"
+    ],
+    "priority_claims": [
+      "Claims priority of application No. 10-2021-0132155 (KR), filed on Oct. 6, 2021."
+    ],
+    "application": "US18625684",
+    "family_id": "us-priority-set:9316b13a9be410b2bc1656181c8717e96731ffb5bb27521fe28648b1e8fd252c",
+    "family_basis": "identical explicitly cited priority claims; not a worldwide family",
+    "parser_version": "gazette-primary-v2",
+    "text_status": "representative_claim"
+  },
+  {
+    "id": "US12597826",
+    "title": "Energy harvester using electromagnetic induction and energy harvesting block",
+    "date": "2026-04-07",
+    "filing": "2024-05-28",
+    "filing_basis": "USPTO US application filing",
+    "priority": "2021-12-07",
+    "priority_ids": [
+      "KR1020210173432",
+      "KR1020220008388",
+      "KR1020220008389"
+    ],
+    "priority_claims": [
+      "Claims priority of application No. 10-2021-0173432 (KR), filed on Dec. 7, 2021; application No. 10-2022-0008388 (KR), filed on Jan. 20, 2022; and application No. 10-2022-0008389 (KR), filed on Jan. 20, 2022."
+    ],
+    "application": "US18675710",
+    "family_id": "us-priority-set:aeec3f0a5f2ec8b9b191e432c09b1e88ce6805b3d979f38942bb546ab3b5ea2a",
+    "family_basis": "identical explicitly cited priority claims; not a worldwide family",
+    "parser_version": "gazette-primary-v2",
+    "text_status": "representative_claim"
+  },
+  {
+    "id": "USD1123040",
+    "title": "Gameboard",
+    "date": "2026-04-21",
+    "filing": "2024-08-23",
+    "filing_basis": "USPTO US application filing",
+    "priority": "2024-03-28",
+    "priority_claims": [
+      "Claims priority of application No. 2024-006494 D (JP), filed on Mar. 28, 2024."
+    ],
+    "application": "US29959185",
+    "family_id": "application:US29959185",
+    "family_basis": "same US application only; wider family unknown",
+    "parser_version": "gazette-primary-v2",
+    "text_status": "representative_claim"
+  },
+  {
+    "id": "US12620571",
+    "title": "Multi-layered electrode for battery and fabrication method thereof",
+    "date": "2026-05-05",
+    "filing": "2022-05-19",
+    "filing_basis": "USPTO US application filing",
+    "priority": "2021-09-28",
+    "priority_ids": [
+      "KR1020210127849"
+    ],
+    "priority_claims": [
+      "Claims priority of application No. 10-2021-0127849 (KR), filed on Sep. 28, 2021."
+    ],
+    "application": "US17748133",
+    "family_id": "us-priority-set:7145861d98a75708864308b6dcf43a694a70798d7974184168964750905c757f",
+    "family_basis": "identical explicitly cited priority claims; not a worldwide family",
+    "parser_version": "gazette-primary-v2",
+    "text_status": "representative_claim"
+  },
+  {
+    "id": "US12642098",
+    "title": "Semiconductor package and method of fabricating the same",
+    "date": "2026-05-26",
+    "filing": "2023-04-07",
+    "filing_basis": "USPTO US application filing",
+    "priority": "2022-08-26",
+    "priority_ids": [
+      "KR1020220107717"
+    ],
+    "priority_claims": [
+      "Claims priority of application No. 10-2022-0107717 (KR), filed on Aug. 26, 2022."
+    ],
+    "application": "US18132171",
+    "family_id": "us-priority-set:c9b801a38e31686332c797e917683fdfab66fe55d64d0360023f9f090ce17ba8",
+    "family_basis": "identical explicitly cited priority claims; not a worldwide family",
+    "parser_version": "gazette-primary-v2",
+    "text_status": "representative_claim"
+  },
+  {
+    "id": "US12630463",
+    "title": "Glass composition, and glass fiber and glass article including the same",
+    "date": "2026-05-19",
+    "filing": "2022-09-07",
+    "filing_basis": "USPTO US application filing",
+    "priority": "2021-09-30",
+    "priority_ids": [
+      "TW110136516"
+    ],
+    "priority_claims": [
+      "Claims priority of application No. 110136516 (TW), filed on Sep. 30, 2021."
+    ],
+    "application": "US17939407",
+    "family_id": "us-priority-set:9e88c2070ef3e864a49cab33be8ad56771114a664b085a6522299fc8114f37bd",
+    "family_basis": "identical explicitly cited priority claims; not a worldwide family",
+    "parser_version": "gazette-primary-v2",
+    "text_status": "representative_claim"
+  },
+  {
+    "id": "US12659331",
+    "title": "Real-time attribution of tools and campaigns for DNS tunneling traffic",
+    "date": "2026-06-16",
+    "filing": "2023-12-13",
+    "filing_basis": "USPTO US application filing",
+    "application": "US18538945",
+    "family_id": "application:US18538945",
+    "family_basis": "same US application only; wider family unknown",
+    "parser_version": "gazette-primary-v2",
+    "text_status": "representative_claim"
+  },
+  {
+    "id": "US12643301",
+    "title": "Bonding machine with horizontal correction function and horizontal correction method thereof",
+    "date": "2026-06-02",
+    "filing": "2022-05-25",
+    "filing_basis": "USPTO US application filing",
+    "application": "US17824699",
+    "family_id": "application:US17824699",
+    "family_basis": "same US application only; wider family unknown",
+    "parser_version": "gazette-primary-v2",
+    "text_status": "representative_claim"
+  },
+  {
+    "id": "US12669853",
+    "title": "Systems and methods for controlling leaks in liquid cooling systems for computer devices",
+    "date": "2026-06-30",
+    "filing": "2023-10-27",
+    "filing_basis": "USPTO US application filing",
+    "priority": "2021-09-01",
+    "priority_claims": [
+      "Claims priority of provisional application 63/260,816, filed on Sep. 1, 2021."
+    ],
+    "application": "US18496828",
+    "family_id": "application:US18496828",
+    "family_basis": "same US application only; wider family unknown",
+    "parser_version": "gazette-primary-v2",
+    "text_status": "representative_claim"
+  },
+  {
+    "id": "USD1136018",
+    "title": "Smart payment terminal",
+    "date": "2026-07-21",
+    "filing": "2025-01-17",
+    "filing_basis": "USPTO US application filing",
+    "priority": "2024-09-19",
+    "priority_ids": [
+      "CN202430597828.4"
+    ],
+    "priority_claims": [
+      "Claims priority of application No. 202430597828.4 (CN), filed on Sep. 19, 2024."
+    ],
+    "application": "US29986024",
+    "family_id": "us-priority-set:56b4b7a3914ded0481ec71592162fa184100e2ffe1a69f9507723389bbcc8e6b",
+    "family_basis": "identical explicitly cited priority claims; not a worldwide family",
+    "parser_version": "gazette-primary-v2",
+    "text_status": "representative_claim"
+  },
+  {
+    "id": "USD1134072",
+    "title": "Front bumper for an automobile",
+    "date": "2026-07-14",
+    "filing": "2025-04-24",
+    "filing_basis": "USPTO US application filing",
+    "priority": "2024-10-31",
+    "priority_claims": [
+      "Claims priority of application No. 2024-022631 D (JP), filed on Oct. 31, 2024."
+    ],
+    "application": "US30000763",
+    "family_id": "application:US30000763",
+    "family_basis": "same US application only; wider family unknown",
+    "parser_version": "gazette-primary-v2",
+    "text_status": "representative_claim"
+  },
+  {
+    "id": "US12689439",
+    "title": "Optical transmission device and optical transmission system",
+    "date": "2026-07-21",
+    "filing": "2024-04-24",
+    "filing_basis": "USPTO US application filing",
+    "priority": "2023-05-25",
+    "priority_ids": [
+      "JP2023085899"
+    ],
+    "priority_claims": [
+      "Claims priority of application No. 2023-085899 (JP), filed on May 25, 2023."
+    ],
+    "application": "US18644194",
+    "family_id": "us-priority-set:a04d587b1682943c044b113ec107cc7be9adfa07b4129d4f3f1b49161351ec31",
+    "family_basis": "identical explicitly cited priority claims; not a worldwide family",
+    "parser_version": "gazette-primary-v2",
+    "text_status": "representative_claim"
+  },
+  {
+    "id": "USD1141843",
+    "title": "Component for a lock",
+    "date": "2026-08-18",
+    "filing": "2024-10-09",
+    "filing_basis": "USPTO US application filing",
+    "priority": "2024-08-02",
+    "priority_ids": [
+      "CN202430488431.1"
+    ],
+    "priority_claims": [
+      "Claims priority of application No. 202430488431.1 (CN), filed on Aug. 2, 2024."
+    ],
+    "application": "US29967260",
+    "family_id": "us-priority-set:b24eb4ba15703d18f57525790e4879ebeacd81249b51e189a8d3d1c1542abaa7",
+    "family_basis": "identical explicitly cited priority claims; not a worldwide family",
+    "parser_version": "gazette-primary-v2",
+    "text_status": "representative_claim"
+  },
+  {
+    "id": "US12714637",
+    "title": "Sexual stimulation device",
+    "date": "2026-08-25",
+    "filing": "2025-01-09",
+    "filing_basis": "USPTO US application filing",
+    "application": "US19014259",
+    "family_id": "application:US19014259",
+    "family_basis": "same US application only; wider family unknown",
+    "parser_version": "gazette-primary-v2",
+    "text_status": "representative_claim"
+  },
+  {
+    "id": "US12708602",
+    "title": "Fermentation extracts, cosmetic composition and manufacturing method of fermentation extracts",
+    "date": "2026-08-18",
+    "filing": "2024-04-26",
+    "filing_basis": "USPTO US application filing",
+    "priority": "2023-11-02",
+    "priority_ids": [
+      "KR1020230149724"
+    ],
+    "priority_claims": [
+      "Claims priority of application No. 10-2023-0149724 (KR), filed on Nov. 2, 2023."
+    ],
+    "application": "US18646804",
+    "family_id": "us-priority-set:f0e9cf991584f9b31c8874f0419cdf09f7a9b9aed79ea618cb879100af4ca0e3",
+    "family_basis": "identical explicitly cited priority claims; not a worldwide family",
+    "parser_version": "gazette-primary-v2",
+    "text_status": "representative_claim"
+  },
+  {
+    "id": "US12726178",
+    "title": "Acoustic wave device",
+    "date": "2026-09-01",
+    "filing": "2023-07-28",
+    "filing_basis": "USPTO US application filing",
+    "priority": "2021-04-16",
+    "priority_ids": [
+      "JP2021069675"
+    ],
+    "priority_claims": [
+      "Claims priority of application No. 2021-069675 (JP), filed on Apr. 16, 2021."
+    ],
+    "application": "US18227332",
+    "family_id": "us-priority-set:40891f7fb4b67a44a36ac1cb0c67c232907ab3a38810501058a2d4a74fffa5b6",
+    "family_basis": "identical explicitly cited priority claims; not a worldwide family",
+    "parser_version": "gazette-primary-v2",
+    "text_status": "representative_claim"
+  },
+  {
+    "id": "USD1146870",
+    "title": "Headphone",
+    "date": "2026-09-08",
+    "filing": "2025-01-07",
+    "filing_basis": "USPTO US application filing",
+    "application": "US29982651",
+    "family_id": "application:US29982651",
+    "family_basis": "same US application only; wider family unknown",
+    "parser_version": "gazette-primary-v2",
+    "text_status": "representative_claim"
+  },
+  {
+    "id": "US12728651",
+    "title": "Base-material drying device and printing device",
+    "date": "2026-09-08",
+    "filing": "2023-01-27",
+    "filing_basis": "USPTO US application filing",
+    "priority": "2022-02-09",
+    "priority_ids": [
+      "JP2022018971"
+    ],
+    "priority_claims": [
+      "Claims priority of application No. 2022-018971 (JP), filed on Feb. 9, 2022."
+    ],
+    "application": "US18160425",
+    "family_id": "us-priority-set:860b4d3a6ff374ea38454d052545a5819f1cf4eea33e7c8c1528576a07be0279",
+    "family_basis": "identical explicitly cited priority claims; not a worldwide family",
+    "parser_version": "gazette-primary-v2",
+    "text_status": "representative_claim"
+  }
+]

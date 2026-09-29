@@ -1,0 +1,324 @@
+{
+  "version": 1,
+  "split": "development",
+  "cutoff": "2023-12-31T23:59:59Z",
+  "queries": {
+    "ai": "технологии в ИИ",
+    "rag": "методы retrieval-augmented generation",
+    "rare_control": "retrieval-augmented generation для измерения квантовой гравитации"
+  },
+  "assessor": "Codex",
+  "independent_human_review": false,
+  "source_ids": [
+    "2105.13022v1",
+    "2112.08152v1",
+    "2203.05115v1",
+    "2205.12230v1",
+    "2210.08808v1",
+    "2303.07263v1",
+    "2304.11406v1",
+    "2304.13301v1",
+    "2308.15363v1",
+    "2309.06057v1",
+    "2310.03214v1",
+    "2310.20081v1"
+  ],
+  "topics": [
+    {
+      "id": "dev-profile-retrieval",
+      "split": "development",
+      "cutoff": "2023-12-31T23:59:59Z",
+      "label": "Персонализация генерации через retrieval истории пользователя",
+      "distinctness_group": "dev-profile-retrieval",
+      "source_ids": [
+        "2304.11406v1",
+        "2310.20081v1"
+      ],
+      "assessor": "Codex",
+      "review_status": "self_assessed_primary_sources",
+      "relevance": {
+        "ai": 2,
+        "rag": 2,
+        "rare_control": 0
+      },
+      "emergence": "emerging",
+      "decision_basis": "LaMP (2023-Q2) включает retrieval профильных записей и четыре генеративные задачи; работа Richardson et al. (Q4) добавляет offline task-aware summaries к runtime retrieval. Это развитие конкретного механизма персонального контекста в нескольких периодах и двух раздельных группах.",
+      "counterevidence": "Персонализация в целом не новая технология. Новизна ограничена retrieval из user profile для LM generation и сочетанием summaries с ним. LaMP содержит также классификацию, которая не считается доказательством генерации; claims о privacy или реальном голосовом внедрении не делаются.",
+      "eligible_gold": {
+        "ai": true,
+        "rag": true,
+        "rare_control": false
+      },
+      "brief_support": {
+        "problem": {
+          "source_id": "2310.20081v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "b59af30f6349a37254dc6c837f0e1d9b2372d82c2656096ecf9be1514885d1f6",
+          "char_start": 464,
+          "char_end": 516,
+          "quote": "lengthy inputs exceeding limitations on input length",
+          "interpretation": "Полная история пользователя может превышать окно и увеличивать latency/cost.",
+          "modality": "problem_statement",
+          "conditions": null
+        },
+        "advantage": {
+          "source_id": "2310.20081v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "b59af30f6349a37254dc6c837f0e1d9b2372d82c2656096ecf9be1514885d1f6",
+          "char_start": 1221,
+          "char_end": 1305,
+          "quote": "with 75% less of retrieved user data is on-par or outperforms retrieval augmentation",
+          "interpretation": "Авторы сообщают сопоставимый или лучший результат с уменьшением объема найденных user data на 75%.",
+          "modality": "author_reported_experiment",
+          "conditions": "Большинство задач LaMP; не 75% уменьшения всех расходов или гарантия для каждого пользователя."
+        },
+        "example": {
+          "kind": "research",
+          "source_id": "2310.20081v1",
+          "label": "Integrating Summarization and Retrieval for Enhanced Personalization via Large Language Models"
+        }
+      },
+      "independence_limit": "Два непересекающихся списка авторов; экспериментальная репликация не проводилась."
+    },
+    {
+      "id": "dev-retrieved-patches",
+      "split": "development",
+      "cutoff": "2023-12-31T23:59:59Z",
+      "label": "Генерация исправлений кода по найденным bug–fix парам",
+      "distinctness_group": "dev-retrieved-patches",
+      "source_ids": [
+        "2303.07263v1",
+        "2309.06057v1"
+      ],
+      "assessor": "Codex",
+      "review_status": "self_assessed_primary_sources",
+      "relevance": {
+        "ai": 2,
+        "rag": 2,
+        "rare_control": 0
+      },
+      "emergence": "emerging",
+      "decision_basis": "InferFix (2023-Q1) и RAP-Gen (Q3) извлекают семантически/лексически похожие bug–fix pairs для генерации patch. В отличие от repository completion, вход содержит дефект, а результат проверяется как исправление. Состав retrieval memory и критерий результата различаются.",
+      "counterevidence": "Автоматический repair существовал раньше; выделена операция retrieval типизированных исправлений в generative repair. InferredBugs и Defects4J не сопоставляются напрямую. Публикация InferFix обсуждает Microsoft deployment, но краткий пример остается исследованием без расширения масштаба внедрения.",
+      "eligible_gold": {
+        "ai": true,
+        "rag": true,
+        "rare_control": false
+      },
+      "brief_support": {
+        "problem": {
+          "source_id": "2309.06057v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "e4ec2c39d79ae415bd2d5d6fe80a76eae094d414d101226f9b21aa5c7216f3da",
+          "char_start": 429,
+          "char_end": 465,
+          "quote": "limited by a fixed set of parameters",
+          "interpretation": "Параметрический repair model ограничен при поиске разных исправлений.",
+          "modality": "problem_statement",
+          "conditions": null
+        },
+        "advantage": {
+          "source_id": "2309.06057v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "e4ec2c39d79ae415bd2d5d6fe80a76eae094d414d101226f9b21aa5c7216f3da",
+          "char_start": 1863,
+          "char_end": 1907,
+          "quote": "repairing 15 more bugs on 818 Defects4J bugs",
+          "interpretation": "Авторы RAP-Gen сообщают исправление на 15 ошибок больше на наборе из 818 ошибок.",
+          "modality": "author_reported_experiment",
+          "conditions": "Defects4J в Java; сравнение с baselines исследования, не +15% и не универсальная точность."
+        },
+        "example": {
+          "kind": "research",
+          "source_id": "2309.06057v1",
+          "label": "RAP-Gen: Retrieval-Augmented Patch Generation with CodeT5 for Automatic Program Repair"
+        }
+      },
+      "independence_limit": "Две непересекающиеся авторские группы. Bug localization может быть предоставлена или отсутствовать в разных benchmark; это сохраняется как ограничение."
+    },
+    {
+      "id": "dev-sql-example-retrieval",
+      "split": "development",
+      "cutoff": "2023-12-31T23:59:59Z",
+      "label": "Выбор SQL-примеров по намерению и структурному сходству",
+      "distinctness_group": "dev-sql-example-retrieval",
+      "source_ids": [
+        "2304.13301v1",
+        "2308.15363v1"
+      ],
+      "assessor": "Codex",
+      "review_status": "self_assessed_primary_sources",
+      "relevance": {
+        "ai": 2,
+        "rag": 2,
+        "rare_control": 0
+      },
+      "emergence": "emerging",
+      "decision_basis": "CBR-ApSQL (2023-Q2, именно название v1) извлекает cases по de-semanticized question intention. DAIL-SQL (Q3) выбирает examples по skeleton similarities; это прямо подтверждено PDF v1, p.2. Две группы изучают конкретный retrieval генеративных SQL demonstrations.",
+      "counterevidence": "Это генерация SQL с извлеченными примерами, а не чтение KG/таблицы для естественно-языкового ответа StructGPT. Общий Text-to-SQL давно существует; тема ограничена selection demonstrations для ready LLM. Позднее название 2304.13301 не заменяет название v1.",
+      "eligible_gold": {
+        "ai": true,
+        "rag": true,
+        "rare_control": false
+      },
+      "brief_support": {
+        "problem": {
+          "source_id": "2304.13301v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "ed50690cffc5e1c60a07cfba935a69597edf2f78c428e31ace35b041050e8c21",
+          "char_start": 263,
+          "char_end": 286,
+          "quote": "poorly designed prompts",
+          "interpretation": "Случайно выбранные или простые prompts ограничивают точность Text-to-SQL.",
+          "modality": "problem_statement",
+          "conditions": null
+        },
+        "advantage": {
+          "source_id": "2308.15363v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "4f1dea6b0302c9333fa818f19f63f9d72316d5e5f33108b5e50f5fe564ae505f",
+          "char_start": 651,
+          "char_end": 675,
+          "quote": "86.6% execution accuracy",
+          "interpretation": "Авторы DAIL-SQL сообщают execution accuracy 86,6%.",
+          "modality": "author_reported_experiment",
+          "conditions": "Spider leaderboard на дату v1; это абсолютная accuracy, не величина улучшения, и не показатель на произвольной базе."
+        },
+        "example": {
+          "kind": "research",
+          "source_id": "2308.15363v1",
+          "label": "Text-to-SQL Empowered by Large Language Models: A Benchmark Evaluation"
+        }
+      },
+      "independence_limit": "Два непересекающихся авторских списка; обе работы оценивают SQL generation, независимое выполнение не проводилось.",
+      "decision_sources": [
+        {
+          "source_id": "2308.15363v1",
+          "file": "sources/auxiliary/2308.15363v1.pdf",
+          "sha256": "d8db3cd08ed8ab85a82cd297c692b12150694e8e68c74383db6601212ba3f625",
+          "url": "https://arxiv.org/pdf/2308.15363v1",
+          "locator": "p.2, paragraph beginning Last but not least",
+          "quote": "selects examples based on their skeleton similarities",
+          "representation": "archived_v1_pdf",
+          "role": "membership justification; not additional independent work"
+        }
+      ]
+    },
+    {
+      "id": "dev-fresh-web-prompting",
+      "split": "development",
+      "cutoff": "2023-12-31T23:59:59Z",
+      "label": "Few-shot генерация актуальных ответов с поисковой выдачей",
+      "distinctness_group": "dev-fresh-web-prompting",
+      "source_ids": [
+        "2203.05115v1",
+        "2310.03214v1"
+      ],
+      "assessor": "Codex",
+      "review_status": "self_assessed_primary_sources",
+      "relevance": {
+        "ai": 2,
+        "rag": 2,
+        "rare_control": 0
+      },
+      "emergence": "emerging",
+      "decision_basis": "Lazaridou et al. (2022-Q1) исследуют few-shot search-engine augmentation без fine-tuning для актуального open-domain QA. FreshPrompt (2023-Q4) развивает этот механизм на меняющихся фактах и ложных предпосылках, проверяет количество и порядок evidence. Разные группы, несколько периодов, сравнение с closed-book и search-augmented baselines.",
+      "counterevidence": "Интернет-поиск и RAG в целом не новые; выделено prompting без изменения LM под меняющееся внешнее знание. Это близко к web dialogue, interleaved retrieval и cited generation, но отличается задачей freshness и способом conditioning. Тема требует осторожной distinctness оценки; отдельные пункты за разные поисковые движки запрещены.",
+      "eligible_gold": {
+        "ai": true,
+        "rag": true,
+        "rare_control": false
+      },
+      "brief_support": {
+        "problem": {
+          "source_id": "2310.03214v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "4f344ef0048c3e021d83ed7fa3b0495ec0e6540a626192e97ab93815947e68e1",
+          "char_start": 38,
+          "char_end": 68,
+          "quote": "trained once and never updated",
+          "interpretation": "Знания однажды обученной LM отстают от изменяющегося мира.",
+          "modality": "problem_statement",
+          "conditions": null
+        },
+        "advantage": {
+          "source_id": "2310.03214v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "4f344ef0048c3e021d83ed7fa3b0495ec0e6540a626192e97ab93815947e68e1",
+          "char_start": 1285,
+          "char_end": 1365,
+          "quote": "FreshPrompt outperforms both competing search engine-augmented prompting methods",
+          "interpretation": "Авторы FreshPrompt сообщают преимущество над сравниваемыми поисковыми prompting methods.",
+          "modality": "author_reported_experiment",
+          "conditions": "FreshQA, включая changing knowledge и false premises; не гарантия актуальности любого ответа, современные результаты сервисов не переносились в 2023."
+        },
+        "example": {
+          "kind": "research",
+          "source_id": "2310.03214v1",
+          "label": "FreshLLMs: Refreshing Large Language Models with Search Engine Augmentation"
+        }
+      },
+      "independence_limit": "Списки авторов двух работ не пересекаются. Существование более ранних WebGPT/SeeKeR учтено как ограничение гранулярности, а не проигнорировано."
+    },
+    {
+      "id": "dev-knn-translation-adaptation",
+      "split": "development",
+      "cutoff": "2023-12-31T23:59:59Z",
+      "label": "Адаптивное и ускоренное извлечение памяти для kNN-перевода",
+      "distinctness_group": "dev-knn-translation-adaptation",
+      "source_ids": [
+        "2105.13022v1",
+        "2210.08808v1",
+        "2112.08152v1",
+        "2205.12230v1"
+      ],
+      "assessor": "Codex",
+      "review_status": "self_assessed_primary_sources",
+      "relevance": {
+        "ai": 2,
+        "rag": 2,
+        "rare_control": 0
+      },
+      "emergence": "disputed",
+      "decision_basis": "Adaptive kNN-MT (2021-Q2), Faster (Q4), Chunk-based (2022-Q2) и Robust (Q4) исследуют шум, количество соседей, частоту retrieval и interpolation weights. Есть реальное развитие semiparametric generation с памятью и несколько групп.",
+      "counterevidence": "Translation memory и базовый kNN-MT старше; пакет не содержит источников 2023 и не доказывает продолжающееся зарождение на cutoff 2023-12-31. Оптимизации производительности и robustness объединены в одну спорную тему, а не несколько eligible мест ради пятнадцатки.",
+      "eligible_gold": {
+        "ai": false,
+        "rag": false,
+        "rare_control": false
+      },
+      "brief_support": {
+        "problem": {
+          "source_id": "2205.12230v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "5e81ecbed7f0131c6e6783b8c0b9a90e66b4882ccc360a37e17ac5ece6b119df",
+          "char_start": 430,
+          "char_end": 481,
+          "quote": "requires retrieval for every single generated token",
+          "interpretation": "Поиск для каждого генерируемого токена замедляет kNN-перевод.",
+          "modality": "problem_statement",
+          "conditions": null
+        },
+        "advantage": {
+          "source_id": "2205.12230v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "5e81ecbed7f0131c6e6783b8c0b9a90e66b4882ccc360a37e17ac5ece6b119df",
+          "char_start": 1068,
+          "char_end": 1150,
+          "quote": "significant speed-up (up to 4 times) with only a small drop in translation quality",
+          "interpretation": "Авторы chunk-based kNN-MT сообщают ускорение до 4 раз с небольшой потерей качества.",
+          "modality": "author_reported_experiment",
+          "conditions": "Static и on-the-fly domain adaptation в MT; до 4 раз, не обязательные 4 раза и не без потери качества."
+        },
+        "example": {
+          "kind": "research",
+          "source_id": "2205.12230v1",
+          "label": "Chunk-based Nearest Neighbor Machine Translation"
+        }
+      },
+      "independence_limit": "Различные авторские группы и канонические работы; отсутствие проверки свежего состояния на 2023 оставляет статус disputed."
+    }
+  ],
+  "selection_basis": "Primary-source domain extension before TR-015 implementation; no tested ranker labels or outputs used. Curated exposure, not provider census.",
+  "frozen_at": "2026-09-08T22:26:10.426788+00:00"
+}

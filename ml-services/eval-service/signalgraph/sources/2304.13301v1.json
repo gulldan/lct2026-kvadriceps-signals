@@ -1,0 +1,32 @@
+{
+  "native_id": "2304.13301v1",
+  "canonical_id": "arxiv:2304.13301",
+  "url": "https://arxiv.org/abs/2304.13301v1",
+  "title": "A Case-Based Reasoning Framework for Adaptive Prompting in Cross-Domain Text-to-SQL",
+  "authors": [
+    "Chunxi Guo",
+    "Zhiliang Tian",
+    "Jintao Tang",
+    "Pancheng Wang",
+    "Zhihua Wen",
+    "Kang Yang",
+    "Ting Wang"
+  ],
+  "published_at": "2023-04-26T06:02:01Z",
+  "version_updated_at": "2023-04-26T06:02:01Z",
+  "observed_at": "2026-09-08T22:21:57.265798+00:00",
+  "available_at": "2023-04-26T06:02:01Z",
+  "available_basis": "arXiv archived v1 release; historical reconstruction captured later",
+  "source_kind": "paper",
+  "provider": "arxiv",
+  "access_scope": "public",
+  "representation": "versioned_primary_abstract",
+  "text": "Recent advancements in Large Language Models (LLMs), such as Codex, ChatGPT and GPT-4 have significantly impacted the AI community, including Text-to-SQL tasks. Some evaluations and analyses on LLMs show their potential to generate SQL queries but they point out poorly designed prompts (e.g. simplistic construction or random sampling) limit LLMs' performance and may cause unnecessary or irrelevant outputs. To address these issues, we propose CBR-ApSQL, a Case-Based Reasoning (CBR)-based framework combined with GPT-3.5 for precise control over case-relevant and case-irrelevant knowledge in Text-to-SQL tasks. We design adaptive prompts for flexibly adjusting inputs for GPT-3.5, which involves (1) adaptively retrieving cases according to the question intention by de-semantizing the input question, and (2) an adaptive fallback mechanism to ensure the informativeness of the prompt, as well as the relevance between cases and the prompt. In the de-semanticization phase, we designed Semantic Domain Relevance Evaluator(SDRE), combined with Poincaré detector(mining implicit semantics in hyperbolic space), TextAlign(discovering explicit matches), and Positector (part-of-speech detector). SDRE semantically and syntactically generates in-context exemplar annotations for the new case. On the three cross-domain datasets, our framework outperforms the state-of-the-art(SOTA) model in execution accuracy by 3.7\\%, 2.5\\%, and 8.2\\%, respectively.",
+  "text_sha256": "ed50690cffc5e1c60a07cfba935a69597edf2f78c428e31ace35b041050e8c21",
+  "raw_sha256": "a21afb62ff2a2b5e5c7fa99d38deb7e33515f2a5050a5002f8218071f1c86a5a",
+  "raw_file": "a21afb62ff2a2b5e5c7fa99d38deb7e33515f2a5050a5002f8218071f1c86a5a.xml",
+  "limitations": [
+    "Abstract-only evidence; author-reported results, not independent reproduction.",
+    "Later DOI, journal metadata and current citations are excluded from historical input."
+  ]
+}

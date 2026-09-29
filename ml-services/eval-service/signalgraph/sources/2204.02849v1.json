@@ -1,0 +1,32 @@
+{
+  "native_id": "2204.02849v1",
+  "canonical_id": "arxiv:2204.02849",
+  "url": "https://arxiv.org/abs/2204.02849v1",
+  "title": "KNN-Diffusion: Image Generation via Large-Scale Retrieval",
+  "authors": [
+    "Oron Ashual",
+    "Shelly Sheynin",
+    "Adam Polyak",
+    "Uriel Singer",
+    "Oran Gafni",
+    "Eliya Nachmani",
+    "Yaniv Taigman"
+  ],
+  "published_at": "2022-04-06T14:13:35Z",
+  "version_updated_at": "2022-04-06T14:13:35Z",
+  "observed_at": "2026-09-08T18:26:21.557709+00:00",
+  "available_at": "2022-04-06T14:13:35Z",
+  "available_basis": "arXiv archived v1 release; historical reconstruction captured later",
+  "source_kind": "paper",
+  "provider": "arxiv",
+  "access_scope": "public",
+  "representation": "versioned_primary_abstract",
+  "text": "While the availability of massive Text-Image datasets is shown to be extremely useful in training large-scale generative models (e.g. DDPMs, Transformers), their output typically depends on the quality of both the input text, as well as the training dataset. In this work, we show how large-scale retrieval methods, in particular efficient K-Nearest-Neighbors (KNN) search, can be used in order to train a model to adapt to new samples. Learning to adapt enables several new capabilities. Sifting through billions of records at inference time is extremely efficient and can alleviate the need to train or memorize an adequately large generative model. Additionally, fine-tuning trained models to new samples can be achieved by simply adding them to the table. Rare concepts, even without any presence in the training set, can be then leveraged during test time without any modification to the generative model. Our diffusion-based model trains on images only, by leveraging a joint Text-Image multi-modal metric. Compared to baseline methods, our generations achieve state of the art results both in human evaluations as well as with perceptual scores when tested on a public multimodal dataset of natural images, as well as on a collected dataset of 400 million Stickers.",
+  "text_sha256": "df5a6221bd83ad0ce6a6bfad2db90368b93dcbfdc198f553e347d8134135e55d",
+  "raw_sha256": "b34f72b71eb5663d7d56e4219cc6bd43e8a803b50d2fcce0b75aaf98b354a770",
+  "raw_file": "b34f72b71eb5663d7d56e4219cc6bd43e8a803b50d2fcce0b75aaf98b354a770.xml",
+  "limitations": [
+    "Abstract-only evidence; author-reported results, not independent reproduction.",
+    "Later DOI, journal metadata and current citations are excluded from historical input."
+  ]
+}

@@ -1,0 +1,25 @@
+id: dates-via-format
+language: Tsx
+severity: error
+message: "Используйте formatDate/formatDateTime/formatDateShort из shared/lib/format."
+files: ["src/**"]
+ignores: ["src/shared/lib/format.ts"]
+rule:
+  kind: call_expression
+  has:
+    field: function
+    kind: member_expression
+    has:
+      field: property
+      regex: "^toLocale(Date|Time)?String$"
+---
+id: sizes-via-format
+language: Tsx
+severity: error
+message: "Размеры в байтах форматируйте через humanSize из shared/lib/format."
+files: ["src/**"]
+ignores: ["src/shared/lib/format.ts"]
+rule:
+  any:
+    - pattern: $BYTES / 1024
+    - pattern: $BYTES >= 1024

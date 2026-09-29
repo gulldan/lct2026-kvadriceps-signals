@@ -1,0 +1,28 @@
+{
+  "native_id": "2311.12955v1",
+  "canonical_id": "arxiv:2311.12955",
+  "url": "https://arxiv.org/abs/2311.12955v1",
+  "title": "Don't forget private retrieval: distributed private similarity search for large language models",
+  "authors": [
+    "Guy Zyskind",
+    "Tobin South",
+    "Alex Pentland"
+  ],
+  "published_at": "2023-11-21T19:41:46Z",
+  "version_updated_at": "2023-11-21T19:41:46Z",
+  "observed_at": "2026-09-08T22:53:53.312098+00:00",
+  "available_at": "2023-11-21T19:41:46Z",
+  "available_basis": "arXiv archived v1 release; historical reconstruction captured later",
+  "source_kind": "paper",
+  "provider": "arxiv",
+  "access_scope": "public",
+  "representation": "versioned_primary_abstract",
+  "text": "While the flexible capabilities of large language models (LLMs) allow them to answer a range of queries based on existing learned knowledge, information retrieval to augment generation is an important tool to allow LLMs to answer questions on information not included in pre-training data. Such private information is increasingly being generated in a wide array of distributed contexts by organizations and individuals. Performing such information retrieval using neural embeddings of queries and documents always leaked information about queries and database content unless both were stored locally. We present Private Retrieval Augmented Generation (PRAG), an approach that uses multi-party computation (MPC) to securely transmit queries to a distributed set of servers containing a privately constructed database to return top-k and approximate top-k documents. This is a first-of-its-kind approach to dense information retrieval that ensures no server observes a client's query or can see the database content. The approach introduces a novel MPC friendly protocol for inverted file approximate search (IVF) that allows for fast document search over distributed and private data in sublinear communication complexity. This work presents new avenues through which data for use in LLMs can be accessed and used without needing to centralize or forgo privacy.",
+  "text_sha256": "a852d5ce3047ad1014aaabdcdcf3aa0b3de31db21b691c62560f152421c6eb5f",
+  "raw_sha256": "96fe8363abc1e05a90db810c4303428814dc1250b90ff0534d4c44e4fc0f3129",
+  "raw_file": "96fe8363abc1e05a90db810c4303428814dc1250b90ff0534d4c44e4fc0f3129.xml",
+  "limitations": [
+    "Abstract-only evidence; author-reported results, not independent reproduction.",
+    "Later DOI, journal metadata and current citations are excluded from historical input."
+  ]
+}

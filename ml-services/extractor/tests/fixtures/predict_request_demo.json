@@ -1,0 +1,84 @@
+{
+ "_provenance": "Собрано по размеченным предложениям тех же двух открытых рефератов: предложения-доказательства положены в abstract источников, счётчики — в features.",
+ "request": {
+  "feature_schema": "weak-signal-features-v1",
+  "model_version": "weak-signal-2026-09-21.2",
+  "query": "технологии из демонстрационной разметки 21.09",
+  "candidates": [
+   {
+    "id": "cand-batch-fermentation",
+    "name": "периодическая (батч) ферментация L. acidophilus в биореакторе 10 л для получения LAB-олигосахаридов",
+    "features": {
+     "documents": 1,
+     "scientific_works": 1,
+     "market_records": 0,
+     "active_periods": 1,
+     "author_groups": 1,
+     "top_group_share": null,
+     "share_growth_pp": null,
+     "first_observed": "2025"
+    },
+    "sources": [
+     {
+      "id": "cand-batch-fermentation-s1",
+      "title": "периодическая (батч) ферментация L. acidophilus в биореакторе 10 л для получения LAB-олигосахаридов",
+      "abstract": "In the present study, we produced a mixture of bioactive oligosaccharides from L. acidophilus DSMZ 20079 in 10 L bioreactor that maintained the anti-colon cancer against CaCo-2 cell line effects, which is a major transition towards the semi industrial level.",
+      "date": null,
+      "url": null
+     },
+     {
+      "id": "cand-batch-fermentation-s2",
+      "title": "периодическая (батч) ферментация L. acidophilus в биореакторе 10 л для получения LAB-олигосахаридов",
+      "abstract": "To that end, a batch fermentation was carried out in a 10 L bioreactor under uncontrolled pH condition, starting at pH 6.0.",
+      "date": null,
+      "url": null
+     },
+     {
+      "id": "cand-batch-fermentation-s3",
+      "title": "периодическая (батч) ферментация L. acidophilus в биореакторе 10 л для получения LAB-олигосахаридов",
+      "abstract": "During the fermentation process, the bacterial cell mass was increased exponentially with a constant specific growth rate (µ) of 0.07 h−1, reaching a maximum biomass of 6.93 g L−1 at 44 h.",
+      "date": null,
+      "url": null
+     }
+    ]
+   },
+   {
+    "id": "cand-cold-stamping",
+    "name": "холодная листовая штамповка днищ",
+    "features": {
+     "documents": 1,
+     "scientific_works": 1,
+     "market_records": 0,
+     "active_periods": 1,
+     "author_groups": 1,
+     "top_group_share": null,
+     "share_growth_pp": null,
+     "first_observed": "2024"
+    },
+    "sources": [
+     {
+      "id": "cand-cold-stamping-s1",
+      "title": "холодная листовая штамповка днищ",
+      "abstract": "Детали, изготовленные методами холодной листовой штамповки, нашли широкое применение в современном мире.",
+      "date": null,
+      "url": null
+     },
+     {
+      "id": "cand-cold-stamping-s2",
+      "title": "холодная листовая штамповка днищ",
+      "abstract": "Холодная листовая штамповка применяется для изготовления деталей из листового материала, это различные сферические и эллиптические днища, корпусные детали автомобилей, самолётов, вагонов, химического и нефтеперерабатывающего оборудования, электроприборов, а также товаров народного потребления (столовые приборы, и т.д.).",
+      "date": null,
+      "url": null
+     },
+     {
+      "id": "cand-cold-stamping-s3",
+      "title": "холодная листовая штамповка днищ",
+      "abstract": "Днища, изготовленные холодной штамповкой, используются в пищевой, нефтехимической, газовой и атомной промышленности, а также для: аппаратов, работающих под давлением, сосудов, емкостей и других промышленных установок.",
+      "date": null,
+      "url": null
+     }
+    ]
+   }
+  ]
+ }
+}

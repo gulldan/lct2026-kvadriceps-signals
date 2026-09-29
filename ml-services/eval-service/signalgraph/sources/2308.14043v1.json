@@ -1,0 +1,29 @@
+{
+  "native_id": "2308.14043v1",
+  "canonical_id": "arxiv:2308.14043",
+  "url": "https://arxiv.org/abs/2308.14043v1",
+  "title": "Reconstruction changes drive surface diffusion and determine the flatness of oxide surfaces",
+  "authors": [
+    "Giada Franceschi",
+    "Michael Schmid",
+    "Ulrike Diebold",
+    "Michele Riva"
+  ],
+  "published_at": "2023-08-27T08:39:23Z",
+  "version_updated_at": "2023-08-27T08:39:23Z",
+  "observed_at": "2026-09-08T22:28:42.905805+00:00",
+  "available_at": "2023-08-27T08:39:23Z",
+  "available_basis": "arXiv archived v1 release; historical reconstruction captured later",
+  "source_kind": "paper",
+  "provider": "arxiv",
+  "access_scope": "public",
+  "representation": "versioned_primary_abstract",
+  "text": "Surface diffusion on metal oxides is key in many areas of materials technology, yet it has been scarcely explored at the atomic scale. This work provides phenomenological insights from scanning tunneling microscopy on the link between surface diffusion, surface atomic structure, and oxygen chemical potential based on three model oxide surfaces: Fe$_2$O$_3(1\\overline{1}02)$, La$_{1-x}$Sr$_x$MnO$_3$(110), and In$_2$O$_3$(111). In all instances, changing the oxygen chemical potential used for annealing stabilizes reconstructions of different compositions while promoting the flattening of the surface morphology -- a sign of enhanced surface diffusion. It is argued that thermodynamics, rather than kinetics, rules surface diffusion under these conditions: The composition change of the surface reconstructions formed at differently oxidizing conditions drives mass transport across the surface.",
+  "text_sha256": "0d58ef13a4e87791c278072c56959f996c270f6fa3115f07ff0aef6e708b9d48",
+  "raw_sha256": "761969bd1361209348c93fad02bd6d4c2df715209d933d5edb33e9ba47c64193",
+  "raw_file": "761969bd1361209348c93fad02bd6d4c2df715209d933d5edb33e9ba47c64193.xml",
+  "limitations": [
+    "Abstract-only evidence; author-reported results, not independent reproduction.",
+    "Later DOI, journal metadata and current citations are excluded from historical input."
+  ]
+}

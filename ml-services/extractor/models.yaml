@@ -1,0 +1,78 @@
+# Реестр моделей для локального запуска (EXTRACTOR_MODEL_SOURCE=local) и тестов. В контейнере
+# по умолчанию реестр строится из release.json проверенного архива весов, этот файл не читается.
+#
+# `sha256: null` — контрольная сумма не зафиксирована, в строгом режиме модель не загрузится.
+# Любая правка суммы, порога или бэкенда требует поднять `service_version`: её несёт каждый ответ
+# /predict и с ней сверяется RADAR_CLASSIFIER_VERSION. Версия не должна совпадать с версией
+# встроенной модели main-service, иначе закэшированный ответ одного классификатора сойдёт за другой.
+
+service_version: weak-signal-2026-09-23.5
+
+root: ../../models
+
+thresholds:
+  # growth = отношение числа документов в двух соседних окнах (12/12 или 6/6 месяцев).
+  # T2 — по контрольному прогону на эталонной выборке: медианы 1,47 против 3,91.
+  # T1 условный: класс «не растёт» в эталоне не идентифицируется.
+  trend_t1: 1.2
+  trend_t2: 3.0
+  # Порог уверенности для формулы weak-signal-rules-v2, модели стадии stage-v3 и
+  # калибровки Platt, выбран по размеченным кандидатам сквозного прогона
+  # (README, раздел «Проверка»). Предварительный: пересчитать на новой разметке.
+  predict: 0.35
+  stage_min_prob: 0.0
+
+models:
+  tagger-v1:
+    name: tagger-v1
+    version: "0.0.0-unpinned"
+    backend: torch
+    path: tagger-v1
+    max_len: 512
+    sha256:
+      model.safetensors: null
+      tokenizer.json: null
+      config.json: null
+    notes: >-
+      XLM-R token classifier: BIO tags, role head and Boolean candidate head
+      over the title and abstract; 512-token windows with stride 448.
+
+  stage-v1:
+    name: stage-v1
+    version: "0.0.0-unpinned"
+    backend: e5_lr
+    path: stage-v1
+    max_len: 192
+    sha256:
+      stage_lr.json: null
+      e5_lr_coefficients.npz: null
+    notes: >-
+      Logistic regression over stage-encoder-e5 sentence embeddings: stage 0-5
+      probabilities with temperature and optional p14_platt calibration.
+
+  stage-encoder-e5:
+    name: stage-encoder-e5
+    version: 274baa43b0e13e37fafa6428dbc7938e62e5c439
+    backend: torch
+    path: stage-encoder-e5
+    max_len: 192
+    dim: 1024
+    sha256:
+      model.safetensors: null
+      tokenizer.json: null
+      config.json: null
+    notes: >-
+      multilingual-e5-large-instruct at the pinned revision; masked mean
+      pooling and L2 normalisation, at most 192 tokens.
+
+  f2llm-embeddings:
+    name: f2llm-embeddings
+    version: F2LLM-v2-0.6B
+    backend: remote_http
+    url: http://f2llm-service:8085
+    dim: 1024
+    max_len: 512
+    notes: >-
+      Shared f2llm-service used for name joining. POST /v1/embeddings,
+      last-token (EOS) pooling + L2, dim 1024, batch <= 64 on our side,
+      timeout 30 s. Changing the embedder invalidates every stored vector.

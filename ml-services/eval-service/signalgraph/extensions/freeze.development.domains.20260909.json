@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "split": "development",
+  "frozen_before_method_implementation": true,
+  "assessor": "Codex; self assessment",
+  "sha256": {
+    "extensions/annotations.development.domains.20260909.json": "8c6788be85d6d1ec63e85f90c5ee8c68d2a9fb7400b0ab901f1e3bbf371aa6c2",
+    "sources/2105.13022v1.json": "8f32a08977896a2743bf9ca1c4cf5425066fe953ef3187c1d565f7907040b2ec",
+    "sources/2112.08152v1.json": "715ebf316a34f3b4ebeb29ce9903f96d7ba8d3a7d13d2de10b9792e8ccf0280a",
+    "sources/2203.05115v1.json": "cc07516754aa4c3c5a6bd21762555c90a5938dbab1bf6c3dd3ec811c74d80dca",
+    "sources/2205.12230v1.json": "07367d01d730adb804a69ce1955633b666e901b098f4b21cde73554e1a1739ee",
+    "sources/2210.08808v1.json": "dba199d93da8e5251bc5f357aee724945a8be4b5f44ed31cbeb7cbeb5333b1dc",
+    "sources/2303.07263v1.json": "963c3fd232335c332bbd70b4d3ed5f4d51b08034960f0cc9247a0d77d38774bf",
+    "sources/2304.11406v1.json": "8e3dfc4a84dc3b02d4a529d3366976d8d921ebf2ab661045421b610140fe26d0",
+    "sources/2304.13301v1.json": "c5afbd38273df5046a3c9138efc6f710c29837ed7f7f92d105342ccc879e54e8",
+    "sources/2308.15363v1.json": "abce01b204f46412057f3c2d08ef1b3955153759adbd5454f9ed61c3355a7e4e",
+    "sources/2309.06057v1.json": "f6aa29425a3e88a7e07dec63e54da9d099eeb560401cdaead5005078cc768732",
+    "sources/2310.03214v1.json": "8c0d635046222138b2810cc8648d76faec95b949739ef277f4b424d3dd43b1da",
+    "sources/2310.20081v1.json": "cd64df78c632aee8a6c3d750fb1c8f0542c4a5dfe2f0a8ea2f3db901d03eb9c8",
+    "sources/a21afb62ff2a2b5e5c7fa99d38deb7e33515f2a5050a5002f8218071f1c86a5a.xml": "a21afb62ff2a2b5e5c7fa99d38deb7e33515f2a5050a5002f8218071f1c86a5a",
+    "sources/auxiliary/2308.15363v1.pdf": "d8db3cd08ed8ab85a82cd297c692b12150694e8e68c74383db6601212ba3f625"
+  }
+}

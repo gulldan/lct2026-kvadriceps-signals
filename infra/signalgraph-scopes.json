@@ -1,0 +1,626 @@
+[
+  {
+    "provider": "patent",
+    "history_months": 13,
+    "industry": "AI, energy, materials, biotechnology and manufacturing: CN",
+    "scope": {
+      "query": "country:CN",
+      "page_size": 5,
+      "work_type": ""
+    },
+    "limit": 200
+  },
+  {
+    "provider": "crossref",
+    "current_month": true,
+    "scope": {
+      "query": "retrieval augmented generation",
+      "page_size": 1,
+      "work_type": "journal-article"
+    },
+    "limit": 200,
+    "industry": "IT"
+  },
+  {
+    "provider": "arxiv",
+    "current_month": true,
+    "scope": {
+      "query": "retrieval augmented generation",
+      "page_size": 100,
+      "work_type": "",
+      "category": "cs.CL"
+    },
+    "limit": 200,
+    "industry": "IT"
+  },
+  {
+    "provider": "crossref",
+    "current_month": true,
+    "scope": {
+      "query": "foundation model deployment",
+      "page_size": 1,
+      "work_type": "journal-article"
+    },
+    "limit": 200,
+    "industry": "AI"
+  },
+  {
+    "provider": "crossref",
+    "current_month": true,
+    "scope": {
+      "query": "foundation model deployment",
+      "page_size": 1,
+      "work_type": "proceedings-article"
+    },
+    "limit": 200,
+    "industry": "AI: conferences"
+  },
+  {
+    "provider": "arxiv",
+    "current_month": true,
+    "scope": {
+      "query": "representation learning architecture",
+      "page_size": 100,
+      "work_type": "",
+      "category": "cs.LG"
+    },
+    "limit": 200,
+    "industry": "AI"
+  },
+  {
+    "provider": "crossref",
+    "current_month": true,
+    "scope": {
+      "query": "materials informatics discovery",
+      "page_size": 1,
+      "work_type": "journal-article"
+    },
+    "limit": 200,
+    "industry": "Materials"
+  },
+  {
+    "provider": "arxiv",
+    "current_month": true,
+    "scope": {
+      "query": "materials for energy storage",
+      "page_size": 100,
+      "work_type": "",
+      "category": "cond-mat.mtrl-sci"
+    },
+    "limit": 200,
+    "industry": "Materials"
+  },
+  {
+    "provider": "crossref",
+    "current_month": true,
+    "scope": {
+      "query": "perovskite solar",
+      "page_size": 1,
+      "work_type": "journal-article"
+    },
+    "limit": 200,
+    "industry": "Energy: solar"
+  },
+  {
+    "provider": "arxiv",
+    "current_month": true,
+    "scope": {
+      "query": "perovskite solar",
+      "page_size": 100,
+      "work_type": "",
+      "category": "cond-mat.mtrl-sci"
+    },
+    "limit": 200,
+    "industry": "Energy: solar"
+  },
+  {
+    "provider": "crossref",
+    "current_month": true,
+    "scope": {
+      "query": "hydrogen production",
+      "page_size": 1,
+      "work_type": "journal-article"
+    },
+    "limit": 200,
+    "industry": "Energy: hydrogen"
+  },
+  {
+    "provider": "arxiv",
+    "current_month": true,
+    "scope": {
+      "query": "hydrogen production",
+      "page_size": 100,
+      "work_type": ""
+    },
+    "limit": 200,
+    "industry": "Energy: hydrogen"
+  },
+  {
+    "provider": "crossref",
+    "current_month": true,
+    "scope": {
+      "query": "gene editing",
+      "page_size": 1,
+      "work_type": "journal-article"
+    },
+    "limit": 200,
+    "industry": "Biotechnology"
+  },
+  {
+    "provider": "arxiv",
+    "current_month": true,
+    "scope": {
+      "query": "gene editing",
+      "page_size": 100,
+      "work_type": ""
+    },
+    "limit": 200,
+    "industry": "Biotechnology"
+  },
+  {
+    "provider": "crossref",
+    "current_month": true,
+    "scope": {
+      "query": "additive manufacturing",
+      "page_size": 1,
+      "work_type": "journal-article"
+    },
+    "limit": 200,
+    "industry": "Manufacturing"
+  },
+  {
+    "provider": "arxiv",
+    "current_month": true,
+    "scope": {
+      "query": "additive manufacturing",
+      "page_size": 100,
+      "work_type": ""
+    },
+    "limit": 200,
+    "industry": "Manufacturing"
+  },
+  {
+    "provider": "patent",
+    "current_month": true,
+    "industry": "Energy, materials, biotechnology, manufacturing, space and IT",
+    "scope": {
+      "query": "hydrogen|perovskite|battery|gene editing|manufacturing|space|retrieval augmented",
+      "page_size": 5,
+      "work_type": ""
+    },
+    "limit": 200
+  },
+  {
+    "provider": "web",
+    "current_month": true,
+    "industry": "Energy, materials, biotechnology, manufacturing, space and IT",
+    "scope": {
+      "query": "*",
+      "page_size": 5,
+      "work_type": ""
+    },
+    "limit": 200
+  },
+  {
+    "provider": "crossref",
+    "current_month": true,
+    "scope": {
+      "query": "clinical decision support",
+      "page_size": 1,
+      "work_type": "journal-article"
+    },
+    "limit": 200,
+    "industry": "Медицина и медтехника"
+  },
+  {
+    "provider": "arxiv",
+    "current_month": true,
+    "scope": {
+      "query": "clinical decision support",
+      "page_size": 100,
+      "work_type": "",
+      "category": "q-bio.QM"
+    },
+    "limit": 200,
+    "industry": "Медицина и медтехника"
+  },
+  {
+    "provider": "crossref",
+    "current_month": true,
+    "scope": {
+      "query": "drug discovery machine learning",
+      "page_size": 1,
+      "work_type": "journal-article"
+    },
+    "limit": 200,
+    "industry": "Медицина и медтехника: препараты"
+  },
+  {
+    "provider": "crossref",
+    "current_month": true,
+    "scope": {
+      "query": "synthetic biology",
+      "page_size": 1,
+      "work_type": "journal-article"
+    },
+    "limit": 200,
+    "industry": "Биотехнологии: синтетическая биология"
+  },
+  {
+    "provider": "arxiv",
+    "current_month": true,
+    "scope": {
+      "query": "synthetic biology",
+      "page_size": 100,
+      "work_type": "",
+      "category": "q-bio.MN"
+    },
+    "limit": 200,
+    "industry": "Биотехнологии: синтетическая биология"
+  },
+  {
+    "provider": "crossref",
+    "current_month": true,
+    "scope": {
+      "query": "financial technology payments",
+      "page_size": 1,
+      "work_type": "journal-article"
+    },
+    "limit": 200,
+    "industry": "Финтех"
+  },
+  {
+    "provider": "arxiv",
+    "current_month": true,
+    "scope": {
+      "query": "financial technology payments",
+      "page_size": 100,
+      "work_type": "",
+      "category": "q-fin.GN"
+    },
+    "limit": 200,
+    "industry": "Финтех"
+  },
+  {
+    "provider": "crossref",
+    "current_month": true,
+    "scope": {
+      "query": "fraud detection banking",
+      "page_size": 1,
+      "work_type": "journal-article"
+    },
+    "limit": 200,
+    "industry": "Финтех: риск и мошенничество"
+  },
+  {
+    "provider": "arxiv",
+    "current_month": true,
+    "scope": {
+      "query": "fraud detection banking",
+      "page_size": 100,
+      "work_type": "",
+      "category": "q-fin.RM"
+    },
+    "limit": 200,
+    "industry": "Финтех: риск и мошенничество"
+  },
+  {
+    "provider": "crossref",
+    "current_month": true,
+    "scope": {
+      "query": "cybersecurity threat detection",
+      "page_size": 1,
+      "work_type": "journal-article"
+    },
+    "limit": 200,
+    "industry": "Кибербезопасность"
+  },
+  {
+    "provider": "arxiv",
+    "current_month": true,
+    "scope": {
+      "query": "cybersecurity threat detection",
+      "page_size": 100,
+      "work_type": "",
+      "category": "cs.CR"
+    },
+    "limit": 200,
+    "industry": "Кибербезопасность"
+  },
+  {
+    "provider": "crossref",
+    "current_month": true,
+    "scope": {
+      "query": "homomorphic encryption",
+      "page_size": 1,
+      "work_type": "journal-article"
+    },
+    "limit": 200,
+    "industry": "Кибербезопасность: приватные вычисления"
+  },
+  {
+    "provider": "crossref",
+    "current_month": true,
+    "scope": {
+      "query": "satellite constellation earth observation",
+      "page_size": 1,
+      "work_type": "journal-article"
+    },
+    "limit": 200,
+    "industry": "Космос"
+  },
+  {
+    "provider": "arxiv",
+    "current_month": true,
+    "scope": {
+      "query": "satellite constellation earth observation",
+      "page_size": 100,
+      "work_type": "",
+      "category": "astro-ph.IM"
+    },
+    "limit": 200,
+    "industry": "Космос"
+  },
+  {
+    "provider": "crossref",
+    "current_month": true,
+    "scope": {
+      "query": "electric propulsion spacecraft",
+      "page_size": 1,
+      "work_type": "journal-article"
+    },
+    "limit": 200,
+    "industry": "Космос: двигатели"
+  },
+  {
+    "provider": "crossref",
+    "current_month": true,
+    "scope": {
+      "query": "autonomous driving perception",
+      "page_size": 1,
+      "work_type": "journal-article"
+    },
+    "limit": 200,
+    "industry": "Транспорт и автономность"
+  },
+  {
+    "provider": "arxiv",
+    "current_month": true,
+    "scope": {
+      "query": "autonomous driving perception",
+      "page_size": 100,
+      "work_type": "",
+      "category": "cs.RO"
+    },
+    "limit": 200,
+    "industry": "Транспорт и автономность"
+  },
+  {
+    "provider": "crossref",
+    "current_month": true,
+    "scope": {
+      "query": "electric vehicle charging grid",
+      "page_size": 1,
+      "work_type": "journal-article"
+    },
+    "limit": 200,
+    "industry": "Транспорт: электромобили"
+  },
+  {
+    "provider": "arxiv",
+    "current_month": true,
+    "scope": {
+      "query": "electric vehicle charging grid",
+      "page_size": 100,
+      "work_type": "",
+      "category": "eess.SY"
+    },
+    "limit": 200,
+    "industry": "Транспорт: электромобили"
+  },
+  {
+    "provider": "crossref",
+    "current_month": true,
+    "scope": {
+      "query": "supply chain optimization",
+      "page_size": 1,
+      "work_type": "journal-article"
+    },
+    "limit": 200,
+    "industry": "Логистика"
+  },
+  {
+    "provider": "arxiv",
+    "current_month": true,
+    "scope": {
+      "query": "supply chain optimization",
+      "page_size": 100,
+      "work_type": "",
+      "category": "math.OC"
+    },
+    "limit": 200,
+    "industry": "Логистика"
+  },
+  {
+    "provider": "crossref",
+    "current_month": true,
+    "scope": {
+      "query": "precision agriculture crop",
+      "page_size": 1,
+      "work_type": "journal-article"
+    },
+    "limit": 200,
+    "industry": "Агротехнологии"
+  },
+  {
+    "provider": "crossref",
+    "current_month": true,
+    "scope": {
+      "query": "cultivated meat fermentation",
+      "page_size": 1,
+      "work_type": "journal-article"
+    },
+    "limit": 200,
+    "industry": "Пищевые технологии"
+  },
+  {
+    "provider": "crossref",
+    "current_month": true,
+    "scope": {
+      "query": "carbon capture storage",
+      "page_size": 1,
+      "work_type": "journal-article"
+    },
+    "limit": 200,
+    "industry": "Климат и экология"
+  },
+  {
+    "provider": "arxiv",
+    "current_month": true,
+    "scope": {
+      "query": "carbon capture storage",
+      "page_size": 100,
+      "work_type": "",
+      "category": "physics.ao-ph"
+    },
+    "limit": 200,
+    "industry": "Климат и экология"
+  },
+  {
+    "provider": "crossref",
+    "current_month": true,
+    "scope": {
+      "query": "climate forecasting machine learning",
+      "page_size": 1,
+      "work_type": "journal-article"
+    },
+    "limit": 200,
+    "industry": "Климат: прогнозирование"
+  },
+  {
+    "provider": "crossref",
+    "current_month": true,
+    "scope": {
+      "query": "humanoid robot manipulation",
+      "page_size": 1,
+      "work_type": "journal-article"
+    },
+    "limit": 200,
+    "industry": "Робототехника"
+  },
+  {
+    "provider": "arxiv",
+    "current_month": true,
+    "scope": {
+      "query": "humanoid robot manipulation",
+      "page_size": 100,
+      "work_type": "",
+      "category": "cs.RO"
+    },
+    "limit": 200,
+    "industry": "Робототехника"
+  },
+  {
+    "provider": "crossref",
+    "current_month": true,
+    "scope": {
+      "query": "predictive maintenance industrial",
+      "page_size": 1,
+      "work_type": "journal-article"
+    },
+    "limit": 200,
+    "industry": "Промышленность"
+  },
+  {
+    "provider": "arxiv",
+    "current_month": true,
+    "scope": {
+      "query": "predictive maintenance industrial",
+      "page_size": 100,
+      "work_type": "",
+      "category": "eess.SP"
+    },
+    "limit": 200,
+    "industry": "Промышленность"
+  },
+  {
+    "provider": "crossref",
+    "current_month": true,
+    "scope": {
+      "query": "semiconductor device fabrication",
+      "page_size": 1,
+      "work_type": "journal-article"
+    },
+    "limit": 200,
+    "industry": "Полупроводники и электроника"
+  },
+  {
+    "provider": "arxiv",
+    "current_month": true,
+    "scope": {
+      "query": "semiconductor device fabrication",
+      "page_size": 100,
+      "work_type": "",
+      "category": "physics.app-ph"
+    },
+    "limit": 200,
+    "industry": "Полупроводники и электроника"
+  },
+  {
+    "provider": "crossref",
+    "current_month": true,
+    "scope": {
+      "query": "quantum computing error correction",
+      "page_size": 1,
+      "work_type": "journal-article"
+    },
+    "limit": 200,
+    "industry": "Квантовые технологии"
+  },
+  {
+    "provider": "arxiv",
+    "current_month": true,
+    "scope": {
+      "query": "quantum computing error correction",
+      "page_size": 100,
+      "work_type": "",
+      "category": "quant-ph"
+    },
+    "limit": 200,
+    "industry": "Квантовые технологии"
+  },
+  {
+    "provider": "crossref",
+    "current_month": true,
+    "scope": {
+      "query": "6g wireless network",
+      "page_size": 1,
+      "work_type": "journal-article"
+    },
+    "limit": 200,
+    "industry": "Телеком"
+  },
+  {
+    "provider": "arxiv",
+    "current_month": true,
+    "scope": {
+      "query": "6g wireless network",
+      "page_size": 100,
+      "work_type": "",
+      "category": "eess.SP"
+    },
+    "limit": 200,
+    "industry": "Телеком"
+  },
+  {
+    "provider": "crossref",
+    "current_month": true,
+    "scope": {
+      "query": "low carbon cement construction",
+      "page_size": 1,
+      "work_type": "journal-article"
+    },
+    "limit": 200,
+    "industry": "Строительство и материалы"
+  }
+]

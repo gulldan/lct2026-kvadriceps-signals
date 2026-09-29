@@ -1,0 +1,204 @@
+{
+  "header": {
+    "kicker": "Radar and forecasts",
+    "title": "Theses",
+    "hintLabel": "What is a thesis",
+    "description": "What we look for on the radar and why."
+  },
+  "actions": {
+    "suggest": "Suggest theses from the knowledge base",
+    "suggestLoading": "Analyzing the knowledge base…",
+    "create": "Create thesis"
+  },
+  "suggestions": {
+    "title": "Theses suggested by the knowledge base",
+    "description": "Topics from your documents. Choose one to open a thesis form.",
+    "loading": "Analyzing the knowledge base…",
+    "error": "Failed to suggest theses",
+    "empty": "No theses to suggest yet — upload more documents and the system will find which technologies they develop.",
+    "aiNote": "Theses are suggested from the uploaded works — they are hints, not verified conclusions. Review before creating."
+  },
+  "list": {
+    "error": "Failed to load theses",
+    "viewAria": "Theses filter",
+    "activeTab": "Active ({{count}})",
+    "archivedTab": "Archive ({{count}})",
+    "archiveEmpty": "This list is empty for now."
+  },
+  "empty": {
+    "title": "Create your first thesis",
+    "description": "Describe what you look for on the radar and why, and which indicator will tell you the forecast has come true. The radar will find signals for the thesis, and the system will assemble hypotheses with links to sources."
+  },
+  "card": {
+    "hypotheses_one": "{{count}} hypothesis",
+    "hypotheses_other": "{{count}} hypotheses",
+    "drafts_one": "{{count}} draft",
+    "drafts_other": "{{count}} drafts",
+    "directionsCount_one": "{{count}} draft topic",
+    "directionsCount_other": "{{count}} draft topics",
+    "generate": "Generate hypotheses",
+    "generating": "Generating…",
+    "generateHint": "The system will study the knowledge-base documents and create testable hypotheses for this thesis — they will appear on the Hypotheses page.",
+    "directions": "Draft topics from documents",
+    "directionsHint": "Draft topics at the intersection of your documents: which processes and properties relate to this thesis. They open in a side panel.",
+    "findSignals": "Find signals for the thesis",
+    "findSignalsHint": "The radar will open results for “{{query}}”, and the search will be saved to the thesis.",
+    "edit": "Edit",
+    "delete": "Delete",
+    "archive": "Archive",
+    "archiveHint": "Remove from the working list without deleting anything",
+    "unarchive": "Restore from archive",
+    "bets": "Radar forecasts: {{summary}}",
+    "betStatus": {
+      "confirming_one": "{{count}} confirming",
+      "confirming_other": "{{count}} confirming",
+      "unchanged_one": "{{count}} unchanged",
+      "unchanged_other": "{{count}} unchanged",
+      "weakening_one": "{{count}} weakening",
+      "weakening_other": "{{count}} weakening"
+    },
+    "betLatest": "{{date}}: {{text}}"
+  },
+  "valueLine": {
+    "target": "target"
+  },
+  "direction": {
+    "increase": "increase",
+    "decrease": "decrease",
+    "maintain": "maintain"
+  },
+  "task": {
+    "generateTitle": "Hypothesis generation",
+    "generateSuccess": "Hypotheses created: {{count}}",
+    "generateError": "Failed to generate hypotheses"
+  },
+  "toast": {
+    "created": "Thesis created",
+    "createError": "Failed to create thesis",
+    "directionSaved": "Draft topic saved to hypothesis drafts",
+    "directionSavedHint": "You can find it on the Hypotheses page under the Drafts tab.",
+    "directionSaveError": "Failed to save the draft topic",
+    "updated": "Thesis updated",
+    "updateError": "Failed to save changes",
+    "deleted": "Thesis deleted",
+    "deleteError": "Failed to delete the thesis",
+    "archived": "Thesis archived",
+    "unarchived": "Thesis restored from archive"
+  },
+  "dialog": {
+    "title": "New thesis",
+    "name": "Title",
+    "namePlaceholder": "e.g. LLM agent security ready for an enterprise pilot",
+    "description": "Description",
+    "descriptionPlaceholder": "brief, optional",
+    "metric": "Indicator (how you will know the forecast came true)",
+    "metricPlaceholder": "e.g. technologies at pilot stage or later",
+    "unit": "Unit",
+    "unitPlaceholder": "pcs / mln ₽ / …",
+    "baseline": "Baseline",
+    "target": "Target value",
+    "targetPlaceholder": "optional",
+    "directionNote": "The direction of change is inferred automatically. You can leave the exact target value empty if it is not known yet.",
+    "functionArea": "Area",
+    "functionAreaPlaceholder": "e.g. AI security, optional",
+    "cancel": "Cancel",
+    "create": "Create",
+    "creating": "Creating…",
+    "editTitle": "Edit thesis",
+    "save": "Save",
+    "saving": "Saving…"
+  },
+  "sheet": {
+    "title": "Draft topics from the knowledge graph",
+    "intro": "The system links knowledge across documents: which process affects which property and how that relates to the thesis. Save a topic you like — it becomes a hypothesis draft on the Hypotheses page.",
+    "loading": "Searching the knowledge graph for connections…",
+    "error": "Failed to get draft topics",
+    "emptyTitle": "No draft topics yet",
+    "emptyDescription": "The knowledge graph has too few connections for this thesis yet. Upload more documents or generate hypotheses — the system will find topics at their intersection.",
+    "shownOf": "Showing {{shown}} of {{total}}. The limit can be changed in system settings.",
+    "aiNote": "Draft topics are suggested from connections in the knowledge base — they are hints, not confirmed conclusions."
+  },
+  "directionCard": {
+    "sources": "Sources:",
+    "document": "document",
+    "saved": "Saved to drafts",
+    "saving": "Saving…",
+    "save": "Save as hypothesis",
+    "savedHint": "it will appear under the Drafts tab on the Hypotheses page"
+  },
+  "delete": {
+    "title": "Delete thesis “{{title}}”?",
+    "body": "Hypotheses and draft topics created for this thesis will remain — they simply become unlinked. This cannot be undone.",
+    "confirm": "Delete",
+    "deleting": "Deleting…"
+  },
+  "wizard": {
+    "title": "New thesis and hypotheses",
+    "description": "Describe in your own words what you look for on the radar and why. You can attach materials — market reviews, reports, investment committee memos.",
+    "goal": "Thesis",
+    "newGoal": "New thesis — I'll describe it in text",
+    "prompt": "What we look for and why",
+    "promptExisting": "Clarifications and constraints",
+    "promptPlaceholder": "E.g.: technologies that will cut the cost of on-device AI inference several-fold within 2–3 years. We are interested in solutions with first pilots at device makers; by the end of 2027 we want two technologies at pilot stage or later.",
+    "promptExistingPlaceholder": "E.g.: horizon — until the end of 2027, open-license solutions only.",
+    "promptHint": "The system extracts the thesis title, indicator and constraints from your text.",
+    "addFiles": "Add files or drop them here",
+    "dropHere": "Drop the files to attach them to the thesis",
+    "filesNote": "Attached files become this thesis's input data: facts come from them, justification comes from the knowledge base.",
+    "fileIndexing": "Processing…",
+    "fileAlreadyInBase": "Already in the base",
+    "fileFailed": "Processing failed",
+    "fileRemove": "Remove file",
+    "count": "Hypotheses",
+    "create": "Create thesis",
+    "attach": "Attach to thesis",
+    "createAndGenerate": "Create and generate",
+    "generate": "Generate hypotheses",
+    "busy": "Please wait…",
+    "attachedToast": "Documents attached to the thesis",
+    "generatingToast": "Hypothesis generation for the thesis has started",
+    "suggestionMetric": "Indicator",
+    "editTitle": "Edit thesis",
+    "editDescription": "Your wording and attached materials. Change the text or files — and regenerate hypotheses if needed.",
+    "editHint": "If you change the text, the system re-extracts the title, indicator and constraints.",
+    "filesLabel": "Thesis materials",
+    "addMoreFiles": "Add more files",
+    "save": "Save",
+    "saveAndGenerate": "Save and generate",
+    "detachError": "Failed to remove the document"
+  },
+  "page": {
+    "back": "All theses",
+    "error": "Failed to load the thesis",
+    "radarQuery": "Radar query: {{query}}",
+    "hypotheses": "Hypotheses for the thesis",
+    "drafts": "Drafts for the thesis",
+    "directions": "Research directions for the thesis",
+    "betsTitle": "Forecasts under this thesis",
+    "betsEmpty": "No forecasts yet: create a hypothesis from a signal card in the radar results.",
+    "betStatus": {
+      "confirming": "confirming",
+      "unchanged": "unchanged",
+      "weakening": "weakening"
+    }
+  },
+  "signals": {
+    "title": "Signals for the thesis",
+    "description": "The saved results for the thesis query and searches opened from the thesis, with their best technologies.",
+    "empty": "No searches from this thesis yet. Press “Find signals for the thesis” — the radar will open results, and the search will appear here.",
+    "open": "Open results",
+    "searchedAt": "searched {{date}}",
+    "pending": "The results are not saved yet: the search is running or was interrupted. Open them to see the progress.",
+    "error": "Failed to read the results.",
+    "noCandidates": "The saved results contain no technologies.",
+    "tzStage": "Brief stage: {{stage}}",
+    "tzStages": {
+      "1": "concept or research",
+      "2": "prototype",
+      "3": "pilot",
+      "4": "early adoption"
+    },
+    "openedFrom": "Opened from the thesis “{{title}}”",
+    "backToThesis": "Back to the thesis"
+  }
+}

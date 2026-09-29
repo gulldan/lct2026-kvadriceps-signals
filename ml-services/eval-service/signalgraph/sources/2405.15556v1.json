@@ -1,0 +1,31 @@
+{
+  "native_id": "2405.15556v1",
+  "canonical_id": "arxiv:2405.15556",
+  "url": "https://arxiv.org/abs/2405.15556v1",
+  "title": "Certifiably Robust RAG against Retrieval Corruption",
+  "authors": [
+    "Chong Xiang",
+    "Tong Wu",
+    "Zexuan Zhong",
+    "David Wagner",
+    "Danqi Chen",
+    "Prateek Mittal"
+  ],
+  "published_at": "2024-05-24T13:44:25Z",
+  "version_updated_at": "2024-05-24T13:44:25Z",
+  "observed_at": "2026-09-08T22:52:12.195898+00:00",
+  "available_at": "2024-05-24T13:44:25Z",
+  "available_basis": "arXiv archived v1 release; historical reconstruction captured later",
+  "source_kind": "paper",
+  "provider": "arxiv",
+  "access_scope": "public",
+  "representation": "versioned_primary_abstract",
+  "text": "Retrieval-augmented generation (RAG) has been shown vulnerable to retrieval corruption attacks: an attacker can inject malicious passages into retrieval results to induce inaccurate responses. In this paper, we propose RobustRAG as the first defense framework against retrieval corruption attacks. The key insight of RobustRAG is an isolate-then-aggregate strategy: we get LLM responses from each passage in isolation and then securely aggregate these isolated responses. To instantiate RobustRAG, we design keyword-based and decoding-based algorithms for securely aggregating unstructured text responses. Notably, RobustRAG can achieve certifiable robustness: we can formally prove and certify that, for certain queries, RobustRAG can always return accurate responses, even when the attacker has full knowledge of our defense and can arbitrarily inject a small number of malicious passages. We evaluate RobustRAG on open-domain QA and long-form text generation datasets and demonstrate its effectiveness and generalizability across various tasks and datasets.",
+  "text_sha256": "a67ec3d24faf6673a20de9c8f38286f2424aa053cdd6c0d513152a79ac9ae485",
+  "raw_sha256": "e9cf2610ee63d5ed13ed8186244b12d017fc0b08860465833e21c8f98a5d8bbd",
+  "raw_file": "e9cf2610ee63d5ed13ed8186244b12d017fc0b08860465833e21c8f98a5d8bbd.xml",
+  "limitations": [
+    "Abstract-only evidence; author-reported results, not independent reproduction.",
+    "Later DOI, journal metadata and current citations are excluded from historical input."
+  ]
+}

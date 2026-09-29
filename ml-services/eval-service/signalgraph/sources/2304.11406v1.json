@@ -1,0 +1,29 @@
+{
+  "native_id": "2304.11406v1",
+  "canonical_id": "arxiv:2304.11406",
+  "url": "https://arxiv.org/abs/2304.11406v1",
+  "title": "LaMP: When Large Language Models Meet Personalization",
+  "authors": [
+    "Alireza Salemi",
+    "Sheshera Mysore",
+    "Michael Bendersky",
+    "Hamed Zamani"
+  ],
+  "published_at": "2023-04-22T13:42:04Z",
+  "version_updated_at": "2023-04-22T13:42:04Z",
+  "observed_at": "2026-09-08T22:21:57.265798+00:00",
+  "available_at": "2023-04-22T13:42:04Z",
+  "available_basis": "arXiv archived v1 release; historical reconstruction captured later",
+  "source_kind": "paper",
+  "provider": "arxiv",
+  "access_scope": "public",
+  "representation": "versioned_primary_abstract",
+  "text": "This paper highlights the importance of personalization in the current state of natural language understanding and generation and introduces the LaMP benchmark -- a novel benchmark for training and evaluating language models for producing personalized outputs. LaMP offers a comprehensive evaluation framework with diverse language tasks and multiple entries for each user profile. It consists of seven personalized tasks, spanning three classification and four text generation tasks. We also propose a retrieval augmentation approach that retrieves personalized items from user profiles to construct personalized prompts for large language models. Our baseline zero-shot and fine-tuned model results indicate that LMs utilizing profile augmentation outperform their counterparts that do not factor in profile information.",
+  "text_sha256": "eb7a7834d6c0195e5d1f0783423e20413f6cb4e5a66bd7818fc43119b6a30288",
+  "raw_sha256": "a21afb62ff2a2b5e5c7fa99d38deb7e33515f2a5050a5002f8218071f1c86a5a",
+  "raw_file": "a21afb62ff2a2b5e5c7fa99d38deb7e33515f2a5050a5002f8218071f1c86a5a.xml",
+  "limitations": [
+    "Abstract-only evidence; author-reported results, not independent reproduction.",
+    "Later DOI, journal metadata and current citations are excluded from historical input."
+  ]
+}

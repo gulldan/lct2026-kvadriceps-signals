@@ -1,0 +1,33 @@
+{
+  "native_id": "2402.07630v1",
+  "canonical_id": "arxiv:2402.07630",
+  "url": "https://arxiv.org/abs/2402.07630v1",
+  "title": "G-Retriever: Retrieval-Augmented Generation for Textual Graph Understanding and Question Answering",
+  "authors": [
+    "Xiaoxin He",
+    "Yijun Tian",
+    "Yifei Sun",
+    "Nitesh V. Chawla",
+    "Thomas Laurent",
+    "Yann LeCun",
+    "Xavier Bresson",
+    "Bryan Hooi"
+  ],
+  "published_at": "2024-02-12T13:13:04Z",
+  "version_updated_at": "2024-02-12T13:13:04Z",
+  "observed_at": "2026-09-08T22:28:42.905805+00:00",
+  "available_at": "2024-02-12T13:13:04Z",
+  "available_basis": "arXiv archived v1 release; historical reconstruction captured later",
+  "source_kind": "paper",
+  "provider": "arxiv",
+  "access_scope": "public",
+  "representation": "versioned_primary_abstract",
+  "text": "Given a graph with textual attributes, we enable users to `chat with their graph': that is, to ask questions about the graph using a conversational interface. In response to a user's questions, our method provides textual replies and highlights the relevant parts of the graph. While existing works integrate large language models (LLMs) and graph neural networks (GNNs) in various ways, they mostly focus on either conventional graph tasks (such as node, edge, and graph classification), or on answering simple graph queries on small or synthetic graphs. In contrast, we develop a flexible question-answering framework targeting real-world textual graphs, applicable to multiple applications including scene graph understanding, common sense reasoning, and knowledge graph reasoning. Toward this goal, we first develop our Graph Question Answering (GraphQA) benchmark with data collected from different tasks. Then, we propose our G-Retriever approach, which integrates the strengths of GNNs, LLMs, and Retrieval-Augmented Generation (RAG), and can be fine-tuned to enhance graph understanding via soft prompting. To resist hallucination and to allow for textual graphs that greatly exceed the LLM's context window size, G-Retriever performs RAG over a graph by formulating this task as a Prize-Collecting Steiner Tree optimization problem. Empirical evaluations show that our method outperforms baselines on textual graph tasks from multiple domains, scales well with larger graph sizes, and resists hallucination. (Our codes and datasets are available at: https://github.com/XiaoxinHe/G-Retriever.)",
+  "text_sha256": "4f517b4d50fb9a32bf60c8f421f5c0a96ccc9ae4a82b6c24da91429104098757",
+  "raw_sha256": "761969bd1361209348c93fad02bd6d4c2df715209d933d5edb33e9ba47c64193",
+  "raw_file": "761969bd1361209348c93fad02bd6d4c2df715209d933d5edb33e9ba47c64193.xml",
+  "limitations": [
+    "Abstract-only evidence; author-reported results, not independent reproduction.",
+    "Later DOI, journal metadata and current citations are excluded from historical input."
+  ]
+}

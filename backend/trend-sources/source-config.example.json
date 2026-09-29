@@ -1,0 +1,167 @@
+{
+  "history_months": 13,
+  "request_budget": 600,
+  "render_budget": 40,
+  "ep_documents": 40,
+  "ops_documents": 4000,
+  "ru_documents": 400,
+  "patent_terms": [
+    "retrieval augmented",
+    "speculative decoding",
+    "mixture of experts",
+    "model context protocol",
+    "hydrogen",
+    "perovskite",
+    "solid state batter",
+    "sodium ion",
+    "carbon capture",
+    "gene editing",
+    "crispr",
+    "bioprint",
+    "additive manufactur",
+    "large language model",
+    "人工智能",
+    "大语言模型",
+    "量子计算"
+  ],
+  "web": [
+    {
+      "name": "MIT Energy",
+      "url": "https://news.mit.edu/rss/topic/energy",
+      "kind": "rss",
+      "industry": "Energy"
+    },
+    {
+      "name": "MIT Materials",
+      "url": "https://news.mit.edu/rss/topic/materialsscienceandengineering",
+      "kind": "rss",
+      "industry": "Materials"
+    },
+    {
+      "name": "MIT Biotechnology",
+      "url": "https://news.mit.edu/rss/topic/biology",
+      "kind": "rss",
+      "industry": "Biotechnology"
+    },
+    {
+      "name": "MIT Manufacturing",
+      "url": "https://news.mit.edu/rss/topic/manufacturing",
+      "kind": "rss",
+      "industry": "Manufacturing"
+    },
+    {
+      "name": "MIT AI",
+      "url": "https://news.mit.edu/rss/topic/artificial-intelligence2",
+      "kind": "rss",
+      "industry": "AI"
+    },
+    {
+      "name": "MIT Health",
+      "url": "https://news.mit.edu/rss/topic/health-sciences-and-technology",
+      "kind": "rss",
+      "industry": "Health"
+    },
+    {
+      "name": "Google Research",
+      "url": "https://research.google/blog/rss/",
+      "kind": "feed",
+      "industry": "AI",
+      "pages": 20
+    },
+    {
+      "name": "Hugging Face",
+      "url": "https://huggingface.co/blog/feed.xml",
+      "kind": "feed",
+      "industry": "AI",
+      "pages": 20
+    },
+    {
+      "name": "PLOS Computational Biology",
+      "url": "https://journals.plos.org/ploscompbiol/feed/atom",
+      "kind": "feed",
+      "industry": "Computational biology and biotechnology",
+      "pages": 3
+    },
+    {
+      "name": "PLOS ONE",
+      "url": "https://journals.plos.org/plosone/feed/atom",
+      "kind": "feed",
+      "industry": "Scientific research",
+      "pages": 3
+    },
+    {
+      "name": "Frontiers in Materials",
+      "url": "https://www.frontiersin.org/journals/materials/rss",
+      "kind": "feed",
+      "industry": "Materials",
+      "pages": 3
+    },
+    {
+      "name": "Frontiers in Energy Research",
+      "url": "https://www.frontiersin.org/journals/energy-research/rss",
+      "kind": "feed",
+      "industry": "Energy",
+      "pages": 3
+    },
+    {
+      "name": "Frontiers in Artificial Intelligence",
+      "url": "https://www.frontiersin.org/journals/artificial-intelligence/rss",
+      "kind": "feed",
+      "industry": "AI",
+      "pages": 3
+    },
+    {
+      "name": "Quantum Journal",
+      "url": "https://quantum-journal.org/feed/",
+      "kind": "feed",
+      "industry": "Quantum computing",
+      "pages": 3
+    },
+    {
+      "name": "Google DeepMind Research",
+      "url": "https://deepmind.google/blog/rss.xml",
+      "kind": "feed",
+      "industry": "AI",
+      "pages": 3
+    },
+    {
+      "name": "NVIDIA Technical Research",
+      "url": "https://developer.nvidia.com/blog/feed/",
+      "kind": "feed",
+      "industry": "AI, computing and engineering",
+      "pages": 3
+    },
+    {
+      "name": "SciML Research Software",
+      "url": "https://sciml.ai/feed.xml",
+      "kind": "feed",
+      "industry": "Scientific machine learning",
+      "pages": 3
+    },
+    {
+      "name": "NASA features",
+      "url": "https://www.nasa.gov/wp-json/wp/v2/feature",
+      "kind": "wordpress",
+      "industry": "Space, energy, materials and manufacturing"
+    },
+    {
+      "name": "NASA news releases",
+      "url": "https://www.nasa.gov/wp-json/wp/v2/press-release",
+      "kind": "wordpress",
+      "industry": "Space, energy, materials and manufacturing"
+    }
+  ],
+  "allowed_domains": [
+    "news.mit.edu",
+    "nasa.gov",
+    "research.google",
+    "huggingface.co",
+    "journals.plos.org",
+    "www.frontiersin.org",
+    "quantum-journal.org",
+    "deepmind.google",
+    "developer.nvidia.com",
+    "sciml.ai"
+  ],
+  "cn_documents": 40
+}

@@ -1,0 +1,34 @@
+{
+  "brand": "技术雷达",
+  "skipToContent": "跳到主要内容",
+  "menu": {
+    "title": "主菜单",
+    "expand": "展开菜单",
+    "collapse": "收起菜单"
+  },
+  "groups": {
+    "work": "雷达",
+    "corpus": "自有知识库",
+    "admin": "管理"
+  },
+  "nav": {
+    "search": "文档搜索",
+    "hypotheses": "预测与假设",
+    "topics": "文档主题",
+    "goals": "论点",
+    "history": "历史",
+    "documents": "文档",
+    "overview": "概览",
+    "metrics": "指标",
+    "users": "用户",
+    "settings": "设置",
+    "trends": "弱信号"
+  },
+  "language": "界面语言",
+  "theme": {
+    "label": "界面主题",
+    "system": "跟随系统",
+    "light": "浅色",
+    "dark": "深色"
+  }
+}

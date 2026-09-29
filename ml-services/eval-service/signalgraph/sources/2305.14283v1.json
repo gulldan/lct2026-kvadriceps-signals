@@ -1,0 +1,30 @@
+{
+  "native_id": "2305.14283v1",
+  "canonical_id": "arxiv:2305.14283",
+  "url": "https://arxiv.org/abs/2305.14283v1",
+  "title": "Query Rewriting for Retrieval-Augmented Large Language Models",
+  "authors": [
+    "Xinbei Ma",
+    "Yeyun Gong",
+    "Pengcheng He",
+    "Hai Zhao",
+    "Nan Duan"
+  ],
+  "published_at": "2023-05-23T17:27:50Z",
+  "version_updated_at": "2023-05-23T17:27:50Z",
+  "observed_at": "2026-09-08T22:30:48.756477+00:00",
+  "available_at": "2023-05-23T17:27:50Z",
+  "available_basis": "arXiv archived v1 release; historical reconstruction captured later",
+  "source_kind": "paper",
+  "provider": "arxiv",
+  "access_scope": "public",
+  "representation": "versioned_primary_abstract",
+  "text": "Large Language Models (LLMs) play a powerful \\textit{Reader} of the \\textit{Retrieve-then-Read} pipeline, making great progress in knowledge-based open-domain tasks. This work introduces a new framework, \\textit{Rewrite-Retrieve-Read} that improves the retrieval-augmented method from the perspective of the query rewriting. Prior studies mostly contribute to adapt the retriever or stimulate the reader. Different from them, our approach pay attention of the query adaptation. Because the original query can not be always optimal to retrieve for the LLM, especially in the real world.(1) We first prompt an LLM to rewrite the queries, then conduct retrieval-augmented reading. (2) We further apply a small language model as a trainable rewriter, which rewrite the search query to cater to the frozen retriever and the LLM reader. To fine-tune the rewriter, we first use a pseudo data to conduct supervised warm-up training. Then the \\textit{Retrieve-then-Read} pipeline is modeled as a reinforcement learning context. The rewriter is further trained as a policy model by maximize the reward of the pipeline performance. Evaluation is performed on two downstream tasks, open-domain QA and multiple choice. Our framework is proved effective and scalable.",
+  "text_sha256": "f9adf45f98a299273a525b12e24cc5f7890a111958c701f68601efa1bad5fe07",
+  "raw_sha256": "fed7c85814f0c1ef814a75028e63acf00a3d5eaef67602d6e2123046f52b8f5e",
+  "raw_file": "fed7c85814f0c1ef814a75028e63acf00a3d5eaef67602d6e2123046f52b8f5e.xml",
+  "limitations": [
+    "Abstract-only evidence; author-reported results, not independent reproduction.",
+    "Later DOI, journal metadata and current citations are excluded from historical input."
+  ]
+}

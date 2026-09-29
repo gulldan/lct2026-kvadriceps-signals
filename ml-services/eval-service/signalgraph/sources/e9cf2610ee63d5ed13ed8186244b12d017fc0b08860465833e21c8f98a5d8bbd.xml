@@ -1,0 +1,197 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/La3Bmy3elSY7PrjJS8rOEXkMeFc</id>
+  <title>arXiv Query: search_query=&amp;id_list=2405.15556v1,2501.00879v1,2502.20330v1,2502.11101v1,2411.02959v1,2412.12775v1,2510.16715v1&amp;start=0&amp;max_results=7</title>
+  <updated>2026-09-08T22:52:12Z</updated>
+  <link href="https://arxiv.org/api/query?search_query=&amp;start=0&amp;max_results=7&amp;id_list=2405.15556v1,2501.00879v1,2502.20330v1,2502.11101v1,2411.02959v1,2412.12775v1,2510.16715v1" type="application/atom+xml"/>
+  <opensearch:itemsPerPage>7</opensearch:itemsPerPage>
+  <opensearch:totalResults>7</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <entry>
+    <id>http://arxiv.org/abs/2502.20330v1</id>
+    <title>Long-Context Inference with Retrieval-Augmented Speculative Decoding</title>
+    <updated>2025-02-27T17:59:36Z</updated>
+    <link href="https://arxiv.org/abs/2502.20330v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2502.20330v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>The emergence of long-context large language models (LLMs) offers a promising alternative to traditional retrieval-augmented generation (RAG) for processing extensive documents. However, the computational overhead of long-context inference, particularly in managing key-value (KV) caches, presents significant efficiency challenges. While Speculative Decoding (SD) traditionally accelerates inference using smaller draft models, its effectiveness diminishes substantially in long-context scenarios due to memory-bound KV cache operations. We present Retrieval-Augmented Speculative Decoding (RAPID), which leverages RAG for both accelerating and enhancing generation quality in long-context inference. RAPID introduces the RAG drafter-a draft LLM operating on shortened retrieval contexts-to speculate on the generation of long-context target LLMs. Our approach enables a new paradigm where same-scale or even larger LLMs can serve as RAG drafters while maintaining computational efficiency. To fully leverage the potentially superior capabilities from stronger RAG drafters, we develop an inference-time knowledge transfer dynamic that enriches the target distribution by RAG. Extensive experiments on the LLaMA-3.1 and Qwen2.5 backbones demonstrate that RAPID effectively integrates the strengths of both approaches, achieving significant performance improvements (e.g., from 39.33 to 42.83 on InfiniteBench for LLaMA-3.1-8B) with more than 2x speedups. Our analyses reveal that RAPID achieves robust acceleration beyond 32K context length and demonstrates superior generation quality in real-world applications.</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-02-27T17:59:36Z</published>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Guanzheng Chen</name>
+    </author>
+    <author>
+      <name>Qilong Feng</name>
+    </author>
+    <author>
+      <name>Jinjie Ni</name>
+    </author>
+    <author>
+      <name>Xin Li</name>
+    </author>
+    <author>
+      <name>Michael Qizhe Shieh</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2405.15556v1</id>
+    <title>Certifiably Robust RAG against Retrieval Corruption</title>
+    <updated>2024-05-24T13:44:25Z</updated>
+    <link href="https://arxiv.org/abs/2405.15556v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2405.15556v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Retrieval-augmented generation (RAG) has been shown vulnerable to retrieval corruption attacks: an attacker can inject malicious passages into retrieval results to induce inaccurate responses. In this paper, we propose RobustRAG as the first defense framework against retrieval corruption attacks. The key insight of RobustRAG is an isolate-then-aggregate strategy: we get LLM responses from each passage in isolation and then securely aggregate these isolated responses. To instantiate RobustRAG, we design keyword-based and decoding-based algorithms for securely aggregating unstructured text responses. Notably, RobustRAG can achieve certifiable robustness: we can formally prove and certify that, for certain queries, RobustRAG can always return accurate responses, even when the attacker has full knowledge of our defense and can arbitrarily inject a small number of malicious passages. We evaluate RobustRAG on open-domain QA and long-form text generation datasets and demonstrate its effectiveness and generalizability across various tasks and datasets.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CR" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-05-24T13:44:25Z</published>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Chong Xiang</name>
+    </author>
+    <author>
+      <name>Tong Wu</name>
+    </author>
+    <author>
+      <name>Zexuan Zhong</name>
+    </author>
+    <author>
+      <name>David Wagner</name>
+    </author>
+    <author>
+      <name>Danqi Chen</name>
+    </author>
+    <author>
+      <name>Prateek Mittal</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2412.12775v1</id>
+    <title>RemoteRAG: A Privacy-Preserving LLM Cloud RAG Service</title>
+    <updated>2024-12-17T10:36:52Z</updated>
+    <link href="https://arxiv.org/abs/2412.12775v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2412.12775v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Retrieval-augmented generation (RAG) improves the service quality of large language models by retrieving relevant documents from credible literature and integrating them into the context of the user query. Recently, the rise of the cloud RAG service has made it possible for users to query relevant documents conveniently. However, directly sending queries to the cloud brings potential privacy leakage. In this paper, we are the first to formally define the privacy-preserving cloud RAG service to protect the user query and propose RemoteRAG as a solution regarding privacy, efficiency, and accuracy. For privacy, we introduce $(n,ε)$-DistanceDP to characterize privacy leakage of the user query and the leakage inferred from relevant documents. For efficiency, we limit the search range from the total documents to a small number of selected documents related to a perturbed embedding generated from $(n,ε)$-DistanceDP, so that computation and communication costs required for privacy protection significantly decrease. For accuracy, we ensure that the small range includes target documents related to the user query with detailed theoretical analysis. Experimental results also demonstrate that RemoteRAG can resist existing embedding inversion attack methods while achieving no loss in retrieval under various settings. Moreover, RemoteRAG is efficient, incurring only $0.67$ seconds and $46.66$KB of data transmission ($2.72$ hours and $1.43$ GB with the non-optimized privacy-preserving scheme) when retrieving from a total of $10^6$ documents.</summary>
+    <category term="cs.IR" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CR" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-12-17T10:36:52Z</published>
+    <arxiv:primary_category term="cs.IR"/>
+    <author>
+      <name>Yihang Cheng</name>
+    </author>
+    <author>
+      <name>Lan Zhang</name>
+    </author>
+    <author>
+      <name>Junyang Wang</name>
+    </author>
+    <author>
+      <name>Mu Yuan</name>
+    </author>
+    <author>
+      <name>Yunhao Yao</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2501.00879v1</id>
+    <title>TrustRAG: Enhancing Robustness and Trustworthiness in RAG</title>
+    <updated>2025-01-01T15:57:34Z</updated>
+    <link href="https://arxiv.org/abs/2501.00879v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2501.00879v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Retrieval-Augmented Generation (RAG) systems enhance large language models (LLMs) by integrating external knowledge sources, enabling more accurate and contextually relevant responses tailored to user queries. However, these systems remain vulnerable to corpus poisoning attacks that can significantly degrade LLM performance through the injection of malicious content. To address these challenges, we propose TrustRAG, a robust framework that systematically filters compromised and irrelevant content before it reaches the language model. Our approach implements a two-stage defense mechanism: first, it employs K-means clustering to identify potential attack patterns in retrieved documents based on their semantic embeddings, effectively isolating suspicious content. Second, it leverages cosine similarity and ROUGE metrics to detect malicious documents while resolving discrepancies between the model's internal knowledge and external information through a self-assessment process. TrustRAG functions as a plug-and-play, training-free module that integrates seamlessly with any language model, whether open or closed-source, maintaining high contextual relevance while strengthening defenses against attacks. Through extensive experimental validation, we demonstrate that TrustRAG delivers substantial improvements in retrieval accuracy, efficiency, and attack resistance compared to existing approaches across multiple model architectures and datasets. We have made TrustRAG available as open-source software at \url{https://github.com/HuichiZhou/TrustRAG}.</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-01-01T15:57:34Z</published>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Huichi Zhou</name>
+    </author>
+    <author>
+      <name>Kin-Hei Lee</name>
+    </author>
+    <author>
+      <name>Zhonghao Zhan</name>
+    </author>
+    <author>
+      <name>Yue Chen</name>
+    </author>
+    <author>
+      <name>Zhenhao Li</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2411.02959v1</id>
+    <title>HtmlRAG: HTML is Better Than Plain Text for Modeling Retrieved Knowledge in RAG Systems</title>
+    <updated>2024-11-05T09:58:36Z</updated>
+    <link href="https://arxiv.org/abs/2411.02959v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2411.02959v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Retrieval-Augmented Generation (RAG) has been shown to improve knowledge capabilities and alleviate the hallucination problem of LLMs. The Web is a major source of external knowledge used in RAG systems, and many commercial systems such as ChatGPT and Perplexity have used Web search engines as their major retrieval systems. Typically, such RAG systems retrieve search results, download HTML sources of the results, and then extract plain texts from the HTML sources. Plain text documents or chunks are fed into the LLMs to augment the generation. However, much of the structural and semantic information inherent in HTML, such as headings and table structures, is lost during this plain-text-based RAG process. To alleviate this problem, we propose HtmlRAG, which uses HTML instead of plain text as the format of retrieved knowledge in RAG. We believe HTML is better than plain text in modeling knowledge in external documents, and most LLMs possess robust capacities to understand HTML. However, utilizing HTML presents new challenges. HTML contains additional content such as tags, JavaScript, and CSS specifications, which bring extra input tokens and noise to the RAG system. To address this issue, we propose HTML cleaning, compression, and pruning strategies, to shorten the HTML while minimizing the loss of information. Specifically, we design a two-step block-tree-based pruning method that prunes useless HTML blocks and keeps only the relevant part of the HTML. Experiments on six QA datasets confirm the superiority of using HTML in RAG systems.</summary>
+    <category term="cs.IR" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-11-05T09:58:36Z</published>
+    <arxiv:primary_category term="cs.IR"/>
+    <author>
+      <name>Jiejun Tan</name>
+    </author>
+    <author>
+      <name>Zhicheng Dou</name>
+    </author>
+    <author>
+      <name>Wen Wang</name>
+    </author>
+    <author>
+      <name>Mang Wang</name>
+    </author>
+    <author>
+      <name>Weipeng Chen</name>
+    </author>
+    <author>
+      <name>Ji-Rong Wen</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2510.16715v1</id>
+    <title>Right Answer at the Right Time - Temporal Retrieval-Augmented Generation via Graph Summarization</title>
+    <updated>2025-10-19T05:00:04Z</updated>
+    <link href="https://arxiv.org/abs/2510.16715v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2510.16715v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Question answering in temporal knowledge graphs requires retrieval that is both time-consistent and efficient. Existing RAG methods are largely semantic and typically neglect explicit temporal constraints, which leads to time-inconsistent answers and inflated token usage. We propose STAR-RAG, a temporal GraphRAG framework that relies on two key ideas: building a time-aligned rule graph and conducting propagation on this graph to narrow the search space and prioritize semantically relevant, time-consistent evidence. This design enforces temporal proximity during retrieval, reduces the candidate set of retrieval results, and lowers token consumption without sacrificing accuracy. Compared with existing temporal RAG approaches, STAR-RAG eliminates the need for heavy model training and fine-tuning, thereby reducing computational cost and significantly simplifying deployment.Extensive experiments on real-world temporal KG datasets show that our method achieves improved answer accuracy while consuming fewer tokens than strong GraphRAG baselines.</summary>
+    <category term="cs.IR" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-10-19T05:00:04Z</published>
+    <arxiv:primary_category term="cs.IR"/>
+    <author>
+      <name>Zulun Zhu</name>
+    </author>
+    <author>
+      <name>Haoyu Liu</name>
+    </author>
+    <author>
+      <name>Mengke He</name>
+    </author>
+    <author>
+      <name>Siqiang Luo</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2502.11101v1</id>
+    <title>CacheFocus: Dynamic Cache Re-Positioning for Efficient Retrieval-Augmented Generation</title>
+    <updated>2025-02-16T12:33:16Z</updated>
+    <link href="https://arxiv.org/abs/2502.11101v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2502.11101v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Large Language Models (LLMs) excel across a variety of language tasks yet are constrained by limited input lengths and high computational costs. Existing approaches\textemdash such as relative positional encodings (e.g., RoPE, ALiBi) and sliding window mechanisms\textemdash partially alleviate these issues but often require additional training or suffer from performance degradation with longer inputs. In this paper, we introduce \textbf{\textit{CacheFocus}}, a method that enhances length normalization and reduces inference latency without any further training. Our approach leverages query-independent, offline caching to efficiently reuse a Context KV Cache Store. We address the amplification of abnormal token distributions problem by re-positioning cached keys and introducing Layer-Adaptive Cache Pruning to discard low-relevance caches during pre-filling. Additionally, our Adaptive Positional Allocation Strategy dynamically reassigns cache positions to maximize the use of the available positional encoding range. Experiments on the Natural Questions and TriviaQA datasets demonstrate that CacheFocus outperforms alternative methods even when inputs exceed the $4$K limit of the \texttt{LLaMA-2} model, emphasizing its practical effectiveness for long-context LLMs. Moreover, even with large maximum input length of \texttt{Qwen2}, the performance of CacheFocus shows that it maintains consistent performance even as the number of documents increases, effectively managing long-text generation without degradation.</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2025-02-16T12:33:16Z</published>
+    <arxiv:comment>11 pages (Work in progress)</arxiv:comment>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Kun-Hui Lee</name>
+    </author>
+    <author>
+      <name>Eunhwan Park</name>
+    </author>
+    <author>
+      <name>Donghoon Han</name>
+    </author>
+    <author>
+      <name>Seung-Hoon Na</name>
+    </author>
+  </entry>
+</feed>

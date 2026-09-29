@@ -1,0 +1,37 @@
+[
+  {
+    "label": "origin",
+    "url": "https://api.github.com/repos/hiyouga/LlamaFactory",
+    "file": "raw/8f2e40fbbf5cb36974bda07467b170ef684aae486d2283b5b805f4190045dc05",
+    "sha256": "8f2e40fbbf5cb36974bda07467b170ef684aae486d2283b5b805f4190045dc05",
+    "observed_at": "2026-09-08T23:01:45.446863+00:00"
+  },
+  {
+    "label": "fork_listing",
+    "url": "https://api.github.com/repos/hiyouga/LlamaFactory/forks?per_page=2&sort=oldest",
+    "file": "raw/773a9a23f243ca8cbd9419b65124aad349123436f7cb08eb8b0b40883ce759bc",
+    "sha256": "773a9a23f243ca8cbd9419b65124aad349123436f7cb08eb8b0b40883ce759bc",
+    "observed_at": "2026-09-08T23:01:52.968529+00:00"
+  },
+  {
+    "label": "fork_646860958",
+    "url": "https://api.github.com/repositories/646860958",
+    "file": "raw/eae53051c86da8b0ea8e07fb4ae89c8f6bd1678fc3bb2fef1a729ec6d6c3300c",
+    "sha256": "eae53051c86da8b0ea8e07fb4ae89c8f6bd1678fc3bb2fef1a729ec6d6c3300c",
+    "observed_at": "2026-09-08T23:01:59.560419+00:00"
+  },
+  {
+    "label": "fork_647141252",
+    "url": "https://api.github.com/repositories/647141252",
+    "file": "raw/825fd37fb2c9bf7a40591269e2cfa6f8c88fe564e187c87110bc4c5491793824",
+    "sha256": "825fd37fb2c9bf7a40591269e2cfa6f8c88fe564e187c87110bc4c5491793824",
+    "observed_at": "2026-09-08T23:02:06.098911+00:00"
+  },
+  {
+    "label": "pinned_readme",
+    "url": "https://raw.githubusercontent.com/hiyouga/LlamaFactory/d6bb97ddff5d752d8b05aa099a168127c7253562/README.md",
+    "file": "raw/7c72bce01922b0ab829b3562b1196ed9d17d77d2543e562b871ee5e0f6f29b0a",
+    "sha256": "7c72bce01922b0ab829b3562b1196ed9d17d77d2543e562b871ee5e0f6f29b0a",
+    "observed_at": "2026-09-08T23:02:12.944813+00:00"
+  }
+]

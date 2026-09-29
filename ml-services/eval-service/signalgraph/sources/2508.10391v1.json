@@ -1,0 +1,33 @@
+{
+  "native_id": "2508.10391v1",
+  "canonical_id": "arxiv:2508.10391",
+  "url": "https://arxiv.org/abs/2508.10391v1",
+  "title": "LeanRAG: Knowledge-Graph-Based Generation with Semantic Aggregation and Hierarchical Retrieval",
+  "authors": [
+    "Yaoze Zhang",
+    "Rong Wu",
+    "Pinlong Cai",
+    "Xiaoman Wang",
+    "Guohang Yan",
+    "Song Mao",
+    "Ding Wang",
+    "Botian Shi"
+  ],
+  "published_at": "2025-08-14T06:47:18Z",
+  "version_updated_at": "2025-08-14T06:47:18Z",
+  "observed_at": "2026-09-08T22:44:17.493937+00:00",
+  "available_at": "2025-08-14T06:47:18Z",
+  "available_basis": "arXiv archived v1 release; historical reconstruction captured later",
+  "source_kind": "paper",
+  "provider": "arxiv",
+  "access_scope": "public",
+  "representation": "versioned_primary_abstract",
+  "text": "Retrieval-Augmented Generation (RAG) plays a crucial role in grounding Large Language Models by leveraging external knowledge, whereas the effectiveness is often compromised by the retrieval of contextually flawed or incomplete information. To address this, knowledge graph-based RAG methods have evolved towards hierarchical structures, organizing knowledge into multi-level summaries. However, these approaches still suffer from two critical, unaddressed challenges: high-level conceptual summaries exist as disconnected ``semantic islands'', lacking the explicit relations needed for cross-community reasoning; and the retrieval process itself remains structurally unaware, often degenerating into an inefficient flat search that fails to exploit the graph's rich topology. To overcome these limitations, we introduce LeanRAG, a framework that features a deeply collaborative design combining knowledge aggregation and retrieval strategies. LeanRAG first employs a novel semantic aggregation algorithm that forms entity clusters and constructs new explicit relations among aggregation-level summaries, creating a fully navigable semantic network. Then, a bottom-up, structure-guided retrieval strategy anchors queries to the most relevant fine-grained entities and then systematically traverses the graph's semantic pathways to gather concise yet contextually comprehensive evidence sets. The LeanRAG can mitigate the substantial overhead associated with path retrieval on graphs and minimizes redundant information retrieval. Extensive experiments on four challenging QA benchmarks with different domains demonstrate that LeanRAG significantly outperforming existing methods in response quality while reducing 46\\% retrieval redundancy. Code is available at: https://github.com/RaZzzyz/LeanRAG",
+  "text_sha256": "34e7180152f2cf3011985ced2a22278f2afc0f548f194a1f3d2468dce8eaf098",
+  "raw_sha256": "d794dda6b39c851dfacd873ec0a99c27f066067c23f5d12be94a6faa8de16f6c",
+  "raw_file": "d794dda6b39c851dfacd873ec0a99c27f066067c23f5d12be94a6faa8de16f6c.xml",
+  "limitations": [
+    "Abstract-only evidence; author-reported results, not independent reproduction.",
+    "Later DOI, journal metadata and current citations are excluded from historical input."
+  ]
+}

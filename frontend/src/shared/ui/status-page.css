@@ -1,0 +1,90 @@
+.status-artwork {
+  --status-bearing: -35deg;
+  overflow: visible;
+}
+
+/* Цифры — часть рисунка: единый масштаб сохраняет форму кода на узком экране. */
+.status-digit {
+  font-size: 264px;
+  font-weight: 600;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.status-digit-first {
+  transform: rotate(-8deg);
+}
+
+.status-digit-last {
+  transform: translateY(14px) rotate(12deg);
+}
+
+.status-orbit {
+  color: var(--brand-border);
+}
+
+.status-needle {
+  transform: rotate(var(--status-bearing));
+  animation: status-scan 1200ms var(--ease-standard);
+}
+
+.status-lost-signal {
+  animation: status-drift 1100ms var(--ease-standard);
+}
+
+.status-fragment-top {
+  transform: translate(-9px, -4px);
+}
+
+.status-fragment-middle {
+  transform: translateX(13px);
+}
+
+.status-fragment-bottom {
+  transform: translate(-5px, 5px);
+}
+
+.status-fragment {
+  animation: status-break 800ms var(--ease-standard);
+}
+
+.status-artwork[data-status="403"] .status-digit-last {
+  transform: rotate(-6deg);
+}
+
+.status-artwork[data-status="503"] .status-digit-last {
+  transform: translate(4px, 20px) rotate(16deg);
+}
+
+@keyframes status-scan {
+  from {
+    rotate: -90deg;
+  }
+  to {
+    rotate: 0deg;
+  }
+}
+
+@keyframes status-drift {
+  from {
+    translate: -35px 28px;
+  }
+  to {
+    translate: 0 0;
+  }
+}
+
+@keyframes status-break {
+  from {
+    transform: translate(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .status-needle,
+  .status-lost-signal,
+  .status-fragment {
+    animation: none;
+    transition: none;
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "frozen_before_method_implementation": true,
+  "assessor": "Codex; self assessment",
+  "sha256": {
+    "controls/captures.json": "3c74363c838cba48926aed4120a8088780765ee7205a297e5f20e66efa9dea1a",
+    "controls/raw/773a9a23f243ca8cbd9419b65124aad349123436f7cb08eb8b0b40883ce759bc": "773a9a23f243ca8cbd9419b65124aad349123436f7cb08eb8b0b40883ce759bc",
+    "controls/raw/7c72bce01922b0ab829b3562b1196ed9d17d77d2543e562b871ee5e0f6f29b0a": "7c72bce01922b0ab829b3562b1196ed9d17d77d2543e562b871ee5e0f6f29b0a",
+    "controls/raw/825fd37fb2c9bf7a40591269e2cfa6f8c88fe564e187c87110bc4c5491793824": "825fd37fb2c9bf7a40591269e2cfa6f8c88fe564e187c87110bc4c5491793824",
+    "controls/raw/8f2e40fbbf5cb36974bda07467b170ef684aae486d2283b5b805f4190045dc05": "8f2e40fbbf5cb36974bda07467b170ef684aae486d2283b5b805f4190045dc05",
+    "controls/raw/eae53051c86da8b0ea8e07fb4ae89c8f6bd1678fc3bb2fef1a729ec6d6c3300c": "eae53051c86da8b0ea8e07fb4ae89c8f6bd1678fc3bb2fef1a729ec6d6c3300c",
+    "controls/source-contracts.json": "314f106118673e5bdc4c926b1303cbf7f018ec1e8fc88aed82544d722c9787af",
+    "sources/2306.04500v1.json": "bd6622bf9971b9c6a1166714841da9c95572a4fb18f62095082a458ebcd81c48",
+    "sources/d794dda6b39c851dfacd873ec0a99c27f066067c23f5d12be94a6faa8de16f6c.xml": "d794dda6b39c851dfacd873ec0a99c27f066067c23f5d12be94a6faa8de16f6c"
+  }
+}

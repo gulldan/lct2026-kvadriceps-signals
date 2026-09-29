@@ -1,0 +1,30 @@
+{
+  "native_id": "2210.02928v1",
+  "canonical_id": "arxiv:2210.02928",
+  "url": "https://arxiv.org/abs/2210.02928v1",
+  "title": "MuRAG: Multimodal Retrieval-Augmented Generator for Open Question Answering over Images and Text",
+  "authors": [
+    "Wenhu Chen",
+    "Hexiang Hu",
+    "Xi Chen",
+    "Pat Verga",
+    "William W. Cohen"
+  ],
+  "published_at": "2022-10-06T13:58:03Z",
+  "version_updated_at": "2022-10-06T13:58:03Z",
+  "observed_at": "2026-09-08T21:43:42.308337+00:00",
+  "available_at": "2022-10-06T13:58:03Z",
+  "available_basis": "arXiv archived v1 release; historical reconstruction captured later",
+  "source_kind": "paper",
+  "provider": "arxiv",
+  "access_scope": "public",
+  "representation": "versioned_primary_abstract",
+  "text": "While language Models store a massive amount of world knowledge implicitly in their parameters, even very large models often fail to encode information about rare entities and events, while incurring huge computational costs. Recently, retrieval-augmented models, such as REALM, RAG, and RETRO, have incorporated world knowledge into language generation by leveraging an external non-parametric index and have demonstrated impressive performance with constrained model sizes. However, these methods are restricted to retrieving only textual knowledge, neglecting the ubiquitous amount of knowledge in other modalities like images -- much of which contains information not covered by any text. To address this limitation, we propose the first Multimodal Retrieval-Augmented Transformer (MuRAG), which accesses an external non-parametric multimodal memory to augment language generation. MuRAG is pre-trained with a mixture of large-scale image-text and text-only corpora using a joint contrastive and generative loss. We perform experiments on two different datasets that require retrieving and reasoning over both images and text to answer a given query: WebQA, and MultimodalQA. Our results show that MuRAG achieves state-of-the-art accuracy, outperforming existing models by 10-20\\% absolute on both datasets and under both distractor and full-wiki settings.",
+  "text_sha256": "74a423f7731b97d74cc388c3fe031317f64791e3324db83bc9215946ce38c837",
+  "raw_sha256": "da0db3489b7b13738f585fa8b557be5e8d78b3989e4963dbadced049c99a5ee4",
+  "raw_file": "da0db3489b7b13738f585fa8b557be5e8d78b3989e4963dbadced049c99a5ee4.xml",
+  "limitations": [
+    "Abstract-only evidence; author-reported results, not independent reproduction.",
+    "Later DOI, journal metadata and current citations are excluded from historical input."
+  ]
+}

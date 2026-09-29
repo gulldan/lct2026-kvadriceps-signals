@@ -1,0 +1,123 @@
+{
+  "bar": {
+    "queryAriaLabel": "搜索查询",
+    "placeholder": "就您的文档提问…",
+    "submit": "搜索"
+  },
+  "home": {
+    "focusTitle": "技术焦点",
+    "focusSource": "来自您的知识库"
+  },
+  "results": {
+    "openingSaved": "正在打开已保存的对话…",
+    "openSavedError": "无法打开已保存的对话。",
+    "turnFailed": "回答未生成或未保存。",
+    "askAgain": "再问一次",
+    "followUpPlaceholder": "继续提问或补充细节…",
+    "followUpAriaLabel": "追问",
+    "ask": "提问",
+    "preview": {
+      "ariaLabel": "文档预览",
+      "kicker": "原始来源",
+      "viewAriaLabel": "文档视图",
+      "tabOriginal": "文档",
+      "tabText": "文本",
+      "close": "关闭预览"
+    },
+    "title": "搜索文档",
+    "olderMessages": "较早的消息",
+    "olderMessagesError": "无法加载较早的消息，请重试。"
+  },
+  "answer": {
+    "questionAriaLabel": "问题：{{question}}",
+    "questionKicker": "问题",
+    "fromDocs": "回答基于您的文档整理而成",
+    "cached": "来自缓存",
+    "searching": "正在检索文档并整理回答——通常最多需要一分钟。",
+    "failed": "回答未生成——请重试。",
+    "abstain": {
+      "noSources": "未找到与您的查询相关的内容：已上传的文档中没有合适的片段。请尝试换一种问法或上传更多文档。",
+      "weakEvidence": "未找到与您的查询相关的内容：检索到的片段与问题关联太弱，因此未生成回答。请尝试换一种问法。"
+    },
+    "openSourceAt": "在此处打开来源 {{label}}",
+    "copied": "回答已复制",
+    "copy": "复制",
+    "basedOn_other": "回答引用了 {{count}} 个来源",
+    "sourcesHeading": "回答引用的来源 · {{count}}",
+    "noCitations": "回答未引用来源",
+    "retrievedHeading": "其他检索文档 · {{count}}",
+    "retrievedDescription": "这些文档由搜索检索到，但未在回答中引用。"
+  },
+  "sourceHypotheses": {
+    "heading": "来自这些来源的假设",
+    "empty": "这些来源尚未关联任何假设。",
+    "loadError": "无法加载来源的假设。",
+    "generate": "根据这些来源生成假设",
+    "generating": "正在生成假设——可能需要几分钟…",
+    "generated_other": "完成：根据这些来源生成 {{count}} 个新假设。",
+    "generateError": "假设生成失败——请重试。"
+  },
+  "trace": {
+    "title": "检索过程",
+    "stages": {
+      "embed": "解析查询",
+      "retrieve": "知识库检索",
+      "rerank": "重新排序",
+      "generate": "生成回答",
+      "total": "总计"
+    },
+    "candidates": "候选：按语义 {{dense}} 条 + 按词条 {{lexical}} 条",
+    "fused": "合并后 {{count}} 条",
+    "returned": "{{count}} 条进入回答",
+    "raptorExpanded": "部分来源通过文档摘要找到并展开为精确引文（{{count}}）",
+    "degraded": {
+      "rerankerUnavailable": "重新排序不可用——来源顺序为近似结果",
+      "embedUnavailable": "语义检索不可用——仅按精确词条检索",
+      "denseUnavailable": "语义检索不可用——仅按精确词条检索",
+      "lexicalUnavailable": "词条检索不可用——仅按语义检索",
+      "default": "部分检索以简化模式运行"
+    },
+    "uncitedRemoved": "已从回答中移除检索来源中不存在的引用：{{count}}",
+    "noTrace": "此回答未保存详细的检索记录。",
+    "cachedNote": "回答来自缓存",
+    "model": "模型 {{model}}",
+    "seconds": "{{value}} 秒",
+    "millis": "{{value}} 毫秒"
+  },
+  "history": {
+    "kicker": "知识库",
+    "title": "查询历史",
+    "description": "与平台的全部交互：弱信号检索与对知识库的提问。",
+    "filterPlaceholder": "在已加载的历史中搜索",
+    "filterAriaLabel": "搜索历史",
+    "scopeAriaLabel": "历史范围",
+    "scopeMine": "我的",
+    "scopeAll": "所有用户",
+    "loadingAriaLabel": "正在加载历史",
+    "loadError": "无法加载历史——请检查网络连接后重试。",
+    "emptyTitle": "历史暂时为空",
+    "emptyDescription": "您的搜索查询将显示在这里",
+    "notFoundTitle": "未找到任何内容",
+    "notFoundDescription": "请尝试其他关键词，或加载下一页历史",
+    "pageInfo_other": "第 {{page}} / {{pageCount}} 页 · 共 {{total}} 条查询",
+    "foundOnPage": "本页找到 {{count}} 条",
+    "byUser": "来自 {{name}}",
+    "source": {
+      "search": "搜索",
+      "trends": "弱信号"
+    },
+    "openAriaLabel": "打开：{{title}}",
+    "live": {
+      "meta": "来源：{{sources}} · 论文：{{papers}}",
+      "stale": "超过一天"
+    }
+  },
+  "entities": {
+    "heading": "与该问题相关的技术和方向",
+    "technologies": "目录中的技术",
+    "directions": "雷达方向",
+    "empty": "未找到与该问题匹配的技术或方向——可在雷达中打开该查询。",
+    "error": "无法加载技术和方向。",
+    "radar": "在雷达中打开查询"
+  }
+}

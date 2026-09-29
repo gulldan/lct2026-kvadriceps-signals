@@ -1,0 +1,34 @@
+{
+  "native_id": "2306.04500v1",
+  "canonical_id": "arxiv:2306.04500",
+  "url": "https://arxiv.org/abs/2306.04500v1",
+  "title": "Structure Factors for Hot Neutron Matter from Ab Initio Lattice Simulations with High-Fidelity Chiral Interactions",
+  "authors": [
+    "Yuan-Zhuo Ma",
+    "Zidu Lin",
+    "Bing-Nan Lu",
+    "Serdar Elhatisari",
+    "Dean Lee",
+    "Ning Li",
+    "Ulf-G. Meißner",
+    "Andrew W. Steiner",
+    "Qian Wang"
+  ],
+  "published_at": "2023-06-07T15:09:37Z",
+  "version_updated_at": "2023-06-07T15:09:37Z",
+  "observed_at": "2026-09-08T22:44:17.493937+00:00",
+  "available_at": "2023-06-07T15:09:37Z",
+  "available_basis": "arXiv archived v1 release; historical reconstruction captured later",
+  "source_kind": "paper",
+  "provider": "arxiv",
+  "access_scope": "public",
+  "representation": "versioned_primary_abstract",
+  "text": "We present the first ab initio lattice calculations of spin and density correlations in hot neutron matter using high-fidelity interactions at next-to-next-to-next-to-leading order (N3LO) in chiral effective field theory. These correlations have a large impact on neutrino heating and shock revival in core-collapse supernovae and are encapsulated in functions called structure factors. Unfortunately, calculations of structure factors using high-fidelity chiral interactions were well out of reach using existing computational methods. In this work, we solve the problem using a computational approach called the rank-one operator (RO) method. The RO method is a general technique with broad applications to simulations of fermionic many-body systems. It uses the fact that the determinant of a matrix composed of rank-one operators is at most linear in each operator coefficient. Using the RO method, we compute the vector and axial static structure factors for hot neutron matter as a function of temperature and density. The ab initio lattice results are in good agreement with virial expansion calculations at low densities and can be used to calibrate random phase approximation codes commonly used to estimate many-body effects on the neutrino opacity in core-collapse supernovae.",
+  "text_sha256": "bd3a48d2444c0f1e541f27b20d20efe5cc10251f22bd618a2abc38bc3a2b2cb6",
+  "raw_sha256": "d794dda6b39c851dfacd873ec0a99c27f066067c23f5d12be94a6faa8de16f6c",
+  "raw_file": "d794dda6b39c851dfacd873ec0a99c27f066067c23f5d12be94a6faa8de16f6c.xml",
+  "limitations": [
+    "Abstract-only evidence; author-reported results, not independent reproduction.",
+    "Later DOI, journal metadata and current citations are excluded from historical input."
+  ]
+}

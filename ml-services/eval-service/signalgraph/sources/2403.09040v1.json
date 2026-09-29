@@ -1,0 +1,29 @@
+{
+  "native_id": "2403.09040v1",
+  "canonical_id": "arxiv:2403.09040",
+  "url": "https://arxiv.org/abs/2403.09040v1",
+  "title": "RAGGED: Towards Informed Design of Retrieval Augmented Generation Systems",
+  "authors": [
+    "Jennifer Hsia",
+    "Afreen Shaikh",
+    "Zhiruo Wang",
+    "Graham Neubig"
+  ],
+  "published_at": "2024-03-14T02:26:31Z",
+  "version_updated_at": "2024-03-14T02:26:31Z",
+  "observed_at": "2026-09-08T22:30:48.756477+00:00",
+  "available_at": "2024-03-14T02:26:31Z",
+  "available_basis": "arXiv archived v1 release; historical reconstruction captured later",
+  "source_kind": "paper",
+  "provider": "arxiv",
+  "access_scope": "public",
+  "representation": "versioned_primary_abstract",
+  "text": "Retrieval-augmented generation (RAG) greatly benefits language models (LMs) by providing additional context for tasks such as document-based question answering (DBQA). Despite its potential, the power of RAG is highly dependent on its configuration, raising the question: What is the optimal RAG configuration? To answer this, we introduce the RAGGED framework to analyze and optimize RAG systems. On a set of representative DBQA tasks, we study two classic sparse and dense retrievers, and four top-performing LMs in encoder-decoder and decoder-only architectures. Through RAGGED, we uncover that different models suit substantially varied RAG setups. While encoder-decoder models monotonically improve with more documents, we find decoder-only models can only effectively use < 5 documents, despite often having a longer context window. RAGGED offers further insights into LMs' context utilization habits, where we find that encoder-decoder models rely more on contexts and are thus more sensitive to retrieval quality, while decoder-only models tend to rely on knowledge memorized during training.",
+  "text_sha256": "1e8abab0df05528c4e983fefb8f0e66c813ff8279d565e2ba214701331820238",
+  "raw_sha256": "fed7c85814f0c1ef814a75028e63acf00a3d5eaef67602d6e2123046f52b8f5e",
+  "raw_file": "fed7c85814f0c1ef814a75028e63acf00a3d5eaef67602d6e2123046f52b8f5e.xml",
+  "limitations": [
+    "Abstract-only evidence; author-reported results, not independent reproduction.",
+    "Later DOI, journal metadata and current citations are excluded from historical input."
+  ]
+}

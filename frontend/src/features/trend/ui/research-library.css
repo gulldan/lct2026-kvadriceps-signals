@@ -1,0 +1,185 @@
+.library-progress {
+  display: flex;
+  min-height: 0;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+.library-progress-header {
+  display: grid;
+  flex: none;
+  gap: 0.375rem 1rem;
+}
+.library-progress-tools {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+.library-progress-note {
+  grid-column: 1 / -1;
+  color: var(--muted-foreground);
+  line-height: 1.4;
+}
+.library-progress-body {
+  display: grid;
+  min-height: 0;
+  flex: 1;
+  grid-template-rows: minmax(0, 1fr) auto;
+  gap: 0.625rem;
+}
+.library-progress-stages {
+  min-width: 0;
+  min-height: 0;
+  align-self: start;
+}
+.library-progress-plan {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+.library-progress-group-label {
+  margin-bottom: 0.25rem;
+  line-height: 1.25;
+}
+.library-progress-source-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.125rem 0.75rem;
+}
+.library-progress-source {
+  position: relative;
+  display: grid;
+  min-width: 0;
+  grid-template-columns: 1.25rem minmax(0, 1fr);
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.125rem 0;
+  line-height: 1.3;
+}
+.library-progress-source[aria-current="step"]::before {
+  position: absolute;
+  top: 0.375rem;
+  bottom: 0.375rem;
+  left: -0.375rem;
+  width: 2px;
+  border-radius: var(--radius-sm);
+  background: var(--brand);
+  content: "";
+}
+.research-library {
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  contain: layout paint;
+  isolation: isolate;
+}
+.library-scene,
+.library-poster {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.library-scene canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.library-scene:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: -3px;
+}
+[data-exploring="true"] .library-scene {
+  cursor: grab;
+  touch-action: none;
+}
+[data-exploring="true"] .library-scene:active {
+  cursor: grabbing;
+}
+.library-camera-tools {
+  position: absolute;
+  right: 0.5rem;
+  bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+.library-poster {
+  object-fit: contain;
+  transition: opacity 400ms var(--ease-standard);
+}
+[data-renderer="ready"] .library-poster {
+  opacity: 0;
+}
+[data-renderer="fallback"] .library-scene {
+  visibility: hidden;
+}
+/* Галочка пройденного этапа появляется коротким «щелчком», чтобы переход был заметен. */
+.library-progress-done {
+  animation: library-done-pop var(--duration-normal) var(--ease-standard) both;
+}
+@keyframes library-done-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.4);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.library-result-reveal {
+  animation: library-result-reveal var(--duration-normal) var(--ease-standard) both;
+}
+@keyframes library-result-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media (min-width: 64rem) {
+  .library-progress-header {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+  .library-progress-tools {
+    align-self: start;
+    justify-content: flex-end;
+    gap: 0.75rem;
+  }
+  .library-progress-body {
+    grid-template-columns: minmax(0, 1fr) clamp(18rem, 24vw, 19rem);
+    grid-template-rows: minmax(0, 1fr);
+    gap: 1rem;
+  }
+  .library-progress-stages {
+    border-left: 1px solid var(--border);
+    padding-left: 1rem;
+  }
+  .library-progress-plan {
+    gap: 0.5rem;
+  }
+  .library-progress-source-list {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.125rem;
+  }
+  .library-progress-source {
+    padding: 0.25rem 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .library-poster {
+    transition: none;
+  }
+  .library-result-reveal,
+  .library-progress-done {
+    animation: none;
+  }
+}

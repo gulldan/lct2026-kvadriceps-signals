@@ -1,0 +1,37 @@
+{
+  "native_id": "2310.01352v1",
+  "canonical_id": "arxiv:2310.01352",
+  "url": "https://arxiv.org/abs/2310.01352v1",
+  "title": "RA-DIT: Retrieval-Augmented Dual Instruction Tuning",
+  "authors": [
+    "Xi Victoria Lin",
+    "Xilun Chen",
+    "Mingda Chen",
+    "Weijia Shi",
+    "Maria Lomeli",
+    "Rich James",
+    "Pedro Rodriguez",
+    "Jacob Kahn",
+    "Gergely Szilvasy",
+    "Mike Lewis",
+    "Luke Zettlemoyer",
+    "Scott Yih"
+  ],
+  "published_at": "2023-10-02T17:16:26Z",
+  "version_updated_at": "2023-10-02T17:16:26Z",
+  "observed_at": "2026-09-08T21:43:42.308337+00:00",
+  "available_at": "2023-10-02T17:16:26Z",
+  "available_basis": "arXiv archived v1 release; historical reconstruction captured later",
+  "source_kind": "paper",
+  "provider": "arxiv",
+  "access_scope": "public",
+  "representation": "versioned_primary_abstract",
+  "text": "Retrieval-augmented language models (RALMs) improve performance by accessing long-tail and up-to-date knowledge from external data stores, but are challenging to build. Existing approaches require either expensive retrieval-specific modifications to LM pre-training or use post-hoc integration of the data store that leads to suboptimal performance. We introduce Retrieval-Augmented Dual Instruction Tuning (RA-DIT), a lightweight fine-tuning methodology that provides a third option by retrofitting any LLM with retrieval capabilities. Our approach operates in two distinct fine-tuning steps: (1) one updates a pre-trained LM to better use retrieved information, while (2) the other updates the retriever to return more relevant results, as preferred by the LM. By fine-tuning over tasks that require both knowledge utilization and contextual awareness, we demonstrate that each stage yields significant performance improvements, and using both leads to additional gains. Our best model, RA-DIT 65B, achieves state-of-the-art performance across a range of knowledge-intensive zero- and few-shot learning benchmarks, significantly outperforming existing in-context RALM approaches by up to +8.9% in 0-shot setting and +1.4% in 5-shot setting on average.",
+  "text_sha256": "87d0805858b7dac26ff8b4129aa7054fbe42075fc8420b2f79752981a4e0a366",
+  "raw_sha256": "da0db3489b7b13738f585fa8b557be5e8d78b3989e4963dbadced049c99a5ee4",
+  "raw_file": "da0db3489b7b13738f585fa8b557be5e8d78b3989e4963dbadced049c99a5ee4.xml",
+  "limitations": [
+    "Abstract-only evidence; author-reported results, not independent reproduction.",
+    "Later DOI, journal metadata and current citations are excluded from historical input."
+  ]
+}

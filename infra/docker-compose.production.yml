@@ -1,0 +1,240 @@
+# Добавляется к базовому compose; сертификаты выдаёт отдельная доверенная CA.
+services:
+  db-service:
+    environment:
+      AUTOMATION_USERNAME: ${AUTOMATION_USERNAME:-automation}
+      AUTOMATION_PASSWORD: ${AUTOMATION_PASSWORD:?set a distinct automation password}
+      APP_ENV: production
+      GRPC_TLS_MODE: mtls
+      GRPC_SERVICE_ID: db-service
+      GRPC_TLS_CA: /run/rpc/ca.pem
+      GRPC_TLS_CERT: /run/rpc/service.pem
+      GRPC_TLS_KEY: /run/rpc/service.key
+    volumes:
+      - ${RAG_PKI_DIR:?set RAG_PKI_DIR}/ca.pem:/run/rpc/ca.pem:ro
+      - ${RAG_PKI_DIR:?set RAG_PKI_DIR}/db-service.pem:/run/rpc/service.pem:ro
+      - ${RAG_PKI_DIR:?set RAG_PKI_DIR}/db-service.key:/run/rpc/service.key:ro
+  auth:
+    environment:
+      APP_ENV: production
+      GRPC_TLS_MODE: mtls
+      GRPC_SERVICE_ID: auth
+      GRPC_TLS_CA: /run/rpc/ca.pem
+      GRPC_TLS_CERT: /run/rpc/service.pem
+      GRPC_TLS_KEY: /run/rpc/service.key
+    volumes:
+      - ${RAG_PKI_DIR:?set RAG_PKI_DIR}/ca.pem:/run/rpc/ca.pem:ro
+      - ${RAG_PKI_DIR:?set RAG_PKI_DIR}/auth.pem:/run/rpc/service.pem:ro
+      - ${RAG_PKI_DIR:?set RAG_PKI_DIR}/auth.key:/run/rpc/service.key:ro
+  main-service:
+    environment:
+      APP_ENV: production
+      GRPC_TLS_MODE: mtls
+      GRPC_SERVICE_ID: main-service
+      GRPC_TLS_CA: /run/rpc/ca.pem
+      GRPC_TLS_CERT: /run/rpc/service.pem
+      GRPC_TLS_KEY: /run/rpc/service.key
+    volumes:
+      - ${RAG_PKI_DIR:?set RAG_PKI_DIR}/ca.pem:/run/rpc/ca.pem:ro
+      - ${RAG_PKI_DIR:?set RAG_PKI_DIR}/main-service.pem:/run/rpc/service.pem:ro
+      - ${RAG_PKI_DIR:?set RAG_PKI_DIR}/main-service.key:/run/rpc/service.key:ro
+  llm-service:
+    environment:
+      APP_ENV: production
+      GRPC_TLS_MODE: mtls
+      GRPC_SERVICE_ID: llm-service
+      GRPC_TLS_CA: /run/rpc/ca.pem
+      GRPC_TLS_CERT: /run/rpc/service.pem
+      GRPC_TLS_KEY: /run/rpc/service.key
+    volumes:
+      - ${RAG_PKI_DIR:?set RAG_PKI_DIR}/ca.pem:/run/rpc/ca.pem:ro
+      - ${RAG_PKI_DIR:?set RAG_PKI_DIR}/llm-service.pem:/run/rpc/service.pem:ro
+      - ${RAG_PKI_DIR:?set RAG_PKI_DIR}/llm-service.key:/run/rpc/service.key:ro
+  chunk-splitter:
+    environment:
+      APP_ENV: production
+      GRPC_TLS_MODE: mtls
+      GRPC_SERVICE_ID: chunk-splitter
+      GRPC_TLS_CA: /run/rpc/ca.pem
+      GRPC_TLS_CERT: /run/rpc/service.pem
+      GRPC_TLS_KEY: /run/rpc/service.key
+    volumes:
+      - ${RAG_PKI_DIR:?set RAG_PKI_DIR}/ca.pem:/run/rpc/ca.pem:ro
+      - ${RAG_PKI_DIR:?set RAG_PKI_DIR}/chunk-splitter.pem:/run/rpc/service.pem:ro
+      - ${RAG_PKI_DIR:?set RAG_PKI_DIR}/chunk-splitter.key:/run/rpc/service.key:ro
+  archive-worker:
+    environment:
+      APP_ENV: production
+      GRPC_TLS_MODE: mtls
+      GRPC_SERVICE_ID: archive-worker
+      GRPC_TLS_CA: /run/rpc/ca.pem
+      GRPC_TLS_CERT: /run/rpc/service.pem
+      GRPC_TLS_KEY: /run/rpc/service.key
+    volumes:
+      - ${RAG_PKI_DIR:?set RAG_PKI_DIR}/ca.pem:/run/rpc/ca.pem:ro
+      - ${RAG_PKI_DIR:?set RAG_PKI_DIR}/archive-worker.pem:/run/rpc/service.pem:ro
+      - ${RAG_PKI_DIR:?set RAG_PKI_DIR}/archive-worker.key:/run/rpc/service.key:ro
+  pdf-parser:
+    environment:
+      APP_ENV: production
+      GRPC_TLS_MODE: mtls
+      GRPC_SERVICE_ID: pdf-parser
+      GRPC_TLS_CA: /run/rpc/ca.pem
+      GRPC_TLS_CERT: /run/rpc/service.pem
+      GRPC_TLS_KEY: /run/rpc/service.key
+    volumes:
+      - ${RAG_PKI_DIR:?set RAG_PKI_DIR}/ca.pem:/run/rpc/ca.pem:ro
+      - ${RAG_PKI_DIR:?set RAG_PKI_DIR}/pdf-parser.pem:/run/rpc/service.pem:ro
+      - ${RAG_PKI_DIR:?set RAG_PKI_DIR}/pdf-parser.key:/run/rpc/service.key:ro
+  office-parser:
+    environment:
+      APP_ENV: production
+      GRPC_TLS_MODE: mtls
+      GRPC_SERVICE_ID: office-parser
+      GRPC_TLS_CA: /run/rpc/ca.pem
+      GRPC_TLS_CERT: /run/rpc/service.pem
+      GRPC_TLS_KEY: /run/rpc/service.key
+    volumes:
+      - ${RAG_PKI_DIR:?set RAG_PKI_DIR}/ca.pem:/run/rpc/ca.pem:ro
+      - ${RAG_PKI_DIR:?set RAG_PKI_DIR}/office-parser.pem:/run/rpc/service.pem:ro
+      - ${RAG_PKI_DIR:?set RAG_PKI_DIR}/office-parser.key:/run/rpc/service.key:ro
+  email-parser:
+    environment:
+      APP_ENV: production
+      GRPC_TLS_MODE: mtls
+      GRPC_SERVICE_ID: email-parser
+      GRPC_TLS_CA: /run/rpc/ca.pem
+      GRPC_TLS_CERT: /run/rpc/service.pem
+      GRPC_TLS_KEY: /run/rpc/service.key
+    volumes:
+      - ${RAG_PKI_DIR:?set RAG_PKI_DIR}/ca.pem:/run/rpc/ca.pem:ro
+      - ${RAG_PKI_DIR:?set RAG_PKI_DIR}/email-parser.pem:/run/rpc/service.pem:ro
+      - ${RAG_PKI_DIR:?set RAG_PKI_DIR}/email-parser.key:/run/rpc/service.key:ro
+  db-parser:
+    environment:
+      APP_ENV: production
+      GRPC_TLS_MODE: mtls
+      GRPC_SERVICE_ID: db-parser
+      GRPC_TLS_CA: /run/rpc/ca.pem
+      GRPC_TLS_CERT: /run/rpc/service.pem
+      GRPC_TLS_KEY: /run/rpc/service.key
+    volumes:
+      - ${RAG_PKI_DIR:?set RAG_PKI_DIR}/ca.pem:/run/rpc/ca.pem:ro
+      - ${RAG_PKI_DIR:?set RAG_PKI_DIR}/db-parser.pem:/run/rpc/service.pem:ro
+      - ${RAG_PKI_DIR:?set RAG_PKI_DIR}/db-parser.key:/run/rpc/service.key:ro
+  ocr-service:
+    environment:
+      APP_ENV: production
+      GRPC_TLS_MODE: mtls
+      GRPC_SERVICE_ID: ocr-service
+      GRPC_TLS_CA: /run/rpc/ca.pem
+      GRPC_TLS_CERT: /run/rpc/service.pem
+      GRPC_TLS_KEY: /run/rpc/service.key
+    volumes:
+      - ${RAG_PKI_DIR:?set RAG_PKI_DIR}/ca.pem:/run/rpc/ca.pem:ro
+      - ${RAG_PKI_DIR:?set RAG_PKI_DIR}/ocr-service.pem:/run/rpc/service.pem:ro
+      - ${RAG_PKI_DIR:?set RAG_PKI_DIR}/ocr-service.key:/run/rpc/service.key:ro
+  vlm-service:
+    environment:
+      APP_ENV: production
+      GRPC_TLS_MODE: mtls
+      GRPC_SERVICE_ID: vlm-service
+      GRPC_TLS_CA: /run/rpc/ca.pem
+      GRPC_TLS_CERT: /run/rpc/service.pem
+      GRPC_TLS_KEY: /run/rpc/service.key
+    volumes:
+      - ${RAG_PKI_DIR:?set RAG_PKI_DIR}/ca.pem:/run/rpc/ca.pem:ro
+      - ${RAG_PKI_DIR:?set RAG_PKI_DIR}/vlm-service.pem:/run/rpc/service.pem:ro
+      - ${RAG_PKI_DIR:?set RAG_PKI_DIR}/vlm-service.key:/run/rpc/service.key:ro
+  source-harvester:
+    environment:
+      APP_ENV: production
+      GRPC_TLS_MODE: mtls
+      GRPC_SERVICE_ID: source-harvester
+      GRPC_TLS_CA: /run/rpc/ca.pem
+      GRPC_TLS_CERT: /run/rpc/service.pem
+      GRPC_TLS_KEY: /run/rpc/service.key
+    volumes:
+      - ${RAG_PKI_DIR:?set RAG_PKI_DIR}/ca.pem:/run/rpc/ca.pem:ro
+      - ${RAG_PKI_DIR:?set RAG_PKI_DIR}/source-harvester.pem:/run/rpc/service.pem:ro
+      - ${RAG_PKI_DIR:?set RAG_PKI_DIR}/source-harvester.key:/run/rpc/service.key:ro
+  cluster-worker:
+    environment:
+      RAG_USER: ${AUTOMATION_USERNAME:-automation}
+      RAG_PASS: ${AUTOMATION_PASSWORD:?set a distinct automation password}
+      APP_ENV: production
+      GRPC_TLS_MODE: mtls
+      GRPC_SERVICE_ID: cluster-worker
+      GRPC_TLS_CA: /run/rpc/ca.pem
+      GRPC_TLS_CERT: /run/rpc/service.pem
+      GRPC_TLS_KEY: /run/rpc/service.key
+    volumes:
+      - ${RAG_PKI_DIR:?set RAG_PKI_DIR}/ca.pem:/run/rpc/ca.pem:ro
+      - ${RAG_PKI_DIR:?set RAG_PKI_DIR}/cluster-worker.pem:/run/rpc/service.pem:ro
+      - ${RAG_PKI_DIR:?set RAG_PKI_DIR}/cluster-worker.key:/run/rpc/service.key:ro
+  discovery-worker:
+    environment:
+      RAG_USER: ${AUTOMATION_USERNAME:-automation}
+      RAG_PASS: ${AUTOMATION_PASSWORD:?set a distinct automation password}
+      APP_ENV: production
+      GRPC_TLS_MODE: mtls
+      GRPC_SERVICE_ID: discovery-worker
+      GRPC_TLS_CA: /run/rpc/ca.pem
+      GRPC_TLS_CERT: /run/rpc/service.pem
+      GRPC_TLS_KEY: /run/rpc/service.key
+    volumes:
+      - ${RAG_PKI_DIR:?set RAG_PKI_DIR}/ca.pem:/run/rpc/ca.pem:ro
+      - ${RAG_PKI_DIR:?set RAG_PKI_DIR}/discovery-worker.pem:/run/rpc/service.pem:ro
+      - ${RAG_PKI_DIR:?set RAG_PKI_DIR}/discovery-worker.key:/run/rpc/service.key:ro
+  raptor-worker:
+    environment:
+      RAG_USER: ${AUTOMATION_USERNAME:-automation}
+      RAG_PASS: ${AUTOMATION_PASSWORD:?set a distinct automation password}
+      APP_ENV: production
+      GRPC_TLS_MODE: mtls
+      GRPC_SERVICE_ID: raptor-worker
+      GRPC_TLS_CA: /run/rpc/ca.pem
+      GRPC_TLS_CERT: /run/rpc/service.pem
+      GRPC_TLS_KEY: /run/rpc/service.key
+    volumes:
+      - ${RAG_PKI_DIR:?set RAG_PKI_DIR}/ca.pem:/run/rpc/ca.pem:ro
+      - ${RAG_PKI_DIR:?set RAG_PKI_DIR}/raptor-worker.pem:/run/rpc/service.pem:ro
+      - ${RAG_PKI_DIR:?set RAG_PKI_DIR}/raptor-worker.key:/run/rpc/service.key:ro
+  signal-worker:
+    environment:
+      APP_ENV: production
+      GRPC_TLS_MODE: mtls
+      GRPC_SERVICE_ID: signal-worker
+      GRPC_TLS_CA: /run/rpc/ca.pem
+      GRPC_TLS_CERT: /run/rpc/service.pem
+      GRPC_TLS_KEY: /run/rpc/service.key
+    volumes:
+      - ${RAG_PKI_DIR:?set RAG_PKI_DIR}/ca.pem:/run/rpc/ca.pem:ro
+      - ${RAG_PKI_DIR:?set RAG_PKI_DIR}/signal-worker.pem:/run/rpc/service.pem:ro
+      - ${RAG_PKI_DIR:?set RAG_PKI_DIR}/signal-worker.key:/run/rpc/service.key:ro
+  graph-compute:
+    environment:
+      APP_ENV: production
+      GRPC_TLS_MODE: mtls
+      GRPC_SERVICE_ID: graph-compute
+      GRPC_TLS_CA: /run/rpc/ca.pem
+      GRPC_TLS_CERT: /run/rpc/service.pem
+      GRPC_TLS_KEY: /run/rpc/service.key
+    volumes:
+      - ${RAG_PKI_DIR:?set RAG_PKI_DIR}/ca.pem:/run/rpc/ca.pem:ro
+      - ${RAG_PKI_DIR:?set RAG_PKI_DIR}/graph-compute.pem:/run/rpc/service.pem:ro
+      - ${RAG_PKI_DIR:?set RAG_PKI_DIR}/graph-compute.key:/run/rpc/service.key:ro
+  eval-service:
+    environment:
+      APP_ENV: production
+      RAG_USER: ${AUTOMATION_USERNAME:-automation}
+      RAG_PASS: ${AUTOMATION_PASSWORD:?set a distinct automation password}
+      RAG_ADMIN_USER: ${AUTOMATION_USERNAME:-automation}
+      RAG_ADMIN_PASS: ${AUTOMATION_PASSWORD:?set a distinct automation password}
+  itc-worker:
+    environment:
+      APP_ENV: production
+      RAG_USER: ${AUTOMATION_USERNAME:-automation}
+      RAG_PASS: ${AUTOMATION_PASSWORD:?set a distinct automation password}
+      RAG_ADMIN_USER: ${AUTOMATION_USERNAME:-automation}
+      RAG_ADMIN_PASS: ${AUTOMATION_PASSWORD:?set a distinct automation password}

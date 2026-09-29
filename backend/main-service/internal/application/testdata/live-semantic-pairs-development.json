@@ -1,0 +1,137 @@
+{
+  "threshold": 0.84,
+  "pairs": [
+    {
+      "id": "agent-harness-synonym",
+      "domain": "software",
+      "relation": "same_idea",
+      "label_source": "Codex-authored engineering fixture; not human expert or independent holdout",
+      "split": "development_synthetic",
+      "a_title": "Agent harnesses",
+      "b_title": "Execution scaffolds for agents",
+      "a_abstract": "A runtime executes an autonomous agent in isolated tasks and records tool calls to test reliability.",
+      "b_abstract": "A test runner executes autonomous agents in sandboxed tasks and logs their tool use to measure reliability."
+    },
+    {
+      "id": "battery-synonym",
+      "domain": "energy",
+      "relation": "same_idea",
+      "label_source": "Codex-authored engineering fixture; not human expert or independent holdout",
+      "split": "development_synthetic",
+      "a_title": "All-solid-state batteries",
+      "b_title": "Solid electrolyte cells",
+      "a_abstract": "Rechargeable lithium batteries replace the liquid electrolyte with a solid ionic conductor.",
+      "b_abstract": "Lithium battery cells use a solid ion-conducting electrolyte instead of liquid electrolyte."
+    },
+    {
+      "id": "carbon-synonym",
+      "domain": "climate",
+      "relation": "same_idea",
+      "label_source": "Codex-authored engineering fixture; not human expert or independent holdout",
+      "split": "development_synthetic",
+      "a_title": "Direct air capture with solid amines",
+      "b_title": "Ambient CO2 removal using amine sorbents",
+      "a_abstract": "Amine-functionalized porous solid sorbents adsorb carbon dioxide from ambient air and release it during regeneration.",
+      "b_abstract": "Solid porous sorbents bearing amine groups bind atmospheric carbon dioxide; heating regenerates the sorbent."
+    },
+    {
+      "id": "printing-synonym",
+      "domain": "manufacturing",
+      "relation": "same_idea",
+      "label_source": "Codex-authored engineering fixture; not human expert or independent holdout",
+      "split": "development_synthetic",
+      "a_title": "Laser powder bed fusion",
+      "b_title": "Selective laser melting",
+      "a_abstract": "A laser scans successive layers of metal powder in a powder bed to fuse a three dimensional object.",
+      "b_abstract": "A scanned laser selectively melts successive layers of metal powder to manufacture a three dimensional part."
+    },
+    {
+      "id": "gene-synonym",
+      "domain": "biotechnology",
+      "relation": "same_idea",
+      "label_source": "Codex-authored engineering fixture; not human expert or independent holdout",
+      "split": "development_synthetic",
+      "a_title": "CRISPR adenine base editing",
+      "b_title": "A to G conversion with a Cas guided deaminase",
+      "a_abstract": "A guide RNA directs a Cas nickase fused to adenine deaminase to convert A:T base pairs to G:C without a double strand break.",
+      "b_abstract": "Adenine deaminase attached to an RNA guided Cas nickase converts A:T into G:C at a target DNA position without making a double strand break."
+    },
+    {
+      "id": "quantum-synonym",
+      "domain": "physics",
+      "relation": "same_idea",
+      "label_source": "Codex-authored engineering fixture; not human expert or independent holdout",
+      "split": "development_synthetic",
+      "a_title": "Nitrogen vacancy diamond magnetometry",
+      "b_title": "Magnetic field sensing with NV centers",
+      "a_abstract": "The spin resonance of nitrogen vacancy centers in diamond is read optically to measure magnetic fields.",
+      "b_abstract": "Optically detected spin resonance in diamond NV defects is used as a sensor for magnetic field strength."
+    },
+    {
+      "id": "battery-methods",
+      "domain": "energy",
+      "relation": "different_idea",
+      "label_source": "Codex-authored engineering fixture; not human expert or independent holdout",
+      "split": "development_synthetic",
+      "a_title": "Improving battery energy density",
+      "b_title": "Improving battery energy density",
+      "a_abstract": "A sodium ion cathode stores sodium by reversible intercalation into layered transition metal oxide crystals.",
+      "b_abstract": "A lithium sulfur conversion cathode stores lithium through a sulfur to lithium sulfide conversion reaction."
+    },
+    {
+      "id": "gene-methods",
+      "domain": "biotechnology",
+      "relation": "different_idea",
+      "label_source": "Codex-authored engineering fixture; not human expert or independent holdout",
+      "split": "development_synthetic",
+      "a_title": "Precise CRISPR genome editing",
+      "b_title": "Precise CRISPR genome editing",
+      "a_abstract": "A Cas9 nuclease creates a double strand DNA break repaired by homology directed repair with a donor template.",
+      "b_abstract": "A Cas nickase and deaminase convert a single base chemically without a donor DNA template or double strand break."
+    },
+    {
+      "id": "rag-methods",
+      "domain": "software",
+      "relation": "different_idea",
+      "label_source": "Codex-authored engineering fixture; not human expert or independent holdout",
+      "split": "development_synthetic",
+      "a_title": "Retrieval augmented question answering",
+      "b_title": "Retrieval augmented question answering",
+      "a_abstract": "The retriever selects dense vector nearest neighbor text chunks independently and concatenates them before generation.",
+      "b_abstract": "A graph traversal selects paths between linked entities and aggregates community summaries before generation."
+    },
+    {
+      "id": "quantum-methods",
+      "domain": "physics",
+      "relation": "different_idea",
+      "label_source": "Codex-authored engineering fixture; not human expert or independent holdout",
+      "split": "development_synthetic",
+      "a_title": "Photonic quantum devices",
+      "b_title": "Photonic quantum devices",
+      "a_abstract": "Optical interferometry estimates an unknown phase as a sensing task.",
+      "b_abstract": "Photonic controlled gates implement universal quantum computation on encoded qubits."
+    },
+    {
+      "id": "cross-industry",
+      "domain": "mixed",
+      "relation": "different_idea",
+      "label_source": "Codex-authored engineering fixture; not human expert or independent holdout",
+      "split": "development_synthetic",
+      "a_title": "Gene editing with CRISPR",
+      "b_title": "Laser additive manufacturing",
+      "a_abstract": "An RNA guided nuclease edits DNA inside living cells.",
+      "b_abstract": "A high power laser fuses metal powder to create mechanical parts."
+    },
+    {
+      "id": "hydrogen-methods",
+      "domain": "energy",
+      "relation": "different_idea",
+      "label_source": "Codex-authored engineering fixture; not human expert or independent holdout",
+      "split": "development_synthetic",
+      "a_title": "Clean hydrogen production",
+      "b_title": "Clean hydrogen production",
+      "a_abstract": "An alkaline electrolyzer splits liquid water with electrical energy into hydrogen and oxygen.",
+      "b_abstract": "Steam methane reforming reacts methane and steam catalytically and captures the resulting carbon dioxide."
+    }
+  ]
+}

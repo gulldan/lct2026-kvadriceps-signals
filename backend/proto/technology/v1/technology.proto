@@ -1,0 +1,194 @@
+syntax = "proto3";
+
+// Package rag.technology.v1 is the handover contract for the technology layer:
+// what was extracted from one source revision, which stable technology it
+// belongs to, what proves it, how technologies relate and what is measured
+// about a direction. The unit of observation is the technology, never the work.
+package rag.technology.v1;
+
+option go_package = "github.com/example/rag-mvp/pkg/genproto/technology/v1;technologyv1";
+
+// TechnologyRef and WorkRef are separate messages on purpose: a canonical work
+// and a technology are different identities, and a caller cannot pass one where
+// the other is expected.
+message TechnologyRef { string technology_id = 1; }
+
+message WorkRef { string canonical_work_id = 1; }
+
+// Locator reproduces a quote in the stored normalized text. Offsets are Unicode
+// code points, end exclusive; page and element are added when the source has them.
+message Locator {
+  string section = 1;
+  optional int32 page = 2;
+  int32 start_char = 3;
+  int32 end_char = 4;
+  string element_path = 5; // HTML element path, or patent claim/paragraph number
+  string snapshot_sha256 = 6;
+}
+
+// Evidence is a verbatim quote of one source revision. It never points at a
+// revision other than the one its mention was extracted from.
+message Evidence {
+  string evidence_id = 1;
+  string mention_id = 2;
+  string source_revision_id = 3;
+  Locator locator = 4;
+  string quote = 5;
+}
+
+// FieldEvidence binds one extracted field to the quotes that support it.
+// An unsupported field is dropped or sent to review, never filled from the
+// model's own knowledge.
+message FieldEvidence {
+  string field = 1; // name | description | role | problem | mechanism | inputs | outputs
+  repeated string evidence_ids = 2;
+}
+
+// TechnologyMention is one technology as stated in one source revision.
+// role follows EX-06; extraction_status follows EX-09.
+message TechnologyMention {
+  string mention_id = 1;
+  TechnologyRef technology = 2;
+  string source_revision_id = 3;
+  string extractor_version = 4;
+  string schema_version = 5;
+  string name = 6;
+  string name_kind = 7; // authored | descriptive
+  string description = 8;
+  string role = 9;
+  string problem = 10;
+  string mechanism = 11;
+  repeated string inputs = 12;
+  repeated string outputs = 13;
+  string extraction_status = 14; // complete | partial | needs_review | unresolved_mention
+  repeated Evidence evidence = 15;
+  repeated FieldEvidence field_evidence = 16;
+}
+
+message TechnologyAlias {
+  string value = 1;
+  string language = 2; // ru | en
+  string basis = 3;    // source_text | normalization | translation | expert_review
+}
+
+// Technology is the stable entity mentions are merged into.
+message Technology {
+  string technology_id = 1;
+  string canonical_name = 2;
+  string name_kind = 3;
+  string description = 4;
+  string validation_status = 5; // proposed | verified | needs_review
+  string method_version = 6;
+  repeated TechnologyAlias aliases = 7;
+  string created_at = 8;
+  string updated_at = 9;
+}
+
+// TechnologyRelation carries its basis and the version of the decision that
+// produced it: a similar subject alone never establishes same_as.
+message TechnologyRelation {
+  TechnologyRef technology = 1;
+  TechnologyRef related = 2;
+  string relation = 3; // same_as | variant_of | part_of | uses | competes_with | applies_to
+  string basis = 4;
+  string decision_version = 5;
+}
+
+// EvidenceEvent dates one observable event about a technology. A partial date
+// keeps its precision instead of being completed into a day.
+message EvidenceEvent {
+  string event_id = 1;
+  TechnologyRef technology = 2;
+  string source_revision_id = 3;
+  string event_type = 4; // research | claimed_invention | implementation | release | pilot | deployment
+  string event_date = 5;
+  string date_precision = 6; // day | month | year | unknown
+  string organization = 7;
+  string evidence_group = 8;
+  string modality = 9; // reported_measurement | author_claim | planned
+  string depends_on_event_id = 10;
+}
+
+// ExtractionCoverage reports what the extractor actually read. A fully
+// processed revision with no technologies is a result, not a missing record.
+message ExtractionCoverage {
+  string status = 1; // complete | partial | no_technology | needs_review | failed
+  string reason_code = 2;
+  int32 processed_sections = 3;
+  int32 total_sections = 4;
+}
+
+// TechnologyExtractionResult is what the extraction worker returns for one
+// source revision: the §4.1 contract, typed.
+message TechnologyExtractionResult {
+  string schema_version = 1;
+  string source_revision_id = 2;
+  string extraction_version = 3;
+  ExtractionCoverage coverage = 4;
+  repeated TechnologyMention technologies = 5;
+  repeated Evidence evidence = 6;
+  string extracted_at = 7;
+}
+
+// MetricInterval carries its level and method; an unknown interval is absent,
+// never a zero-width one.
+message MetricInterval {
+  double low = 1;
+  double high = 2;
+  double level = 3;
+  string method = 4;
+}
+
+// Metric is the ME-11 return contract. value is absent when the metric is not
+// measurable; reason_codes then say why, and the absence never becomes a zero.
+message Metric {
+  string name = 1;
+  optional double value = 2;
+  string unit = 3;
+  string status = 4; // measured | unavailable | not_comparable
+  repeated string reason_codes = 5;
+  string window_start = 6;
+  string window_end = 7;
+  optional double numerator = 8;
+  optional double denominator = 9;
+  int32 sample_size = 10;
+  repeated string coverage_refs = 11;
+  string method_version = 12;
+  string computed_at = 13;
+  MetricInterval interval = 14;
+}
+
+// TrendDirection is a cluster of technologies with its measured profile. Its
+// members are technologies; the works that support them are referenced
+// separately, so support is never counted twice through a work.
+message TrendDirection {
+  string direction_id = 1;
+  string title = 2;
+  string description = 3;
+  string membership_version = 4;
+  repeated TechnologyRef technologies = 5;
+  repeated WorkRef supporting_works = 6;
+  repeated Metric metrics = 7;
+  string stage = 8; // established | emerging_signal | early_signal | candidate_for_review | unassessed
+  repeated string limitations = 9;
+}
+
+// TechnologyService is the read side of the technology layer. Payloads are
+// strictly validated v1 JSON envelopes from platform/pkg/extractdoc, the same
+// shape the other private control planes use; the messages above remain the
+// typed handover contract for the extraction worker.
+service TechnologyService {
+  // ReadRevision returns every technology one source revision yielded, with
+  // the roles, quotes and the honest completeness of the extraction.
+  rpc ReadRevision(Envelope) returns (Envelope);
+  // Review records one expert correction; Reviews reads the history of one
+  // technology. A correction is versioned, never an edit in place.
+  // ReadTechnology projects one technology onto what the reader may read.
+  // Search answers one page of the catalogue as the reader may see it.
+  rpc Search(Envelope) returns (Envelope);
+  rpc ReadTechnology(Envelope) returns (Envelope);
+  rpc Review(Envelope) returns (Envelope);
+  rpc Reviews(Envelope) returns (Envelope);
+}
+
+message Envelope { string json = 1; }

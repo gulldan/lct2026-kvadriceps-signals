@@ -1,0 +1,29 @@
+{
+  "native_id": "2203.05115v1",
+  "canonical_id": "arxiv:2203.05115",
+  "url": "https://arxiv.org/abs/2203.05115v1",
+  "title": "Internet-augmented language models through few-shot prompting for open-domain question answering",
+  "authors": [
+    "Angeliki Lazaridou",
+    "Elena Gribovskaya",
+    "Wojciech Stokowiec",
+    "Nikolai Grigorev"
+  ],
+  "published_at": "2022-03-10T02:24:14Z",
+  "version_updated_at": "2022-03-10T02:24:14Z",
+  "observed_at": "2026-09-08T22:21:57.265798+00:00",
+  "available_at": "2022-03-10T02:24:14Z",
+  "available_basis": "arXiv archived v1 release; historical reconstruction captured later",
+  "source_kind": "paper",
+  "provider": "arxiv",
+  "access_scope": "public",
+  "representation": "versioned_primary_abstract",
+  "text": "In this work, we aim to capitalize on the unique few-shot capabilities offered by large-scale language models to overcome some of their challenges with respect to grounding to factual and up-to-date information. Motivated by semi-parametric language models, which ground their decisions in external retrieved evidence, we use few-shot prompting to learn to condition language models on information returned from the web using Google Search, a broad and constantly updated knowledge source. Our approach does not involve fine-tuning or learning additional parameters, thus making it applicable to any language model, offering like this a strong baseline. Indeed, we find that language models conditioned on the web surpass performance of closed-book models of similar, or even larger, model sizes in open-domain question answering. Finally, we find that increasing the inference-time compute of models, achieved via using multiple retrieved evidences to generate multiple answers followed by a reranking stage, alleviates generally decreased performance of smaller few-shot language models. All in all, our findings suggest that it might be beneficial to slow down the race towards the biggest model and instead shift the attention towards finding more effective ways to use models, including but not limited to better prompting or increasing inference-time compute.",
+  "text_sha256": "a50c3a5d8b0b345501d56d00cb4df5eaa53d89937f5bbe93d789a6949af0d934",
+  "raw_sha256": "a21afb62ff2a2b5e5c7fa99d38deb7e33515f2a5050a5002f8218071f1c86a5a",
+  "raw_file": "a21afb62ff2a2b5e5c7fa99d38deb7e33515f2a5050a5002f8218071f1c86a5a.xml",
+  "limitations": [
+    "Abstract-only evidence; author-reported results, not independent reproduction.",
+    "Later DOI, journal metadata and current citations are excluded from historical input."
+  ]
+}

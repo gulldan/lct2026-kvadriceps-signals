@@ -1,0 +1,29 @@
+{
+  "native_id": "2412.15605v1",
+  "canonical_id": "arxiv:2412.15605",
+  "url": "https://arxiv.org/abs/2412.15605v1",
+  "title": "Don't Do RAG: When Cache-Augmented Generation is All You Need for Knowledge Tasks",
+  "authors": [
+    "Brian J Chan",
+    "Chao-Ting Chen",
+    "Jui-Hung Cheng",
+    "Hen-Hsen Huang"
+  ],
+  "published_at": "2024-12-20T06:58:32Z",
+  "version_updated_at": "2024-12-20T06:58:32Z",
+  "observed_at": "2026-09-08T22:44:17.493937+00:00",
+  "available_at": "2024-12-20T06:58:32Z",
+  "available_basis": "arXiv archived v1 release; historical reconstruction captured later",
+  "source_kind": "paper",
+  "provider": "arxiv",
+  "access_scope": "public",
+  "representation": "versioned_primary_abstract",
+  "text": "Retrieval-augmented generation (RAG) has gained traction as a powerful approach for enhancing language models by integrating external knowledge sources. However, RAG introduces challenges such as retrieval latency, potential errors in document selection, and increased system complexity. With the advent of large language models (LLMs) featuring significantly extended context windows, this paper proposes an alternative paradigm, cache-augmented generation (CAG) that bypasses real-time retrieval. Our method involves preloading all relevant resources, especially when the documents or knowledge for retrieval are of a limited and manageable size, into the LLM's extended context and caching its runtime parameters. During inference, the model utilizes these preloaded parameters to answer queries without additional retrieval steps. Comparative analyses reveal that CAG eliminates retrieval latency and minimizes retrieval errors while maintaining context relevance. Performance evaluations across multiple benchmarks highlight scenarios where long-context LLMs either outperform or complement traditional RAG pipelines. These findings suggest that, for certain applications, particularly those with a constrained knowledge base, CAG provide a streamlined and efficient alternative to RAG, achieving comparable or superior results with reduced complexity.",
+  "text_sha256": "00f5881302c221cfa5493a780cc5e16b5fa4401a676366b020c5e2fe807e4ce0",
+  "raw_sha256": "d794dda6b39c851dfacd873ec0a99c27f066067c23f5d12be94a6faa8de16f6c",
+  "raw_file": "d794dda6b39c851dfacd873ec0a99c27f066067c23f5d12be94a6faa8de16f6c.xml",
+  "limitations": [
+    "Abstract-only evidence; author-reported results, not independent reproduction.",
+    "Later DOI, journal metadata and current citations are excluded from historical input."
+  ]
+}

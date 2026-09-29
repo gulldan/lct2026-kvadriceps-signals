@@ -1,0 +1,2 @@
+# PDF fixtures contain fixed-width cross-reference records; preserve their bytes.
+tests/fixtures/*.pdf binary

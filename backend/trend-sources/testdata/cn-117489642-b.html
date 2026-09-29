@@ -1,0 +1,1314 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>CN117489642B - 适用于燃料电池氢循环系统的临界模式引射器及设计方法 
+        - Google Patents</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="referrer" content="origin-when-crossorigin">
+    <link rel="canonical" href="https://patents.google.com/patent/CN117489642B/zh">
+    <meta name="description" content="
+     本发明公开了一种适用于燃料电池氢循环系统的临界模式引射器的设计方法及系统，包括：基于燃料电池阳极通道质量守恒方程，得到喷嘴喉部的一次流质量流量；计算喷嘴喉部直径；确定喷嘴出口直径和喷嘴出口位置；判断引射器的临界背压是否高于相应的阳极进口压力，若是，继续判断氢气再循环比是否满足要求；否则，更改引射器一次流最高和最低工作压力，重新计算喷嘴喉部直径，喷嘴出口直径和喷嘴出口位置；若氢气再循环比满足要求，则引射器设计完成，否则，更改等面积混合室直径、等面积混合室长度和扩散室长度，直到氢气再循环比满足要求，引射器设计完成。本发明有助于燃料电池系统变工况运行的临界模式引射器设计。 
+     
+   
+   ">
+    <meta name="DC.type" content="patent">
+    <meta name="DC.title" content="适用于燃料电池氢循环系统的临界模式引射器及设计方法 
+       ">
+    <meta name="DC.date" content="2023-10-31" scheme="dateSubmitted">
+    <meta name="DC.description" content="
+     本发明公开了一种适用于燃料电池氢循环系统的临界模式引射器的设计方法及系统，包括：基于燃料电池阳极通道质量守恒方程，得到喷嘴喉部的一次流质量流量；计算喷嘴喉部直径；确定喷嘴出口直径和喷嘴出口位置；判断引射器的临界背压是否高于相应的阳极进口压力，若是，继续判断氢气再循环比是否满足要求；否则，更改引射器一次流最高和最低工作压力，重新计算喷嘴喉部直径，喷嘴出口直径和喷嘴出口位置；若氢气再循环比满足要求，则引射器设计完成，否则，更改等面积混合室直径、等面积混合室长度和扩散室长度，直到氢气再循环比满足要求，引射器设计完成。本发明有助于燃料电池系统变工况运行的临界模式引射器设计。 
+     
+   
+   ">
+    <meta name="citation_patent_application_number" content="CN:202311438674.5A">
+    <meta name="citation_patent_number" content="CN:117489642:B">
+    <meta name="DC.date" content="2026-05-19" scheme="issue">
+    <meta name="DC.contributor" content="王雷" scheme="inventor">
+    <meta name="DC.contributor" content="宋亚杰" scheme="inventor">
+    <meta name="DC.contributor" content="张敏" scheme="inventor">
+    <meta name="DC.contributor" content="王琴鹤" scheme="inventor">
+    <meta name="DC.contributor" content="Shandong University" scheme="assignee">
+    <meta name="DC.relation" content="CN:106529712:A" scheme="references">
+    <meta name="DC.relation" content="CN:111271326:A" scheme="references">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,400italic,500,500italic,700">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Product+Sans">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700">
+
+    <style>
+      
+      #gb { top: 15px; left: auto; right: 0; width: auto; min-width: 135px !important; }   
+      body { transition: none; }
+    </style>
+    <script></script>
+
+    <script>
+      window.version = 'patent-search.search_20260819_RC00';
+
+      function sendFeedback() {
+        userfeedback.api.startFeedback({
+          'productId': '713680',
+          'bucket': 'patent-search-web',
+          'productVersion': window.version,
+        });
+      }
+
+      window.experiments = {};
+      window.experiments.patentCountries = "ae,ag,al,am,ao,ap,ar,at,au,aw,az,ba,bb,bd,be,bf,bg,bh,bj,bn,bo,br,bw,bx,by,bz,ca,cf,cg,ch,ci,cl,cm,cn,co,cr,cs,cu,cy,cz,dd,de,dj,dk,dm,do,dz,ea,ec,ee,eg,em,ep,es,fi,fr,ga,gb,gc,gd,ge,gh,gm,gn,gq,gr,gt,gw,hk,hn,hr,hu,ib,id,ie,il,in,ir,is,it,jo,jp,ke,kg,kh,km,kn,kp,kr,kw,kz,la,lc,li,lk,lr,ls,lt,lu,lv,ly,ma,mc,md,me,mg,mk,ml,mn,mo,mr,mt,mw,mx,my,mz,na,ne,ng,ni,nl,no,nz,oa,om,pa,pe,pg,ph,pl,pt,py,qa,ro,rs,ru,rw,sa,sc,sd,se,sg,si,sk,sl,sm,sn,st,su,sv,sy,sz,td,tg,th,tj,tm,tn,tr,tt,tw,tz,ua,ug,us,uy,uz,vc,ve,vn,wo,yu,za,zm,zw";
+      
+      
+      window.experiments.keywordWizard = true;
+      
+      
+      
+      window.experiments.definitions = true;
+      window.experiments.plogs = true;
+
+      window.Polymer = {
+        dom: 'shady',
+        lazyRegister: true,
+      };
+    </script>
+
+    <script src="//www.gstatic.com/patent-search/frontend/patent-search.search_20260819_RC00/scs/compiled_dir/webcomponentsjs/webcomponents-lite.min.js"></script>
+    <link rel="import" href="//www.gstatic.com/patent-search/frontend/patent-search.search_20260819_RC00/scs/compiled_dir/search-app-vulcanized.html">
+  </head>
+  <body unresolved>
+    
+    
+    <script></script>
+    <script src="//www.gstatic.com/patent-search/frontend/patent-search.search_20260819_RC00/scs/compiled_dir/search-app-vulcanized.js"></script>
+    <search-app>
+      
+      
+
+      <article class="result" itemscope itemtype="http://schema.org/ScholarlyArticle">
+  <h1 itemprop="pageTitle">CN117489642B - 适用于燃料电池氢循环系统的临界模式引射器及设计方法 
+        - Google Patents</h1>
+  <span itemprop="title">适用于燃料电池氢循环系统的临界模式引射器及设计方法 
+       </span>
+
+  <meta itemprop="type" content="patent">
+  
+  <h2>Info</h2>
+
+  <dl>
+    <dt>Publication number</dt>
+    <dd itemprop="publicationNumber">CN117489642B</dd>
+    <meta itemprop="numberWithoutCodes" content="117489642">
+    <meta itemprop="kindCode" content="B">
+    <meta itemprop="publicationDescription" content="Granted patent for invention">
+    <span>CN117489642B</span>
+    <span>CN202311438674.5A</span>
+    <span>CN202311438674A</span>
+    <span>CN117489642B</span>
+    <span>CN 117489642 B</span>
+    <span>CN117489642 B</span>
+    <span>CN 117489642B</span>
+    <span>  </span>
+    <span> </span>
+    <span> </span>
+    <span>CN 202311438674 A</span>
+    <span>CN202311438674 A</span>
+    <span>CN 202311438674A</span>
+    <span>CN 117489642 B</span>
+    <span>CN117489642 B</span>
+    <span>CN 117489642B</span>
+
+    <dt>Authority</dt>
+    <dd itemprop="countryCode">CN</dd>
+    <dd itemprop="countryName">China</dd>
+
+    <dt>Prior art keywords</dt>
+    <dd itemprop="priorArtKeywords" repeat>ejector</dd>
+    <dd itemprop="priorArtKeywords" repeat>nozzle</dd>
+    <dd itemprop="priorArtKeywords" repeat>hydrogen</dd>
+    <dd itemprop="priorArtKeywords" repeat>fuel cell</dd>
+    <dd itemprop="priorArtKeywords" repeat>diameter</dd>
+
+    <dt>Prior art date</dt>
+    <dd><time itemprop="priorArtDate" datetime="2023-10-31">2023-10-31</time></dd>
+
+    <dt>Legal status (The legal status is an assumption and is not a legal conclusion. Google has not performed a legal analysis and makes no representation as to the accuracy of the status listed.)</dt>
+    <dd itemprop="legalStatusIfi" itemscope>
+      <span itemprop="status">Active</span>
+    </dd>
+  </dl>
+
+  <dt>Application number</dt>
+  <dd itemprop="applicationNumber">CN202311438674.5A</dd>
+
+  <dt>Other languages</dt>
+  <dd itemprop="otherLanguages" itemscope repeat>
+    <a href="/patent/CN117489642B/en">
+      <span itemprop="name">English</span> (<span itemprop="code">en</span>)
+    </a>
+  </dd>
+
+  <dt>Other versions</dt>
+  <dd itemprop="directAssociations" itemscope repeat>
+    <a href="/patent/CN117489642A/zh">
+      <span itemprop="publicationNumber">CN117489642A</span>
+      (<span itemprop="primaryLanguage">zh</span>
+    </a>
+  </dd>
+
+  <dt>Inventor</dt>
+  <dd itemprop="inventor" repeat>王雷</dd>
+  <dd itemprop="inventor" repeat>宋亚杰</dd>
+  <dd itemprop="inventor" repeat>张敏</dd>
+  <dd itemprop="inventor" repeat>王琴鹤</dd>
+
+  <dt>Current Assignee (The listed assignees may be inaccurate. Google has not performed a legal analysis and makes no representation or warranty as to the accuracy of the list.)</dt>
+  <dd itemprop="assigneeCurrent" repeat>
+    Shandong University
+  </dd>
+
+  <dt>Original Assignee</dt>
+  <dd itemprop="assigneeOriginal" repeat>Shandong University</dd>
+
+  
+
+  <dt>Filing date</dt>
+  <dd><time itemprop="filingDate" datetime="2023-10-31">2023-10-31</time></dd>
+
+  <dt>Publication date</dt>
+  <dd><time itemprop="publicationDate" datetime="2026-05-19">2026-05-19</time></dd>
+
+  
+  <dd itemprop="events" itemscope repeat>
+    <time itemprop="date" datetime="2023-10-31">2023-10-31</time>
+    <span itemprop="title">Application filed by Shandong University</span>
+    <span itemprop="type">filed</span>
+    <span itemprop="critical" content="true" bool>Critical</span>
+    
+    
+    
+    <span itemprop="assigneeSearch">Shandong University</span>
+  </dd>
+  <dd itemprop="events" itemscope repeat>
+    <time itemprop="date" datetime="2023-10-31">2023-10-31</time>
+    <span itemprop="title">Priority to CN202311438674.5A</span>
+    <span itemprop="type">priority</span>
+    <span itemprop="critical" content="true" bool>Critical</span>
+    
+    
+    <span itemprop="documentId">patent/CN117489642B/zh</span>
+    
+  </dd>
+  <dd itemprop="events" itemscope repeat>
+    <time itemprop="date" datetime="2024-02-02">2024-02-02</time>
+    <span itemprop="title">Publication of CN117489642A</span>
+    <span itemprop="type">publication</span>
+    <span itemprop="critical" content="true" bool>Critical</span>
+    
+    
+    <span itemprop="documentId">patent/CN117489642A/zh</span>
+    
+  </dd>
+  <dd itemprop="events" itemscope repeat>
+    <time itemprop="date" datetime="2026-05-19">2026-05-19</time>
+    <span itemprop="title">Application granted</span>
+    <span itemprop="type">granted</span>
+    <span itemprop="critical" content="true" bool>Critical</span>
+    
+    
+    
+    
+  </dd>
+  <dd itemprop="events" itemscope repeat>
+    <time itemprop="date" datetime="2026-05-19">2026-05-19</time>
+    <span itemprop="title">Publication of CN117489642B</span>
+    <span itemprop="type">publication</span>
+    <span itemprop="critical" content="true" bool>Critical</span>
+    
+    
+    <span itemprop="documentId">patent/CN117489642B/zh</span>
+    
+  </dd>
+  <dd itemprop="events" itemscope repeat>
+    <time itemprop="date">Status</time>
+    <span itemprop="title">Active</span>
+    <span itemprop="type">legal-status</span>
+    <span itemprop="critical" content="true" bool>Critical</span>
+    <span itemprop="current" content="true" bool>Current</span>
+    
+    
+    
+  </dd>
+  <dd itemprop="events" itemscope repeat>
+    <time itemprop="date" datetime="2043-10-31">2043-10-31</time>
+    <span itemprop="title">Anticipated expiration</span>
+    <span itemprop="type">legal-status</span>
+    <span itemprop="critical" content="true" bool>Critical</span>
+    
+    
+    
+    
+  </dd>
+
+  <h2>Links</h2>
+  <ul>
+    
+
+    <li itemprop="links" itemscope repeat>
+        <meta itemprop="id" content="espacenetLink">
+        <a href="https://worldwide.espacenet.com/publicationDetails/biblio?CC=CN&amp;NR=117489642B&amp;KC=B&amp;FT=D" itemprop="url" target="_blank"><span itemprop="text">Espacenet</span></a>
+      </li>
+      
+
+    
+
+    <li itemprop="links" itemscope repeat>
+      <meta itemprop="id" content="globalDossierLink">
+      <a href="https://globaldossier.uspto.gov/result/application/CN/202311438674/1" itemprop="url" target="_blank"><span itemprop="text">Global Dossier</span></a>
+    </li>
+
+    
+
+      
+
+      
+
+      
+      <li itemprop="links" itemscope repeat>
+        <meta itemprop="id" content="stackexchangeLink">
+        <a href="https://patents.stackexchange.com/questions/tagged/CN117489642B" itemprop="url"><span itemprop="text">Discuss</span></a>
+      </li>
+  </ul>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  <section itemprop="abstract" itemscope>
+    <h2>Abstract</h2>
+    
+    <div itemprop="content" html><abstract mxw-id="PA780011383" lang="ZH" load-source="patent-office">
+    <div num="0001" class="abstract">本发明公开了一种适用于燃料电池氢循环系统的临界模式引射器的设计方法及系统，包括：基于燃料电池阳极通道质量守恒方程，得到喷嘴喉部的一次流质量流量；计算喷嘴喉部直径；确定喷嘴出口直径和喷嘴出口位置；判断引射器的临界背压是否高于相应的阳极进口压力，若是，继续判断氢气再循环比是否满足要求；否则，更改引射器一次流最高和最低工作压力，重新计算喷嘴喉部直径，喷嘴出口直径和喷嘴出口位置；若氢气再循环比满足要求，则引射器设计完成，否则，更改等面积混合室直径、等面积混合室长度和扩散室长度，直到氢气再循环比满足要求，引射器设计完成。本发明有助于燃料电池系统变工况运行的临界模式引射器设计。</div>
+    </abstract>
+  </div>
+  </section>
+
+  <section itemprop="description" itemscope>
+    <h2>Description</h2>
+    
+    <div itemprop="content" html><div mxw-id="PDES529926618" lang="ZH" load-source="patent-office" class="description">
+    <invention-title lang="ZH" id="title1">适用于燃料电池氢循环系统的临界模式引射器及设计方法</invention-title>
+    <technical-field>
+      <div id="p0001" class="description-paragraph">技术领域</div>
+      <div id="p0002" num="0001" class="description-paragraph">本发明涉及引射器技术领域，尤其涉及一种适用于燃料电池氢循环系统的临界模式引射器及设计方法。</div>
+    </technical-field>
+    <background-art>
+      <div id="p0003" class="description-paragraph">背景技术</div>
+      <div id="p0004" num="0002" class="description-paragraph">本部分的陈述仅仅是提供了与本发明相关的背景技术信息，不必然构成在先技术。</div>
+      <div id="p0005" num="0003" class="description-paragraph">质子交换膜燃料电池(Proton exchange membrane fuel cell，PEMFC)是一种将燃料的化学能转化为电能的能量转换装置，由于其具有效率高、启动快、功率密度高、运行声音小等优点，成为替代内燃机作为汽车的动力源泉的绿色替代品。PEMFC一般采用过量氢气供应的方式，必然导致未反应氢气的浪费，因此有必要对未反应氢气进行回收再利用。供氢循环系统作为PEMFC重要组成部分，主要作用是提高氢气利用率和改善电堆内部湿润度。通常采用机械泵和引射器两种方式回收未反应的氢气，引射器因其结构简单、噪声低、无运动部件及无额外能耗等诸多优点，已成为当下研究热点。</div>
+      <div id="p0006" num="0004" class="description-paragraph">在以往的研究和探索中，氢气循环引射器的理论研究、结构设计、工作范围的扩大等方面都取得了重大进展。然而，回顾这些关于氢气循环引射器的研究发现，大多数研究都集中在提高循环能力和扩大工作范围上，没有充分考虑是否在临界模式下工作。单纯追求循环能力的提高，可能会导致引射器在次临界模式运行，从而降低鲁棒性，即在波动工况下的稳定性。如果将氢气循环引射器设计在临界工作点或亚临界模式下，任何与设计工况的偏差，比如功率输出变化或吹扫过程引起的阳极进口、出口压力波动，都会显著改变引射器的再循环能力。这可能会对燃料电池的稳定性、效率和寿命产生负面影响。</div>
+    </background-art>
+    <disclosure>
+      <div id="p0007" class="description-paragraph">发明内容</div>
+      <div id="p0008" num="0005" class="description-paragraph">为了解决上述问题，本发明提出了一种适用于燃料电池氢循环系统的临界模式引射器及设计方法，以引射器气体热力学方程为基础，可根据适用的燃料电池的工况参数，通过调整设定的供氢压力设计出适用不同功率的临界模式引射器，具有一般适用性。</div>
+      <div id="p0009" num="0006" class="description-paragraph">在一些实施方式中，采用如下技术方案：</div>
+      <div id="p0010" num="0007" class="description-paragraph">一种适用于燃料电池氢循环系统的临界模式引射器的设计方法，包括：</div>
+      <div id="p0011" num="0008" class="description-paragraph">确定燃料电池的工况参数；</div>
+      <div id="p0012" num="0009" class="description-paragraph">基于燃料电池阳极通道质量守恒方程，计算阳极消耗氢气的质量流量，进而得到喷嘴喉部的一次流质量流量；</div>
+      <div id="p0013" num="0010" class="description-paragraph">计算喷嘴喉部的相对压力和气体临界速度，结合一次流质量流量，计算喷嘴喉部直径；利用Sokolov一维引射器模型确定喷嘴出口直径和喷嘴出口位置；</div>
+      <div id="p0014" num="0011" class="description-paragraph">根据经验确定等面积混合室直径、等面积混合室长度和扩散室长度；</div>
+      <div id="p0015" num="0012" class="description-paragraph">判断引射器的临界背压是否高于相应的阳极进口压力，若是，继续判断氢气再循环比是否满足要求；否则，更改引射器一次流最高和最低工作压力，重新计算喷嘴喉部直径，喷嘴出口直径和喷嘴出口位置；</div>
+      <div id="p0016" num="0013" class="description-paragraph">若氢气再循环比满足要求，则引射器设计完成，否则，更改等面积混合室直径、等面积混合室长度和扩散室长度，直到氢气再循环比满足要求，引射器设计完成。</div>
+      <div id="p0017" num="0014" class="description-paragraph">在另一些实施方式中，采用如下技术方案：</div>
+      <div id="p0018" num="0015" class="description-paragraph">一种适用于燃料电池氢循环系统的临界模式引射器的设计系统，包括：</div>
+      <div id="p0019" num="0016" class="description-paragraph">参数获取模块，用于确定燃料电池的工况参数；参数计算模块，用于基于燃料电池阳极通道质量守恒方程，计算阳极消耗氢气的质量流量，进而得到喷嘴喉部的一次流质量流量；</div>
+      <div id="p0020" num="0017" class="description-paragraph">计算喷嘴喉部的相对压力和气体临界速度，结合一次流质量流量，计算喷嘴喉部直径；利用Sokolov一维引射器模型确定喷嘴出口直径和喷嘴出口位置；</div>
+      <div id="p0021" num="0018" class="description-paragraph">根据经验确定等面积混合室直径、等面积混合室长度和扩散室长度；</div>
+      <div id="p0022" num="0019" class="description-paragraph">判断优化模块，用于判断引射器的临界背压是否高于相应的阳极进口压力，若是，继续判断氢气再循环比是否满足要求；否则，更改引射器一次流最高和最低工作压力，重新计算喷嘴喉部直径，喷嘴出口直径和喷嘴出口位置；</div>
+      <div id="p0023" num="0020" class="description-paragraph">若氢气再循环比满足要求，则引射器设计完成，否则，更改等面积混合室直径、等面积混合室长度和扩散室长度，直到氢气再循环比满足要求，引射器设计完成。</div>
+      <div id="p0024" num="0021" class="description-paragraph">在另一些实施方式中，采用如下技术方案：</div>
+      <div id="p0025" num="0022" class="description-paragraph">一种适用于燃料电池氢循环系统的临界模式引射器，采用上述的设计方法进行参数设计；临界模式引射器结构包括：沿轴线依次连接的一次流入口管道、吸入室、等压混合室、等面积混合室、扩散室和引射器出口管；喷嘴连接至一次流管的出口处，穿过吸入室并进入等压混合室；二次流管设置在等压混合室的下部，并与等压混合室连通。</div>
+      <div id="p0026" num="0023" class="description-paragraph">在另一些实施方式中，采用如下技术方案：</div>
+      <div id="p0027" num="0024" class="description-paragraph">一种基于临界模式引射器的燃料电池供氢循环系统，包括：高压氢罐、临界模式引射器和燃料电池；高压氢罐依次通过减压阀和比例阀与临界模式引射器连接，临界模式引射器连接至燃料电池电堆阳极，燃料电池电堆阳极依次经过阳极出口管道、汽水分离器和循环气体管道连接至临界模式引射器。</div>
+      <div id="p0028" num="0025" class="description-paragraph">所述比例阀用于控制一次流进气管道的进气压力，通过比例阀调节引射器的供氢流量，能满足不同功率输出范围内的氢气供应和循环要求。</div>
+      <div id="p0029" num="0026" class="description-paragraph">与现有技术相比，本发明的有益效果是：</div>
+      <div id="p0030" num="0027" class="description-paragraph">(1)本发明的临界模式引射器，通过比例阀调节引射器的供氢流量，能满足不同功率输出范围内的氢气供应和循环要求，由于引射器工作在临界模式，在电堆功率切换或吹扫产物水引起电堆进口、出口压力波动时仍能保持稳定高效的氢气供应与循环，有助于促进引射器在燃料电池中的广泛应用。</div>
+      <div id="p0031" num="0028" class="description-paragraph">(2)本发明的临界模式引射器优化设计方法，包括喷嘴结构设计方法和引射器结构整体优化方法。以引射器气体热力学方程为基础，可根据适用的燃料电池的功率，通过调整设定的供氢压力设计出适用不同功率的临界模式引射器，具有一般适用性。此外，根据引射器几何结构对其性能影响的重要程度，结合的引射器评价指标，提出了引射器的结构优化方法，有助于燃料电池系统变工况运行的临界模式引射器设计。</div>
+      <div id="p0032" num="0029" class="description-paragraph">本发明的其他特征和附加方面的优点将在下面的描述中部分给出，部分将从下面的描述中变得明显，或通过本方面的实践了解到。</div>
+    </disclosure>
+    <description-of-drawings>
+      <div id="p0033" class="description-paragraph">附图说明</div>
+      <div id="p0034" num="0030" class="description-paragraph">图1为本发明实施例中的临界模式引射器结构示意图；</div>
+      <div id="p0035" num="0031" class="description-paragraph">图2为本发明实施例中的基于临界模式引射器的燃料电池供氢循环系统结构示意图；</div>
+      <div id="p0036" num="0032" class="description-paragraph">图3为本发明实施例中引射器工作模式示意图；</div>
+      <div id="p0037" num="0033" class="description-paragraph">图4为本发明实施例中引射器特性曲线随一次流压力变化示意图；</div>
+      <div id="p0038" num="0034" class="description-paragraph">图5为本发明实施例中临界模式引射器结构设计流程图。</div>
+      <div id="p0039" num="0035" class="description-paragraph">其中，1.一次流管，2.吸入室，3.喷嘴，4.二次流管，5.等压混合室，6.等面积混合室，7.扩散室，8.引射器出口管，9.减压阀，10.比例阀，11.临界模式引射器，12.燃料电池电堆阳极，13.质子交换膜，14.燃料电池电堆阴极，15.阳极进气管道，16.阳极出口管道，17.循环气体管道，18.阴极进气管道，19.阴极出口管道，20.汽水分离器，21.排气阀，22.高压氢罐。</div>
+    </description-of-drawings>
+    <mode-for-invention>
+      <div id="p0040" class="description-paragraph">具体实施方式</div>
+      <div id="p0041" num="0036" class="description-paragraph">应该指出，以下详细说明都是例示性的，旨在对本申请提供进一步的说明。除非另有指明，本发明使用的所有技术和科学术语具有与本申请所属技术领域的普通技术人员通常理解的相同含义。</div>
+      <div id="p0042" num="0037" class="description-paragraph">需要注意的是，这里所使用的术语仅是为了描述具体实施方式，而非意图限制根据本申请的示例性实施方式。如在这里所使用的，除非上下文另外明确指出，否则单数形式也意图包括复数形式，此外，还应当理解的是，当在本说明书中使用术语“包含”和/或“包括”时，其指明存在特征、步骤、操作、器件、组件和/或它们的组合。</div>
+      <div id="p0043" num="0038" class="description-paragraph">实施例一</div>
+      <div id="p0044" num="0039" class="description-paragraph">在一个或多个实施方式中，公开了一种适用于燃料电池氢循环系统的临界模式引射器的设计方法，结合图5，具体包括如下过程：</div>
+      <div id="p0045" num="0040" class="description-paragraph">(1)确定燃料电池的工况参数；所述工况参数至少包括：PEMFC电堆的输出功率P<sub>stack</sub>，PEMFC电堆的电池数N<sub>cell</sub>，电池工作电流I和单电池电压V<sub>c</sub>等。</div>
+      <div id="p0046" num="0041" class="description-paragraph">(2)基于燃料电池阳极通道质量守恒方程，计算阳极消耗氢气的质量流量，进而得到喷嘴喉部的一次流质量流量。</div>
+      <div id="p0047" num="0042" class="description-paragraph">(3)计算喷嘴喉部的相对压力和气体临界速度，结合一次流质量流量，计算喷嘴喉部直径；利用Sokolov一维引射器模型确定喷嘴出口直径和喷嘴出口位置。</div>
+      <div id="p0048" num="0043" class="description-paragraph">(4)根据经验确定等面积混合室直径D<sub>m、</sub>等面积混合室长度L<sub>m</sub>和扩散室长度L<sub>d</sub>。</div>
+      <div id="p0049" num="0044" class="description-paragraph">(5)判断引射器的临界背压是否高于相应的阳极进口压力，若是，继续判断氢气再循环比是否满足要求；否则，更改引射器一次流最高工作压力p<sub>p,max</sub>和引射器一次流最低工作压力p<sub>p,min</sub>，重新计算喷嘴喉部直径，喷嘴出口直径和喷嘴出口位置；其中，p<sub>p,max</sub>根据图2中减压阀9和比例阀10的最高输出压力来确定；p<sub>p,min</sub>根据引射器能正常工作的最低压力来确定。</div>
+      <div id="p0050" num="0045" class="description-paragraph">(6)若氢气再循环比满足要求，则引射器设计完成，否则，更改D<sub>m</sub>、L<sub>m</sub>和L<sub>d</sub>，直到氢气再循环比满足要求，引射器设计完成。</div>
+      <div id="p0051" num="0046" class="description-paragraph">下面对本实施例的设计过程进行详细的说明。</div>
+      <div id="p0052" num="0047" class="description-paragraph">如图3所示，在一次流压力p<sub>p</sub>和二次流压力p<sub>s</sub>固定的情况下，喷射器的工作模式根据背压p<sub>c</sub>可以分为临界、次临界和回流模式。再循环比ω，又称引射比，定义为二次流和一次流质量流量之比。随着p<sub>c</sub>的增加，ω首先保持不变，然后减小到0。相应的工作模式由临界模式变为次临界模式，临界工作点对应的背压称为临界背压p<sub>c*</sub>。随着p<sub>c</sub>继续增加，工作模式变为回流模式，喷射器停止工作。如果氢气循环喷射器设计在临界工作点或次临界模式。引射器实际的工作工况与设计条件的任何偏差，例如由功率输出或吹扫变化引起的阳极进出口压力(p<sub>c</sub>和p<sub>b</sub>)的波动，都可能显著改变喷射器的再循环能力。这可能会对燃料电池的稳定性、效率和寿命产生负面影响。因此，设计出在任何PEMFC功率负荷下都能在临界模式下工作的氢气循环喷射器，以保持稳定的氢气供应和循环以及高效的性能是至关重要的。</div>
+      <div id="p0053" num="0048" class="description-paragraph">如图4所示，不同一次流压力p<sub>p</sub>下ω与p<sub>c</sub>的关系。可以看出，临界背压p<sub>c*</sub>和临界再循环比ω<sub>*</sub>对p<sub>p</sub>都很敏感，p<sub>c*</sub>随着p<sub>p</sub>的增大而增大，而ω<sub>*</sub>则减小，p<sub>c*</sub>的增大有利于喷射器在临界模式下工作。因此，在设计氢气循环喷射器时，应使其p<sub>p</sub>值尽可能高，同时满足ω值，以保证其在临界模式下工作。</div>
+      <div id="p0054" num="0049" class="description-paragraph">对于临界模式引射器来说，喷嘴的设计尤为关键，喷嘴结构主要包括喷嘴喉部直径(面积)、喷嘴出口直径以及喷嘴出口位置(NXP)。因此，本实施例重点介绍喷嘴的设计过程，其他参数可由相关经验模型确定。</div>
+      <div id="p0055" num="0050" class="description-paragraph">在介绍引射器结构设计之前，有必要给出氢循环引射器的评价指标。氢气再循环引射器作为引射器驱动的供氢循环系统的核心部件，其性能直接影响到PEMFC系统的整体效率。为了综合评价其性能，提出了4个评价指标：总再循环比(ω)、氢气再循环比(ω<sub>H2</sub>)、不同功率下的临界背压(p<sub>c*</sub>)、适用功率范围(最小适用功率P<sub>min</sub>～最大适用功率P<sub>max</sub>)。这些指标的定义和计算方法如下：</div>
+      <div id="p0056" num="0051" class="description-paragraph">ω常用来反映氢气循环引射器的整体再循环效率，其定义如下。</div>
+      <div id="p0057" num="0052" class="description-paragraph">
+        <span class="patent-image-not-available"></span>
+      </div>
+      <div id="p0058" num="0053" class="description-paragraph">其中，m<sub>p</sub>是一次流质量流率，m<sub>s</sub>是二次质量流率，<span class="patent-image-not-available"></span>为氢气过量比。</div>
+      <div id="p0059" num="0054" class="description-paragraph">由于引射器驱动的供氢循环系统的阳极出口气体中含有氢气和水蒸气，因此用氢气再循环比<span class="patent-image-not-available"></span>来评价氢气再循环能力。计算公式如下：</div>
+      <div id="p0060" num="0055" class="description-paragraph">
+        <span class="patent-image-not-available"></span>
+      </div>
+      <div id="p0061" num="0056" class="description-paragraph">
+        <span class="patent-image-not-available"></span>
+      </div>
+      <div id="p0062" num="0057" class="description-paragraph">
+        <span class="patent-image-not-available"></span>
+      </div>
+      <div id="p0063" num="0058" class="description-paragraph">在方程中，<span class="patent-image-not-available"></span>为二次流中氢气的质量分数；<span class="patent-image-not-available"></span>分别为氢气、水蒸汽的摩尔分数和摩尔质量，RH为二次流相对湿度；p<sub>Sat</sub>是饱和蒸汽压力。</div>
+      <div id="p0064" num="0059" class="description-paragraph">一般来说，引射器驱动的的供氢循环系统需要多余的氢来提高氢的利用率，增强电化学反应，去除产物水。因此，最小λ<sub>H2</sub>通常设为1.5，对应于ω<sub>H2</sub>大于0.5。</div>
+      <div id="p0065" num="0060" class="description-paragraph">此外，如前所述，如果在临界工作点或亚临界模式下设计氢气循环引射器，如果实际运行工况偏离设计条件将极大地影响引射器的再循环能力。为了保证稳定的氢气供应，高效的循环性能，在不同功率输出工况下，引射器的临界背压p<sub>c*</sub>应高于相应的阳极进口压力p<sub>in,anode</sub>。</div>
+      <div id="p0066" num="0061" class="description-paragraph">根据上述分析，适用的功率范围(P<sub>min</sub>～P<sub>max</sub>)可以定义为<span class="patent-image-not-available"></span>和p<sub>c*</sub>都满足要求时，对应的电堆输出功率范围。</div>
+      <div id="p0067" num="0062" class="description-paragraph">下面将详细介绍引射器的结构设计流程。燃料电池的阳极工作参数，包括供氢质量流量、温度和其他参数，对于设计临界模式引射器很重要，首先介绍燃料电池阳极通道相关模型如下：</div>
+      <div id="p0068" num="0063" class="description-paragraph">阳极通道质量守恒方程：</div>
+      <div id="p0069" num="0064" class="description-paragraph">
+        <span class="patent-image-not-available"></span>
+      </div>
+      <div id="p0070" num="0065" class="description-paragraph">其中<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>分别是阳极入口氢气质量流量、阳极出口氢气质量流量、氢气法拉第消耗量。</div>
+      <div id="p0071" num="0066" class="description-paragraph">在式(5)中，<span class="patent-image-not-available"></span>表示阳极消耗氢气的质量流量，可以表示为：</div>
+      <div id="p0072" num="0067" class="description-paragraph">
+        <span class="patent-image-not-available"></span>
+      </div>
+      <div id="p0073" num="0068" class="description-paragraph">其中，N<sub>cell</sub>是PEMFC电堆的电池数，I是工作电流，<span class="patent-image-not-available"></span>是氢气的摩尔质量，F是法拉第常数，P<sub>stack</sub>是PEMFC电堆的输出功率，V<sub>c</sub>是单电池电压。</div>
+      <div id="p0074" num="0069" class="description-paragraph">在PEMFC系统中，需要过量的化学计量比的氢来增强电化学反应并从电池堆中带走反应产生的水。氢气过量比<span class="patent-image-not-available"></span>由以下等式定义：</div>
+      <div id="p0075" num="0070" class="description-paragraph">
+        <span class="patent-image-not-available"></span>
+      </div>
+      <div id="p0076" num="0071" class="description-paragraph">喷嘴的喉部面积A<sub>nt</sub>可以根据以下公式计算：</div>
+      <div id="p0077" num="0072" class="description-paragraph">
+        <span class="patent-image-not-available"></span>
+      </div>
+      <div id="p0078" num="0073" class="description-paragraph">
+        <span class="patent-image-not-available"></span>
+      </div>
+      <div id="p0079" num="0074" class="description-paragraph">
+        <span class="patent-image-not-available"></span>
+      </div>
+      <div id="p0080" num="0075" class="description-paragraph">其中，A<sub>nt</sub>为喷嘴的喉部面积，p<sub>p</sub>和T<sub>p</sub>是图2中的比例阀10和引射器11之间连接管道中气体的压力和温度；p<sub>p</sub>是一次流气体压力；T<sub>p</sub>是一次流气体温度；κ是一次流的气体比热比；v<sub>cr</sub>是一次流气体的的临界速度；p<sub>cr</sub>是喷嘴喉部的相对压力；p<sub>*</sub>是一次流气体的临界压力；R<sub>p</sub>是一次流气体常数。</div>
+      <div id="p0081" num="0076" class="description-paragraph">由于引射器的一次流质量流量等于PEMFC电堆中电化学反应过程中的氢气消耗量，因此m<sub>p</sub>可以用下面的公式计算。</div>
+      <div id="p0082" num="0077" class="description-paragraph">
+        <span class="patent-image-not-available"></span>
+      </div>
+      <div id="p0083" num="0078" class="description-paragraph">然后，利用Sokolov一维引射器模型可以确定喷嘴出口直径(D<sub>nd</sub>)和喷嘴出口位置(NXP)：</div>
+      <div id="p0084" num="0079" class="description-paragraph">
+        <span class="patent-image-not-available"></span>
+      </div>
+      <div id="p0085" num="0080" class="description-paragraph">
+        <span class="patent-image-not-available"></span>
+      </div>
+      <div id="p0086" num="0081" class="description-paragraph">式中，q<sub>nd</sub>为喷嘴出口界面一次流质量速度换算值，ω&#39;为再循环比的假设值，可设为0.60，α为0.07～0.09之间的实验常数。</div>
+      <div id="p0087" num="0082" class="description-paragraph">喷嘴的总面积是根据PEMFC系统额定功率输出时所需最大供氢流量(即额定功率所需的耗氢量)设计的。因此，D<sub>nt</sub>、D<sub>nd</sub>和NXP可根据公式(5)至(13)、初始最大供氢压力(p<sub>p,max</sub>)和适用的PEMFC电堆工况参数，计算得出。此外，如前所述，设计喷嘴尺寸时，在满足循环比的情况下，一次流供氢压力应设置得尽可能高，以保证引射器在临界模式下工作。其他关键参数(比如D<sub>m、</sub>L<sub>m</sub>和L<sub>d</sub>)可根据文献中的结论和经验公式得出：D<sub>m</sub>＝(2-3)D<sub>nt</sub>，L<sub>m</sub>＝(4-8)D<sub>m</sub>，L<sub>d</sub>＝(6-10)D<sub>m</sub>。其次，评估引射器性能是否满足要求。如果p<sub>c*</sub>在任何功率输出大于相应的p<sub>in,anode</sub>，继续以下过程。否则，需要更改引射器一次流最高工作压力p<sub>p,max</sub>和引射器一次流最低工作压力p<sub>p,min</sub>，以及结构参数(D<sub>m</sub>、L<sub>m</sub>和L<sub>d</sub>)。然后，判断<span class="patent-image-not-available"></span>是否满足要求。如果不符合要求，改变结构参数(D<sub>m</sub>、L<sub>m</sub>和L<sub>d</sub>)，直到<span class="patent-image-not-available"></span>满足要求。如果p<sub>c*</sub>和<span class="patent-image-not-available"></span>都满足要求，则完成了引射器的设计过程。</div>
+      <div id="p0088" num="0083" class="description-paragraph">若临界模式引射器的工作工况发生变化，即燃料电池工况发生变化时，可根据电堆参数变化，改变供氢压力范围，根据上述流程重新设计初始引射器尺寸。由此设计出适用不同功率的临界模式引射器，该设计方法具有一般适用性。其中，最大供氢压力决定引射器适用的最大燃料电池输出功率，最小供氢压力决定着最小输出功率。</div>
+      <div id="p0089" num="0084" class="description-paragraph">本实施例引射器的循环性能不仅与操作压力有关，还跟其几何结构参数有关。对于临界模式引射器而言，喷嘴喉部直径决定着引射器的工作范围，而等面积混合室直径与喷嘴喉部直径之比是决定引射器循环性能的重要参数。因此，喷嘴的结构尺寸和等面积混合室直径是临界模式引射器第一梯队优化参数；其次，由于一次流和二次流在进入扩散室内扩散前需要足够的时间和空间以实现充分的混合，所以等面积混合室长度、喷嘴出口位置对临界模式引射器的循环性能也起着重要的作用，为第二梯队优化对象。最后，对于其他几何参数，比如等压混合室、扩散室、抽吸室以及二次流入口管道结构对其引射性能的影响最为微弱，为第三梯队优化参数。此外，在优化各个参数的过程中，可根据前文提出的引射器评价指标，即引射比，临界背压以及适用功率范围(最小适用功率和最大适用功率)来评价各个几何参数是否为最优值。</div>
+      <div id="p0090" num="0085" class="description-paragraph">实施例二</div>
+      <div id="p0091" num="0086" class="description-paragraph">在一个或多个实施方式中，公开了一种适用于燃料电池氢循环系统的临界模式引射器的设计系统，包括：</div>
+      <div id="p0092" num="0087" class="description-paragraph">参数获取模块，用于确定燃料电池的工况参数；参数计算模块，用于基于燃料电池阳极通道质量守恒方程，计算阳极消耗氢气的质量流量，进而得到喷嘴喉部的一次流质量流量；</div>
+      <div id="p0093" num="0088" class="description-paragraph">计算喷嘴喉部的相对压力和气体临界速度，结合一次流质量流量，计算喷嘴喉部直径；利用Sokolov一维引射器模型确定喷嘴出口直径和喷嘴出口位置；</div>
+      <div id="p0094" num="0089" class="description-paragraph">根据经验确定等面积混合室直径、等面积混合室长度和扩散室长度；</div>
+      <div id="p0095" num="0090" class="description-paragraph">判断优化模块，用于判断引射器的临界背压是否高于相应的阳极进口压力，若是，继续判断氢气再循环比是否满足要求；否则，更改引射器一次流最高和最低工作压力，重新计算喷嘴喉部直径，喷嘴出口直径和喷嘴出口位置；</div>
+      <div id="p0096" num="0091" class="description-paragraph">若氢气再循环比满足要求，则引射器设计完成，否则，更改等面积混合室直径、等面积混合室长度和扩散室长度，直到氢气再循环比满足要求，引射器设计完成。</div>
+      <div id="p0097" num="0092" class="description-paragraph">上述各模块的具体实现方式与实施例一中相同，不再详述。</div>
+      <div id="p0098" num="0093" class="description-paragraph">实施例三</div>
+      <div id="p0099" num="0094" class="description-paragraph">在一个或多个实施方式中，公开了一种适用于燃料电池氢循环系统的临界模式引射器，采用实施例一中所述的设计方法进行参数设计；结合图1，临界模式引射器结构包括：沿轴线依次连接的一次流入口管道1、吸入室2、等压混合室5、等面积混合室6、扩散室7和引射器出口管8；喷嘴3连接至一次流管的出口处，横穿过吸入室并进入等压混合室5；二次流管4设置在等压混合室5的下部，并与等压混合室5连通。</div>
+      <div id="p0100" num="0095" class="description-paragraph">引射器的主要功能是利用高压一次流引射低压的二次流，并提升二次流压力。具体工作过程如下：首先，高压高速的气体(引射器的一次流)经过喷嘴时速度逐渐增大，压力逐渐减小，到达喷嘴喉部时速度变为音速。之后，流体速度继续增加，并在喷嘴出口处达到最大。然后，一次流体从喷嘴流出，在混合室内产生激波，并在喷嘴出口形成低压区，抽吸低压二次流进入抽吸室。随后，两股流体在混合室中不断混合，并在扩散室内产生激波，随着速度减小和压力增加，在出口处趋于稳定，实现对二次流的抽吸和升压。</div>
+      <div id="p0101" num="0096" class="description-paragraph">实施例四</div>
+      <div id="p0102" num="0097" class="description-paragraph">在一个或多个实施方式中，公开了一种基于实施例三所述的临界模式引射器的燃料电池供氢循环系统，结合图2，具体包括：高压氢罐22、临界模式引射器11和燃料电池；高压氢罐依次通过减压阀9和比例阀10与临界模式引射器11连接，临界模式引射器11通过阳极进气管道15连接至燃料电池电堆阳极12，燃料电池电堆阳极12依次经过阳极出口管道16、汽水分离器20和循环气体管道17连接至临界模式引射器11，循环气体管道17连接排气阀21。</div>
+      <div id="p0103" num="0098" class="description-paragraph">燃料电池包括燃料电池电堆阳极12、质子交换膜13和燃料电池电堆阴极14，阴极进气管道18连接至燃料电池电堆阴极14的进气端，燃料电池电堆阴极14的出气端连接阴极出口管道19。</div>
+      <div id="p0104" num="0099" class="description-paragraph">本实施例中，比例阀10用于控制一次流进气管道的进气压力，通过比例阀调节引射器的供氢流量，能满足不同功率输出范围内的氢气供应和循环要求。</div>
+      <div id="p0105" num="0100" class="description-paragraph">具体工作过程如下：来自氢罐22的高压氢气(供应氢气，即一次流)经过减压阀9和比例阀10达到适当的压力后作为引射器的一次流。高压氢气在喷嘴中加速，并在喷嘴出口处形成低压区域，来自电堆阳极12的未消耗氢气(阳极循环气体，即二次流)被夹带进入吸入室2。供应氢气和阳极循环气体在混合室5和6内混合后流入扩散室7。在引射器出口处，混合流体达到较高的稳定压力(电堆入口需求压力)后进入燃料电池电堆。</div>
+      <div id="p0106" num="0101" class="description-paragraph">上述虽然结合附图对本发明的具体实施方式进行了描述，但并非对本发明保护范围的限制，所属领域技术人员应该明白，在本发明的技术方案的基础上，本领域技术人员不需要付出创造性劳动即可做出的各种修改或变形仍在本发明的保护范围以内。</div>
+    </mode-for-invention>
+  </div>
+  </div>
+  </section>
+
+  <section itemprop="claims" itemscope>
+    <h2>Claims (<span itemprop="count">8</span>)</h2>
+    
+    <div itemprop="content" html><div mxw-id="PCLM524429693" lang="ZH" load-source="patent-office" class="claims">
+    <div class="claim"> <div id="zh-cl0001" num="0001" class="claim">
+      <div class="claim-text">1.一种适用于燃料电池氢循环系统的临界模式引射器的设计方法，其特征在于，包括：</div>
+      <div class="claim-text">确定燃料电池的工况参数；</div>
+      <div class="claim-text">基于燃料电池阳极通道质量守恒方程，计算阳极消耗氢气的质量流量，进而得到喷嘴喉部的一次流质量流量；</div>
+      <div class="claim-text">计算喷嘴喉部的相对压力和气体临界速度，结合一次流质量流量，计算喷嘴喉部直径；利用Sokolov一维引射器模型确定喷嘴出口直径和喷嘴出口位置；</div>
+      <div class="claim-text">根据经验公式确定等面积混合室直径<i>D</i> <sub>m</sub>、等面积混合室长度<i>L</i> <sub>m</sub>和扩散室长度<i>L</i> <sub>d</sub>；其中，<i>D</i> <sub>m</sub>=(2-3)<i>D</i> <sub>nt</sub>，<i>L</i> <sub>m</sub>=(4-8)<i>D</i> <sub>m</sub>，<i>L</i> <sub>d</sub>=(6-10)<i>D</i> <sub>m</sub>；</div>
+      <div class="claim-text">判断引射器的临界背压是否高于相应的阳极进口压力，若是，继续判断氢气再循环比是否满足要求；否则，更改引射器一次流最高和最低工作压力<i>，</i>重新计算喷嘴喉部直径，喷嘴出口直径和喷嘴出口位置；</div>
+      <div class="claim-text">若氢气再循环比满足要求，则引射器设计完成，否则，更改等面积混合室直径、等面积混合室长度和扩散室长度，直到氢气再循环比满足要求，引射器设计完成；</div>
+      <div class="claim-text">其中，计算喷嘴喉部的相对压力和一次流气体临界速度，具体为：</div>
+      <div class="claim-text"> <span class="patent-image-not-available"></span>；</div>
+      <div class="claim-text"> <span class="patent-image-not-available"></span>；</div>
+      <div class="claim-text">其中，<span class="patent-image-not-available"></span>是一次流气体压力；<span class="patent-image-not-available"></span>是一次流的气体比热比；<span class="patent-image-not-available"></span>是一次流气体的临界速度；<span class="patent-image-not-available"></span>是喷嘴喉部的相对压力；<span class="patent-image-not-available"></span>是一次流气体的临界压力；<span class="patent-image-not-available"></span>是一次流气体温度；<span class="patent-image-not-available"></span>是一次流气体常数；</div>
+      <div class="claim-text">计算喷嘴喉部直径，具体为：</div>
+      <div class="claim-text"> <span class="patent-image-not-available"></span>；</div>
+      <div class="claim-text">其中，<i>A</i> <sub>nt</sub>为喷嘴的喉部面积，<span class="patent-image-not-available"></span>是一次流质量流量，<span class="patent-image-not-available"></span>是喷嘴喉部直径，<span class="patent-image-not-available"></span>是喉部的相对压力。</div>
+    </div>
+    </div> <div class="claim-dependent"> <div id="zh-cl0002" num="0002" class="claim">
+      <div class="claim-text">
+        <claim-ref idref="zh-cl0001"> </claim-ref>
+      </div>
+      <div class="claim-text">2.如权利要求1所述的一种适用于燃料电池氢循环系统的临界模式引射器的设计方法，其特征在于，基于燃料电池阳极通道质量守恒方程，计算阳极消耗氢气的质量流量，具体为：</div>
+      <div class="claim-text">阳极通道质量守恒方程：</div>
+      <div class="claim-text"> <span class="patent-image-not-available"></span>；</div>
+      <div class="claim-text">其中<span class="patent-image-not-available"></span>、<span class="patent-image-not-available"></span>和<span class="patent-image-not-available"></span>分别是阳极入口氢气质量流量、阳极出口氢气质量流量和阳极消耗氢气的质量流量；</div>
+      <div class="claim-text">阳极消耗氢气的质量流量<span class="patent-image-not-available"></span>表示为：</div>
+      <div class="claim-text"> <span class="patent-image-not-available"></span>；</div>
+      <div class="claim-text">其中，<span class="patent-image-not-available"></span>是PEMFC电堆的电池数，<span class="patent-image-not-available"></span>是工作电流，<span class="patent-image-not-available"></span>是氢气的摩尔质量，<span class="patent-image-not-available"></span>是PEMFC电堆的输出功率，<span class="patent-image-not-available"></span>是法拉第常数，<span class="patent-image-not-available"></span>是单电池电压。</div>
+    </div>
+    </div> <div class="claim-dependent"> <div id="zh-cl0003" num="0003" class="claim">
+      <div class="claim-text">
+        <claim-ref idref="zh-cl0001"> </claim-ref>
+      </div>
+      <div class="claim-text">3.如权利要求1所述的一种适用于燃料电池氢循环系统的临界模式引射器的设计方法，其特征在于，利用Sokolov一维引射器模型确定喷嘴出口直径和喷嘴出口位置，具体为：</div>
+      <div class="claim-text"> <span class="patent-image-not-available"></span>；</div>
+      <div class="claim-text"> <span class="patent-image-not-available"></span>；</div>
+      <div class="claim-text">其中，<i>D</i> <sub>nd</sub>为喷嘴出口直径，<i>NXP</i>为喷嘴出口位置，<span class="patent-image-not-available"></span>为喷嘴的喉部面积，<span class="patent-image-not-available"></span>为喷嘴出口面积；<i>q</i>nd为喷嘴出口界面一次流质量速度换算值，ω&#39;为再循环比的假设值，α为0.07 ~0.09之间的实验常数。</div>
+    </div>
+    </div> <div class="claim-dependent"> <div id="zh-cl0004" num="0004" class="claim">
+      <div class="claim-text">
+        <claim-ref idref="zh-cl0001"> </claim-ref>
+      </div>
+      <div class="claim-text">4.如权利要求1所述的一种适用于燃料电池氢循环系统的临界模式引射器的设计方法，其特征在于，若临界模式引射器的工作工况发生变化，即燃料电池工况发生变化时，可根据电堆参数变化，改变引射器一次流的工作压力范围，重新设计初始引射器尺寸。</div>
+    </div>
+    </div> <div class="claim"> <div id="zh-cl0005" num="0005" class="claim">
+      <div class="claim-text">5.一种适用于燃料电池氢循环系统的临界模式引射器的设计系统，其特征在于，包括：</div>
+      <div class="claim-text">参数获取模块，用于确定燃料电池的工况参数；参数计算模块，用于基于燃料电池阳极通道质量守恒方程，计算阳极消耗氢气的质量流量，进而得到喷嘴喉部的一次流质量流量；</div>
+      <div class="claim-text">计算喷嘴喉部的相对压力和气体临界速度，结合一次流质量流量，计算喷嘴喉部直径；利用Sokolov一维引射器模型确定喷嘴出口直径和喷嘴出口位置；</div>
+      <div class="claim-text">根据经验公式确定等面积混合室直径<i>D</i> <sub>m</sub>、等面积混合室长度<i>L</i> <sub>m</sub>和扩散室长度<i>L</i> <sub>d</sub>；其中，<i>D</i> <sub>m</sub>=(2-3)<i>D</i> <sub>nt</sub>，<i>L</i> <sub>m</sub>=(4-8)<i>D</i> <sub>m</sub>，<i>L</i> <sub>d</sub>=(6-10)<i>D</i> <sub>m</sub>；</div>
+      <div class="claim-text">判断优化模块，用于判断引射器的临界背压是否高于相应的阳极进口压力，若是，继续判断氢气再循环比是否满足要求；否则，更改引射器一次流最高和最低工作压力<i>，</i>重新计算喷嘴喉部直径，喷嘴出口直径和喷嘴出口位置；</div>
+      <div class="claim-text">若氢气再循环比满足要求，则引射器设计完成，否则，更改等面积混合室直径、等面积混合室长度和扩散室长度，直到氢气再循环比满足要求，引射器设计完成；</div>
+      <div class="claim-text">其中，计算喷嘴喉部的相对压力和一次流气体临界速度，具体为：</div>
+      <div class="claim-text"> <span class="patent-image-not-available"></span>；</div>
+      <div class="claim-text"> <span class="patent-image-not-available"></span>；</div>
+      <div class="claim-text">其中，<span class="patent-image-not-available"></span>是一次流气体压力；<span class="patent-image-not-available"></span>是一次流的气体比热比；<span class="patent-image-not-available"></span>是一次流气体的临界速度；<span class="patent-image-not-available"></span>是喷嘴喉部的相对压力；<span class="patent-image-not-available"></span>是一次流气体的临界压力；<span class="patent-image-not-available"></span>是一次流气体温度；<span class="patent-image-not-available"></span>是一次流气体常数；</div>
+      <div class="claim-text">计算喷嘴喉部直径，具体为：</div>
+      <div class="claim-text"> <span class="patent-image-not-available"></span>；</div>
+      <div class="claim-text">其中，<i>A</i> <sub>nt</sub>为喷嘴的喉部面积，<span class="patent-image-not-available"></span>是一次流质量流量，<span class="patent-image-not-available"></span>是喷嘴喉部直径，<span class="patent-image-not-available"></span>是喉部的相对压力。</div>
+    </div>
+    </div> <div class="claim-dependent"> <div id="zh-cl0006" num="0006" class="claim">
+      <div class="claim-text">6.一种适用于燃料电池氢循环系统的临界模式引射器，其特征在于，采用权利要求1-4任一项所述的设计方法进行参数设计；临界模式引射器结构包括：沿轴线依次连接的一次流入口管道、吸入室、等压混合室、等面积混合室、扩散室和引射器出口管；喷嘴连接至一次流管的出口处，穿过吸入室并进入等压混合室；二次流管设置在等压混合室的下部，并与等压混合室连通。</div>
+    </div>
+    </div> <div class="claim-dependent"> <div id="zh-cl0007" num="0007" class="claim">
+      <div class="claim-text">
+        <claim-ref idref="zh-cl0006"> </claim-ref>
+      </div>
+      <div class="claim-text">7.一种基于权利要求6所述的临界模式引射器的燃料电池供氢循环系统，其特征在于，包括：高压氢罐、临界模式引射器和燃料电池；高压氢罐依次通过减压阀和比例阀与临界模式引射器连接，临界模式引射器连接至燃料电池电堆阳极，燃料电池电堆阳极依次经过阳极出口管道、汽水分离器和循环气体管道连接至临界模式引射器。</div>
+    </div>
+    </div> <div class="claim-dependent"> <div id="zh-cl0008" num="0008" class="claim">
+      <div class="claim-text">
+        <claim-ref idref="zh-cl0007"> </claim-ref>
+      </div>
+      <div class="claim-text">8.如权利要求7所述的临界模式引射器的燃料电池供氢循环系统，其特征在于，所述比例阀用于控制一次流进气管道的进气压力，通过比例阀调节引射器的供氢流量，能满足不同功率输出范围内的氢气供应和循环要求。</div>
+    </div>
+  </div> </div>
+  </div>
+  </section>
+
+  <section itemprop="application" itemscope>
+
+    <section itemprop="metadata" itemscope>
+      <span itemprop="applicationNumber">CN202311438674.5A</span>
+      <span itemprop="priorityDate"></span>
+      <span itemprop="filingDate">2023-10-31</span>
+      <span itemprop="title">适用于燃料电池氢循环系统的临界模式引射器及设计方法 
+       </span>
+      <span itemprop="ifiStatus">Active</span>
+      
+      <a href="/patent/CN117489642B/zh">
+        <span itemprop="representativePublication">CN117489642B</span>
+        (<span itemprop="primaryLanguage">zh</span>)
+      </a>
+    </section>
+
+    <h2>Priority Applications (1)</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Application Number</th>
+          <th>Priority Date</th>
+          <th>Filing Date</th>
+          <th>Title</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr itemprop="priorityApps" itemscope repeat>
+          <td>
+            <span itemprop="applicationNumber">CN202311438674.5A</span>
+            
+            <a href="/patent/CN117489642B/zh">
+              <span itemprop="representativePublication">CN117489642B</span>
+                (<span itemprop="primaryLanguage">zh</span>)
+            </a>
+          </td>
+          <td itemprop="priorityDate"></td>
+          <td itemprop="filingDate">2023-10-31</td>
+          <td itemprop="title">适用于燃料电池氢循环系统的临界模式引射器及设计方法 
+       </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>Applications Claiming Priority (1)</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Application Number</th>
+          <th>Priority Date</th>
+          <th>Filing Date</th>
+          <th>Title</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr itemprop="appsClaimingPriority" itemscope repeat>
+          <td>
+            <span itemprop="applicationNumber">CN202311438674.5A</span>
+            <a href="/patent/CN117489642B/zh">
+              <span itemprop="representativePublication">CN117489642B</span>
+                (<span itemprop="primaryLanguage">zh</span>)
+            </a>
+          </td>
+          <td itemprop="priorityDate"></td>
+          <td itemprop="filingDate">2023-10-31</td>
+          <td itemprop="title">适用于燃料电池氢循环系统的临界模式引射器及设计方法 
+       </td>
+        </tr>
+      </tbody>
+    </table>
+
+    
+
+    
+
+    <h2>Publications (2)</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Publication Number</th>
+          <th>Publication Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr itemprop="pubs" itemscope repeat>
+          <td>
+            <span itemprop="publicationNumber">CN117489642A</span>
+            
+            <a href="/patent/CN117489642A/zh">
+              CN117489642A
+              (<span itemprop="primaryLanguage">zh</span>)
+            </a>
+          </td>
+          <td itemprop="publicationDate">2024-02-02</td>
+        </tr>
+        <tr itemprop="pubs" itemscope repeat>
+          <td>
+            <span itemprop="publicationNumber">CN117489642B</span>
+            
+            <span itemprop="thisPatent">true</span>
+            <a href="/patent/CN117489642B/zh">
+              CN117489642B
+              (<span itemprop="primaryLanguage">zh</span>)
+            </a>
+          </td>
+          <td itemprop="publicationDate">2026-05-19</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </section>
+
+  <section itemprop="family" itemscope>
+    <h1>Family</h1>
+    <h2>ID=</h2>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    <h2>Citations (2)</h2>
+    <table>
+      <caption>* Cited by examiner, † Cited by third party</caption>
+      <thead>
+        <tr>
+          <th>Publication number</th>
+          <th>Priority date</th>
+          <th>Publication date</th>
+          <th>Assignee</th>
+          <th>Title</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr itemprop="backwardReferencesOrig" itemscope repeat>
+          <td>
+            <a href="/patent/CN106529712A/zh">
+              <span itemprop="publicationNumber">CN106529712A</span>
+              (<span itemprop="primaryLanguage">zh</span>)
+            </a>
+            <span itemprop="examinerCited">*</span>
+            
+          </td>
+          <td itemprop="priorityDate">2016-10-27</td>
+          <td itemprop="publicationDate">2017-03-22</td>
+          <td>
+            <span itemprop="assigneeOriginal">山东大学</span>
+          </td>
+          <td itemprop="title">一种喷射器临界工作点引射比预测优化方法 
+       </td>
+        </tr>
+        <tr itemprop="backwardReferencesOrig" itemscope repeat>
+          <td>
+            <a href="/patent/CN111271326A/zh">
+              <span itemprop="publicationNumber">CN111271326A</span>
+              (<span itemprop="primaryLanguage">zh</span>)
+            </a>
+            <span itemprop="examinerCited">*</span>
+            
+          </td>
+          <td itemprop="priorityDate">2020-01-16</td>
+          <td itemprop="publicationDate">2020-06-12</td>
+          <td>
+            <span itemprop="assigneeOriginal">集美大学</span>
+          </td>
+          <td itemprop="title">一种超声速喷射器设计和评价方法 
+       </td>
+        </tr>
+      </tbody>
+    </table>
+
+    
+
+    
+
+    </section>
+
+  <section>
+    <h2>Patent Citations (2)</h2>
+    <table>
+      <caption>* Cited by examiner, † Cited by third party</caption>
+      <thead>
+        <tr>
+          <th>Publication number</th>
+          <th>Priority date</th>
+          <th>Publication date</th>
+          <th>Assignee</th>
+          <th>Title</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr itemprop="backwardReferences" itemscope repeat>
+          <td>
+            <a href="/patent/CN106529712A/zh">
+              <span itemprop="publicationNumber">CN106529712A</span>
+              (<span itemprop="primaryLanguage">zh</span>)
+            </a>
+            <span itemprop="examinerCited">*</span>
+            
+          </td>
+          <td itemprop="priorityDate">2016-10-27</td>
+          <td itemprop="publicationDate">2017-03-22</td>
+          <td><span itemprop="assigneeOriginal">山东大学</span></td>
+          <td itemprop="title">一种喷射器临界工作点引射比预测优化方法 
+       </td>
+        </tr>
+        <tr itemprop="backwardReferences" itemscope repeat>
+          <td>
+            <a href="/patent/CN111271326A/zh">
+              <span itemprop="publicationNumber">CN111271326A</span>
+              (<span itemprop="primaryLanguage">zh</span>)
+            </a>
+            <span itemprop="examinerCited">*</span>
+            
+          </td>
+          <td itemprop="priorityDate">2020-01-16</td>
+          <td itemprop="publicationDate">2020-06-12</td>
+          <td><span itemprop="assigneeOriginal">集美大学</span></td>
+          <td itemprop="title">一种超声速喷射器设计和评价方法 
+       </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  
+
+  
+
+  
+
+  <section>
+    <h2>Similar Documents</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Publication</th>
+          <th>Publication Date</th>
+          <th>Title</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr itemprop="similarDocuments" itemscope repeat>
+          <td>
+            <meta itemprop="isPatent" content="true">
+              <a href="/patent/CN112072145B/zh">
+                <span itemprop="publicationNumber">CN112072145B</span>
+                (<span itemprop="primaryLanguage">zh</span>)
+              </a>
+            
+            
+          </td>
+          <td>
+            <time itemprop="publicationDate" datetime="2021-06-18">2021-06-18</time>
+            
+            
+          </td>
+          <td itemprop="title">氢气减压调控系统、方法、设备、电池系统及设计方法 
+       </td>
+        </tr>
+        <tr itemprop="similarDocuments" itemscope repeat>
+          <td>
+            <meta itemprop="isPatent" content="true">
+              <a href="/patent/CN111785993A/zh">
+                <span itemprop="publicationNumber">CN111785993A</span>
+                (<span itemprop="primaryLanguage">zh</span>)
+              </a>
+            
+            
+          </td>
+          <td>
+            <time itemprop="publicationDate" datetime="2020-10-16">2020-10-16</time>
+            
+            
+          </td>
+          <td itemprop="title">一种燃料电池氢气循环系统及控制方法 
+       </td>
+        </tr>
+        <tr itemprop="similarDocuments" itemscope repeat>
+          <td>
+            <meta itemprop="isPatent" content="true">
+              <a href="/patent/CN110176609B/zh">
+                <span itemprop="publicationNumber">CN110176609B</span>
+                (<span itemprop="primaryLanguage">zh</span>)
+              </a>
+            
+            
+          </td>
+          <td>
+            <time itemprop="publicationDate" datetime="2024-07-19">2024-07-19</time>
+            
+            
+          </td>
+          <td itemprop="title">一种燃料电池发动机的供气系统与一种燃料电池车辆 
+       </td>
+        </tr>
+        <tr itemprop="similarDocuments" itemscope repeat>
+          <td>
+            <meta itemprop="isPatent" content="true">
+              <a href="/patent/CN112057958A/zh">
+                <span itemprop="publicationNumber">CN112057958A</span>
+                (<span itemprop="primaryLanguage">zh</span>)
+              </a>
+            
+            
+          </td>
+          <td>
+            <time itemprop="publicationDate" datetime="2020-12-11">2020-12-11</time>
+            
+            
+          </td>
+          <td itemprop="title">一种气水分离组件、燃料电池氢气循环系统及应用 
+       </td>
+        </tr>
+        <tr itemprop="similarDocuments" itemscope repeat>
+          <td>
+            <meta itemprop="isPatent" content="true">
+              <a href="/patent/CN213366636U/zh">
+                <span itemprop="publicationNumber">CN213366636U</span>
+                (<span itemprop="primaryLanguage">zh</span>)
+              </a>
+            
+            
+          </td>
+          <td>
+            <time itemprop="publicationDate" datetime="2021-06-04">2021-06-04</time>
+            
+            
+          </td>
+          <td itemprop="title">采用孪生引射器的氢燃料电池供氢及氢气循环装置 
+       </td>
+        </tr>
+        <tr itemprop="similarDocuments" itemscope repeat>
+          <td>
+            
+            <meta itemprop="isScholar" content="true">
+              <meta itemprop="scholarID" content="14037892689947641182">
+              <a href="/scholar/14037892689947641182"><span itemprop="scholarAuthors">Yu et al.</span></a>
+            
+          </td>
+          <td>
+            
+            <time itemprop="publicationDate" datetime="2024">2024</time>
+            
+          </td>
+          <td itemprop="title">Auxiliary-ejector-based hydrogen recirculation system to broaden PEMFC operating range</td>
+        </tr>
+        <tr itemprop="similarDocuments" itemscope repeat>
+          <td>
+            <meta itemprop="isPatent" content="true">
+              <a href="/patent/CN111697254B/zh">
+                <span itemprop="publicationNumber">CN111697254B</span>
+                (<span itemprop="primaryLanguage">zh</span>)
+              </a>
+            
+            
+          </td>
+          <td>
+            <time itemprop="publicationDate" datetime="2022-02-22">2022-02-22</time>
+            
+            
+          </td>
+          <td itemprop="title">一种氢气循环装置系统及其调控方法和燃料电池装置系统 
+       </td>
+        </tr>
+        <tr itemprop="similarDocuments" itemscope repeat>
+          <td>
+            <meta itemprop="isPatent" content="true">
+              <a href="/patent/US20040241511A1/en">
+                <span itemprop="publicationNumber">US20040241511A1</span>
+                (<span itemprop="primaryLanguage">en</span>)
+              </a>
+            
+            
+          </td>
+          <td>
+            <time itemprop="publicationDate" datetime="2004-12-02">2004-12-02</time>
+            
+            
+          </td>
+          <td itemprop="title">Fuel cell system and related startup method 
+       </td>
+        </tr>
+        <tr itemprop="similarDocuments" itemscope repeat>
+          <td>
+            <meta itemprop="isPatent" content="true">
+              <a href="/patent/US7732073B2/en">
+                <span itemprop="publicationNumber">US7732073B2</span>
+                (<span itemprop="primaryLanguage">en</span>)
+              </a>
+            
+            
+          </td>
+          <td>
+            <time itemprop="publicationDate" datetime="2010-06-08">2010-06-08</time>
+            
+            
+          </td>
+          <td itemprop="title">Fuel cell minimum fuel recycle with maximum fuel utilization 
+       </td>
+        </tr>
+        <tr itemprop="similarDocuments" itemscope repeat>
+          <td>
+            <meta itemprop="isPatent" content="true">
+              <a href="/patent/CN118934237A/zh">
+                <span itemprop="publicationNumber">CN118934237A</span>
+                (<span itemprop="primaryLanguage">zh</span>)
+              </a>
+            
+            
+          </td>
+          <td>
+            <time itemprop="publicationDate" datetime="2024-11-12">2024-11-12</time>
+            
+            
+          </td>
+          <td itemprop="title">一种气体组分可控的氨氢融合燃料动力系统供气架构及其控制方法 
+       </td>
+        </tr>
+        <tr itemprop="similarDocuments" itemscope repeat>
+          <td>
+            <meta itemprop="isPatent" content="true">
+              <a href="/patent/CN118188606A/zh">
+                <span itemprop="publicationNumber">CN118188606A</span>
+                (<span itemprop="primaryLanguage">zh</span>)
+              </a>
+            
+            
+          </td>
+          <td>
+            <time itemprop="publicationDate" datetime="2024-06-14">2024-06-14</time>
+            
+            
+          </td>
+          <td itemprop="title">一种中心喷嘴与卫星喷嘴协同可调引射器 
+       </td>
+        </tr>
+        <tr itemprop="similarDocuments" itemscope repeat>
+          <td>
+            <meta itemprop="isPatent" content="true">
+              <a href="/patent/CN113468685A/zh">
+                <span itemprop="publicationNumber">CN113468685A</span>
+                (<span itemprop="primaryLanguage">zh</span>)
+              </a>
+            
+            
+          </td>
+          <td>
+            <time itemprop="publicationDate" datetime="2021-10-01">2021-10-01</time>
+            
+            
+          </td>
+          <td itemprop="title">一种引射器结构的仿真设计方法 
+       </td>
+        </tr>
+        <tr itemprop="similarDocuments" itemscope repeat>
+          <td>
+            
+            <meta itemprop="isScholar" content="true">
+              <meta itemprop="scholarID" content="11394621988781185580">
+              <a href="/scholar/11394621988781185580"><span itemprop="scholarAuthors">Kong et al.</span></a>
+            
+          </td>
+          <td>
+            
+            <time itemprop="publicationDate" datetime="2024">2024</time>
+            
+          </td>
+          <td itemprop="title">Performance investigation of coupling modes for hydrogen circulation in high-power proton exchange membrane fuel cell systems</td>
+        </tr>
+        <tr itemprop="similarDocuments" itemscope repeat>
+          <td>
+            <meta itemprop="isPatent" content="true">
+              <a href="/patent/CN114824380B/zh">
+                <span itemprop="publicationNumber">CN114824380B</span>
+                (<span itemprop="primaryLanguage">zh</span>)
+              </a>
+            
+            
+          </td>
+          <td>
+            <time itemprop="publicationDate" datetime="2026-01-16">2026-01-16</time>
+            
+            
+          </td>
+          <td itemprop="title">一种燃料电池阳极循环系统及其控制方法 
+       </td>
+        </tr>
+        <tr itemprop="similarDocuments" itemscope repeat>
+          <td>
+            <meta itemprop="isPatent" content="true">
+              <a href="/patent/CN215869480U/zh">
+                <span itemprop="publicationNumber">CN215869480U</span>
+                (<span itemprop="primaryLanguage">zh</span>)
+              </a>
+            
+            
+          </td>
+          <td>
+            <time itemprop="publicationDate" datetime="2022-02-18">2022-02-18</time>
+            
+            
+          </td>
+          <td itemprop="title">一种燃料电池汽车动力系统的氢气供应循环装置 
+       </td>
+        </tr>
+        <tr itemprop="similarDocuments" itemscope repeat>
+          <td>
+            <meta itemprop="isPatent" content="true">
+              <a href="/patent/CN117489642A/zh">
+                <span itemprop="publicationNumber">CN117489642A</span>
+                (<span itemprop="primaryLanguage">zh</span>)
+              </a>
+            
+            
+          </td>
+          <td>
+            <time itemprop="publicationDate" datetime="2024-02-02">2024-02-02</time>
+            
+            
+          </td>
+          <td itemprop="title">适用于燃料电池氢循环系统的临界模式引射器及设计方法 
+       </td>
+        </tr>
+        <tr itemprop="similarDocuments" itemscope repeat>
+          <td>
+            <meta itemprop="isPatent" content="true">
+              <a href="/patent/CN217334158U/zh">
+                <span itemprop="publicationNumber">CN217334158U</span>
+                (<span itemprop="primaryLanguage">zh</span>)
+              </a>
+            
+            
+          </td>
+          <td>
+            <time itemprop="publicationDate" datetime="2022-08-30">2022-08-30</time>
+            
+            
+          </td>
+          <td itemprop="title">一种燃料电池阳极循环系统 
+       </td>
+        </tr>
+        <tr itemprop="similarDocuments" itemscope repeat>
+          <td>
+            <meta itemprop="isPatent" content="true">
+              <a href="/patent/CN114243066A/zh">
+                <span itemprop="publicationNumber">CN114243066A</span>
+                (<span itemprop="primaryLanguage">zh</span>)
+              </a>
+            
+            
+          </td>
+          <td>
+            <time itemprop="publicationDate" datetime="2022-03-25">2022-03-25</time>
+            
+            
+          </td>
+          <td itemprop="title">一种燃料电池发动机停机吹扫系统及其控制方法及燃料电池系统 
+       </td>
+        </tr>
+        <tr itemprop="similarDocuments" itemscope repeat>
+          <td>
+            <meta itemprop="isPatent" content="true">
+              <a href="/patent/CN114243057A/zh">
+                <span itemprop="publicationNumber">CN114243057A</span>
+                (<span itemprop="primaryLanguage">zh</span>)
+              </a>
+            
+            
+          </td>
+          <td>
+            <time itemprop="publicationDate" datetime="2022-03-25">2022-03-25</time>
+            
+            
+          </td>
+          <td itemprop="title">氢气供应装置、燃料电池发电装置、燃料电池氢气循环装置及其控制方法 
+       </td>
+        </tr>
+        <tr itemprop="similarDocuments" itemscope repeat>
+          <td>
+            <meta itemprop="isPatent" content="true">
+              <a href="/patent/CN217485492U/zh">
+                <span itemprop="publicationNumber">CN217485492U</span>
+                (<span itemprop="primaryLanguage">zh</span>)
+              </a>
+            
+            
+          </td>
+          <td>
+            <time itemprop="publicationDate" datetime="2022-09-23">2022-09-23</time>
+            
+            
+          </td>
+          <td itemprop="title">一种固态氧化物燃料电池系统 
+       </td>
+        </tr>
+        <tr itemprop="similarDocuments" itemscope repeat>
+          <td>
+            <meta itemprop="isPatent" content="true">
+              <a href="/patent/US10050292B2/en">
+                <span itemprop="publicationNumber">US10050292B2</span>
+                (<span itemprop="primaryLanguage">en</span>)
+              </a>
+            
+            
+          </td>
+          <td>
+            <time itemprop="publicationDate" datetime="2018-08-14">2018-08-14</time>
+            
+            
+          </td>
+          <td itemprop="title">Method for controlling fuel cell system 
+       </td>
+        </tr>
+        <tr itemprop="similarDocuments" itemscope repeat>
+          <td>
+            <meta itemprop="isPatent" content="true">
+              <a href="/patent/CN117080486A/zh">
+                <span itemprop="publicationNumber">CN117080486A</span>
+                (<span itemprop="primaryLanguage">zh</span>)
+              </a>
+            
+            
+          </td>
+          <td>
+            <time itemprop="publicationDate" datetime="2023-11-17">2023-11-17</time>
+            
+            
+          </td>
+          <td itemprop="title">船舶燃料电池供氢系统及控制方法 
+       </td>
+        </tr>
+        <tr itemprop="similarDocuments" itemscope repeat>
+          <td>
+            <meta itemprop="isPatent" content="true">
+              <a href="/patent/CN114725429B/zh">
+                <span itemprop="publicationNumber">CN114725429B</span>
+                (<span itemprop="primaryLanguage">zh</span>)
+              </a>
+            
+            
+          </td>
+          <td>
+            <time itemprop="publicationDate" datetime="2025-08-01">2025-08-01</time>
+            
+            
+          </td>
+          <td itemprop="title">一种固态氧化物燃料电池系统 
+       </td>
+        </tr>
+        <tr itemprop="similarDocuments" itemscope repeat>
+          <td>
+            <meta itemprop="isPatent" content="true">
+              <a href="/patent/CN222530459U/zh">
+                <span itemprop="publicationNumber">CN222530459U</span>
+                (<span itemprop="primaryLanguage">zh</span>)
+              </a>
+            
+            
+          </td>
+          <td>
+            <time itemprop="publicationDate" datetime="2025-02-25">2025-02-25</time>
+            
+            
+          </td>
+          <td itemprop="title">燃料电池系统和车辆 
+       </td>
+        </tr>
+        <tr itemprop="similarDocuments" itemscope repeat>
+          <td>
+            <meta itemprop="isPatent" content="true">
+              <a href="/patent/CN113871660A/zh">
+                <span itemprop="publicationNumber">CN113871660A</span>
+                (<span itemprop="primaryLanguage">zh</span>)
+              </a>
+            
+            
+          </td>
+          <td>
+            <time itemprop="publicationDate" datetime="2021-12-31">2021-12-31</time>
+            
+            
+          </td>
+          <td itemprop="title">一种燃料电池气体循环系统和控制方法 
+       </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Legal Events</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Code</th>
+          <th>Title</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr itemprop="legalEvents" itemscope repeat>
+          <td><time itemprop="date" datetime="2024-02-02">2024-02-02</time></td>
+          <td itemprop="code">PB01</td>
+          <td itemprop="title">Publication</td>
+          <td>
+          </td>
+        </tr>
+        <tr itemprop="legalEvents" itemscope repeat>
+          <td><time itemprop="date" datetime="2024-02-23">2024-02-23</time></td>
+          <td itemprop="code">SE01</td>
+          <td itemprop="title">Entry into force of request for substantive examination</td>
+          <td>
+          </td>
+        </tr>
+        <tr itemprop="legalEvents" itemscope repeat>
+          <td><time itemprop="date" datetime="2026-05-19">2026-05-19</time></td>
+          <td itemprop="code">GR01</td>
+          <td itemprop="title">Patent grant</td>
+          <td>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+</article>
+
+    </search-app>
+    
+    <script></script>
+    <script type="text/javascript" src="//www.gstatic.com/feedback/api.js"></script>
+    <script type="text/javascript" src="//www.gstatic.com/feedback/js/help/prod/service/lazy.min.js"></script>
+    <script type="text/javascript">
+      if (window.help && window.help.service) {
+        helpApi = window.help.service.Lazy.create(0, {apiKey: 'fixture-public-widget-key', locale: 'en-US'});
+        window.requestedSurveys = new Set();
+        window.requestSurvey = function(triggerId) {
+          if (window.requestedSurveys.has(triggerId)) {
+            return;
+          }
+          window.requestedSurveys.add(triggerId);
+          helpApi.requestSurvey({
+            triggerId: triggerId,
+            enableTestingMode: false,
+            callback: (requestSurveyCallbackParam) => {
+              if (!requestSurveyCallbackParam.surveyData) {
+                return;
+              }
+              helpApi.presentSurvey({
+                productData: {
+                  productVersion: window.version,
+                  customData: {
+                    "experiments": "",
+                  },
+                },
+                surveyData: requestSurveyCallbackParam.surveyData,
+                colorScheme: 1,
+                customZIndex: 10000,
+              });
+            }
+          });
+        };
+
+        window.requestSurvey('YXTwAsvoW0kedxbuTdH0RArc9VhT');
+      }
+    </script>
+    <script src="/sw/null_loader.js"></script>
+  </body>
+</html>

@@ -1,0 +1,30 @@
+{
+  "native_id": "2501.00879v1",
+  "canonical_id": "arxiv:2501.00879",
+  "url": "https://arxiv.org/abs/2501.00879v1",
+  "title": "TrustRAG: Enhancing Robustness and Trustworthiness in RAG",
+  "authors": [
+    "Huichi Zhou",
+    "Kin-Hei Lee",
+    "Zhonghao Zhan",
+    "Yue Chen",
+    "Zhenhao Li"
+  ],
+  "published_at": "2025-01-01T15:57:34Z",
+  "version_updated_at": "2025-01-01T15:57:34Z",
+  "observed_at": "2026-09-08T22:52:12.195898+00:00",
+  "available_at": "2025-01-01T15:57:34Z",
+  "available_basis": "arXiv archived v1 release; historical reconstruction captured later",
+  "source_kind": "paper",
+  "provider": "arxiv",
+  "access_scope": "public",
+  "representation": "versioned_primary_abstract",
+  "text": "Retrieval-Augmented Generation (RAG) systems enhance large language models (LLMs) by integrating external knowledge sources, enabling more accurate and contextually relevant responses tailored to user queries. However, these systems remain vulnerable to corpus poisoning attacks that can significantly degrade LLM performance through the injection of malicious content. To address these challenges, we propose TrustRAG, a robust framework that systematically filters compromised and irrelevant content before it reaches the language model. Our approach implements a two-stage defense mechanism: first, it employs K-means clustering to identify potential attack patterns in retrieved documents based on their semantic embeddings, effectively isolating suspicious content. Second, it leverages cosine similarity and ROUGE metrics to detect malicious documents while resolving discrepancies between the model's internal knowledge and external information through a self-assessment process. TrustRAG functions as a plug-and-play, training-free module that integrates seamlessly with any language model, whether open or closed-source, maintaining high contextual relevance while strengthening defenses against attacks. Through extensive experimental validation, we demonstrate that TrustRAG delivers substantial improvements in retrieval accuracy, efficiency, and attack resistance compared to existing approaches across multiple model architectures and datasets. We have made TrustRAG available as open-source software at \\url{https://github.com/HuichiZhou/TrustRAG}.",
+  "text_sha256": "de25c6d329b58eadf1a441ff882b3d95cf14f5859ea6ff5561f59dc7bc4b9a2d",
+  "raw_sha256": "e9cf2610ee63d5ed13ed8186244b12d017fc0b08860465833e21c8f98a5d8bbd",
+  "raw_file": "e9cf2610ee63d5ed13ed8186244b12d017fc0b08860465833e21c8f98a5d8bbd.xml",
+  "limitations": [
+    "Abstract-only evidence; author-reported results, not independent reproduction.",
+    "Later DOI, journal metadata and current citations are excluded from historical input."
+  ]
+}

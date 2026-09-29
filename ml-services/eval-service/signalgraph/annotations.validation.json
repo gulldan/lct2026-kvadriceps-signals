@@ -1,0 +1,1233 @@
+{
+  "version": 1,
+  "assessor": "Codex",
+  "independent_human_review": false,
+  "cutoff": "2024-12-31T23:59:59Z",
+  "queries": {
+    "ai": "технологии в ИИ",
+    "rag": "методы retrieval-augmented generation",
+    "rare_control": "retrieval-augmented generation для измерения квантовой гравитации"
+  },
+  "topics": [
+    {
+      "id": "val-graph-global-retrieval",
+      "split": "validation",
+      "cutoff": "2024-12-31T23:59:59Z",
+      "label": "Графовый индекс с поиском локальных и глобальных знаний",
+      "distinctness_group": "val-graph-global-retrieval",
+      "source_ids": [
+        "2404.16130v1",
+        "2410.05779v1"
+      ],
+      "assessor": "Codex",
+      "review_status": "self_assessed_primary_sources",
+      "relevance": {
+        "ai": 2,
+        "rag": 2,
+        "rare_control": 0
+      },
+      "emergence": "emerging",
+      "decision_basis": "Graph RAG (2024-Q2) использует entity graph и community summaries для глобальных вопросов. LightRAG (Q4) развивает dual-level поиск по entity/relation graph для low/high-level знаний. Две раздельные группы и следующий период исследуют связь локальных фактов с глобальным контекстом.",
+      "counterevidence": "LightRAG не тождественен community map-reduce Graph RAG; разные алгоритмы объединены по многоуровневому графовому индексу. Это одна тема, не по месту за каждый графовый label. Наивный RAG baseline не представляет все существовавшие методы.",
+      "eligible_gold": {
+        "ai": true,
+        "rag": true,
+        "rare_control": false
+      },
+      "brief_support": {
+        "problem": {
+          "source_id": "2404.16130v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "127e4ee27cfe91cc5cb8a6431090783786bffaeeaba4076e2f25c7a4dffbb8e4",
+          "char_start": 241,
+          "char_end": 270,
+          "quote": "RAG fails on global questions",
+          "interpretation": "Поиск коротких релевантных фрагментов не дает глобального обзора всего корпуса.",
+          "modality": "problem_statement",
+          "conditions": null
+        },
+        "advantage": {
+          "source_id": "2404.16130v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "127e4ee27cfe91cc5cb8a6431090783786bffaeeaba4076e2f25c7a4dffbb8e4",
+          "char_start": 1327,
+          "char_end": 1365,
+          "quote": "improvements over a naïve RAG baseline",
+          "interpretation": "Авторы Graph RAG сообщают улучшение comprehensiveness и diversity ответов.",
+          "modality": "author_reported_experiment",
+          "conditions": "Global sensemaking questions, datasets около 1 млн токенов; сравнение именно с naive RAG."
+        },
+        "example": {
+          "kind": "research",
+          "source_id": "2404.16130v1",
+          "label": "From Local to Global: A Graph RAG Approach to Query-Focused Summarization"
+        }
+      },
+      "independence_limit": "Непересекающиеся авторские группы Graph RAG и LightRAG; результаты не воспроизведены независимо."
+    },
+    {
+      "id": "val-subgraph-retrieval",
+      "split": "validation",
+      "cutoff": "2024-12-31T23:59:59Z",
+      "label": "Извлечение связанного подграфа для multi-hop ответа",
+      "distinctness_group": "val-subgraph-retrieval",
+      "source_ids": [
+        "2402.07630v1",
+        "2405.14831v1"
+      ],
+      "assessor": "Codex",
+      "review_status": "self_assessed_primary_sources",
+      "relevance": {
+        "ai": 2,
+        "rag": 2,
+        "rare_control": 0
+      },
+      "emergence": "emerging",
+      "decision_basis": "G-Retriever (2024-Q1) выбирает подграф через Prize-Collecting Steiner Tree; HippoRAG (Q2) использует KG и Personalized PageRank для ассоциативного multi-hop retrieval. Общая операция — поиск связанного набора фактов, а не глобальная агрегация community summaries.",
+      "counterevidence": "G-Retriever работает с textual graphs и soft prompting, HippoRAG строит memory index и не использует тот же optimizer. Мозговая аналогия не доказывает человеческую память. Novelty ограничена subgraph retrieval для генерации, а не изобретением графовых алгоритмов.",
+      "eligible_gold": {
+        "ai": true,
+        "rag": true,
+        "rare_control": false
+      },
+      "brief_support": {
+        "problem": {
+          "source_id": "2402.07630v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "4f517b4d50fb9a32bf60c8f421f5c0a96ccc9ae4a82b6c24da91429104098757",
+          "char_start": 1164,
+          "char_end": 1220,
+          "quote": "graphs that greatly exceed the LLM's context window size",
+          "interpretation": "Граф может не помещаться в окно LM.",
+          "modality": "problem_statement",
+          "conditions": null
+        },
+        "advantage": {
+          "source_id": "2405.14831v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "37d7746e12f1c4202612029336303a5b6248d167f31eca541d20e8290aa4ccb1",
+          "char_start": 1145,
+          "char_end": 1186,
+          "quote": "10-30 times cheaper and 6-13 times faster",
+          "interpretation": "Авторы HippoRAG сообщают меньшую стоимость и latency single-step retrieval.",
+          "modality": "author_reported_experiment",
+          "conditions": "Сравнение с iterative retrieval IRCoT при comparable/better performance в исследовании; диапазон, не универсальная гарантия."
+        },
+        "example": {
+          "kind": "research",
+          "source_id": "2405.14831v1",
+          "label": "HippoRAG: Neurobiologically Inspired Long-Term Memory for Large Language Models"
+        }
+      },
+      "independence_limit": "Списки авторов двух работ не пересекаются; независимый benchmarking не выполнялся."
+    },
+    {
+      "id": "val-retrieved-kv-cache",
+      "split": "validation",
+      "cutoff": "2024-12-31T23:59:59Z",
+      "label": "Повторное использование KV-cache извлеченных фрагментов",
+      "distinctness_group": "val-retrieved-kv-cache",
+      "source_ids": [
+        "2404.12457v1",
+        "2405.16444v1",
+        "2410.15332v1"
+      ],
+      "assessor": "Codex",
+      "review_status": "self_assessed_primary_sources",
+      "relevance": {
+        "ai": 2,
+        "rag": 2,
+        "rare_control": 0
+      },
+      "emergence": "emerging",
+      "decision_basis": "RAGCache/Thoth и CacheBlend (2024-Q2), EPIC (Q4) сокращают повторный prefill контекста: knowledge trees, частичное пересчитывание и position-independent reuse. Это не кеш готового ответа и не изменение ranking по популярности.",
+      "counterevidence": "В абстракте RAGCache v1 система называется Thoth; название сохранено. Различаются memory placement и способы восстановления attention. До 8x в EPIC не применяется к RAGCache, другой GPU или любой комбинации retrieved chunks.",
+      "eligible_gold": {
+        "ai": true,
+        "rag": true,
+        "rare_control": false
+      },
+      "brief_support": {
+        "problem": {
+          "source_id": "2405.16444v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "b98a24e7f5015977547e20bc56e036c98b7c9c349f962e9b3629615807fd7288",
+          "char_start": 333,
+          "char_end": 360,
+          "quote": "not always the input prefix",
+          "interpretation": "Извлеченный фрагмент не всегда находится в начале нового prompt, что мешает обычному prefix cache.",
+          "modality": "problem_statement",
+          "conditions": null
+        },
+        "advantage": {
+          "source_id": "2410.15332v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "ebf7c99d6c5ce21a1b2220d3b44ca27b75b2cf485cd01d89f4c8c4e7cfa1b0e0",
+          "char_start": 1004,
+          "char_end": 1051,
+          "quote": "up to 8x improvements in TTFT and 7x throughput",
+          "interpretation": "Авторы EPIC сообщают улучшения TTFT до 8 раз и throughput до 7 раз.",
+          "modality": "author_reported_experiment",
+          "conditions": "Сравнения систем serving из исследования; negligible or no accuracy loss в протестированных условиях, не общее обещание."
+        },
+        "example": {
+          "kind": "research",
+          "source_id": "2410.15332v1",
+          "label": "EPIC: Efficient Position-Independent Context Caching for Serving Large Language Models"
+        }
+      },
+      "independence_limit": "Три разные авторские группы; benchmarks и системные условия не унифицировались и не реплицировались."
+    },
+    {
+      "id": "val-uncertainty-retrieval",
+      "split": "validation",
+      "cutoff": "2024-12-31T23:59:59Z",
+      "label": "Управление retrieval по неопределенности текущей генерации",
+      "distinctness_group": "val-uncertainty-retrieval",
+      "source_ids": [
+        "2403.10081v1",
+        "2406.19215v1"
+      ],
+      "assessor": "Codex",
+      "review_status": "self_assessed_primary_sources",
+      "relevance": {
+        "ai": 2,
+        "rag": 2,
+        "rare_control": 0
+      },
+      "emergence": "emerging",
+      "decision_basis": "DRAGIN (2024-Q1) учитывает текущую потребность в информации при выборе момента и текста поиска. SeaKR (Q2) использует uncertainty внутренних состояний для trigger, reranking и reasoning strategy. Это развитие state-dependent управления во время ответа.",
+      "counterevidence": "Это не отдельная тема за entropy, attention и каждый uncertainty estimator. Внутренняя неопределенность не является калиброванной вероятностью истины; label emerging не доказывает безопасность или отсутствие галлюцинаций.",
+      "eligible_gold": {
+        "ai": true,
+        "rag": true,
+        "rare_control": false
+      },
+      "brief_support": {
+        "problem": {
+          "source_id": "2403.10081v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "27875f0dd4b63d08e86528fe13020a437529d981e906ea73167e1a3ae14e055e",
+          "char_start": 522,
+          "char_end": 542,
+          "quote": "rely on static rules",
+          "interpretation": "Статические правила trigger не отражают меняющуюся потребность LM в информации.",
+          "modality": "problem_statement",
+          "conditions": null
+        },
+        "advantage": {
+          "source_id": "2406.19215v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "48ccacd36e99043bbe90c4c45d3018e8e8d896afbdf5231e5a4583d7ddd95cfb",
+          "char_start": 686,
+          "char_end": 727,
+          "quote": "outperforms existing adaptive RAG methods",
+          "interpretation": "Авторы SeaKR сообщают преимущество над сравниваемыми adaptive RAG methods.",
+          "modality": "author_reported_experiment",
+          "conditions": "Simple и complex QA datasets исследования; без придуманного процента и независимой калибровки uncertainty."
+        },
+        "example": {
+          "kind": "research",
+          "source_id": "2406.19215v1",
+          "label": "SeaKR: Self-aware Knowledge Retrieval for Adaptive Retrieval Augmented Generation"
+        }
+      },
+      "independence_limit": "Два непересекающихся списка авторов; shared datasets не являются независимым внедрением."
+    },
+    {
+      "id": "val-visual-page-rag",
+      "split": "validation",
+      "cutoff": "2024-12-31T23:59:59Z",
+      "label": "Retrieval изображений страниц с сохранением layout",
+      "distinctness_group": "val-visual-page-rag",
+      "source_ids": [
+        "2407.01449v1",
+        "2410.10594v1"
+      ],
+      "assessor": "Codex",
+      "review_status": "self_assessed_primary_sources",
+      "relevance": {
+        "ai": 2,
+        "rag": 2,
+        "rare_control": 0
+      },
+      "emergence": "emerging",
+      "decision_basis": "ColPali опубликован 2024-06-27 (Q2, несмотря на ID 2407), VisRAG — Q4. Визуальный page embedding и последующая VLM generation сохраняют layout вместо потерь OCR-to-text. ColPali подтверждает retrieval, VisRAG дополнительно проверяет generation.",
+      "counterevidence": "Ранее уже существовал multimodal RAG; новизна этой темы — page-image representation реальных документов. ColPali сам не является end-to-end generator. Дата не вычисляется из цифр native ID, и не объявляется первый visual RAG в мире.",
+      "eligible_gold": {
+        "ai": true,
+        "rag": true,
+        "rare_control": false
+      },
+      "brief_support": {
+        "problem": {
+          "source_id": "2410.10594v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "d367808a8cfaa190bd9d0fb288a783706fb57cb12f64186f8bcbe21460db547a",
+          "char_start": 249,
+          "char_end": 290,
+          "quote": "vision information like layout and images",
+          "interpretation": "Текстовое представление документов может потерять layout и изображения.",
+          "modality": "problem_statement",
+          "conditions": null
+        },
+        "advantage": {
+          "source_id": "2410.10594v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "d367808a8cfaa190bd9d0fb288a783706fb57cb12f64186f8bcbe21460db547a",
+          "char_start": 1123,
+          "char_end": 1159,
+          "quote": "25--39\\% end-to-end performance gain",
+          "interpretation": "Авторы VisRAG сообщают end-to-end выигрыш 25–39%.",
+          "modality": "author_reported_experiment",
+          "conditions": "Относительно traditional text-based RAG pipeline в экспериментах статьи; не универсальные процентные пункты и не OCR accuracy."
+        },
+        "example": {
+          "kind": "research",
+          "source_id": "2410.10594v1",
+          "label": "VisRAG: Vision-based Retrieval-augmented Generation on Multi-modality Documents"
+        }
+      },
+      "independence_limit": "ColPali и VisRAG имеют разные авторские группы; производственная проверка не проведена."
+    },
+    {
+      "id": "val-abstract-memory-retrieval",
+      "split": "validation",
+      "cutoff": "2024-12-31T23:59:59Z",
+      "label": "Поиск по абстрактной памяти длинного корпуса",
+      "distinctness_group": "val-abstract-memory-retrieval",
+      "source_ids": [
+        "2401.18059v1",
+        "2409.05591v1"
+      ],
+      "assessor": "Codex",
+      "review_status": "self_assessed_primary_sources",
+      "relevance": {
+        "ai": 2,
+        "rag": 2,
+        "rare_control": 0
+      },
+      "emergence": "emerging",
+      "decision_basis": "RAPTOR (2024-Q1) строит дерево рекурсивных summaries; MemoRAG (Q3) формирует global memory и draft-answer clues перед retrieval. Обе работы выходят за локальное совпадение вопроса с коротким chunk и задают промежуточное абстрактное представление корпуса.",
+      "counterevidence": "Дерево summaries и генеративные clues — разные устройства памяти. Группа объединяет их по роли global abstraction в поиске, это пограничная гранулярность. Не требуется переименовывать их одной архитектурой; сама длинная context window сюда не относится.",
+      "eligible_gold": {
+        "ai": true,
+        "rag": true,
+        "rare_control": false
+      },
+      "brief_support": {
+        "problem": {
+          "source_id": "2401.18059v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "a19b7fdf3d7103b0be78795c9fd7a47476c3eb661aec411ef6fbcf5adc3a4110",
+          "char_start": 147,
+          "char_end": 184,
+          "quote": "retrieve only short contiguous chunks",
+          "interpretation": "Короткие смежные chunks ограничивают целостное понимание длинного документа.",
+          "modality": "problem_statement",
+          "conditions": null
+        },
+        "advantage": {
+          "source_id": "2401.18059v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "a19b7fdf3d7103b0be78795c9fd7a47476c3eb661aec411ef6fbcf5adc3a4110",
+          "char_start": 997,
+          "char_end": 1021,
+          "quote": "20% in absolute accuracy",
+          "interpretation": "Авторы RAPTOR сообщают улучшение на 20 абсолютных пунктов accuracy.",
+          "modality": "author_reported_experiment",
+          "conditions": "QuALITY, RAPTOR retrieval с GPT-4 относительно лучшего сравниваемого результата в v1; не все QA tasks."
+        },
+        "example": {
+          "kind": "research",
+          "source_id": "2401.18059v1",
+          "label": "RAPTOR: Recursive Abstractive Processing for Tree-Organized Retrieval"
+        }
+      },
+      "independence_limit": "У RAPTOR и MemoRAG непересекающиеся авторские списки; shared LLM не означает независимую репликацию."
+    },
+    {
+      "id": "val-table-subset-retrieval",
+      "split": "validation",
+      "cutoff": "2024-12-31T23:59:59Z",
+      "label": "Выбор схемы и ячеек больших таблиц для ответа LM",
+      "distinctness_group": "val-table-subset-retrieval",
+      "source_ids": [
+        "2312.09039v1",
+        "2410.04739v1"
+      ],
+      "assessor": "Codex",
+      "review_status": "self_assessed_primary_sources",
+      "relevance": {
+        "ai": 2,
+        "rag": 2,
+        "rare_control": 0
+      },
+      "emergence": "emerging",
+      "decision_basis": "TAP4LLM (2023-Q4) выбирает query-relevant sub-tables и knowledge augmentation, TableRAG (2024-Q4) развивает schema/cell retrieval для миллионных таблиц. Это поиск нужной части самой таблицы, в отличие от retrieval SQL demonstrations для code generation.",
+      "counterevidence": "TableRAG не просто новая версия TAP4LLM; различные группы и retrieval процедуры. Качество на искусственно подготовленных million-token benchmarks не доказывает полноценную enterprise database интеграцию. Ошибочный ID 2308.14043 относится к oxide surfaces и исключен из поддержки.",
+      "eligible_gold": {
+        "ai": true,
+        "rag": true,
+        "rare_control": false
+      },
+      "brief_support": {
+        "problem": {
+          "source_id": "2410.04739v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "3edf596e1213fbd54810d8ad36c4cdd9e20fb2b1f54578a78bf2e312365ba385",
+          "char_start": 218,
+          "char_end": 251,
+          "quote": "require the entire table as input",
+          "interpretation": "Передача всей большой таблицы в prompt ограничивает масштабируемость.",
+          "modality": "problem_statement",
+          "conditions": null
+        },
+        "advantage": {
+          "source_id": "2410.04739v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "3edf596e1213fbd54810d8ad36c4cdd9e20fb2b1f54578a78bf2e312365ba385",
+          "char_start": 1040,
+          "char_end": 1107,
+          "quote": "new state-of-the-art performance on large-scale table understanding",
+          "interpretation": "Авторы TableRAG сообщают лучшие результаты в своих сравнениях больших таблиц.",
+          "modality": "author_reported_experiment",
+          "conditions": "Два million-token benchmarks, построенные на Arcade и BIRD-SQL; качественная оценка без придуманного процента."
+        },
+        "example": {
+          "kind": "research",
+          "source_id": "2410.04739v1",
+          "label": "TableRAG: Million-Token Table Understanding with Language Models"
+        }
+      },
+      "independence_limit": "Разные авторские списки TAP4LLM и TableRAG; воспроизведение не выполнялось."
+    },
+    {
+      "id": "val-rag-diagnostic-metrics",
+      "split": "validation",
+      "cutoff": "2024-12-31T23:59:59Z",
+      "label": "Проверка retrieval и верности ответа отдельными метриками",
+      "distinctness_group": "val-rag-diagnostic-metrics",
+      "source_ids": [
+        "2309.15217v1",
+        "2408.08067v1"
+      ],
+      "assessor": "Codex",
+      "review_status": "self_assessed_primary_sources",
+      "relevance": {
+        "ai": 2,
+        "rag": 2,
+        "rare_control": 0
+      },
+      "emergence": "emerging",
+      "decision_basis": "RAGAS (2023-Q3) разделяет retrieval, faithful context use и качество генерации; RAGChecker (2024-Q3) развивает fine-grained диагностику и проверяет корреляцию с human judgments. Это новый инструмент оценки всего RAG pipeline, непосредственно работающий с answer/evidence.",
+      "counterevidence": "Framework оценки не заменяет сам RAG generator и не доказывает безошибочную factuality. RAGAS v1 выдвигает предположение об ускорении evaluation, не отчет независимого эксперимента. Преимущество карточки привязано к meta-evaluation RAGChecker, не к обещанию RAGAS.",
+      "eligible_gold": {
+        "ai": true,
+        "rag": true,
+        "rare_control": false
+      },
+      "brief_support": {
+        "problem": {
+          "source_id": "2408.08067v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "f7ba77701c636a10cd57e5b548fa79528049e5d15efbce22170238e1d6d3078f",
+          "char_start": 245,
+          "char_end": 272,
+          "quote": "reliability of measurements",
+          "interpretation": "Оценка длинных RAG ответов требует надежных измерений и разделения ошибок модулей.",
+          "modality": "problem_statement",
+          "conditions": null
+        },
+        "advantage": {
+          "source_id": "2408.08067v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "f7ba77701c636a10cd57e5b548fa79528049e5d15efbce22170238e1d6d3078f",
+          "char_start": 489,
+          "char_end": 543,
+          "quote": "significantly better correlations with human judgments",
+          "interpretation": "Авторы RAGChecker сообщают более высокую корреляцию с человеческими оценками.",
+          "modality": "author_reported_experiment",
+          "conditions": "Meta-evaluation против сравниваемых evaluation metrics; затем анализ 8 RAG systems, не гарантия правильности каждого отдельного ответа."
+        },
+        "example": {
+          "kind": "research",
+          "source_id": "2408.08067v1",
+          "label": "RAGChecker: A Fine-grained Framework for Diagnosing Retrieval-Augmented Generation"
+        }
+      },
+      "independence_limit": "Раздельные авторские группы; human judgments в исходной статье не являются человеческой валидацией нашего benchmark."
+    },
+    {
+      "id": "val-selective-code-retrieval",
+      "split": "validation",
+      "cutoff": "2024-12-31T23:59:59Z",
+      "label": "Обучаемый выбор полезного внешнего контекста для кода",
+      "distinctness_group": "val-selective-code-retrieval",
+      "source_ids": [
+        "2403.10059v1",
+        "2407.19487v1"
+      ],
+      "assessor": "Codex",
+      "review_status": "self_assessed_primary_sources",
+      "relevance": {
+        "ai": 2,
+        "rag": 2,
+        "rare_control": 0
+      },
+      "emergence": "emerging",
+      "decision_basis": "Repoformer (2024-Q1) обучает self-evaluation необходимости retrieval. RLCoder (Q3) обучает retriever по perplexity целевого кода и вводит stop signal. Это контроллер полезности retrieved context, более узкая операция, чем вся repository completion.",
+      "counterevidence": "Perplexity и stop signal не гарантируют функциональную корректность программы. Отдельный GraphCoder использует context graph, но не является второй работой о selective stop; он сохранен отдельно как одиночный контроль.",
+      "eligible_gold": {
+        "ai": true,
+        "rag": true,
+        "rare_control": false
+      },
+      "brief_support": {
+        "problem": {
+          "source_id": "2403.10059v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "b5790e9bcae289ef76c0317023ce72370ce2b6a5df26ab076830534f8e9354d9",
+          "char_start": 260,
+          "char_end": 307,
+          "quote": "retrieved contexts proving unhelpful or harmful",
+          "interpretation": "Не каждый найденный контекст полезен code LM.",
+          "modality": "problem_statement",
+          "conditions": null
+        },
+        "advantage": {
+          "source_id": "2403.10059v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "b5790e9bcae289ef76c0317023ce72370ce2b6a5df26ab076830534f8e9354d9",
+          "char_start": 1050,
+          "char_end": 1114,
+          "quote": "as much as 70% inference speedup without harming the performance",
+          "interpretation": "Авторы Repoformer сообщают ускорение inference до 70% без ухудшения качества в их проверках.",
+          "modality": "author_reported_experiment",
+          "conditions": "RepoEval, CrossCodeEval и дополнительный benchmark; не универсальные 70% и не ускорение исполнения сгенерированного кода."
+        },
+        "example": {
+          "kind": "research",
+          "source_id": "2403.10059v1",
+          "label": "Repoformer: Selective Retrieval for Repository-Level Code Completion"
+        }
+      },
+      "independence_limit": "Авторские группы Repoformer и RLCoder не пересекаются; зависимость от общих benchmarks отмечена."
+    },
+    {
+      "id": "val-long-unit-retrieval",
+      "split": "validation",
+      "cutoff": "2024-12-31T23:59:59Z",
+      "label": "Сохранение длинного контекста при retrieval для LCQA",
+      "distinctness_group": "val-long-unit-retrieval",
+      "source_ids": [
+        "2406.15319v1",
+        "2410.18050v1"
+      ],
+      "assessor": "Codex",
+      "review_status": "self_assessed_primary_sources",
+      "relevance": {
+        "ai": 2,
+        "rag": 2,
+        "rare_control": 0
+      },
+      "emergence": "emerging",
+      "decision_basis": "Jiang et al. (2024-Q2) используют long retrieval units и long reader; Zhao et al. (Q4) рассматривают global information и factual details в dual-perspective LCQA. Это два разных LongRAG, с разными авторами и IDs, а не версии одной работы.",
+      "counterevidence": "Общее название не служит merge-основанием. Методы отличаются разбиением и обработкой контекста; их объединяет сохранение global context при retrieval из длинных документов. Они не требуют summary-memory index как RAPTOR/MemoRAG.",
+      "eligible_gold": {
+        "ai": true,
+        "rag": true,
+        "rare_control": false
+      },
+      "brief_support": {
+        "problem": {
+          "source_id": "2406.15319v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "1df5f2289a99eae1d4729bcd7460391441d468c935efa795fe715291e1db29dc",
+          "char_start": 343,
+          "char_end": 390,
+          "quote": "imbalanced `heavy' retriever and `light' reader",
+          "interpretation": "Короткие units увеличивают нагрузку на retriever и мало используют возможности long-context reader.",
+          "modality": "problem_statement",
+          "conditions": null
+        },
+        "advantage": {
+          "source_id": "2406.15319v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "1df5f2289a99eae1d4729bcd7460391441d468c935efa795fe715291e1db29dc",
+          "char_start": 1130,
+          "char_end": 1150,
+          "quote": "an EM of 62.7% on NQ",
+          "interpretation": "Авторы первого LongRAG сообщают exact match 62,7%.",
+          "modality": "author_reported_experiment",
+          "conditions": "NaturalQuestions, без дополнительного обучения, long retrieved units; это абсолютный EM, не относительный прирост."
+        },
+        "example": {
+          "kind": "research",
+          "source_id": "2406.15319v1",
+          "label": "LongRAG: Enhancing Retrieval-Augmented Generation with Long-context LLMs"
+        }
+      },
+      "independence_limit": "Непересекающиеся авторские списки двух LongRAG; одинаковое имя не делает работы одной семьей версий."
+    },
+    {
+      "id": "val-task-level-retrieval-planning",
+      "split": "validation",
+      "cutoff": "2024-12-31T23:59:59Z",
+      "label": "Выбор стратегии поиска до выполнения сложной задачи",
+      "distinctness_group": "val-task-level-retrieval-planning",
+      "source_ids": [
+        "2403.14403v1",
+        "2406.12430v1"
+      ],
+      "assessor": "Codex",
+      "review_status": "self_assessed_primary_sources",
+      "relevance": {
+        "ai": 2,
+        "rag": 2,
+        "rare_control": 0
+      },
+      "emergence": "emerging",
+      "decision_basis": "Adaptive-RAG (2024-Q1) выбирает no/single/multi-step стратегию по сложности запроса; PlanRAG (Q2) формирует план до retrieval data-analysis queries. Общая операция — task-level организация поиска перед ответом, а не token-level uncertainty trigger.",
+      "counterevidence": "Classifier сложности и генерация плана различаются; это пограничная группировка по уровню управления. DQA использует игровые сценарии, не подтвержденные банковские решения. Сама chain-of-thought не объявляется новым retrieval методом.",
+      "eligible_gold": {
+        "ai": true,
+        "rag": true,
+        "rare_control": false
+      },
+      "brief_support": {
+        "problem": {
+          "source_id": "2403.14403v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "1eafe85004a732f24cb4c8d67897496d0acf4ecaaa63bb050a094d6b9eb33305",
+          "char_start": 374,
+          "char_end": 428,
+          "quote": "simple queries with unnecessary computational overhead",
+          "interpretation": "Одинаковая стратегия создает лишние затраты на простых запросах и не решает сложные.",
+          "modality": "problem_statement",
+          "conditions": null
+        },
+        "advantage": {
+          "source_id": "2406.12430v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "b3abe6caed3d19816ea79c78c6fc08ea0714109ee94158c68dd2bd63a311fa15",
+          "char_start": 914,
+          "char_end": 981,
+          "quote": "15.8% in the Locating scenario and by 7.4% in the Building scenario",
+          "interpretation": "Авторы PlanRAG сообщают улучшения 15,8% и 7,4% в двух сценариях.",
+          "modality": "author_reported_experiment",
+          "conditions": "DQA: Locating/Building на Europa Universalis IV/Victoria 3; относительно сравниваемого iterative RAG, не общая бизнес-эффективность."
+        },
+        "example": {
+          "kind": "research",
+          "source_id": "2406.12430v1",
+          "label": "PlanRAG: A Plan-then-Retrieval Augmented Generation for Generative Large Language Models as Decision Makers"
+        }
+      },
+      "independence_limit": "Непересекающиеся авторские группы; разные задачи не объединены в одну численную метрику."
+    },
+    {
+      "id": "val-corrective-evidence",
+      "split": "validation",
+      "cutoff": "2024-12-31T23:59:59Z",
+      "label": "Коррекция retrieval и согласование конфликтующих знаний",
+      "distinctness_group": "val-corrective-evidence",
+      "source_ids": [
+        "2401.15884v1",
+        "2410.07176v1"
+      ],
+      "assessor": "Codex",
+      "review_status": "self_assessed_primary_sources",
+      "relevance": {
+        "ai": 2,
+        "rag": 2,
+        "rare_control": 0
+      },
+      "emergence": "emerging",
+      "decision_basis": "CRAG (2024-Q1) проверяет качество найденных документов, меняет retrieval action и фильтрует содержимое. Astute RAG (Q4) согласует internal/external knowledge с source awareness. Разные группы развивают post-retrieval correction, явно проверяя неблагоприятные retrieval условия.",
+      "counterevidence": "Фильтр релевантности не является доказательством истинности источника, а внутренние знания LM могут ошибаться. Astute RAG результат worst-case относится к авторскому тесту Gemini/Claude, не гарантирует устойчивость к любым атакам.",
+      "eligible_gold": {
+        "ai": true,
+        "rag": true,
+        "rare_control": false
+      },
+      "brief_support": {
+        "problem": {
+          "source_id": "2401.15884v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "ce4a1946517fcca3c66ecbf7c208b8a070aa3c143aef05ade5bb94ed903398ff",
+          "char_start": 359,
+          "char_end": 382,
+          "quote": "if retrieval goes wrong",
+          "interpretation": "RAG зависит от качества найденного контекста и может ухудшаться при ошибках retrieval.",
+          "modality": "problem_statement",
+          "conditions": null
+        },
+        "advantage": {
+          "source_id": "2410.07176v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "9055d91a6fe352be67103a5c789843e1a13f368d1f5743946919307eb7fc7ed2",
+          "char_start": 1322,
+          "char_end": 1403,
+          "quote": "matches or exceeds the performance of LLMs without RAG under worst-case scenarios",
+          "interpretation": "Авторы Astute RAG сообщают результат не хуже LM без RAG в проверенных worst-case сценариях.",
+          "modality": "author_reported_experiment",
+          "conditions": "Контролируемые эксперименты с Gemini/Claude; не универсальная сертификация безопасности."
+        },
+        "example": {
+          "kind": "research",
+          "source_id": "2410.07176v1",
+          "label": "Astute RAG: Overcoming Imperfect Retrieval Augmentation and Knowledge Conflicts for Large Language Models"
+        }
+      },
+      "independence_limit": "Два разных авторских состава; независимая репликация не выполнялась."
+    },
+    {
+      "id": "val-rag-context-posttraining",
+      "split": "validation",
+      "cutoff": "2024-12-31T23:59:59Z",
+      "label": "Дообучение LM использовать найденное знание и игнорировать помехи",
+      "distinctness_group": "val-rag-context-posttraining",
+      "source_ids": [
+        "2403.10131v1",
+        "2407.14482v1"
+      ],
+      "assessor": "Codex",
+      "review_status": "self_assessed_primary_sources",
+      "relevance": {
+        "ai": 2,
+        "rag": 2,
+        "rare_control": 0
+      },
+      "emergence": "emerging",
+      "decision_basis": "RAFT (2024-Q1) обучает in-domain open-book answering с distractor documents и verbatim evidence. ChatQA 2 (Q3) использует staged instruction tuning для RAG и long-context. Общая тема — post-training reader на использовании найденного контекста, а не обучение только retriever.",
+      "counterevidence": "Instruction tuning и RAG существовали раньше; новизна ограничена documented context-aware training recipes. RAFT и ChatQA 2 имеют разные datasets/окна. Сравнение с GPT-4 в v1 ChatQA 2 не заменяется более сильной формулировкой поздней версии.",
+      "eligible_gold": {
+        "ai": true,
+        "rag": true,
+        "rare_control": false
+      },
+      "brief_support": {
+        "problem": {
+          "source_id": "2403.10131v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "36b44330ad02370dabcf6e642781848a9640e4d2ec93ab1676dc76df946e06ad",
+          "char_start": 384,
+          "char_end": 441,
+          "quote": "model to gain such new knowledge remains an open question",
+          "interpretation": "Способ адаптации готовой LM к новым внешним знаниям требует отдельного обучения использованию контекста.",
+          "modality": "problem_statement",
+          "conditions": null
+        },
+        "advantage": {
+          "source_id": "2403.10131v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "36b44330ad02370dabcf6e642781848a9640e4d2ec93ab1676dc76df946e06ad",
+          "char_start": 1059,
+          "char_end": 1104,
+          "quote": "consistently improves the model's performance",
+          "interpretation": "Авторы RAFT сообщают улучшение качества domain-specific RAG.",
+          "modality": "author_reported_experiment",
+          "conditions": "PubMed, HotpotQA и Gorilla, in-domain open-book setting; qualitative claim v1, без придуманного процента."
+        },
+        "example": {
+          "kind": "research",
+          "source_id": "2403.10131v1",
+          "label": "RAFT: Adapting Language Model to Domain Specific RAG"
+        }
+      },
+      "independence_limit": "Разные авторские группы RAFT и ChatQA 2; несколько stages не считаются несколькими независимыми работами."
+    },
+    {
+      "id": "val-token-context-compression",
+      "split": "validation",
+      "cutoff": "2024-12-31T23:59:59Z",
+      "label": "Удаление несущественных токенов prompt с учетом задачи",
+      "distinctness_group": "val-token-context-compression",
+      "source_ids": [
+        "2304.12102v1",
+        "2310.05736v1",
+        "2310.06839v1",
+        "2403.12968v1"
+      ],
+      "assessor": "Codex",
+      "review_status": "self_assessed_primary_sources",
+      "relevance": {
+        "ai": 2,
+        "rag": 2,
+        "rare_control": 0
+      },
+      "emergence": "emerging",
+      "decision_basis": "Selective Context (2023-Q2), LLMLingua/LongLLMLingua (Q4) и LLMLingua-2 (2024-Q1) развивают token/content filtering, budget control и bidirectional token classification. LongLLMLingua проверяет single-/multi-document QA; тема отличается от генерации новых abstractive summaries.",
+      "counterevidence": "Работы LLMLingua имеют общих авторов и считаются одной исследовательской линией; Selective Context — отдельная группа. Сжатие может удалить нужное условие или отрицание. RAG relevance относится к сохранению переданного evidence в QA, а не к любому промпту без retrieval.",
+      "eligible_gold": {
+        "ai": true,
+        "rag": true,
+        "rare_control": false
+      },
+      "brief_support": {
+        "problem": {
+          "source_id": "2310.06839v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "7acb9aa8fb92f0233abc087c6d24efb6130b124c8a6ddc8de05f81bca57280c6",
+          "char_start": 84,
+          "char_end": 161,
+          "quote": "higher computational/financial cost, longer latency, and inferior performance",
+          "interpretation": "Длинный контекст увеличивает стоимость и latency и может ухудшать ответы.",
+          "modality": "problem_statement",
+          "conditions": null
+        },
+        "advantage": {
+          "source_id": "2310.06839v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "7acb9aa8fb92f0233abc087c6d24efb6130b124c8a6ddc8de05f81bca57280c6",
+          "char_start": 914,
+          "char_end": 946,
+          "quote": "performance boost of up to 17.1%",
+          "interpretation": "Авторы LongLLMLingua v1 сообщают улучшение до 17,1% при меньшем числе токенов.",
+          "modality": "author_reported_experiment",
+          "conditions": "NaturalQuestions, GPT-3.5-Turbo, около 4x fewer tokens; только v1, не поздние 21,4% с текущей страницы."
+        },
+        "example": {
+          "kind": "research",
+          "source_id": "2310.06839v1",
+          "label": "LongLLMLingua: Accelerating and Enhancing LLMs in Long Context Scenarios via Prompt Compression"
+        }
+      },
+      "independence_limit": "Selective Context независим по авторскому составу от линии LLMLingua; независимая репликация результатов отсутствует."
+    },
+    {
+      "id": "val-learned-query-refinement",
+      "split": "validation",
+      "cutoff": "2024-12-31T23:59:59Z",
+      "label": "Обучаемое переписывание и декомпозиция поискового запроса",
+      "distinctness_group": "val-learned-query-refinement",
+      "source_ids": [
+        "2305.14283v1",
+        "2404.00610v1"
+      ],
+      "assessor": "Codex",
+      "review_status": "self_assessed_primary_sources",
+      "relevance": {
+        "ai": 2,
+        "rag": 2,
+        "rare_control": 0
+      },
+      "emergence": "emerging",
+      "decision_basis": "Rewrite-Retrieve-Read (2023-Q2) обучает rewriter по downstream retrieval/reader reward. RQ-RAG (2024-Q1, дата 31 марта несмотря на ID 2404) развивает rewriting, decomposition и disambiguation. Это query adaptation под retrieval→answer, не генерация гипотетического документа HyDE.",
+      "counterevidence": "RAGGED с ошибочно предполагаемым ID 2403.09040 — другая работа об анализе конфигураций, не RQ-RAG. Декомпозиция может менять смысл исходного запроса; сравнительные результаты не означают гарантированного исправления любой неоднозначности.",
+      "eligible_gold": {
+        "ai": true,
+        "rag": true,
+        "rare_control": false
+      },
+      "brief_support": {
+        "problem": {
+          "source_id": "2404.00610v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "aa56f2b7be06134475b12dee3bc13069a1e0f6803fb6135d181a94555d909230",
+          "char_start": 628,
+          "char_end": 656,
+          "quote": "ambiguous or complex queries",
+          "interpretation": "Неоднозначные и сложные запросы требуют уточнения перед поиском.",
+          "modality": "problem_statement",
+          "conditions": null
+        },
+        "advantage": {
+          "source_id": "2404.00610v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "aa56f2b7be06134475b12dee3bc13069a1e0f6803fb6135d181a94555d909230",
+          "char_start": 1107,
+          "char_end": 1162,
+          "quote": "an average of 1.9\\% across three single-hop QA datasets",
+          "interpretation": "Авторы RQ-RAG сообщают среднее улучшение 1,9% на трех single-hop QA datasets.",
+          "modality": "author_reported_experiment",
+          "conditions": "Llama2 7B против предыдущего SOTA в исследовании; отдельно указаны complex multi-hop tests, без смешивания их метрик."
+        },
+        "example": {
+          "kind": "research",
+          "source_id": "2404.00610v1",
+          "label": "RQ-RAG: Learning to Refine Queries for Retrieval Augmented Generation"
+        }
+      },
+      "independence_limit": "У двух работ разные авторские составы; native ID month не использован как дата публикации."
+    },
+    {
+      "id": "val-graph-code-singleton",
+      "split": "validation",
+      "cutoff": "2024-12-31T23:59:59Z",
+      "label": "Поиск code context graph для repository completion",
+      "distinctness_group": "val-graph-code-singleton",
+      "source_ids": [
+        "2406.07003v1"
+      ],
+      "assessor": "Codex",
+      "review_status": "self_assessed_primary_sources",
+      "relevance": {
+        "ai": 2,
+        "rag": 2,
+        "rare_control": 0
+      },
+      "emergence": "insufficient_evidence",
+      "decision_basis": "GraphCoder использует control/data dependencies и coarse-to-fine поиск code snippets. Одна v1 работа 2024-Q2 подтверждает конкретную реализацию, но не временную поддержку нескольких периодов.",
+      "counterevidence": "Результат не присоединяется к stop-policy теме Repoformer/RLCoder ради второго периода: GraphCoder выбирает структурно похожий контекст, а не обучает stop signal.",
+      "eligible_gold": {
+        "ai": false,
+        "rag": false,
+        "rare_control": false
+      },
+      "brief_support": {
+        "problem": {
+          "source_id": "2406.07003v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "c4511b67d745bc21582baee3d8064327a69ce57b434ab45d17f17dd122a71700",
+          "char_start": 311,
+          "char_end": 348,
+          "quote": "lack of repository-specific knowledge",
+          "interpretation": "Code LM не имеет нужного контекста конкретного репозитория.",
+          "modality": "problem_statement",
+          "conditions": null
+        },
+        "advantage": {
+          "source_id": "2406.07003v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "c4511b67d745bc21582baee3d8064327a69ce57b434ab45d17f17dd122a71700",
+          "char_start": 1318,
+          "char_end": 1367,
+          "quote": "+6.06 in code match and +6.23 in identifier match",
+          "interpretation": "Авторы GraphCoder сообщают улучшения code/identifier match.",
+          "modality": "author_reported_experiment",
+          "conditions": "Average exact match относительно сравниваемых retrieval-augmented methods; не функциональная correctness программы."
+        },
+        "example": {
+          "kind": "research",
+          "source_id": "2406.07003v1",
+          "label": "GraphCoder: Enhancing Repository-Level Code Completion via Code Context Graph-based Retrieval and Language Model"
+        }
+      },
+      "independence_limit": "Одна каноническая работа, temporal independence отсутствует."
+    },
+    {
+      "id": "val-ragged-singleton",
+      "split": "validation",
+      "cutoff": "2024-12-31T23:59:59Z",
+      "label": "Анализ зависимости RAG от reader и числа passages",
+      "distinctness_group": "val-ragged-singleton",
+      "source_ids": [
+        "2403.09040v1"
+      ],
+      "assessor": "Codex",
+      "review_status": "self_assessed_primary_sources",
+      "relevance": {
+        "ai": 2,
+        "rag": 2,
+        "rare_control": 0
+      },
+      "emergence": "insufficient_evidence",
+      "decision_basis": "RAGGED v1 действительно изучает RAG configurations и различия reader architectures. Это отдельная работа 2024-Q1, не ошибочно запрошенный RQ-RAG.",
+      "counterevidence": "Наблюдение о менее чем пяти документах относится к протестированным decoder-only models. Его нельзя переносить на все нынешние long-context LM или объявлять общим законом ранжирования.",
+      "eligible_gold": {
+        "ai": false,
+        "rag": false,
+        "rare_control": false
+      },
+      "brief_support": {
+        "problem": {
+          "source_id": "2403.09040v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "1e8abab0df05528c4e983fefb8f0e66c813ff8279d565e2ba214701331820238",
+          "char_start": 211,
+          "char_end": 248,
+          "quote": "highly dependent on its configuration",
+          "interpretation": "Качество RAG зависит от конфигурации retriever и reader.",
+          "modality": "problem_statement",
+          "conditions": null
+        },
+        "advantage": {
+          "source_id": "2403.09040v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "1e8abab0df05528c4e983fefb8f0e66c813ff8279d565e2ba214701331820238",
+          "char_start": 598,
+          "char_end": 651,
+          "quote": "different models suit substantially varied RAG setups",
+          "interpretation": "Авторы показывают зависимость подходящей конфигурации от модели.",
+          "modality": "author_reported_experiment",
+          "conditions": "Representative DBQA tasks, sparse/dense retrievers и четыре LMs; диагностический вывод, не универсальное улучшение качества."
+        },
+        "example": {
+          "kind": "research",
+          "source_id": "2403.09040v1",
+          "label": "RAGGED: Towards Informed Design of Retrieval Augmented Generation Systems"
+        }
+      },
+      "independence_limit": "Одна работа и один период; independent emerging signal отсутствует."
+    },
+    {
+      "id": "val-oxide-id-mismatch",
+      "split": "validation",
+      "cutoff": "2024-12-31T23:59:59Z",
+      "label": "Ошибочный ID: diffusion поверхности оксидов",
+      "distinctness_group": "val-oxide-id-mismatch",
+      "source_ids": [
+        "2308.14043v1"
+      ],
+      "assessor": "Codex",
+      "review_status": "self_assessed_primary_sources",
+      "relevance": {
+        "ai": 0,
+        "rag": 0,
+        "rare_control": 0
+      },
+      "emergence": "noise",
+      "decision_basis": "Первичная статья описывает атомную структуру и surface diffusion на оксидах. Это не TAP4LLM и не RAG; native ID проверен по Atom v1.",
+      "counterevidence": "Слова diffusion и reconstruction не означают ML diffusion model. Оставлена настоящая нерелевантная работа для проверки ошибочного сопоставления.",
+      "eligible_gold": {
+        "ai": false,
+        "rag": false,
+        "rare_control": false
+      },
+      "brief_support": {
+        "problem": {
+          "source_id": "2308.14043v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "0d58ef13a4e87791c278072c56959f996c270f6fa3115f07ff0aef6e708b9d48",
+          "char_start": 96,
+          "char_end": 133,
+          "quote": "scarcely explored at the atomic scale",
+          "interpretation": "Работа рассматривает малоизученную атомную диффузию поверхности.",
+          "modality": "problem_statement",
+          "conditions": null
+        },
+        "advantage": {
+          "source_id": "2308.14043v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "0d58ef13a4e87791c278072c56959f996c270f6fa3115f07ff0aef6e708b9d48",
+          "char_start": 564,
+          "char_end": 614,
+          "quote": "promoting the flattening of the surface morphology",
+          "interpretation": "Авторы связывают изменение кислородного потенциала с выравниванием поверхности.",
+          "modality": "author_reported_experiment",
+          "conditions": "Три модельные oxide surfaces при annealing; не AI performance."
+        },
+        "example": {
+          "kind": "research",
+          "source_id": "2308.14043v1",
+          "label": "Reconstruction changes drive surface diffusion and determine the flatness of oxide surfaces"
+        }
+      },
+      "independence_limit": "Нерелевантный физический источник, не поддержка TAP4LLM."
+    },
+    {
+      "id": "val-bev-id-mismatch",
+      "split": "validation",
+      "cutoff": "2024-12-31T23:59:59Z",
+      "label": "Ошибочный ID: устранение конфликтов LiDAR/camera fusion",
+      "distinctness_group": "val-bev-id-mismatch",
+      "source_ids": [
+        "2403.07372v1"
+      ],
+      "assessor": "Codex",
+      "review_status": "self_assessed_primary_sources",
+      "relevance": {
+        "ai": 2,
+        "rag": 0,
+        "rare_control": 0
+      },
+      "emergence": "insufficient_evidence",
+      "decision_basis": "ECFusion — реальная AI работа по 3D object detection, а не RLCoder. Семантика multi-modal retrieval/generation не следует из слова fusion.",
+      "counterevidence": "Одно исследование в 2024-Q1 не подтверждает multi-period emergence. Для RAG relevance=0; результаты nuScenes не становятся улучшением repository completion.",
+      "eligible_gold": {
+        "ai": false,
+        "rag": false,
+        "rare_control": false
+      },
+      "brief_support": {
+        "problem": {
+          "source_id": "2403.07372v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "918d3848d48e4ac3c0117660b5d50599fb07fedfe98236c3a5f01de766b1d037",
+          "char_start": 276,
+          "char_end": 297,
+          "quote": "cross-modal conflicts",
+          "interpretation": "Разнородные camera/LiDAR признаки могут конфликтовать в BEV space.",
+          "modality": "problem_statement",
+          "conditions": null
+        },
+        "advantage": {
+          "source_id": "2403.07372v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "918d3848d48e4ac3c0117660b5d50599fb07fedfe98236c3a5f01de766b1d037",
+          "char_start": 1127,
+          "char_end": 1155,
+          "quote": "state-of-the-art performance",
+          "interpretation": "Авторы ECFusion сообщают лучший результат в своем сравнении.",
+          "modality": "author_reported_experiment",
+          "conditions": "nuScenes 3D object detection dataset; не RAG или generative code quality."
+        },
+        "example": {
+          "kind": "research",
+          "source_id": "2403.07372v1",
+          "label": "Eliminating Cross-modal Conflicts in BEV Space for LiDAR-Camera 3D Object Detection"
+        }
+      },
+      "independence_limit": "Одна работа, не относится к canonical RLCoder и не объединяется с ним."
+    },
+    {
+      "id": "val-passage-reader-mature",
+      "split": "validation",
+      "cutoff": "2024-12-31T23:59:59Z",
+      "label": "Базовая генерация ответа по нескольким найденным passages",
+      "distinctness_group": "val-passage-reader-mature",
+      "source_ids": [
+        "2007.01282v1"
+      ],
+      "assessor": "Codex",
+      "review_status": "self_assessed_primary_sources",
+      "relevance": {
+        "ai": 2,
+        "rag": 2,
+        "rare_control": 0
+      },
+      "emergence": "mature",
+      "decision_basis": "Работа Izacard/Grave опубликована в 2020-Q3 и описывает базовое агрегирование passages generative reader. К cutoff 2024 это предшествующая архитектурная основа, не новое зарождение только из-за наличия нескольких источников.",
+      "counterevidence": "Новые reader architectures могут появляться позже, но не представлены этой singleton работой. Mature label относится к базовой теме; она не исключает ее практическую полезность.",
+      "eligible_gold": {
+        "ai": false,
+        "rag": false,
+        "rare_control": false
+      },
+      "brief_support": {
+        "problem": {
+          "source_id": "2007.01282v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "6a2761de45678f85877801c08576553c7ecdd6c60b7d679265b0ca4d2eab4452",
+          "char_start": 218,
+          "char_end": 246,
+          "quote": "expensive to train and query",
+          "interpretation": "Большие параметрические генеративные QA модели дороги в обучении и запросах.",
+          "modality": "problem_statement",
+          "conditions": null
+        },
+        "advantage": {
+          "source_id": "2007.01282v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "6a2761de45678f85877801c08576553c7ecdd6c60b7d679265b0ca4d2eab4452",
+          "char_start": 386,
+          "char_end": 448,
+          "quote": "state-of-the-art results on the Natural Questions and TriviaQA",
+          "interpretation": "Авторы сообщают лучшие результаты на NQ и TriviaQA на дату публикации.",
+          "modality": "author_reported_experiment",
+          "conditions": "Open benchmarks и версия 2020 v1; это исторический результат, не нынешнее лидерство."
+        },
+        "example": {
+          "kind": "research",
+          "source_id": "2007.01282v1",
+          "label": "Leveraging Passage Retrieval with Generative Models for Open Domain Question Answering"
+        }
+      },
+      "independence_limit": "Одна каноническая историческая работа; ее копии не становятся новыми подтверждениями."
+    },
+    {
+      "id": "val-knn-lm-mature",
+      "split": "validation",
+      "cutoff": "2024-12-31T23:59:59Z",
+      "label": "Базовая интерполяция LM с kNN datastore",
+      "distinctness_group": "val-knn-lm-mature",
+      "source_ids": [
+        "1911.00172v1"
+      ],
+      "assessor": "Codex",
+      "review_status": "self_assessed_primary_sources",
+      "relevance": {
+        "ai": 2,
+        "rag": 2,
+        "rare_control": 0
+      },
+      "emergence": "mature",
+      "decision_basis": "kNN-LM v1 2019-Q4 объединяет LM с nearest-neighbor distribution без нового обучения. Это раннее основание semiparametric generation, не новый тренд 2024.",
+      "counterevidence": "Развитие memories и retrieval в более поздних работах возможно, но имя kNN и старый результат не доказывают новую волну сами по себе.",
+      "eligible_gold": {
+        "ai": false,
+        "rag": false,
+        "rare_control": false
+      },
+      "brief_support": {
+        "problem": {
+          "source_id": "1911.00172v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "404389459153c3f1de7955aa7538905a4c3bbac51b1db086e93bd5faf4e476cf",
+          "char_start": 849,
+          "char_end": 889,
+          "quote": "rare patterns, such as factual knowledge",
+          "interpretation": "Retrieval памяти помогает моделировать редкие фактические шаблоны.",
+          "modality": "problem_statement",
+          "conditions": null
+        },
+        "advantage": {
+          "source_id": "1911.00172v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "404389459153c3f1de7955aa7538905a4c3bbac51b1db086e93bd5faf4e476cf",
+          "char_start": 507,
+          "char_end": 558,
+          "quote": "a 2.9 point improvement with no additional training",
+          "interpretation": "Авторы kNN-LM сообщают улучшение perplexity на 2,9 пункта без дополнительного обучения.",
+          "modality": "author_reported_experiment",
+          "conditions": "Wikitext-103, neighbors из исходного training set, perplexity 15,79; не +2,9% QA accuracy."
+        },
+        "example": {
+          "kind": "research",
+          "source_id": "1911.00172v1",
+          "label": "Generalization through Memorization: Nearest Neighbor Language Models"
+        }
+      },
+      "independence_limit": "Историческое исследование 2019; новые наблюдения его популярности не дают новый publication count."
+    },
+    {
+      "id": "val-bart-mature",
+      "split": "validation",
+      "cutoff": "2024-12-31T23:59:59Z",
+      "label": "Денойзинговое seq2seq pretraining BART",
+      "distinctness_group": "val-bart-mature",
+      "source_ids": [
+        "1910.13461v1"
+      ],
+      "assessor": "Codex",
+      "review_status": "self_assessed_primary_sources",
+      "relevance": {
+        "ai": 2,
+        "rag": 1,
+        "rare_control": 0
+      },
+      "emergence": "mature",
+      "decision_basis": "BART v1 2019-Q4 описывает базовое denoising seq2seq pretraining. К 2024 это зрелая архитектурная основа для генераторов, а не конкретный emerging RAG метод.",
+      "counterevidence": "В аннотации нет отдельно сформулированной проблемы retrieval; поле problem оставлено unknown. Возможность использовать BART внутри RAG не делает сам BART новым RAG pipeline.",
+      "eligible_gold": {
+        "ai": false,
+        "rag": false,
+        "rare_control": false
+      },
+      "brief_support": {
+        "problem": null,
+        "advantage": {
+          "source_id": "1910.13461v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "c7934ba3f967f11b47af6799ce3fa9fabb6eabb6e8f49e0bd2b87f8e361e15d2",
+          "char_start": 1042,
+          "char_end": 1064,
+          "quote": "gains of up to 6 ROUGE",
+          "interpretation": "Авторы BART сообщают выигрыш до 6 ROUGE в своих generation/summarization comparisons.",
+          "modality": "author_reported_experiment",
+          "conditions": "Исторические tasks и baseline 2019; до 6 ROUGE, не универсальный выигрыш RAG."
+        },
+        "example": {
+          "kind": "research",
+          "source_id": "1910.13461v1",
+          "label": "BART: Denoising Sequence-to-Sequence Pre-training for Natural Language Generation, Translation, and Comprehension"
+        }
+      },
+      "independence_limit": "Одна работа, источник и метрика сохранены как зрелый/смежный контроль.",
+      "missing_evidence_reason": "The primary abstract does not state a retrieval-specific problem; no problem statement was invented."
+    }
+  ],
+  "frozen_at": "2026-09-08T22:39:07.010213+00:00"
+}

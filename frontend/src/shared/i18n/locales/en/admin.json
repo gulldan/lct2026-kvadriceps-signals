@@ -1,0 +1,401 @@
+{
+  "noData": "no data",
+  "loading": "Loading…",
+  "actions": {
+    "save": "Save",
+    "saving": "Saving…",
+    "resetToDefaults": "Defaults",
+    "cancel": "Cancel",
+    "refresh": "refresh"
+  },
+  "units": {
+    "mln": "M",
+    "thousand": "K",
+    "ms": "ms",
+    "s": "s",
+    "pcs": "pcs",
+    "sec": "sec",
+    "percent": "%",
+    "docs": "docs",
+    "chunks": "chunks"
+  },
+  "dashboard": {
+    "title": "Overview",
+    "description": "Documents, indexing and knowledge base size.",
+    "loadingAria": "Loading analytics",
+    "loadError": "Failed to load analytics — check your connection and try again.",
+    "fileTypes": {
+      "pdf": "PDF",
+      "docx": "Word",
+      "eml": "Emails",
+      "xlsx": "Excel",
+      "pptx": "Slides",
+      "txt": "Text",
+      "image": "Scans",
+      "db": "Databases",
+      "other": "Other"
+    },
+    "metrics": {
+      "total": "Total documents",
+      "totalSub": "uploaded to the knowledge base",
+      "indexed": "Indexed",
+      "indexedSub": "{{pct}}% of all documents",
+      "processing": "Processing",
+      "processingSub": "from upload to indexing",
+      "failed": "Errors",
+      "failedSub": "failed to process",
+      "chunks": "Total chunks",
+      "chunksSub": "pieces of text in the index",
+      "size": "Volume",
+      "sizeSub": "of source files in storage"
+    },
+    "factory": {
+      "title": "What the factory built",
+      "themes": "Topics",
+      "themesSub": "groups of similar documents, assembled automatically",
+      "hypotheses": "Hypotheses",
+      "hypothesesSub": "testable ideas with evidence and a score",
+      "goals": "Theses",
+      "goalsSub": "what we look for on the radar and why"
+    },
+    "empty": {
+      "title": "No documents yet",
+      "description": "Analytics will appear after the first documents are uploaded to the knowledge base."
+    },
+    "dynamics": {
+      "title": "Knowledge base over time",
+      "uploadsByDay": "Uploads by day · {{days}} d.",
+      "pipeline": "Processing pipeline",
+      "pipelineAria": "Done {{indexed}}, in progress {{processing}}, errors {{failed}}",
+      "indexedReady_one": "document ready for search",
+      "indexedReady_other": "documents ready for search",
+      "processingNow": "currently being processed",
+      "failedRetry": "failed — can be uploaded again",
+      "byType": "By file type",
+      "topDocs": "Top 10 documents by chunk count"
+    },
+    "fileType": "File type",
+    "document": "Document"
+  },
+  "users": {
+    "title": "Users and roles",
+    "description": "Platform access and team roles.",
+    "create": "Create user",
+    "searchPlaceholder": "Username",
+    "searchAria": "Search users",
+    "loadingAria": "Loading users",
+    "loadError": "Failed to load users — check your connection and try again.",
+    "table": {
+      "user": "User",
+      "roles": "Roles",
+      "created": "Created"
+    },
+    "notFound": "No users found",
+    "roles": {
+      "user": "User",
+      "operator": "Operator",
+      "admin": "Administrator"
+    },
+    "dialog": {
+      "title": "New user",
+      "description": "The account works right away — hand the login and password to the employee",
+      "username": "Username",
+      "password": "Password",
+      "passwordHint_one": "At least {{count}} character",
+      "passwordHint_other": "At least {{count}} characters",
+      "role": "Role",
+      "submit": "Create",
+      "submitting": "Creating…"
+    },
+    "toasts": {
+      "created": "User “{{username}}” created",
+      "exists": "User “{{username}}” already exists",
+      "createFailed": "Failed to create user: {{message}}",
+      "network": "network unavailable"
+    }
+  },
+  "settings": {
+    "title": "Settings",
+    "description": "Shared by all users.",
+    "tabs": {
+      "model": "Model",
+      "generation": "Generation",
+      "ranking": "Scoring",
+      "research": "Sources"
+    }
+  },
+  "weights": {
+    "loadFailed": "Could not load weights. Try again before changing these settings.",
+    "title": "Influence on hypothesis ranking",
+    "hintLabel": "How scoring works",
+    "hintBody": "Higher weights give a criterion more influence on the ranking. Weights are scaled to a total of 100% when saved.",
+    "total": "Total {{total}}%. Scaled to 100% on save.",
+    "atLeastOne": "At least one weight must be greater than zero",
+    "saved": "Weights saved — hypotheses will be re-ranked",
+    "saveFailed": "Failed to save weights",
+    "fields": {
+      "kpi_fit": {
+        "label": "Thesis fit",
+        "hint": "how well the hypothesis hits the chosen thesis"
+      },
+      "evidence": {
+        "label": "Evidence base",
+        "hint": "how much supporting evidence was found in the documents"
+      },
+      "novelty": {
+        "label": "Novelty",
+        "hint": "how fresh the idea is relative to the corpus"
+      },
+      "value": {
+        "label": "Value",
+        "hint": "the expected impact if the hypothesis is confirmed"
+      },
+      "risk_inv": {
+        "label": "Risk manageability",
+        "hint": "the lower the risk, the higher the contribution"
+      },
+      "trl_fit": {
+        "label": "Technology readiness",
+        "hint": "maturity on the TRL 1–9 scale"
+      }
+    }
+  },
+  "runtime": {
+    "generation": "Number of hypotheses",
+    "queues": "Selection rules",
+    "queuesHint": "Ready: supported hypotheses with TRL ≥ {{trl}} and rating ≥ {{score}}%. Risk: risk ≥ {{risk}}%, mixed or refuting evidence, or a closed hypothesis.",
+    "excluded": "Excluded directions",
+    "excludedPlaceholder": "For example, food production",
+    "deepTitle": "Additional AI review",
+    "deepHint": "Review and novelty checks. Increases generation time.",
+    "loadFailed": "Failed to load factory parameters",
+    "saved": "Factory parameters saved",
+    "saveFailed": "Failed to save factory parameters",
+    "resetDone": "Factory parameters reset",
+    "resetFailed": "Failed to reset factory parameters",
+    "fields": {
+      "defaultGenerateCount": {
+        "label": "From a thesis"
+      },
+      "clusterGenerateCount": {
+        "label": "From a topic"
+      },
+      "directionGenerateCount": {
+        "label": "From a draft topic"
+      },
+      "generationTimeoutSec": {
+        "label": "Response timeout"
+      },
+      "graphDirectionLimit": {
+        "label": "Draft topics from the graph"
+      },
+      "readyTrlMin": {
+        "label": "Minimum TRL for Ready"
+      },
+      "readyScoreMin": {
+        "label": "Minimum rating for Ready"
+      },
+      "riskScoreMin": {
+        "label": "Risk queue threshold"
+      }
+    },
+    "advanced": "Limits and exclusions"
+  },
+  "metrics": {
+    "loadFailed": "Could not load metrics. Check your connection and try again.",
+    "kicker": "Factory observability",
+    "title": "Metrics",
+    "description": "AI spending and processing speed.",
+    "viewAria": "Metrics section",
+    "viewBudget": "Budget and usage",
+    "viewPerf": "Performance",
+    "usage": {
+      "title": "AI usage",
+      "pendingDescription": "LLM requests, tokens, and cost by operation — will appear once the factory starts computing.",
+      "noData": "No usage data yet.",
+      "rangeDescription": "{{provider}} · last {{days}} d.",
+      "periodAria": "Period",
+      "days7": "7 days",
+      "days30": "30 days",
+      "requestsToday": "Requests today",
+      "requestsTodaySub": "of {{limit}} · {{perMinUsed}}/{{perMinLimit}} per min",
+      "tokensForRange": "Tokens for the period",
+      "requestsCount_one": "{{formatted}} request",
+      "requestsCount_other": "{{formatted}} requests",
+      "cost": "Cost",
+      "modelsCount_one": "{{count}} model",
+      "modelsCount_other": "{{count}} models",
+      "credits": "Budget remaining",
+      "creditsSub": "of {{total}} · spent {{used}}",
+      "providerFallback": "LLM",
+      "estimatedNote": "estimated from the price list",
+      "byProviderTitle": "Spend by provider",
+      "providerSub": "{{tokens}} tokens · {{formatted}} req.",
+      "kind": {
+        "real": "real",
+        "notional": "notional · org. key",
+        "free": "free"
+      },
+      "free": "free",
+      "rubRateNote": "≈ at {{rate}} ₽/$",
+      "requestsByDay": "Requests by day",
+      "tokensByDay": "Tokens by day",
+      "chartMetricAria": "Chart metric",
+      "chartRequests": "requests",
+      "chartTokens": "tokens",
+      "byOperation": "By operation",
+      "byModel": "By model",
+      "perHypothesis": "One hypothesis ≈",
+      "perHypothesisValue": "{{requests}} requests · {{tokens}} tokens · {{cost}}",
+      "composedOf": "made up of:",
+      "averagedOver_one": "averaged over {{formatted}} hypothesis for the period",
+      "averagedOver_other": "averaged over {{formatted}} hypotheses for the period",
+      "budgetUnset": "Not configured",
+      "noQuota": "No daily limit configured",
+      "requestsTodaySubShort": "Today: {{count}}"
+    },
+    "trace": {
+      "title": "Latency and stages — where time is spent",
+      "description": "Each stage's latency (p50 / p95) from Prometheus over real traffic, in path order. The darkest bars are the bottlenecks.",
+      "empty": "No latency measurements yet. Stages will appear once documents and queries pass through the pipeline.",
+      "ingestPath": "Document processing",
+      "queryPath": "Answering a question",
+      "stages": {
+        "upload": "File intake → S3 → record → publish",
+        "parseArchive": "Archive extraction (ZIP/RAR/7z)",
+        "parsePdf": "PDF text extraction",
+        "parseOffice": "Office parsing (doc/xls/txt)",
+        "parseEmail": "Email parsing (eml)",
+        "parseOcr": "Scan OCR (PaddleOCR-VL)",
+        "chunkSplit": "Chunking (splitting into fragments)",
+        "chunkEmbed": "Chunk embedding (F2LLM-v2)",
+        "chunkIndex": "Indexing (Qdrant + OpenSearch)",
+        "embed": "Query embedding (F2LLM-v2)",
+        "retrieveVector": "Vector search (Qdrant)",
+        "retrieveLexical": "Lexical search (BM25 / OpenSearch)",
+        "rerank": "Reranking (cross-encoder)",
+        "generate": "Answer generation (LLM)"
+      }
+    },
+    "jobs": {
+      "title": "Hypothesis jobs — total time",
+      "description": "Time from start to result in the last 24 hours.",
+      "tasksCount_one": "{{formatted}} task",
+      "tasksCount_other": "{{formatted}} tasks",
+      "median": "median",
+      "max": "max",
+      "last24h": "last 24h"
+    },
+    "workers": {
+      "title": "Background factory",
+      "description": "Background computation delays — from worker statuses; the interactive path — from Prometheus above.",
+      "run": "run {{duration}}",
+      "updated": "updated {{time}}",
+      "neverRan": "has not run yet"
+    },
+    "readable": {
+      "requests": "Requests in period",
+      "tokenSplit": "Input: {{input}} · output: {{output}}",
+      "unpriced": "Rate unavailable",
+      "costSource": "Reported by provider",
+      "provider": "Provider",
+      "name": "Name",
+      "limits": "Limits, budget and average cost",
+      "dailyLimit": "Used out of the daily allowance",
+      "latencyHelp": "Median is the typical stage duration. 95% of requests finish within p95. A dash means no measurements yet.",
+      "stage": "Stage",
+      "p95": "p95",
+      "slowest": "Slowest stage",
+      "operation": "Operation",
+      "completed": "Completed",
+      "workerState": {
+        "running": "Running",
+        "idle": "Idle",
+        "error": "Error"
+      },
+      "noRate": "Some costs are unknown: rate unavailable",
+      "providerVolume": "Requests: {{requests}} · tokens: {{tokens}}"
+    },
+    "operations": {
+      "raptor_summary": "Document summaries",
+      "title_extract": "Document titles",
+      "cluster_label": "Topic labels",
+      "rag": "Question answering",
+      "generate": "Hypothesis generation",
+      "verify": "Hypothesis verification",
+      "signal_description": "Signal descriptions",
+      "enrich": "Hypothesis enrichment",
+      "pub_query": "Publication query preparation",
+      "assess_trl": "Technology readiness assessment",
+      "answer": "Question answering",
+      "kpi_parse": "Thesis extraction"
+    },
+    "openalex": {
+      "title": "OpenAlex credits",
+      "description": "Daily budget as OpenAlex last reported it, including the collector’s spending. Journal search stops at the reserve, which is kept for term history used by the model.",
+      "key": "API key",
+      "address": "No key — address quota",
+      "remaining": "{{remaining}} of {{limit}}",
+      "sub": "spent {{spent}} · model reserve {{reserve}} · resets {{reset}}",
+      "unknown": "no data"
+    }
+  },
+  "system": {
+    "provider": "Provider",
+    "providerDefault": "As deployed",
+    "providerOpenRouter": "OpenRouter",
+    "providerCustom": "Custom URL",
+    "url": "Server URL",
+    "model": "AI model",
+    "apiKey": "API key",
+    "apiKeySet": "Key saved",
+    "apiKeyUnset": "Not set",
+    "pubsearch": "Publications from the internet",
+    "pubsearchEnabled": "Search online publications",
+    "pubsearchEnabledHint": "Include articles from OpenAlex and Crossref.",
+    "mailto": "Contact email",
+    "mailtoHint": "For searching OpenAlex.",
+    "generation": "Hypothesis generation",
+    "genBreadth": "Explore more ideas",
+    "genBreadthHint": "Select hypotheses from a wider set of candidates.",
+    "kpiSuggest": "Suggest theses",
+    "kpiSuggestHint": "Based on uploaded documents.",
+    "qualityFloor": "Minimum hypothesis completeness",
+    "qualityFloorHint": "From 0 to 1. Below the threshold — archive.",
+    "applyNote": "An empty field restores the server setting.",
+    "modelDisplay": "Model name shown to users",
+    "modelDisplayHint": "How the model is credited in cards, hypotheses and exports. Logs and usage accounting keep the service name.",
+    "radarWorkers": "Radar parallel model calls",
+    "radarWorkersHint": "How many model requests a search runs at once. Empty — 48.",
+    "radarRpm": "Radar requests per minute",
+    "radarRpmHint": "0 — no limit. Applies without a restart.",
+    "saved": "Saved — applies within a few seconds",
+    "loadFailed": "Failed to load parameters",
+    "saveFailed": "Failed to save",
+    "cost": {
+      "title": "Rates and currency",
+      "rubRate": "USD exchange rate",
+      "rubRateHint": "For calculating expenses in rubles.",
+      "rubRateUnit": "₽ per $",
+      "currency": "Rate currency",
+      "prices": "Rate per 1M tokens",
+      "pricesHint": "model=input/output; separate rates with “;”."
+    },
+    "providerYandex": "Yandex",
+    "providerStub": "Stub (no model)",
+    "apiKeyHint": "Enter a new key to replace the current one.",
+    "statusNow": "Now:",
+    "statusKeySet": "key is set",
+    "statusKeyMissing": "no key",
+    "backToDeployment": "Reset model",
+    "unsaved": "Unsaved changes",
+    "statProvider": "Provider",
+    "statModel": "Model",
+    "statKey": "API key",
+    "connection": "Connection and access",
+    "sourceOptions": "Advanced options",
+    "configured": "Configured",
+    "notConfigured": "Not configured",
+    "connectionManaged": "The endpoint and access key are managed in the server configuration."
+  }
+}

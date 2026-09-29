@@ -1,0 +1,32 @@
+{
+  "native_id": "2210.08808v1",
+  "canonical_id": "arxiv:2210.08808",
+  "url": "https://arxiv.org/abs/2210.08808v1",
+  "title": "Towards Robust k-Nearest-Neighbor Machine Translation",
+  "authors": [
+    "Hui Jiang",
+    "Ziyao Lu",
+    "Fandong Meng",
+    "Chulun Zhou",
+    "Jie Zhou",
+    "Degen Huang",
+    "Jinsong Su"
+  ],
+  "published_at": "2022-10-17T07:43:39Z",
+  "version_updated_at": "2022-10-17T07:43:39Z",
+  "observed_at": "2026-09-08T22:21:57.265798+00:00",
+  "available_at": "2022-10-17T07:43:39Z",
+  "available_basis": "arXiv archived v1 release; historical reconstruction captured later",
+  "source_kind": "paper",
+  "provider": "arxiv",
+  "access_scope": "public",
+  "representation": "versioned_primary_abstract",
+  "text": "k-Nearest-Neighbor Machine Translation (kNN-MT) becomes an important research direction of NMT in recent years. Its main idea is to retrieve useful key-value pairs from an additional datastore to modify translations without updating the NMT model. However, the underlying retrieved noisy pairs will dramatically deteriorate the model performance. In this paper, we conduct a preliminary study and find that this problem results from not fully exploiting the prediction of the NMT model. To alleviate the impact of noise, we propose a confidence-enhanced kNN-MT model with robust training. Concretely, we introduce the NMT confidence to refine the modeling of two important components of kNN-MT: kNN distribution and the interpolation weight. Meanwhile we inject two types of perturbations into the retrieved pairs for robust training. Experimental results on four benchmark datasets demonstrate that our model not only achieves significant improvements over current kNN-MT models, but also exhibits better robustness. Our code is available at https://github.com/DeepLearnXMU/Robust-knn-mt.",
+  "text_sha256": "de8ee2c726a86571888005bb4cb91bd3e79cf519b28a855f17f82104e6c7bb11",
+  "raw_sha256": "a21afb62ff2a2b5e5c7fa99d38deb7e33515f2a5050a5002f8218071f1c86a5a",
+  "raw_file": "a21afb62ff2a2b5e5c7fa99d38deb7e33515f2a5050a5002f8218071f1c86a5a.xml",
+  "limitations": [
+    "Abstract-only evidence; author-reported results, not independent reproduction.",
+    "Later DOI, journal metadata and current citations are excluded from historical input."
+  ]
+}

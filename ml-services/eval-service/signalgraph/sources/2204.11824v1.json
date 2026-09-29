@@ -1,0 +1,29 @@
+{
+  "native_id": "2204.11824v1",
+  "canonical_id": "arxiv:2204.11824",
+  "url": "https://arxiv.org/abs/2204.11824v1",
+  "title": "Retrieval-Augmented Diffusion Models",
+  "authors": [
+    "Andreas Blattmann",
+    "Robin Rombach",
+    "Kaan Oktay",
+    "Björn Ommer"
+  ],
+  "published_at": "2022-04-25T17:55:26Z",
+  "version_updated_at": "2022-04-25T17:55:26Z",
+  "observed_at": "2026-09-08T18:26:21.557709+00:00",
+  "available_at": "2022-04-25T17:55:26Z",
+  "available_basis": "arXiv archived v1 release; historical reconstruction captured later",
+  "source_kind": "paper",
+  "provider": "arxiv",
+  "access_scope": "public",
+  "representation": "versioned_primary_abstract",
+  "text": "Generative image synthesis with diffusion models has recently achieved excellent visual quality in several tasks such as text-based or class-conditional image synthesis. Much of this success is due to a dramatic increase in the computational capacity invested in training these models. This work presents an alternative approach: inspired by its successful application in natural language processing, we propose to complement the diffusion model with a retrieval-based approach and to introduce an explicit memory in the form of an external database. During training, our diffusion model is trained with similar visual features retrieved via CLIP and from the neighborhood of each training instance. By leveraging CLIP's joint image-text embedding space, our model achieves highly competitive performance on tasks for which it has not been explicitly trained, such as class-conditional or text-image synthesis, and can be conditioned on both text and image embeddings. Moreover, we can apply our approach to unconditional generation, where it achieves state-of-the-art performance. Our approach incurs low computational and memory overheads and is easy to implement. We discuss its relationship to concurrent work and will publish code and pretrained models soon.",
+  "text_sha256": "676bdda12e4e711b52a527aad8a11cbf89b6b3a8452cd2c9f9ceffb05d3d8fb3",
+  "raw_sha256": "b34f72b71eb5663d7d56e4219cc6bd43e8a803b50d2fcce0b75aaf98b354a770",
+  "raw_file": "b34f72b71eb5663d7d56e4219cc6bd43e8a803b50d2fcce0b75aaf98b354a770.xml",
+  "limitations": [
+    "Abstract-only evidence; author-reported results, not independent reproduction.",
+    "Later DOI, journal metadata and current citations are excluded from historical input."
+  ]
+}

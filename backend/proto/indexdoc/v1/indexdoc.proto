@@ -1,0 +1,16 @@
+syntax = "proto3";
+package rag.indexdoc.v1;
+option go_package = "github.com/example/rag-mvp/pkg/genproto/indexdoc/v1;indexdocv1";
+
+// Private control plane for immutable source indexes. Payloads use the strict
+// platform/indexdoc contract; extracted text and vectors remain in S3.
+service IndexService {
+  rpc Begin(Envelope) returns (Envelope);
+  rpc Renew(Envelope) returns (Envelope);
+  rpc Prepare(Envelope) returns (Envelope);
+  rpc Activate(Envelope) returns (Envelope);
+  rpc Finish(Envelope) returns (Envelope);
+  rpc Read(Envelope) returns (Envelope);
+  rpc SetAccess(Envelope) returns (Envelope);
+}
+message Envelope { string json = 1; }

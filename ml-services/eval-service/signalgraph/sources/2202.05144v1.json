@@ -1,0 +1,29 @@
+{
+  "native_id": "2202.05144v1",
+  "canonical_id": "arxiv:2202.05144",
+  "url": "https://arxiv.org/abs/2202.05144v1",
+  "title": "InPars: Data Augmentation for Information Retrieval using Large Language Models",
+  "authors": [
+    "Luiz Bonifacio",
+    "Hugo Abonizio",
+    "Marzieh Fadaee",
+    "Rodrigo Nogueira"
+  ],
+  "published_at": "2022-02-10T16:52:45Z",
+  "version_updated_at": "2022-02-10T16:52:45Z",
+  "observed_at": "2026-09-08T22:03:58.895762+00:00",
+  "available_at": "2022-02-10T16:52:45Z",
+  "available_basis": "arXiv archived v1 release; historical reconstruction captured later",
+  "source_kind": "paper",
+  "provider": "arxiv",
+  "access_scope": "public",
+  "representation": "versioned_primary_abstract",
+  "text": "The information retrieval community has recently witnessed a revolution due to large pretrained transformer models. Another key ingredient for this revolution was the MS MARCO dataset, whose scale and diversity has enabled zero-shot transfer learning to various tasks. However, not all IR tasks and domains can benefit from one single dataset equally. Extensive research in various NLP tasks has shown that using domain-specific training data, as opposed to a general-purpose one, improves the performance of neural models. In this work, we harness the few-shot capabilities of large pretrained language models as synthetic data generators for IR tasks. We show that models finetuned solely on our unsupervised dataset outperform strong baselines such as BM25 as well as recently proposed self-supervised dense retrieval methods. Furthermore, retrievers finetuned on both supervised and our synthetic data achieve better zero-shot transfer than models finetuned only on supervised data. Code, models, and data are available at https://github.com/zetaalphavector/inpars .",
+  "text_sha256": "8d63a65881b55c2988a54cb5d076e3d1c2cc9ad41b62220e1d924b19ea4b0c8a",
+  "raw_sha256": "cebcac3f6b33d75b1197162d17bbefeab5f1430f443a663bf2fde424ea298fe0",
+  "raw_file": "cebcac3f6b33d75b1197162d17bbefeab5f1430f443a663bf2fde424ea298fe0.xml",
+  "limitations": [
+    "Abstract-only evidence; author-reported results, not independent reproduction.",
+    "Later DOI, journal metadata and current citations are excluded from historical input."
+  ]
+}

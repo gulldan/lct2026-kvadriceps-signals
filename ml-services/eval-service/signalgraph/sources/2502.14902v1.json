@@ -1,0 +1,33 @@
+{
+  "native_id": "2502.14902v1",
+  "canonical_id": "arxiv:2502.14902",
+  "url": "https://arxiv.org/abs/2502.14902v1",
+  "title": "PathRAG: Pruning Graph-based Retrieval Augmented Generation with Relational Paths",
+  "authors": [
+    "Boyu Chen",
+    "Zirui Guo",
+    "Zidan Yang",
+    "Yuluo Chen",
+    "Junze Chen",
+    "Zhenghao Liu",
+    "Chuan Shi",
+    "Cheng Yang"
+  ],
+  "published_at": "2025-02-18T11:18:55Z",
+  "version_updated_at": "2025-02-18T11:18:55Z",
+  "observed_at": "2026-09-08T22:44:17.493937+00:00",
+  "available_at": "2025-02-18T11:18:55Z",
+  "available_basis": "arXiv archived v1 release; historical reconstruction captured later",
+  "source_kind": "paper",
+  "provider": "arxiv",
+  "access_scope": "public",
+  "representation": "versioned_primary_abstract",
+  "text": "Retrieval-augmented generation (RAG) improves the response quality of large language models (LLMs) by retrieving knowledge from external databases. Typical RAG approaches split the text database into chunks, organizing them in a flat structure for efficient searches. To better capture the inherent dependencies and structured relationships across the text database, researchers propose to organize textual information into an indexing graph, known asgraph-based RAG. However, we argue that the limitation of current graph-based RAG methods lies in the redundancy of the retrieved information, rather than its insufficiency. Moreover, previous methods use a flat structure to organize retrieved information within the prompts, leading to suboptimal performance. To overcome these limitations, we propose PathRAG, which retrieves key relational paths from the indexing graph, and converts these paths into textual form for prompting LLMs. Specifically, PathRAG effectively reduces redundant information with flow-based pruning, while guiding LLMs to generate more logical and coherent responses with path-based prompting. Experimental results show that PathRAG consistently outperforms state-of-the-art baselines across six datasets and five evaluation dimensions. The code is available at the following link: https://github.com/BUPT-GAMMA/PathRAG",
+  "text_sha256": "d18d664bc5d51c0fb403b6aba550c3c29b250b9b817d034f203fcdf7ace1d106",
+  "raw_sha256": "d794dda6b39c851dfacd873ec0a99c27f066067c23f5d12be94a6faa8de16f6c",
+  "raw_file": "d794dda6b39c851dfacd873ec0a99c27f066067c23f5d12be94a6faa8de16f6c.xml",
+  "limitations": [
+    "Abstract-only evidence; author-reported results, not independent reproduction.",
+    "Later DOI, journal metadata and current citations are excluded from historical input."
+  ]
+}

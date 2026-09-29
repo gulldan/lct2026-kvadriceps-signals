@@ -1,0 +1,32 @@
+{
+  "native_id": "2404.00610v1",
+  "canonical_id": "arxiv:2404.00610",
+  "url": "https://arxiv.org/abs/2404.00610v1",
+  "title": "RQ-RAG: Learning to Refine Queries for Retrieval Augmented Generation",
+  "authors": [
+    "Chi-Min Chan",
+    "Chunpu Xu",
+    "Ruibin Yuan",
+    "Hongyin Luo",
+    "Wei Xue",
+    "Yike Guo",
+    "Jie Fu"
+  ],
+  "published_at": "2024-03-31T08:58:54Z",
+  "version_updated_at": "2024-03-31T08:58:54Z",
+  "observed_at": "2026-09-08T22:34:01.096283+00:00",
+  "available_at": "2024-03-31T08:58:54Z",
+  "available_basis": "arXiv archived v1 release; historical reconstruction captured later",
+  "source_kind": "paper",
+  "provider": "arxiv",
+  "access_scope": "public",
+  "representation": "versioned_primary_abstract",
+  "text": "Large Language Models (LLMs) exhibit remarkable capabilities but are prone to generating inaccurate or hallucinatory responses. This limitation stems from their reliance on vast pretraining datasets, making them susceptible to errors in unseen scenarios. To tackle these challenges, Retrieval-Augmented Generation (RAG) addresses this by incorporating external, relevant documents into the response generation process, thus leveraging non-parametric knowledge alongside LLMs' in-context learning abilities. However, existing RAG implementations primarily focus on initial input for context retrieval, overlooking the nuances of ambiguous or complex queries that necessitate further clarification or decomposition for accurate responses. To this end, we propose learning to Refine Query for Retrieval Augmented Generation (RQ-RAG) in this paper, endeavoring to enhance the model by equipping it with capabilities for explicit rewriting, decomposition, and disambiguation. Our experimental results indicate that our method, when applied to a 7B Llama2 model, surpasses the previous state-of-the-art (SOTA) by an average of 1.9\\% across three single-hop QA datasets, and also demonstrates enhanced performance in handling complex, multi-hop QA datasets. Our code is available at https://github.com/chanchimin/RQ-RAG.",
+  "text_sha256": "aa56f2b7be06134475b12dee3bc13069a1e0f6803fb6135d181a94555d909230",
+  "raw_sha256": "164243191caf415301a761696c18cc084f850a5c7b9d5a8a28ab7c3bc904a077",
+  "raw_file": "164243191caf415301a761696c18cc084f850a5c7b9d5a8a28ab7c3bc904a077.xml",
+  "limitations": [
+    "Abstract-only evidence; author-reported results, not independent reproduction.",
+    "Later DOI, journal metadata and current citations are excluded from historical input."
+  ]
+}

@@ -1,0 +1,91 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/Yo0PJrM4lOEqRdacjA8kcquK/Jo</id>
+  <title>arXiv Query: search_query=&amp;id_list=2007.01282v1,1911.00172v1,1910.13461v1&amp;start=0&amp;max_results=3</title>
+  <updated>2026-09-08T22:33:32Z</updated>
+  <link href="https://arxiv.org/api/query?search_query=&amp;start=0&amp;max_results=3&amp;id_list=2007.01282v1,1911.00172v1,1910.13461v1" type="application/atom+xml"/>
+  <opensearch:itemsPerPage>3</opensearch:itemsPerPage>
+  <opensearch:totalResults>3</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <entry>
+    <id>http://arxiv.org/abs/2007.01282v1</id>
+    <title>Leveraging Passage Retrieval with Generative Models for Open Domain Question Answering</title>
+    <updated>2020-07-02T17:44:57Z</updated>
+    <link href="https://arxiv.org/abs/2007.01282v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2007.01282v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Generative models for open domain question answering have proven to be competitive, without resorting to external knowledge. While promising, this approach requires to use models with billions of parameters, which are expensive to train and query. In this paper, we investigate how much these models can benefit from retrieving text passages, potentially containing evidence. We obtain state-of-the-art results on the Natural Questions and TriviaQA open benchmarks. Interestingly, we observe that the performance of this method significantly improves when increasing the number of retrieved passages. This is evidence that generative models are good at aggregating and combining evidence from multiple passages.</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2020-07-02T17:44:57Z</published>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Gautier Izacard</name>
+    </author>
+    <author>
+      <name>Edouard Grave</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/1910.13461v1</id>
+    <title>BART: Denoising Sequence-to-Sequence Pre-training for Natural Language Generation, Translation, and Comprehension</title>
+    <updated>2019-10-29T18:01:00Z</updated>
+    <link href="https://arxiv.org/abs/1910.13461v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/1910.13461v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>We present BART, a denoising autoencoder for pretraining sequence-to-sequence models. BART is trained by (1) corrupting text with an arbitrary noising function, and (2) learning a model to reconstruct the original text. It uses a standard Tranformer-based neural machine translation architecture which, despite its simplicity, can be seen as generalizing BERT (due to the bidirectional encoder), GPT (with the left-to-right decoder), and many other more recent pretraining schemes. We evaluate a number of noising approaches, finding the best performance by both randomly shuffling the order of the original sentences and using a novel in-filling scheme, where spans of text are replaced with a single mask token. BART is particularly effective when fine tuned for text generation but also works well for comprehension tasks. It matches the performance of RoBERTa with comparable training resources on GLUE and SQuAD, achieves new state-of-the-art results on a range of abstractive dialogue, question answering, and summarization tasks, with gains of up to 6 ROUGE. BART also provides a 1.1 BLEU increase over a back-translation system for machine translation, with only target language pretraining. We also report ablation experiments that replicate other pretraining schemes within the BART framework, to better measure which factors most influence end-task performance.</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="stat.ML" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2019-10-29T18:01:00Z</published>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Mike Lewis</name>
+    </author>
+    <author>
+      <name>Yinhan Liu</name>
+    </author>
+    <author>
+      <name>Naman Goyal</name>
+    </author>
+    <author>
+      <name>Marjan Ghazvininejad</name>
+    </author>
+    <author>
+      <name>Abdelrahman Mohamed</name>
+    </author>
+    <author>
+      <name>Omer Levy</name>
+    </author>
+    <author>
+      <name>Ves Stoyanov</name>
+    </author>
+    <author>
+      <name>Luke Zettlemoyer</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/1911.00172v1</id>
+    <title>Generalization through Memorization: Nearest Neighbor Language Models</title>
+    <updated>2019-11-01T01:09:53Z</updated>
+    <link href="https://arxiv.org/abs/1911.00172v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/1911.00172v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>We introduce $k$NN-LMs, which extend a pre-trained neural language model (LM) by linearly interpolating it with a $k$-nearest neighbors ($k$NN) model. The nearest neighbors are computed according to distance in the pre-trained LM embedding space, and can be drawn from any text collection, including the original LM training data. Applying this augmentation to a strong Wikitext-103 LM, with neighbors drawn from the original training set, our $k$NN-LM achieves a new state-of-the-art perplexity of 15.79 - a 2.9 point improvement with no additional training. We also show that this approach has implications for efficiently scaling up to larger training sets and allows for effective domain adaptation, by simply varying the nearest neighbor datastore, again without further training. Qualitatively, the model is particularly helpful in predicting rare patterns, such as factual knowledge. Together, these results strongly suggest that learning similarity between sequences of text is easier than predicting the next word, and that nearest neighbor search is an effective approach for language modeling in the long tail.</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2019-11-01T01:09:53Z</published>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Urvashi Khandelwal</name>
+    </author>
+    <author>
+      <name>Omer Levy</name>
+    </author>
+    <author>
+      <name>Dan Jurafsky</name>
+    </author>
+    <author>
+      <name>Luke Zettlemoyer</name>
+    </author>
+    <author>
+      <name>Mike Lewis</name>
+    </author>
+  </entry>
+</feed>

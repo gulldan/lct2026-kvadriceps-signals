@@ -1,0 +1,26 @@
+{
+  "provider": "crossref",
+  "mode": "recorded live API response; not a synthetic or benchmark corpus",
+  "query": "retrieval augmented generation",
+  "from": "2023-01-01",
+  "through": "2026-08-31",
+  "work_type": "journal-article",
+  "sort": "score desc",
+  "page_size": 2,
+  "pages": [
+    {
+      "file": "page-1.json",
+      "observed_at": "2026-09-08T15:22:48.914137254Z",
+      "sha256": "732805baa643e1e86acfce6393ba66a5ab30c45d65dc727c7e8f6735a59b0c1f",
+      "cursor": "*",
+      "next_cursor": "MjYuNjQzMDQ0LDE3MzkyMDA2NDAwMDAsMTAuNTUyNDglMkZnZW5ncGkuNi4wMTI1LjA2MzU="
+    },
+    {
+      "file": "page-2.json",
+      "observed_at": "2026-09-08T15:22:50.414532986Z",
+      "sha256": "d6033d26a5c26b9bc8cb9f4026dba75bb3cb368ca3c5b018386daff36dfbdddb",
+      "cursor": "MjYuNjQzMDQ0LDE3MzkyMDA2NDAwMDAsMTAuNTUyNDglMkZnZW5ncGkuNi4wMTI1LjA2MzU=",
+      "next_cursor": "MjUuOTMwMzk3LDE3NjQ2NjE5NzYwMDAsMTAuMTAxNiUyRmoubmV1Y29tLjIwMjUuMTMyMjcy"
+    }
+  ]
+}

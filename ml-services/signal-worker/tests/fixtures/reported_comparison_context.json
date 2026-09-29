@@ -1,0 +1,55 @@
+{
+  "provenance": "Previously open validation primary sources; exact source bytes unchanged. Development regression only.",
+  "sources": [
+    {
+      "authors": [
+        "Huiqiang Jiang",
+        "Qianhui Wu",
+        "Xufang Luo",
+        "Dongsheng Li",
+        "Chin-Yew Lin",
+        "Yuqing Yang",
+        "Lili Qiu"
+      ],
+      "available_at": "2023-10-10T17:59:58Z",
+      "available_basis": "arXiv archived v1 release; historical reconstruction captured later",
+      "canonical_id": "arxiv:2310.06839",
+      "native_id": "2310.06839v1",
+      "observed_at": "2026-09-08T22:34:01.096283+00:00",
+      "provider": "arxiv",
+      "published_at": "2023-10-10T17:59:58Z",
+      "representation": "versioned_primary_abstract",
+      "source_kind": "paper",
+      "text": "In long context scenarios, large language models (LLMs) face three main challenges: higher computational/financial cost, longer latency, and inferior performance. Some studies reveal that the performance of LLMs depends on both the density and the position of the key information (question relevant) in the input prompt. Inspired by these findings, we propose LongLLMLingua for prompt compression towards improving LLMs' perception of the key information to simultaneously address the three challenges. We conduct evaluation on a wide range of long context scenarios including single-/multi-document QA, few-shot learning, summarization, synthetic tasks, and code completion. The experimental results show that LongLLMLingua compressed prompt can derive higher performance with much less cost. The latency of the end-to-end system is also reduced. For example, on NaturalQuestions benchmark, LongLLMLingua gains a performance boost of up to 17.1% over the original prompt with ~4x fewer tokens as input to GPT-3.5-Turbo. It can derive cost savings of \\$28.5 and \\$27.4 per 1,000 samples from the LongBench and ZeroScrolls benchmark, respectively. Additionally, when compressing prompts of ~10k tokens at a compression rate of 2x-10x, LongLLMLingua can speed up the end-to-end latency by 1.4x-3.8x. Our code is available at https://aka.ms/LLMLingua.",
+      "text_sha256": "7acb9aa8fb92f0233abc087c6d24efb6130b124c8a6ddc8de05f81bca57280c6",
+      "title": "LongLLMLingua: Accelerating and Enhancing LLMs in Long Context Scenarios via Prompt Compression",
+      "url": "https://arxiv.org/abs/2310.06839v1",
+      "version_updated_at": "2023-10-10T17:59:58Z"
+    },
+    {
+      "authors": [
+        "Chi-Min Chan",
+        "Chunpu Xu",
+        "Ruibin Yuan",
+        "Hongyin Luo",
+        "Wei Xue",
+        "Yike Guo",
+        "Jie Fu"
+      ],
+      "available_at": "2024-03-31T08:58:54Z",
+      "available_basis": "arXiv archived v1 release; historical reconstruction captured later",
+      "canonical_id": "arxiv:2404.00610",
+      "native_id": "2404.00610v1",
+      "observed_at": "2026-09-08T22:34:01.096283+00:00",
+      "provider": "arxiv",
+      "published_at": "2024-03-31T08:58:54Z",
+      "representation": "versioned_primary_abstract",
+      "source_kind": "paper",
+      "text": "Large Language Models (LLMs) exhibit remarkable capabilities but are prone to generating inaccurate or hallucinatory responses. This limitation stems from their reliance on vast pretraining datasets, making them susceptible to errors in unseen scenarios. To tackle these challenges, Retrieval-Augmented Generation (RAG) addresses this by incorporating external, relevant documents into the response generation process, thus leveraging non-parametric knowledge alongside LLMs' in-context learning abilities. However, existing RAG implementations primarily focus on initial input for context retrieval, overlooking the nuances of ambiguous or complex queries that necessitate further clarification or decomposition for accurate responses. To this end, we propose learning to Refine Query for Retrieval Augmented Generation (RQ-RAG) in this paper, endeavoring to enhance the model by equipping it with capabilities for explicit rewriting, decomposition, and disambiguation. Our experimental results indicate that our method, when applied to a 7B Llama2 model, surpasses the previous state-of-the-art (SOTA) by an average of 1.9\\% across three single-hop QA datasets, and also demonstrates enhanced performance in handling complex, multi-hop QA datasets. Our code is available at https://github.com/chanchimin/RQ-RAG.",
+      "text_sha256": "aa56f2b7be06134475b12dee3bc13069a1e0f6803fb6135d181a94555d909230",
+      "title": "RQ-RAG: Learning to Refine Queries for Retrieval Augmented Generation",
+      "url": "https://arxiv.org/abs/2404.00610v1",
+      "version_updated_at": "2024-03-31T08:58:54Z"
+    }
+  ]
+}

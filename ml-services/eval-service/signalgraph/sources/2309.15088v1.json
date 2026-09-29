@@ -1,0 +1,28 @@
+{
+  "native_id": "2309.15088v1",
+  "canonical_id": "arxiv:2309.15088",
+  "url": "https://arxiv.org/abs/2309.15088v1",
+  "title": "RankVicuna: Zero-Shot Listwise Document Reranking with Open-Source Large Language Models",
+  "authors": [
+    "Ronak Pradeep",
+    "Sahel Sharifymoghaddam",
+    "Jimmy Lin"
+  ],
+  "published_at": "2023-09-26T17:31:57Z",
+  "version_updated_at": "2023-09-26T17:31:57Z",
+  "observed_at": "2026-09-08T22:03:58.895762+00:00",
+  "available_at": "2023-09-26T17:31:57Z",
+  "available_basis": "arXiv archived v1 release; historical reconstruction captured later",
+  "source_kind": "paper",
+  "provider": "arxiv",
+  "access_scope": "public",
+  "representation": "versioned_primary_abstract",
+  "text": "Researchers have successfully applied large language models (LLMs) such as ChatGPT to reranking in an information retrieval context, but to date, such work has mostly been built on proprietary models hidden behind opaque API endpoints. This approach yields experimental results that are not reproducible and non-deterministic, threatening the veracity of outcomes that build on such shaky foundations. To address this significant shortcoming, we present RankVicuna, the first fully open-source LLM capable of performing high-quality listwise reranking in a zero-shot setting. Experimental results on the TREC 2019 and 2020 Deep Learning Tracks show that we can achieve effectiveness comparable to zero-shot reranking with GPT-3.5 with a much smaller 7B parameter model, although our effectiveness remains slightly behind reranking with GPT-4. We hope our work provides the foundation for future research on reranking with modern LLMs. All the code necessary to reproduce our results is available at https://github.com/castorini/rank_llm.",
+  "text_sha256": "e01662abbb9513236d37bf2b828f2a7a03f6a89b28107ddff96cedc9275c557c",
+  "raw_sha256": "cebcac3f6b33d75b1197162d17bbefeab5f1430f443a663bf2fde424ea298fe0",
+  "raw_file": "cebcac3f6b33d75b1197162d17bbefeab5f1430f443a663bf2fde424ea298fe0.xml",
+  "limitations": [
+    "Abstract-only evidence; author-reported results, not independent reproduction.",
+    "Later DOI, journal metadata and current citations are excluded from historical input."
+  ]
+}

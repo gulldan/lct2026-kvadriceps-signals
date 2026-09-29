@@ -1,0 +1,22 @@
+{
+  "version": "signalgraph-benchmark-v1",
+  "file": "PROTOCOL.md",
+  "sha256": "89d3f8d56e8eae6e8c660f77121acc2285db1e91012b36b03b342bd0b8ae10be",
+  "frozen_at": "2026-09-13",
+  "frozen_before_method_implementation": false,
+  "annotation_status": "not_yet_frozen",
+  "holdout_status": "not_sealed",
+  "assessor": "Codex; user-authorized self assessment",
+  "note": "Номер версии сохранён намеренно. Основание и последствия описаны в PROTOCOL.md, раздел «Отклонение от ТЗ, названное явно». Прежние замороженные labels и пороги не подменены; прежние результаты читаются со своими значениями.",
+  "history": [
+    {
+      "sha256": "4fcb4e881da2c79c218445f69e0097a9c3f73bd9f5619e90323183235ca35662",
+      "frozen_at": "2026-09-09",
+      "frozen_before_method_implementation": true,
+      "holdout_status": "opened",
+      "holdout_opened_at": "2026-09-11",
+      "holdout_evaluation": "evaluations/20260911-holdout-v2.json",
+      "note": "Holdout под этим текстом вскрыт однократно для signalgraph-method-v2-development-mmr и приёмку не прошёл. Набор раскрыт и повторно для приёмки непригоден: переписывание протокола этого не отменяет."
+    }
+  ]
+}

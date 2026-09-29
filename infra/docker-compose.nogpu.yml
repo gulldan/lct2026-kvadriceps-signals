@@ -1,0 +1,30 @@
+# Оверлей «без GPU»: снимает runtime nvidia с четырёх нейросервисов, которые
+# включены всегда, и переводит их на CPU. Профильные GPU-сервисы (llama-server,
+# paddleocr-vlm-server, diagram-parser-paddle5-service) по умолчанию выключены,
+# трогать их не нужно.
+#
+#   make env
+#   docker compose -f infra/docker-compose.yml -f infra/docker-compose.nogpu.yml up -d --build
+#
+# Цена: эмбеддинги, реранкер и OCR на CPU в разы медленнее (индексация корпуса —
+# часы вместо минут); локальная генерация и профили ocr-vllm, diagram-parser-paddle5,
+# ml-extractor недоступны — они требуют CUDA.
+services:
+  f2llm-service:
+    runtime: !reset null
+    environment:
+      TORCH_DEVICE: cpu
+
+  reranker-service:
+    runtime: !reset null
+    environment:
+      TORCH_DEVICE: cpu
+
+  paddleocr-vl-service:
+    runtime: !reset null
+    environment:
+      PADDLEOCR_VL_DEVICE: cpu
+
+  # CUDA-образ llama.cpp без GPU сам уходит на CPU и игнорирует -ngl, образ менять не нужно.
+  paddleocr-llama:
+    runtime: !reset null

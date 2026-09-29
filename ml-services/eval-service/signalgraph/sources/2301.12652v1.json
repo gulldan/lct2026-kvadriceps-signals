@@ -1,0 +1,33 @@
+{
+  "native_id": "2301.12652v1",
+  "canonical_id": "arxiv:2301.12652",
+  "url": "https://arxiv.org/abs/2301.12652v1",
+  "title": "REPLUG: Retrieval-Augmented Black-Box Language Models",
+  "authors": [
+    "Weijia Shi",
+    "Sewon Min",
+    "Michihiro Yasunaga",
+    "Minjoon Seo",
+    "Rich James",
+    "Mike Lewis",
+    "Luke Zettlemoyer",
+    "Wen-tau Yih"
+  ],
+  "published_at": "2023-01-30T04:18:09Z",
+  "version_updated_at": "2023-01-30T04:18:09Z",
+  "observed_at": "2026-09-08T21:43:42.308337+00:00",
+  "available_at": "2023-01-30T04:18:09Z",
+  "available_basis": "arXiv archived v1 release; historical reconstruction captured later",
+  "source_kind": "paper",
+  "provider": "arxiv",
+  "access_scope": "public",
+  "representation": "versioned_primary_abstract",
+  "text": "We introduce REPLUG, a retrieval-augmented language modeling framework that treats the language model (LM) as a black box and augments it with a tuneable retrieval model. Unlike prior retrieval-augmented LMs that train language models with special cross attention mechanisms to encode the retrieved text, REPLUG simply prepends retrieved documents to the input for the frozen black-box LM. This simple design be can easily applied to any existing retrieval and language models. Furthermore, we show that the LM can be used to supervise the retrieval model, which can then find documents that help the LM make better predictions. Our experiments demonstrate that REPLUG with the tuned retriever significantly improves the performance of GPT-3 (175B) on language modeling by 6.3%, as well as the performance of Codex on five-shot MMLU by 5.1%.",
+  "text_sha256": "63d7303c62f268ef139dc512542e3a521a51e57e186368945c0c9c56e96d1b49",
+  "raw_sha256": "da0db3489b7b13738f585fa8b557be5e8d78b3989e4963dbadced049c99a5ee4",
+  "raw_file": "da0db3489b7b13738f585fa8b557be5e8d78b3989e4963dbadced049c99a5ee4.xml",
+  "limitations": [
+    "Abstract-only evidence; author-reported results, not independent reproduction.",
+    "Later DOI, journal metadata and current citations are excluded from historical input."
+  ]
+}

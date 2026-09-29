@@ -1,0 +1,468 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/iUaliqWRQ9cswlm1oMIBY/rB8dA</id>
+  <title>arXiv Query: search_query=&amp;id_list=2312.09039v1,2410.18050v1,2410.15332v1,2407.19487v1,2403.14403v1,2406.12430v1,2401.15884v1,2410.07176v1,2403.10131v1,2407.14482v1,2304.12102v1,2310.05736v1,2403.12968v1,2305.14283v1,2403.09040v1&amp;start=0&amp;max_results=15</title>
+  <updated>2026-09-08T22:30:48Z</updated>
+  <link href="https://arxiv.org/api/query?search_query=&amp;start=0&amp;max_results=15&amp;id_list=2312.09039v1,2410.18050v1,2410.15332v1,2407.19487v1,2403.14403v1,2406.12430v1,2401.15884v1,2410.07176v1,2403.10131v1,2407.14482v1,2304.12102v1,2310.05736v1,2403.12968v1,2305.14283v1,2403.09040v1" type="application/atom+xml"/>
+  <opensearch:itemsPerPage>15</opensearch:itemsPerPage>
+  <opensearch:totalResults>15</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <entry>
+    <id>http://arxiv.org/abs/2305.14283v1</id>
+    <title>Query Rewriting for Retrieval-Augmented Large Language Models</title>
+    <updated>2023-05-23T17:27:50Z</updated>
+    <link href="https://arxiv.org/abs/2305.14283v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2305.14283v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Large Language Models (LLMs) play a powerful \textit{Reader} of the \textit{Retrieve-then-Read} pipeline, making great progress in knowledge-based open-domain tasks. This work introduces a new framework, \textit{Rewrite-Retrieve-Read} that improves the retrieval-augmented method from the perspective of the query rewriting. Prior studies mostly contribute to adapt the retriever or stimulate the reader. Different from them, our approach pay attention of the query adaptation. Because the original query can not be always optimal to retrieve for the LLM, especially in the real world.(1) We first prompt an LLM to rewrite the queries, then conduct retrieval-augmented reading. (2) We further apply a small language model as a trainable rewriter, which rewrite the search query to cater to the frozen retriever and the LLM reader. To fine-tune the rewriter, we first use a pseudo data to conduct supervised warm-up training. Then the \textit{Retrieve-then-Read} pipeline is modeled as a reinforcement learning context. The rewriter is further trained as a policy model by maximize the reward of the pipeline performance. Evaluation is performed on two downstream tasks, open-domain QA and multiple choice. Our framework is proved effective and scalable.</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-05-23T17:27:50Z</published>
+    <arxiv:comment>working in progress</arxiv:comment>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Xinbei Ma</name>
+    </author>
+    <author>
+      <name>Yeyun Gong</name>
+    </author>
+    <author>
+      <name>Pengcheng He</name>
+    </author>
+    <author>
+      <name>Hai Zhao</name>
+    </author>
+    <author>
+      <name>Nan Duan</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2407.19487v1</id>
+    <title>RLCoder: Reinforcement Learning for Repository-Level Code Completion</title>
+    <updated>2024-07-28T12:47:20Z</updated>
+    <link href="https://arxiv.org/abs/2407.19487v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2407.19487v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Repository-level code completion aims to generate code for unfinished code snippets within the context of a specified repository. Existing approaches mainly rely on retrieval-augmented generation strategies due to limitations in input sequence length. However, traditional lexical-based retrieval methods like BM25 struggle to capture code semantics, while model-based retrieval methods face challenges due to the lack of labeled data for training. Therefore, we propose RLCoder, a novel reinforcement learning framework, which can enable the retriever to learn to retrieve useful content for code completion without the need for labeled data. Specifically, we iteratively evaluate the usefulness of retrieved content based on the perplexity of the target code when provided with the retrieved content as additional context, and provide feedback to update the retriever parameters. This iterative process enables the retriever to learn from its successes and failures, gradually improving its ability to retrieve relevant and high-quality content. Considering that not all situations require information beyond code files and not all retrieved context is helpful for generation, we also introduce a stop signal mechanism, allowing the retriever to decide when to retrieve and which candidates to retain autonomously. Extensive experimental results demonstrate that RLCoder consistently outperforms state-of-the-art methods on CrossCodeEval and RepoEval, achieving 12.2% EM improvement over previous methods. Moreover, experiments show that our framework can generalize across different programming languages and further improve previous methods like RepoCoder. We provide the code and data at https://github.com/DeepSoftwareAnalytics/RLCoder.</summary>
+    <category term="cs.SE" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-07-28T12:47:20Z</published>
+    <arxiv:comment>To appear at ICSE 2025</arxiv:comment>
+    <arxiv:primary_category term="cs.SE"/>
+    <arxiv:journal_ref>47th International Conference on Software Engineering (ICSE 2025)</arxiv:journal_ref>
+    <author>
+      <name>Yanlin Wang</name>
+    </author>
+    <author>
+      <name>Yanli Wang</name>
+    </author>
+    <author>
+      <name>Daya Guo</name>
+    </author>
+    <author>
+      <name>Jiachi Chen</name>
+    </author>
+    <author>
+      <name>Ruikai Zhang</name>
+    </author>
+    <author>
+      <name>Yuchi Ma</name>
+    </author>
+    <author>
+      <name>Zibin Zheng</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2407.14482v1</id>
+    <title>ChatQA 2: Bridging the Gap to Proprietary LLMs in Long Context and RAG Capabilities</title>
+    <updated>2024-07-19T17:35:47Z</updated>
+    <link href="https://arxiv.org/abs/2407.14482v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2407.14482v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>In this work, we introduce ChatQA 2, a Llama3-based model designed to bridge the gap between open-access LLMs and leading proprietary models (e.g., GPT-4-Turbo) in long-context understanding and retrieval-augmented generation (RAG) capabilities. These two capabilities are essential for LLMs to process large volumes of information that cannot fit into a single prompt and are complementary to each other, depending on the downstream tasks and computational budgets. We present a detailed continued training recipe to extend the context window of Llama3-70B-base from 8K to 128K tokens, along with a three-stage instruction tuning process to enhance the model's instruction-following, RAG performance, and long-context understanding capabilities. Our results demonstrate that the Llama3-ChatQA-2-70B model achieves accuracy comparable to GPT-4-Turbo-2024-0409 on many long-context understanding tasks and surpasses it on the RAG benchmark. Interestingly, we find that the state-of-the-art long-context retriever can alleviate the top-k context fragmentation issue in RAG, further improving RAG-based results for long-context understanding tasks. We also provide extensive comparisons between RAG and long-context solutions using state-of-the-art long-context LLMs.</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.IR" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-07-19T17:35:47Z</published>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Peng Xu</name>
+    </author>
+    <author>
+      <name>Wei Ping</name>
+    </author>
+    <author>
+      <name>Xianchao Wu</name>
+    </author>
+    <author>
+      <name>Zihan Liu</name>
+    </author>
+    <author>
+      <name>Mohammad Shoeybi</name>
+    </author>
+    <author>
+      <name>Bryan Catanzaro</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2312.09039v1</id>
+    <title>TAP4LLM: Table Provider on Sampling, Augmenting, and Packing Semi-structured Data for Large Language Model Reasoning</title>
+    <updated>2023-12-14T15:37:04Z</updated>
+    <link href="https://arxiv.org/abs/2312.09039v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2312.09039v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Table reasoning has shown remarkable progress in a wide range of table-based tasks. These challenging tasks require reasoning over both free-form natural language (NL) questions and semi-structured tabular data. However, previous table reasoning solutions suffer from significant performance degradation on "huge" tables. In addition, most existing methods struggle to reason over complex questions since they lack essential information or they are scattered in different places. To alleviate these challenges, we exploit a table provider, namely TAP4LLM, on versatile sampling, augmentation, and packing methods to achieve effective semi-structured data reasoning using large language models (LLMs), which 1) decompose raw tables into sub-tables with specific rows or columns based on the rules or semantic similarity; 2) augment table information by extracting semantic and statistical metadata from raw tables while retrieving relevant knowledge from trustworthy knowledge sources (e.g., Wolfram Alpha, Wikipedia); 3) pack sampled tables with augmented knowledge into sequence prompts for LLMs reasoning while balancing the token allocation trade-off. We show that TAP4LLM allows for different components as plug-ins, enhancing LLMs' understanding of structured data in diverse tabular tasks.</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-12-14T15:37:04Z</published>
+    <arxiv:comment>arXiv admin note: text overlap with arXiv:2307.08674 by other authors</arxiv:comment>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Yuan Sui</name>
+    </author>
+    <author>
+      <name>Jiaru Zou</name>
+    </author>
+    <author>
+      <name>Mengyu Zhou</name>
+    </author>
+    <author>
+      <name>Xinyi He</name>
+    </author>
+    <author>
+      <name>Lun Du</name>
+    </author>
+    <author>
+      <name>Shi Han</name>
+    </author>
+    <author>
+      <name>Dongmei Zhang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2406.12430v1</id>
+    <title>PlanRAG: A Plan-then-Retrieval Augmented Generation for Generative Large Language Models as Decision Makers</title>
+    <updated>2024-06-18T09:25:35Z</updated>
+    <link href="https://arxiv.org/abs/2406.12430v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2406.12430v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>In this paper, we conduct a study to utilize LLMs as a solution for decision making that requires complex data analysis. We define Decision QA as the task of answering the best decision, $d_{best}$, for a decision-making question $Q$, business rules $R$ and a database $D$. Since there is no benchmark that can examine Decision QA, we propose Decision QA benchmark, DQA. It has two scenarios, Locating and Building, constructed from two video games (Europa Universalis IV and Victoria 3) that have almost the same goal as Decision QA. To address Decision QA effectively, we also propose a new RAG technique called the iterative plan-then-retrieval augmented generation (PlanRAG). Our PlanRAG-based LM generates the plan for decision making as the first step, and the retriever generates the queries for data analysis as the second step. The proposed method outperforms the state-of-the-art iterative RAG method by 15.8% in the Locating scenario and by 7.4% in the Building scenario, respectively. We release our code and benchmark at https://github.com/myeon9h/PlanRAG.</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-06-18T09:25:35Z</published>
+    <arxiv:comment>NAACL 2024</arxiv:comment>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Myeonghwa Lee</name>
+    </author>
+    <author>
+      <name>Seonho An</name>
+    </author>
+    <author>
+      <name>Min-Soo Kim</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2410.15332v1</id>
+    <title>EPIC: Efficient Position-Independent Context Caching for Serving Large Language Models</title>
+    <updated>2024-10-20T08:42:29Z</updated>
+    <link href="https://arxiv.org/abs/2410.15332v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2410.15332v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Large Language Models (LLMs) are critical for a wide range of applications, but serving them efficiently becomes increasingly challenging as inputs become more complex. Context caching improves serving performance by exploiting inter-request dependency and reusing key-value (KV) cache across requests, thus improving time-to-first-token (TTFT). However, existing prefix-based context caching requires exact token prefix matches, limiting cache reuse in few-shot learning, multi-document QA, or retrieval-augmented generation, where prefixes may vary. In this paper, we present EPIC, an LLM serving system that introduces position-independent context caching (PIC), enabling modular KV cache reuse regardless of token chunk position (or prefix). EPIC features two key designs: AttnLink, which leverages static attention sparsity to minimize recomputation for accuracy recovery, and KVSplit, a customizable chunking method that preserves semantic coherence. Our experiments demonstrate that Epic delivers up to 8x improvements in TTFT and 7x throughput over existing systems, with negligible or no accuracy loss. By addressing the limitations of traditional caching approaches, Epic enables more scalable and efficient LLM inference.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.DC" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.PF" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-10-20T08:42:29Z</published>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Junhao Hu</name>
+    </author>
+    <author>
+      <name>Wenrui Huang</name>
+    </author>
+    <author>
+      <name>Haoyi Wang</name>
+    </author>
+    <author>
+      <name>Weidong Wang</name>
+    </author>
+    <author>
+      <name>Tiancheng Hu</name>
+    </author>
+    <author>
+      <name>Qin Zhang</name>
+    </author>
+    <author>
+      <name>Hao Feng</name>
+    </author>
+    <author>
+      <name>Xusheng Chen</name>
+    </author>
+    <author>
+      <name>Yizhou Shan</name>
+    </author>
+    <author>
+      <name>Tao Xie</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2310.05736v1</id>
+    <title>LLMLingua: Compressing Prompts for Accelerated Inference of Large Language Models</title>
+    <updated>2023-10-09T14:10:21Z</updated>
+    <link href="https://arxiv.org/abs/2310.05736v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2310.05736v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Large language models (LLMs) have been applied in various applications due to their astonishing capabilities. With advancements in technologies such as chain-of-thought (CoT) prompting and in-context learning (ICL), the prompts fed to LLMs are becoming increasingly lengthy, even exceeding tens of thousands of tokens. To accelerate model inference and reduce cost, this paper presents LLMLingua, a coarse-to-fine prompt compression method that involves a budget controller to maintain semantic integrity under high compression ratios, a token-level iterative compression algorithm to better model the interdependence between compressed contents, and an instruction tuning based method for distribution alignment between language models. We conduct experiments and analysis over four datasets from different scenarios, i.e., GSM8K, BBH, ShareGPT, and Arxiv-March23; showing that the proposed approach yields state-of-the-art performance and allows for up to 20x compression with little performance loss. Our code is available at https://aka.ms/LLMLingua.</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-10-09T14:10:21Z</published>
+    <arxiv:comment>Accepted at EMNLP 2023</arxiv:comment>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Huiqiang Jiang</name>
+    </author>
+    <author>
+      <name>Qianhui Wu</name>
+    </author>
+    <author>
+      <name>Chin-Yew Lin</name>
+    </author>
+    <author>
+      <name>Yuqing Yang</name>
+    </author>
+    <author>
+      <name>Lili Qiu</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2403.14403v1</id>
+    <title>Adaptive-RAG: Learning to Adapt Retrieval-Augmented Large Language Models through Question Complexity</title>
+    <updated>2024-03-21T13:52:30Z</updated>
+    <link href="https://arxiv.org/abs/2403.14403v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2403.14403v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Retrieval-Augmented Large Language Models (LLMs), which incorporate the non-parametric knowledge from external knowledge bases into LLMs, have emerged as a promising approach to enhancing response accuracy in several tasks, such as Question-Answering (QA). However, even though there are various approaches dealing with queries of different complexities, they either handle simple queries with unnecessary computational overhead or fail to adequately address complex multi-step queries; yet, not all user requests fall into only one of the simple or complex categories. In this work, we propose a novel adaptive QA framework, that can dynamically select the most suitable strategy for (retrieval-augmented) LLMs from the simplest to the most sophisticated ones based on the query complexity. Also, this selection process is operationalized with a classifier, which is a smaller LM trained to predict the complexity level of incoming queries with automatically collected labels, obtained from actual predicted outcomes of models and inherent inductive biases in datasets. This approach offers a balanced strategy, seamlessly adapting between the iterative and single-step retrieval-augmented LLMs, as well as the no-retrieval methods, in response to a range of query complexities. We validate our model on a set of open-domain QA datasets, covering multiple query complexities, and show that ours enhances the overall efficiency and accuracy of QA systems, compared to relevant baselines including the adaptive retrieval approaches. Code is available at: https://github.com/starsuzi/Adaptive-RAG.</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-03-21T13:52:30Z</published>
+    <arxiv:comment>NAACL 2024</arxiv:comment>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Soyeong Jeong</name>
+    </author>
+    <author>
+      <name>Jinheon Baek</name>
+    </author>
+    <author>
+      <name>Sukmin Cho</name>
+    </author>
+    <author>
+      <name>Sung Ju Hwang</name>
+    </author>
+    <author>
+      <name>Jong C. Park</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2304.12102v1</id>
+    <title>Unlocking Context Constraints of LLMs: Enhancing Context Efficiency of LLMs with Self-Information-Based Content Filtering</title>
+    <updated>2023-04-24T13:55:47Z</updated>
+    <link href="https://arxiv.org/abs/2304.12102v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2304.12102v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Large language models (LLMs) have received significant attention by achieving remarkable performance across various tasks. However, their fixed context length poses challenges when processing long documents or maintaining extended conversations. This paper proposes a method called \textit{Selective Context} that employs self-information to filter out less informative content, thereby enhancing the efficiency of the fixed context length. We demonstrate the effectiveness of our approach on tasks of summarisation and question answering across different data sources, including academic papers, news articles, and conversation transcripts.</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-04-24T13:55:47Z</published>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Yucheng Li</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2401.15884v1</id>
+    <title>Corrective Retrieval Augmented Generation</title>
+    <updated>2024-01-29T04:36:39Z</updated>
+    <link href="https://arxiv.org/abs/2401.15884v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2401.15884v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Large language models (LLMs) inevitably exhibit hallucinations since the accuracy of generated texts cannot be secured solely by the parametric knowledge they encapsulate. Although retrieval-augmented generation (RAG) is a practicable complement to LLMs, it relies heavily on the relevance of retrieved documents, raising concerns about how the model behaves if retrieval goes wrong. To this end, we propose the Corrective Retrieval Augmented Generation (CRAG) to improve the robustness of generation. Specifically, a lightweight retrieval evaluator is designed to assess the overall quality of retrieved documents for a query, returning a confidence degree based on which different knowledge retrieval actions can be triggered. Since retrieval from static and limited corpora can only return sub-optimal documents, large-scale web searches are utilized as an extension for augmenting the retrieval results. Besides, a decompose-then-recompose algorithm is designed for retrieved documents to selectively focus on key information and filter out irrelevant information in them. CRAG is plug-and-play and can be seamlessly coupled with various RAG-based approaches. Experiments on four datasets covering short- and long-form generation tasks show that CRAG can significantly improve the performance of RAG-based approaches.</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-01-29T04:36:39Z</published>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Shi-Qi Yan</name>
+    </author>
+    <author>
+      <name>Jia-Chen Gu</name>
+    </author>
+    <author>
+      <name>Yun Zhu</name>
+    </author>
+    <author>
+      <name>Zhen-Hua Ling</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2410.18050v1</id>
+    <title>LongRAG: A Dual-Perspective Retrieval-Augmented Generation Paradigm for Long-Context Question Answering</title>
+    <updated>2024-10-23T17:24:58Z</updated>
+    <link href="https://arxiv.org/abs/2410.18050v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2410.18050v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Long-Context Question Answering (LCQA), a challenging task, aims to reason over long-context documents to yield accurate answers to questions. Existing long-context Large Language Models (LLMs) for LCQA often struggle with the "lost in the middle" issue. Retrieval-Augmented Generation (RAG) mitigates this issue by providing external factual evidence. However, its chunking strategy disrupts the global long-context information, and its low-quality retrieval in long contexts hinders LLMs from identifying effective factual details due to substantial noise. To this end, we propose LongRAG, a general, dual-perspective, and robust LLM-based RAG system paradigm for LCQA to enhance RAG's understanding of complex long-context knowledge (i.e., global information and factual details). We design LongRAG as a plug-and-play paradigm, facilitating adaptation to various domains and LLMs. Extensive experiments on three multi-hop datasets demonstrate that LongRAG significantly outperforms long-context LLMs (up by 6.94%), advanced RAG (up by 6.16%), and Vanilla RAG (up by 17.25%). Furthermore, we conduct quantitative ablation studies and multi-dimensional analyses, highlighting the effectiveness of the system's components and fine-tuning strategies. Data and code are available at https://github.com/QingFei1/LongRAG.</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-10-23T17:24:58Z</published>
+    <arxiv:comment>EMNLP 2024 Main</arxiv:comment>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Qingfei Zhao</name>
+    </author>
+    <author>
+      <name>Ruobing Wang</name>
+    </author>
+    <author>
+      <name>Yukuo Cen</name>
+    </author>
+    <author>
+      <name>Daren Zha</name>
+    </author>
+    <author>
+      <name>Shicheng Tan</name>
+    </author>
+    <author>
+      <name>Yuxiao Dong</name>
+    </author>
+    <author>
+      <name>Jie Tang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2403.12968v1</id>
+    <title>LLMLingua-2: Data Distillation for Efficient and Faithful Task-Agnostic Prompt Compression</title>
+    <updated>2024-03-19T17:59:56Z</updated>
+    <link href="https://arxiv.org/abs/2403.12968v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2403.12968v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>This paper focuses on task-agnostic prompt compression for better generalizability and efficiency. Considering the redundancy in natural language, existing approaches compress prompts by removing tokens or lexical units according to their information entropy obtained from a causal language model such as LLaMa-7B. The challenge is that information entropy may be a suboptimal compression metric: (i) it only leverages unidirectional context and may fail to capture all essential information needed for prompt compression; (ii) it is not aligned with the prompt compression objective.
+  To address these issues, we propose a data distillation procedure to derive knowledge from an LLM to compress prompts without losing crucial information, and meantime, introduce an extractive text compression dataset. We formulate prompt compression as a token classification problem to guarantee the faithfulness of the compressed prompt to the original one, and use a Transformer encoder as the base architecture to capture all essential information for prompt compression from the full bidirectional context. Our approach leads to lower latency by explicitly learning the compression objective with smaller models such as XLM-RoBERTa-large and mBERT.
+  We evaluate our method on both in-domain and out-of-domain datasets, including MeetingBank, LongBench, ZeroScrolls, GSM8K, and BBH. Despite its small size, our model shows significant performance gains over strong baselines and demonstrates robust generalization ability across different LLMs. Additionally, our model is 3x-6x faster than existing prompt compression methods, while accelerating the end-to-end latency by 1.6x-2.9x with compression ratios of 2x-5x.</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-03-19T17:59:56Z</published>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Zhuoshi Pan</name>
+    </author>
+    <author>
+      <name>Qianhui Wu</name>
+    </author>
+    <author>
+      <name>Huiqiang Jiang</name>
+    </author>
+    <author>
+      <name>Menglin Xia</name>
+    </author>
+    <author>
+      <name>Xufang Luo</name>
+    </author>
+    <author>
+      <name>Jue Zhang</name>
+    </author>
+    <author>
+      <name>Qingwei Lin</name>
+    </author>
+    <author>
+      <name>Victor Rühle</name>
+    </author>
+    <author>
+      <name>Yuqing Yang</name>
+    </author>
+    <author>
+      <name>Chin-Yew Lin</name>
+    </author>
+    <author>
+      <name>H. Vicky Zhao</name>
+    </author>
+    <author>
+      <name>Lili Qiu</name>
+    </author>
+    <author>
+      <name>Dongmei Zhang</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2403.09040v1</id>
+    <title>RAGGED: Towards Informed Design of Retrieval Augmented Generation Systems</title>
+    <updated>2024-03-14T02:26:31Z</updated>
+    <link href="https://arxiv.org/abs/2403.09040v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2403.09040v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Retrieval-augmented generation (RAG) greatly benefits language models (LMs) by providing additional context for tasks such as document-based question answering (DBQA). Despite its potential, the power of RAG is highly dependent on its configuration, raising the question: What is the optimal RAG configuration? To answer this, we introduce the RAGGED framework to analyze and optimize RAG systems. On a set of representative DBQA tasks, we study two classic sparse and dense retrievers, and four top-performing LMs in encoder-decoder and decoder-only architectures. Through RAGGED, we uncover that different models suit substantially varied RAG setups. While encoder-decoder models monotonically improve with more documents, we find decoder-only models can only effectively use &lt; 5 documents, despite often having a longer context window. RAGGED offers further insights into LMs' context utilization habits, where we find that encoder-decoder models rely more on contexts and are thus more sensitive to retrieval quality, while decoder-only models tend to rely on knowledge memorized during training.</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-03-14T02:26:31Z</published>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Jennifer Hsia</name>
+    </author>
+    <author>
+      <name>Afreen Shaikh</name>
+    </author>
+    <author>
+      <name>Zhiruo Wang</name>
+    </author>
+    <author>
+      <name>Graham Neubig</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2410.07176v1</id>
+    <title>Astute RAG: Overcoming Imperfect Retrieval Augmentation and Knowledge Conflicts for Large Language Models</title>
+    <updated>2024-10-09T17:59:58Z</updated>
+    <link href="https://arxiv.org/abs/2410.07176v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2410.07176v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Retrieval-Augmented Generation (RAG), while effective in integrating external knowledge to address the limitations of large language models (LLMs), can be undermined by imperfect retrieval, which may introduce irrelevant, misleading, or even malicious information. Despite its importance, previous studies have rarely explored the behavior of RAG through joint analysis on how errors from imperfect retrieval attribute and propagate, and how potential conflicts arise between the LLMs' internal knowledge and external sources. We find that imperfect retrieval augmentation might be inevitable and quite harmful, through controlled analysis under realistic conditions. We identify the knowledge conflicts between LLM-internal and external knowledge from retrieval as a bottleneck to overcome in the post-retrieval stage of RAG. To render LLMs resilient to imperfect retrieval, we propose Astute RAG, a novel RAG approach that adaptively elicits essential information from LLMs' internal knowledge, iteratively consolidates internal and external knowledge with source-awareness, and finalizes the answer according to information reliability. Our experiments using Gemini and Claude demonstrate that Astute RAG significantly outperforms previous robustness-enhanced RAG methods. Notably, Astute RAG is the only approach that matches or exceeds the performance of LLMs without RAG under worst-case scenarios. Further analysis reveals that Astute RAG effectively resolves knowledge conflicts, improving the reliability and trustworthiness of RAG systems.</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-10-09T17:59:58Z</published>
+    <arxiv:comment>Preprint</arxiv:comment>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Fei Wang</name>
+    </author>
+    <author>
+      <name>Xingchen Wan</name>
+    </author>
+    <author>
+      <name>Ruoxi Sun</name>
+    </author>
+    <author>
+      <name>Jiefeng Chen</name>
+    </author>
+    <author>
+      <name>Sercan Ö. Arık</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2403.10131v1</id>
+    <title>RAFT: Adapting Language Model to Domain Specific RAG</title>
+    <updated>2024-03-15T09:26:02Z</updated>
+    <link href="https://arxiv.org/abs/2403.10131v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2403.10131v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Pretraining Large Language Models (LLMs) on large corpora of textual data is now a standard paradigm. When using these LLMs for many downstream applications, it is common to additionally bake in new knowledge (e.g., time-critical news, or private domain knowledge) into the pretrained model either through RAG-based-prompting, or fine-tuning. However, the optimal methodology for the model to gain such new knowledge remains an open question. In this paper, we present Retrieval Augmented FineTuning (RAFT), a training recipe that improves the model's ability to answer questions in a "open-book" in-domain settings. In RAFT, given a question, and a set of retrieved documents, we train the model to ignore those documents that don't help in answering the question, which we call, distractor documents. RAFT accomplishes this by citing verbatim the right sequence from the relevant document that would help answer the question. This coupled with RAFT's chain-of-thought-style response helps improve the model's ability to reason. In domain-specific RAG, RAFT consistently improves the model's performance across PubMed, HotpotQA, and Gorilla datasets, presenting a post-training recipe to improve pre-trained LLMs to in-domain RAG. RAFT's code and demo are open-sourced at github.com/ShishirPatil/gorilla.</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2024-03-15T09:26:02Z</published>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Tianjun Zhang</name>
+    </author>
+    <author>
+      <name>Shishir G. Patil</name>
+    </author>
+    <author>
+      <name>Naman Jain</name>
+    </author>
+    <author>
+      <name>Sheng Shen</name>
+    </author>
+    <author>
+      <name>Matei Zaharia</name>
+    </author>
+    <author>
+      <name>Ion Stoica</name>
+    </author>
+    <author>
+      <name>Joseph E. Gonzalez</name>
+    </author>
+  </entry>
+</feed>

@@ -1,0 +1,7 @@
+ruleDirs:
+  - ast-grep/rules
+testConfigs:
+  - testDir: ast-grep/tests
+# TSX accepts the TypeScript syntax used here; one rule set covers both extensions.
+languageGlobs:
+  Tsx: ["**/*.ts"]

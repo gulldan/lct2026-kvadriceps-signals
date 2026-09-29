@@ -1,0 +1,273 @@
+@import "@fontsource-variable/onest";
+@import "@fontsource-variable/jetbrains-mono";
+
+@import "tailwindcss";
+
+@import "./shared/design-system/tokens.css";
+
+.value-scale {
+  appearance: none;
+}
+.value-scale::-webkit-meter-bar {
+  height: 100%;
+  border: 0;
+  border-radius: 0;
+  background: var(--muted);
+}
+.value-scale::-webkit-meter-optimum-value {
+  background: var(--brand);
+}
+.value-scale::-moz-meter-bar {
+  background: var(--brand);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring;
+  }
+  html {
+    scrollbar-gutter: stable;
+    scrollbar-color: var(--border) var(--background);
+  }
+  body {
+    @apply bg-background font-sans text-foreground;
+    accent-color: var(--brand);
+    font-feature-settings:
+      "ss01" on,
+      "tnum" off;
+  }
+  .font-display {
+    font-family: var(--font-heading);
+    font-weight: var(--heading-weight);
+    letter-spacing: var(--heading-tracking);
+    line-height: var(--heading-leading);
+    font-optical-sizing: auto;
+    text-wrap: balance;
+  }
+  /* Браузер красит <mark> жёлтым по чёрному: в тёмной теме цитата выходила чёрной на тёмном.
+     Подложку задаёт токен подсветки. */
+  mark {
+    background: transparent;
+    color: inherit;
+  }
+  .kicker {
+    font-family: var(--font-sans);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.065em;
+    text-transform: uppercase;
+  }
+}
+/* Портал Radix может получить z-index: auto и проиграть sticky-панелям. */
+[data-radix-popper-content-wrapper] {
+  z-index: var(--layer-overlay) !important;
+}
+
+.hl-frag {
+  border-radius: 4px;
+  background: color-mix(in oklab, var(--brand) 10%, transparent);
+  outline: 2px solid color-mix(in oklab, var(--brand) 55%, transparent);
+  outline-offset: 1px;
+}
+.hl-frag-flash {
+  animation: hlpulse var(--duration-highlight) ease-in-out 2;
+}
+@keyframes hlpulse {
+  50% {
+    background: var(--highlight-flash);
+    outline-color: var(--highlight-outline);
+  }
+}
+.hl-frag-ctx {
+  cursor: pointer;
+  border-radius: 4px;
+  background: color-mix(in oklab, var(--brand) 6%, transparent);
+  outline: 2px solid color-mix(in oklab, var(--brand) 28%, transparent);
+  outline-offset: 1px;
+  transition:
+    background var(--duration-fast) var(--ease-standard),
+    outline-color var(--duration-fast) var(--ease-standard);
+}
+.hl-frag-ctx:hover {
+  background: color-mix(in oklab, var(--brand) 12%, transparent);
+  outline-color: color-mix(in oklab, var(--brand) 50%, transparent);
+}
+
+.rich-text {
+  line-height: 1.6;
+}
+.rich-text > :first-child {
+  margin-top: 0;
+}
+.rich-text > :last-child {
+  margin-bottom: 0;
+}
+.rich-text p {
+  margin: 0.5rem 0;
+}
+.rich-text ul,
+.rich-text ol {
+  margin: 0.5rem 0;
+  padding-left: 1.25rem;
+}
+.rich-text ul {
+  list-style: disc;
+}
+.rich-text ol {
+  list-style: decimal;
+}
+.rich-text li {
+  margin: 0.125rem 0;
+}
+.rich-text h1,
+.rich-text h2,
+.rich-text h3,
+.rich-text h4 {
+  margin: 0.75rem 0 0.25rem;
+  font-weight: 600;
+  line-height: 1.3;
+}
+.rich-text h1 {
+  font-size: 1.05rem;
+}
+.rich-text h2 {
+  font-size: 1rem;
+}
+.rich-text h3 {
+  font-size: 0.925rem;
+}
+.rich-text a {
+  color: var(--brand);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+.rich-text strong {
+  font-weight: 600;
+}
+.rich-text code {
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  border-radius: 4px;
+  background: var(--muted);
+  padding: 0.05rem 0.3rem;
+}
+.rich-text pre {
+  margin: 0.5rem 0;
+  overflow-x: auto;
+  border-radius: 6px;
+  background: var(--muted);
+  padding: 0.75rem;
+}
+.rich-text pre code {
+  background: transparent;
+  padding: 0;
+}
+.rich-text blockquote {
+  margin: 0.5rem 0;
+  border-left: 2px solid var(--border);
+  padding-left: 0.75rem;
+  color: var(--muted-foreground);
+}
+.rich-text table {
+  margin: 0.5rem 0;
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+.rich-text th,
+.rich-text td {
+  border: 1px solid var(--border);
+  padding: 0.25rem 0.5rem;
+  text-align: left;
+}
+.rich-text th {
+  background: var(--muted);
+  font-weight: 600;
+}
+.rich-text .katex-display {
+  margin: 0.75rem 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+/* Текстовый слой pdf.js рисует прозрачные буквы поверх страницы: полупрозрачный фон даёт
+   «маркер», а mix-blend-mode сохраняет текст под ним читаемым. */
+.pdf-hl {
+  border-radius: 2px;
+  background-color: var(--highlight-pdf);
+  mix-blend-mode: multiply;
+  animation: pdf-hl-flash var(--duration-highlight) ease-out 1;
+}
+@keyframes pdf-hl-flash {
+  from {
+    background-color: var(--highlight-pdf-active);
+  }
+  to {
+    background-color: var(--highlight-pdf);
+  }
+}
+
+@layer base {
+  ::selection {
+    background: var(--brand-wash);
+    color: var(--accent-foreground);
+  }
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+  input,
+  textarea {
+    caret-color: var(--brand);
+  }
+}
+
+.motion-enter {
+  --enter-x: 0px;
+  --enter-y: 0.75rem;
+  animation: enter var(--duration-normal) var(--ease-standard);
+}
+.motion-enter-side {
+  --enter-x: 1.5rem;
+  --enter-y: 0px;
+}
+
+/* Пульс отмечает активный этап, но не изображает неизвестный процент выполнения. */
+.search-stage-active {
+  animation: search-stage 2.4s ease-in-out infinite;
+}
+@keyframes search-stage {
+  50% {
+    opacity: 0.4;
+  }
+}
+@keyframes enter {
+  from {
+    opacity: 0;
+    transform: translate(var(--enter-x), var(--enter-y));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .search-stage-active {
+    animation: none;
+  }
+  *,
+  *::before,
+  *::after {
+    /* Цвет и прозрачность сохраняют обратную связь без перемещения элементов. */
+    transition-property:
+      color, background-color, border-color, outline-color, fill, stroke, opacity, box-shadow !important;
+    scroll-behavior: auto !important;
+  }
+
+  .motion-enter {
+    --enter-x: 0px;
+    --enter-y: 0px;
+  }
+
+  /* Индикатор загрузки остаётся живым, но больше не вращается. */
+  .animate-spin {
+    @apply animate-pulse;
+  }
+}

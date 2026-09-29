@@ -1,0 +1,198 @@
+{
+  "header": {
+    "kicker": "雷达与预测",
+    "title": "论点",
+    "hintLabel": "什么是论点",
+    "description": "我们在雷达上寻找什么，以及为什么。"
+  },
+  "actions": {
+    "suggest": "从知识库推荐论点",
+    "suggestLoading": "正在分析知识库…",
+    "create": "创建论点"
+  },
+  "suggestions": {
+    "title": "知识库推荐的论点",
+    "description": "来自您文档的主题。选择一项以打开论点表单。",
+    "loading": "正在分析知识库…",
+    "error": "无法推荐论点",
+    "empty": "暂时无法推荐论点——请上传更多文档，系统会找出其中正在发展的技术。",
+    "aiNote": "论点基于已上传的文献推荐，仅供参考，并非经核实的结论。创建前请核对。"
+  },
+  "list": {
+    "error": "无法加载论点",
+    "viewAria": "论点筛选",
+    "activeTab": "进行中（{{count}}）",
+    "archivedTab": "归档（{{count}}）",
+    "archiveEmpty": "此列表暂时为空。"
+  },
+  "empty": {
+    "title": "创建第一个论点",
+    "description": "描述您在雷达上寻找什么、为什么，以及用什么指标判断预测是否应验。雷达会为论点寻找信号，系统会汇集附有来源链接的假设。"
+  },
+  "card": {
+    "hypotheses_other": "{{count}} 条假设",
+    "drafts_other": "{{count}} 份草稿",
+    "directionsCount_other": "{{count}} 个草拟主题",
+    "generate": "生成假设",
+    "generating": "生成中…",
+    "generateHint": "系统将研读知识库文档，为该论点创建可验证的假设——它们会出现在“假设”页面。",
+    "directions": "来自文档的草拟主题",
+    "directionsHint": "您文档交叉处的草拟主题：哪些工艺和性能与该论点相关。将在侧边面板打开。",
+    "findSignals": "为论点寻找信号",
+    "findSignalsHint": "雷达将打开“{{query}}”的结果，并把该检索保存到论点中。",
+    "edit": "编辑",
+    "delete": "删除",
+    "archive": "归档",
+    "archiveHint": "从工作列表中移除，不删除任何内容",
+    "unarchive": "从归档恢复",
+    "bets": "雷达预测：{{summary}}",
+    "betStatus": {
+      "confirming_other": "{{count}} 项正在得到证实",
+      "unchanged_other": "{{count}} 项无变化",
+      "weakening_other": "{{count}} 项正在减弱"
+    },
+    "betLatest": "{{date}}：{{text}}"
+  },
+  "valueLine": {
+    "target": "目标值"
+  },
+  "direction": {
+    "increase": "提高",
+    "decrease": "降低",
+    "maintain": "保持"
+  },
+  "task": {
+    "generateTitle": "假设生成",
+    "generateSuccess": "已创建假设：{{count}}",
+    "generateError": "无法生成假设"
+  },
+  "toast": {
+    "created": "论点已创建",
+    "createError": "无法创建论点",
+    "directionSaved": "草拟主题已保存到假设草稿",
+    "directionSavedHint": "可在“假设”页面的“草稿”标签页中找到。",
+    "directionSaveError": "无法保存草拟主题",
+    "updated": "论点已更新",
+    "updateError": "保存更改失败",
+    "deleted": "论点已删除",
+    "deleteError": "删除论点失败",
+    "archived": "论点已归档",
+    "unarchived": "论点已从归档恢复"
+  },
+  "dialog": {
+    "title": "新建论点",
+    "name": "名称",
+    "namePlaceholder": "例如：可在企业环境试点的 LLM 智能体防护",
+    "description": "描述",
+    "descriptionPlaceholder": "简要说明，选填",
+    "metric": "指标（如何判断预测是否应验）",
+    "metricPlaceholder": "例如：处于试点及以上阶段的技术数",
+    "unit": "单位",
+    "unitPlaceholder": "个 / 百万卢布 / …",
+    "baseline": "基线",
+    "target": "目标值",
+    "targetPlaceholder": "选填",
+    "directionNote": "变化方向会自动判断。若目标值暂不确定，可以不填写。",
+    "functionArea": "领域",
+    "functionAreaPlaceholder": "例如：AI 安全，选填",
+    "cancel": "取消",
+    "create": "创建",
+    "creating": "创建中…",
+    "editTitle": "编辑论点",
+    "save": "保存",
+    "saving": "保存中…"
+  },
+  "sheet": {
+    "title": "来自知识图谱的草拟主题",
+    "intro": "系统串联不同文档中的知识：哪个工艺影响哪个性能，以及这与论点有何关系。保存看中的主题——它会成为“假设”页面上的假设草稿。",
+    "loading": "正在知识图谱中寻找关联…",
+    "error": "无法获取草拟主题",
+    "emptyTitle": "暂无草拟主题",
+    "emptyDescription": "该论点在知识图谱中的关联还太少。请上传更多文档或生成假设，系统会在其交叉处找到主题。",
+    "shownOf": "显示 {{shown}} / {{total}}。上限可在系统设置中修改。",
+    "aiNote": "草拟主题基于知识库中的关联推荐，仅为提示，并非经确认的结论。"
+  },
+  "directionCard": {
+    "sources": "来源：",
+    "document": "文档",
+    "saved": "已保存到草稿",
+    "saving": "保存中…",
+    "save": "保存为假设",
+    "savedHint": "将出现在“假设”页面的“草稿”标签页中"
+  },
+  "delete": {
+    "title": "删除论点“{{title}}”？",
+    "body": "为该论点创建的假设和草拟主题将保留——只是与论点解除关联。此操作无法撤销。",
+    "confirm": "删除",
+    "deleting": "删除中…"
+  },
+  "wizard": {
+    "title": "新论点与假设",
+    "description": "用自己的话描述您在雷达上寻找什么以及为什么。可以附上材料——市场综述、报告、投资委员会备忘录。",
+    "goal": "论点",
+    "newGoal": "新论点——用文字描述",
+    "prompt": "寻找什么、为什么",
+    "promptExisting": "补充说明与限制",
+    "promptPlaceholder": "例如：未来 2–3 年内将设备端 AI 推理成本降低数倍的技术。关注已在设备厂商开展首批试点的方案；到 2027 年底希望有两项处于试点及以上阶段的技术。",
+    "promptExistingPlaceholder": "例如：期限至 2027 年底，仅限开放许可的方案。",
+    "promptHint": "系统会自动从文本中提取论点名称、指标和限制条件。",
+    "addFiles": "添加文件或拖拽到此处",
+    "dropHere": "松开鼠标即可将文件附加到论点",
+    "filesNote": "附加的文件将成为该论点的输入数据：事实来自这些文件，论证来自知识库。",
+    "fileIndexing": "处理中…",
+    "fileAlreadyInBase": "库中已存在",
+    "fileFailed": "处理失败",
+    "fileRemove": "移除文件",
+    "count": "假设数",
+    "create": "创建论点",
+    "attach": "附加到论点",
+    "createAndGenerate": "创建并生成",
+    "generate": "生成假设",
+    "busy": "请稍候…",
+    "attachedToast": "文档已附加到论点",
+    "generatingToast": "已开始为该论点生成假设",
+    "suggestionMetric": "指标",
+    "editTitle": "编辑论点",
+    "editDescription": "您的描述与附加材料。修改文本或文件，必要时重新生成假设。",
+    "editHint": "修改文本后，系统会重新提取名称、指标和限制条件。",
+    "filesLabel": "论点材料",
+    "addMoreFiles": "再添加文件",
+    "save": "保存",
+    "saveAndGenerate": "保存并生成",
+    "detachError": "移除文档失败"
+  },
+  "page": {
+    "back": "全部论点",
+    "error": "无法加载论点",
+    "radarQuery": "雷达查询：{{query}}",
+    "hypotheses": "论点相关假设",
+    "drafts": "论点相关草稿",
+    "directions": "论点相关研究方向",
+    "betsTitle": "本论点下的预测",
+    "betsEmpty": "暂无预测：请在雷达结果的信号卡片中创建假设。",
+    "betStatus": {
+      "confirming": "正在得到验证",
+      "unchanged": "无变化",
+      "weakening": "正在减弱"
+    }
+  },
+  "signals": {
+    "title": "论点相关信号",
+    "description": "论点查询的已保存结果以及从论点打开的搜索及其最佳技术。",
+    "empty": "尚未从该论点发起检索。点击“为论点寻找信号”——雷达将打开结果，检索会出现在这里。",
+    "open": "打开结果",
+    "searchedAt": "检索于 {{date}}",
+    "pending": "结果尚未保存：检索正在进行或已中断。打开结果查看进度。",
+    "error": "无法读取结果。",
+    "noCandidates": "已保存的结果中没有技术。",
+    "tzStage": "任务书阶段：{{stage}}",
+    "tzStages": {
+      "1": "概念或研究",
+      "2": "原型",
+      "3": "试点",
+      "4": "早期应用"
+    },
+    "openedFrom": "从论点“{{title}}”打开",
+    "backToThesis": "返回论点"
+  }
+}

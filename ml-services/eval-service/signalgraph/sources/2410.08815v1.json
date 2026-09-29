@@ -1,0 +1,35 @@
+{
+  "native_id": "2410.08815v1",
+  "canonical_id": "arxiv:2410.08815",
+  "url": "https://arxiv.org/abs/2410.08815v1",
+  "title": "StructRAG: Boosting Knowledge Intensive Reasoning of LLMs via Inference-time Hybrid Information Structurization",
+  "authors": [
+    "Zhuoqun Li",
+    "Xuanang Chen",
+    "Haiyang Yu",
+    "Hongyu Lin",
+    "Yaojie Lu",
+    "Qiaoyu Tang",
+    "Fei Huang",
+    "Xianpei Han",
+    "Le Sun",
+    "Yongbin Li"
+  ],
+  "published_at": "2024-10-11T13:52:44Z",
+  "version_updated_at": "2024-10-11T13:52:44Z",
+  "observed_at": "2026-09-08T22:53:13.832374+00:00",
+  "available_at": "2024-10-11T13:52:44Z",
+  "available_basis": "arXiv archived v1 release; historical reconstruction captured later",
+  "source_kind": "paper",
+  "provider": "arxiv",
+  "access_scope": "public",
+  "representation": "versioned_primary_abstract",
+  "text": "Retrieval-augmented generation (RAG) is a key means to effectively enhance large language models (LLMs) in many knowledge-based tasks. However, existing RAG methods struggle with knowledge-intensive reasoning tasks, because useful information required to these tasks are badly scattered. This characteristic makes it difficult for existing RAG methods to accurately identify key information and perform global reasoning with such noisy augmentation. In this paper, motivated by the cognitive theories that humans convert raw information into various structured knowledge when tackling knowledge-intensive reasoning, we proposes a new framework, StructRAG, which can identify the optimal structure type for the task at hand, reconstruct original documents into this structured format, and infer answers based on the resulting structure. Extensive experiments across various knowledge-intensive tasks show that StructRAG achieves state-of-the-art performance, particularly excelling in challenging scenarios, demonstrating its potential as an effective solution for enhancing LLMs in complex real-world applications.",
+  "text_sha256": "4083b42ea51c954ceb15df54cb74a608f7d1364361467c69ef590edfde19e67e",
+  "raw_sha256": "d9bbf50cf9f4a5c8b0541cc09e33648cf1d5067d04ad980cd4d44f9d8c14086a",
+  "raw_file": "d9bbf50cf9f4a5c8b0541cc09e33648cf1d5067d04ad980cd4d44f9d8c14086a.xml",
+  "limitations": [
+    "Abstract-only evidence; author-reported results, not independent reproduction.",
+    "Later DOI, journal metadata and current citations are excluded from historical input."
+  ]
+}

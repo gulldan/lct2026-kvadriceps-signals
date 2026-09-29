@@ -1,0 +1,29 @@
+{
+  "native_id": "2502.11101v1",
+  "canonical_id": "arxiv:2502.11101",
+  "url": "https://arxiv.org/abs/2502.11101v1",
+  "title": "CacheFocus: Dynamic Cache Re-Positioning for Efficient Retrieval-Augmented Generation",
+  "authors": [
+    "Kun-Hui Lee",
+    "Eunhwan Park",
+    "Donghoon Han",
+    "Seung-Hoon Na"
+  ],
+  "published_at": "2025-02-16T12:33:16Z",
+  "version_updated_at": "2025-02-16T12:33:16Z",
+  "observed_at": "2026-09-08T22:52:12.195898+00:00",
+  "available_at": "2025-02-16T12:33:16Z",
+  "available_basis": "arXiv archived v1 release; historical reconstruction captured later",
+  "source_kind": "paper",
+  "provider": "arxiv",
+  "access_scope": "public",
+  "representation": "versioned_primary_abstract",
+  "text": "Large Language Models (LLMs) excel across a variety of language tasks yet are constrained by limited input lengths and high computational costs. Existing approaches\\textemdash such as relative positional encodings (e.g., RoPE, ALiBi) and sliding window mechanisms\\textemdash partially alleviate these issues but often require additional training or suffer from performance degradation with longer inputs. In this paper, we introduce \\textbf{\\textit{CacheFocus}}, a method that enhances length normalization and reduces inference latency without any further training. Our approach leverages query-independent, offline caching to efficiently reuse a Context KV Cache Store. We address the amplification of abnormal token distributions problem by re-positioning cached keys and introducing Layer-Adaptive Cache Pruning to discard low-relevance caches during pre-filling. Additionally, our Adaptive Positional Allocation Strategy dynamically reassigns cache positions to maximize the use of the available positional encoding range. Experiments on the Natural Questions and TriviaQA datasets demonstrate that CacheFocus outperforms alternative methods even when inputs exceed the $4$K limit of the \\texttt{LLaMA-2} model, emphasizing its practical effectiveness for long-context LLMs. Moreover, even with large maximum input length of \\texttt{Qwen2}, the performance of CacheFocus shows that it maintains consistent performance even as the number of documents increases, effectively managing long-text generation without degradation.",
+  "text_sha256": "9e58e52a2085c5fb65d1b3e48edc476a143a61cde30fead5def375d64e7ac91b",
+  "raw_sha256": "e9cf2610ee63d5ed13ed8186244b12d017fc0b08860465833e21c8f98a5d8bbd",
+  "raw_file": "e9cf2610ee63d5ed13ed8186244b12d017fc0b08860465833e21c8f98a5d8bbd.xml",
+  "limitations": [
+    "Abstract-only evidence; author-reported results, not independent reproduction.",
+    "Later DOI, journal metadata and current citations are excluded from historical input."
+  ]
+}

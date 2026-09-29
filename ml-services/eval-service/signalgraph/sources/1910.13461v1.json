@@ -1,0 +1,33 @@
+{
+  "native_id": "1910.13461v1",
+  "canonical_id": "arxiv:1910.13461",
+  "url": "https://arxiv.org/abs/1910.13461v1",
+  "title": "BART: Denoising Sequence-to-Sequence Pre-training for Natural Language Generation, Translation, and Comprehension",
+  "authors": [
+    "Mike Lewis",
+    "Yinhan Liu",
+    "Naman Goyal",
+    "Marjan Ghazvininejad",
+    "Abdelrahman Mohamed",
+    "Omer Levy",
+    "Ves Stoyanov",
+    "Luke Zettlemoyer"
+  ],
+  "published_at": "2019-10-29T18:01:00Z",
+  "version_updated_at": "2019-10-29T18:01:00Z",
+  "observed_at": "2026-09-08T22:33:32.830032+00:00",
+  "available_at": "2019-10-29T18:01:00Z",
+  "available_basis": "arXiv archived v1 release; historical reconstruction captured later",
+  "source_kind": "paper",
+  "provider": "arxiv",
+  "access_scope": "public",
+  "representation": "versioned_primary_abstract",
+  "text": "We present BART, a denoising autoencoder for pretraining sequence-to-sequence models. BART is trained by (1) corrupting text with an arbitrary noising function, and (2) learning a model to reconstruct the original text. It uses a standard Tranformer-based neural machine translation architecture which, despite its simplicity, can be seen as generalizing BERT (due to the bidirectional encoder), GPT (with the left-to-right decoder), and many other more recent pretraining schemes. We evaluate a number of noising approaches, finding the best performance by both randomly shuffling the order of the original sentences and using a novel in-filling scheme, where spans of text are replaced with a single mask token. BART is particularly effective when fine tuned for text generation but also works well for comprehension tasks. It matches the performance of RoBERTa with comparable training resources on GLUE and SQuAD, achieves new state-of-the-art results on a range of abstractive dialogue, question answering, and summarization tasks, with gains of up to 6 ROUGE. BART also provides a 1.1 BLEU increase over a back-translation system for machine translation, with only target language pretraining. We also report ablation experiments that replicate other pretraining schemes within the BART framework, to better measure which factors most influence end-task performance.",
+  "text_sha256": "c7934ba3f967f11b47af6799ce3fa9fabb6eabb6e8f49e0bd2b87f8e361e15d2",
+  "raw_sha256": "0656bb447019582a74312f651d3348f481c9e2459bc6b6b5a9df9db6dbcde587",
+  "raw_file": "0656bb447019582a74312f651d3348f481c9e2459bc6b6b5a9df9db6dbcde587.xml",
+  "limitations": [
+    "Abstract-only evidence; author-reported results, not independent reproduction.",
+    "Later DOI, journal metadata and current citations are excluded from historical input."
+  ]
+}

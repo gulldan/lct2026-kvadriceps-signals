@@ -1,0 +1,31 @@
+{
+  "native_id": "2305.09645v1",
+  "canonical_id": "arxiv:2305.09645",
+  "url": "https://arxiv.org/abs/2305.09645v1",
+  "title": "StructGPT: A General Framework for Large Language Model to Reason over Structured Data",
+  "authors": [
+    "Jinhao Jiang",
+    "Kun Zhou",
+    "Zican Dong",
+    "Keming Ye",
+    "Wayne Xin Zhao",
+    "Ji-Rong Wen"
+  ],
+  "published_at": "2023-05-16T17:45:23Z",
+  "version_updated_at": "2023-05-16T17:45:23Z",
+  "observed_at": "2026-09-08T21:43:42.308337+00:00",
+  "available_at": "2023-05-16T17:45:23Z",
+  "available_basis": "arXiv archived v1 release; historical reconstruction captured later",
+  "source_kind": "paper",
+  "provider": "arxiv",
+  "access_scope": "public",
+  "representation": "versioned_primary_abstract",
+  "text": "In this paper, we study how to improve the zero-shot reasoning ability of large language models~(LLMs) over structured data in a unified way. Inspired by the study on tool augmentation for LLMs, we develop an \\emph{Iterative Reading-then-Reasoning~(IRR)} approach for solving question answering tasks based on structured data, called \\textbf{StructGPT}. In our approach, we construct the specialized function to collect relevant evidence from structured data (\\ie \\emph{reading}), and let LLMs concentrate the reasoning task based on the collected information (\\ie \\emph{reasoning}). Specially, we propose an \\emph{invoking-linearization-generation} procedure to support LLMs in reasoning on the structured data with the help of the external interfaces. By iterating this procedures with provided interfaces, our approach can gradually approach the target answer to a given query. Extensive experiments conducted on three types of structured data demonstrate the effectiveness of our approach, which can significantly boost the performance of ChatGPT and achieve comparable performance against the full-data supervised-tuning baselines. Our codes and data are publicly available at~\\url{https://github.com/RUCAIBox/StructGPT}.",
+  "text_sha256": "61a42c540f330c0820517016579c2436105a23b66793247b8d1d3ac917f3990f",
+  "raw_sha256": "da0db3489b7b13738f585fa8b557be5e8d78b3989e4963dbadced049c99a5ee4",
+  "raw_file": "da0db3489b7b13738f585fa8b557be5e8d78b3989e4963dbadced049c99a5ee4.xml",
+  "limitations": [
+    "Abstract-only evidence; author-reported results, not independent reproduction.",
+    "Later DOI, journal metadata and current citations are excluded from historical input."
+  ]
+}

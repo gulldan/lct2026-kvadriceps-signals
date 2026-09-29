@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Технологический радар</title>
+    <script>
+      // Тема ставится до загрузки приложения, чтобы страница не вспыхивала светлым.
+      try {
+        var theme = localStorage.getItem("rag.theme");
+        if (theme === "light" || theme === "dark") document.documentElement.dataset.theme = theme;
+      } catch (e) {}
+    </script>
+  </head>
+  <body>
+    <!-- Trends surface contract — local-extension-measured-trends
+      THESIS: A measured trajectory makes a research direction understandable before its explanation is read.
+      OWN-WORLD: Reuse the established canvas/graphite/blue Gazprombank tokens, one sans for controls and headings, and the shared UI kit. No new palette or control sizes.
+      STORY: Open a real database study, compare directions, select a year, inspect the exact source revision, return to the same evidence.
+      FIRST VIEWPORT: Compact context above five comparable mini charts and a large selected trajectory. Mobile keeps the main chart and a direction selector.
+      SIGNATURE: Selecting a measured year filters the evidence beneath the chart; the same observations switch between counts and corpus share.
+      FORM: Local extension of the existing Operate surface, with no identity replacement or approved comp. Method and limitations are adjacent tabs and disclosures.
+      FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance
+    -->
+    <!-- Radar surface contract — local-extension-radar-map
+      THESIS: Explore topics through their source graph and publication time; evidence opens on selection.
+      OWN-WORLD: Existing canvas/graphite/blue Gazprombank tokens, one sans for controls and headings, shared UI kit; year colors use category tokens.
+      STORY: Run a database query, see its topic/work structure, compare years, inspect a source and return to the same selection.
+      FIRST VIEWPORT: Compact query and view tabs above a large graph; a 290px evidence panel on desktop, a bottom sheet on mobile. No explanatory essay above the map.
+      FORM: Direct local extension of the established Operate surface. Seed key local-extension-radar-map; no identity replacement or direction lottery.
+      FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance
+    -->
+    <div id="root"></div>
+    <script type="module" src="/src/index.tsx"></script>
+  </body>
+</html>

@@ -1,0 +1,33 @@
+{
+  "native_id": "2406.19215v1",
+  "canonical_id": "arxiv:2406.19215",
+  "url": "https://arxiv.org/abs/2406.19215v1",
+  "title": "SeaKR: Self-aware Knowledge Retrieval for Adaptive Retrieval Augmented Generation",
+  "authors": [
+    "Zijun Yao",
+    "Weijian Qi",
+    "Liangming Pan",
+    "Shulin Cao",
+    "Linmei Hu",
+    "Weichuan Liu",
+    "Lei Hou",
+    "Juanzi Li"
+  ],
+  "published_at": "2024-06-27T14:38:33Z",
+  "version_updated_at": "2024-06-27T14:38:33Z",
+  "observed_at": "2026-09-08T22:28:42.905805+00:00",
+  "available_at": "2024-06-27T14:38:33Z",
+  "available_basis": "arXiv archived v1 release; historical reconstruction captured later",
+  "source_kind": "paper",
+  "provider": "arxiv",
+  "access_scope": "public",
+  "representation": "versioned_primary_abstract",
+  "text": "This paper introduces Self-aware Knowledge Retrieval (SeaKR), a novel adaptive RAG model that extracts self-aware uncertainty of LLMs from their internal states. SeaKR activates retrieval when the LLMs present high self-aware uncertainty for generation. To effectively integrate retrieved knowledge snippets, SeaKR re-ranks them based on LLM's self-aware uncertainty to preserve the snippet that reduces their uncertainty to the utmost. To facilitate solving complex tasks that require multiple retrievals, SeaKR utilizes their self-aware uncertainty to choose among different reasoning strategies. Our experiments on both complex and simple Question Answering datasets show that SeaKR outperforms existing adaptive RAG methods. We release our code at https://github.com/THU-KEG/SeaKR.",
+  "text_sha256": "48ccacd36e99043bbe90c4c45d3018e8e8d896afbdf5231e5a4583d7ddd95cfb",
+  "raw_sha256": "761969bd1361209348c93fad02bd6d4c2df715209d933d5edb33e9ba47c64193",
+  "raw_file": "761969bd1361209348c93fad02bd6d4c2df715209d933d5edb33e9ba47c64193.xml",
+  "limitations": [
+    "Abstract-only evidence; author-reported results, not independent reproduction.",
+    "Later DOI, journal metadata and current citations are excluded from historical input."
+  ]
+}

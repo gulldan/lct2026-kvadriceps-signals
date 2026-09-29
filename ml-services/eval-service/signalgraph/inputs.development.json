@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "split": "development",
+  "cutoff": "2023-12-31T23:59:59Z",
+  "historical_reconstruction": true,
+  "source_ids": [
+    "1706.03762v1",
+    "1810.04805v1",
+    "2002.08909v1",
+    "2004.04906v1",
+    "2005.11401v1",
+    "2203.07722v1",
+    "2204.02849v1",
+    "2204.11824v1",
+    "2207.13038v1",
+    "2209.14491v1",
+    "2210.03629v1",
+    "2212.10496v1",
+    "2212.10509v1",
+    "2303.07678v1",
+    "2303.12570v1",
+    "2305.06983v1",
+    "2305.14322v1",
+    "2306.10998v1"
+  ],
+  "selection_basis": "Primary papers selected before method implementation; curated exposure, not provider census."
+}

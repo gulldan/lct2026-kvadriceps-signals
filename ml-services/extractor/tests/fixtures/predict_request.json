@@ -1,0 +1,33 @@
+{
+ "_provenance": "Пример входа скопирован буква в букву из ml-services/extractor/ML_CLASSIFIER_HANDOFF.md (раздел «Вход»). Не редактировать: на нём стоит контрактный тест. model_version в тесте подменяется на версию сервиса.",
+ "request": {
+  "feature_schema": "weak-signal-features-v1",
+  "model_version": "weak-signal-2026-09-17.1",
+  "query": "обнаружение синтетической речи при телефонном мошенничестве",
+  "candidates": [
+   {
+    "id": "candidate-id",
+    "name": "Русское название конкретной технологии",
+    "features": {
+     "documents": 4,
+     "scientific_works": 3,
+     "market_records": 1,
+     "active_periods": 2,
+     "author_groups": 3,
+     "top_group_share": 0.33,
+     "share_growth_pp": null,
+     "first_observed": "2026-08"
+    },
+    "sources": [
+     {
+      "id": "source-id",
+      "title": "Original source title",
+      "abstract": "Observed source abstract, at most 2000 Unicode characters",
+      "date": "2026-08-20",
+      "url": "https://example.org/original-source"
+     }
+    ]
+   }
+  ]
+ }
+}

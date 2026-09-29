@@ -1,0 +1,8 @@
+# Совпадает с базой CI и не наследует глобальные настройки Ruff разработчика.
+# У diagram-parser-service своя, более строгая конфигурация.
+target-version = "py312"
+line-length = 120
+extend-exclude = ["genproto"]
+
+[lint]
+select = ["E4", "E7", "E9", "F"]

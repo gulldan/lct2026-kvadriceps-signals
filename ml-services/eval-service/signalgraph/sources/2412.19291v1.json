@@ -1,0 +1,26 @@
+{
+  "native_id": "2412.19291v1",
+  "canonical_id": "arxiv:2412.19291",
+  "url": "https://arxiv.org/abs/2412.19291v1",
+  "title": "RAG with Differential Privacy",
+  "authors": [
+    "Nicolas Grislain"
+  ],
+  "published_at": "2024-12-26T17:34:26Z",
+  "version_updated_at": "2024-12-26T17:34:26Z",
+  "observed_at": "2026-09-08T22:54:16.251587+00:00",
+  "available_at": "2024-12-26T17:34:26Z",
+  "available_basis": "arXiv archived v1 release; historical reconstruction captured later",
+  "source_kind": "paper",
+  "provider": "arxiv",
+  "access_scope": "public",
+  "representation": "versioned_primary_abstract",
+  "text": "Retrieval-Augmented Generation (RAG) has emerged as the dominant technique to provide *Large Language Models* (LLM) with fresh and relevant context, mitigating the risk of hallucinations and improving the overall quality of responses in environments with large and fast moving knowledge bases. However, the integration of external documents into the generation process raises significant privacy concerns. Indeed, when added to a prompt, it is not possible to guarantee a response will not inadvertently expose confidential data, leading to potential breaches of privacy and ethical dilemmas. This paper explores a practical solution to this problem suitable to general knowledge extraction from personal data. It shows *differentially private token generation* is a viable approach to private RAG.",
+  "text_sha256": "7ec734eeba249ad1e098877afd92f6ab76aa6222c12c162873c23911fbf838fb",
+  "raw_sha256": "b85ecda63db68f28242d5367c99a4f008a12fd2af3a74d74faa802ce545a973b",
+  "raw_file": "b85ecda63db68f28242d5367c99a4f008a12fd2af3a74d74faa802ce545a973b.xml",
+  "limitations": [
+    "Abstract-only evidence; author-reported results, not independent reproduction.",
+    "Later DOI, journal metadata and current citations are excluded from historical input."
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "native_id": "2304.12102v1",
+  "canonical_id": "arxiv:2304.12102",
+  "url": "https://arxiv.org/abs/2304.12102v1",
+  "title": "Unlocking Context Constraints of LLMs: Enhancing Context Efficiency of LLMs with Self-Information-Based Content Filtering",
+  "authors": [
+    "Yucheng Li"
+  ],
+  "published_at": "2023-04-24T13:55:47Z",
+  "version_updated_at": "2023-04-24T13:55:47Z",
+  "observed_at": "2026-09-08T22:30:48.756477+00:00",
+  "available_at": "2023-04-24T13:55:47Z",
+  "available_basis": "arXiv archived v1 release; historical reconstruction captured later",
+  "source_kind": "paper",
+  "provider": "arxiv",
+  "access_scope": "public",
+  "representation": "versioned_primary_abstract",
+  "text": "Large language models (LLMs) have received significant attention by achieving remarkable performance across various tasks. However, their fixed context length poses challenges when processing long documents or maintaining extended conversations. This paper proposes a method called \\textit{Selective Context} that employs self-information to filter out less informative content, thereby enhancing the efficiency of the fixed context length. We demonstrate the effectiveness of our approach on tasks of summarisation and question answering across different data sources, including academic papers, news articles, and conversation transcripts.",
+  "text_sha256": "92ecfd126284a7733a3b260925a8528bbe23bae817e9b0477416ce7e7d290fad",
+  "raw_sha256": "fed7c85814f0c1ef814a75028e63acf00a3d5eaef67602d6e2123046f52b8f5e",
+  "raw_file": "fed7c85814f0c1ef814a75028e63acf00a3d5eaef67602d6e2123046f52b8f5e.xml",
+  "limitations": [
+    "Abstract-only evidence; author-reported results, not independent reproduction.",
+    "Later DOI, journal metadata and current citations are excluded from historical input."
+  ]
+}

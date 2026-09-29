@@ -1,0 +1,309 @@
+/* Палитра — публичные токены дизайн-системы Газпромбанка «Холизм» (префикс
+   --bui-* в продуктивном коде банка): Background/Text/Border-*, шкалы
+   BasicUI-* и Special-*. Оттенки внутри шкалы выбраны так, чтобы пройти наш
+   порог контраста: он строже банковского (их Text-Success #008148 на их же
+   подложке Background-Success даёт 3.97:1, а мы требуем 4.5:1), поэтому для
+   текстовых ролей берётся соседняя, более тёмная ступень той же шкалы. */
+:root {
+  /* Страница и карточка белые, их разделяет волосяная граница; серый — заливка чипов, не фон. */
+  --palette-canvas: #ffffff;
+  --palette-surface: #ffffff;
+  /* Бумага PDF белая в любой теме: это физический документ, а не интерфейс. */
+  --palette-paper: #ffffff;
+  --palette-graphite: #0a0a0b;
+  /* Основное действие у банка не синее, а чернильное; синий — акцент ссылок, выбора и данных. */
+  --palette-ink-solid: #1b1c1f;
+  /* Постоянный в обеих темах: плашка поверх рисунка статьи на белой бумаге остаётся тёмной. */
+  --palette-ink-fixed: #1b1c1f;
+  --palette-grey: #5d5d5f;
+  --palette-hairline: #dfdfdf;
+  --palette-steel: #808082;
+  --palette-blue: #2b61ec;
+  --palette-lavender: #553bd9;
+  --palette-green: #0e6331;
+  --palette-orange: #a13b00;
+  --palette-red: #b8140b;
+  --palette-honey: #f5cb0f;
+  --palette-chart-blue: #1f4cd1;
+  --palette-chart-green: #127a3c;
+  --palette-chart-orange: #b54200;
+  --palette-chart-violet: #962cc7;
+  --palette-chart-rose: #c41f43;
+  /* Материалы объёмной библиотеки сохраняют цвет при смене темы страницы. */
+  --palette-library-walnut: #46372f;
+  --palette-library-oak: #987556;
+  --palette-library-paper: #e9ddc7;
+  --palette-library-brass: #b99a60;
+  --palette-library-navy: #304450;
+  --palette-library-sage: #738a7b;
+  --palette-library-claret: #865c55;
+  /* Свет диорамы: тёплый огонь и солнце, прохладная подсветка тени. */
+  --palette-library-ember: #ffb45e;
+  --palette-library-sky: #9fb6d4;
+  --library-walnut: var(--palette-library-walnut);
+  --library-oak: var(--palette-library-oak);
+  --library-paper: var(--palette-library-paper);
+  --library-brass: var(--palette-library-brass);
+  --library-navy: var(--palette-library-navy);
+  --library-sage: var(--palette-library-sage);
+  --library-claret: var(--palette-library-claret);
+  --library-ember: var(--palette-library-ember);
+  --library-sky: var(--palette-library-sky);
+
+  --background: var(--palette-canvas);
+  --foreground: var(--palette-graphite);
+  --card: var(--palette-surface);
+  --card-foreground: var(--foreground);
+  --popover: var(--palette-surface);
+  --popover-foreground: var(--foreground);
+  --primary: var(--palette-ink-solid);
+  --primary-foreground: var(--palette-canvas);
+  --secondary: color-mix(in oklab, var(--foreground) 4%, var(--palette-surface));
+  --secondary-foreground: var(--foreground);
+  /* Плотнее --secondary: та светлее, потому что на ней стоит синий текст с порогом 4.5:1. */
+  --muted: color-mix(in oklab, var(--foreground) 8%, var(--palette-surface));
+  --muted-foreground: var(--palette-grey);
+  --brand: var(--palette-blue);
+  --brand-foreground: var(--palette-surface);
+  /* Текст на подложке — только --accent-foreground: сам --brand на ней даёт 4.2:1. */
+  --brand-wash: color-mix(in oklab, var(--brand) 16%, var(--palette-surface));
+  --complement: var(--palette-lavender);
+  --complement-foreground: var(--palette-surface);
+  --complement-wash: color-mix(in oklab, var(--complement) 16%, var(--palette-surface));
+  --brand-border: color-mix(in oklab, var(--brand) 32%, var(--palette-surface));
+  --accent: var(--brand-wash);
+  --accent-foreground: color-mix(in oklab, var(--brand) 80%, var(--foreground));
+  --ring: var(--brand);
+  --border: var(--palette-hairline);
+  /* Контраст не ниже 3:1: обычная --border на проекторе читается как её отсутствие. */
+  --border-strong: var(--palette-steel);
+  --input: var(--palette-steel);
+  --ok: var(--palette-green);
+  --ok-wash: color-mix(in oklab, var(--ok) 18%, var(--palette-surface));
+  --warn: var(--palette-orange);
+  --warn-wash: color-mix(in oklab, var(--warn) 18%, var(--palette-surface));
+  --risk: var(--palette-red);
+  --risk-wash: color-mix(in oklab, var(--risk) 18%, var(--palette-surface));
+  --destructive: var(--risk);
+  --destructive-foreground: var(--palette-surface);
+  --mixed: var(--warn);
+  /* Маркер цитаты — подсветка, а не статус: оранжевый «внимания» тут читался бы как ошибка. */
+  --marker: color-mix(in oklab, var(--palette-honey) 55%, var(--palette-surface));
+  --chart-1: var(--category-1);
+  --chart-2: var(--category-2);
+  --chart-3: var(--category-3);
+  --chart-4: var(--category-4);
+  --chart-5: var(--category-5);
+  --radius: 0.5rem;
+  --sidebar: var(--background);
+  --sidebar-foreground: var(--foreground);
+  --sidebar-primary: var(--brand-wash);
+  --sidebar-primary-foreground: var(--accent-foreground);
+  --sidebar-accent: var(--secondary);
+  --sidebar-accent-foreground: var(--foreground);
+  --sidebar-border: var(--border);
+  --sidebar-ring: var(--ring);
+  --overlay: color-mix(in oklab, var(--foreground) 40%, transparent);
+  --document-paper: var(--palette-paper);
+  /* primary в тёмной теме белеет и сливался бы с белой бумагой рисунка. */
+  --media-ink: var(--palette-ink-fixed);
+  --media-ink-foreground: var(--palette-paper);
+  --integration-word: var(--brand);
+  --integration-jira: var(--brand);
+  --highlight-flash: color-mix(in oklab, var(--palette-honey) 45%, transparent);
+  --highlight-outline: color-mix(in oklab, var(--palette-honey) 85%, transparent);
+  --highlight-pdf: color-mix(in oklab, var(--palette-honey) 32%, transparent);
+  --highlight-pdf-active: color-mix(in oklab, var(--palette-honey) 55%, transparent);
+  --category-1: var(--palette-chart-blue);
+  --category-2: var(--palette-chart-green);
+  --category-3: var(--palette-chart-orange);
+  --category-4: var(--palette-chart-violet);
+  --category-5: var(--palette-chart-rose);
+  --category-unassigned: var(--muted-foreground);
+  --control-sm: 2rem;
+  --control-md: 2.5rem;
+  --control-lg: 3rem;
+  --duration-fast: 150ms;
+  --duration-normal: 200ms;
+  --duration-highlight: 1.1s;
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --layer-sticky: 10;
+  --layer-overlay: 50;
+  --layer-toast: 60;
+  --toast-offset: 5rem;
+  /* Тень всегда темнее поверхности: в светлой теме это чернила, в тёмной — чёрный. */
+  --elevation-ink: var(--foreground);
+  --elevation-sm: 0 1px 3px color-mix(in oklab, var(--elevation-ink) 4%, transparent);
+  --elevation-md: 0 4px 12px color-mix(in oklab, var(--elevation-ink) 6%, transparent);
+  --elevation-lg: 0 8px 28px color-mix(in oklab, var(--elevation-ink) 8%, transparent);
+  --elevation-xl: 0 16px 48px color-mix(in oklab, var(--elevation-ink) 12%, transparent);
+  --heading-weight: 600;
+  --heading-tracking: -0.01em;
+  --heading-leading: 1.15;
+  color-scheme: light;
+}
+
+/* Тёмная тема меняет только palette-* и несколько поверхностей; роли выводятся теми же color-mix.
+   Акценты — из тёмных ролей банка: прямой #2b61ec на тёмном даёт 3:1 и для текста не годится. */
+:root[data-theme="dark"] {
+  --palette-canvas: #0a0a0b;
+  --palette-surface: #1b1c1f;
+  --palette-graphite: #ffffff;
+  --palette-ink-solid: #ffffff;
+  --palette-grey: #9c9ca2;
+  --palette-hairline: #3f3f44;
+  --palette-blue: #7ba0ff;
+  --palette-lavender: #a798f5;
+  --palette-green: #4bc979;
+  --palette-orange: #e88600;
+  --palette-red: #ff7066;
+  --palette-chart-blue: #7ba0ff;
+  --palette-chart-green: #5dd47f;
+  --palette-chart-orange: #ffa530;
+  --palette-chart-violet: #dd91ff;
+  --palette-chart-rose: #ff8fab;
+  --brand-foreground: var(--palette-canvas);
+  --complement-foreground: var(--palette-canvas);
+  --destructive-foreground: var(--palette-canvas);
+  --overlay: color-mix(in oklab, black 62%, transparent);
+  --elevation-ink: black;
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --palette-canvas: #0a0a0b;
+    --palette-surface: #1b1c1f;
+    --palette-graphite: #ffffff;
+    --palette-ink-solid: #ffffff;
+    --palette-grey: #9c9ca2;
+    --palette-hairline: #3f3f44;
+    --palette-blue: #7ba0ff;
+    --palette-lavender: #a798f5;
+    --palette-green: #4bc979;
+    --palette-orange: #e88600;
+    --palette-red: #ff7066;
+    --palette-chart-blue: #7ba0ff;
+    --palette-chart-green: #5dd47f;
+    --palette-chart-orange: #ffa530;
+    --palette-chart-violet: #dd91ff;
+    --palette-chart-rose: #ff8fab;
+    --brand-foreground: var(--palette-canvas);
+    --complement-foreground: var(--palette-canvas);
+    --destructive-foreground: var(--palette-canvas);
+    --overlay: color-mix(in oklab, black 62%, transparent);
+    --elevation-ink: black;
+    color-scheme: dark;
+  }
+}
+
+@theme inline {
+  --color-*: initial;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-brand: var(--brand);
+  --color-brand-foreground: var(--brand-foreground);
+  --color-brand-wash: var(--brand-wash);
+  --color-brand-border: var(--brand-border);
+  --color-complement: var(--complement);
+  --color-complement-foreground: var(--complement-foreground);
+  --color-complement-wash: var(--complement-wash);
+  --color-ok: var(--ok);
+  --color-ok-wash: var(--ok-wash);
+  --color-warn: var(--warn);
+  --color-warn-wash: var(--warn-wash);
+  --color-risk: var(--risk);
+  --color-risk-wash: var(--risk-wash);
+  --color-marker: var(--marker);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+  /* Гарнитура банка первой: на машинах Газпромбанка страница покажется их шрифтом; снаружи его
+     нет, поэтому дальше самохостимый Onest и CJK-начертания для китайского. */
+  --font-sans:
+    "Gazprombank Sans", "Onest Variable", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei",
+    "Noto Sans SC", system-ui, sans-serif;
+  --font-heading: var(--font-sans);
+  --font-mono: "JetBrains Mono Variable", ui-monospace, "PingFang SC", "Microsoft YaHei", monospace;
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --color-overlay: var(--overlay);
+  --color-mixed: var(--mixed);
+  --color-document-paper: var(--document-paper);
+  --color-media-ink: var(--media-ink);
+  --color-media-ink-foreground: var(--media-ink-foreground);
+  --color-integration-word: var(--integration-word);
+  --color-integration-jira: var(--integration-jira);
+  --spacing-control-sm: var(--control-sm);
+  --spacing-control: var(--control-md);
+  --spacing-control-lg: var(--control-lg);
+  --radius-xl: 0.75rem;
+  --radius-2xl: 1rem;
+  --text-caption: 0.6875rem;
+  --text-micro: 0.625rem;
+  --shadow-sm: var(--elevation-sm);
+  --shadow-md: var(--elevation-md);
+  --shadow-lg: var(--elevation-lg);
+  --shadow-xl: var(--elevation-xl);
+  --default-transition-duration: var(--duration-fast);
+  --default-transition-timing-function: var(--ease-standard);
+}
+
+/* Браузер печатает цвет текста, но не заливку фона: светлый текст тёмной темы ложился бы на белый
+   лист. Поэтому печать восстанавливает светлую палитру и переопределённые производные токены. */
+@media print {
+  :root,
+  :root[data-theme="dark"],
+  :root:not([data-theme="light"]) {
+    --palette-canvas: #ffffff;
+    --palette-surface: #ffffff;
+    --palette-graphite: #0a0a0b;
+    --palette-ink-solid: #1b1c1f;
+    --palette-grey: #5d5d5f;
+    --palette-hairline: #dfdfdf;
+    --palette-blue: #2b61ec;
+    --palette-lavender: #553bd9;
+    --palette-green: #0e6331;
+    --palette-orange: #a13b00;
+    --palette-red: #b8140b;
+    --palette-chart-blue: #1f4cd1;
+    --palette-chart-green: #127a3c;
+    --palette-chart-orange: #b54200;
+    --palette-chart-violet: #962cc7;
+    --palette-chart-rose: #c41f43;
+    --brand-foreground: var(--palette-surface);
+    --complement-foreground: var(--palette-surface);
+    --destructive-foreground: var(--palette-surface);
+    --overlay: color-mix(in oklab, var(--foreground) 40%, transparent);
+    --elevation-ink: var(--foreground);
+    color-scheme: light;
+  }
+}

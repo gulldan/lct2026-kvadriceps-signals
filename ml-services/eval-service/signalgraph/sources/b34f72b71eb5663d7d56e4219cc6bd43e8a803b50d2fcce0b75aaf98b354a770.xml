@@ -1,0 +1,138 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<feed xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:arxiv="http://arxiv.org/schemas/atom" xmlns="http://www.w3.org/2005/Atom">
+  <id>https://arxiv.org/api/SNMlLBnk2dU2zYEx13sgyLE6D/k</id>
+  <title>arXiv Query: search_query=&amp;id_list=2305.06983v1,2306.10998v1,2204.11824v1,2204.02849v1&amp;start=0&amp;max_results=4</title>
+  <updated>2026-09-08T18:26:21Z</updated>
+  <link href="https://arxiv.org/api/query?search_query=&amp;start=0&amp;max_results=4&amp;id_list=2305.06983v1,2306.10998v1,2204.11824v1,2204.02849v1" type="application/atom+xml"/>
+  <opensearch:itemsPerPage>4</opensearch:itemsPerPage>
+  <opensearch:totalResults>4</opensearch:totalResults>
+  <opensearch:startIndex>0</opensearch:startIndex>
+  <entry>
+    <id>http://arxiv.org/abs/2204.11824v1</id>
+    <title>Retrieval-Augmented Diffusion Models</title>
+    <updated>2022-04-25T17:55:26Z</updated>
+    <link href="https://arxiv.org/abs/2204.11824v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2204.11824v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Generative image synthesis with diffusion models has recently achieved excellent visual quality in several tasks such as text-based or class-conditional image synthesis. Much of this success is due to a dramatic increase in the computational capacity invested in training these models. This work presents an alternative approach: inspired by its successful application in natural language processing, we propose to complement the diffusion model with a retrieval-based approach and to introduce an explicit memory in the form of an external database. During training, our diffusion model is trained with similar visual features retrieved via CLIP and from the neighborhood of each training instance. By leveraging CLIP's joint image-text embedding space, our model achieves highly competitive performance on tasks for which it has not been explicitly trained, such as class-conditional or text-image synthesis, and can be conditioned on both text and image embeddings. Moreover, we can apply our approach to unconditional generation, where it achieves state-of-the-art performance. Our approach incurs low computational and memory overheads and is easy to implement. We discuss its relationship to concurrent work and will publish code and pretrained models soon.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2022-04-25T17:55:26Z</published>
+    <arxiv:comment>Technical Report</arxiv:comment>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Andreas Blattmann</name>
+    </author>
+    <author>
+      <name>Robin Rombach</name>
+    </author>
+    <author>
+      <name>Kaan Oktay</name>
+    </author>
+    <author>
+      <name>Björn Ommer</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2204.02849v1</id>
+    <title>KNN-Diffusion: Image Generation via Large-Scale Retrieval</title>
+    <updated>2022-04-06T14:13:35Z</updated>
+    <link href="https://arxiv.org/abs/2204.02849v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2204.02849v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>While the availability of massive Text-Image datasets is shown to be extremely useful in training large-scale generative models (e.g. DDPMs, Transformers), their output typically depends on the quality of both the input text, as well as the training dataset. In this work, we show how large-scale retrieval methods, in particular efficient K-Nearest-Neighbors (KNN) search, can be used in order to train a model to adapt to new samples. Learning to adapt enables several new capabilities. Sifting through billions of records at inference time is extremely efficient and can alleviate the need to train or memorize an adequately large generative model. Additionally, fine-tuning trained models to new samples can be achieved by simply adding them to the table. Rare concepts, even without any presence in the training set, can be then leveraged during test time without any modification to the generative model. Our diffusion-based model trains on images only, by leveraging a joint Text-Image multi-modal metric. Compared to baseline methods, our generations achieve state of the art results both in human evaluations as well as with perceptual scores when tested on a public multimodal dataset of natural images, as well as on a collected dataset of 400 million Stickers.</summary>
+    <category term="cs.CV" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.GR" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2022-04-06T14:13:35Z</published>
+    <arxiv:primary_category term="cs.CV"/>
+    <author>
+      <name>Oron Ashual</name>
+    </author>
+    <author>
+      <name>Shelly Sheynin</name>
+    </author>
+    <author>
+      <name>Adam Polyak</name>
+    </author>
+    <author>
+      <name>Uriel Singer</name>
+    </author>
+    <author>
+      <name>Oran Gafni</name>
+    </author>
+    <author>
+      <name>Eliya Nachmani</name>
+    </author>
+    <author>
+      <name>Yaniv Taigman</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2306.10998v1</id>
+    <title>RepoFusion: Training Code Models to Understand Your Repository</title>
+    <updated>2023-06-19T15:05:31Z</updated>
+    <link href="https://arxiv.org/abs/2306.10998v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2306.10998v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Despite the huge success of Large Language Models (LLMs) in coding assistants like GitHub Copilot, these models struggle to understand the context present in the repository (e.g., imports, parent classes, files with similar names, etc.), thereby producing inaccurate code completions. This effect is more pronounced when using these assistants for repositories that the model has not seen during training, such as proprietary software or work-in-progress code projects. Recent work has shown the promise of using context from the repository during inference. In this work, we extend this idea and propose RepoFusion, a framework to train models to incorporate relevant repository context. Experiments on single-line code completion show that our models trained with repository context significantly outperform much larger code models as CodeGen-16B-multi ($\sim73\times$ larger) and closely match the performance of the $\sim 70\times$ larger StarCoderBase model that was trained with the Fill-in-the-Middle objective. We find these results to be a novel and compelling demonstration of the gains that training with repository context can bring. We carry out extensive ablation studies to investigate the impact of design choices such as context type, number of contexts, context length, and initialization within our framework. Lastly, we release Stack-Repo, a dataset of 200 Java repositories with permissive licenses and near-deduplicated files that are augmented with three types of repository contexts. Additionally, we are making available the code and trained checkpoints for our work. Our released resources can be found at \url{https://huggingface.co/RepoFusion}.</summary>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.AI" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.PL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.SE" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-06-19T15:05:31Z</published>
+    <arxiv:primary_category term="cs.LG"/>
+    <author>
+      <name>Disha Shrivastava</name>
+    </author>
+    <author>
+      <name>Denis Kocetkov</name>
+    </author>
+    <author>
+      <name>Harm de Vries</name>
+    </author>
+    <author>
+      <name>Dzmitry Bahdanau</name>
+    </author>
+    <author>
+      <name>Torsten Scholak</name>
+    </author>
+  </entry>
+  <entry>
+    <id>http://arxiv.org/abs/2305.06983v1</id>
+    <title>Active Retrieval Augmented Generation</title>
+    <updated>2023-05-11T17:13:40Z</updated>
+    <link href="https://arxiv.org/abs/2305.06983v1" rel="alternate" type="text/html"/>
+    <link href="https://arxiv.org/pdf/2305.06983v1" rel="related" type="application/pdf" title="pdf"/>
+    <summary>Despite the remarkable ability of large language models (LMs) to comprehend and generate language, they have a tendency to hallucinate and create factually inaccurate output. Augmenting LMs by retrieving information from external knowledge resources is one promising solution. Most existing retrieval-augmented LMs employ a retrieve-and-generate setup that only retrieves information once based on the input. This is limiting, however, in more general scenarios involving generation of long texts, where continually gathering information throughout the generation process is essential. There have been some past efforts to retrieve information multiple times while generating outputs, which mostly retrieve documents at fixed intervals using the previous context as queries. In this work, we provide a generalized view of active retrieval augmented generation, methods that actively decide when and what to retrieve across the course of the generation. We propose Forward-Looking Active REtrieval augmented generation (FLARE), a generic retrieval-augmented generation method which iteratively uses a prediction of the upcoming sentence to anticipate future content, which is then utilized as a query to retrieve relevant documents to regenerate the sentence if it contains low-confidence tokens. We test FLARE along with baselines comprehensively over 4 long-form knowledge-intensive generation tasks/datasets. FLARE achieves superior or competitive performance on all tasks, demonstrating the effectiveness of our method. Code and datasets are available at https://github.com/jzbjyb/FLARE.</summary>
+    <category term="cs.CL" scheme="http://arxiv.org/schemas/atom"/>
+    <category term="cs.LG" scheme="http://arxiv.org/schemas/atom"/>
+    <published>2023-05-11T17:13:40Z</published>
+    <arxiv:primary_category term="cs.CL"/>
+    <author>
+      <name>Zhengbao Jiang</name>
+    </author>
+    <author>
+      <name>Frank F. Xu</name>
+    </author>
+    <author>
+      <name>Luyu Gao</name>
+    </author>
+    <author>
+      <name>Zhiqing Sun</name>
+    </author>
+    <author>
+      <name>Qian Liu</name>
+    </author>
+    <author>
+      <name>Jane Dwivedi-Yu</name>
+    </author>
+    <author>
+      <name>Yiming Yang</name>
+    </author>
+    <author>
+      <name>Jamie Callan</name>
+    </author>
+    <author>
+      <name>Graham Neubig</name>
+    </author>
+  </entry>
+</feed>

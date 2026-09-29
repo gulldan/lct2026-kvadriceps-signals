@@ -1,0 +1,30 @@
+{
+  "native_id": "2305.14795v1",
+  "canonical_id": "arxiv:2305.14795",
+  "url": "https://arxiv.org/abs/2305.14795v1",
+  "title": "MQuAKE: Assessing Knowledge Editing in Language Models via Multi-Hop Questions",
+  "authors": [
+    "Zexuan Zhong",
+    "Zhengxuan Wu",
+    "Christopher D. Manning",
+    "Christopher Potts",
+    "Danqi Chen"
+  ],
+  "published_at": "2023-05-24T06:48:41Z",
+  "version_updated_at": "2023-05-24T06:48:41Z",
+  "observed_at": "2026-09-08T22:03:58.895762+00:00",
+  "available_at": "2023-05-24T06:48:41Z",
+  "available_basis": "arXiv archived v1 release; historical reconstruction captured later",
+  "source_kind": "paper",
+  "provider": "arxiv",
+  "access_scope": "public",
+  "representation": "versioned_primary_abstract",
+  "text": "The information stored in large language models (LLMs) falls out of date quickly, and retraining from scratch is often not an option. This has recently given rise to a range of techniques for injecting new facts through updating model weights. Current evaluation paradigms are extremely limited, mainly validating the recall of edited facts, but changing one fact should cause rippling changes to the model's related beliefs. If we edit the UK Prime Minister to now be Rishi Sunak, then we should get a different answer to Who is married to the British Prime Minister? In this work, we present a benchmark MQuAKE (Multi-hop Question Answering for Knowledge Editing) comprising multi-hop questions that assess whether edited models correctly answer questions where the answer should change as an entailed consequence of edited facts. While we find that current knowledge-editing approaches can recall edited facts accurately, they fail catastrophically on the constructed multi-hop questions. We thus propose a simple memory-based approach, MeLLo, which stores all edited facts externally while prompting the language model iteratively to generate answers that are consistent with the edited facts. While MQuAKE remains challenging, we show that MeLLo scales well with LLMs (up to 175B) and outperforms previous model editors by a large margin.",
+  "text_sha256": "050466b76c5dd9fca9bf13b8a62ed66a41f1c2a320d0032a9b6c6d3ff97f7a9f",
+  "raw_sha256": "cebcac3f6b33d75b1197162d17bbefeab5f1430f443a663bf2fde424ea298fe0",
+  "raw_file": "cebcac3f6b33d75b1197162d17bbefeab5f1430f443a663bf2fde424ea298fe0.xml",
+  "limitations": [
+    "Abstract-only evidence; author-reported results, not independent reproduction.",
+    "Later DOI, journal metadata and current citations are excluded from historical input."
+  ]
+}

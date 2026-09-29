@@ -1,0 +1,1235 @@
+{
+  "version": 1,
+  "assessor": "Codex",
+  "independent_human_review": false,
+  "cutoff": "2025-12-31T23:59:59Z",
+  "queries": {
+    "ai": "технологии в ИИ",
+    "rag": "методы retrieval-augmented generation",
+    "rare_control": "retrieval-augmented generation для измерения квантовой гравитации"
+  },
+  "topics": [
+    {
+      "id": "hold-rl-search",
+      "split": "holdout",
+      "cutoff": "2025-12-31T23:59:59Z",
+      "label": "Обучение многошаговому поиску через reinforcement learning",
+      "distinctness_group": "hold-rl-search",
+      "source_ids": [
+        "2503.09516v1",
+        "2504.03160v1"
+      ],
+      "assessor": "Codex",
+      "review_status": "self_assessed_primary_sources",
+      "relevance": {
+        "ai": 2,
+        "rag": 2,
+        "rare_control": 0
+      },
+      "emergence": "emerging",
+      "decision_basis": "Search-R1 (2025-Q1) обучает поисковому взаимодействию по outcome reward; DeepResearcher (Q2) переносит RL в открытый web. Это обучение политики retrieval во время рассуждения, отличное от заданного разработчиком multi-agent плана. Есть разные авторские группы и следующий период.",
+      "counterevidence": "Открытый web DeepResearcher отличается от фиксированного RAG корпуса; цифры сравнения имеют разные baseline и не складываются. Результаты benchmarks не означают надежную автономную работу с любым сайтом.",
+      "eligible_gold": {
+        "ai": true,
+        "rag": true,
+        "rare_control": false
+      },
+      "brief_support": {
+        "problem": {
+          "source_id": "2503.09516v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "f90eb8abbf96ebbe2ff65cdc426c9b4407eba215870ba42ea07c41d9754e17c2",
+          "char_start": 306,
+          "char_end": 341,
+          "quote": "require large-scale supervised data",
+          "interpretation": "Обучению сложным поисковым взаимодействиям часто нужны большие размеченные наборы.",
+          "modality": "problem_statement",
+          "conditions": null
+        },
+        "advantage": {
+          "source_id": "2504.03160v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "ed7317b019caa88cb630957d4bd8d40ec726bba8cca09a529a74c958f0767000",
+          "char_start": 1247,
+          "char_end": 1288,
+          "quote": "up to 7.2 points over RAG-based RL agents",
+          "interpretation": "DeepResearcher сообщает выигрыш до 7,2 пункта над RAG-based RL agents.",
+          "modality": "author_reported_experiment",
+          "conditions": "Open-domain research tasks в версии v1; до 28,9 пункта относится к другому, prompt-engineering baseline."
+        },
+        "example": {
+          "kind": "research",
+          "source_id": "2504.03160v1",
+          "label": "DeepResearcher: Scaling Deep Research via Reinforcement Learning in Real-world Environments"
+        }
+      },
+      "independence_limit": "Непересекающиеся списки авторов; независимая репликация результатов не выполнена."
+    },
+    {
+      "id": "hold-web-agent-navigation",
+      "split": "holdout",
+      "cutoff": "2025-12-31T23:59:59Z",
+      "label": "Многоагентное планирование и обход страниц для поиска ответа",
+      "distinctness_group": "hold-web-agent-navigation",
+      "source_ids": [
+        "2407.20183v1",
+        "2501.07572v1"
+      ],
+      "assessor": "Codex",
+      "review_status": "self_assessed_primary_sources",
+      "relevance": {
+        "ai": 2,
+        "rag": 2,
+        "rare_control": 0
+      },
+      "emergence": "emerging",
+      "decision_basis": "MindSearch (2024-Q3) разделяет WebPlanner и WebSearcher с динамическим графом подзадач; WebWalker (2025-Q1) добавляет explore/critic обход подстраниц. Общая операция — явная декомпозиция и исследование web для синтеза ответа, без обучения поисковой политики RL.",
+      "counterevidence": "WebWalker также вводит benchmark и акцентирует вертикальный обход сайта; MindSearch — интеграцию результатов многих страниц. Это пограничная общая тема агентного обхода, а не два места за горизонтальный и вертикальный поиск. Заявление MindSearch о часах человеческого труда не принимается за независимо измеренную экономию.",
+      "eligible_gold": {
+        "ai": true,
+        "rag": true,
+        "rare_control": false
+      },
+      "brief_support": {
+        "problem": {
+          "source_id": "2407.20183v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "652a6381d2a6f960a2775168711be531e4994daeca95bc022716a2babae7c2ed",
+          "char_start": 334,
+          "char_end": 402,
+          "quote": "complex requests often cannot be accurately and completely retrieved",
+          "interpretation": "Одного поиска недостаточно для сложного запроса.",
+          "modality": "problem_statement",
+          "conditions": null
+        },
+        "advantage": {
+          "source_id": "2407.20183v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "652a6381d2a6f960a2775168711be531e4994daeca95bc022716a2babae7c2ed",
+          "char_start": 1557,
+          "char_end": 1634,
+          "quote": "significant improvement in the response quality in terms of depth and breadth",
+          "interpretation": "Авторы MindSearch сообщают улучшение глубины и охвата ответа.",
+          "modality": "author_reported_experiment",
+          "conditions": "Close-set и open-set QA; человеческое предпочтение из исходной работы не является экспертной проверкой нашего benchmark."
+        },
+        "example": {
+          "kind": "research",
+          "source_id": "2407.20183v1",
+          "label": "MindSearch: Mimicking Human Minds Elicits Deep AI Searcher"
+        }
+      },
+      "independence_limit": "Разные канонические работы и непересекающиеся авторы; WebWalkerQA не дополнительная реализация поверх WebWalker."
+    },
+    {
+      "id": "hold-graph-evidence-paths",
+      "split": "holdout",
+      "cutoff": "2025-12-31T23:59:59Z",
+      "label": "Извлечение связанных графовых свидетельств вместо плоских chunks",
+      "distinctness_group": "hold-graph-evidence-paths",
+      "source_ids": [
+        "2405.20139v1",
+        "2502.14902v1",
+        "2502.06864v1",
+        "2508.10391v1"
+      ],
+      "assessor": "Codex",
+      "review_status": "self_assessed_primary_sources",
+      "relevance": {
+        "ai": 2,
+        "rag": 2,
+        "rare_control": 0
+      },
+      "emergence": "emerging",
+      "decision_basis": "GNN-RAG (2024-Q2) извлекает пути от вопроса к кандидатам ответа; PathRAG и KG2RAG (2025-Q1) развивают pruning, расширение и организацию связанных свидетельств; LeanRAG (Q3) использует иерархические семантические пути. Датированное развитие операции структурного retrieval и передачи связного контекста в LM.",
+      "counterevidence": "GNN reasoning, flow pruning, chunk expansion и semantic aggregation различаются. На этом уровне все объединены в одну тему, чтобы не получать несколько мест за варианты GraphRAG. Ни название GraphRAG, ни один граф сами по себе не доказывают новое зарождение; конкретные операции и ограничения сохранены.",
+      "eligible_gold": {
+        "ai": true,
+        "rag": true,
+        "rare_control": false
+      },
+      "brief_support": {
+        "problem": {
+          "source_id": "2502.14902v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "d18d664bc5d51c0fb403b6aba550c3c29b250b9b817d034f203fcdf7ace1d106",
+          "char_start": 553,
+          "char_end": 592,
+          "quote": "redundancy of the retrieved information",
+          "interpretation": "Избыточный плоский контекст мешает графовому RAG.",
+          "modality": "problem_statement",
+          "conditions": null
+        },
+        "advantage": {
+          "source_id": "2508.10391v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "34e7180152f2cf3011985ced2a22278f2afc0f548f194a1f3d2468dce8eaf098",
+          "char_start": 1705,
+          "char_end": 1739,
+          "quote": "reducing 46\\% retrieval redundancy",
+          "interpretation": "LeanRAG сообщает снижение избыточности retrieval на 46%.",
+          "modality": "author_reported_experiment",
+          "conditions": "Четыре QA benchmarks разных доменов; метрика redundancy, не универсальная экономия стоимости или рост accuracy."
+        },
+        "example": {
+          "kind": "research",
+          "source_id": "2508.10391v1",
+          "label": "LeanRAG: Knowledge-Graph-Based Generation with Semantic Aggregation and Hierarchical Retrieval"
+        }
+      },
+      "independence_limit": "Четыре разные авторские группы; ни одна работа не считается независимой репликацией всех остальных."
+    },
+    {
+      "id": "hold-video-retrieval",
+      "split": "holdout",
+      "cutoff": "2025-12-31T23:59:59Z",
+      "label": "Поиск визуальных свидетельств в длинных видео для ответа",
+      "distinctness_group": "hold-video-retrieval",
+      "source_ids": [
+        "2403.10517v1",
+        "2501.05874v1",
+        "2502.01549v1"
+      ],
+      "assessor": "Codex",
+      "review_status": "self_assessed_primary_sources",
+      "relevance": {
+        "ai": 2,
+        "rag": 2,
+        "rare_control": 0
+      },
+      "emergence": "emerging",
+      "decision_basis": "VideoAgent (2024-Q1) использует итеративный поиск нужной визуальной информации; две разные VideoRAG (2025-Q1) развивают retrieval видео из корпуса и dual-channel retrieval длинных коллекций. Тема — выбор визуального контекста для ответа, а не все video foundation models.",
+      "counterevidence": "VideoAgent работает внутри long-form video, последующие системы — также между видео. Это пограничное расширение гранулярности retrieval; один лишь общий dataset не давал бы отдельного тренда. Две VideoRAG имеют разные IDs и авторов и не являются версиями одной статьи. Unlimited-length — архитектурное заявление, не измеренная бесконечная масштабируемость.",
+      "eligible_gold": {
+        "ai": true,
+        "rag": true,
+        "rare_control": false
+      },
+      "brief_support": {
+        "problem": {
+          "source_id": "2501.05874v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "acd6aad91d0983bc7c54904ad73227899ed190445810bc7f314bb5205bb19f7b",
+          "char_start": 806,
+          "char_end": 850,
+          "quote": "without harnessing their multimodal richness",
+          "interpretation": "Преобразование видео только в текст теряет визуальные свидетельства.",
+          "modality": "problem_statement",
+          "conditions": null
+        },
+        "advantage": {
+          "source_id": "2403.10517v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "5bc48eb4500868d4172678fbd304102f6ae6515b4cf575cb4128e02ade1ff1be",
+          "char_start": 707,
+          "char_end": 741,
+          "quote": "54.1% and 71.3% zero-shot accuracy",
+          "interpretation": "VideoAgent сообщает zero-shot accuracy 54,1% и 71,3%.",
+          "modality": "author_reported_experiment",
+          "conditions": "EgoSchema и NExT-QA соответственно, в среднем 8,4 и 8,2 кадра. Эти результаты не переносятся на LongerVideos или любую VideoRAG."
+        },
+        "example": {
+          "kind": "research",
+          "source_id": "2403.10517v1",
+          "label": "VideoAgent: Long-form Video Understanding with Large Language Model as Agent"
+        }
+      },
+      "independence_limit": "Три непересекающихся авторских списка и два годовых периода; связь между frame retrieval и corpus retrieval указана как ограничение темы."
+    },
+    {
+      "id": "hold-visual-document-rag",
+      "split": "holdout",
+      "cutoff": "2025-12-31T23:59:59Z",
+      "label": "Синтез ответа по текстовым и визуальным частям документов",
+      "distinctness_group": "hold-visual-document-rag",
+      "source_ids": [
+        "2411.04952v1",
+        "2503.13964v1"
+      ],
+      "assessor": "Codex",
+      "review_status": "self_assessed_primary_sources",
+      "relevance": {
+        "ai": 2,
+        "rag": 2,
+        "rare_control": 0
+      },
+      "emergence": "emerging",
+      "decision_basis": "M3DocRAG (2024-Q4) ищет multimodal evidence среди страниц и документов; MDocAgent (2025-Q1) объединяет текстовых, визуальных и проверяющих агентов. Это retrieval и совместное чтение разных модальностей документов, отделенное от поиска событий в видео.",
+      "counterevidence": "Агентный механизм MDocAgent не тождественен retriever M3DocRAG. Общая тема — сохранение визуальных оснований для multi-page DocQA; агентность сама по себе не второе место. 12,1% — среднее авторского сравнения, не абсолютные процентные пункты и не все DocQA системы.",
+      "eligible_gold": {
+        "ai": true,
+        "rag": true,
+        "rare_control": false
+      },
+      "brief_support": {
+        "problem": {
+          "source_id": "2411.04952v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "6077f3ec7c1df288d4e4603243d35385f377b4cc9909723955be3c44da9b6278",
+          "char_start": 643,
+          "char_end": 676,
+          "quote": "text extraction tools ignore them",
+          "interpretation": "Текстовое извлечение пропускает важные визуальные элементы документа.",
+          "modality": "problem_statement",
+          "conditions": null
+        },
+        "advantage": {
+          "source_id": "2503.13964v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "600e33ed2a572078369629cfb49b368c14e9d0081497b9c6e7f353f14666b131",
+          "char_start": 1165,
+          "char_end": 1196,
+          "quote": "an average improvement of 12.1%",
+          "interpretation": "MDocAgent сообщает среднее улучшение на 12,1% в предварительной оценке.",
+          "modality": "author_reported_experiment",
+          "conditions": "Пять benchmarks, в том числе MMLongBench и LongDocURL; авторская preliminary оценка v1, без независимого воспроизведения."
+        },
+        "example": {
+          "kind": "research",
+          "source_id": "2503.13964v1",
+          "label": "MDocAgent: A Multi-Modal Multi-Agent Framework for Document Understanding"
+        }
+      },
+      "independence_limit": "Разные непересекающиеся списки авторов; использование ColPali внутри M3DocRAG не копия самой работы ColPali из validation."
+    },
+    {
+      "id": "hold-adaptive-agent-memory",
+      "split": "holdout",
+      "cutoff": "2025-12-31T23:59:59Z",
+      "label": "Извлечение и обновление структурированной памяти диалогового агента",
+      "distinctness_group": "hold-adaptive-agent-memory",
+      "source_ids": [
+        "2502.12110v1",
+        "2504.19413v1"
+      ],
+      "assessor": "Codex",
+      "review_status": "self_assessed_primary_sources",
+      "relevance": {
+        "ai": 2,
+        "rag": 2,
+        "rare_control": 0
+      },
+      "emergence": "emerging",
+      "decision_basis": "A-MEM (2025-Q1) динамически индексирует и связывает заметки, Mem0 (Q2) извлекает, консолидирует и возвращает факты беседы. Это изменяемая долговременная память для последующей генерации, а не просто статический vector store или размер окна.",
+      "counterevidence": "Zettelkasten notes и Mem0 graph variant различаются. Слово Production-Ready в заголовке не является подтверждением внедрения компанией. LLM-as-a-Judge качество ограничено судьей; латентность и token cost имеют отдельный full-context baseline.",
+      "eligible_gold": {
+        "ai": true,
+        "rag": true,
+        "rare_control": false
+      },
+      "brief_support": {
+        "problem": {
+          "source_id": "2504.19413v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "98ba1014211860285bbaa0a25fc6b7d918aff8f517d73d4fe1e445697dd1791c",
+          "char_start": 123,
+          "char_end": 172,
+          "quote": "fixed context windows pose fundamental challenges",
+          "interpretation": "Фиксированное окно мешает согласованности длинных многосессионных диалогов.",
+          "modality": "problem_statement",
+          "conditions": null
+        },
+        "advantage": {
+          "source_id": "2504.19413v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "98ba1014211860285bbaa0a25fc6b7d918aff8f517d73d4fe1e445697dd1791c",
+          "char_start": 1565,
+          "char_end": 1586,
+          "quote": "91% lower p95 latency",
+          "interpretation": "Авторы Mem0 сообщают снижение p95 latency на 91%.",
+          "modality": "author_reported_experiment",
+          "conditions": "LOCOMO, сравнение с обработкой всей истории в full-context method. Не сравнение со всеми RAG системами и не гарантия production SLA."
+        },
+        "example": {
+          "kind": "research",
+          "source_id": "2504.19413v1",
+          "label": "Mem0: Building Production-Ready AI Agents with Scalable Long-Term Memory"
+        }
+      },
+      "independence_limit": "Разные непересекающиеся списки авторов, Q1 и Q2; одно исследование Mem0 и его graph variant считаются одной работой."
+    },
+    {
+      "id": "hold-retrieval-speculation",
+      "split": "holdout",
+      "cutoff": "2025-12-31T23:59:59Z",
+      "label": "Генерация черновика по найденному контексту с последующей проверкой",
+      "distinctness_group": "hold-retrieval-speculation",
+      "source_ids": [
+        "2407.08223v1",
+        "2502.20330v1"
+      ],
+      "assessor": "Codex",
+      "review_status": "self_assessed_primary_sources",
+      "relevance": {
+        "ai": 2,
+        "rag": 2,
+        "rare_control": 0
+      },
+      "emergence": "emerging",
+      "decision_basis": "Speculative RAG (2024-Q3) генерирует параллельные ответы по подмножествам документов и проверяет их generalist LM. RAPID (2025-Q1) использует RAG drafter с коротким контекстом для ускорения long-context target. Общая новая операция — дешевый retrieval-conditioned draft и проверка более дорогим target.",
+      "counterevidence": "Answer-level verification и speculative decoding по токенам имеют разные гарантии и не сравниваются одной метрикой. RAPID может менять target distribution; это не доказательство идентичности исходной long-context генерации. Обе реализации объединены в одну тему.",
+      "eligible_gold": {
+        "ai": true,
+        "rag": true,
+        "rare_control": false
+      },
+      "brief_support": {
+        "problem": {
+          "source_id": "2502.20330v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "0d757be48649713ed5ca92746e4b5e6a286c87e75148719109dd6cc65e21fa4a",
+          "char_start": 505,
+          "char_end": 537,
+          "quote": "memory-bound KV cache operations",
+          "interpretation": "KV cache длинного контекста ограничивает ускорение speculative decoding.",
+          "modality": "problem_statement",
+          "conditions": null
+        },
+        "advantage": {
+          "source_id": "2407.08223v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "c74822b3df567870760293e168231cfed9c1a667b9ae5020497d0630f5c80dab",
+          "char_start": 1228,
+          "char_end": 1251,
+          "quote": "reducing latency by 51%",
+          "interpretation": "Speculative RAG сообщает снижение задержки на 51%.",
+          "modality": "author_reported_experiment",
+          "conditions": "PubHealth и сравниваемая conventional RAG конфигурация v1; не позднее уточнение 50,83%, и не 51% на всех datasets."
+        },
+        "example": {
+          "kind": "research",
+          "source_id": "2407.08223v1",
+          "label": "Speculative RAG: Enhancing Retrieval Augmented Generation through Drafting"
+        }
+      },
+      "independence_limit": "Непересекающиеся авторы, разные периоды; paper conference revision не второй источник Speculative RAG."
+    },
+    {
+      "id": "hold-poisoning-defense",
+      "split": "holdout",
+      "cutoff": "2025-12-31T23:59:59Z",
+      "label": "Защита генерации от отравленных результатов retrieval",
+      "distinctness_group": "hold-poisoning-defense",
+      "source_ids": [
+        "2405.15556v1",
+        "2501.00879v1"
+      ],
+      "assessor": "Codex",
+      "review_status": "self_assessed_primary_sources",
+      "relevance": {
+        "ai": 2,
+        "rag": 2,
+        "rare_control": 0
+      },
+      "emergence": "emerging",
+      "decision_basis": "RobustRAG (2024-Q2) изолирует passage-conditioned ответы и агрегирует их; TrustRAG (2025-Q1) отфильтровывает подозрительные документы. Есть отдельные работы и периоды развития защиты от retrieval/corpus corruption.",
+      "counterevidence": "Формальная сертификация RobustRAG при ограниченном числе malicious passages не переносится на эвристическую фильтрацию TrustRAG. TrustRAG 2501.00879 не одноименные assistant/blockchain работы. Защита corpus poisoning отличается от query privacy и DP output.",
+      "eligible_gold": {
+        "ai": true,
+        "rag": true,
+        "rare_control": false
+      },
+      "brief_support": {
+        "problem": {
+          "source_id": "2405.15556v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "a67ec3d24faf6673a20de9c8f38286f2424aa053cdd6c0d513152a79ac9ae485",
+          "char_start": 112,
+          "char_end": 160,
+          "quote": "inject malicious passages into retrieval results",
+          "interpretation": "Атакующий может добавить вредоносные passages в результаты поиска.",
+          "modality": "problem_statement",
+          "conditions": null
+        },
+        "advantage": {
+          "source_id": "2405.15556v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "a67ec3d24faf6673a20de9c8f38286f2424aa053cdd6c0d513152a79ac9ae485",
+          "char_start": 629,
+          "char_end": 659,
+          "quote": "achieve certifiable robustness",
+          "interpretation": "RobustRAG дает формально сертифицируемую устойчивость для части запросов.",
+          "modality": "author_reported_experiment",
+          "conditions": "Ограниченное число вставленных passages, указанная threat model и aggregation algorithms; не безусловная защита от любых атак."
+        },
+        "example": {
+          "kind": "research",
+          "source_id": "2405.15556v1",
+          "label": "Certifiably Robust RAG against Retrieval Corruption"
+        }
+      },
+      "independence_limit": "Две непересекающиеся группы; независимая проверка security доказательств и воспроизведение атак в этой разметке не проводились."
+    },
+    {
+      "id": "hold-dp-output",
+      "split": "holdout",
+      "cutoff": "2025-12-31T23:59:59Z",
+      "label": "Генерация ответа с бюджетом дифференциальной приватности корпуса",
+      "distinctness_group": "hold-dp-output",
+      "source_ids": [
+        "2412.04697v1",
+        "2412.19291v1",
+        "2511.07637v1"
+      ],
+      "assessor": "Codex",
+      "review_status": "self_assessed_primary_sources",
+      "relevance": {
+        "ai": 2,
+        "rag": 2,
+        "rare_control": 0
+      },
+      "emergence": "emerging",
+      "decision_basis": "Работы Koga и Grislain (2024-Q4) исследуют DP token generation; Private-RAG (2025-Q4) переносит учет privacy loss на многократные запросы и частоту использования документов. Развитие конкретного механизма ограниченного раскрытия исходного корпуса, а не просто локального размещения LM.",
+      "counterevidence": "У Koga и Private-RAG общий Ruihan Wu, поэтому они не полностью независимые группы; Grislain — отдельное авторство. Privacy budget epsilon около 10 не следует объявлять абсолютной анонимностью. Скрытие запроса от сервера — другая модель угроз.",
+      "eligible_gold": {
+        "ai": true,
+        "rag": true,
+        "rare_control": false
+      },
+      "brief_support": {
+        "problem": {
+          "source_id": "2412.04697v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "1fb7be0091a31453e1888d2c3e76965d21d86bf7b210a8c5b4ef013f79abe51c",
+          "char_start": 428,
+          "char_end": 474,
+          "quote": "RAG outputs risk leaking sensitive information",
+          "interpretation": "Ответ RAG может раскрывать чувствительные сведения исходного корпуса.",
+          "modality": "problem_statement",
+          "conditions": null
+        },
+        "advantage": {
+          "source_id": "2511.07637v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "66e8add10103a220de98637b6b3e0a2477d288ffb7f5ea7cbc7ac9b6a58f1c32",
+          "char_start": 944,
+          "char_end": 972,
+          "quote": "scale to hundreds of queries",
+          "interpretation": "Private-RAG сообщает работу с сотнями запросов в исследованном DP бюджете.",
+          "modality": "author_reported_experiment",
+          "conditions": "Несколько LLMs и datasets; epsilon примерно 10, utility сохраняется в условиях эксперимента. Не неограниченное число запросов."
+        },
+        "example": {
+          "kind": "research",
+          "source_id": "2511.07637v1",
+          "label": "Private-RAG: Answering Multiple Queries with LLMs while Keeping Your Data Private"
+        }
+      },
+      "independence_limit": "Три отдельные канонические работы; общность Ruihan Wu указана. Grislain — отдельная линия DP token generation, не независимая репликация MURAG."
+    },
+    {
+      "id": "hold-private-retrieval",
+      "split": "holdout",
+      "cutoff": "2025-12-31T23:59:59Z",
+      "label": "Приватный поиск документов без раскрытия запроса серверу",
+      "distinctness_group": "hold-private-retrieval",
+      "source_ids": [
+        "2311.12955v1",
+        "2412.12775v1"
+      ],
+      "assessor": "Codex",
+      "review_status": "self_assessed_primary_sources",
+      "relevance": {
+        "ai": 2,
+        "rag": 2,
+        "rare_control": 0
+      },
+      "emergence": "emerging",
+      "decision_basis": "PRAG (2023-Q4) использует MPC для distributed similarity search; RemoteRAG (2024-Q4) сочетает perturbed embeddings с ограниченным приватным поиском. Несколько периодов и раздельные группы развивают защиту запроса и доступа к retrieval store.",
+      "counterevidence": "MPC и DistanceDP имеют разные гарантии и предположения. Тема относится к безопасному retrieval этапу RAG, а не DP генерации ответа. Последняя представленная работа 2024-Q4: метод должен учитывать отсутствие поздней поддержки в нашем наблюдаемом pool, а не додумывать спад индустрии.",
+      "eligible_gold": {
+        "ai": true,
+        "rag": true,
+        "rare_control": false
+      },
+      "brief_support": {
+        "problem": {
+          "source_id": "2412.12775v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "ba1cdf27c716909d700ef2e3e2f8569ea9f650b3ea8bf9b925bc08b79a9bf049",
+          "char_start": 332,
+          "char_end": 402,
+          "quote": "directly sending queries to the cloud brings potential privacy leakage",
+          "interpretation": "Передача запроса в cloud RAG может раскрывать его содержание.",
+          "modality": "problem_statement",
+          "conditions": null
+        },
+        "advantage": {
+          "source_id": "2412.12775v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "ba1cdf27c716909d700ef2e3e2f8569ea9f650b3ea8bf9b925bc08b79a9bf049",
+          "char_start": 1270,
+          "char_end": 1323,
+          "quote": "achieving no loss in retrieval under various settings",
+          "interpretation": "RemoteRAG сообщает отсутствие потерь retrieval в протестированных настройках.",
+          "modality": "author_reported_experiment",
+          "conditions": "Условия статьи v1, не универсальная гарантия для любых индексов/угроз; 0,67 секунды относится к конкретному эксперименту на миллионе документов."
+        },
+        "example": {
+          "kind": "research",
+          "source_id": "2412.12775v1",
+          "label": "RemoteRAG: A Privacy-Preserving LLM Cloud RAG Service"
+        }
+      },
+      "independence_limit": "Разные авторские списки и работы; conference copy PRAG не отдельная поддержка."
+    },
+    {
+      "id": "hold-temporal-graph-retrieval",
+      "split": "holdout",
+      "cutoff": "2025-12-31T23:59:59Z",
+      "label": "Поиск графовых фактов с явными временными ограничениями",
+      "distinctness_group": "hold-temporal-graph-retrieval",
+      "source_ids": [
+        "2508.01680v1",
+        "2510.16715v1"
+      ],
+      "assessor": "Codex",
+      "review_status": "self_assessed_primary_sources",
+      "relevance": {
+        "ai": 2,
+        "rag": 2,
+        "rare_control": 0
+      },
+      "emergence": "emerging",
+      "decision_basis": "T-GRAG (2025-Q3) строит timestamped knowledge graph и временную декомпозицию запросов; STAR-RAG (Q4) использует time-aligned rule graph и propagation. Два периода и разные группы исследуют соблюдение временных условий retrieval, отдельно от общей связности графовых фактов.",
+      "counterevidence": "Time-LongQA на отчетах компаний и temporal KG datasets — разные задания. Публикации в одном календарном году еще не доказывают долгосрочную устойчивость. В статье нет основания приписывать эффективность конкретному production заказчику.",
+      "eligible_gold": {
+        "ai": true,
+        "rag": true,
+        "rare_control": false
+      },
+      "brief_support": {
+        "problem": {
+          "source_id": "2510.16715v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "e449efd7f88dc06214b24ceee8c67d762715c02f7cf76cd50332bc8677b57b3c",
+          "char_start": 167,
+          "char_end": 204,
+          "quote": "neglect explicit temporal constraints",
+          "interpretation": "Обычный семантический retrieval может игнорировать временное условие.",
+          "modality": "problem_statement",
+          "conditions": null
+        },
+        "advantage": {
+          "source_id": "2510.16715v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "e449efd7f88dc06214b24ceee8c67d762715c02f7cf76cd50332bc8677b57b3c",
+          "char_start": 969,
+          "char_end": 1022,
+          "quote": "improved answer accuracy while consuming fewer tokens",
+          "interpretation": "STAR-RAG сообщает более точные ответы при меньшем числе токенов.",
+          "modality": "author_reported_experiment",
+          "conditions": "Temporal KG datasets и сильные GraphRAG baselines из v1; качественное сравнительное утверждение, без выдуманного процента."
+        },
+        "example": {
+          "kind": "research",
+          "source_id": "2510.16715v1",
+          "label": "Right Answer at the Right Time - Temporal Retrieval-Augmented Generation via Graph Summarization"
+        }
+      },
+      "independence_limit": "Непересекающиеся авторские группы Q3/Q4; TG-RAG с другим ID не подставлялся за T-GRAG."
+    },
+    {
+      "id": "hold-crosslingual-evidence",
+      "split": "holdout",
+      "cutoff": "2025-12-31T23:59:59Z",
+      "label": "Согласование языка найденных свидетельств и ответа RAG",
+      "distinctness_group": "hold-crosslingual-evidence",
+      "source_ids": [
+        "2407.01463v1",
+        "2504.03616v1"
+      ],
+      "assessor": "Codex",
+      "review_status": "self_assessed_primary_sources",
+      "relevance": {
+        "ai": 2,
+        "rag": 2,
+        "rare_control": 0
+      },
+      "emergence": "emerging",
+      "decision_basis": "mRAG (2024-Q3) исследует queries/datastore в 13 языках и управление языком генерации; CrossRAG (2025-Q2) переводит retrieved documents в общий язык перед генерацией. Это адаптация совместного использования разноязычных свидетельств, а не общий перевод LM.",
+      "counterevidence": "CrossRAG утверждает недостаток прошлых исследований, хотя mRAG уже существует; это риторика новизны автора, не оценка benchmark. Перевод сам создает потери и не гарантирует правильный язык. Нет независимого подтверждения одинакового улучшения для всех языков.",
+      "eligible_gold": {
+        "ai": true,
+        "rag": true,
+        "rare_control": false
+      },
+      "brief_support": {
+        "problem": {
+          "source_id": "2504.03616v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "b05de1c2344d42005779e572a76162b6a00869cc721c75519a3de71e7cdefbe9",
+          "char_start": 896,
+          "char_end": 943,
+          "quote": "inconsistencies due to cross-lingual variations",
+          "interpretation": "Разноязычные результаты могут давать несогласованный контекст.",
+          "modality": "problem_statement",
+          "conditions": null
+        },
+        "advantage": {
+          "source_id": "2504.03616v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "b05de1c2344d42005779e572a76162b6a00869cc721c75519a3de71e7cdefbe9",
+          "char_start": 1251,
+          "char_end": 1307,
+          "quote": "benefiting both high-resource and low-resource languages",
+          "interpretation": "Авторы CrossRAG сообщают улучшение для языков с разным количеством ресурсов.",
+          "modality": "author_reported_experiment",
+          "conditions": "Knowledge-intensive tasks в опубликованном v1 сравнении; без приписывания универсального процента."
+        },
+        "example": {
+          "kind": "research",
+          "source_id": "2504.03616v1",
+          "label": "Multilingual Retrieval-Augmented Generation for Knowledge-Intensive Task"
+        }
+      },
+      "independence_limit": "Две непересекающиеся авторские группы; адаптация pipeline и отдельное исследование CrossRAG."
+    },
+    {
+      "id": "hold-local-attribution",
+      "split": "holdout",
+      "cutoff": "2025-12-31T23:59:59Z",
+      "label": "Планирование и генерация ответа с цитатой для каждого утверждения",
+      "distinctness_group": "hold-local-attribution",
+      "source_ids": [
+        "2403.17104v1",
+        "2407.01796v1"
+      ],
+      "assessor": "Codex",
+      "review_status": "self_assessed_primary_sources",
+      "relevance": {
+        "ai": 2,
+        "rag": 2,
+        "rare_control": 0
+      },
+      "emergence": "emerging",
+      "decision_basis": "Attribute First then Generate (2024-Q1) сначала выбирает короткие supporting spans и планирует предложения. ReClaim (Q3) чередует reference и claim. Это развитие local attribution generation, а не просто список документов внизу ответа.",
+      "counterevidence": "Concise citation не означает истинность источника или всеобщую полноту покрытия. Первые версии обеих работ 2024, хотя конференционные публикации позднее. Тема оценивается по первичным релизам, без будущего текста или второй поддержки за новую конференционную версию.",
+      "eligible_gold": {
+        "ai": true,
+        "rag": true,
+        "rare_control": false
+      },
+      "brief_support": {
+        "problem": {
+          "source_id": "2403.17104v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "05793871dc6018fb44833a6edb634ecbdb285ece3680aa512a2b63895923a02f",
+          "char_start": 307,
+          "char_end": 355,
+          "quote": "burdening users with extensive verification work",
+          "interpretation": "Ссылка на целый документ требует длительной ручной проверки.",
+          "modality": "problem_statement",
+          "conditions": null
+        },
+        "advantage": {
+          "source_id": "2403.17104v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "05793871dc6018fb44833a6edb634ecbdb285ece3680aa512a2b63895923a02f",
+          "char_start": 1211,
+          "char_end": 1258,
+          "quote": "reduces the time required for fact verification",
+          "interpretation": "Авторы сообщают сокращение времени проверки фактов благодаря локальным цитатам.",
+          "modality": "author_reported_experiment",
+          "conditions": "Multi-document summarization и long-form QA, человеческие assessors в исходной работе; это не human review нашего набора."
+        },
+        "example": {
+          "kind": "research",
+          "source_id": "2403.17104v1",
+          "label": "Attribute First, then Generate: Locally-attributable Grounded Text Generation"
+        }
+      },
+      "independence_limit": "Непересекающиеся авторские списки; первичная ReClaim v1 2024-07-01, не поздняя дата на вторичных агрегаторах."
+    },
+    {
+      "id": "hold-document-kv-reuse",
+      "split": "holdout",
+      "cutoff": "2025-12-31T23:59:59Z",
+      "label": "Повторное использование KV представлений документов в RAG",
+      "distinctness_group": "hold-document-kv-reuse",
+      "source_ids": [
+        "2502.11101v1",
+        "2504.02921v1"
+      ],
+      "assessor": "Codex",
+      "review_status": "self_assessed_primary_sources",
+      "relevance": {
+        "ai": 2,
+        "rag": 2,
+        "rare_control": 0
+      },
+      "emergence": "emerging",
+      "decision_basis": "CacheFocus (2025-Q1) переиспользует query-independent context KV с repositioning/pruning; HyperRAG (Q2) переносит reuse document-side KV на decoder reranker и serving. Общий механизм — повторно используемый расчет документа вместо полного prefill при каждом запросе.",
+      "counterevidence": "CacheFocus оптимизирует reader, HyperRAG — reranker. Это одна тема document KV reuse, а не отдельное место за каждый компонент. Reranker throughput нельзя подменять latency всей системы; HyperRAG 2504.02921 не более поздний одноименный hypergraph paper.",
+      "eligible_gold": {
+        "ai": true,
+        "rag": true,
+        "rare_control": false
+      },
+      "brief_support": {
+        "problem": {
+          "source_id": "2504.02921v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "b0f525f2c0e5282de89a080aba888c2865f8e552481210e11887b33acf60f77d",
+          "char_start": 515,
+          "char_end": 553,
+          "quote": "hinder high throughput and low latency",
+          "interpretation": "Decoder reranking повышает стоимость и задержку RAG.",
+          "modality": "problem_statement",
+          "conditions": null
+        },
+        "advantage": {
+          "source_id": "2504.02921v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "b0f525f2c0e5282de89a080aba888c2865f8e552481210e11887b33acf60f77d",
+          "char_start": 1058,
+          "char_end": 1088,
+          "quote": "a 2 - 3 throughput improvement",
+          "interpretation": "HyperRAG сообщает увеличение throughput в 2–3 раза.",
+          "modality": "author_reported_experiment",
+          "conditions": "Decoder-only rerankers в экспериментах v1 с улучшением downstream performance; не гарантированное ускорение любого RAG сервиса."
+        },
+        "example": {
+          "kind": "research",
+          "source_id": "2504.02921v1",
+          "label": "HyperRAG: Enhancing Quality-Efficiency Tradeoffs in Retrieval-Augmented Generation with Reranker KV-Cache Reuse"
+        }
+      },
+      "independence_limit": "Разные непересекающиеся группы и Q1/Q2; поздние версии исходных работ из validation сюда не включены."
+    },
+    {
+      "id": "hold-document-tree-retrieval",
+      "split": "holdout",
+      "cutoff": "2025-12-31T23:59:59Z",
+      "label": "Сохранение иерархии документа при chunking и поиске",
+      "distinctness_group": "hold-document-tree-retrieval",
+      "source_ids": [
+        "2411.02959v1",
+        "acl.2025.findings-acl.20.publisher"
+      ],
+      "assessor": "Codex",
+      "review_status": "self_assessed_primary_sources",
+      "relevance": {
+        "ai": 2,
+        "rag": 2,
+        "rare_control": 0
+      },
+      "emergence": "emerging",
+      "decision_basis": "HtmlRAG (2024-Q4) сохраняет HTML структуру и отбирает релевантные block-tree части. TreeRAG (ACL 2025-Q3) организует chunks и поиск в иерархии документа. Это выбор структурно связанных частей исходного документа, отличающийся от построения графа извлеченных сущностей между источниками.",
+      "counterevidence": "HTML pruning и Tree-Chunking с двунаправленным обходом не идентичны. Они объединены по использованию document hierarchy; не отдельные тренды по формату файла. Аннотация текущей ACL страницы отличается от PDF, поэтому основанием TreeRAG является publisher PDF p.356, а дата сохраняет месячную точность.",
+      "eligible_gold": {
+        "ai": true,
+        "rag": true,
+        "rare_control": false
+      },
+      "brief_support": {
+        "problem": {
+          "source_id": "2411.02959v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "0ecc8434da4a6be90ca9a26058f0ebc355fda17149a6d67e2c2d00f93e46b9d4",
+          "char_start": 570,
+          "char_end": 622,
+          "quote": "structural and semantic information inherent in HTML",
+          "interpretation": "Перевод HTML в плоский текст теряет структуру и смысловые связи.",
+          "modality": "problem_statement",
+          "conditions": null
+        },
+        "advantage": {
+          "source_id": "acl.2025.findings-acl.20.publisher",
+          "representation": "publisher_pdf_abstract_page_356",
+          "text_sha256": "70f4ef7977483ec6bad50af66c689c5542c682ed5d2c4f0b62917a2f337acbd7",
+          "char_start": 859,
+          "char_end": 920,
+          "quote": "significant enhancements in both recall quality and precision",
+          "interpretation": "TreeRAG сообщает улучшение полноты и точности retrieval.",
+          "modality": "author_reported_experiment",
+          "conditions": "Finance/Law/Medical subsets Dragonball и соответствующие QA tasks; авторский publisher abstract, без выдуманного процента."
+        },
+        "example": {
+          "kind": "research",
+          "source_id": "acl.2025.findings-acl.20.publisher",
+          "label": "TreeRAG: Unleashing the Power of Hierarchical Storage for Enhanced Knowledge Retrieval in Long Documents"
+        }
+      },
+      "independence_limit": "Непересекающиеся авторы, 2024-Q4 и 2025-Q3; TreeRAG publisher edition учитывается одной канонической работой DOI."
+    },
+    {
+      "id": "hold-context-embeddings",
+      "split": "holdout",
+      "cutoff": "2025-12-31T23:59:59Z",
+      "label": "Контекстуализация embeddings соседними chunks и документами",
+      "distinctness_group": "hold-context-embeddings",
+      "source_ids": [
+        "2409.04701v1",
+        "2410.02525v1"
+      ],
+      "assessor": "Codex",
+      "review_status": "self_assessed_primary_sources",
+      "relevance": {
+        "ai": 2,
+        "rag": 1,
+        "rare_control": 0
+      },
+      "emergence": "emerging",
+      "decision_basis": "Late Chunking (2024-Q3) применяет pooling после контекстуализации всех токенов; Contextual Document Embeddings (Q4) вводит neighbor-aware objective/architecture. Несколько независимых работ о contextualized retrieval representations.",
+      "counterevidence": "В этих первичных abstracts измерены retrieval tasks, а не end-to-end RAG generation. Поэтому для узкого RAG relevance=1: как и synthetic retriever training в development, тема не заполняет RAG TOP-15. Внутридокументный и междокументный контекст также различаются.",
+      "eligible_gold": {
+        "ai": true,
+        "rag": false,
+        "rare_control": false
+      },
+      "brief_support": {
+        "problem": {
+          "source_id": "2409.04701v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "45103501e60e65f5464b86a37498781e8c55c60b5c53813a92984f2b39654856",
+          "char_start": 379,
+          "char_end": 430,
+          "quote": "lose contextual information from surrounding chunks",
+          "interpretation": "Независимое кодирование chunks теряет окружающий контекст.",
+          "modality": "problem_statement",
+          "conditions": null
+        },
+        "advantage": {
+          "source_id": "2409.04701v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "45103501e60e65f5464b86a37498781e8c55c60b5c53813a92984f2b39654856",
+          "char_start": 793,
+          "char_end": 881,
+          "quote": "superior results across various retrieval tasks without the need for additional training",
+          "interpretation": "Авторы Late Chunking сообщают улучшение retrieval без дополнительного обучения.",
+          "modality": "author_reported_experiment",
+          "conditions": "Generic long-context embedding models и указанные retrieval tasks; не измеренное качество генерации ответов."
+        },
+        "example": {
+          "kind": "research",
+          "source_id": "2409.04701v1",
+          "label": "Late Chunking: Contextual Chunk Embeddings Using Long-Context Embedding Models"
+        }
+      },
+      "independence_limit": "Две непересекающиеся группы и Q3/Q4; результат не воспроизведен независимо."
+    },
+    {
+      "id": "hold-mini-rag-singleton",
+      "split": "holdout",
+      "cutoff": "2025-12-31T23:59:59Z",
+      "label": "Облегченный графовый RAG для малых языковых моделей",
+      "distinctness_group": "hold-mini-rag-singleton",
+      "source_ids": [
+        "2501.06713v1"
+      ],
+      "assessor": "Codex",
+      "review_status": "self_assessed_primary_sources",
+      "relevance": {
+        "ai": 2,
+        "rag": 2,
+        "rare_control": 0
+      },
+      "emergence": "insufficient_evidence",
+      "decision_basis": "MiniRAG v1 описывает heterogeneous graph index и topology-enhanced retrieval под ограничения SLM. Это конкретный кандидат, но только одна работа и один период в данной выделенной теме.",
+      "counterevidence": "Родство с другой работой HKUDS и возможность поставить MiniRAG рядом с LeanRAG не создают второе независимое подтверждение именно SLM-ориентированного подхода. Тема остается singleton, несмотря на привлекательную storage метрику.",
+      "eligible_gold": {
+        "ai": false,
+        "rag": false,
+        "rare_control": false
+      },
+      "brief_support": {
+        "problem": {
+          "source_id": "2501.06713v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "cd6a1b0b79130feb480ef385e685f320d72a55daa950dbcf3703696207913f6d",
+          "char_start": 273,
+          "char_end": 336,
+          "quote": "limited semantic understanding and text processing capabilities",
+          "interpretation": "Малые LM хуже справляются с прежними RAG pipelines.",
+          "modality": "problem_statement",
+          "conditions": null
+        },
+        "advantage": {
+          "source_id": "2501.06713v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "cd6a1b0b79130feb480ef385e685f320d72a55daa950dbcf3703696207913f6d",
+          "char_start": 1082,
+          "char_end": 1122,
+          "quote": "requiring only 25\\% of the storage space",
+          "interpretation": "MiniRAG сообщает использование 25% storage space сравниваемых методов.",
+          "modality": "author_reported_experiment",
+          "conditions": "Авторская конфигурация SLM и LLM-based baselines; не 25% полной стоимости эксплуатации."
+        },
+        "example": {
+          "kind": "research",
+          "source_id": "2501.06713v1",
+          "label": "MiniRAG: Towards Extremely Simple Retrieval-Augmented Generation"
+        }
+      },
+      "independence_limit": "Одна каноническая работа; библиотека и paper не два независимых исследования."
+    },
+    {
+      "id": "hold-hybrid-structure-singleton",
+      "split": "holdout",
+      "cutoff": "2025-12-31T23:59:59Z",
+      "label": "Выбор промежуточной структуры знаний на этапе ответа",
+      "distinctness_group": "hold-hybrid-structure-singleton",
+      "source_ids": [
+        "2410.08815v1"
+      ],
+      "assessor": "Codex",
+      "review_status": "self_assessed_primary_sources",
+      "relevance": {
+        "ai": 2,
+        "rag": 2,
+        "rare_control": 0
+      },
+      "emergence": "insufficient_evidence",
+      "decision_basis": "StructRAG v1 выбирает оптимальный тип промежуточной структуры для knowledge-intensive reasoning. Включена одна каноническая работа 2024-Q4, а не conference copy 2025 как новая поддержка.",
+      "counterevidence": "Переструктурирование evidence на inference отличается от сохранения исходного document tree; singleton не добавлен в ту тему ради второго периода. Заявление state-of-the-art остается author claim.",
+      "eligible_gold": {
+        "ai": false,
+        "rag": false,
+        "rare_control": false
+      },
+      "brief_support": {
+        "problem": {
+          "source_id": "2410.08815v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "4083b42ea51c954ceb15df54cb74a608f7d1364361467c69ef590edfde19e67e",
+          "char_start": 224,
+          "char_end": 286,
+          "quote": "useful information required to these tasks are badly scattered",
+          "interpretation": "Нужные для рассуждения знания рассеяны по документам.",
+          "modality": "problem_statement",
+          "conditions": null
+        },
+        "advantage": {
+          "source_id": "2410.08815v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "4083b42ea51c954ceb15df54cb74a608f7d1364361467c69ef590edfde19e67e",
+          "char_start": 919,
+          "char_end": 956,
+          "quote": "achieves state-of-the-art performance",
+          "interpretation": "Авторы StructRAG сообщают лучший результат своих сравнений.",
+          "modality": "author_reported_experiment",
+          "conditions": "Указанные knowledge-intensive tasks и challenging scenarios, версия v1; не доказанное лидерство на любую дату."
+        },
+        "example": {
+          "kind": "research",
+          "source_id": "2410.08815v1",
+          "label": "StructRAG: Boosting Knowledge Intensive Reasoning of LLMs via Inference-time Hybrid Information Structurization"
+        }
+      },
+      "independence_limit": "Одна работа и один период; независимой поддержки этой узкой операции в pool нет."
+    },
+    {
+      "id": "hold-cag-alternative",
+      "split": "holdout",
+      "cutoff": "2025-12-31T23:59:59Z",
+      "label": "Предзагрузка малого корпуса в кэш длинного контекста",
+      "distinctness_group": "hold-cag-alternative",
+      "source_ids": [
+        "2412.15605v1"
+      ],
+      "assessor": "Codex",
+      "review_status": "self_assessed_primary_sources",
+      "relevance": {
+        "ai": 2,
+        "rag": 1,
+        "rare_control": 0
+      },
+      "emergence": "insufficient_evidence",
+      "decision_basis": "CAG v1 предлагает предзагрузить manageable knowledge base и обходиться без real-time retrieval. Это полезный смежный контроль альтернативы RAG, а не дополнительная emerging RAG тема.",
+      "counterevidence": "CacheFocus и HyperRAG сохраняют retrieval pipeline; их нельзя подставить вторым подтверждением устранения retrieval. Кэш всего небольшого корпуса не доказывает применимость к большому динамическому корпусу.",
+      "eligible_gold": {
+        "ai": false,
+        "rag": false,
+        "rare_control": false
+      },
+      "brief_support": {
+        "problem": {
+          "source_id": "2412.15605v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "00f5881302c221cfa5493a780cc5e16b5fa4401a676366b020c5e2fe807e4ce0",
+          "char_start": 196,
+          "char_end": 253,
+          "quote": "retrieval latency, potential errors in document selection",
+          "interpretation": "RAG добавляет задержку и возможность ошибки выбора документов.",
+          "modality": "problem_statement",
+          "conditions": null
+        },
+        "advantage": {
+          "source_id": "2412.15605v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "00f5881302c221cfa5493a780cc5e16b5fa4401a676366b020c5e2fe807e4ce0",
+          "char_start": 872,
+          "char_end": 900,
+          "quote": "eliminates retrieval latency",
+          "interpretation": "CAG устраняет задержку шага retrieval в предусмотренном режиме.",
+          "modality": "author_reported_experiment",
+          "conditions": "Предзагруженный ограниченный и manageable корпус в длинном контексте; не устранение всей inference latency."
+        },
+        "example": {
+          "kind": "research",
+          "source_id": "2412.15605v1",
+          "label": "Don't Do RAG: When Cache-Augmented Generation is All You Need for Knowledge Tasks"
+        }
+      },
+      "independence_limit": "Одна каноническая работа и Q4; альтернативная архитектура не считается доказательством temporal RAG emergence."
+    },
+    {
+      "id": "hold-neutron-id-mismatch",
+      "split": "holdout",
+      "cutoff": "2025-12-31T23:59:59Z",
+      "label": "Ошибочный ID: корреляции в горячей нейтронной материи",
+      "distinctness_group": "hold-neutron-id-mismatch",
+      "source_ids": [
+        "2306.04500v1"
+      ],
+      "assessor": "Codex",
+      "review_status": "self_assessed_primary_sources",
+      "relevance": {
+        "ai": 0,
+        "rag": 0,
+        "rare_control": 0
+      },
+      "emergence": "noise",
+      "decision_basis": "Первичный v1 2306.04500 — lattice simulations neutron matter, а не предполагаемая статья KGP. Сохранен реальный отрицательный пример ошибочного native-ID соответствия.",
+      "counterevidence": "Rank-one operator и matrix determinant здесь не означают ранжирование retrieval или нейронную модель. Слова knowledge, graph и авторы предполагаемой статьи не добавлены.",
+      "eligible_gold": {
+        "ai": false,
+        "rag": false,
+        "rare_control": false
+      },
+      "brief_support": {
+        "problem": {
+          "source_id": "2306.04500v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "bd3a48d2444c0f1e541f27b20d20efe5cc10251f22bd618a2abc38bc3a2b2cb6",
+          "char_start": 481,
+          "char_end": 535,
+          "quote": "well out of reach using existing computational methods",
+          "interpretation": "Статья решает вычислительную задачу физического моделирования.",
+          "modality": "problem_statement",
+          "conditions": null
+        },
+        "advantage": {
+          "source_id": "2306.04500v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "bd3a48d2444c0f1e541f27b20d20efe5cc10251f22bd618a2abc38bc3a2b2cb6",
+          "char_start": 1062,
+          "char_end": 1111,
+          "quote": "good agreement with virial expansion calculations",
+          "interpretation": "Авторы сообщают согласие lattice results с virial expansion при малых плотностях.",
+          "modality": "author_reported_experiment",
+          "conditions": "Физическая симуляция neutron matter, не AI/RAG performance."
+        },
+        "example": {
+          "kind": "research",
+          "source_id": "2306.04500v1",
+          "label": "Structure Factors for Hot Neutron Matter from Ab Initio Lattice Simulations with High-Fidelity Chiral Interactions"
+        }
+      },
+      "independence_limit": "Одна нерелевантная работа; ошибочное сопоставление отклонено по первичным данным."
+    },
+    {
+      "id": "hold-t5-mature",
+      "split": "holdout",
+      "cutoff": "2025-12-31T23:59:59Z",
+      "label": "Унифицированное text-to-text pretraining T5",
+      "distinctness_group": "hold-t5-mature",
+      "source_ids": [
+        "1910.10683v1"
+      ],
+      "assessor": "Codex",
+      "review_status": "self_assessed_primary_sources",
+      "relevance": {
+        "ai": 2,
+        "rag": 1,
+        "rare_control": 0
+      },
+      "emergence": "mature",
+      "decision_basis": "T5 v1 2019-Q4 — зрелая базовая архитектура NLP к cutoff 2025. Внимание к использующим T5 RAG системам не делает базовое pretraining новым трендом.",
+      "counterevidence": "В abstract нет отдельно подтвержденной retrieval проблемы; обязательное поле оставлено unknown. Архитектура полезна, но применимость не является emergence.",
+      "eligible_gold": {
+        "ai": false,
+        "rag": false,
+        "rare_control": false
+      },
+      "brief_support": {
+        "problem": null,
+        "advantage": {
+          "source_id": "1910.10683v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "fb1ca40413f10a5334ab84dfd8ee137f8a15f85f2c7a8930c36b1d2e1d4fa633",
+          "char_start": 771,
+          "char_end": 814,
+          "quote": "state-of-the-art results on many benchmarks",
+          "interpretation": "T5 сообщает сильные результаты на benchmarks на дату исходной публикации.",
+          "modality": "author_reported_experiment",
+          "conditions": "Исторические summarization, QA и classification tasks 2019, не современное превосходство RAG."
+        },
+        "example": {
+          "kind": "research",
+          "source_id": "1910.10683v1",
+          "label": "Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer"
+        }
+      },
+      "independence_limit": "Одна историческая работа, не новый период за каждое ее цитирование.",
+      "missing_evidence_reason": "The v1 abstract does not establish a retrieval-specific problem; no missing statement was invented."
+    },
+    {
+      "id": "hold-attention-mature",
+      "split": "holdout",
+      "cutoff": "2025-12-31T23:59:59Z",
+      "label": "Soft alignment в encoder-decoder переводе",
+      "distinctness_group": "hold-attention-mature",
+      "source_ids": [
+        "1409.0473v1"
+      ],
+      "assessor": "Codex",
+      "review_status": "self_assessed_primary_sources",
+      "relevance": {
+        "ai": 2,
+        "rag": 1,
+        "rare_control": 0
+      },
+      "emergence": "mature",
+      "decision_basis": "Работа Bahdanau et al. 2014-Q3 вводит soft alignment для машинного перевода. К 2025 это зрелое архитектурное основание; поиск внутри входного предложения не равен retrieval внешнего корпуса.",
+      "counterevidence": "Слово search в abstract может создавать ложное совпадение с RAG. Результат English-to-French относится к задаче 2014 и не доказывает новую технологию генерации по документам.",
+      "eligible_gold": {
+        "ai": false,
+        "rag": false,
+        "rare_control": false
+      },
+      "brief_support": {
+        "problem": {
+          "source_id": "1409.0473v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "b526d5f57deb625299a67e35685083f1d3f04473f42722a268de7850ed41021d",
+          "char_start": 561,
+          "char_end": 596,
+          "quote": "fixed-length vector is a bottleneck",
+          "interpretation": "Фиксированный вектор ограничивает базовую encoder-decoder модель.",
+          "modality": "problem_statement",
+          "conditions": null
+        },
+        "advantage": {
+          "source_id": "1409.0473v1",
+          "representation": "versioned_primary_abstract",
+          "text_sha256": "b526d5f57deb625299a67e35685083f1d3f04473f42722a268de7850ed41021d",
+          "char_start": 952,
+          "char_end": 1015,
+          "quote": "comparable to the existing state-of-the-art phrase-based system",
+          "interpretation": "Авторы сообщают качество перевода, сопоставимое с тогдашним phrase-based baseline.",
+          "modality": "author_reported_experiment",
+          "conditions": "English-to-French translation 2014; не внешняя retrieval accuracy."
+        },
+        "example": {
+          "kind": "research",
+          "source_id": "1409.0473v1",
+          "label": "Neural Machine Translation by Jointly Learning to Align and Translate"
+        }
+      },
+      "independence_limit": "Одна зрелая работа; архитектурная преемственность не копируется как новая научная поддержка."
+    }
+  ],
+  "frozen_at": "2026-09-08T23:00:22.996852+00:00"
+}

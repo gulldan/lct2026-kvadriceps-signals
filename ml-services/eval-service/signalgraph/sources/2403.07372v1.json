@@ -1,0 +1,32 @@
+{
+  "native_id": "2403.07372v1",
+  "canonical_id": "arxiv:2403.07372",
+  "url": "https://arxiv.org/abs/2403.07372v1",
+  "title": "Eliminating Cross-modal Conflicts in BEV Space for LiDAR-Camera 3D Object Detection",
+  "authors": [
+    "Jiahui Fu",
+    "Chen Gao",
+    "Zitian Wang",
+    "Lirong Yang",
+    "Xiaofei Wang",
+    "Beipeng Mu",
+    "Si Liu"
+  ],
+  "published_at": "2024-03-12T07:16:20Z",
+  "version_updated_at": "2024-03-12T07:16:20Z",
+  "observed_at": "2026-09-08T22:28:42.905805+00:00",
+  "available_at": "2024-03-12T07:16:20Z",
+  "available_basis": "arXiv archived v1 release; historical reconstruction captured later",
+  "source_kind": "paper",
+  "provider": "arxiv",
+  "access_scope": "public",
+  "representation": "versioned_primary_abstract",
+  "text": "Recent 3D object detectors typically utilize multi-sensor data and unify multi-modal features in the shared bird's-eye view (BEV) representation space. However, our empirical findings indicate that previous methods have limitations in generating fusion BEV features free from cross-modal conflicts. These conflicts encompass extrinsic conflicts caused by BEV feature construction and inherent conflicts stemming from heterogeneous sensor signals. Therefore, we propose a novel Eliminating Conflicts Fusion (ECFusion) method to explicitly eliminate the extrinsic/inherent conflicts in BEV space and produce improved multi-modal BEV features. Specifically, we devise a Semantic-guided Flow-based Alignment (SFA) module to resolve extrinsic conflicts via unifying spatial distribution in BEV space before fusion. Moreover, we design a Dissolved Query Recovering (DQR) mechanism to remedy inherent conflicts by preserving objectness clues that are lost in the fusion BEV feature. In general, our method maximizes the effective information utilization of each modality and leverages inter-modal complementarity. Our method achieves state-of-the-art performance in the highly competitive nuScenes 3D object detection dataset. The code is released at https://github.com/fjhzhixi/ECFusion.",
+  "text_sha256": "918d3848d48e4ac3c0117660b5d50599fb07fedfe98236c3a5f01de766b1d037",
+  "raw_sha256": "761969bd1361209348c93fad02bd6d4c2df715209d933d5edb33e9ba47c64193",
+  "raw_file": "761969bd1361209348c93fad02bd6d4c2df715209d933d5edb33e9ba47c64193.xml",
+  "limitations": [
+    "Abstract-only evidence; author-reported results, not independent reproduction.",
+    "Later DOI, journal metadata and current citations are excluded from historical input."
+  ]
+}

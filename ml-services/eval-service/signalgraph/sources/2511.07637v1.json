@@ -1,0 +1,29 @@
+{
+  "native_id": "2511.07637v1",
+  "canonical_id": "arxiv:2511.07637",
+  "url": "https://arxiv.org/abs/2511.07637v1",
+  "title": "Private-RAG: Answering Multiple Queries with LLMs while Keeping Your Data Private",
+  "authors": [
+    "Ruihan Wu",
+    "Erchi Wang",
+    "Zhiyuan Zhang",
+    "Yu-Xiang Wang"
+  ],
+  "published_at": "2025-11-10T21:12:32Z",
+  "version_updated_at": "2025-11-10T21:12:32Z",
+  "observed_at": "2026-09-08T22:53:13.832374+00:00",
+  "available_at": "2025-11-10T21:12:32Z",
+  "available_basis": "arXiv archived v1 release; historical reconstruction captured later",
+  "source_kind": "paper",
+  "provider": "arxiv",
+  "access_scope": "public",
+  "representation": "versioned_primary_abstract",
+  "text": "Retrieval-augmented generation (RAG) enhances large language models (LLMs) by retrieving documents from an external corpus at inference time. When this corpus contains sensitive information, however, unprotected RAG systems are at risk of leaking private information. Prior work has introduced differential privacy (DP) guarantees for RAG, but only in single-query settings, which fall short of realistic usage. In this paper, we study the more practical multi-query setting and propose two DP-RAG algorithms. The first, MURAG, leverages an individual privacy filter so that the accumulated privacy loss only depends on how frequently each document is retrieved rather than the total number of queries. The second, MURAG-ADA, further improves utility by privately releasing query-specific thresholds, enabling more precise selection of relevant documents. Our experiments across multiple LLMs and datasets demonstrate that the proposed methods scale to hundreds of queries within a practical DP budget ($\\varepsilon\\approx10$), while preserving meaningful utility.",
+  "text_sha256": "66e8add10103a220de98637b6b3e0a2477d288ffb7f5ea7cbc7ac9b6a58f1c32",
+  "raw_sha256": "d9bbf50cf9f4a5c8b0541cc09e33648cf1d5067d04ad980cd4d44f9d8c14086a",
+  "raw_file": "d9bbf50cf9f4a5c8b0541cc09e33648cf1d5067d04ad980cd4d44f9d8c14086a.xml",
+  "limitations": [
+    "Abstract-only evidence; author-reported results, not independent reproduction.",
+    "Later DOI, journal metadata and current citations are excluded from historical input."
+  ]
+}

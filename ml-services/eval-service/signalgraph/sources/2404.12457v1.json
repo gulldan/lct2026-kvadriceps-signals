@@ -1,0 +1,32 @@
+{
+  "native_id": "2404.12457v1",
+  "canonical_id": "arxiv:2404.12457",
+  "url": "https://arxiv.org/abs/2404.12457v1",
+  "title": "RAGCache: Efficient Knowledge Caching for Retrieval-Augmented Generation",
+  "authors": [
+    "Chao Jin",
+    "Zili Zhang",
+    "Xuanlin Jiang",
+    "Fangyue Liu",
+    "Xin Liu",
+    "Xuanzhe Liu",
+    "Xin Jin"
+  ],
+  "published_at": "2024-04-18T18:32:30Z",
+  "version_updated_at": "2024-04-18T18:32:30Z",
+  "observed_at": "2026-09-08T22:28:42.905805+00:00",
+  "available_at": "2024-04-18T18:32:30Z",
+  "available_basis": "arXiv archived v1 release; historical reconstruction captured later",
+  "source_kind": "paper",
+  "provider": "arxiv",
+  "access_scope": "public",
+  "representation": "versioned_primary_abstract",
+  "text": "Retrieval-Augmented Generation (RAG) has shown significant improvements in various natural language processing tasks by integrating the strengths of large language models (LLMs) and external knowledge databases. However, RAG introduces long sequence generation and leads to high computation and memory costs. We propose Thoth, a novel multilevel dynamic caching system tailored for RAG. Our analysis benchmarks current RAG systems, pinpointing the performance bottleneck (i.e., long sequence due to knowledge injection) and optimization opportunities (i.e., caching knowledge's intermediate states). Based on these insights, we design Thoth, which organizes the intermediate states of retrieved knowledge in a knowledge tree and caches them in the GPU and host memory hierarchy. Thoth proposes a replacement policy that is aware of LLM inference characteristics and RAG retrieval patterns. It also dynamically overlaps the retrieval and inference steps to minimize the end-to-end latency. We implement Thoth and evaluate it on vLLM, a state-of-the-art LLM inference system and Faiss, a state-of-the-art vector database. The experimental results show that Thoth reduces the time to first token (TTFT) by up to 4x and improves the throughput by up to 2.1x compared to vLLM integrated with Faiss.",
+  "text_sha256": "d7463ec60c5605e603e53ac126e5cec1a839e7ffd6c6104075c9bc98ab6c443f",
+  "raw_sha256": "761969bd1361209348c93fad02bd6d4c2df715209d933d5edb33e9ba47c64193",
+  "raw_file": "761969bd1361209348c93fad02bd6d4c2df715209d933d5edb33e9ba47c64193.xml",
+  "limitations": [
+    "Abstract-only evidence; author-reported results, not independent reproduction.",
+    "Later DOI, journal metadata and current citations are excluded from historical input."
+  ]
+}

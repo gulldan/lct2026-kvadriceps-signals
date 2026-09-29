@@ -1,0 +1,55 @@
+{
+ "numFound": 3,
+ "error": null,
+ "patents": [
+  {
+   "guid": "US-12697607-B2",
+   "publicationReferenceDocumentNumber": "12697607",
+   "documentId": "US 12697607 B2",
+   "inventionTitle": "Methods and compositions for production of CO.SUB.2.-free hydrogen and carbon nanomaterials by methane decomposition",
+   "datePublished": "2026-08-04T00:00:00Z",
+   "type": "USPAT",
+   "kindCode": [
+    "B2"
+   ],
+   "mainClassificationCode": "1/1",
+   "applicationFilingDate": [
+    "2020-10-30T00:00:00Z"
+   ],
+   "priorityClaimsDate": null,
+   "applicationNumber": "17/772967",
+   "familyIdentifierCur": 75715384,
+   "pageCountDisplay": "51"
+  },
+  {
+   "guid": "US-12415045",
+   "publicationReferenceDocumentNumber": "12415045",
+   "documentId": "US 12415045",
+   "inventionTitle": "TEXT NOT AVAILABLE",
+   "datePublished": null,
+   "type": "USPAT",
+   "kindCode": null,
+   "mainClassificationCode": "WITHDRAWN",
+   "applicationFilingDate": null,
+   "priorityClaimsDate": null,
+   "applicationNumber": null,
+   "familyIdentifierCur": null,
+   "pageCountDisplay": "NA"
+  },
+  {
+   "guid": "US-12483699",
+   "publicationReferenceDocumentNumber": "US",
+   "documentId": "US 12483699",
+   "inventionTitle": "TEXT NOT AVAILABLE",
+   "datePublished": null,
+   "type": "USPAT",
+   "kindCode": null,
+   "mainClassificationCode": "WITHDRAWN",
+   "applicationFilingDate": null,
+   "priorityClaimsDate": null,
+   "applicationNumber": null,
+   "familyIdentifierCur": null,
+   "pageCountDisplay": "NA"
+  }
+ ]
+}
