@@ -26,6 +26,10 @@ func (s *TrendLiveService) previousAnalysis() ([]LiveDiscovery, string, map[stri
 	previous := []LiveDiscovery{}
 	for _, topic := range s.snapshot.Discovered {
 		if topic.Analysis != nil && topic.Analysis.Discovery != nil {
+			// Выборка каталогов не участвует в преемственности кластеров полного окна препринтов.
+			if topic.Analysis.Discovery.Method == liveResearchDiscoveryMethod {
+				continue
+			}
 			previous = append(previous, *liveCorrectLegacyCreated(topic, *s.snapshot, false))
 		} else {
 			previous = append(previous, LiveDiscovery{ID: topic.ID, Name: topic.Name, Query: topic.Query,

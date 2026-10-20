@@ -173,7 +173,7 @@ export function AdminUsers() {
                               </Badge>
                             ) : (
                               <Badge key={r} variant="outline">
-                                {r}
+                                {t(`users.roles.${r}`, { defaultValue: r })}
                               </Badge>
                             ),
                           )

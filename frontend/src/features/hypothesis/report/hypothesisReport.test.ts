@@ -5,6 +5,9 @@ import { createData } from "../../../../tests/product/data";
 import { buildHypothesisReport } from "./hypothesisReport";
 import { firstSentence, trimSnippet } from "./reportData";
 import { radarReportBlocks, type RadarProvenance } from "../radarProvenance";
+import { hypothesisClusterId, hypothesisItc } from "../model";
+import { SORTS } from "../board/model";
+import { formatItcIndex } from "../itcProfile";
 
 beforeAll(async () => {
   const descriptor = Object.getOwnPropertyDescriptor(globalThis, "document");
@@ -113,5 +116,41 @@ test("отчёт сохраняет нумерацию необязательн�
     const references = blocks.find((block) => block.kind === "references");
     expect(references?.items).toHaveLength(1);
     expect(references?.items[0]?.n).toBe(1);
+  }
+});
+
+test("проекция ближайшей темы не становится индексом гипотезы в сортировке и экспортируемом отчёте", () => {
+  const data = createData();
+  const kpi = data.kpis[0]!;
+  for (const scope of [
+    "hypothesis(theme)",
+    "hypothesis(document_membership)",
+    "hypothesis",
+    undefined,
+  ]) {
+    const h = structuredClone(data.hypotheses[0]!);
+    h.novelty_score = 0.11;
+    const itc = h.assessment.itc!;
+    itc.scope = scope;
+    itc.techscore = 0.93;
+    itc.axes.novelty = 0.97;
+    const raw = structuredClone(h);
+    const projected = scope === "hypothesis(theme)";
+    const copiedIndex = projected || scope === "hypothesis(document_membership)";
+    expect(hypothesisClusterId(h)).toBe(projected ? undefined : h.primary_cluster_id);
+    expect(hypothesisItc(h)).toBe(copiedIndex ? undefined : itc);
+    expect(SORTS.find((sort) => sort.key === "itc")!.value(h)).toBe(copiedIndex ? 0 : 0.93);
+    expect(SORTS.find((sort) => sort.key === "novelty")!.value(h)).toBe(copiedIndex ? 0.11 : 0.97);
+    const report = buildHypothesisReport({
+      h,
+      kpi,
+      clusterTitle: "Проекционная флотация",
+      revisions: [],
+    });
+    const exported = JSON.stringify(report.blocks);
+    expect(exported.includes("Проекционная флотация")).toBe(!projected);
+    expect(exported.includes(`${formatItcIndex(itc)}/100`)).toBe(!copiedIndex);
+    expect(exported).toContain(kpi.title);
+    expect(h).toEqual(raw);
   }
 });

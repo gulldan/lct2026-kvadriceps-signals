@@ -81,6 +81,11 @@ func (s *liveSources) openAlexCitations(ctx context.Context, papers []StudyPaper
 	requests := 0
 	stamp := now.UTC().Format(time.RFC3339)
 	for start := 0; start < len(pending); start += liveCitationsBatch {
+		// Цитирования — фон ночного прохода: с окном препринтов ячеек стало в разы больше, и без запаса они
+		// съедали суточный бюджет, оставляя живой поиск без журналов и истории терминов.
+		if err := liveScholarReserved(s.oa); err != nil {
+			return requests, fmt.Errorf("%w; %d papers keep counts read earlier", err, len(pending)-start)
+		}
 		s.step(liveStepCitations, 0)
 		batch := pending[start:min(start+liveCitationsBatch, len(pending))]
 		found, err := s.openAlexBatch(ctx, batch)

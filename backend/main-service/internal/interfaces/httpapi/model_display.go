@@ -13,7 +13,7 @@ import (
 // админа видят сырой id — в настройках его вводят. Имя встаёт после «моделью», поэтому начинается с названия.
 const (
 	modelDisplayKey     = "LLM_MODEL_DISPLAY_NAME"
-	modelDisplayDefault = "DeepSeek V4 Flash (локальная)"
+	modelDisplayDefault = "GLM 5.3 Flash (локальная)"
 )
 
 // modelNamedPath не включает потоковый каталог технологий: имени модели в нём нет, а копить его в памяти дорого.
@@ -53,7 +53,8 @@ func (a *API) ModelDisplayNames(next http.Handler) http.Handler {
 			next.ServeHTTP(w, r)
 			return
 		}
-		named := &modelNameWriter{ResponseWriter: w, id: id,
+		ids := append([]string{id}, strings.Split(a.ovr.Get(r.Context(), "LLM_MODEL_DISPLAY_ALIASES", ""), ",")...)
+		named := &modelNameWriter{ResponseWriter: w, ids: ids,
 			name: strings.TrimSpace(a.ovr.Get(r.Context(), modelDisplayKey, modelDisplayDefault))}
 		next.ServeHTTP(named, r)
 		named.finish()
@@ -64,7 +65,8 @@ func (a *API) ModelDisplayNames(next http.Handler) http.Handler {
 // кусками, и id мог бы разрезаться на границе двух записей.
 type modelNameWriter struct {
 	http.ResponseWriter
-	id, name  string
+	ids       []string
+	name      string
 	status    int
 	body      []byte
 	buffering bool
@@ -113,6 +115,10 @@ func (w *modelNameWriter) finish() {
 		w.ResponseWriter.WriteHeader(w.status)
 	}
 	if len(w.body) > 0 {
-		_, _ = w.ResponseWriter.Write(displayModelName(w.body, w.id, w.name))
+		body := w.body
+		for _, id := range w.ids {
+			body = displayModelName(body, strings.TrimSpace(id), w.name)
+		}
+		_, _ = w.ResponseWriter.Write(body)
 	}
 }

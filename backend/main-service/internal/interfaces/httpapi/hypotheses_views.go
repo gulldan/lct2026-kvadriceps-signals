@@ -161,13 +161,19 @@ func newEvidenceViews(es []*commonv1.HypothesisEvidence) []evidenceView {
 }
 
 type evidenceInput struct {
-	DocumentID *string  `json:"document_id"`
-	ChunkID    string   `json:"chunk_id"`
-	Filename   string   `json:"filename"`
-	Snippet    string   `json:"snippet"`
-	Stance     string   `json:"stance"`
-	Score      *float64 `json:"score"`
-	Ord        int32    `json:"ord"`
+	ID             string   `json:"id"`
+	DocumentID     *string  `json:"document_id"`
+	ChunkID        string   `json:"chunk_id"`
+	Filename       string   `json:"filename"`
+	Snippet        string   `json:"snippet"`
+	Stance         string   `json:"stance"`
+	Score          *float64 `json:"score"`
+	Ord            int32    `json:"ord"`
+	Relation       string   `json:"relation"`
+	PageStart      int32    `json:"page_start"`
+	PageEnd        int32    `json:"page_end"`
+	SectionHeading string   `json:"section_heading"`
+	Origin         string   `json:"origin"`
 }
 
 type revisionView struct {
@@ -370,8 +376,9 @@ func (in hypothesisInput) toProto(id string) *commonv1.Hypothesis {
 	}
 	for _, e := range in.Evidence {
 		h.Evidence = append(h.Evidence, &commonv1.HypothesisEvidence{
-			DocumentId: nilIfEmpty(e.DocumentID), ChunkId: e.ChunkID, Filename: e.Filename, Snippet: e.Snippet,
-			Stance: e.Stance, Score: e.Score, Ord: e.Ord,
+			Id: e.ID, DocumentId: nilIfEmpty(e.DocumentID), ChunkId: e.ChunkID, Filename: e.Filename, Snippet: e.Snippet,
+			Stance: e.Stance, Score: e.Score, Ord: e.Ord, Relation: e.Relation,
+			PageStart: e.PageStart, PageEnd: e.PageEnd, SectionHeading: e.SectionHeading, Origin: e.Origin,
 		})
 	}
 	return h

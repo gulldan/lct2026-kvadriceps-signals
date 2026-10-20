@@ -14,7 +14,10 @@ import (
 
 const statusKey = "trends:collector:status:v1"
 const writerKey = "trends:collector:writer:v1"
-const jobLimit = 150 * time.Minute
+
+// Новое направление тянет историю GitHub и HN за все месяцы окна (≈2 мин против 33 с у прошлого снимка):
+// 18.10 проход со 136 направлениями занимал около 155 минут и падал бы по сроку, не публикуясь никогда.
+const jobLimit = 240 * time.Minute
 const leaseTTL = 45 * time.Second
 const idlePhase = "idle"
 

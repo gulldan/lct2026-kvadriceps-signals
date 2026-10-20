@@ -28,6 +28,8 @@ export function RoleSwitcher() {
   const navigate = useNavigate();
   const meta = ROLE_META[role];
   const username = auth?.user.username ?? "—";
+  // Видимые инициалы входят в имя кнопки: голосовой ввод называет то, что видит на экране.
+  const initials = initialsOf(username);
 
   const handleSelect = (next: Role) => {
     if (next === role) return;
@@ -42,10 +44,10 @@ export function RoleSwitcher() {
           variant="ghost"
           size="icon-sm"
           className="shrink-0"
-          aria-label={`${username}, ${meta.label}`}
+          aria-label={`${initials}, ${username}, ${meta.label}`}
         >
           <Avatar size="sm" aria-hidden>
-            <AvatarFallback>{initialsOf(username)}</AvatarFallback>
+            <AvatarFallback>{initials}</AvatarFallback>
           </Avatar>
         </Button>
       </DropdownMenuTrigger>

@@ -15,7 +15,7 @@ import {
   listHypothesisJobs,
   type ApiHypothesisJob,
 } from "@/features/hypothesis";
-import { getSystemActivity, type SystemActivity } from "@/features/task/api";
+import { getSystemActivity, workerState, type SystemActivity } from "@/features/task/api";
 import { i18n } from "@/shared/i18n";
 
 type BackgroundTaskStatus = "running" | "success" | "error";
@@ -51,6 +51,7 @@ interface TaskContextValue {
   runTask: <T>(options: RunTaskOptions<T>) => Promise<T | undefined>;
   isTaskRunning: (key: string) => boolean;
   clearFinished: () => void;
+  refreshActivity: () => void;
 }
 
 const TaskContext = createContext<TaskContextValue | null>(null);
@@ -226,10 +227,28 @@ export function TaskProvider({ children }: { children: ReactNode }) {
 
   const activeCount =
     tasks.filter((task) => task.status === "running").length +
-    (activity?.workers.filter((w) => w.state === "running").length ?? 0);
+    (activity?.workers.filter((w) => workerState(w) === "running").length ?? 0);
   const value = useMemo(
-    () => ({ tasks, activeCount, activity, started, runTask, isTaskRunning, clearFinished }),
-    [tasks, activeCount, activity, started, runTask, isTaskRunning, clearFinished],
+    () => ({
+      tasks,
+      activeCount,
+      activity,
+      started,
+      runTask,
+      isTaskRunning,
+      clearFinished,
+      refreshActivity: activityRequest.retry,
+    }),
+    [
+      tasks,
+      activeCount,
+      activity,
+      started,
+      runTask,
+      isTaskRunning,
+      clearFinished,
+      activityRequest.retry,
+    ],
   );
 
   return <TaskContext.Provider value={value}>{children}</TaskContext.Provider>;

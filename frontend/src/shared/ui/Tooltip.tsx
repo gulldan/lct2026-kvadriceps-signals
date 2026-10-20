@@ -9,12 +9,16 @@ export const TooltipTrigger = TooltipPrimitive.Trigger;
 
 export function TooltipContent({
   className,
+  container,
   sideOffset = 4,
   variant = "default",
   ...props
-}: ComponentProps<typeof TooltipPrimitive.Content> & { variant?: "default" | "card" }) {
+}: ComponentProps<typeof TooltipPrimitive.Content> & {
+  variant?: "default" | "card";
+  container?: ComponentProps<typeof TooltipPrimitive.Portal>["container"];
+}) {
   return (
-    <TooltipPrimitive.Portal>
+    <TooltipPrimitive.Portal container={container}>
       <TooltipPrimitive.Content
         sideOffset={sideOffset}
         className={cn(

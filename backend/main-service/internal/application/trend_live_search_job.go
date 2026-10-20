@@ -265,7 +265,7 @@ func (job *liveSearchJob) noteProgress(step string, wait time.Duration, now time
 
 func (s *TrendLiveService) runSearch(ctx context.Context, query, key string, job *liveSearchJob) {
 	defer close(job.done)
-	ctx, cancel := context.WithTimeout(ctx, liveSearchBudget)
+	ctx, cancel := liveRunBudget(ctx)
 	defer cancel()
 	progress := func(step string, wait time.Duration) {
 		s.mu.Lock()
@@ -298,6 +298,8 @@ func (s *TrendLiveService) runSearch(ctx context.Context, query, key string, job
 	s.mu.Lock()
 	defer s.mu.Unlock()
 	if err != nil {
+		// Отказ виден опросу лишь liveSearchFailWindow: без записи его причина терялась (19.10, отказ разбора запроса).
+		slog.Warn("live search failed", "query", query, "error", err)
 		job.expires = s.now().Add(liveSearchFailWindow)
 		job.state = LiveSearchState{Query: query, Status: LiveSearchFailed, Error: err.Error()}
 		// Отказ считается наравне с успехом: счётчик одних успехов молчит, когда поиск перестал получаться у всех.

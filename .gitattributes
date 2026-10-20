@@ -1,11 +1,7 @@
 .github export-ignore
 .github/** export-ignore
-scripts export-ignore
-scripts/** export-ignore
 docs/archive export-ignore
 docs/archive/** export-ignore
-datasets export-ignore
-datasets/** export-ignore
 models export-ignore
 models/** export-ignore
 frontend/dist export-ignore

@@ -242,7 +242,7 @@ type HypothesisFilter struct {
 	MaxTRL       int
 	Tags         []string // гипотезы со ВСЕМИ перечисленными тегами
 	DocumentIDs  []string // гипотезы с доказательствами из ЛЮБОГО перечисленного документа
-	OrderBy      string   // composite_score (по умолчанию) | created_at | trl | novelty | value
+	OrderBy      string   // composite_score (по умолчанию) | diversity | created_at | trl | novelty | value
 	Limit        int      // 0 — 100, максимум 500
 	Offset       int
 }

@@ -2,6 +2,7 @@ package application
 
 import (
 	"bytes"
+	"cmp"
 	"context"
 	"encoding/json/v2"
 	"errors"
@@ -32,6 +33,7 @@ const (
 	liveClassifierMature       = "mature"
 	liveClassifierNoise        = "noise"
 	liveClassifierInsufficient = "insufficient_data"
+	liveClassifierUndecided    = "undecided"
 )
 
 // LiveClassifierFeatures хранит nil как «не измерено»: это не то же самое, что измеренный ноль.
@@ -61,6 +63,8 @@ type LiveClassifierCandidate struct {
 	Sources  []LiveClassifierSource `json:"sources"`
 	// Внешний контракт не меняется: точное имя нужно встроенному сбору признаков по фразе.
 	phrase string
+	// Только научные источники кандидата; патенты и новости не доказывают покрытие научной литературы.
+	journals []liveJournalPaper
 }
 
 type LiveClassifierRequest struct {
@@ -185,22 +189,31 @@ func liveClassifierInput(query, version string, candidates []LiveTopic, document
 		byID[document.ID] = document
 	}
 	for _, candidate := range candidates {
-		phrase := liveClassifierCanonicalPhrase(candidate, byID, metadata)
+		phrase := liveClassifierCanonicalPhrase(candidate)
 		// Цитата проверки называет пример внутри направления; оценивать нужно само направление.
 		if liveFromDirection(candidate) {
 			phrase = liveDirectionTerm(candidate)
+		}
+		marketRecords := candidate.RecordsCount
+		if candidate.Research != nil {
+			// Публикация набора данных не означает внедрение технологии на рынке.
+			marketRecords = max(0, marketRecords-len(candidate.Research.Records))
 		}
 		item := LiveClassifierCandidate{
 			ID: candidate.ID, Name: liveCandidateName(candidate), phrase: phrase,
 			Features: LiveClassifierFeatures{
 				Documents: candidate.DocumentsCount, ScientificWorks: candidate.PapersCount,
-				MarketRecords: candidate.RecordsCount, ActivePeriods: candidate.ActiveYears,
+				MarketRecords: marketRecords, ActivePeriods: candidate.ActiveYears,
 				AuthorGroups: candidate.Groups, TopGroupShare: candidate.TopGroupShare,
 				ShareGrowthPP: candidate.Growth.DeltaPP, FirstObserved: candidate.FirstYear,
 			},
 		}
 		for _, id := range slices.Concat(candidate.PaperIDs, candidate.EvidenceIDs) {
 			if document, ok := byID[id]; ok {
+				if liveJournalSource(document, metadata[id]) && liveJournalMechanismSource(candidate, id) {
+					item.journals = append(item.journals, liveJournalPaper{paper: document,
+						source: cmp.Or(liveJournalProvider(id), liveJournalProvider(metadata[id].Category))})
+				}
 				abstract := []rune(metadata[id].Abstract)
 				item.Sources = append(item.Sources, LiveClassifierSource{
 					ID: id, Title: document.Title, Date: document.Date, URL: document.URL,
@@ -230,7 +243,7 @@ func liveValidatePredictions(input LiveClassifierRequest, output LiveClassifierR
 			score.FeatureSchema != LiveClassifierSchema || liveRussianText(score.Basis) == "" || len(score.Features) == 0 ||
 			!liveUnitInterval(score.Value) || !liveUnitInterval(score.Threshold) ||
 			!slices.Contains([]string{liveClassifierWeak, liveClassifierMature, liveClassifierNoise, liveClassifierFailed,
-				liveClassifierInsufficient}, score.Label) {
+				liveClassifierInsufficient, liveClassifierUndecided}, score.Label) {
 			return nil, errors.New("предсказание без согласованной версии, объяснения или допустимого значения")
 		}
 		for _, feature := range score.Features {
@@ -333,7 +346,7 @@ func liveApplyScores(candidates []LiveTopic, rejected []LiveRejection,
 		candidate.ModelScore = &score
 		// Воздержание модели — не отказ: иначе незнание выдавалось бы за вердикт. Добранная при дооценке
 		// уже помечена непройденной и остаётся в пятнадцати, если модель не назвала её зрелой.
-		if score.Label == liveClassifierInsufficient || score.DataGap != "" ||
+		if score.Label == liveClassifierInsufficient || score.Label == liveClassifierUndecided || score.DataGap != "" ||
 			candidate.Shortfall != nil && score.Label != liveClassifierMature {
 			kept = append(kept, candidate)
 			continue
@@ -359,6 +372,8 @@ func liveModelLabel(label string) string {
 		return "неподтверждённое направление"
 	case liveClassifierInsufficient:
 		return "мало данных"
+	case liveClassifierUndecided:
+		return "не могу решить"
 	default:
 		return "информационный шум"
 	}

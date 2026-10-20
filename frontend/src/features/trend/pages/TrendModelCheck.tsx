@@ -144,13 +144,17 @@ function Report({ data: { model, evaluation } }: { data: WeakSignalModelCheck })
   const recognised = signals.filter((item) => item.validation_weak).length;
   // Матрица ошибок — средняя за повтор; в прежнем отчёте её нет, и тогда берётся первый повтор.
   const matrix = evaluation.slices?.etalon_team ?? first;
-  const { ablations, outage, abstention, selection } = evaluation;
+  const { ablations, outage, abstention, selection, conformal } = evaluation;
+  const sets = model.conformal;
   const llm = evaluation.llm_rating;
 
   return (
     <ReadingContent className="max-w-none">
       <Section reading title={t("modelCheck.aboutTitle")}>
         <p>{t("modelCheck.about", { version: model.version, threshold })}</p>
+        {model.embedded_inference_version && (
+          <p>{t("modelCheck.sourceCoverage", { version: model.embedded_inference_version })}</p>
+        )}
         <p>
           {t("modelCheck.training", {
             total: formatNumber(SOURCES.reduce((sum, source) => sum + dataset[source], 0)),
@@ -418,6 +422,52 @@ function Report({ data: { model, evaluation } }: { data: WeakSignalModelCheck })
                       digits={1}
                       shares={{ precision: row.precision, recall: row.recall, f1: row.f1 }}
                     />
+                  </TableRow>
+                );
+              })}
+            </TableBody>
+          </Table>
+        </Section>
+      )}
+
+      {conformal && sets && evaluation.slices && (
+        <Section reading title={t("modelCheck.conformalTitle")}>
+          <p>
+            {t("modelCheck.conformalIntro", {
+              coverage: percent(1 - sets.alpha),
+              low: percent(1 - sets.weak),
+              high: percent(sets.not_weak),
+              threshold: percent(model.threshold),
+            })}
+          </p>
+          <p>
+            {t("modelCheck.conformalCheck", {
+              weak: percent(conformal.coverage.weak, 1),
+              notWeak: percent(conformal.coverage.not_weak, 1),
+              undecided: percent(conformal.undecided),
+              precision: percent(conformal.weak_precision),
+              baseline: percent(evaluation.slices.all.precision),
+            })}
+          </p>
+          <Table caption={t("modelCheck.conformalTable")} className="text-sm">
+            <TableHeader>
+              <TableRow>
+                <TableHead>{t("modelCheck.source")}</TableHead>
+                <TableHead className="text-right">{t("report.modelClass.weak_signal")}</TableHead>
+                <TableHead className="text-right">{t("report.modelClass.undecided")}</TableHead>
+                <TableHead className="text-right">{t("modelCheck.notWeak")}</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {SOURCES.map((source) => {
+                // Отчёт отдаёт ключи по алфавиту, а столбцы идут от сигнала к не сигналу.
+                const { weak, undecided, not_weak: notWeak } = conformal.by_source[source];
+                return (
+                  <TableRow key={source}>
+                    <TableCell className="min-w-56 font-medium">
+                      {t(`modelCheck.sources.${source}.name`)}
+                    </TableCell>
+                    <ShareCells digits={0} shares={{ weak, undecided, notWeak }} />
                   </TableRow>
                 );
               })}

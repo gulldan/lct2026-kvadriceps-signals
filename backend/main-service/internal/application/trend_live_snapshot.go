@@ -24,11 +24,14 @@ type LiveQuery struct {
 
 type LiveTopic struct {
 	StudyTopic
-	Name        string         `json:"name"`
-	Query       LiveQuery      `json:"query"`
-	Curated     bool           `json:"curated"`
-	Source      string         `json:"source"`
-	Branch      string         `json:"branch,omitempty"`
+	Name    string    `json:"name"`
+	Query   LiveQuery `json:"query"`
+	Curated bool      `json:"curated"`
+	Source  string    `json:"source"`
+	Branch  string    `json:"branch,omitempty"`
+	// Industry и Money ставятся при выдаче обзора и в снимок не пишутся.
+	Industry    string         `json:"industry,omitempty"`
+	Money       *LiveMapMoney  `json:"money,omitempty"`
 	Label       string         `json:"label,omitempty"`
 	Citations   *LiveCitations `json:"citations,omitempty"`
 	PapersCount int            `json:"papers_count"`
@@ -48,6 +51,7 @@ type LiveTopic struct {
 	Patents       *LiveChannel    `json:"patents"`
 	Web           *LiveChannel    `json:"web"`
 	Registry      *LiveChannel    `json:"registry,omitempty"`
+	Research      *LiveChannel    `json:"research,omitempty"`
 	PatentsCN     *LiveChannel    `json:"patents_cn,omitempty"`
 	// Corpus не попадает в общий снимок и сохранённый поиск: он принадлежит спросившему.
 	Corpus     *LiveChannel       `json:"corpus,omitempty"`
@@ -159,21 +163,31 @@ func (s *TrendLiveService) Overview() LiveOverview {
 	overview.Topics = make([]LiveTopic, 0, len(s.snapshot.Topics)+len(s.snapshot.Discovered)+len(s.searchTopics))
 	overview.Discovered = []LiveTopic{}
 	// Урезается и при чтении: сохранённое направление могло прийти из прошлого поколения формата.
+	industries, rubrics := liveFamilyIndustries(), liveRubrics()
 	for _, topic := range slices.Concat(s.snapshot.Topics, s.snapshot.Discovered, s.searchTopics) {
-		overview.Topics = append(overview.Topics, liveOverviewTopic(topic))
+		row := liveOverviewTopic(topic)
+		row.Industry = liveTopicIndustry(row, industries, rubrics)
+		overview.Topics = append(overview.Topics, row)
+	}
+	money := s.topicMoney(overview.Topics)
+	for i := range overview.Topics {
+		if found, ok := money[overview.Topics[i].ID]; ok {
+			overview.Topics[i].Money = &found
+		}
 	}
 	return overview
 }
 
 // liveOverviewTopic — форма и обзора, и сохранённого направления запроса.
 func liveOverviewTopic(topic LiveTopic) LiveTopic {
+	topic.Branch = cmp.Or(liveCuratedBranch(topic), topic.Branch)
 	topic.PaperIDs = []string{}
 	topic.Analysis = nil
 	topic.External = []StudyEvent{}
 	// Смысловое сравнение растёт квадратом от числа направлений и весило треть обзора; оно нужно только карточке.
 	topic.Semantic, topic.Confidence, topic.Market, topic.Adoption, topic.Emergence = nil, nil, nil, nil, nil
 	// Белый список, а не чёрный: новое поле канала попадёт в обзор, только если его допишут явно.
-	for _, target := range []**LiveChannel{&topic.Patents, &topic.PatentsCN, &topic.Registry, &topic.Web} {
+	for _, target := range []**LiveChannel{&topic.Patents, &topic.PatentsCN, &topic.Registry, &topic.Web, &topic.Research} {
 		if *target != nil {
 			*target = &LiveChannel{Counts: (*target).Counts, Total: (*target).Total,
 				Partial: (*target).Partial, Limits: []string{}}
@@ -203,6 +217,8 @@ func (s *TrendLiveService) Topic(id string) (LiveDetail, bool) {
 func liveDetail(snapshot *LiveSnapshot, topic LiveTopic, papers, records []StudyPaper,
 	candidates []LiveTopic, rejected []LiveRejection, metadata map[string]LivePaperMetadata,
 ) LiveDetail {
+	branch := liveCuratedBranch(topic)
+	topic.Branch = cmp.Or(branch, topic.Branch)
 	if metadata == nil {
 		metadata = snapshot.PaperMetadata
 	}
@@ -231,6 +247,12 @@ func liveDetail(snapshot *LiveSnapshot, topic LiveTopic, papers, records []Study
 		return detail
 	}
 	for _, candidate := range candidates {
+		// Такие кандидаты наследуют ветвь зонтика при построении, в том числе в прежних сохранённых ответах.
+		if branch != "" && candidate.Source == "candidate" {
+			candidate.Branch = branch
+		}
+		// При отдаче, а не при сборе: так чинятся и названия в прежних сохранённых ответах.
+		candidate.Label = liveLabelWithoutCJK(candidate.Label, candidate.Name)
 		detail.Candidates = append(detail.Candidates, withoutProvenance(candidate))
 		if candidate.ModelScore != nil {
 			detail.Counters.ModelScored++
@@ -290,7 +312,7 @@ func liveEvidenceDocuments(candidates []LiveTopic, records []StudyPaper) []Study
 
 // withoutProvenance: странице нужны счётчики и курсоры, а список страниц был основной частью ответа.
 func withoutProvenance(topic LiveTopic) LiveTopic {
-	for _, target := range []**LiveChannel{&topic.Patents, &topic.PatentsCN, &topic.Registry, &topic.Web} {
+	for _, target := range []**LiveChannel{&topic.Patents, &topic.PatentsCN, &topic.Registry, &topic.Web, &topic.Research} {
 		if *target == nil {
 			continue
 		}

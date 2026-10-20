@@ -3,6 +3,148 @@ import { expect, test } from "./fixture";
 import { choose, inspectSurface } from "./checks";
 import { inspectControlAlignment } from "./design-contract";
 
+test("projected theme stays out of hypothesis cards, scores, ordering and reports", async ({
+  page,
+  api,
+}) => {
+  const projected = structuredClone(api.state.hypotheses[0]!);
+  projected.title = "Правовая оценка экологического ущерба";
+  projected.assessment.itc!.scope = "hypothesis(theme)";
+  projected.assessment.itc!.techscore = 0.99;
+  const own = structuredClone(projected);
+  own.id = "own-index";
+  own.title = "Собственная оценка материала";
+  own.assessment.itc!.scope = "hypothesis";
+  own.assessment.itc!.techscore = 0.25;
+  api.state.hypotheses = [projected, own];
+  const theme = api.state.clusters[0]!;
+  theme.label = "Проекционная флотация";
+  const kpi = api.state.kpis[0]!;
+
+  await page.goto("/hypotheses");
+  const projectedCard = page.getByRole("button").filter({
+    has: page.getByRole("heading", { name: projected.title, exact: true }),
+  });
+  await expect(projectedCard).toContainText(kpi.title);
+  await expect(projectedCard).not.toContainText(theme.label);
+  await choose(page, "Сортировка гипотез", "По технологичности");
+  await expect(page.getByRole("heading", { level: 3 })).toHaveText([own.title, projected.title]);
+
+  await page.goto(`/hypotheses/${projected.id}`);
+  await expect(page.getByRole("link", { name: kpi.title, exact: true })).toBeVisible();
+  await expect(page.getByRole("link", { name: theme.label, exact: true })).toHaveCount(0);
+  await expect(page.getByRole("button", { name: /^Индекс темы/ })).toHaveCount(0);
+  await page.goto(`/hypotheses/${projected.id}/report`);
+  await expect(page.getByText(kpi.title, { exact: false }).first()).toBeVisible();
+  await expect(page.getByText(theme.label, { exact: true })).toHaveCount(0);
+  await expect(page.getByText("Исследовательский индекс темы", { exact: true })).toHaveCount(0);
+
+  await page.goto(`/hypotheses/${own.id}`);
+  await expect(page.getByRole("link", { name: theme.label, exact: true })).toBeVisible();
+  await expect(page.getByRole("button", { name: /^Индекс темы/ }).first()).toBeVisible();
+
+  own.assessment.itc!.scope = "hypothesis(document_membership)";
+  await page.reload();
+  await expect(page.getByRole("link", { name: theme.label, exact: true })).toBeVisible();
+  await expect(page.getByRole("button", { name: /^Индекс темы/ })).toHaveCount(0);
+});
+
+test("board starts with all hypotheses and preserves an explicit evidence filter", async ({
+  page,
+  api,
+}) => {
+  const confirmed = structuredClone(api.state.hypotheses[0]!);
+  const pending = structuredClone(confirmed);
+  confirmed.status = "approved";
+  pending.id = "unconfirmed-materials";
+  pending.title = "Новые материалы для очистки воды";
+  pending.status = "under_review";
+  pending.assessment!.check!.verdict = "insufficient";
+  api.state.hypotheses = [confirmed, pending];
+
+  await page.goto("/hypotheses");
+  await expect(page.getByRole("button", { name: "Все 2", exact: true })).toHaveAttribute(
+    "aria-pressed",
+    "true",
+  );
+  await expect(page.getByRole("heading", { level: 3 })).toHaveCount(2);
+  await page.getByRole("button", { name: "Есть подтверждения 1", exact: true }).click();
+  await expect(page.getByRole("heading", { name: pending.title, exact: true })).toBeHidden();
+  await page.goto("/hypotheses?queue=ready");
+  await page.reload();
+  await expect(
+    page.getByRole("button", { name: "Есть подтверждения 1", exact: true }),
+  ).toHaveAttribute("aria-pressed", "true");
+  await expect(page.getByRole("heading", { level: 3 })).toHaveText([confirmed.title]);
+  await page.getByRole("textbox", { name: "Поиск по гипотезам" }).fill("нет совпадений");
+  await page.getByRole("button", { name: "Сброс", exact: true }).click();
+  await page.reload();
+  await expect(page.getByRole("button", { name: "Все 2", exact: true })).toHaveAttribute(
+    "aria-pressed",
+    "true",
+  );
+  await expect(page.getByRole("heading", { level: 3 })).toHaveCount(2);
+});
+
+test("board refresh keeps loaded pages until every bounded request completes", async ({
+  page,
+  api,
+}) => {
+  const base = api.state.hypotheses[0]!;
+  api.state.hypotheses = Array.from({ length: 241 }, (_, index) => ({
+    ...structuredClone(base),
+    id: `paged-${index}`,
+    title: `Контрольная гипотеза ${index + 1}`,
+    trl: null,
+  }));
+  const requests: { limit: number; offset: number }[] = [];
+  let refreshing = false;
+  let release!: () => void;
+  const pending = new Promise<void>((resolve) => {
+    release = resolve;
+  });
+  await page.route("**/api/v1/hypotheses/board?**", async (route) => {
+    const params = new URL(route.request().url()).searchParams;
+    const limit = Number(params.get("limit"));
+    const offset = Number(params.get("offset"));
+    requests.push({ limit, offset });
+    if (refreshing && offset === 200) await pending;
+    await route.fallback();
+  });
+  await page.clock.install();
+  await page.goto("/hypotheses");
+  const all = page.getByRole("button", { name: "Все 241", exact: true });
+  await expect(all).toBeVisible();
+  await page.clock.pauseAt(await page.evaluate(() => Date.now() + 50));
+  await page.getByRole("button", { name: "21", exact: true }).click();
+  const titles = page.getByRole("heading", { level: 3 });
+  await expect(titles).toHaveText(["Контрольная гипотеза 241"]);
+  expect(requests).toEqual([
+    { limit: 200, offset: 0 },
+    { limit: 200, offset: 200 },
+  ]);
+
+  api.state.hypotheses[240]!.title = "Обновлённая контрольная гипотеза 241";
+  refreshing = true;
+  await page.clock.fastForward(12_000);
+  await expect.poll(() => requests.length).toBeGreaterThan(2);
+  expect(requests.every(({ limit }) => limit > 0 && limit <= 200)).toBe(true);
+  await expect.poll(() => requests.length).toBe(4);
+  await expect(all).toBeVisible();
+  await expect(titles).toHaveText(["Контрольная гипотеза 241"]);
+  release();
+  await expect(titles).toHaveText(["Обновлённая контрольная гипотеза 241"]);
+  await expect(all).toBeVisible();
+  await expect(page.getByRole("button", { name: "21", exact: true })).toHaveAttribute(
+    "aria-current",
+    "page",
+  );
+  expect(requests.slice(2)).toEqual([
+    { limit: 200, offset: 0 },
+    { limit: 200, offset: 200 },
+  ]);
+});
+
 test("shared board filters survive reload, chip removal and reset", async ({ page }) => {
   await page.goto("/hypotheses?trl=6&kpi=kpi-1&queue=all");
   const trl = page.getByRole("button", { name: "Убрать фильтр: Готовность 6/9", exact: true });
@@ -274,7 +416,7 @@ test("supported hypotheses keep incomplete claims readable on laptops", async ({
 
   for (const width of [1024, 1280]) {
     await page.setViewportSize({ width, height: 900 });
-    await page.goto("/hypotheses");
+    await page.goto("/hypotheses?queue=ready");
     await expect(page.getByRole("button", { name: "Свернуть меню", exact: true })).toBeVisible();
     await expect(
       page.getByRole("button", { name: "Есть подтверждения 3", exact: true }),

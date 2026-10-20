@@ -19,7 +19,8 @@
   "toasts": {
     "done": "任务已完成",
     "failed": "任务执行失败",
-    "insufficientContext": "来源中的信息不足，无法补充假设。请添加资料或明确假设的表述。"
+    "insufficientContext": "来源中的信息不足，无法补充假设。请添加资料或明确假设的表述。",
+    "unparsableModelOutput": "模型返回的格式无法识别，结果未保存。请重试。"
   },
   "notifications": {
     "bellAria": "后台任务：{{count}}",
@@ -53,5 +54,9 @@
       "unchanged": "无变化",
       "weakening": "正在减弱"
     }
+  },
+  "workerState": {
+    "stale": "无近期信号",
+    "unknown": "状态未知"
   }
 }

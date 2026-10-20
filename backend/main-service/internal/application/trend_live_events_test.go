@@ -110,7 +110,7 @@ func TestLiveEventMaturity(t *testing.T) {
 		t.Fatalf("two signals: %+v", market.field())
 	}
 	topic.Market = market.field()
-	if kept, rejected := liveAdmitCards([]LiveTopic{topic}, nil); len(kept) != 0 ||
+	if kept, rejected := liveAdmitCards([]LiveTopic{topic}); len(kept) != 0 ||
 		len(rejected) != 1 || rejected[0].Code != liveRejectMarketFormed {
 		t.Fatal("formed market must never be admitted")
 	}

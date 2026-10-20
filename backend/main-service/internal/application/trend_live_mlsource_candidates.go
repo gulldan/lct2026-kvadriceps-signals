@@ -171,7 +171,7 @@ func liveMLExtractPool(umbrella LiveTopic, documents []StudyPaper, metadata map[
 
 func liveMLRecordTexts(topic LiveTopic) map[string]string {
 	texts := map[string]string{}
-	for _, channel := range []*LiveChannel{topic.Patents, topic.PatentsCN, topic.Registry, topic.Web, topic.Corpus} {
+	for _, channel := range []*LiveChannel{topic.Patents, topic.PatentsCN, topic.Registry, topic.Web, topic.Corpus, topic.Research} {
 		for _, record := range liveChannelRecords(channel) {
 			if strings.TrimSpace(record.Text) != "" {
 				texts[liveRecordPrefix+cmp.Or(record.ID, record.URL)] = record.Text

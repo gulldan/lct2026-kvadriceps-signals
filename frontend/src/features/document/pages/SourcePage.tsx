@@ -118,7 +118,7 @@ export function SourcePage() {
                 ? t("source.arxiv")
                 : evidence.source.provider === "github"
                   ? t("source.github")
-                  : t(`source.kind.${evidence.source.source_kind}`)
+                  : t(`source.kind.${evidence.source.genre ?? evidence.source.source_kind}`)
             }
             actions={
               <Button variant="outline" asChild>

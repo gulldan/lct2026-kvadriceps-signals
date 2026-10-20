@@ -2,6 +2,8 @@ import contextlib
 import io
 import json
 import unittest
+from types import SimpleNamespace
+from urllib.error import HTTPError
 from unittest.mock import patch
 
 import itc
@@ -53,6 +55,103 @@ class CalculationContractTest(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, "document membership"):
                 itc.main()
         self.assertEqual(self.writes, [])
+
+    def test_unchanged_inputs_skip_only_theme_recalculation(self):
+        saved = {}
+        store = SimpleNamespace(get=saved.get, set=lambda key, value: saved.update({key: value.encode()}))
+
+        def run():
+            self.writes.clear()
+            with patch.object(itc, "login"), patch.object(itc, "gw", self.gateway), \
+                 patch.object(itc, "signature_store", return_value=store), \
+                 patch.object(itc, "embed_all", side_effect=lambda texts: [[1.0, 0.0]] * len(texts)), \
+                 patch.object(itc, "DRY", False), contextlib.redirect_stdout(io.StringIO()):
+                itc.main()
+            return [path for path, _, _ in self.writes]
+
+        themes = ["/clusters/c0/itc", "/clusters/c1/itc"]
+        self.assertEqual(run(), themes)
+        self.assertEqual(run(), [])
+        with patch.object(itc, "FORCE", True):
+            self.assertEqual(run(), themes)
+        self.themes[1]["params"] = {"members": ["d2"]}
+        self.assertEqual(run(), themes)
+
+    def test_hypothesis_link_requires_unambiguous_cited_document_membership(self):
+        self.themes[1]["params"] = {"members": ["d3", "d4"]}
+        evidence = {
+            "backed": [{"document_id": "d1", "stance": "supports", "snippet": "Evidence"}] * 2,
+            "unrelated": [{"document_id": "outside", "stance": "supports", "snippet": "Evidence"}],
+            "split": [{"document_id": d, "stance": "supports", "snippet": "Evidence"} for d in ("d1", "d3")],
+            "context": [{"document_id": "d1", "stance": "context", "snippet": "Background"}],
+            "input": [{"document_id": "d1", "stance": "supports", "snippet": "Request", "origin": "input"}],
+            "partial": [{"document_id": "d1", "stance": "supports", "snippet": "Evidence"},
+                        {"document_id": "d3", "stance": "context", "snippet": "Other source"}],
+        }
+
+        def grounded(path, payload=None, method=None):
+            if payload is None and path == "/hypotheses":
+                return [{"id": key, "statement": "Identical semantic vector"} for key in evidence]
+            if payload is None and path.endswith("/evidence"):
+                return evidence[path.split("/")[2]]
+            return self.gateway(path, payload, method)
+
+        with patch.object(itc, "login"), patch.object(itc, "gw", grounded), \
+             patch.object(itc, "embed_all", side_effect=lambda texts: [[1.0, 0.0]] * len(texts)), \
+             patch.object(itc, "DRY", False), contextlib.redirect_stdout(io.StringIO()):
+            itc.main()
+        self.assertEqual(
+            [(path, payload) for path, payload, _ in self.writes if path.startswith("/hypotheses/")],
+            [("/hypotheses/backed/itc", {"cluster_id": "c0"})],
+        )
+
+    def test_concurrent_hypothesis_change_skips_only_expected_rejections(self):
+        self.themes[1]["params"] = {"members": ["d3", "d4"]}
+        for endpoint, code, reason, skipped in (
+            ("evidence", 404, "not found", True),
+            ("itc", 404, "not found", True),
+            ("itc", 400, "invalid argument: topic association requires cited documents", True),
+            ("itc", 400, "invalid argument: cited documents belong to multiple topics", True),
+            ("itc", 400, "invalid argument: topic membership is not supported by cited documents", True),
+            ("itc", 409, "resource changed; reload before retrying", True),
+            ("itc", 409, "request precondition failed", False),
+            ("evidence", 409, "resource changed; reload before retrying", False),
+            ("evidence", 400, "invalid argument: topic membership is not supported by cited documents", False),
+            ("itc", 400, "invalid argument: associated topic has no valid ITC", False),
+            ("itc", 400, "invalid request", False),
+            ("itc", 400, None, False),
+            ("evidence", 404, None, False),
+            ("evidence", 403, "forbidden", False),
+            ("itc", 503, "service temporarily unavailable", False),
+        ):
+            with self.subTest(endpoint=endpoint, code=code, reason=reason):
+                self.writes.clear()
+                body = json.dumps({"error": reason}).encode() if reason else b"<html>Error</html>"
+                error = HTTPError("http://gateway", code, "Error", {}, io.BytesIO(body))
+
+                def changed(path, payload=None, method=None):
+                    if path == f"/hypotheses/changed/{endpoint}":
+                        raise error
+                    if path == "/hypotheses":
+                        return [{"id": key} for key in ("changed", "backed")]
+                    if path.endswith("/evidence"):
+                        return [{"document_id": "d1", "stance": "supports", "snippet": "Evidence"}]
+                    return self.gateway(path, payload, method)
+
+                with patch.object(itc, "login"), patch.object(itc, "gw", changed), \
+                     patch.object(itc, "embed_all", side_effect=lambda texts: [[1.0, 0.0]] * len(texts)), \
+                     patch.object(itc, "DRY", False), contextlib.redirect_stdout(io.StringIO()):
+                    if skipped:
+                        itc.main()
+                    else:
+                        with self.assertRaises(HTTPError) as caught:
+                            itc.main()
+                        self.assertIs(caught.exception, error)
+                expected = [("/hypotheses/backed/itc", {"cluster_id": "c0"})] if skipped else []
+                self.assertEqual(
+                    [(path, payload) for path, payload, _ in self.writes if path.startswith("/hypotheses/")],
+                    expected,
+                )
 
     def test_weights_explain_aggregate_and_missing_dates_are_explicit(self):
         with open(itc.LOCAL_RUBRIC, encoding="utf-8") as source:

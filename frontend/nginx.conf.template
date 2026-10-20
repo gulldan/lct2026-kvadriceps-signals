@@ -48,11 +48,15 @@ server {
         proxy_set_header Connection        $connection_upgrade;
     }
 
+    # Регулярное выражение перекрывает префикс /assets/, поэтому воркер pdf.js с хешем в имени
+    # (около мегабайта) повторяет его заголовки сам, иначе браузер качал его заново.
     location ~* \.mjs$ {
         root /usr/share/nginx/html;
         types {
             application/javascript mjs;
         }
+        add_header Cache-Control "public, max-age=31536000, immutable";
+        add_header X-Content-Type-Options "nosniff" always;
         try_files $uri =404;
     }
 

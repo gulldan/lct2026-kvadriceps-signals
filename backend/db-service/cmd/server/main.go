@@ -78,18 +78,9 @@ func run(log zerolog.Logger) error {
 		return err
 	}
 	dbv1.RegisterDbServiceServer(srv.Registrar(), grpcserver.New(svc))
-	dbv1.RegisterDocumentQueriesServer(
-		srv.Registrar(),
-		grpcserver.NewDocumentQueries(
-			postgres.NewDocumentQueries(
-				db,
-				config.GetBool(
-					"RAG_SHARED_CORPUS",
-					true,
-				),
-			),
-		),
-	)
+	documentQueries := postgres.NewDocumentQueries(db, config.GetBool("RAG_SHARED_CORPUS", true))
+	go documentQueries.WarmStats(ctx, log)
+	dbv1.RegisterDocumentQueriesServer(srv.Registrar(), grpcserver.NewDocumentQueries(documentQueries))
 	dbv1.RegisterHypothesisJobsServer(srv.Registrar(), grpcserver.NewHypothesisJobs(postgres.NewHypothesisJobsRepo(db)))
 	dbv1.RegisterChatTurnsServer(srv.Registrar(), grpcserver.NewChatTurns(postgres.NewChatRepo(db)))
 	dbv1.RegisterIngestionControlServer(srv.Registrar(), grpcserver.NewIngestion(documents))

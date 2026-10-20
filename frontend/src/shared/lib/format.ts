@@ -103,3 +103,14 @@ export function formatDateShort(iso: string): string {
   if (!iso || Number.isNaN(d.getTime())) return "—";
   return d.toLocaleDateString(currentLocale());
 }
+
+// «мРНК», «iPhone», «eVTOL»: строчная перед заглавной — часть написания, а не начало фразы.
+export function upperFirst(text: string): string {
+  return /^\p{Ll}\p{Lu}/u.test(text) ? text : text.charAt(0).toLocaleUpperCase() + text.slice(1);
+}
+
+// Словарь ICU пишет русские названия без «ё», а интерфейс её сохраняет.
+export function regionNames(language: string): (code: string) => string {
+  const names = new Intl.DisplayNames(language, { type: "region" });
+  return (code) => (names.of(code) ?? code).replace(/(Соедин|Объедин)ен/g, "$1ён");
+}

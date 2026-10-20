@@ -1,7 +1,7 @@
 import type { TFunction } from "i18next";
 import type { CreateHypothesisInput, RadarBet } from "@/features/hypothesis";
 import type { LiveDetail, LiveTopic } from "./liveApi";
-import { signalSources } from "./signalSources";
+import { signalSources, sourceGenreLabel } from "./signalSources";
 
 export interface SignalBetForm {
   title: string;
@@ -108,7 +108,7 @@ export function signalHypothesisInput({
               defaultValue: passport?.publisher_type || t("source.publisher.unknown"),
             }),
             passport?.genre && passport.genre !== "unknown"
-              ? t(`source.genre.${passport.genre}`, { defaultValue: passport.genre })
+              ? sourceGenreLabel(passport.genre, t)
               : undefined,
             t("source.language", {
               language: t(`source.languages.${passport?.language || "unknown"}`, {

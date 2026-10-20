@@ -65,9 +65,9 @@
   "intro": "通过科学论文和可验证的来源探索新兴方向。",
   "formLabel": "搜索技术方向",
   "query": "技术方向",
-  "queryPlaceholder": "例如：检索增强生成（RAG）",
+  "queryPlaceholder": "例如：免疫疗法、储能或作物抗逆性",
   "analyze": "查找方向",
-  "examples": "示例：",
+  "examples": "示例",
   "period": "时间范围：{{start}}–{{end}}",
   "start": "开始日期（UTC）",
   "cutoff": "纳入截至该日的数据（UTC）",
@@ -271,7 +271,8 @@
     "historyExplanation": "时间图按首次发现的发表年份将每篇科学论文计一次。在选择“全部年份”之前，筛选会排除无日期的论文。方向构成来自当前分析：切换年份不会恢复语料库过去的状态。找到的论文数本身不能证明技术增长。",
     "rankingExplanation": "排名中目前有 {{count}} 个方向。其检查不影响地图的可用性：趋势确认之前也可以研究找到的来源。",
     "querySettings": "参数",
-    "timelinePan": "向左滑动 → 查看更多年份"
+    "timelinePan": "向左滑动 → 查看更多年份",
+    "noMatchesHint": "尝试医学、能源、农业或其他领域中更宽泛的查询。下方显示分析可用的来源。"
   },
   "study": {
     "title": "技术雷达",
@@ -674,7 +675,77 @@
         "crop-genomics": "作物基因组学与育种",
         "climate-adaptation": "气候适应与灾害预测",
         "methane-monitoring": "甲烷与排放监测",
-        "marine-carbon": "海洋碳移除"
+        "marine-carbon": "海洋碳移除",
+        "datacenter-power": "AI 数据中心电力需求",
+        "grid-forming": "构网型逆变器",
+        "virtual-power-plant": "虚拟电厂",
+        "fashion-llm": "时尚与服装多模态 AI",
+        "video-try-on": "视频虚拟试穿",
+        "prediction-markets": "预测市场",
+        "agentic-payments": "智能体支付与商务",
+        "food-ai": "食品与营养 AI",
+        "game-world-models": "可交互世界模型",
+        "clinical-agents": "临床 AI 智能体",
+        "patient-digital-twin": "患者数字孪生",
+        "driving-world-model": "自动驾驶世界模型",
+        "disaggregated-serving": "解耦式大模型推理服务",
+        "housing-markets": "住房与租赁市场",
+        "world-action-models": "机器人世界动作模型",
+        "geo-search": "生成式引擎优化",
+        "ai-video-detection": "AI 生成视频检测",
+        "multi-shot-video": "多镜头长视频生成",
+        "legal-benchmarks": "法律大模型基准",
+        "wireless-world-model": "无线网络世界模型",
+        "ai-labor-exposure": "职业的 AI 暴露度",
+        "household-robots": "家用机器人",
+        "pedagogical-agents": "教学 AI 智能体",
+        "ai-companionship": "AI 陪伴",
+        "live-commerce": "直播电商",
+        "eda-agents": "芯片设计 AI 智能体",
+        "ai-psychosis": "聊天机器人心理健康风险",
+        "child-online-safety": "儿童网络安全",
+        "song-generation": "完整歌曲生成",
+        "orbital-datacenters": "轨道数据中心",
+        "team-sports-ai": "团队运动基础模型",
+        "sports-betting": "体育博彩分析",
+        "proactive-assistant": "主动式 AI 助手",
+        "agent-security": "AI 智能体安全",
+        "materials-agents": "材料与化学 AI 智能体",
+        "generative-crystals": "生成式晶体设计",
+        "text-to-cad": "文本生成 CAD",
+        "agri-agents": "农业 AI 智能体",
+        "water-ai": "水务与洪水 AI",
+        "microplastics": "微塑料监测",
+        "geo-foundation": "地理空间基础模型",
+        "biodiversity-ai": "生物多样性基础模型",
+        "bio-agents": "生物与药物发现 AI 智能体",
+        "ai-scientist": "AI 科学家智能体",
+        "tourism-ai": "旅游与酒店 AI",
+        "cultural-heritage-ai": "博物馆与文化遗产 AI",
+        "poi-llm": "基于大模型的旅行地点推荐",
+        "bundibugyo": "本迪布焦埃博拉病毒疫情",
+        "glp1-drugs": "糖尿病以外的GLP-1药物",
+        "social-prescribing": "社会处方",
+        "bridge-recombinase": "桥接重组酶与RNA引导转座子",
+        "rna-biopesticides": "RNA生物农药",
+        "precision-fermentation": "精准发酵",
+        "nuclear-clock": "钍-229核钟",
+        "higgsino-lz": "希格斯微子暗物质与LZ事件",
+        "lithium-tantalate": "薄膜钽酸锂光子学",
+        "cfet": "互补场效应晶体管与二维晶体管",
+        "nitrate-to-ammonia": "电化学硝酸盐制氨",
+        "lithium-extraction": "直接提锂",
+        "natural-hydrogen": "天然（地质）氢",
+        "perovskite-tandem": "钙钛矿叠层太阳能电池",
+        "deep-sea-mining": "深海采矿",
+        "phase-field-fracture": "相场断裂建模",
+        "smart-rings": "智能戒指与可穿戴设备",
+        "influencer-marketing": "网红营销",
+        "climate-anxiety": "气候焦虑",
+        "cognitive-offloading": "学习中的认知卸载",
+        "datacenter-water": "数据中心水足迹",
+        "liquid-cooling": "数据中心液冷与浸没式冷却",
+        "datacenter-siting": "数据中心选址与土地利用"
       },
       "discovered": "自动发现",
       "discoveredHint": "自动发现合并语义相近的标题和摘要。较早的更新可能使用了标题中的重复短语。每个方向都保存了方法和样本。",
@@ -702,7 +773,8 @@
         "help": "如何计算",
         "guide": "越靠右，截至更新日期最近六个月的 arXiv 论文越多；越靠上，相对于之前相同长度周期的新增论文越多。两个日期范围显示在标题下方。颜色表示相对增长：100 → 150 篇论文即 +50%。两轴均为对数刻度：纵轴在零附近压缩并保留正负号，因此相同的垂直距离表示相同的倍数关系，而非相同的差值。GitHub、Hacker News、专利和网站补充卡片内容。",
         "groupsHelp": "圆的大小表示什么",
-        "groupsGuide": "作者团队合并有共同作者的论文。新团队首次出现在此周期。大小表示 {{period}} 内 {{min}}–{{max}} 个新团队；圆越大，新团队越多。这不是公司或单个作者的数量。"
+        "groupsGuide": "作者团队合并有共同作者的论文。新团队首次出现在此周期。大小表示 {{period}} 内 {{min}}–{{max}} 个新团队；圆越大，新团队越多。这不是公司或单个作者的数量。",
+        "money": "描边：已有资金投入该主题"
       },
       "table": {
         "aria": "方向",
@@ -723,7 +795,11 @@
         },
         "unique": "独有论文，%",
         "branch": "领域",
-        "citations": "引用"
+        "citations": "引用",
+        "industry": "行业",
+        "money": "资金",
+        "moneyHint": "半年内早期资金事件：{{count}}",
+        "moneyInvestors": "投资方：{{names}}"
       },
       "description": {
         "by": "由模型根据该方向的论文撰写",
@@ -748,7 +824,8 @@
         "web": "网站",
         "patents_cn": "中国专利",
         "registry": "登记库",
-        "corpus": "文档"
+        "corpus": "文档",
+        "research": "研究"
       },
       "channels": {
         "papers": "arXiv 论文",
@@ -758,7 +835,8 @@
         "patents": "专利",
         "web": "网站",
         "registry": "国家登记库",
-        "corpus": "已上传的文档"
+        "corpus": "已上传的文档",
+        "research": "研究目录"
       },
       "tabsLegend": "破折号表示未收集该渠道的历史；零表示已收集但没有匹配。",
       "dynamics": "月度变化",
@@ -807,7 +885,8 @@
         "comparison": "{{prior}} → {{recent}}",
         "unchanged": "论文数量不变",
         "more_other": "增加{{amount}}篇论文",
-        "fewer_other": "减少{{amount}}篇论文"
+        "fewer_other": "减少{{amount}}篇论文",
+        "money": "早期资金："
       },
       "partialQuarter": "{{period}} · 本月尚未结束",
       "semantic": {
@@ -846,8 +925,11 @@
         "lineage_budget": "仓库来源已核 {{checked}}，剩余 {{pending}}。其余将在后续采集中核验。",
         "lineage_unavailable": "当前不核查仓库来源。此前的观测已保留。",
         "scholar_capped": "从检索到的 {{found}} 篇中取用 {{taken}} 篇论文。",
+        "pubmed_added": "从 PubMed 新增科研文献 {{added}} 篇，已去除重复记录。",
+        "pubmed_capped": "PubMed 检索到 {{found}} 条记录，纳入 {{taken}} 条。月份覆盖不完整，不据此评估增长。",
+        "pubmed_unavailable": "PubMed 不可用或响应不完整。这表示数据缺失，并非没有论文。",
         "scholar_journals": "已加入 arXiv 之外期刊的论文：{{added}} 篇。",
-        "scholar_unavailable": "期刊检索不可用：论文仅来自 arXiv。",
+        "scholar_unavailable": "OpenAlex 检索不可用，其他可用科研来源的文献仍予以保留。",
         "scholar_no_terms": "查询中没有拉丁词，因此未检索期刊。",
         "arxiv_kept": "取用 arXiv 论文：检索到 {{found}} 篇中的 {{kept}} 篇。",
         "arxiv_unavailable": "部分论文当前不可用，历史完整性受限。",
@@ -876,14 +958,16 @@
         "scholar_sampled": "按窗口月份逐月检索期刊：在 {{found}} 篇中取 {{taken}} 篇，没有遗漏月份。",
         "classifier_not_connected": "训练模型尚未接入——这不是错误。此处显示的是按筛选规则挑出的候选，供专家评审，而非模型评分。",
         "classifier_unavailable": "训练模型未完成所有候选的评分。已有评分已保留，评分缺失情况已体现在筛选结果中。",
-        "qualification_unavailable": "并非所有候选都完成了来源核验：搜索时间不足。它们单独列在“未及核查”中。",
+        "qualification_unavailable": "并非所有候选都完成了来源核验：搜索时间不足。它们单独列在“未完成核查”中。",
         "summary": "采集说明：{{total}}",
         "summaryFailures": "采集说明：{{total}}，其中未响应的来源 — {{failures}}",
         "bounds": "采集边界 · {{total}} —— 这是方法的固有属性，而非错误。",
         "boundsMore": "再显示 {{total}} 条",
         "openalex_budget": "OpenAlex 当日期刊检索额度已用完——未加入 arXiv 之外的期刊论文。剩余额度留给模型所需的术语历史，于 UTC 00:00 重置。",
         "openalex_exhausted": "OpenAlex 当日额度已全部用完：模型在没有术语历史的情况下评估候选，评分精度较低。于 UTC 00:00 重置。",
-        "qualification_budget": "搜索时间在全部候选核验完成前已用尽。未核验的候选单独列在“未及核查”中。"
+        "qualification_budget": "搜索时间在全部候选核验完成前已用尽。未核验的候选单独列在“未完成核查”中。",
+        "research_sample": "DataCite 和 OpenAIRE 提供了 {{records}} 条抽样记录。该有限样本不能用于测量增长或新颖性。",
+        "research_unavailable": "部分研究目录不可用。这表示数据缺失，并非没有研究。"
       },
       "collection": {
         "title": "数据更新",
@@ -962,7 +1046,7 @@
         "preparing": "正在准备搜索",
         "elapsedLabel": "已用时间",
         "budgetLabel": "预计用时",
-        "budgetValue": "通常 12–13 分钟",
+        "budgetValue": "通常 3–5 分钟",
         "durationHint": "具体时间取决于各来源的响应速度和资料数量。",
         "previous": "上次搜索耗时 {{time}}。",
         "reconnectingTitle": "正在重新连接",
@@ -1066,10 +1150,25 @@
         "industrialAi": "工业 AI",
         "aiInfra": "AI 基础设施",
         "robotics": "机器人",
-        "fintech": "金融科技"
+        "fintech": "金融科技",
+        "medicine": "医学与诊断",
+        "agriculture": "农业",
+        "energy": "能源与储能",
+        "climate": "气候与环境",
+        "materials": "材料与化学",
+        "biotech": "生物技术与药物研发",
+        "economics": "经济与社会",
+        "space": "航天与天体物理"
       },
       "weakSignals": "弱信号",
-      "quickQueries": "示例查询"
+      "quickQueries": "示例查询",
+      "diverseOrder": "不同研究领域",
+      "chooseIndustry": "选择搜索行业",
+      "allIndustries": "所有行业与研究方向",
+      "industryQuery": "弱信号：{{industry}}",
+      "industryCatalog": "行业目录",
+      "industryLabel": "行业",
+      "industryAll": "全部行业"
     }
   },
   "corpusSelection": "在所选文献集中检索",
@@ -1077,7 +1176,13 @@
     "entity": "查看对象",
     "directions": "方向",
     "technologies": "文档中的技术",
-    "primary": "主要"
+    "primary": "主要",
+    "money": "早期资金",
+    "technologiesShort": "技术",
+    "map": "世界地图",
+    "mapShort": "地图",
+    "moneyShort": "资金",
+    "new": "新"
   },
   "catalogue": {
     "title": "已上传文档中的技术",
@@ -1178,7 +1283,10 @@
       "basis": {
         "expert_review": "专家修订",
         "extraction": "来自来源",
-        "alias": "来自来源"
+        "alias": "来自来源",
+        "source_text": "来自来源",
+        "normalization": "规范写法",
+        "translation": "译名"
       }
     },
     "merge": {
@@ -1520,14 +1628,17 @@
       "software": "软件",
       "software-paper": "软件描述论文",
       "standard": "标准",
-      "supplementary-materials": "补充材料"
+      "supplementary-materials": "补充材料",
+      "investment_thesis": "投资论点",
+      "investor_commentary": "投资者评论"
     },
     "unknownDate": "未提供日期",
     "sourceName": "刊物/平台：{{name}}",
     "discoveredVia": "检索来源：{{source}}",
     "discovery": {
       "arxiv": "arXiv",
-      "openalex": "OpenAlex"
+      "openalex": "OpenAlex",
+      "pubmed": "PubMed"
     }
   },
   "counters": {
@@ -1551,7 +1662,7 @@
     "volumeAnalysisValue": "{{papers}} 篇 · 约 {{tokens}} 词元",
     "volumeClassifier": "训练模型输入",
     "volumeClassifierValue": "{{candidates}} 项技术 · {{sources}} 个来源 · 约 {{tokens}} 词元 · {{size}}",
-    "unchecked": "未及核查"
+    "unchecked": "未完成核查"
   },
   "confidence": {
     "label": "已通过的规则",
@@ -1630,9 +1741,9 @@
     "topUpWith": "未通过全部雷达检查：{{check}}",
     "rescoring": "模型评分正在更新：当前显示的是旧版本评分，新评分将在一两分钟内自动替换。",
     "topUpTally": "其中 {{count}} 项未通过全部雷达检查——原因写在每个卡片上。",
-    "uncheckedSection": "未及核查 · {{count}}",
-    "uncheckedTitle": "未及核查：{{count}}",
-    "uncheckedHint": "在搜索时限内来源核查未覆盖这些候选或未完成。这不是否决：尚无结论。"
+    "uncheckedSection": "未完成核查 · {{count}}",
+    "uncheckedTitle": "未完成核查：{{count}}",
+    "uncheckedHint": "每次搜索只对有限数量的候选进行来源核查。这些候选超出了队列或搜索时限，或核查中断——每项都注明了原因。这不是否决：尚无结论。"
   },
   "executive": {
     "menuWord": "管理层简报 — Word",
@@ -1758,8 +1869,10 @@
       "mature": "成熟技术",
       "noise": "噪声",
       "failed": "衰退方向",
-      "insufficient_data": "数据不足"
+      "insufficient_data": "数据不足",
+      "undecided": "无法判定"
     },
+    "undecidedReason": "模型无法在保证覆盖率的前提下将该技术与炒作区分开：在此评分下，“弱信号”和“非弱信号”都可能成立。需要检查市场层。",
     "evidenceMissing": "未附支持性引用；该主张需要审核。",
     "evidenceSourceMissing": "响应中缺少引用来源：{{id}}",
     "evidenceVerified": "语言模型检查了主张与引用的对应关系；仍需分析师审核。",
@@ -1808,7 +1921,11 @@
     "modelNote": "贡献表示特征使评分变化的幅度：正值提高，负值降低。模型基于组织方的一百个参考信号训练。",
     "aboutMethod": "计算说明",
     "searchCoverage": "查询覆盖",
-    "searchCoverageValue": "考察候选 {{candidates}}，入选 {{selected}}"
+    "searchCoverageValue": "考察候选 {{candidates}}，入选 {{selected}}",
+    "priorArt": "该技术的早期研究",
+    "priorArtQuery": "检索 {{date}} 之前发表的「{{query}}」相关研究。",
+    "study_limitations": "研究局限",
+    "studyLimitationsMissing": "现有来源未能证实研究局限。这不代表不存在局限。"
   },
   "transfer": {
     "open": "创建假设",
@@ -1849,8 +1966,9 @@
     "link": "雷达模型如何在主办方参考集上接受检验",
     "loadError": "无法加载模型检验报告。",
     "percent": "{{percent}}%",
+    "sourceCoverage": "内置分类器 {{version}} 仅在其他来源的科学文献于所选时段内支持同一技术机制时，才将经核实为空的 arXiv 窗口视为中性。仅有名称匹配并不足够。本页指标和文件检查评估的是原始权重，不包含此来源覆盖规则。",
     "aboutTitle": "这是什么模型",
-    "about": "逻辑回归，版本 {{version}}。模型在五个来源中考察论文用来称呼该技术的短语：arXiv 论文、OpenAlex 中的术语历史、Hacker News 讨论、语言模型给出的成熟度评估，以及名称本身的含义。每个特征按各自权重相加，总和再换算为 0 到 100% 的评分。评分达到 {{threshold}}% 及以上的技术被视为弱信号。",
+    "about": "逻辑回归，版本 {{version}}。模型在五个来源中考察论文用来称呼该技术的短语：arXiv 论文、OpenAlex 中的术语历史、Hacker News 讨论、语言模型给出的成熟度评估，以及名称本身的含义。每个特征按各自权重相加，总和再换算为 0 到 100% 的评分。评分达到 {{threshold}}% 及以上的技术被视为弱信号，除非评分落在阈值附近的“无法判定”区间内（见下文）。",
     "training": "训练集共 {{total}} 项技术，来自五个来源。特征按截至 {{month}} 测得，所用代码与雷达为候选计算特征时相同。",
     "trainingTitle": "训练集",
     "source": "来源",
@@ -2073,6 +2191,11 @@
     "matrixWeak": "模型：弱信号",
     "matrixOther": "模型：非弱信号",
     "abstention": "弃权。在雷达中，若短语在数据里几乎不出现——arXiv 窗口中仅一篇、OpenAlex 中不超过一篇，或到处都没有——模型不作判断。按此规则，雷达会搁置 {{total}} 个参考信号中的 {{signals}} 个，以及其他来源的 {{others}} 行。这里所有行的特征都已预先采集，因此全部评分；去掉被搁置的行后 {{metric}} 为 {{f1}}。",
+    "conformalTitle": "第三种状态：“无法判定”",
+    "conformalIntro": "在同一评分之上，模型构建可接受标签的集合，使真实标签落入其中的比例不低于 {{coverage}}——对信号和非信号分别成立（类条件共形预测）。当两个标签都可接受时，雷达显示“无法判定”，且不将候选计为有把握的判断：评分在 {{low}} 到 {{high}} 之间时，模型无法在此保证下区分信号与炒作，需要检查市场层。阈值 {{threshold}} 位于该区间内，因此区间之外的判定与阈值判定一致。",
+    "conformalCheck": "无泄漏检验：边界在外层循环的四个部分上计算，并应用于第五部分，因此任何一行都不参与计算其自身的边界。实际覆盖率：信号为 {{weak}}，非信号为 {{notWeak}}；“无法判定”占 {{undecided}} 的行。有把握的“弱信号”精确率为 {{precision}}，而在相同行上仅按单一阈值判定为 {{baseline}}。",
+    "conformalTable": "按来源的有保证判定",
+    "notWeak": "非弱信号",
     "slicesTitle": "切片：数字取决于比较对象",
     "slicesIntro": "主要数字基于参考集和团队示例——多为容易区分的成熟技术。在困难负例（当前炒作）以及全部行上，精确率更低。所有负例均由团队挑选，没有独立的检验集：本报告不能保证在组织方封闭数据集上的结果。",
     "slice": "样本",
@@ -2244,6 +2367,8 @@
       "4": "部署"
     },
     "growthNew_other": "半年内 +{{count}} 篇",
+    "fresh_other": "半年内 +{{count}} 个来源",
+    "freshHint": "分析前半年内发布的分析来源",
     "growthUp": "半年内 ×{{ratio}}",
     "growthFlat": "半年内无增长",
     "growthDown": "半年内下降",
@@ -2258,10 +2383,244 @@
     "scoreMeaning": "与弱信号的相似度",
     "scoreMissing": "模型数据不足",
     "factsSince_other": "{{count}} 个来源 · 首次出现于 {{year}} 年",
-    "order": "已确认的弱信号排在最前，其余按图上的百分比（与弱信号的相似度）排序。技术是否通过雷达检查见左侧标记",
+    "order": "已确认的弱信号排在最前，其次是通过雷达检查的其余技术，最后是为补足十五项而加入的技术；每组内按图上的百分比（与弱信号的相似度）排序。检查结果见左侧标记",
     "notPassed": "未通过全部雷达检查",
     "needSecond": "需要第二个独立来源",
     "noModelScore": "模型未评分",
     "similarityOf": "与弱信号相似度 {{percent}} %"
+  },
+  "money": {
+    "title": "早期资金流向",
+    "intro": "基于公开来源的 {{from}} 至 {{through}} 融资轮、资助和加速器入选。重点是行业表：哪里资金跑在科研前面，哪里科研在增长而资金尚未到来。",
+    "loading": "早期资金层正在后台构建：首次运行需要几分钟。",
+    "failed": "早期资金层暂不可用：来源未响应，一小时内重试。",
+    "empty": "没有符合所选筛选条件的事件。",
+    "regionLabel": "地区",
+    "kindLabel": "类型",
+    "all": "全部",
+    "regions": {
+      "americas": "北美",
+      "europe": "欧洲",
+      "latam": "拉丁美洲",
+      "mena": "中东和土耳其",
+      "africa": "非洲",
+      "asia": "亚洲",
+      "cis": "俄罗斯与独联体",
+      "unknown": "未注明地区"
+    },
+    "kinds": {
+      "round": "融资轮",
+      "grant": "初创企业资助",
+      "accelerator": "加速器",
+      "development": "开发性金融",
+      "research": "科研资助"
+    },
+    "stages": {
+      "pre_seed": "种子前轮",
+      "seed": "种子轮",
+      "series_a": "A轮",
+      "unknown": "未注明阶段",
+      "grant": "资助",
+      "accelerator": "加速器",
+      "development": "开发性金融",
+      "research": "科研资助"
+    },
+    "rubricsTitle": "行业：资金与科研",
+    "rubricsHint": "增长为行业在全部资金事件和全部雷达论文中占比的变化。当前月份不完整，不计入比较。",
+    "periods": {
+      "money": "资金（按季度）：{{prior}} → {{recent}}",
+      "science": "科研（按半年）：{{prior}} → {{recent}}"
+    },
+    "monthsTitle": "按月事件",
+    "monthEvents": "事件：{{count}}",
+    "window": {
+      "prior": "之前",
+      "recent": "之后",
+      "current": "进行中"
+    },
+    "latestTitle": "最新交易",
+    "rubricBasisName": "行业依据公司名称",
+    "sourcesTitle": "来源及其覆盖范围",
+    "built": "更新于 {{date}}",
+    "gaps": "如实说明的空白：中东和以色列阻止自动采集；中国、日本和印度需要出版方许可；俄罗斯每周约有两笔早期交易。失败的来源显示在表中：其零值并不意味着没有交易。",
+    "sources": {
+      "name": "来源",
+      "records": "记录",
+      "events": "事件",
+      "license": "条款",
+      "failed": "失败：{{error}}",
+      "kinds": {
+        "dataset": "公开数据集",
+        "registry": "政府登记",
+        "feed": "出版方订阅源"
+      }
+    },
+    "quadrant": {
+      "angel_window": "天使窗口",
+      "angel_windowHint": "科学在增长而早期资金仍少：最早期投资的时机",
+      "consensus": "共识",
+      "consensusHint": "科学和资金都在增长：最早期进入已很昂贵",
+      "money_first": "资金领先科学",
+      "money_firstHint": "资金增长却缺乏科研基础：炒作风险",
+      "quiet": "平静",
+      "quietHint": "科学和资金都没有增长"
+    },
+    "plaque": {
+      "title": "投资者已注意到",
+      "basis": "近六个月文本中提及该技术名称或同义词的早期融资、初创企业资助和加速器入选。",
+      "count": "六个月内事件：{{total}}",
+      "kinds": "融资轮 {{round}} · 资助 {{grant}} · 加速器 {{accelerator}} · 开发性金融 {{development}} · 科研资助 {{research}}",
+      "none": "六个月内未找到提及该名称的早期融资、资助或加速器入选。"
+    },
+    "regionsTitle": "地区",
+    "kpi": {
+      "total": "全部事件",
+      "classified": "已知行业 {{share}} %",
+      "stages": "天使前 {{preSeed}} · 种子 {{seed}} · A 轮 {{seriesA}}",
+      "round": "初创企业融资轮",
+      "grant": "企业资助",
+      "accelerator": "项目入选",
+      "development": "开发性金融承诺",
+      "research": "研究人员资助"
+    },
+    "table": {
+      "industry": "行业",
+      "events": "事件",
+      "money": "资金",
+      "science": "科研",
+      "verdict": "结论",
+      "few": "数据不足",
+      "showAll": "显示全部行业 · {{count}}",
+      "collapse": "收起"
+    },
+    "latest": {
+      "date": "日期",
+      "company": "公司",
+      "stage": "阶段",
+      "amount": "金额",
+      "investors": "投资方",
+      "unnamed": "未注明"
+    }
+  },
+  "world": {
+    "title": "研究与融资",
+    "aria": "各国论文增长",
+    "loading": "正在后台收集科研国家数据：首次需要几分钟。",
+    "failed": "世界地图暂不可用：OpenAlex 未响应，一小时后重试。",
+    "updated": "快照日期：{{date}}",
+    "table": {
+      "aria": "趋势",
+      "caption": "选择趋势以查看详情",
+      "name": "趋势",
+      "papers": "论文",
+      "growth": "增长",
+      "papersHelp": "论文计数方式",
+      "papersMeaning": "最近半年的雷达论文数；下方为相较上期的变化。横线表示没有比较基准。地图展示更广泛的OpenAlex研究背景。",
+      "funding": "事件",
+      "fundingMeaning": "与趋势关联的融资事件：早期融资、资助和入选。统计事件数而非金额。"
+    },
+    "tip": {
+      "science": "按国家的科研",
+      "direction": "方向论文（此前）",
+      "radar": "雷达论文",
+      "teams": "团队 新增 / 全部",
+      "deals": "融资事件",
+      "technologies": "卡片中的技术",
+      "pending": "卡片仍在计算",
+      "country": "雷达方向论文：{{recent}}（此前 {{prior}}）"
+    },
+    "world": "所有国家",
+    "regions": {
+      "cis": "俄罗斯与独联体",
+      "mena": "中东"
+    },
+    "region": {
+      "deals": "所选时段的事件数：{{count}}",
+      "months": "按月",
+      "rubrics": "行业",
+      "all": "全部交易与资助",
+      "noSources": "该地区的投资事件数据不可用，并不意味着没有投资。",
+      "signals": "该地区领先科研的信号",
+      "noSignals": "全球榜中没有此类信号。"
+    },
+    "selection": "已选信号",
+    "closeSelection": "关闭信号详情",
+    "openDirection": "打开方向",
+    "scienceLayer": "论文",
+    "moneyLayer": "融资",
+    "countryFilter": "科研国家",
+    "periodPending": "时间范围暂不可用",
+    "moneyScope": "按来源地区统计的事件",
+    "moneyPending": "投资数据暂不可用。",
+    "noData": "暂无数据",
+    "publications": "篇论文",
+    "events": "个事件",
+    "previous": "此前有{{count}}篇论文",
+    "reset": "重置",
+    "about": "来源与局限",
+    "scienceMethod": "OpenAlex：{{count}} 个雷达方向。地图仅覆盖这些方向，并非全部全球科研。同一篇论文可能属于多个方向和国家，因此不可将数值相加。",
+    "moneyMethod": "已连接来源中的早期融资、资助和入选事件。地区来自来源，可能与公司所在国不同。未确定地区的事件：{{count}}。这不是市场规模估计。",
+    "snapshot": "数据快照：论文 — {{science}}；投资 — {{money}}。快照日期不代表所有来源均在当天更新。",
+    "growthTitle": "论文增长",
+    "growthHelp": "如何阅读地图",
+    "growthMethod": "颜色表示与{{period}}相比的论文变化。OpenAlex，{{count}}个雷达方向。色阶两端为−50%及以下、+100%及以上。悬停查看准确值。斜线表示缺少数据或比较基准。",
+    "noComparison": "无法比较",
+    "noBaseline": "没有比较基准",
+    "fundingHelp": "融资统计说明",
+    "fundingMethod": "已连接来源中的早期融资、资助和加速器入选事件。统计事件数而非金额。地区来自数据来源，可能与公司所在国不同。横线表示没有可用数据。 地图和汇总仅包含已注明地区的事件。",
+    "fundingCount": "{{count}}个事件",
+    "fundingRegion": "事件 · {{region}}",
+    "keyboard": "使用方向键或拖动平移。加减键缩放，Home 键重置地图。",
+    "spikeLegend": "高度代表事件数量",
+    "fundingBreakdown": "融资构成",
+    "allRegions": "所有地区",
+    "markerRegions": {
+      "americas": "北美",
+      "europe": "欧洲",
+      "latam": "拉丁美洲",
+      "mena": "中东",
+      "africa": "非洲",
+      "asia": "亚洲",
+      "cis": "俄罗斯与独联体"
+    },
+    "investors": {
+      "title": "投资方 · {{place}}：{{count}}",
+      "marker": "{{region}}：基金与投资方 {{count}}",
+      "inCountry": "基金与投资方",
+      "legend": "硬币堆：总部位于该地区的基金与投资方，越高越多",
+      "rubrics": "投资方向",
+      "top": "最活跃",
+      "deals": "交易：{{count}}",
+      "sourcesLead": "数据：",
+      "moreSources": "另有 {{count}} 个来源",
+      "none": "公开登记和协会名单中没有来自此处的投资方。",
+      "tooltipTitle": "投资方 · {{place}}",
+      "tooltipCount": "总部位于该地区的基金、天使网络和加速器",
+      "tooltipTypes": "类型",
+      "tooltipHint": "点击后在地图下方查看最活跃的基金、半年内交易和数据来源。"
+    }
+  },
+  "investors": {
+    "noRubrics": "所选投资方未注明行业。",
+    "types": {
+      "vc_manager": "基金管理人",
+      "vc_fund": "风险投资基金",
+      "seed_fund": "种子基金",
+      "angel_fund": "天使基金",
+      "angel_network": "天使网络",
+      "accelerator": "加速器",
+      "cvc": "企业风险投资",
+      "government": "政府项目",
+      "family_office": "家族办公室",
+      "other": "其他"
+    },
+    "stages": {
+      "angel": "天使轮",
+      "pre_seed": "种子前轮",
+      "seed": "种子轮",
+      "series_a": "A轮",
+      "growth": "成长期"
+    },
+    "attribution": "Fundraising Fox Open Dataset (CC BY 4.0)"
   }
 }

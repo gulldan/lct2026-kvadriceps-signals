@@ -7,6 +7,7 @@ import (
 	"errors"
 	"fmt"
 	"log/slog"
+	"maps"
 	"slices"
 	"strings"
 	"unicode"
@@ -167,12 +168,18 @@ func liveIntersect(a, b []int32) []int32 {
 
 // LoadWindow поднимает окно из кеша, чтобы после перезапуска поиск работал до первого ночного цикла.
 func (s *TrendLiveService) LoadWindow(ctx context.Context) {
-	cache := s.loadWindowCache(ctx)
+	cache := s.loadWindowCache(ctx, liveOAIWindowKey, liveOAISets())
 	if len(cache.Papers) == 0 {
 		return
 	}
-	s.setWindow(cache.Papers, cache.Metadata)
-	slog.Info("radar window loaded", "papers", len(cache.Papers))
+	bio := s.loadWindowCache(ctx, liveRxivWindowKey, liveRxivServers())
+	other := s.loadWindowCache(ctx, liveCrossrefWindowKey, liveCrossrefSets())
+	metadata := make(map[string]LivePaperMetadata, len(cache.Metadata)+len(bio.Metadata)+len(other.Metadata))
+	for _, part := range []map[string]LivePaperMetadata{cache.Metadata, bio.Metadata, other.Metadata} {
+		maps.Copy(metadata, part)
+	}
+	s.setWindow(slices.Concat(cache.Papers, bio.Papers, other.Papers), metadata)
+	slog.Info("radar window loaded", "papers", len(cache.Papers), "preprints", len(bio.Papers)+len(other.Papers))
 }
 
 var ErrLiveWindowEmpty = errors.New("live: window not collected yet")

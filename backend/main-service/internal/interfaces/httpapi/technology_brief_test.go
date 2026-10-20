@@ -51,7 +51,7 @@ func (w *briefWriter) write(_ context.Context, in application.TechnologyBriefInp
 	return application.TechnologyBrief{TechnologyID: in.TechnologyID, Hypothesis: "Если …, то …, потому что …"}, nil
 }
 
-func TestTechnologyBriefIsWrittenOnPostAndServedFromCache(t *testing.T) {
+func TestTechnologyBriefIsWrittenOnPostAndSurvivesRestart(t *testing.T) {
 	h := newHarness(t)
 	h.api.SetTechnologies(briefCatalogue{technology: extractdoc.Technology{TechnologyID: "t1",
 		CanonicalName: "Voice replay detection", Aliases: []extractdoc.Alias{{Value: "nonce challenge"}},
@@ -61,18 +61,20 @@ func TestTechnologyBriefIsWrittenOnPostAndServedFromCache(t *testing.T) {
 			{MentionID: "m2", SourceRevisionID: "r1", Inputs: []string{"audio"}},
 		}}})
 	writer := &briefWriter{}
-	h.api.SetTechnologyBrief(writer.write)
+	h.api.SetTechnologyBrief(writer.write, h.store)
 	token := h.token(t, "u1", "expert")
-	if r := h.do(t, http.MethodGet, "/technologies/t1/brief", token, ""); r.code != http.StatusNotFound {
+	if r := h.do(t, http.MethodGet, "/technologies/t1/brief", token, ""); r.code != http.StatusNoContent {
 		t.Fatalf("brief before writing: %d %s", r.code, r.body)
 	}
 	if r := h.do(t, http.MethodPost, "/technologies/t1/brief", token, ""); r.code != http.StatusOK ||
 		!strings.Contains(r.body, `"hypothesis":"Если`) {
 		t.Fatalf("write brief: %d %s", r.code, r.body)
 	}
+	// Новая установка — как после выкладки: память пуста, бриф приходит из хранилища без вызова модели.
+	h.api.SetTechnologyBrief(writer.write, h.store)
 	if r := h.do(t, http.MethodGet, "/technologies/t1/brief", token, ""); r.code != http.StatusOK ||
 		!strings.Contains(r.body, `"hypothesis":"Если`) {
-		t.Fatalf("cached brief: %d %s", r.code, r.body)
+		t.Fatalf("stored brief: %d %s", r.code, r.body)
 	}
 	writer.mu.Lock()
 	defer writer.mu.Unlock()

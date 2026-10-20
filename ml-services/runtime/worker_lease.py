@@ -27,6 +27,7 @@ _FINISH = """
 if redis.call('GET',KEYS[1])~=ARGV[1] then return 0 end
 redis.call('HSET',KEYS[2],'state',ARGV[2],'error',ARGV[3],'finished',ARGV[4])
 if ARGV[2]=='succeeded' and KEYS[3]~='' then redis.call('SET',KEYS[3],ARGV[5]) end
+if ARGV[2]=='succeeded' then redis.call('SET',KEYS[4],KEYS[2]) end
 if ARGV[2]=='queued' then redis.call('HINCRBY',KEYS[2],'attempt',-1) end
 redis.call('DEL',KEYS[1]);return 1
 """
@@ -124,7 +125,7 @@ def run_command(client, name: str, request: str, command: list[str], *, timeout=
         if process is not None and process.poll() is None:
             process.kill()
             process.wait(timeout=10)
-        saved = client.eval(_FINISH, 3, lock, record, completed_key, token, state, error,
+        saved = client.eval(_FINISH, 4, lock, record, completed_key, prefix + ":last_success", token, state, error,
                             time.time(), str(completed_value))
         if not saved:
             raise RuntimeError("maintenance result rejected after lease loss")

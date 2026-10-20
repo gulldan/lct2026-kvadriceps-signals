@@ -4,6 +4,7 @@ import tailwindcss from "@tailwindcss/vite";
 import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 import { assertInitialBoundary } from "./scripts/initial-boundary.ts";
+import { EAGER_NAMESPACES } from "./src/shared/i18n/resources.ts";
 
 // Локально RAG_API указывает на шлюз nginx: RAG_API=http://localhost:8080 bun run dev.
 // RAG_PUBLIC_API="" при сборке даёт WebSocket того же origin.
@@ -29,6 +30,28 @@ export default defineConfig({
         );
         if (!entry) this.error("Product build entry was not found");
         assertInitialBoundary(chunks, entry.fileName);
+      },
+    },
+    {
+      // Стартовые словари грузятся динамически и без подсказки уходили в сеть лишь после разбора
+      // всего стартового JS. Русский нужен при любом языке: на него падает недостающий перевод.
+      name: "preload-startup-dictionaries",
+      apply: "build",
+      transformIndexHtml: {
+        order: "post",
+        handler(_, { bundle, filename }) {
+          if (!bundle || !filename.endsWith("/index.html")) return;
+          const startup = new RegExp(
+            `/src/shared/i18n/locales/ru/(${EAGER_NAMESPACES.join("|")})\\.json$`,
+          );
+          return Object.values(bundle)
+            .filter((chunk) => chunk.type === "chunk" && startup.test(chunk.facadeModuleId ?? ""))
+            .map((chunk) => ({
+              tag: "link",
+              attrs: { rel: "modulepreload", crossorigin: true, href: `/${chunk.fileName}` },
+              injectTo: "head" as const,
+            }));
+        },
       },
     },
   ],
@@ -66,6 +89,9 @@ export default defineConfig({
               test: /\/src\/features\/trend\//,
               tags: ["$initial"],
             },
+            // Стартовые модули, общие с ленивыми страницами, иначе дробятся на десяток чанков по
+            // 1–2 КБ, и по HTTP/1.1 стенда каждый стоил отдельного запроса до первой отрисовки.
+            { name: "shell", test: /\/src\/(?!ui-kit\/|index\.tsx$)/, tags: ["$initial"] },
           ],
         },
       },

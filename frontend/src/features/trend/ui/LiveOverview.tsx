@@ -16,14 +16,19 @@ import {
 import { TrendSearch } from "./TrendSearch";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/shared/ui/Select";
 import { Spinner } from "@/shared/ui/Spinner";
-import { formatDateTime, formatNumber } from "@/shared/lib/format";
+import { formatDateTime, formatNumber, upperFirst } from "@/shared/lib/format";
 import { LiveStale } from "./LiveStale";
 import { liveFailureReason } from "../liveCoverage";
 import type { LiveOverview, LiveTopic } from "../liveApi";
-import { BRANCHES, topicBranch, type Branch } from "../liveBranches";
+import {
+  researchCategoryLabel,
+  researchTaxonomy,
+  sortedResearchCategories,
+} from "@/shared/lib/researchTaxonomy";
 import { spellAcronyms } from "../signalSources";
 import { LiveMap } from "./LiveMap";
 import { LiveTable } from "./LiveTable";
+import { IndustrySelect } from "./IndustrySelect";
 
 const STAGES = ["emerging_signal", "early_signal", "established", "unassessed"] as const;
 type Stage = (typeof STAGES)[number];
@@ -40,18 +45,16 @@ function stageMatches(filter: StageFilter, stage: string) {
 // Совпадают с livePinnedSearches в trend_live_store.go (с точностью до регистра): эти ответы
 // пересобираются после каждого снимка первыми.
 const QUICK_STARTS = [
-  { key: "edge", query: "слабые сигналы в edge-вычислениях" },
-  { key: "aiSecurity", query: "слабые сигналы в безопасности систем искусственного интеллекта" },
-  { key: "industrialAi", query: "слабые сигналы в индустриальном искусственном интеллекте" },
-  {
-    key: "aiInfra",
-    query: "инфраструктура для обучения и вывода больших моделей",
-  },
+  { key: "medicine", query: "слабые сигналы в медицине и диагностике" },
+  { key: "agriculture", query: "слабые сигналы в сельском хозяйстве и продовольствии" },
+  { key: "energy", query: "слабые сигналы в энергетике и хранении энергии" },
+  { key: "climate", query: "слабые сигналы в климате и экологии" },
+  { key: "materials", query: "слабые сигналы в новых материалах и химии" },
+  { key: "biotech", query: "слабые сигналы в биотехнологиях и разработке лекарств" },
+  { key: "economics", query: "слабые сигналы в экономике и социальных науках" },
+  { key: "space", query: "слабые сигналы в космосе и астрофизике" },
   { key: "robotics", query: "слабые сигналы в робототехнике" },
-  {
-    key: "fintech",
-    query: "финансовые технологии цифровые платежи и реестры",
-  },
+  { key: "aiSecurity", query: "слабые сигналы в безопасности систем искусственного интеллекта" },
 ] as const;
 const DIRECTION_PREFIX = "direction:";
 
@@ -67,7 +70,7 @@ export function liveTopicName(
   const name =
     known || topic.label || t(`study.live.topics.${topic.id}`, { defaultValue: topic.name });
   const spelled = spellAcronyms(name);
-  return spelled.charAt(0).toUpperCase() + spelled.slice(1);
+  return upperFirst(spelled);
 }
 
 const format = (n: number, digits = 1) => formatNumber(n, { maximumFractionDigits: digits });
@@ -85,35 +88,42 @@ export function LiveOverviewView({
   onOpen: (id: string) => void;
   onSearch: (query: string) => void;
 }) {
-  const { t } = useTranslation("trend");
+  const { t, i18n } = useTranslation("trend");
   const [query, setQuery] = useState("");
   const [filter, setFilter] = useState<StageFilter>("weak");
-  const [branch, setBranch] = useState<Branch | "all">("all");
+  const [industry, setIndustry] = useState("all");
   const name = useCallback((topic: LiveTopic) => liveTopicName(topic, t), [t]);
   const topics = useMemo(() => overview?.topics ?? [], [overview]);
   const complete = overview?.periods.filter((period) => period.complete).length ?? 0;
   // Иначе каждая набранная в поле буква пересчитывала отбор, счётчики стадий, карту и таблицу.
-  const branches = useMemo(
-    () => BRANCHES.filter((value) => topics.some((topic) => topicBranch(topic) === value)),
-    [topics],
+  // Отрасль, а не научная область: инвестор ищет, куда идут деньги, а не где публикуются статьи.
+  const industries = useMemo(
+    () =>
+      sortedResearchCategories(
+        researchTaxonomy.categories.filter((category) =>
+          topics.some((topic) => topic.industry === category.id),
+        ),
+        i18n.language,
+      ),
+    [topics, i18n.language],
   );
-  const branchTopics = useMemo(
-    () => topics.filter((topic) => branch === "all" || topicBranch(topic) === branch),
-    [topics, branch],
+  const industryTopics = useMemo(
+    () => topics.filter((topic) => industry === "all" || topic.industry === industry),
+    [topics, industry],
   );
   const visible = useMemo(
-    () => branchTopics.filter((topic) => stageMatches(filter, topic.stage)),
-    [branchTopics, filter],
+    () => industryTopics.filter((topic) => stageMatches(filter, topic.stage)),
+    [industryTopics, filter],
   );
   const counts = useMemo(
     () =>
       new Map(
         FILTERS.map((value) => [
           value,
-          branchTopics.filter((topic) => stageMatches(value, topic.stage)).length,
+          industryTopics.filter((topic) => stageMatches(value, topic.stage)).length,
         ]),
       ),
-    [branchTopics],
+    [industryTopics],
   );
   const ready = overview?.status === "ready" && topics.length > 0;
   // Карточки в снимке у запроса оператора нет: он открывается своим сохранённым ответом.
@@ -147,7 +157,7 @@ export function LiveOverviewView({
         {ready && (
           <FieldRow id="live-stage" label={t("study.live.filterLabel")}>
             <Select value={filter} onValueChange={(value) => setFilter(value as StageFilter)}>
-              <SelectTrigger id="live-stage" className="w-60">
+              <SelectTrigger id="live-stage" className="w-48">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
@@ -160,20 +170,27 @@ export function LiveOverviewView({
             </Select>
           </FieldRow>
         )}
-        {ready && branches.length > 1 && (
-          <FieldRow id="live-branch" label={t("study.live.branchLabel")}>
-            <Select value={branch} onValueChange={(value) => setBranch(value as Branch | "all")}>
-              <SelectTrigger id="live-branch" className="w-60">
+        {ready && industries.length > 1 && (
+          <FieldRow id="live-industry" label={t("study.live.industryLabel")}>
+            <Select value={industry} onValueChange={setIndustry}>
+              <SelectTrigger id="live-industry" className="w-56 max-w-full">
                 <SelectValue />
               </SelectTrigger>
               <SelectContent>
-                {(["all", ...branches] as const).map((value) => (
-                  <SelectItem key={value} value={value}>
-                    {value === "all" ? t("study.live.all") : t(`study.live.branches.${value}`)}
-                    {" · "}
-                    {value === "all"
-                      ? topics.length
-                      : topics.filter((topic) => topicBranch(topic) === value).length}
+                <SelectItem value="all">
+                  {t("study.live.industryAll")} ·{" "}
+                  {topics.filter((topic) => stageMatches(filter, topic.stage)).length}
+                </SelectItem>
+                {/* Число — направления выбранной стадии: видно, в каких отраслях уже есть слабые сигналы. */}
+                {industries.map((category) => (
+                  <SelectItem key={category.id} value={category.id}>
+                    {researchCategoryLabel(category, i18n.language)} ·{" "}
+                    {
+                      topics.filter(
+                        (topic) =>
+                          topic.industry === category.id && stageMatches(filter, topic.stage),
+                      ).length
+                    }
                   </SelectItem>
                 ))}
               </SelectContent>
@@ -195,6 +212,7 @@ export function LiveOverviewView({
             ))}
           </DropdownMenuContent>
         </DropdownMenu>
+        <IndustrySelect compact disabled={collecting} onChoose={onSearch} />
       </FilterBar>
       {failed && (
         <Notice tone="risk">

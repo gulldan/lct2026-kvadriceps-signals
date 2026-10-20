@@ -82,6 +82,29 @@
   --ok-wash: color-mix(in oklab, var(--ok) 18%, var(--palette-surface));
   --warn: var(--palette-orange);
   --warn-wash: color-mix(in oklab, var(--warn) 18%, var(--palette-surface));
+  /* Рост публикаций: оранжевый — снижение, нейтральный — без изменений, синий — рост. */
+  --map-decline: var(--chart-3);
+  --map-neutral: var(--border);
+  --map-growth: var(--chart-1);
+  --map-funding: var(--chart-4);
+  /* Монеты фондов: золото, которого нет ни в шкале роста, ни у конусов; охра --warn сливалась со спадом. */
+  --map-coin: var(--palette-honey);
+  --map-coin-face: color-mix(in oklab, var(--palette-honey) 55%, var(--palette-surface));
+  --map-coin-edge: color-mix(in oklab, var(--palette-honey) 45%, var(--foreground));
+  /* Полотно компенсирует масштаб: границы сохраняют толщину в экранных пикселях. */
+  --map-active-stroke: 2;
+  --map-border-stroke: 0.65;
+  --map-growth-gradient: linear-gradient(
+    to right in oklab,
+    var(--map-decline),
+    var(--map-neutral),
+    var(--map-growth)
+  );
+  /* Карта мира: ранние деньги по регионам — одна последовательная шкала тёплого тона, четыре ступени. */
+  --map-money-1: color-mix(in oklab, var(--warn) 10%, var(--palette-surface));
+  --map-money-2: color-mix(in oklab, var(--warn) 24%, var(--palette-surface));
+  --map-money-3: color-mix(in oklab, var(--warn) 42%, var(--palette-surface));
+  --map-money-4: color-mix(in oklab, var(--warn) 64%, var(--palette-surface));
   --risk: var(--palette-red);
   --risk-wash: color-mix(in oklab, var(--risk) 18%, var(--palette-surface));
   --destructive: var(--risk);
@@ -229,6 +252,14 @@
   --color-ok-wash: var(--ok-wash);
   --color-warn: var(--warn);
   --color-warn-wash: var(--warn-wash);
+  --color-map-funding: var(--map-funding);
+  --color-map-coin: var(--map-coin);
+  --color-map-coin-face: var(--map-coin-face);
+  --color-map-coin-edge: var(--map-coin-edge);
+  --color-map-money-1: var(--map-money-1);
+  --color-map-money-2: var(--map-money-2);
+  --color-map-money-3: var(--map-money-3);
+  --color-map-money-4: var(--map-money-4);
   --color-risk: var(--risk);
   --color-risk-wash: var(--risk-wash);
   --color-marker: var(--marker);

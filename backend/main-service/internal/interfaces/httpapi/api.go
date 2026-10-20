@@ -15,6 +15,7 @@ import (
 	"google.golang.org/grpc/status"
 
 	"github.com/example/main-service/internal/application"
+	"github.com/example/main-service/internal/domain"
 	"github.com/example/main-service/internal/platform/dbclient"
 	"github.com/example/main-service/internal/platform/httpx"
 	"github.com/example/main-service/internal/platform/jwt"
@@ -25,6 +26,7 @@ type metricsStore interface {
 	EnqueueWork(ctx context.Context, key, request string) error
 	Set(ctx context.Context, key, val string, ttl time.Duration) error
 	Get(ctx context.Context, key string) (string, bool, error)
+	HGetAll(ctx context.Context, key string) (map[string]string, error)
 }
 
 type stageRecorder interface {
@@ -64,10 +66,10 @@ type API struct {
 	collections  application.Collections
 	technologies application.Technologies
 	review       ReviewQueue
-	// ponytail: кэш в памяти одной реплики; вынести в Valkey, когда реплик станет больше.
-	brief   application.TechnologyBriefWriter
-	briefMu sync.Mutex
-	briefs  map[string]application.TechnologyBrief
+	brief        application.TechnologyBriefWriter
+	briefMu      sync.Mutex
+	briefs       map[string]application.TechnologyBrief
+	briefStore   domain.ObjectStore
 
 	signalBrief application.LiveSignalBriefWriter
 }
@@ -322,6 +324,10 @@ func (a *API) trendRoutes(mux *http.ServeMux) {
 	mux.HandleFunc("GET /trends/live/papers/{id}/cover/image", a.trendLivePaperCoverImage)
 	mux.HandleFunc("GET /trends/live/search", a.trendLiveSearch)
 	mux.HandleFunc("GET /trends/live/search/top", a.trendLiveSearchTop)
+	mux.HandleFunc("GET /trends/live/money", a.trendLiveMoney)
+	mux.HandleFunc("GET /trends/live/money/match", a.trendLiveMoneyMatch)
+	mux.HandleFunc("GET /trends/live/map", a.trendLiveMap)
+	mux.HandleFunc("GET /trends/live/investors", a.trendLiveInvestors)
 	mux.HandleFunc("GET /trends/live/searches", a.trendLiveSearches)
 	mux.HandleFunc("POST /trends/live/executive", a.trendLiveExecutive)
 	mux.HandleFunc("GET /trends/live/watches", a.liveWatchList)

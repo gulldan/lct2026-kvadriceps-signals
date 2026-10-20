@@ -21,9 +21,7 @@ import (
 
 const (
 	// Под нагрузкой один пересказ занимает 20–30 с.
-	liveLateDigestWait = 5 * time.Minute
-	// Следующий поиск человека идёт тем же шлюзом: весь пул фону не отдаётся.
-	liveLateDigestWorkers = 16
+	liveLateDigestWait    = 5 * time.Minute
 	liveAbstractsBatch    = 500
 	liveLimitDigestFailed = "digest_unavailable"
 )
@@ -95,7 +93,7 @@ func (s *TrendLiveService) digestSources(ctx context.Context, ids []string, titl
 	}
 	var mu sync.Mutex
 	var wg sync.WaitGroup
-	slot := make(chan struct{}, liveLateDigestWorkers)
+	slot := make(chan struct{}, s.lateDigestWorkers(ctx))
 	for _, id := range ids {
 		if ctx.Err() != nil {
 			break
@@ -124,6 +122,12 @@ func (s *TrendLiveService) digestSources(ctx context.Context, ids []string, titl
 	}
 	wg.Wait()
 	return out
+}
+
+// Следующий поиск человека идёт тем же шлюзом: пересказам — треть пула, но не меньше трёх.
+// При 48 потоках это прежние 16, при 8 — три.
+func (s *TrendLiveService) lateDigestWorkers(ctx context.Context) int {
+	return max(3, s.llmWorkers(ctx)/3)
 }
 
 // Добранная без карточки получает описанием пересказ основного источника, как в liveFallbackSummaries.
@@ -323,6 +327,10 @@ const liveDirectionAttempts = 3
 // OpenTopic пишет недостающее в фоне, а страница опрашивает, пока оно не появится, вместо пересчёта всех направлений.
 func (s *TrendLiveService) OpenTopic(ctx context.Context, id string) (LiveDetail, bool) {
 	detail, ok := s.Topic(id)
+	if ok && s.onDemand && s.countOnOpen(ctx, id) {
+		detail.DigestsPending = true
+		return detail, true
+	}
 	if !ok || !s.liveIncomplete(detail) {
 		return detail, ok
 	}

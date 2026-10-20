@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useSearchParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { ClipboardCheck } from "lucide-react";
 import { PageLayout } from "@/shared/ui/PageLayout";
@@ -8,12 +8,19 @@ import { Button } from "@/shared/ui/Button";
 import { ListSkeleton } from "@/shared/ui/ListSkeleton";
 import { Skeleton } from "@/shared/ui/Skeleton";
 import { TrendScope } from "./TrendScope";
+import { cn } from "@/shared/lib/cn";
 
 export function TrendWorkspace({ children }: { children: ReactNode }) {
   const { t } = useTranslation("trend");
   const location = useLocation();
+  const [params] = useSearchParams();
   return (
-    <PageLayout className="space-y-3 print:max-w-none print:p-0">
+    <PageLayout
+      className={cn(
+        "space-y-3 print:max-w-none print:p-0",
+        params.get("entity") === "map" && "max-w-none",
+      )}
+    >
       <div className="flex flex-wrap items-start justify-between gap-3 print:hidden">
         <div className="flex min-w-0 items-center gap-2">
           <PageTitle>{t("study.title")}</PageTitle>

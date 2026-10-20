@@ -197,12 +197,21 @@ func extractJSONString(t *testing.T, body, key string) string {
 }
 
 type fakeMetrics struct {
-	mu   sync.Mutex
-	data map[string]string
-	err  error
+	mu     sync.Mutex
+	data   map[string]string
+	hashes map[string]map[string]string
+	err    error
 }
 
-func newMetrics() *fakeMetrics { return &fakeMetrics{data: map[string]string{}} }
+func newMetrics() *fakeMetrics {
+	return &fakeMetrics{data: map[string]string{}, hashes: map[string]map[string]string{}}
+}
+
+func (f *fakeMetrics) HGetAll(_ context.Context, key string) (map[string]string, error) {
+	f.mu.Lock()
+	defer f.mu.Unlock()
+	return f.hashes[key], f.err
+}
 
 func (f *fakeMetrics) Set(_ context.Context, key, val string, _ time.Duration) error {
 	if f.err != nil {

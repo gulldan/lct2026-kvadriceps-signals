@@ -407,9 +407,10 @@ export function OperatorDocuments() {
           </SelectContent>
         </Select>
       </div>
-      {phase === "ready" && (
-        <p className="mt-3 text-xs text-muted-foreground">
-          {t("page.libraryCount", { count: total })}
+      {/* Строка счёта держит место и при загрузке: иначе таблица съезжала вниз, когда приходил ответ. */}
+      {phase !== "error" && (
+        <p className="mt-3 min-h-4 text-xs text-muted-foreground">
+          {phase === "ready" && t("page.libraryCount", { count: total })}
         </p>
       )}
 

@@ -59,7 +59,7 @@ func liveDirectionDetail(snapshot *LiveSnapshot, topic LiveTopic, answer liveDir
 
 func (s *TrendLiveService) answerDirection(ctx context.Context, snapshot *LiveSnapshot, source LiveTopic,
 ) (liveDirectionAnswer, error) {
-	ctx, cancel := context.WithTimeout(ctx, liveSearchBudget)
+	ctx, cancel := liveRunBudget(ctx)
 	defer cancel()
 	runID := rand.Text()
 	ctx = context.WithValue(ctx, liveLLMRunKey{}, runID)
@@ -166,6 +166,10 @@ func (s *TrendLiveService) refreshDirections(ctx context.Context) {
 	// между поисками и мог бы задержать их на часы.
 	topics := slices.Concat(snapshot.Topics, snapshot.Discovered)
 	s.loadDirections(ctx, topics)
+	// Без фона направление считается по открытию (countOnOpen): новый снимок иначе пересчитывал бы всю карту.
+	if s.onDemand {
+		return
+	}
 	// Карта по умолчанию показывает только слабые сигналы: их технологии открывают первыми.
 	slices.SortStableFunc(topics, func(a, b LiveTopic) int {
 		return cmp.Compare(liveDirectionOrder(a), liveDirectionOrder(b))
@@ -179,7 +183,9 @@ func (s *TrendLiveService) refreshDirections(ctx context.Context) {
 		s.mu.RLock()
 		current := s.snapshot
 		previous, known := s.directions[topic.ID]
-		tried := s.directionTried[topic.ID] == snapshot.ObservedAt
+		failedAt, failed := s.directionFailed[topic.ID]
+		tried := s.directionTried[topic.ID] == snapshot.ObservedAt &&
+			(!failed || s.now().Sub(failedAt) < liveDirectionRetry)
 		s.mu.RUnlock()
 		// Сменившийся снимок начнёт свой проход со следующей проверки.
 		if current != snapshot || ctx.Err() != nil {
@@ -205,6 +211,10 @@ func (s *TrendLiveService) refreshDirections(ctx context.Context) {
 // Один пересчёт держит в среднем 23 одновременных вызова шлюза (пик 35), а шлюз без очереди тянет около
 // 64 на все сервисы стенда: два направления разом вдвое быстрее, третье упёрлось бы в очередь и сроки.
 const liveDirectionParallel = 2
+
+// Упавший пересчёт стоит один вызов плана запроса, поэтому повтор раз в полчаса не нагружает шлюз,
+// даже пока тот лежит.
+const liveDirectionRetry = 30 * time.Minute
 
 func liveDirectionOrder(topic LiveTopic) int {
 	if topic.Stage == liveStageEmerging || topic.Stage == liveStageEarly {
@@ -259,6 +269,47 @@ func (s *TrendLiveService) directionTurn(ctx context.Context) (context.Context, 
 	}
 }
 
+// countOnOpen считает показанное без технологий направление один раз на снимок; страница опрашивает, пока
+// идёт подсчёт. Повтор упавшего — через ту же паузу, что у фона.
+func (s *TrendLiveService) countOnOpen(ctx context.Context, id string) bool {
+	s.mu.Lock()
+	defer s.mu.Unlock()
+	if s.snapshot == nil || s.card == nil {
+		return false
+	}
+	if s.directionCounting[id] {
+		return true
+	}
+	snapshot := s.snapshot
+	topics := slices.Concat(snapshot.Topics, snapshot.Discovered)
+	at := slices.IndexFunc(topics, func(topic LiveTopic) bool { return topic.ID == id })
+	if at < 0 {
+		return false
+	}
+	topic := topics[at]
+	previous, known := s.directions[id]
+	failedAt, failed := s.directionFailed[id]
+	if known && liveDirectionShown(previous, topic) || s.directionTried[id] == snapshot.ObservedAt &&
+		(!failed || s.now().Sub(failedAt) < liveDirectionRetry) {
+		return false
+	}
+	s.directionCounting[id] = true
+	go func() {
+		defer func() {
+			s.mu.Lock()
+			delete(s.directionCounting, id)
+			s.mu.Unlock()
+		}()
+		turn, release, ok := s.directionTurn(context.WithoutCancel(ctx))
+		if !ok {
+			return
+		}
+		defer release()
+		s.recountDirection(turn, snapshot, topic, previous, known)
+	}()
+	return true
+}
+
 // Вызывается под блокировкой.
 func (s *TrendLiveService) personBusy() bool {
 	return s.people > 0 || slices.ContainsFunc(slices.Collect(maps.Values(s.searchJobs)),
@@ -298,6 +349,11 @@ func (s *TrendLiveService) recountDirection(ctx context.Context, snapshot *LiveS
 	}
 	s.mu.Lock()
 	s.directionTried[topic.ID] = snapshot.ObservedAt
+	if err != nil {
+		s.directionFailed[topic.ID] = s.now()
+	} else {
+		delete(s.directionFailed, topic.ID)
+	}
 	s.mu.Unlock()
 	if err != nil {
 		slog.Warn("live direction technologies", "topic", topic.ID, "error", err)

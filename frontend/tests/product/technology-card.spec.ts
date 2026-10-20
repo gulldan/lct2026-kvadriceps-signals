@@ -24,6 +24,8 @@ for (const width of [390, 1440]) {
     const aliases = page.getByRole("region", { name: ru.technology.aliases.title });
     await expect(aliases.getByText("solid oxide electrolyser", { exact: true })).toBeVisible();
     await expect(aliases.getByText(ru.technology.aliases.basis.expert_review)).toBeVisible();
+    const money = page.getByRole("region", { name: ru.money.plaque.title });
+    await expect(money.getByRole("link", { name: "Giraffe Bio" })).toBeVisible();
     await expect(card.getByText(ru.technology.restricted.replace("{{count}}", "1"))).toBeVisible();
     await expect(page.getByText(ru.technology.roles.primary, { exact: true })).toBeVisible();
     await expect(

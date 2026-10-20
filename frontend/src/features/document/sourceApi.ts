@@ -8,6 +8,7 @@ interface SourceDate {
 
 export interface SourceMetadata {
   version: number;
+  genre?: "investment_thesis" | "investor_commentary";
   text_status?:
     | "metadata_only"
     | "article_text"

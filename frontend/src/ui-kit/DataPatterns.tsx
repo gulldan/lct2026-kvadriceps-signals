@@ -1,6 +1,7 @@
 import { PageLayout } from "@/shared/ui/PageLayout";
 import { Disclosure } from "@/shared/ui/Disclosure";
 import { BarChart } from "@/shared/ui/BarChart";
+import { DonutChart } from "@/shared/ui/DonutChart";
 import { TimeSeriesChart } from "@/shared/ui/TimeSeriesChart";
 import { useState } from "react";
 import { Database, FileText, SlidersHorizontal } from "lucide-react";
@@ -417,6 +418,26 @@ export function DataPatterns() {
           "<Table><TableHeader><TableRow><TableHead>Источник</TableHead></TableRow></TableHeader>\n  <TableBody>{rows}</TableBody>\n</Table>\n<Pagination page={page} pageCount={12} onPage={setPage} />"
         }
       >
+        <DonutChart
+          label="Тематики документов · демонстрация"
+          valueLabel="документов"
+          data={[
+            { key: "medicine", label: "Медицина", value: 420, color: "var(--chart-1)" },
+            { key: "energy", label: "Энергетика", value: 280, color: "var(--chart-2)" },
+            {
+              key: "agriculture",
+              label: "Сельское хозяйство",
+              value: 180,
+              color: "var(--chart-3)",
+            },
+            {
+              key: "unknown",
+              label: "Тематика не определена",
+              value: 120,
+              color: "var(--category-unassigned)",
+            },
+          ]}
+        />
         <BarChart
           label="Запросы по дням · демонстрация"
           data={[

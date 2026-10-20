@@ -189,7 +189,9 @@ export function getTechnology(id: string, signal?: AbortSignal) {
 }
 
 export function getTechnologyBrief(id: string, signal?: AbortSignal) {
-  return request<TechnologyBrief>(`/technologies/${encodeURIComponent(id)}/brief`, { signal });
+  return request<TechnologyBrief | undefined>(`/technologies/${encodeURIComponent(id)}/brief`, {
+    signal,
+  });
 }
 
 export function writeTechnologyBrief(id: string) {

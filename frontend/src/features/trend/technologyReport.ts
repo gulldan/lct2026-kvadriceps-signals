@@ -108,7 +108,10 @@ export function technologyReportDoc({ technology, brief, t }: TechnologyReportIn
       items: technology.aliases.map((alias) => {
         const basis = known(ALIAS_BASES, alias.basis);
         const label = basis ? t(`technology.aliases.basis.${basis}`) : alias.basis;
-        return `${alias.value} · ${alias.language} · ${label}`;
+        const language = t(`source.languages.${alias.language}`, {
+          defaultValue: alias.language,
+        });
+        return `${alias.value} · ${language} · ${label}`;
       }),
     });
   }

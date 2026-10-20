@@ -75,9 +75,22 @@ def run_once(rdb: redis.Redis, request: str):
     env = os.environ.copy()
     env.setdefault("RAG_GW", "http://nginx/api/v1")
     env.setdefault("EMB_URL", "http://f2llm-service:8085/v1/embeddings")
-    return run_command(rdb, "itc", request,
-                       [sys.executable, "/app/itc.py"], timeout=TIMEOUT,
-                       status_key=STATUS_KEY, env=env)
+    if request.startswith("trigger:"):
+        env["ITC_FORCE"] = "1"
+    report_status("running")
+    try:
+        state = run_command(rdb, "itc", request,
+                            [sys.executable, "/app/itc.py"], timeout=TIMEOUT,
+                            status_key=STATUS_KEY, env=env)
+    except Exception as exc:
+        report_status("error", last_error=type(exc).__name__)
+        raise
+    # busy значит, что считает другая реплика: её отчёт и есть текущее состояние.
+    if state == "succeeded":
+        report_status("idle")
+    elif state == "failed":
+        report_status("error", last_error="worker_failed")
+    return state
 
 
 def main() -> None:

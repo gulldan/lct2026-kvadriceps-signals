@@ -7,7 +7,14 @@ export const EXTRACTION_STATUSES = [
 ] as const;
 export const VALIDATION_STATUSES = ["proposed", "verified", "needs_review"] as const;
 export const NAME_KINDS = ["term", "descriptive"] as const;
-export const ALIAS_BASES = ["expert_review", "extraction", "alias"] as const;
+export const ALIAS_BASES = [
+  "expert_review",
+  "extraction",
+  "alias",
+  "source_text",
+  "normalization",
+  "translation",
+] as const;
 export const COVERAGE_STATUSES = [
   "complete",
   "partial",

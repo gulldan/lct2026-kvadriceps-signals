@@ -3,13 +3,14 @@ import { useTranslation } from "react-i18next";
 import { ArrowLeft, ArrowRight, Radar } from "lucide-react";
 import { dataGapLabel, getLiveSearchTop, signalScore, signalVerdict } from "@/features/trend";
 import { useRequest } from "@/shared/lib/useRequest";
-import { formatDate, formatNumber } from "@/shared/lib/format";
+import { formatDate, formatNumber, upperFirst } from "@/shared/lib/format";
 import { Badge } from "@/shared/ui/Badge";
 import { Button } from "@/shared/ui/Button";
 import { Card } from "@/shared/ui/Card";
 import { ErrorState } from "@/shared/ui/ErrorState";
 import { PageHeader } from "@/shared/ui/PageHeader";
 import { PageLayout } from "@/shared/ui/PageLayout";
+import { RichText } from "@/shared/ui/RichText";
 import { Section } from "@/shared/ui/Section";
 import { Skeleton } from "@/shared/ui/Skeleton";
 import {
@@ -60,7 +61,7 @@ function ThesisBody({ kpi }: { kpi: ApiKPI }) {
       <PageHeader
         kicker={kpi.function_area || undefined}
         title={kpi.title}
-        description={kpi.description || undefined}
+        description={kpi.description ? <RichText>{kpi.description}</RichText> : undefined}
         actions={
           <Button asChild>
             <Link to={thesisSignalsPath(kpi)}>
@@ -160,7 +161,7 @@ function SearchSignals({ thesisId, search }: { thesisId: string; search: ThesisS
               >
                 <Button variant="link" size="inline" asChild>
                   <Link to={`${path}&${new URLSearchParams({ signal: candidate.id })}`}>
-                    {name.charAt(0).toUpperCase() + name.slice(1)}
+                    {upperFirst(name)}
                   </Link>
                 </Button>
                 <div className="flex flex-wrap items-center gap-2">

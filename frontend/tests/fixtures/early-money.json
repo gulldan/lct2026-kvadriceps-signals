@@ -1,0 +1,136 @@
+{
+  "status": "ready",
+  "built_at": "2026-10-18T06:00:00Z",
+  "from": "2026-04-01",
+  "through": "2026-10-18",
+  "method": "early-money-rules-v1+title_rules_v3",
+  "months": ["2026-04", "2026-05", "2026-06", "2026-07", "2026-08", "2026-09", "2026-10"],
+  "cells": [
+    {
+      "rubric": "medicine",
+      "region": "americas",
+      "kind": "grant",
+      "stage": "grant",
+      "month": "2026-05",
+      "count": 40
+    },
+    {
+      "rubric": "medicine",
+      "region": "americas",
+      "kind": "grant",
+      "stage": "grant",
+      "month": "2026-08",
+      "count": 38
+    },
+    {
+      "rubric": "agriculture",
+      "region": "latam",
+      "kind": "round",
+      "stage": "seed",
+      "month": "2026-04",
+      "count": 3
+    },
+    {
+      "rubric": "agriculture",
+      "region": "latam",
+      "kind": "round",
+      "stage": "seed",
+      "month": "2026-09",
+      "count": 9
+    },
+    {
+      "rubric": "energy",
+      "region": "europe",
+      "kind": "round",
+      "stage": "pre_seed",
+      "month": "2026-06",
+      "count": 12
+    },
+    {
+      "rubric": "energy",
+      "region": "europe",
+      "kind": "round",
+      "stage": "series_a",
+      "month": "2026-07",
+      "count": 4
+    },
+    {
+      "rubric": "",
+      "region": "unknown",
+      "kind": "round",
+      "stage": "unknown",
+      "month": "2026-07",
+      "count": 120
+    },
+    {
+      "rubric": "industry",
+      "region": "unknown",
+      "kind": "accelerator",
+      "stage": "accelerator",
+      "month": "2026-10",
+      "count": 2
+    }
+  ],
+  "science_prior": "2025-10–2026-03",
+  "science_recent": "2026-04–2026-09",
+  "science": [
+    {
+      "rubric": "medicine",
+      "topics": 4,
+      "prior": 80,
+      "recent": 140,
+      "prior_population": 150000,
+      "recent_population": 160000
+    },
+    {
+      "rubric": "energy",
+      "topics": 2,
+      "prior": 60,
+      "recent": 50,
+      "prior_population": 150000,
+      "recent_population": 160000
+    }
+  ],
+  "latest": [
+    {
+      "id": "money:1",
+      "kind": "round",
+      "stage": "seed",
+      "company": "Giraffe Bio",
+      "region": "latam",
+      "date": "2026-10-12",
+      "amount": "$6.4M",
+      "investors": "Orion Industrial Ventures",
+      "rubric": "agriculture",
+      "rubric_basis": "text",
+      "title": "Giraffe Bio raises $6.4M seed round to improve copper recovery",
+      "url": "https://latamlist.com/giraffe-bio",
+      "source": "LatamList: раунды Латинской Америки",
+      "license": "лента издателя: условия не запрещают сбор; хранятся факт сделки, ссылка и цитата",
+      "quote": "Argentine biotech startup Giraffe Bio raised $6.4M in a seed round led by Orion Industrial Ventures."
+    }
+  ],
+  "sources": [
+    {
+      "name": "NIH RePORTER: SBIR/STTR",
+      "kind": "registry",
+      "region": "americas",
+      "license": "общественное достояние США",
+      "url": "https://api.reporter.nih.gov/v2/projects/search",
+      "records": 671,
+      "events": 671
+    },
+    {
+      "name": "Platum: инвестиции в стартапы Кореи",
+      "kind": "feed",
+      "region": "asia",
+      "license": "лента издателя",
+      "url": "",
+      "records": 0,
+      "events": 0,
+      "error": "HTTP 403"
+    }
+  ],
+  "total": 228,
+  "unsorted": 120
+}

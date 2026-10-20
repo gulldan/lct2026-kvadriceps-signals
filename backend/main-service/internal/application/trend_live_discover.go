@@ -73,7 +73,7 @@ func liveObjectHead(stem string) bool {
 		"morphology", "property", "behaviour", "behavior", "phenomenon", "phenomena", "transition",
 		"transport", "diffusion", "degradation", "corrosion", "aging", "ageing", "failure",
 		"formation", "nucleation", "evolution", "growth", "interaction", "effect", "influence",
-		"impact", "role", "state":
+		"impact", "role", "state", "activity", "cohesion", "disease", "infection":
 		return true
 	}
 	return false

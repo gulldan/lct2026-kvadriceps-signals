@@ -238,7 +238,8 @@ func (s *HypothesisService) PublishClusters(
 	ownerID string,
 	req *dbv1.PublishClustersRequest,
 ) ([]*commonv1.Cluster, error) {
-	if _, err := uuid.Parse(req.GetRequestId()); err != nil || len(req.GetClusters()) > 2000 {
+	// Лимит совпадает с публикацией в базе: текущая доска корпуса уже превышает 2000 тем.
+	if _, err := uuid.Parse(req.GetRequestId()); err != nil || len(req.GetClusters()) > 5000 {
 		return nil, ErrInvalidArgument
 	}
 	if req.GetExpectedPublicationId() != "" {

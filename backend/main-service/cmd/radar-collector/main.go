@@ -64,7 +64,7 @@ func run() error {
 	// настроенного шлюза запрос не переводится и поиск идёт по исходному тексту.
 	gateway := application.NewLiveAuditedGenerator(
 		aiclients.NewDynamicGenerator(application.LLMTarget(settings.Get), nil),
-		func(ctx context.Context) string { return settings.Get(ctx, "VLLM_MODEL", "") })
+		func(ctx context.Context) string { return settings.Get(ctx, "VLLM_MODEL", "") }, kv)
 	configured := func(ctx context.Context) bool { return settings.Get(ctx, "VLLM_URL", "") != "" }
 	live.SetNamer(application.NewTopicNamer(gateway, configured))
 	live.SetDescriber(application.NewTopicDescriber(gateway, configured))
@@ -76,9 +76,11 @@ func run() error {
 	defer func() { _ = coordinator.Close() }()
 	if *analysisOnly {
 		live.SetWriterGuard(coordinator.Acquire)
-		return live.RefreshAnalysis(ctx)
+		return live.RefreshAnalysis(application.LiveInBackground(ctx))
 	}
-	return radarcollector.Run(ctx, live, coordinator, *once, *sourcesOnly)
+	// Проходы сборщика никто не ждёт: модель фона и запас OpenAlex для живого поиска. serveSearch выше получает
+	// исходный контекст — перевод запроса оператора идёт быстрым маршрутом.
+	return radarcollector.Run(application.LiveInBackground(ctx), live, coordinator, *once, *sourcesOnly)
 }
 
 // serveAbstracts отдаёт аннотации работ окна по id: API-реплика дописывает по

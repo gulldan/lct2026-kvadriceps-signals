@@ -75,7 +75,46 @@
       "topDocs": "Top 10 documents by chunk count"
     },
     "fileType": "File type",
-    "document": "Document"
+    "document": "Document",
+    "topics": {
+      "title": "Research areas in the knowledge base",
+      "description": "Share of documents by research area. Each document is counted once.",
+      "documents": "documents",
+      "unclassified": "Area not identified",
+      "other": "Other areas · {{count}}",
+      "more": "Show other areas · {{count}}",
+      "domain": "Research area",
+      "coverage": "An area was identified for {{classified}} of {{total}} documents. Areas represented: {{count}}.",
+      "titleRules": "Preliminary estimate based on terms in document titles. Interdisciplinary papers are assigned to one area; documents without clear indicators are shown separately.",
+      "methodUnknown": "Distribution calculated by the server. Documents without an identified area are shown separately.",
+      "unavailable": "The distribution is not available yet. Refresh the overview after documents have been processed.",
+      "domains": {
+        "medicine": "Medicine and health",
+        "biotechnology": "Biotechnology",
+        "agriculture": "Agriculture and food",
+        "energy": "Energy",
+        "environment": "Climate and environment",
+        "materials": "Materials and chemistry",
+        "industry": "Industry",
+        "transport": "Transport",
+        "space": "Space and astronomy",
+        "economics": "Economics and society",
+        "computing": "Computing and AI",
+        "science": "Physics and mathematics"
+      },
+      "taxonomy": "31 Dealroom industries and 6 research areas",
+      "all": "All industries and research areas · {{count}}",
+      "share": "Share",
+      "partition": "Each document has one primary category. Parent industries contain only the remainder after research subcategories. Zero means no documents match the current rules.",
+      "investorHint": "Investor interests help select areas to explore. They do not establish scientific novelty or imply an investment commitment.",
+      "basis": {
+        "dealroom_industry": "Dealroom industry",
+        "project_subindustry": "Project subcategory",
+        "research_domain": "Research area"
+      },
+      "marketTitle": "From science to market",
+      "marketBody": "A next step is to connect scientific signals with investors’ publicly stated areas of interest. These pages help guide exploration; public interest does not mean readiness to invest in a particular project."
+    }
   },
   "users": {
     "title": "Users and roles",
@@ -94,7 +133,8 @@
     "roles": {
       "user": "User",
       "operator": "Operator",
-      "admin": "Administrator"
+      "admin": "Administrator",
+      "readonly": "Read-only"
     },
     "dialog": {
       "title": "New user",
@@ -257,7 +297,7 @@
     "trace": {
       "title": "Latency and stages — where time is spent",
       "description": "Each stage's latency (p50 / p95) from Prometheus over real traffic, in path order. The darkest bars are the bottlenecks.",
-      "empty": "No latency measurements yet. Stages will appear once documents and queries pass through the pipeline.",
+      "empty": "No latency measurements in the last 15 minutes.",
       "ingestPath": "Document processing",
       "queryPath": "Answering a question",
       "stages": {
@@ -291,7 +331,11 @@
       "description": "Background computation delays — from worker statuses; the interactive path — from Prometheus above.",
       "run": "run {{duration}}",
       "updated": "updated {{time}}",
-      "neverRan": "has not run yet"
+      "neverRan": "No status signal received",
+      "heartbeat": "Last signal: {{date}}",
+      "lastSuccess": "Last successful run: {{date}}",
+      "noSuccess": "Last successful run is unknown",
+      "progress": "Processed {{done}} of {{total}}"
     },
     "readable": {
       "requests": "Requests in period",
@@ -311,7 +355,9 @@
       "workerState": {
         "running": "Running",
         "idle": "Idle",
-        "error": "Error"
+        "error": "Error",
+        "stale": "No recent signal",
+        "unknown": "Status unknown"
       },
       "noRate": "Some costs are unknown: rate unavailable",
       "providerVolume": "Requests: {{requests}} · tokens: {{tokens}}"
@@ -328,7 +374,22 @@
       "pub_query": "Publication query preparation",
       "assess_trl": "Technology readiness assessment",
       "answer": "Question answering",
-      "kpi_parse": "Thesis extraction"
+      "kpi_parse": "Thesis extraction",
+      "translate_query": "Radar: query translation",
+      "name_candidate": "Radar: technology names",
+      "qualify_candidate": "Radar: candidate screening",
+      "review_candidate": "Radar: candidate review",
+      "write_card": "Radar: technology cards",
+      "verify_card": "Radar: card checks",
+      "interpret_source": "Radar: source summaries",
+      "extract_candidates": "Radar: candidates from papers",
+      "extract_market_candidates": "Radar: candidates from market news",
+      "executive_brief": "Radar: executive brief",
+      "signal_brief": "Radar: signal description",
+      "rate_maturity": "Radar: maturity rating",
+      "verify_events": "Radar: adoption event checks",
+      "phrase_technology": "Radar: technology wording",
+      "unclassified": "Radar: other calls"
     },
     "openalex": {
       "title": "OpenAlex credits",
@@ -338,7 +399,9 @@
       "remaining": "{{remaining}} of {{limit}}",
       "sub": "spent {{spent}} · model reserve {{reserve}} · resets {{reset}}",
       "unknown": "no data"
-    }
+    },
+    "telemetryUnavailable": "Metrics collection is unavailable or incomplete. An empty table does not mean no work occurred.",
+    "observedAt": "Metrics retrieved: {{date}} · latency window: 15 minutes"
   },
   "system": {
     "provider": "Provider",

@@ -2,7 +2,7 @@ import { describe, expect, it } from "bun:test";
 import { createInstance, type TFunction } from "i18next";
 import ru from "@/shared/i18n/locales/ru/trend.json";
 import { candidateCountsAgree, candidatesReportDoc } from "./candidatesReport";
-import { isConfirmedSignal } from "./signalScore";
+import { isConfirmedSignal, orderCandidates } from "./signalScore";
 import type { LiveDetail, LiveRejection, LiveTopic } from "./liveApi";
 
 const t = ((key: string) => key) as unknown as TFunction<"trend">;
@@ -103,6 +103,27 @@ describe("candidatesReportDoc — вся выдача одним докумен�
     // Четырнадцать — топ не сформирован, как бы ни были уверены оценки.
     expect(paragraphs(rows.slice(0, 14)).some((text) => text.startsWith(title))).toBe(true);
   });
+  it("порядок плиток — как в подписи: подтверждённый сигнал, прошедшие проверки, добранные", () => {
+    const scored = (id: string, value: number, extra: object = {}) =>
+      ({
+        ...candidate(id, 3),
+        confidence: { value, above_threshold: true },
+        ...extra,
+      }) as LiveTopic;
+    const ordered = orderCandidates([
+      scored("draft", 0.95, { shortfall: { code: "incomplete_card", reason: "не дописан" } }),
+      scored("passed-low", 0.6),
+      scored("signal", 0.7, { independent_sources: 2 }),
+      scored("passed-high", 0.8),
+    ]);
+    expect(ordered.map((topic) => topic.id)).toEqual([
+      "signal",
+      "passed-high",
+      "passed-low",
+      "draft",
+    ]);
+  });
+
   it("исключённые с причинами попадают в выгрузку", async () => {
     const items = doc.blocks.flatMap((block) => (block.kind === "list" ? block.items : []));
     expect(items).toContain("Зрелая штука — рынок сформирован");
@@ -137,10 +158,10 @@ describe("candidatesReportDoc — вся выдача одним докумен�
       block.kind === "heading" ? [block.text] : [],
     );
     expect(headings).toContain("Исключены по существу: 1");
-    expect(headings).toContain("Не успели проверить: 1");
+    expect(headings).toContain("Не проверены до конца: 1");
     const coverage = report.blocks.flatMap((block) => (block.kind === "kv" ? block.rows : []));
     expect(coverage).toContainEqual({ label: "Исключено по существу", value: "1" });
-    expect(coverage).toContainEqual({ label: "Не успели проверить", value: "1" });
+    expect(coverage).toContainEqual({ label: "Не проверены до конца", value: "1" });
     expect(report.blocks).toContainEqual({
       kind: "list",
       items: [`${rejection.name} — ${rejection.reason}`],

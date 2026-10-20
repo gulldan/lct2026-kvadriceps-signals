@@ -195,6 +195,30 @@ func TestEmbeddedWeakSignalClassifier(t *testing.T) {
 	}
 }
 
+// Полоса из артефакта: внутри неё «не могу решить», и такой кандидат не отказ, не решение и не «выше 75 %».
+func TestWeakSignalConformalUndecided(t *testing.T) {
+	model, err := LoadWeakSignalModel()
+	if err != nil {
+		t.Fatal(err)
+	}
+	band := model.Conformal
+	for value, want := range map[float64]string{(1 - band.Weak) / 2: liveClassifierMature,
+		model.Threshold: liveClassifierUndecided, (1 + band.NotWeak) / 2: liveClassifierWeak} {
+		if got := model.decide(value); got != want {
+			t.Errorf("оценка %.3f: %s, ждали %s", value, got, want)
+		}
+	}
+	score := LiveModelScore{Label: liveClassifierUndecided, Value: 0.9, Threshold: model.Threshold}
+	topic := LiveTopic{StudyTopic: StudyTopic{ID: "u", Groups: 3}, PapersCount: 3}
+	kept, rejected := liveApplyScores([]LiveTopic{topic}, nil, map[string]LiveModelScore{"u": score})
+	if len(kept) != 1 || len(rejected) != 0 || liveModelDecision(&score) || liveModelAbove(kept[0]) {
+		t.Fatalf("«не могу решить» стало отказом или уверенным решением: %+v %+v", kept, rejected)
+	}
+	if text := band.basis(model.Threshold); !strings.Contains(text, "гарантии 90 %") || !strings.Contains(text, "рыночного слоя") {
+		t.Fatalf("причина без гарантии или следующего шага: %s", text)
+	}
+}
+
 func TestLiveWithoutAcronym(t *testing.T) {
 	for phrase, want := range map[string]string{
 		"reinforcement learning rl":                           "reinforcement learning",

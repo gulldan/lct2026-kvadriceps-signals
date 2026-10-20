@@ -4,6 +4,9 @@
 /// средние не делят на ноль.
 pub const EDGE_EPS: f64 = 1e-6;
 
+/// Запас над корпусом в 100 тыс. документов ограничен: поиск соседей квадратичен.
+pub const MAX_GRAPH_NODES: usize = 125_000;
+
 #[derive(Clone, Copy, Debug, Default, Eq, PartialEq)]
 pub enum Algorithm {
     #[default]

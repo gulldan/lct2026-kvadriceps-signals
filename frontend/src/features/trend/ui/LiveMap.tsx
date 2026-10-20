@@ -4,6 +4,7 @@ import { Button } from "@/shared/ui/Button";
 import { InfoHint } from "@/shared/ui/InfoHint";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/shared/ui/Tooltip";
 import { cn } from "@/shared/lib/cn";
+import { interleaveBy } from "@/shared/lib/interleaveBy";
 import type { LiveOverview, LiveTopic } from "../liveApi";
 import { comparisonRanges, growthTones, publicationChange, symlogAxis } from "../liveMapMetrics";
 import { previewSide } from "../previewPlacement";
@@ -34,7 +35,7 @@ const LABEL_SHIFTS = [0, LABEL_ROW, -LABEL_ROW, 2 * LABEL_ROW, -2 * LABEL_ROW];
 const overlaps = (a: Box, b: Box) => a.x0 < b.x1 && b.x0 < a.x1 && a.y0 < b.y1 && b.y0 < a.y1;
 const MIN_D = 10;
 const MAX_D = 34;
-// Подписаны только крупнейшие: иначе в плотном углу они оставались без имени.
+// Подписи чередуют области: самые крупные темы одной области не вытесняют остальные.
 const LABELLED_MAX = 7;
 const LABELLED_MIN = 3;
 const LABELLED_PX = 140;
@@ -126,17 +127,17 @@ export function LiveMap({
     const circles = points.map(circle);
     // Два направления могут делить русский лейбл: подпись получает только крупнейший круг.
     const printed = new Set<string>();
-    const named = points
+    const ranked = points
       .toSorted((a, b) => b.fresh - a.fresh)
       .filter((point) => {
         if (printed.has(point.label)) return false;
         printed.add(point.label);
         return true;
-      })
-      .slice(
-        0,
-        Math.min(LABELLED_MAX, Math.max(LABELLED_MIN, Math.floor(size.width / LABELLED_PX))),
-      );
+      });
+    const named = interleaveBy(ranked, (point) => point.topic.branch ?? "").slice(
+      0,
+      Math.min(LABELLED_MAX, Math.max(LABELLED_MIN, Math.floor(size.width / LABELLED_PX))),
+    );
     // Первыми — подписи с меньшим выбором мест: иначе сосед занимал единственное место в углу.
     const reserved = named.map(circle);
     const options = named.map((point, index) => {
@@ -374,9 +375,12 @@ export function LiveMap({
                   <span
                     aria-hidden
                     data-growth={point.band}
+                    data-money={(point.topic.money?.total ?? 0) > 0 || undefined}
                     className={cn(
                       "pointer-events-none shrink-0 rounded-full border-2 border-card opacity-80",
                       growthTones[point.band].marker,
+                      // Обводка — вторая кодировка поверх цвета роста: инвесторы уже вкладываются в тему.
+                      (point.topic.money?.total ?? 0) > 0 && "outline-2 outline-map-money-4",
                     )}
                     style={{ width: point.d, height: point.d }}
                   />

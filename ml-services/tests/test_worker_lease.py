@@ -21,6 +21,7 @@ def test_worker_lease_serializes_replicas_and_keeps_triggers(tmp_path, monkeypat
     name = "quality-" + uuid.uuid4().hex
     trigger = f"quality:{name}:trigger"
     marker = tmp_path / "executions"
+    last_success = f"rag:work:{{{name}}}:last_success"
     command = [sys.executable, "-c", f"import time;time.sleep(.5);open({str(marker)!r},'a').write('done\\n')"]
     try:
         enqueue_trigger(client, trigger, "first")
@@ -29,6 +30,10 @@ def test_worker_lease_serializes_replicas_and_keeps_triggers(tmp_path, monkeypat
         with concurrent.futures.ThreadPoolExecutor(max_workers=2) as pool:
             results = list(pool.map(lambda _: run_command(client, name, "first", command), range(2)))
         assert sorted(results) == ["busy", "succeeded"]
+        successful_record = client.get(last_success)
+        assert successful_record is not None
+        assert client.hget(successful_record, "request") == b"first"
+        assert client.hget(successful_record, "state") == b"succeeded"
         # Новый клиент имитирует восстановление процесса: ни запуск, ни второй trigger не потеряны.
         restarted = redis.Redis.from_url(address)
         assert run_command(restarted, name, "first", command) == "succeeded"
@@ -36,6 +41,7 @@ def test_worker_lease_serializes_replicas_and_keeps_triggers(tmp_path, monkeypat
         acknowledge_trigger(restarted, trigger, "first")
         assert pending_trigger(restarted, trigger) == "second"
         assert run_command(client, name, "second", [sys.executable, "-c", "raise SystemExit(2)"]) == "failed"
+        assert restarted.get(last_success) == successful_record
         acknowledge_trigger(client, trigger, "second")
         assert pending_trigger(client, trigger) is None
         restarted.close()

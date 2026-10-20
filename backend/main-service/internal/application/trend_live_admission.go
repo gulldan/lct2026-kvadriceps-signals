@@ -18,8 +18,15 @@ func (s *TrendLiveService) finishCandidates(ctx context.Context, query string, u
 	periods []LivePeriod, rejected []LiveRejection,
 ) ([]LiveTopic, []LiveRejection, []StudyPaper) {
 	ctx = liveWithCardContext(ctx)
-	candidates, rejected, documents = s.selectCandidateWaves(ctx, query, umbrella, candidates, documents,
+	liveAllocateCardContext(ctx, documents, metadata)
+	selectionCtx, cancel := liveCardSelectionBudget(ctx)
+	candidates, rejected, documents = s.selectCandidateWaves(selectionCtx, query, umbrella, candidates, documents,
 		metadata, periods, rejected)
+	cancel()
+	s.completeFinalCards(ctx, query, candidates, documents, metadata)
+	candidates, rejected = liveFinalMarketCheck(candidates, rejected)
+	candidates, rejected = liveTopUp(*umbrella, candidates, rejected, metadata)
+	s.finalPriorArt(ctx, candidates, documents)
 	for i := range candidates {
 		candidates[i].Label = liveNamedLabel(candidates[i])
 		if candidates[i].TZ == nil {
@@ -141,9 +148,10 @@ func liveFallbackSummaries(candidates []LiveTopic, metadata map[string]LivePaper
 		}
 		card.Summary = summary
 		card.Basis = strings.TrimPrefix(card.Basis+"; "+basis+", отдельной проверкой утверждения не подтверждено", "; ")
-		card.Missing = slices.DeleteFunc(slices.Clone(card.Missing), func(missing string) bool {
-			return strings.HasPrefix(missing, "описание технологии")
-		})
+		// Пересказ механизма помогает чтению, но не закрывает отсутствие проверенного описания.
+		if !slices.ContainsFunc(card.Missing, func(missing string) bool { return strings.HasPrefix(missing, "описание технологии") }) {
+			card.Missing = append(slices.Clone(card.Missing), "описание технологии: нет подтверждённого утверждения и цитаты")
+		}
 		candidate.Card = &card
 	}
 }
@@ -158,8 +166,9 @@ func liveOffTopicAnswer(umbrella LiveTopic) bool {
 }
 
 // Допуск — после генерации: до чтения источников неизвестно, найдутся ли кейс, преимущество и оценка рынка.
-func liveAdmitCards(candidates []LiveTopic, rejected []LiveRejection) ([]LiveTopic, []LiveRejection) {
+func liveAdmitCards(candidates []LiveTopic) ([]LiveTopic, []LiveRejection) {
 	kept := make([]LiveTopic, 0, len(candidates))
+	var rejected []LiveRejection
 	for _, candidate := range candidates {
 		market := liveMarketMaturity(candidate, liveAbsoluteBar())
 		candidate.Market = market.field()
@@ -178,8 +187,8 @@ func liveAdmitCards(candidates []LiveTopic, rejected []LiveRejection) ([]LiveTop
 		case liveRussianText(candidate.Label) == "":
 			rejected = append(rejected, liveRejection(candidate, liveRejectCard,
 				"русское название технологии не сформировано"))
-		case !liveCardAdmissible(candidate):
-			reason := "нет проверенного описания и хотя бы одного из «преимущество / кейс» с цитатой"
+		case !liveCardComplete(candidate):
+			reason := "не все три поля карточки подтверждены цитатами: описание, преимущество и кейс"
 			if candidate.Card != nil && len(candidate.Card.Missing) > 0 {
 				reason += ": " + strings.Join(candidate.Card.Missing, ", ")
 			}

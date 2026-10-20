@@ -54,13 +54,19 @@ func liveEventLabel(kind string) string {
 
 // liveAssessTZ без documents (опоздавшие события) не разбирает кейс карточки: он уже разобран.
 func liveAssessTZ(topic *LiveTopic, documents map[string]StudyPaper) {
-	topic.Events = liveEventsCompact(topic.Events)
+	topic.Events = liveEventsCompact(*topic)
 	if documents != nil {
 		liveCardCase(topic, documents)
 	}
 	tz := &LiveTZAssessment{}
 	tz.StageCode, tz.StageBasis, tz.StageEvent = liveTZStage(*topic)
 	adoption := topic.Adoption
+	if adoption != nil {
+		if claim := liveClaim(adoption.Evidence, liveClaimAdoption); claim != nil &&
+			liveInvestorSource(*topic, claim.SourceID) {
+			adoption = nil
+		}
+	}
 	claimed := adoption != nil && adoption.Rank > tz.StageCode && adoption.Rank < 5 &&
 		liveClaim(adoption.Evidence, liveClaimAdoption) != nil
 	if claimed {
@@ -98,6 +104,10 @@ func liveCardCase(topic *LiveTopic, documents map[string]StudyPaper) {
 	}
 	card := *topic.Card
 	card.ExampleType = ""
+	if liveInvestorSource(*topic, card.ExampleID) || liveInvestorSource(*topic, claim.SourceID) {
+		topic.Card = &card
+		return
+	}
 	for _, event := range topic.Events {
 		if liveEvidenceID(event.Record) == card.ExampleID && event.Type != "" {
 			card.ExampleType = event.Type
@@ -331,6 +341,10 @@ func liveEventMaturity(topic LiveTopic) (level string, facts, checks []string) {
 	if len(topic.eventSources) == 0 {
 		return "", nil, nil
 	}
+	// Сохранённый интерес фонда не доказывает наличие участников рынка, продукта или стандарта.
+	topic.Events = slices.DeleteFunc(slices.Clone(topic.Events), func(event LiveAdoptionEvent) bool {
+		return liveInvestorEvent(topic, event)
+	})
 	sign := func(passed bool, fact, check string) {
 		if passed {
 			facts = append(facts, fact)
@@ -410,8 +424,10 @@ func liveStandardMaturity(events []LiveAdoptionEvent) (passed bool, fact, check 
 
 // liveEventsCompact снимает с записей фрагмент и текст: цитата уже выписана, а аннотации утяжелили бы ответ
 // на сотни килобайт.
-func liveEventsCompact(events []LiveAdoptionEvent) []LiveAdoptionEvent {
-	out := slices.Clone(events)
+func liveEventsCompact(topic LiveTopic) []LiveAdoptionEvent {
+	out := slices.DeleteFunc(slices.Clone(topic.Events), func(event LiveAdoptionEvent) bool {
+		return liveInvestorEvent(topic, event)
+	})
 	for i := range out {
 		out[i].Record.Excerpt, out[i].Record.Text, out[i].Record.Provenance = "", "", nil
 	}

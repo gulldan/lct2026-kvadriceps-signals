@@ -2,6 +2,29 @@ import { beforeAll, expect, spyOn, test } from "bun:test";
 import { generateHypotheses, type ApiHypothesisJob } from "@/features/hypothesis";
 import { initI18n } from "@/shared/i18n";
 import { mergeTasks, taskFromJob, type BackgroundTask } from "./TaskContext";
+import { workerState, type WorkerStatus } from "./api";
+
+test("замерший прогон и неизвестный статус не выдаются за работающую фабрику, а простой не тревожит", () => {
+  const now = Date.parse("2026-10-18T00:00:00Z");
+  const worker: WorkerStatus = {
+    name: "raptor",
+    state: "running",
+    epoch: 42,
+    progressDone: 5,
+    progressTotal: 20,
+    updatedAt: "2026-10-17T23:59:00Z",
+    lastError: null,
+    lastRunSeconds: null,
+    lastSuccessAt: null,
+  };
+  expect(workerState(worker, now)).toBe("running");
+  expect(workerState({ ...worker, updatedAt: "2026-09-20T12:00:00Z" }, now)).toBe("stale");
+  expect(workerState({ ...worker, state: "idle", updatedAt: "2026-09-20T12:00:00Z" }, now)).toBe(
+    "idle",
+  );
+  expect(workerState({ ...worker, updatedAt: null }, now)).toBe("unknown");
+  expect(workerState({ ...worker, state: "unknown" }, now)).toBe("unknown");
+});
 
 beforeAll(async () => {
   const descriptor = Object.getOwnPropertyDescriptor(globalThis, "document");

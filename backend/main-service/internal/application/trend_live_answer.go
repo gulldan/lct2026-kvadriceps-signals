@@ -15,7 +15,8 @@ func livePrepareAnswerMetadata(candidates []LiveTopic, documents []StudyPaper, m
 		return
 	}
 	for _, candidate := range candidates {
-		for _, channel := range []*LiveChannel{candidate.Patents, candidate.PatentsCN, candidate.Registry, candidate.Web} {
+		channels := []*LiveChannel{candidate.Patents, candidate.PatentsCN, candidate.Registry, candidate.Web, candidate.Research}
+		for _, channel := range channels {
 			for _, record := range liveChannelRecords(channel) {
 				id := liveRecordPrefix + cmp.Or(record.ID, record.URL)
 				meta := metadata[id]
@@ -23,6 +24,13 @@ func livePrepareAnswerMetadata(candidates []LiveTopic, documents []StudyPaper, m
 				meta.Language, meta.LanguageBasis = record.Language, record.LanguageBasis
 				meta.PublisherType, meta.Trust, meta.TrustBasis = record.PublisherType, record.Trust, record.TrustBasis
 				meta.Genre = cmp.Or(record.Genre, meta.Genre)
+				meta.DOI = cmp.Or(record.DOI, meta.DOI)
+				if provider := liveJournalProvider(record.Source); provider != "" {
+					// Идентификатор по цифровому адресу публикации не содержит имени каталога.
+					meta.Category = provider
+					meta.ObservedAt = cmp.Or(record.ObservedAt, meta.ObservedAt)
+					meta.AvailableAt = cmp.Or(record.PublishedAt, record.AvailableAt, record.Date, meta.AvailableAt)
+				}
 				// Фрагмент рыночной записи встаёт на место аннотации: по нему карточка пишет кейс, а пересказ — резюме.
 				meta.Abstract = cmp.Or(meta.Abstract, record.Excerpt)
 				metadata[id] = meta
@@ -110,7 +118,7 @@ func liveCardInput(topic LiveTopic, documents map[string]StudyPaper,
 	known := func(list []string) []string {
 		return slices.DeleteFunc(slices.Clone(list), func(id string) bool {
 			_, ok := documents[id]
-			return !ok
+			return !ok || liveInvestorContext(metadata[id].Genre) || liveInvestorSource(topic, id)
 		})
 	}
 	papers, records := known(topic.PaperIDs), known(topic.EvidenceIDs)

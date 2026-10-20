@@ -65,9 +65,9 @@
   "intro": "Explore emerging directions through scientific papers and verifiable sources.",
   "formLabel": "Find a technology direction",
   "query": "Technology direction",
-  "queryPlaceholder": "For example: retrieval augmented generation (RAG)",
+  "queryPlaceholder": "For example: immunotherapy, energy storage or crop resilience",
   "analyze": "Find directions",
-  "examples": "Examples:",
+  "examples": "Examples",
   "period": "Period: {{start}}–{{end}}",
   "start": "Period start (UTC)",
   "cutoff": "Include data up to (UTC)",
@@ -271,7 +271,8 @@
     "historyExplanation": "The time map counts each scientific paper once by the year of its first found publication. The filter excludes undated papers until “All years” is selected. Direction membership comes from the current analysis: switching the year does not restore the past state of the corpus. The number of papers found by itself does not prove technology growth.",
     "rankingExplanation": "The ranking currently has {{count}} directions. Its checks do not affect map availability: the sources found can be studied before a trend is confirmed.",
     "querySettings": "Settings",
-    "timelinePan": "Swipe left → more years"
+    "timelinePan": "Swipe left → more years",
+    "noMatchesHint": "Try a broader query in medicine, energy, agriculture or another field. The breakdown below shows which sources were available to the analysis."
   },
   "study": {
     "title": "Technology radar",
@@ -674,7 +675,77 @@
         "crop-genomics": "Crop genomics and breeding",
         "climate-adaptation": "Climate adaptation and hazard forecasting",
         "methane-monitoring": "Methane and emissions monitoring",
-        "marine-carbon": "Ocean carbon removal"
+        "marine-carbon": "Ocean carbon removal",
+        "datacenter-power": "AI data-center power demand",
+        "grid-forming": "Grid-forming inverters",
+        "virtual-power-plant": "Virtual power plants",
+        "fashion-llm": "Multimodal AI for fashion and apparel",
+        "video-try-on": "Video virtual try-on",
+        "prediction-markets": "Prediction markets",
+        "agentic-payments": "Agentic payments and commerce",
+        "food-ai": "AI for food and nutrition",
+        "game-world-models": "Playable world models",
+        "clinical-agents": "Clinical AI agents",
+        "patient-digital-twin": "Patient digital twins",
+        "driving-world-model": "World models for autonomous driving",
+        "disaggregated-serving": "Disaggregated LLM serving",
+        "housing-markets": "Housing markets and rents",
+        "world-action-models": "World action models for robots",
+        "geo-search": "Generative engine optimization",
+        "ai-video-detection": "AI-generated video detection",
+        "multi-shot-video": "Multi-shot and long video generation",
+        "legal-benchmarks": "Legal LLM benchmarks",
+        "wireless-world-model": "World models for wireless networks",
+        "ai-labor-exposure": "AI exposure of occupations",
+        "household-robots": "Household robots",
+        "pedagogical-agents": "Pedagogical AI agents",
+        "ai-companionship": "AI companionship",
+        "live-commerce": "Live-stream commerce",
+        "eda-agents": "AI agents for chip design",
+        "ai-psychosis": "Chatbot mental-health risks",
+        "child-online-safety": "Child online safety",
+        "song-generation": "Full-song generation",
+        "orbital-datacenters": "Orbital data centers",
+        "team-sports-ai": "Foundation models for team sports",
+        "sports-betting": "Sports betting analytics",
+        "proactive-assistant": "Proactive AI assistants",
+        "agent-security": "Security of AI agents",
+        "materials-agents": "AI agents for materials and chemistry",
+        "generative-crystals": "Generative crystal design",
+        "text-to-cad": "Text-to-CAD generation",
+        "agri-agents": "AI agents for agriculture",
+        "water-ai": "AI for water and floods",
+        "microplastics": "Microplastics monitoring",
+        "geo-foundation": "Geospatial foundation models",
+        "biodiversity-ai": "Foundation models for biodiversity",
+        "bio-agents": "AI agents for biology and drug discovery",
+        "ai-scientist": "AI scientist agents",
+        "tourism-ai": "AI in tourism and hospitality",
+        "cultural-heritage-ai": "AI for museums and cultural heritage",
+        "poi-llm": "LLM recommendations of places to visit",
+        "bundibugyo": "Bundibugyo ebolavirus outbreak",
+        "glp1-drugs": "GLP-1 drugs beyond diabetes",
+        "social-prescribing": "Social prescribing",
+        "bridge-recombinase": "Bridge recombinases and RNA-guided transposons",
+        "rna-biopesticides": "RNA-based biopesticides",
+        "precision-fermentation": "Precision fermentation",
+        "nuclear-clock": "Thorium nuclear clocks",
+        "higgsino-lz": "Higgsino dark matter and the LZ event",
+        "lithium-tantalate": "Thin-film lithium tantalate photonics",
+        "cfet": "Complementary FET and 2D transistors",
+        "nitrate-to-ammonia": "Electrochemical nitrate-to-ammonia",
+        "lithium-extraction": "Direct lithium extraction",
+        "natural-hydrogen": "Natural (geologic) hydrogen",
+        "perovskite-tandem": "Perovskite tandem solar cells",
+        "deep-sea-mining": "Deep-sea mining",
+        "phase-field-fracture": "Phase-field fracture modelling",
+        "smart-rings": "Smart rings and wearables",
+        "influencer-marketing": "Influencer marketing",
+        "climate-anxiety": "Climate anxiety",
+        "cognitive-offloading": "Cognitive offloading in learning",
+        "datacenter-water": "Water footprint of data centers",
+        "liquid-cooling": "Liquid and immersion cooling for data centers",
+        "datacenter-siting": "Data-center siting and land use"
       },
       "discovered": "Found automatically",
       "discoveredHint": "Auto-discovery groups semantically close titles and abstracts. Older updates may have used recurring title phrases. The method and sample are saved with each direction.",
@@ -702,7 +773,8 @@
         "help": "How this is computed",
         "guide": "Further right means more arXiv papers over the last six months up to the update date; higher means more additional papers relative to the preceding period of the same length. Both date ranges are shown below the chart. Colour shows relative growth: 100 → 150 papers is +50%. Both scales are logarithmic: the vertical one is compressed around zero and keeps the sign, so equal vertical distances mean equal ratios rather than equal differences. GitHub, Hacker News, patents and websites complement the card.",
         "groupsHelp": "What circle size means",
-        "groupsGuide": "An author team groups papers with shared authors. A new team first appeared in this period. Size shows {{min}}–{{max}} new teams over {{period}}; a larger circle means more new teams. This is not the number of companies or individual authors."
+        "groupsGuide": "An author team groups papers with shared authors. A new team first appeared in this period. Size shows {{min}}–{{max}} new teams over {{period}}; a larger circle means more new teams. This is not the number of companies or individual authors.",
+        "money": "Outline: money is already flowing into the topic"
       },
       "table": {
         "aria": "Directions",
@@ -716,14 +788,18 @@
         "hn": "Discussions",
         "since": "First seen",
         "stages": {
-          "emerging_signal": "emerging",
-          "early_signal": "early signal",
-          "established": "was active before",
-          "unassessed": "not assessed"
+          "emerging_signal": "Emerging",
+          "early_signal": "Early signal",
+          "established": "Was active before",
+          "unassessed": "Not assessed"
         },
         "unique": "Own papers, %",
         "branch": "Field",
-        "citations": "Citations"
+        "citations": "Citations",
+        "industry": "Industry",
+        "money": "Money",
+        "moneyHint": "Early-money events in six months: {{count}}",
+        "moneyInvestors": "Investors: {{names}}"
       },
       "description": {
         "by": "Written by the model from the direction's papers",
@@ -748,7 +824,8 @@
         "web": "Websites",
         "patents_cn": "Chinese patents",
         "registry": "Registries",
-        "corpus": "Documents"
+        "corpus": "Documents",
+        "research": "Research"
       },
       "channels": {
         "papers": "arXiv papers",
@@ -758,7 +835,8 @@
         "patents": "Patents",
         "web": "Websites",
         "registry": "State registries",
-        "corpus": "Your uploaded documents"
+        "corpus": "Your uploaded documents",
+        "research": "Research catalogues"
       },
       "tabsLegend": "A dash means the channel history was not collected; zero means the channel was collected and had no matches.",
       "dynamics": "Monthly history",
@@ -809,7 +887,8 @@
         "more_one": "{{amount}} more paper",
         "more_other": "{{amount}} more papers",
         "fewer_one": "{{amount}} fewer paper",
-        "fewer_other": "{{amount}} fewer papers"
+        "fewer_other": "{{amount}} fewer papers",
+        "money": "Early money:"
       },
       "partialQuarter": "{{period}} · month in progress",
       "semantic": {
@@ -848,8 +927,11 @@
         "lineage_budget": "Repository lineage checked for {{checked}}, {{pending}} left. The rest is checked during the next collections.",
         "lineage_unavailable": "Repository lineage is not being checked right now. Prior observations are kept.",
         "scholar_capped": "{{taken}} of {{found}} works found were taken into the analysis.",
+        "pubmed_added": "Scientific works added from PubMed: {{added}}. Duplicates excluded.",
+        "pubmed_capped": "{{taken}} of {{found}} PubMed records were included. Monthly coverage is incomplete; growth is not assessed from this sample.",
+        "pubmed_unavailable": "PubMed is unavailable or returned an incomplete response. This means missing data, not an absence of publications.",
         "scholar_journals": "Works added from journals outside arXiv: {{added}}.",
-        "scholar_unavailable": "Journal search is unavailable: works come from arXiv only.",
+        "scholar_unavailable": "OpenAlex search is unavailable. Works from other available scientific sources are retained.",
         "scholar_no_terms": "The query has no Latin words, so journals were not searched.",
         "arxiv_kept": "arXiv papers taken: {{kept}} of {{found}} found.",
         "arxiv_unavailable": "Some papers are unavailable right now. History is incomplete.",
@@ -878,14 +960,16 @@
         "scholar_sampled": "Journals were queried month by month: {{taken}} works of {{found}} found, no month skipped.",
         "classifier_not_connected": "The trained model is not connected yet — this is not an error. Instead of its score, the candidates picked by the screening rules are shown for expert review.",
         "classifier_unavailable": "The trained model did not complete scoring for all candidates. Available scores have been retained; gaps are reflected in the selection results.",
-        "qualification_unavailable": "The source check did not finish for every candidate: the search ran out of time. They are listed separately under “Not checked in time”.",
+        "qualification_unavailable": "The source check did not finish for every candidate: the search ran out of time. They are listed separately under “Not fully checked”.",
         "summary": "Collection notes: {{total}}",
         "summaryFailures": "Collection notes: {{total}}, sources not responding — {{failures}}",
         "bounds": "Collection limits · {{total}} — properties of the method, not errors.",
         "boundsMore": "Show {{total}} more",
         "openalex_budget": "The daily OpenAlex quota for journal search is spent — works from journals outside arXiv were not added. The rest of the quota is kept for term history used by the model; it resets at 00:00 UTC.",
         "openalex_exhausted": "The daily OpenAlex quota is fully spent: the model scored candidates without term history, so the score is less precise. It resets at 00:00 UTC.",
-        "qualification_budget": "The search time ran out before every candidate was checked. Unchecked ones are listed separately under “Not checked in time”."
+        "qualification_budget": "The search time ran out before every candidate was checked. Unchecked ones are listed separately under “Not fully checked”.",
+        "research_sample": "DataCite and OpenAIRE supplied {{records}} records in a bounded sample. Growth and novelty are not measured from this sample.",
+        "research_unavailable": "Some research catalogues are unavailable. This is missing data, not evidence that no research exists."
       },
       "collection": {
         "title": "Data updates",
@@ -965,7 +1049,7 @@
         "preparing": "Preparing the search",
         "elapsedLabel": "Time elapsed",
         "budgetLabel": "Expected duration",
-        "budgetValue": "Usually 12–13 minutes",
+        "budgetValue": "Usually 3–5 minutes",
         "durationHint": "Timing depends on the response from each source and the volume of materials.",
         "previous": "The previous search took {{time}}.",
         "reconnectingTitle": "Reconnecting",
@@ -1069,10 +1153,25 @@
         "industrialAi": "Industrial AI",
         "aiInfra": "AI infrastructure",
         "robotics": "Robotics",
-        "fintech": "Fintech"
+        "fintech": "Fintech",
+        "medicine": "Medicine and diagnostics",
+        "agriculture": "Agriculture",
+        "energy": "Energy and storage",
+        "climate": "Climate and environment",
+        "materials": "Materials and chemistry",
+        "biotech": "Biotechnology and drug discovery",
+        "economics": "Economics and society",
+        "space": "Space and astrophysics"
       },
       "weakSignals": "Weak signals",
-      "quickQueries": "Example queries"
+      "quickQueries": "Example queries",
+      "diverseOrder": "Different areas",
+      "chooseIndustry": "Choose an industry to search",
+      "allIndustries": "All industries and research areas",
+      "industryQuery": "weak signals: {{industry}}",
+      "industryCatalog": "Industry catalog",
+      "industryLabel": "Industry",
+      "industryAll": "All industries"
     }
   },
   "corpusSelection": "Searching the selected corpus",
@@ -1080,7 +1179,13 @@
     "entity": "What is shown",
     "directions": "Directions",
     "technologies": "Technologies from documents",
-    "primary": "primary"
+    "primary": "primary",
+    "money": "Early money",
+    "technologiesShort": "Technologies",
+    "map": "World map",
+    "mapShort": "Map",
+    "moneyShort": "Money",
+    "new": "NEW"
   },
   "catalogue": {
     "title": "Technologies from uploaded documents",
@@ -1181,7 +1286,10 @@
       "basis": {
         "expert_review": "expert correction",
         "extraction": "from a source",
-        "alias": "from a source"
+        "alias": "from a source",
+        "source_text": "from a source",
+        "normalization": "normalized spelling",
+        "translation": "translation"
       }
     },
     "merge": {
@@ -1523,14 +1631,17 @@
       "software": "software",
       "software-paper": "software paper",
       "standard": "standard",
-      "supplementary-materials": "supplementary materials"
+      "supplementary-materials": "supplementary materials",
+      "investment_thesis": "Investment thesis",
+      "investor_commentary": "Investor commentary"
     },
     "unknownDate": "Date not provided",
     "sourceName": "Publication/platform: {{name}}",
     "discoveredVia": "Discovered via: {{source}}",
     "discovery": {
       "arxiv": "arXiv",
-      "openalex": "OpenAlex"
+      "openalex": "OpenAlex",
+      "pubmed": "PubMed"
     }
   },
   "counters": {
@@ -1554,7 +1665,7 @@
     "volumeAnalysisValue": "{{papers}} works · ≈ {{tokens}} tokens",
     "volumeClassifier": "Trained model input",
     "volumeClassifierValue": "{{candidates}} technologies · {{sources}} sources · ≈ {{tokens}} tokens · {{size}}",
-    "unchecked": "Not checked in time"
+    "unchecked": "Not fully checked"
   },
   "confidence": {
     "label": "Rules passed",
@@ -1633,9 +1744,9 @@
     "topUpWith": "Did not pass every radar check: {{check}}",
     "rescoring": "The model score is being updated: the previous version’s score is shown, the new one will replace it within a minute or two.",
     "topUpTally": "{{count}} of them did not pass every radar check — the reason is on each tile.",
-    "uncheckedSection": "Not checked in time · {{count}}",
-    "uncheckedTitle": "Not checked in time: {{count}}",
-    "uncheckedHint": "The source check did not reach these candidates within the search time or did not finish. This is not a rejection: there is no decision on them."
+    "uncheckedSection": "Not fully checked · {{count}}",
+    "uncheckedTitle": "Not fully checked: {{count}}",
+    "uncheckedHint": "One search checks a limited number of candidates against sources. These fell outside the queue or the search time, or their check broke off — the reason is given for each. This is not a rejection: there is no decision on them."
   },
   "executive": {
     "menuWord": "Executive brief — Word",
@@ -1761,8 +1872,10 @@
       "mature": "Mature technology",
       "noise": "Noise",
       "failed": "Declining direction",
-      "insufficient_data": "Insufficient data"
+      "insufficient_data": "Insufficient data",
+      "undecided": "Cannot decide"
     },
+    "undecidedReason": "The model cannot tell this technology from hype with guaranteed coverage: at this score both “weak signal” and “not a weak signal” remain plausible. The market layer needs checking.",
     "evidenceMissing": "No supporting quotation is attached; this claim needs review.",
     "evidenceSourceMissing": "Quotation source absent from response: {{id}}",
     "evidenceVerified": "Claim-to-quotation support checked by a language model; analyst review is required.",
@@ -1811,7 +1924,11 @@
     "modelNote": "A contribution shows how far a feature moved the score: plus raises it, minus lowers it. The model is trained on the organisers’ hundred reference signals.",
     "aboutMethod": "About the calculation",
     "searchCoverage": "Query coverage",
-    "searchCoverageValue": "{{candidates}} candidates considered, {{selected}} selected"
+    "searchCoverageValue": "{{candidates}} candidates considered, {{selected}} selected",
+    "priorArt": "Earlier work on this technology",
+    "priorArtQuery": "Search for “{{query}}” in work published before {{date}}.",
+    "study_limitations": "Study limitations",
+    "studyLimitationsMissing": "Study limitations were not established from the available sources. This does not mean there are none."
   },
   "transfer": {
     "open": "Create hypothesis",
@@ -1852,8 +1969,9 @@
     "link": "How the radar model was checked against the organisers’ reference set",
     "loadError": "Could not load the model evaluation report.",
     "percent": "{{percent}}%",
+    "sourceCoverage": "In embedded classifier {{version}}, a verified empty arXiv window is neutral when scientific publications from other sources support the same mechanism within the selected period. A matching name alone is insufficient. The metrics and file check shown here evaluate the original weights without this source coverage rule.",
     "aboutTitle": "What the model is",
-    "about": "Logistic regression, version {{version}}. The model looks at the phrase papers use for a technology in five sources: arXiv papers, the term’s history in OpenAlex, Hacker News discussions, a maturity rating by a language model and the meaning of the name itself. Each feature has its own weight, and the sum is turned into a score from 0 to 100%. A technology scoring {{threshold}}% or more is treated as a weak signal.",
+    "about": "Logistic regression, version {{version}}. The model looks at the phrase papers use for a technology in five sources: arXiv papers, the term’s history in OpenAlex, Hacker News discussions, a maturity rating by a language model and the meaning of the name itself. Each feature has its own weight, and the sum is turned into a score from 0 to 100%. A technology scoring {{threshold}}% or more is treated as a weak signal unless the score falls into the “cannot decide” band around the threshold, described below.",
     "training": "Training set: {{total}} technologies from five sources. The features were measured as of {{month}}, by the same code the radar uses for its candidates.",
     "trainingTitle": "Training set",
     "source": "Source",
@@ -2076,6 +2194,11 @@
     "matrixWeak": "Model: weak signal",
     "matrixOther": "Model: not a weak signal",
     "abstention": "Abstention. In the radar the model gives no verdict when the phrase barely occurs in the data: one arXiv paper in the window and at most one in OpenAlex, or none anywhere. By this rule the radar would defer {{signals}} of {{total}} reference signals and {{others}} rows of other sources. Here features were collected for every row in advance, so all rows are scored; without the deferred rows {{metric}} is {{f1}}.",
+    "conformalTitle": "Third state: “cannot decide”",
+    "conformalIntro": "On top of the same score the model builds a set of admissible labels so that the true label falls into it in at least {{coverage}} of cases, separately for signals and non-signals (class-conditional conformal prediction). When both labels are admissible, the radar shows “cannot decide” and does not count the candidate as confident: between {{low}} and {{high}} the model cannot tell a signal from hype with this guarantee, and the market layer needs checking. The {{threshold}} threshold lies inside this band, so outside it the decision matches the threshold.",
+    "conformalCheck": "Leak-free check: the bounds are computed on four parts of the outer loop and applied to the fifth, so a row never takes part in computing its own bound. Actual coverage is {{weak}} for signals and {{notWeak}} for non-signals; “cannot decide” covers {{undecided}} of rows. Precision of a confident “weak signal” is {{precision}} versus {{baseline}} for the single-threshold decision on the same rows.",
+    "conformalTable": "Guaranteed decision by source",
+    "notWeak": "Not a weak signal",
     "slicesTitle": "Slices: the number depends on what it is compared with",
     "slicesIntro": "The headline number uses the reference set and the team examples — mostly mature technologies that are easy to tell apart. On hard negatives — current hype — and on all rows together precision is lower. All negatives were picked by the team and there is no independent test set: this report does not guarantee the result on the organisers’ closed dataset.",
     "slice": "Sample",
@@ -2248,6 +2371,9 @@
     },
     "growthNew_one": "+{{count}} paper in six months",
     "growthNew_other": "+{{count}} papers in six months",
+    "fresh_one": "+{{count}} source in six months",
+    "fresh_other": "+{{count}} sources in six months",
+    "freshHint": "Analysis sources dated within the six months before the analysis",
     "growthUp": "×{{ratio}} in six months",
     "growthFlat": "no growth in six months",
     "growthDown": "decline in six months",
@@ -2264,10 +2390,244 @@
     "scoreMissing": "too little data for the model",
     "factsSince_one": "{{count}} source · first seen in {{year}}",
     "factsSince_other": "{{count}} sources · first seen in {{year}}",
-    "order": "Confirmed weak signals come first, then tiles are ordered by the percentage on the image — similarity to weak signals. Whether a technology passed the radar checks is on the badge on the left",
+    "order": "Confirmed weak signals come first, then the rest that passed the radar checks, and last those added to fill fifteen; within each group tiles follow the percentage on the image — similarity to weak signals. The check outcome is on the badge on the left",
     "notPassed": "Did not pass every radar check",
     "needSecond": "Needs a second independent source",
     "noModelScore": "not scored by the model",
     "similarityOf": "{{percent}} % similar to weak signals"
+  },
+  "money": {
+    "title": "Where early money goes",
+    "intro": "Rounds, grants and accelerator selections from {{from}} to {{through}} from open sources. The industry table is the point: where money outruns science and where science grows before money arrives.",
+    "loading": "The early money layer is being built in the background: the first pass takes a few minutes.",
+    "failed": "The early money layer is unavailable: sources did not respond, we will retry within an hour.",
+    "empty": "No events match the selected filters.",
+    "regionLabel": "Region",
+    "kindLabel": "Kind",
+    "all": "All",
+    "regions": {
+      "americas": "North America",
+      "europe": "Europe",
+      "latam": "Latin America",
+      "mena": "Middle East and Turkey",
+      "africa": "Africa",
+      "asia": "Asia",
+      "cis": "Russia and CIS",
+      "unknown": "Region not stated"
+    },
+    "kinds": {
+      "round": "Rounds",
+      "grant": "Startup grants",
+      "accelerator": "Accelerators",
+      "development": "Development finance",
+      "research": "Research grants"
+    },
+    "stages": {
+      "pre_seed": "pre-seed round",
+      "seed": "seed round",
+      "series_a": "Series A",
+      "unknown": "stage not stated",
+      "grant": "grant",
+      "accelerator": "accelerator",
+      "development": "development finance",
+      "research": "research grant"
+    },
+    "rubricsTitle": "Industries: money and science",
+    "rubricsHint": "Growth is the change in the industry's share of all money events and of all radar papers. The current month is incomplete and left out.",
+    "periods": {
+      "money": "Money by quarter: {{prior}} → {{recent}}",
+      "science": "Science by half-year: {{prior}} → {{recent}}"
+    },
+    "monthsTitle": "Events by month",
+    "monthEvents": "events: {{count}}",
+    "window": {
+      "prior": "before",
+      "recent": "after",
+      "current": "in progress"
+    },
+    "latestTitle": "Latest deals",
+    "rubricBasisName": "industry from the company name",
+    "sourcesTitle": "Sources and their coverage",
+    "built": "Updated {{date}}",
+    "gaps": "Honest gaps: the Middle East and Israel block automated collection; China, Japan and India need publisher permission; Russia has about two early deals a week. Failed sources are shown in the table: their zero does not mean there were no deals.",
+    "sources": {
+      "name": "Source",
+      "records": "Records",
+      "events": "Events",
+      "license": "Terms",
+      "failed": "failed: {{error}}",
+      "kinds": {
+        "dataset": "open dataset",
+        "registry": "public registry",
+        "feed": "publisher feed"
+      }
+    },
+    "quadrant": {
+      "angel_window": "Angel window",
+      "angel_windowHint": "science grows while early money is still scarce: time for the earliest bets",
+      "consensus": "Consensus",
+      "consensusHint": "both science and money grow: the earliest entry is already expensive",
+      "money_first": "Money ahead of science",
+      "money_firstHint": "money grows without a research base: hype risk",
+      "quiet": "Quiet",
+      "quietHint": "neither science nor money grows"
+    },
+    "plaque": {
+      "title": "Investors noticed",
+      "basis": "Early rounds, startup grants and accelerator selections over six months whose text mentions the technology name or a synonym.",
+      "count": "Events over six months: {{total}}",
+      "kinds": "rounds {{round}} · grants {{grant}} · accelerators {{accelerator}} · development finance {{development}} · research grants {{research}}",
+      "none": "No early rounds, grants or accelerator selections mentioning this name over six months."
+    },
+    "regionsTitle": "Regions",
+    "kpi": {
+      "total": "All events",
+      "classified": "industry known for {{share}} %",
+      "stages": "pre-seed {{preSeed}} · seed {{seed}} · Series A {{seriesA}}",
+      "round": "startup rounds",
+      "grant": "grants to companies",
+      "accelerator": "programme selections",
+      "development": "development finance commitments",
+      "research": "grants to researchers"
+    },
+    "table": {
+      "industry": "Industry",
+      "events": "Events",
+      "money": "Money",
+      "science": "Science",
+      "verdict": "Verdict",
+      "few": "too little data",
+      "showAll": "Show all industries · {{count}}",
+      "collapse": "Collapse"
+    },
+    "latest": {
+      "date": "Date",
+      "company": "Company",
+      "stage": "Stage",
+      "amount": "Amount",
+      "investors": "Investors",
+      "unnamed": "not named"
+    }
+  },
+  "world": {
+    "title": "Research and funding",
+    "aria": "Publication growth by country",
+    "loading": "Science countries are being collected in the background: the first pass takes a few minutes.",
+    "failed": "The world map is unavailable: OpenAlex did not answer, we will retry in an hour.",
+    "updated": "Snapshot from {{date}}",
+    "table": {
+      "aria": "Trends",
+      "caption": "Choose a trend to explore",
+      "name": "Trend",
+      "papers": "Publications",
+      "growth": "Growth",
+      "papersHelp": "How papers are counted",
+      "papersMeaning": "Radar articles in the last six months; change versus the previous period appears below. A dash means no comparison baseline. The map shows the broader OpenAlex research context.",
+      "funding": "Events",
+      "fundingMeaning": "Funding events linked to the trend: early rounds, grants and selections. Event counts, not monetary amounts."
+    },
+    "tip": {
+      "science": "science by country",
+      "direction": "papers on the direction (was)",
+      "radar": "radar papers",
+      "teams": "teams new / all",
+      "deals": "funding events",
+      "technologies": "technologies in the card",
+      "pending": "card is still being computed",
+      "country": "papers on radar directions: {{recent}} (was {{prior}})"
+    },
+    "world": "All countries",
+    "regions": {
+      "cis": "Russia and CIS",
+      "mena": "Middle East"
+    },
+    "region": {
+      "deals": "Events in the selected period: {{count}}",
+      "months": "By month",
+      "rubrics": "Industries",
+      "all": "All deals and grants",
+      "noSources": "Investment event data for this region is unavailable. This does not mean there is no investment.",
+      "signals": "Signals where the region leads science",
+      "noSignals": "No such signals in the world top."
+    },
+    "selection": "Selected signal",
+    "closeSelection": "Close signal details",
+    "openDirection": "Open direction",
+    "scienceLayer": "Publications",
+    "moneyLayer": "Funding",
+    "countryFilter": "Research country",
+    "periodPending": "Period not yet available",
+    "moneyScope": "Events by source region",
+    "moneyPending": "Investment data is currently unavailable.",
+    "noData": "No data",
+    "publications": "publications",
+    "events": "events",
+    "previous": "Previously {{count}} publications",
+    "reset": "Reset",
+    "about": "Sources and limitations",
+    "scienceMethod": "OpenAlex: {{count}} radar topics. The map covers these topics, not all global research. A publication can belong to several topics and countries; values must not be added together.",
+    "moneyMethod": "Early rounds, grants and selections from connected sources. Region comes from the source and may differ from the company’s country. Events without a region: {{count}}. This is not a market-size estimate.",
+    "snapshot": "Data snapshots: publications — {{science}}; investment — {{money}}. A snapshot date does not mean every source was updated that day.",
+    "growthTitle": "Publication growth",
+    "growthHelp": "How to read the map",
+    "growthMethod": "Color shows publication change versus {{period}}. OpenAlex, {{count}} radar topics. Scale ends: −50% or below, +100% or above. Hover for exact values. Hatching means missing data or comparison baseline.",
+    "noComparison": "No comparison",
+    "noBaseline": "No comparison baseline",
+    "fundingHelp": "What funding includes",
+    "fundingMethod": "Early rounds, grants and accelerator selections from connected sources. Event counts, not investment amounts. Region comes from the source and may differ from the company’s country. A dash means no available data. The map and summary include events with a known region.",
+    "fundingCount": "{{count}} events",
+    "fundingRegion": "Events · {{region}}",
+    "keyboard": "Pan with arrow keys or drag. Plus and minus zoom; Home resets the map.",
+    "spikeLegend": "Height — number of events",
+    "fundingBreakdown": "Funding breakdown",
+    "allRegions": "All regions",
+    "markerRegions": {
+      "americas": "N. America",
+      "europe": "Europe",
+      "latam": "L. America",
+      "mena": "Middle East",
+      "africa": "Africa",
+      "asia": "Asia",
+      "cis": "Russia & CIS"
+    },
+    "investors": {
+      "title": "Investors · {{place}}: {{count}}",
+      "marker": "{{region}}: funds and investors {{count}}",
+      "inCountry": "Funds and investors",
+      "legend": "Coin stack: funds and investors headquartered in the region, taller means more",
+      "rubrics": "What they back",
+      "top": "Most active",
+      "deals": "deals: {{count}}",
+      "sourcesLead": "Data:",
+      "moreSources": "and {{count}} more sources",
+      "none": "Open registers and association lists have no investors from here.",
+      "tooltipTitle": "Investors · {{place}}",
+      "tooltipCount": "funds, angel networks and accelerators headquartered in the region",
+      "tooltipTypes": "Who they are",
+      "tooltipHint": "Click to see the most active funds below the map, their deals over six months and the data sources."
+    }
+  },
+  "investors": {
+    "noRubrics": "No industry is stated for the selected investors.",
+    "types": {
+      "vc_manager": "Fund manager",
+      "vc_fund": "Venture fund",
+      "seed_fund": "Seed fund",
+      "angel_fund": "Angel fund",
+      "angel_network": "Angel network",
+      "accelerator": "Accelerator",
+      "cvc": "Corporate fund",
+      "government": "Government programme",
+      "family_office": "Family office",
+      "other": "Other"
+    },
+    "stages": {
+      "angel": "angel",
+      "pre_seed": "pre-seed",
+      "seed": "seed",
+      "series_a": "Series A",
+      "growth": "growth"
+    },
+    "attribution": "Fundraising Fox Open Dataset (CC BY 4.0)"
   }
 }

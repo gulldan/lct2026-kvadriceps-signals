@@ -19,6 +19,13 @@ interface LivePeriod {
 }
 
 /** Обзор не возит semantic, market, adoption и паспорта: поля отсутствуют, а не обнуляются. */
+export interface LiveTopicMoney {
+  total: number;
+  kinds: Record<string, number>;
+  stages?: Record<string, number>;
+  investors?: string[];
+}
+
 export interface LiveTopic extends Omit<StudyTopic, "id" | "screening"> {
   id: string;
   screening: "query";
@@ -27,6 +34,10 @@ export interface LiveTopic extends Omit<StudyTopic, "id" | "screening"> {
   curated: boolean;
   source: "curated" | "discovered" | "search" | "candidate";
   branch?: string;
+  /** Отрасль каталога dealroom_research_v1: приходит только в обзоре радара. */
+  industry?: string;
+  /** Ранние деньги, где упомянута технология направления, — маркер «инвесторы уже заметили». */
+  money?: LiveTopicMoney | null;
   label?: string;
   description?: string;
   events?: LiveAdoptionEvent[] | null;
@@ -67,6 +78,7 @@ export interface LiveTopic extends Omit<StudyTopic, "id" | "screening"> {
   registry?: LiveChannel | null;
   web?: LiveChannel | null;
   corpus?: LiveChannel | null;
+  research?: LiveChannel | null;
   confidence?: LiveConfidence | null;
   market?: LiveMarket | null;
   adoption?: LiveAdoption | null;
@@ -199,6 +211,7 @@ export interface LiveCounters {
   sources_processed: number;
   papers: number;
   registry: number;
+  research?: number;
   patents: number;
   web: number;
   external: number;
@@ -218,6 +231,7 @@ interface LiveCard {
   advantage?: string;
   example?: string;
   report_assessment?: string;
+  study_limitations?: string;
   example_id?: string;
   example_type?: LiveEventType | "";
   model?: string;
@@ -225,6 +239,23 @@ interface LiveCard {
   missing?: string[];
   evidence?: LiveClaimEvidence[];
   verification_model?: string;
+  prior_art?: LivePriorArt;
+}
+
+export interface LivePriorArt {
+  status: "candidates" | "not_found" | "unavailable";
+  query?: string;
+  before?: string;
+  note: string;
+  source_url?: string;
+  works?: {
+    id: string;
+    title: string;
+    date: string;
+    url: string;
+    doi?: string;
+    abstract?: string;
+  }[];
 }
 
 export interface LiveClaimEvidence {
@@ -239,7 +270,7 @@ interface LiveModelScore {
   model: string;
   version: string;
   basis: string;
-  label?: "weak_signal" | "mature" | "noise" | "failed" | "insufficient_data";
+  label?: "weak_signal" | "mature" | "noise" | "failed" | "insufficient_data" | "undecided";
   data_gap?: "not_collected" | "not_found" | "too_early";
   threshold?: number;
   feature_schema?: string;
@@ -361,6 +392,8 @@ export interface LiveChannel {
     language_basis?: string;
     publisher_type?: string;
     genre?: string;
+    doi?: string;
+    authors?: string[];
     trust?: string;
     trust_basis?: string;
     text_status?: string;
@@ -523,7 +556,10 @@ export type WeakSignalInputKind =
 export interface WeakSignalModelCheck {
   model: {
     version: string;
+    embedded_inference_version?: string;
     threshold: number;
+    /** Квантили несоответствия по классам: «сигнал» допустим при оценке не ниже 1 − weak, «не сигнал» — не выше not_weak. */
+    conformal?: { alpha: number; weak: number; not_weak: number };
     /** Порядок совпадает с coef. */
     inputs: `${"broad" | "narrow"}_${WeakSignalInputKind}`[];
     /** Веса на стандартизованных входах, поэтому их модули сравнимы. */
@@ -571,6 +607,14 @@ export interface WeakSignalModelCheck {
       WeakSignalOutage,
       WeakSignalScores & { false_signal: Partial<Record<WeakSignalSource, number>> }
     >;
+    /** Конформное решение: квантили по четырём частям внешнего цикла, проверка на пятой. */
+    conformal?: {
+      alpha: number;
+      coverage: { weak: number; not_weak: number };
+      undecided: number;
+      weak_precision: number;
+      by_source: Record<WeakSignalSource, Record<"weak" | "undecided" | "not_weak", number>>;
+    };
     /** Правило «мало данных» радара; здесь эти строки оценены, число показано отдельно. */
     abstention?: {
       by_source: Record<WeakSignalSource, { total: number; abstained: number }>;

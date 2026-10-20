@@ -3,6 +3,8 @@ import { useTranslation } from "react-i18next";
 import { Layers, RefreshCw } from "lucide-react";
 import { invalidateClusters, listClusters, type ApiCluster } from "@/features/cluster";
 import { cleanInternalTitle } from "@/features/hypothesis";
+import { interleaveBy } from "@/shared/lib/interleaveBy";
+import { researchDomain } from "@/shared/lib/researchDomain";
 import { Button } from "@/shared/ui/Button";
 import { FilterBar } from "@/shared/ui/FilterBar";
 import { PageLayout } from "@/shared/ui/PageLayout";
@@ -19,7 +21,7 @@ import { ThemeMap } from "../ui/ThemeMap";
 import { ThemeComparison } from "../ui/ThemeComparison";
 
 type Phase = "loading" | "ready" | "error";
-type ThemeSort = keyof typeof THEME_SORTS;
+type ThemeSort = keyof typeof THEME_SORTS | "diverse";
 const PAGE_SIZE = 12;
 
 export function SummaryPage() {
@@ -28,7 +30,7 @@ export function SummaryPage() {
   const [clusters, setClusters] = useState<ApiCluster[]>([]);
   const [phase, setPhase] = useState<Phase>("loading");
   const [query, setQuery] = useState("");
-  const [sort, setSort] = useState<ThemeSort>("tech");
+  const [sort, setSort] = useState<ThemeSort>("diverse");
   const [scoredOnly, setScoredOnly] = useState(false);
   const [page, setPage] = useState(1);
   const [view, setView] = useState("map");
@@ -56,13 +58,16 @@ export function SummaryPage() {
   );
   const filtered = useMemo(() => {
     const text = query.trim().toLowerCase();
-    return themes
+    const ranked = themes
       .filter(
         (c) =>
           (!scoredOnly || c.params?.itc) &&
           (!text || [c.label, ...(c.keywords ?? [])].join(" ").toLowerCase().includes(text)),
       )
-      .toSorted(THEME_SORTS[sort].cmp);
+      .toSorted(THEME_SORTS[sort === "diverse" ? "tech" : sort].cmp);
+    return sort === "diverse"
+      ? interleaveBy(ranked, (theme) => researchDomain(theme.label, ...(theme.keywords ?? [])))
+      : ranked;
   }, [themes, query, sort, scoredOnly]);
   const points = useMemo(() => themePoints(filtered), [filtered]);
   const excludedFromMap = filtered.length - points.length;
@@ -140,6 +145,7 @@ export function SummaryPage() {
                   <SelectValue />
                 </SelectTrigger>
                 <SelectContent>
+                  <SelectItem value="diverse">{t("sort.diverse")}</SelectItem>
                   {Object.entries(THEME_SORTS).map(([key, item]) => (
                     <SelectItem key={key} value={key}>
                       {t(item.labelKey)}

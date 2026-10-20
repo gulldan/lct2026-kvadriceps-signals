@@ -59,13 +59,21 @@ export function signalScore(
     const gap =
       model.data_gap ||
       (model.label === "insufficient_data" ? ("unspecified" as const) : undefined);
+    // Оценка внутри конформной полосы: гарантия допускает обе метки, и «выше порога» она тоже не значит.
+    const undecided = model.label === "undecided";
     return {
       percent: Math.round(model.value * 100),
-      passed: !topUp && !gap && model.threshold !== undefined && model.value >= model.threshold,
+      passed:
+        !topUp &&
+        !gap &&
+        !undecided &&
+        model.threshold !== undefined &&
+        model.value >= model.threshold,
       model: true,
       threshold: model.threshold,
       gap,
       topUp,
+      undecided,
     };
   }
   const confidence = topic.confidence;
@@ -77,11 +85,18 @@ export function signalScore(
     threshold: undefined,
     gap: undefined,
     topUp,
+    undecided: false,
   };
 }
 
-export function thresholdLabelKey(score: { passed: boolean; model: boolean; topUp?: boolean }) {
+export function thresholdLabelKey(score: {
+  passed: boolean;
+  model: boolean;
+  topUp?: boolean;
+  undecided?: boolean;
+}) {
   if (score.topUp) return "report.topUp";
+  if (score.undecided) return "report.modelClass.undecided";
   if (score.model)
     return score.passed ? "report.aboveModelThreshold" : "report.belowModelThreshold";
   return score.passed ? "report.aboveThreshold" : "report.belowThreshold";
@@ -99,13 +114,15 @@ export function scoreSummary(score: SignalScore, t: TFunction<"trend">) {
     : `${t("confidence.value", { percent: score.percent })} · ${t(thresholdLabelKey(score))}`;
 }
 
-/** Строго по проценту на плитке: читатель сверяет порядок с числом. */
-export function orderCandidates<T extends Parameters<typeof signalScore>[0]>(list: T[]): T[] {
-  const key = (topic: T) => {
+/** Группы обещает подпись над плитками: подтверждённые слабые сигналы, затем прошедшие проверки радара,
+ *  в конце добранные до пятнадцати. Внутри группы — по проценту на плитке: читатель сверяет порядок с числом. */
+export function orderCandidates<T extends VerdictTopic>(list: T[]): T[] {
+  const group = (topic: T) => (isConfirmedSignal(topic) ? 0 : topic.shortfall ? 2 : 1);
+  const percent = (topic: T) => {
     const score = signalScore(topic);
-    return score && !score.gap ? -score.percent : 1;
+    return score && !score.gap ? score.percent : -1;
   };
-  return list.toSorted((a, b) => key(a) - key(b));
+  return list.toSorted((a, b) => group(a) - group(b) || percent(b) - percent(a));
 }
 
 const SHORTFALL_VERDICT: Record<

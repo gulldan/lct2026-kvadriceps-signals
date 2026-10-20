@@ -48,10 +48,24 @@ class LabelSignalsTest(unittest.TestCase):
             label, *_ = worker.label_community(["Title: Polymer coatings Language: en Source: Crossref URL: https://example.test"])
         self.assertEqual(label, "Коррозионная стойкость полимерных покрытий")
         payload = call.call_args.args[1]
-        self.assertEqual(payload["max_tokens"], 1024)
+        self.assertEqual(payload["max_tokens"], worker.LABEL_LLM_MAX_TOKENS)
         self.assertEqual(payload["reasoning_effort"], "none")
         self.assertIn("Polymer coatings", payload["messages"][0]["content"])
         self.assertNotIn("Crossref", payload["messages"][0]["content"])
+
+    def test_truncated_json_is_retried_with_more_room_for_reasoning(self):
+        valid = {"choices": [{"message": {"content": '{"label":"Коррозионная стойкость полимерных покрытий","summary":"Защита стали","keywords":[]}'}, "finish_reason": "stop"}]}
+        truncated = {"choices": [{"message": valid["choices"][0]["message"], "finish_reason": "length"}]}
+        with patch.object(worker, "VLLM_URL", "https://model.example"), \
+             patch.object(worker, "VLLM_API_KEY", "test-only"), \
+             patch.object(worker, "throttle_vllm"), \
+             patch.object(worker, "time"), \
+             patch.object(worker, "LABEL_LLM_MAX_TOKENS", 4096), \
+             patch.object(worker, "http", side_effect=[truncated, valid]) as call:
+            label, _, _, generated = worker.label_community(["Polymer coatings prevent corrosion."])
+        self.assertTrue(generated)
+        self.assertEqual(label, "Коррозионная стойкость полимерных покрытий")
+        self.assertEqual([entry.args[1]["max_tokens"] for entry in call.call_args_list], [4096, 8192])
 
     def test_foreign_language_answer_is_retried_as_a_translation(self):
         # Такое название проверку общности проходит: в нём нет знакомых ей слов.

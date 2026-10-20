@@ -12,6 +12,12 @@ name: rag-platform
 x-app: &app
   restart: unless-stopped
   networks: [ragnet]
+  # Логи делят диск с данными: ограничиваем рост без остановки сервисов хранилища.
+  logging:
+    driver: json-file
+    options:
+      max-size: "20m"
+      max-file: "3"
   # Потолки ресурсов (короткая форма — надёжно применяется docker compose v2,
   # deploy.* для этого не нужен и его restart_policy/replicas всё равно swarm-only).
   # Щедрые: цель — ограничить радиус разгона/утечки на общем хосте, не душить.
@@ -29,6 +35,8 @@ x-app: &app
 x-llm: &llm
   VLLM_URL: ${VLLM_URL:-}
   VLLM_MODEL: ${VLLM_MODEL:-qwen3-35b-a3b}
+  # Модель фона радара (проход сборщика, пересчёт направлений): пусто — VLLM_MODEL. Явное имя маршрута держит фон
+  # на локальной модели, а платный перелив роутера остаётся живому поиску.
   # Ключ внешнего OpenAI-совместимого шлюза (OpenRouter: VLLM_URL=https://openrouter.ai/api);
   # пусто для локального движка. Полностью локально: `--profile local-llm` и
   # VLLM_URL=http://llama-server:8090 (см. llama-server ниже).
@@ -125,6 +133,9 @@ x-env: &env
   # GITHUB_TOKEN — необязательный токен для живых трендов (30 запросов/мин
   # вместо 10 анонимных на GitHub Search); переопределяется из админки.
   PUBSEARCH_MAILTO: ${PUBSEARCH_MAILTO:-}
+  UNPAYWALL_EMAIL: ${UNPAYWALL_EMAIL:-}
+  RADAR_PAPER_CONTEXTS: ${RADAR_PAPER_CONTEXTS:-true}
+  RADAR_PRIOR_ART: ${RADAR_PRIOR_ART:-true}
   PUBSEARCH_ENABLED: ${PUBSEARCH_ENABLED:-true}
   PUBSEARCH_RECENT_YEARS: ${PUBSEARCH_RECENT_YEARS:-5}
 
@@ -797,9 +808,14 @@ services:
   patent-collector:
     <<: *app
     build: { context: ../backend/trend-sources }
-    mem_limit: 4g
-    cpus: "1"
+    # Снимок патентов читается в память целиком: 09.10 при 420 тыс. записей (869 МБ JSON) загрузка не
+    # укладывалась в 4 ГиБ, и сборщик умирал по OOM каждые 13 секунд.
+    mem_limit: 8g
+    # Запрос перебирает весь снимок на одном ядре, а добор источников радара шлёт четыре запроса сразу
+    # (liveSourceRefreshWorkers): 18.10 при одном ядре они вставали в очередь и рвались по сроку 10 с.
+    cpus: "4"
     environment:
+      GOMEMLIMIT: 7GiB
       SOURCE_KIND: patents
       SOURCE_CONFIG: /etc/sources.json
       EPO_OPS_KEY: ${EPO_OPS_KEY:-}
@@ -818,7 +834,7 @@ services:
     <<: *app
     build: { context: ../backend/trend-sources }
     mem_limit: 512m
-    cpus: "1"
+    cpus: "2"
     environment:
       SOURCE_KIND: cn-patents
       SOURCE_CONFIG: /etc/sources.json
@@ -853,11 +869,11 @@ services:
     build: { context: ../backend/trend-sources }
     networks: [ragnet, rendernet]
     # Снимок держит записи всех лент за тринадцать месяцев и растёт с каждым проходом:
-    # при 5094 записях сборщик уже упирался в 180 МиБ.
-    mem_limit: 512m
-    cpus: "1"
+    # при 5094 записях сборщик упирался в 180 МиБ, при 40 тыс. (09.10) не влезал в 512 МиБ.
+    mem_limit: 2g
+    cpus: "4"
     environment:
-      GOMEMLIMIT: 400MiB
+      GOMEMLIMIT: 1600MiB
       SOURCE_KIND: web
       SOURCE_CONFIG: /etc/sources.json
       RENDER_URL: ${RENDER_URL:-http://page-renderer:3000/content}
@@ -894,7 +910,9 @@ services:
 
   radar-collector:
     <<: *app
-    mem_limit: 6g
+    # 09.10 после публикации снимка с каналами рынка сборщик держал 5,4 из 6 ГиБ (пик 5,7). 19.10 в окно добавлены
+    # препринты биологии, медицины, химии и наук о Земле — ещё около 200 тысяч работ с аннотациями к 6,5 ГиБ покоя.
+    mem_limit: 14g
     build:
       context: ../backend/main-service
       args: { COMMAND: radar-collector }
@@ -906,7 +924,7 @@ services:
       # Окно OAI по всем разделам arXiv (~300 тыс. работ с аннотациями) живёт в
       # куче весь цикл; предел ниже mem_limit заставляет сборщик мусора работать
       # раньше, чем контейнер упрётся в лимит.
-      GOMEMLIMIT: 5GiB
+      GOMEMLIMIT: 13GiB
       ARXIV_API_URL: http://arxiv-gateway:8090/api/query
       PATENT_COLLECTOR_URL: http://patent-collector:8090
       CN_PATENT_COLLECTOR_URL: http://cn-patent-collector:8090
@@ -1053,12 +1071,14 @@ services:
       # Без неё подпись модели в ответах API берётся из умолчания кода — имени модели стенда, и
       # после смены VLLM_MODEL через infra/.env интерфейс назвал бы новую модель чужим именем.
       LLM_MODEL_DISPLAY_NAME: ${LLM_MODEL_DISPLAY_NAME:-}
+      LLM_MODEL_DISPLAY_ALIASES: ${LLM_MODEL_DISPLAY_ALIASES:-}
       RADAR_ANALYSIS_URL: http://radar-analysis:8080
       RADAR_EXTERNAL_COLLECTOR: ${RADAR_EXTERNAL_COLLECTOR:-true}
       RADAR_CLASSIFIER_URL: ${RADAR_CLASSIFIER_URL:-}
       RADAR_CLASSIFIER_VERSION: ${RADAR_CLASSIFIER_VERSION:-}
       RADAR_LLM_WORKERS: ${RADAR_LLM_WORKERS:-}
       RADAR_LLM_RPM: ${RADAR_LLM_RPM:-}
+      RADAR_BACKGROUND_LLM: ${RADAR_BACKGROUND_LLM:-false}
       RADAR_CANDIDATE_SOURCE: ${RADAR_CANDIDATE_SOURCE:-ngrams}
       RADAR_ML_EXTRACT_URL: ${RADAR_ML_EXTRACT_URL:-}
       RADAR_ML_EXTRACT_TIMEOUT: ${RADAR_ML_EXTRACT_TIMEOUT:-300s}

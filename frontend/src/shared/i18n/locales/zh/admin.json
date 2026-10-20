@@ -74,7 +74,46 @@
       "topDocs": "按片段数排名前 10 的文档"
     },
     "fileType": "文件类型",
-    "document": "文档"
+    "document": "文档",
+    "topics": {
+      "title": "知识库研究领域",
+      "description": "按研究领域划分的文档占比，每份文档只计入一个领域。",
+      "documents": "份文档",
+      "unclassified": "领域未确定",
+      "other": "其他领域 · {{count}}",
+      "more": "展开其他领域 · {{count}}",
+      "domain": "研究领域",
+      "coverage": "{{total}} 份文档中有 {{classified}} 份已确定领域。涉及领域数：{{count}}。",
+      "titleRules": "根据文档标题中的术语进行初步估计。跨学科论文归入一个领域；缺少明确线索的文档单独显示。",
+      "methodUnknown": "分布由服务器计算，尚未确定领域的文档单独显示。",
+      "unavailable": "尚无研究领域分布。文档处理完成后请刷新概览。",
+      "domains": {
+        "medicine": "医学与健康",
+        "biotechnology": "生物技术",
+        "agriculture": "农业与食品",
+        "energy": "能源",
+        "environment": "气候与环境",
+        "materials": "材料与化学",
+        "industry": "工业",
+        "transport": "交通运输",
+        "space": "航天与天文学",
+        "economics": "经济与社会",
+        "computing": "计算与人工智能",
+        "science": "物理与数学"
+      },
+      "taxonomy": "31 个 Dealroom 行业及 6 个研究方向",
+      "all": "所有行业与研究方向 · {{count}}",
+      "share": "占比",
+      "partition": "每份文档仅归入一个主要类别。父行业仅包含划分子类别后的剩余文档。零表示当前规则未找到匹配文档。",
+      "investorHint": "投资者关注点有助于选择探索领域，但不能证明科学创新性，也不代表投资承诺。",
+      "basis": {
+        "dealroom_industry": "Dealroom 行业",
+        "project_subindustry": "项目子类别",
+        "research_domain": "研究方向"
+      },
+      "marketTitle": "从科学走向市场",
+      "marketBody": "下一步发展方向是将科学信号与投资者公开关注的领域相对照。这些页面有助于选择探索领域；公开表达兴趣并不意味着愿意投资某个具体项目。"
+    }
   },
   "users": {
     "title": "用户与角色",
@@ -93,7 +132,8 @@
     "roles": {
       "user": "用户",
       "operator": "操作员",
-      "admin": "管理员"
+      "admin": "管理员",
+      "readonly": "只读"
     },
     "dialog": {
       "title": "新用户",
@@ -252,7 +292,7 @@
     "trace": {
       "title": "延迟与各阶段——时间花在哪里",
       "description": "来自 Prometheus 的真实流量各阶段延迟（p50 / p95），按路径顺序排列。最深色的条即瓶颈。",
-      "empty": "暂无延迟测量数据。文档和查询经过流水线后将显示各阶段。",
+      "empty": "过去 15 分钟内没有延迟测量数据。",
       "ingestPath": "文档处理",
       "queryPath": "回答问题",
       "stages": {
@@ -285,7 +325,11 @@
       "description": "后台计算延迟——来自工作进程状态；交互路径——见上方 Prometheus 数据。",
       "run": "运行 {{duration}}",
       "updated": "更新于 {{time}}",
-      "neverRan": "尚未运行"
+      "neverRan": "尚未收到状态信号",
+      "heartbeat": "最近信号：{{date}}",
+      "lastSuccess": "最近成功运行：{{date}}",
+      "noSuccess": "成功运行时间未知",
+      "progress": "已处理 {{done}} / {{total}}"
     },
     "readable": {
       "requests": "时段内请求数",
@@ -305,7 +349,9 @@
       "workerState": {
         "running": "运行中",
         "idle": "等待中",
-        "error": "错误"
+        "error": "错误",
+        "stale": "无近期信号",
+        "unknown": "状态未知"
       },
       "noRate": "缺少费率，部分费用未计算",
       "providerVolume": "请求：{{requests}} · 词元：{{tokens}}"
@@ -322,7 +368,22 @@
       "pub_query": "文献检索查询构建",
       "assess_trl": "技术成熟度评估",
       "answer": "问答",
-      "kpi_parse": "论点解析"
+      "kpi_parse": "论点解析",
+      "translate_query": "雷达：查询翻译",
+      "name_candidate": "雷达：技术名称",
+      "qualify_candidate": "雷达：候选筛选",
+      "review_candidate": "雷达：候选复核",
+      "write_card": "雷达：技术卡片",
+      "verify_card": "雷达：卡片核查",
+      "interpret_source": "雷达：来源摘要",
+      "extract_candidates": "雷达：论文中的候选",
+      "extract_market_candidates": "雷达：市场新闻中的候选",
+      "executive_brief": "雷达：管理层简报",
+      "signal_brief": "雷达：信号描述",
+      "rate_maturity": "雷达：成熟度评估",
+      "verify_events": "雷达：应用事件核查",
+      "phrase_technology": "雷达：技术表述",
+      "unclassified": "雷达：其他调用"
     },
     "openalex": {
       "title": "OpenAlex 额度",
@@ -332,7 +393,9 @@
       "remaining": "{{remaining}} / {{limit}}",
       "sub": "已用 {{spent}} · 模型预留 {{reserve}} · 重置 {{reset}}",
       "unknown": "暂无数据"
-    }
+    },
+    "telemetryUnavailable": "指标采集不可用或不完整。空表不代表没有处理任务。",
+    "observedAt": "指标获取时间：{{date}} · 延迟窗口：15 分钟"
   },
   "system": {
     "provider": "提供方",

@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"net/url"
 	"regexp"
+	"slices"
 	"strings"
 	"time"
 	"unicode/utf8"
@@ -29,6 +30,10 @@ type LiveCardSourceContext struct {
 	SourceID       string                 `json:"source_id"`
 	SourceURL      string                 `json:"source_url"`
 	ArxivID        string                 `json:"arxiv_id"`
+	DOI            string                 `json:"doi,omitempty"`
+	Provider       string                 `json:"provider,omitempty"`
+	LookupURL      string                 `json:"lookup_url,omitempty"`
+	LookupSHA256   string                 `json:"lookup_sha256,omitempty"`
 	Coverage       string                 `json:"coverage"`
 	Limitation     string                 `json:"limitation,omitempty"`
 	Text           string                 `json:"text"`
@@ -102,18 +107,34 @@ func liveCardContexts(ctx context.Context, works, ids []string, documents map[st
 		remaining -= utf8.RuneCountInString(work)
 	}
 	contexts := make([]LiveCardSourceContext, 0, len(ids))
+	attempts, full := 0, false
 	for index, sourceID := range ids {
+		if index >= len(works) {
+			break
+		}
+		work := &works[index]
 		id, address := liveCardArxivID(documents[sourceID], metadata[sourceID])
-		if id == "" {
+		doi := liveCardDOI(documents[sourceID], metadata[sourceID])
+		if id == "" && doi == "" {
 			continue
 		}
 		source := LiveCardSourceContext{SourceID: sourceID, SourceURL: address, ArxivID: id,
-			Coverage: liveCardContextAbstract, Text: works[index]}
+			Coverage: liveCardContextAbstract, Text: *work}
+		if id == "" {
+			source.DOI, source.SourceURL = doi, "https://doi.org/"+doi
+		}
 		limit := min(liveCardContextSourceRunes, remaining+utf8.RuneCountInString(source.Text))
-		liveExpandCardContext(ctx, budget, &source, limit)
-		remaining -= utf8.RuneCountInString(source.Text) - utf8.RuneCountInString(works[index])
+		// Одно подробное исследование оставляет время другим карточкам; остальные аннотации сохраняются.
+		if full || attempts >= 2 {
+			source.Limitation = "полный текст не загружен: бюджет распределён между карточками"
+		} else {
+			liveExpandCardContext(ctx, budget, &source, limit)
+			attempts++
+			full = source.Coverage != liveCardContextAbstract
+		}
+		remaining -= utf8.RuneCountInString(source.Text) - utf8.RuneCountInString(*work)
 		source.TextSHA256 = liveCardTextHash(source.Text)
-		works[index] = source.Text
+		*work = source.Text
 		contexts = append(contexts, source)
 	}
 	return contexts
@@ -128,7 +149,11 @@ func liveExpandCardContext(ctx context.Context, budget *liveCardContextBudget, s
 		source.Limitation = "полный текст не загружен: исчерпан объём контекста карточки"
 		return
 	}
-	document, err := budget.get(ctx, source.ArxivID)
+	key := source.ArxivID
+	if source.DOI != "" {
+		key = "doi:" + source.DOI
+	}
+	document, err := budget.get(ctx, key)
 	if err != nil {
 		source.Limitation = "полный текст недоступен: " + liveCardContextFailure(err)
 		return
@@ -145,8 +170,12 @@ func liveExpandCardContext(ctx context.Context, budget *liveCardContextBudget, s
 		return
 	}
 	source.ArxivID, source.SourceURL = document.arxivID, document.address
+	source.Provider, source.LookupURL, source.LookupSHA256 = document.provider, document.lookupURL, document.lookupHash
 	source.RawSHA256, source.BodySHA256 = document.rawHash, liveCardTextHash(document.text)
 	source.ParserRevision, source.ObservedAt = liveCardContextParser, document.observed
+	if document.parser != "" {
+		source.ParserRevision = document.parser
+	}
 	source.Ranges = ranges
 	source.Text = text
 	source.Coverage = liveCardContextFull
@@ -158,6 +187,24 @@ func liveExpandCardContext(ctx context.Context, budget *liveCardContextBudget, s
 
 func liveCardTextHash(text string) string {
 	return fmt.Sprintf("%x", sha256.Sum256([]byte(text)))
+}
+
+// Отсеянная запись не остаётся основанием карточки; копия защищает уже выданные и сохранённые ответы.
+func liveKeepCardContexts(topic *LiveTopic) {
+	if topic.Card == nil {
+		return
+	}
+	removed := func(source LiveCardSourceContext) bool {
+		return !slices.Contains(topic.PaperIDs, source.SourceID) && !slices.Contains(topic.EvidenceIDs, source.SourceID)
+	}
+	if !slices.ContainsFunc(topic.Card.SourceContexts, removed) {
+		return
+	}
+	card := *topic.Card
+	card.SourceContexts = slices.DeleteFunc(slices.Clone(card.SourceContexts), removed)
+	card.Basis = strings.Replace(card.Basis, liveCardContextBasis(topic.Card.SourceContexts),
+		liveCardContextBasis(card.SourceContexts), 1)
+	topic.Card = &card
 }
 
 func liveCardContextBasis(contexts []LiveCardSourceContext) string {
@@ -175,10 +222,10 @@ func liveCardContextBasis(contexts []LiveCardSourceContext) string {
 			abstracts++
 		}
 	}
-	return fmt.Sprintf("; контекст arXiv: полное доступное HTML-тело — %d, цельные фрагменты тела — %d, "+
+	return fmt.Sprintf("; контекст источников: полное доступное тело — %d, цельные фрагменты тела — %d, "+
 		"только аннотация — %d; покрытие остальных источников этим не подтверждается", full, excerpted, abstracts)
 }
 
 func liveCardContextFailure(err error) string {
-	return cmp.Or(liveCardBudgetFailure(err), "ошибка загрузки или непроверенное происхождение HTML")
+	return cmp.Or(liveCardBudgetFailure(err), "ошибка загрузки, недоступный формат или непроверенное происхождение текста")
 }

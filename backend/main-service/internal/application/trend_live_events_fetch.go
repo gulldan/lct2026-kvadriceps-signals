@@ -26,6 +26,13 @@ type liveMarketState struct {
 	sbir   liveGrantIndex
 	cordis liveGrantIndex
 	edgar  livePacer
+	money  liveMoneyIndex
+	// worldMap — страны науки для карты мира; живёт рядом с деньгами, потому что карта сводит их вместе.
+	worldMap liveMapIndex
+	// topicMoney — ранние деньги по направлениям обзора, посчитанные заранее.
+	topicMoney liveTopicMoneyIndex
+	// investors — вшитый справочник инвесторов и его связка со сделками доски ранних денег.
+	investors liveInvestorIndex
 }
 
 // livePacer общий для всех поисков процесса: правило источника считает запросы с адреса, а не с поиска.

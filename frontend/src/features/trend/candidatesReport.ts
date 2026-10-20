@@ -1,6 +1,6 @@
 import type { TFunction } from "i18next";
 import type { ReportBlock, ReportDoc } from "@/shared/report/blocks";
-import { formatDate, formatNumber } from "@/shared/lib/format";
+import { formatDate, formatNumber, upperFirst } from "@/shared/lib/format";
 import type {
   LiveDetail,
   LiveExecutive,
@@ -79,8 +79,7 @@ export function rejectionGroups(rows: LiveRejection[]) {
     .filter((group) => group.items.length > 0);
 }
 
-const capitalize = (text: string) => text.charAt(0).toLocaleUpperCase() + text.slice(1);
-const queryTitle = (query: string) => capitalize(spellAcronyms(query));
+const queryTitle = (query: string) => upperFirst(spellAcronyms(query));
 
 function confidencePercent(topic: LiveTopic, t: TFunction<"trend">) {
   const score = signalScore(topic);
@@ -282,7 +281,7 @@ export function executiveReportDoc({
     blocks.push({
       kind: "paragraph",
       muted: true,
-      text: capitalize(t(`executive.stepHints.${key}`)),
+      text: upperFirst(t(`executive.stepHints.${key}`)),
     });
     for (const item of items) {
       blocks.push({

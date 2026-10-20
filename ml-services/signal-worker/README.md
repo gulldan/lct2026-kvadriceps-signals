@@ -24,7 +24,7 @@
    повтора; `compute_unavailable`, `worker_failure` — повтор, не больше трёх попыток.
 
 Параметры кластеризации, окон, извлечения цитат и MMR лежат в `method.json`; метод имеет
-`quality_status=not_frozen`, приёмку не прошёл — [оценка](../eval-service/signalgraph/ACCEPTANCE.md).
+`quality_status=not_frozen`: параметры ещё не заморожены.
 
 `ranking.diversity` хранит версию MMR, параметры, хеш входа и исключённые ID. Go-контур
 независимо проверяет порядок и исключения по закреплённым снимкам индекса; без этой

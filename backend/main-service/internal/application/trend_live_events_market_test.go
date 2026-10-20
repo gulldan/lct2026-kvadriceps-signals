@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"net/http/httptest"
 	"os"
+	"slices"
 	"strconv"
 	"strings"
 	"testing"
@@ -33,16 +34,29 @@ func TestLiveMarketEventSourcesParse(t *testing.T) {
 		"project.csv": `"id";"title";"ecMaxContribution";"ecSignatureDate";"fundingScheme";"objective"
 "101";"PQC for banks";"2073781,25";"2024-05-12";"HORIZON-IA";"We pilot post-quantum cryptography in payment networks."
 "102";"PQC theory";"1500000";"2024-01-01";"HORIZON-ERC";"Post-quantum cryptography lattices."
+"103";"PQC network";"900000";"2026-05-02";"HORIZON-CSA";"A network on post-quantum cryptography."
 `,
-		"organization.csv": `"projectID";"name";"activityType";"order";"role"
-"101";"TU BERLIN";"HES";"1";"coordinator"
-"101";"CRYPTO GMBH";"PRC";"3";"participant"
+		"organization.csv": `"projectID";"name";"SME";"activityType";"country";"order";"role";"ecContribution"
+"101";"TU BERLIN";"false";"HES";"DE";"1";"coordinator";"900000"
+"101";"CRYPTO GMBH";"false";"PRC";"DE";"3";"participant";"451500,5"
+"101";"NEGEV LAB";"true";"REC";"IL";"4";"participant";"120000"
+"101";"BIG CORP";"false";"PRC";"US";"5";"associatedPartner";""
+"103";"KENYA AGRI LTD";"true";"PRC";"KE";"1";"coordinator";"300000"
 `,
 	})
 	grants, err = liveParseCORDIS(cordis, 2019)
-	if err != nil || len(grants) != 1 || grants[0].Actor != "CRYPTO GMBH" || grants[0].Type != LiveEventGrantLate ||
-		grants[0].Amount != "€2073781" || grants[0].Phase != "HORIZON-IA" {
+	if err != nil || len(grants) != 2 || grants[0].Actor != "CRYPTO GMBH" || grants[0].Type != LiveEventGrantLate ||
+		grants[0].Amount != "€2073781" || grants[0].Phase != "HORIZON-IA" || grants[1].Type != "" ||
+		!slices.Equal(grants[0].Participants, []liveGrantParticipant{{"CRYPTO GMBH", "DE", 451500.5}, {"NEGEV LAB", "IL", 120000}}) {
 		t.Fatalf("cordis grants = %+v, %v", grants, err)
+	}
+	if found := liveGrantMatches(grants, liveCORDISSource(), "post-quantum cryptography"); len(found) != 1 {
+		t.Fatalf("a scheme without an event type must stay out of search: %+v", found)
+	}
+	money, records, _ := liveMoneyHorizonEvents(liveRubrics(), grants, "2026-04-01", "2026-10-18")
+	if records != 1 || len(money) != 1 || money[0].Company != "KENYA AGRI LTD" || money[0].Country != "KE" ||
+		money[0].Amount != "€300K" || money[0].Investors != "Horizon Europe, HORIZON-CSA" {
+		t.Fatalf("horizon money events = %+v", money)
 	}
 
 	hn, err := liveParseHNEvents([]byte(`{"hits":[

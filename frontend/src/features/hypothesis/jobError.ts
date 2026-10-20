@@ -1,7 +1,7 @@
 import { i18n } from "@/shared/i18n";
 
 export function hypothesisJobErrorMessage(code?: string): string {
-  return code === "insufficient_context"
-    ? i18n.t("task:toasts.insufficientContext")
-    : i18n.t("task:toasts.failed");
+  if (code === "insufficient_context") return i18n.t("task:toasts.insufficientContext");
+  if (code === "unparsable_model_output") return i18n.t("task:toasts.unparsableModelOutput");
+  return i18n.t("task:toasts.failed");
 }

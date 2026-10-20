@@ -11,7 +11,7 @@ import { OpenAlexBudget } from "../ui/OpenAlexBudget";
 export function AdminMetrics() {
   const { t } = useTranslation("admin");
   const [view, setView] = useState("budget");
-  const { activity } = useBackgroundTasks();
+  const { activity, refreshActivity } = useBackgroundTasks();
   return (
     <PageLayout>
       <PageHeader title={t("metrics.title")} description={t("metrics.description")} />
@@ -32,7 +32,7 @@ export function AdminMetrics() {
             <OpenAlexBudget />
           </>
         ) : (
-          <PerformanceMetrics workers={activity?.workers ?? []} />
+          <PerformanceMetrics workers={activity?.workers ?? []} onRefresh={refreshActivity} />
         )}
       </TabPanel>
     </PageLayout>

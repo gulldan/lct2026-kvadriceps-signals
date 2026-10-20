@@ -11,7 +11,7 @@ import {
 } from "@/features/hypothesis/api";
 import { listClusters } from "@/features/cluster";
 import { listKPIs, type ApiKPI } from "@/features/kpi";
-import { cleanInternalTitle } from "@/features/hypothesis/model";
+import { cleanInternalTitle, hypothesisClusterId } from "@/features/hypothesis/model";
 import { useOwnerNames } from "@/features/hypothesis/owners";
 import { buildHypothesisReport } from "@/features/hypothesis/report/hypothesisReport";
 import { ReportBlocks } from "@/shared/report/ReportBlocks";
@@ -45,10 +45,10 @@ export function HypothesisReportPage() {
       ]);
       setHyp(h);
       setKpi(h.kpi_id ? kpis.find((k) => k.id === h.kpi_id) : undefined);
+      const clusterId = hypothesisClusterId(h);
       setClusterTitle(
-        h.primary_cluster_id
-          ? cleanInternalTitle(clusters.find((c) => c.id === h.primary_cluster_id)?.label ?? "") ||
-              undefined
+        clusterId
+          ? cleanInternalTitle(clusters.find((c) => c.id === clusterId)?.label ?? "") || undefined
           : undefined,
       );
       setRevisions(revs);

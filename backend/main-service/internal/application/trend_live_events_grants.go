@@ -30,15 +30,26 @@ const (
 )
 
 type liveGrant struct {
-	ID     string `json:"id"`
-	Type   string `json:"type"`
-	Title  string `json:"title"`
-	Text   string `json:"text"`
-	Actor  string `json:"actor"`
-	Amount string `json:"amount,omitempty"`
-	Phase  string `json:"phase"`
-	Date   string `json:"date"`
-	URL    string `json:"url"`
+	ID    string `json:"id"`
+	Type  string `json:"type"`
+	Title string `json:"title"`
+	Text  string `json:"text"`
+	Actor string `json:"actor"`
+	// Country — страна исполнителя как в выгрузке (у CORDIS EL и UK); в ISO её приводит слой денег.
+	Country string `json:"country,omitempty"`
+	Amount  string `json:"amount,omitempty"`
+	Phase   string `json:"phase"`
+	Date    string `json:"date"`
+	URL     string `json:"url"`
+	// Participants — компании проекта с финансированием ЕС: слою денег нужна каждая, поиску хватает Actor.
+	Participants []liveGrantParticipant `json:"participants,omitempty"`
+}
+
+type liveGrantParticipant struct {
+	Name    string `json:"name"`
+	Country string `json:"country,omitempty"`
+	// Amount — вклад ЕС в евро; ноль, когда выгрузка его не указала.
+	Amount float64 `json:"amount,omitempty"`
 }
 
 type liveGrantDump struct {
@@ -207,7 +218,8 @@ func liveGrantMatches(grants []liveGrant, source liveGrantSource, term string) [
 	variants := []string{probe, strings.ToUpper(string(head[:1])) + string(head[1:]), strings.ToUpper(probe)}
 	events := []LiveAdoptionEvent{}
 	for _, grant := range grants {
-		if !slices.ContainsFunc(variants, func(v string) bool {
+		// Схема без типа события (CSA, стипендии MSCA) хранится только ради компаний-участников для слоя денег.
+		if grant.Type == "" || !slices.ContainsFunc(variants, func(v string) bool {
 			return strings.Contains(grant.Text, v) || strings.Contains(grant.Title, v)
 		}) {
 			continue

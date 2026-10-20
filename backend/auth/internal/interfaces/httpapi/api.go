@@ -80,6 +80,13 @@ func (a *API) refresh(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	if token == "" {
+		// Браузер спрашивает о сессии при каждом открытии; без cookie это обычный ответ «входа нет»,
+		// а 401 оставлял ошибку в консоли каждому, кто ещё не вошёл.
+		if browserRequest(r) {
+			w.Header().Set("Cache-Control", "no-store")
+			w.WriteHeader(http.StatusNoContent)
+			return
+		}
 		httpx.Error(w, http.StatusUnauthorized, "refresh session required")
 		return
 	}

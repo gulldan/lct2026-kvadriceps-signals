@@ -1,12 +1,54 @@
 package sourcedoc
 
 import (
+	"bytes"
 	"encoding/json/v2"
 	"os"
 	"strings"
 	"testing"
 	"time"
 )
+
+func TestInvestorGenreContract(t *testing.T) {
+	legacy := sampleSource()
+	before, err := json.Marshal(legacy)
+	if err != nil {
+		t.Fatal(err)
+	}
+	decoded, err := Decode(before)
+	if err != nil {
+		t.Fatal(err)
+	}
+	after, err := json.Marshal(decoded)
+	if err != nil || !bytes.Equal(before, after) || bytes.Contains(after, []byte(`"genre"`)) {
+		t.Fatalf("legacy payload changed: %s, %v", after, err)
+	}
+	for _, genre := range []string{GenreInvestmentThesis, GenreInvestorCommentary} {
+		for _, kind := range []string{kindAnalysis, kindCompany} {
+			s := legacy
+			s.Provider, s.Kind, s.Genre, s.Publication = "web", kind, genre, nil
+			raw, err := json.Marshal(s)
+			if err != nil {
+				t.Fatal(err)
+			}
+			got, err := Decode(raw)
+			if err != nil || got.Genre != genre || got.Publication != nil || !got.ObservedAt.Equal(s.ObservedAt) {
+				t.Fatalf("investor provenance lost: %+v, %v", got, err)
+			}
+		}
+	}
+	for _, fields := range [][3]string{
+		{"web", kindAnalysis, "funding"}, {"web", kindPaper, GenreInvestmentThesis},
+		{providerManual, kindCompany, GenreInvestorCommentary}, {"crossref", kindPaper, GenreInvestmentThesis},
+		{"web", kindCompany, ""},
+	} {
+		s := legacy
+		s.Provider, s.Kind, s.Genre = fields[0], fields[1], fields[2]
+		if err := s.Validate(); err == nil {
+			t.Fatalf("invalid investor provenance accepted: %v", fields)
+		}
+	}
+}
 
 func sampleSource() Source {
 	return Source{Version: 1, Kind: "paper", Provider: "manual", NativeID: "paper-1", URL: "https://example.org/paper",

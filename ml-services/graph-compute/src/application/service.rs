@@ -9,6 +9,7 @@ use crate::domain::bridge::{self, BridgeConfig, BridgeOutput};
 use crate::domain::cluster::{
     build_communities, cluster_from_prepared, ClusterOutput, PreviousCluster,
 };
+use crate::domain::config::MAX_GRAPH_NODES;
 use crate::domain::pagerank::{self, RankConfig, RankOutput};
 use crate::domain::paths::{self, PathConfig, PathOutput};
 use crate::domain::vector::{aggregate_docs, chunk_nodes, ChunkPoint, DocVector};
@@ -146,10 +147,12 @@ impl<V: VectorSource, D: CommunityDetector> ClusterService<V, D> {
         config: &DomainConfig,
         documents: &[DocumentRef],
     ) -> anyhow::Result<Prepared> {
-        // Потолок по документам, а не по точкам (их держит MAX_POINTS): документ
-        // даёт графу не больше двух чанков, а корпус стенда — 48 тыс. документов
-        // и растёт на несколько тысяч в день.
-        anyhow::ensure!(documents.len() <= 100_000, "document selection exceeds graph budget");
+        // Отбор документов и итоговый граф имеют общий предел; источник отдельно
+        // ограничивает число точек двумя ведущими чанками на документ.
+        anyhow::ensure!(
+            documents.len() <= MAX_GRAPH_NODES,
+            "document selection exceeds graph budget"
+        );
         let document_ids: Vec<String> = documents.iter().map(|doc| doc.id.clone()).collect();
         let mut points = self.source.fetch(owner_id, collection, &document_ids).await?;
 
@@ -164,9 +167,7 @@ impl<V: VectorSource, D: CommunityDetector> ClusterService<V, D> {
             Granularity::Document => aggregate_docs(&points, config),
             Granularity::Chunk => chunk_nodes(&points),
         };
-        // Поиск соседей квадратичен: 8 тыс. узлов на 32 ядрах — ~0,4 с, значит
-        // 100 тыс. — около минуты, с большим запасом до срока вызова.
-        anyhow::ensure!(docs.len() <= 100_000, "graph node budget exceeded");
+        anyhow::ensure!(docs.len() <= MAX_GRAPH_NODES, "graph node budget exceeded");
         let (graph, communities) = build_communities(&docs, config, &self.detector);
         Ok(Prepared { docs, graph, communities })
     }

@@ -21,11 +21,12 @@ const (
 )
 
 type liveCardContextDocument struct {
-	arxivID, address, rawHash string
-	observed                  time.Time
-	text                      string
-	lead                      string
-	blocks                    []liveCardContextBlock
+	arxivID, address, rawHash               string
+	provider, lookupURL, lookupHash, parser string
+	observed                                time.Time
+	text                                    string
+	lead                                    string
+	blocks                                  []liveCardContextBlock
 }
 
 type liveCardContextBlock struct {

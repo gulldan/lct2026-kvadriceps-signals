@@ -10,16 +10,18 @@ import (
 	"io"
 	"net/http"
 	"os"
+	"slices"
 	"strconv"
 	"strings"
 )
 
 // Схемы Horizon: IA и EIC Accelerator — пилот (УГТ 5–7), RIA и Pathfinder — проверка идеи, стипендии и ERC — наука.
+// Проекты прочих схем выгрузка держит только ради компаний-участников: деньги ЕС получают и они.
 
 const (
 	liveEventSourceCORDIS = "cordis"
 	liveCORDISDump        = "https://cordis.europa.eu/data/cordis-HORIZONprojects-csv.zip"
-	liveCORDISKey         = "trends/live/grants/cordis-horizon-v1.json.gz"
+	liveCORDISKey         = "trends/live/grants/cordis-horizon-v3.json.gz"
 )
 
 func liveCORDISSchemes() map[string]string {
@@ -54,10 +56,9 @@ func liveParseCORDIS(file *os.File, since int) ([]liveGrant, error) {
 	byID := map[string]int{}
 	schemes := liveCORDISSchemes()
 	err = liveCORDISRows(archive, "project.csv", func(field func(string) string) {
-		eventType := schemes[field("fundingScheme")]
 		date := cmp.Or(field("ecSignatureDate"), field("startDate"))
 		year, _ := strconv.Atoi(date[:min(len(date), 4)])
-		if eventType == "" || year < since || field("objective") == "" {
+		if year < since || field("objective") == "" {
 			return
 		}
 		amount, _, _ := strings.Cut(field("ecMaxContribution"), ",")
@@ -66,7 +67,7 @@ func liveParseCORDIS(file *os.File, since int) ([]liveGrant, error) {
 		}
 		byID[field("id")] = len(grants)
 		grants = append(grants, liveGrant{
-			ID: "cordis:" + field("id"), Type: eventType, Title: field("title"),
+			ID: "cordis:" + field("id"), Type: schemes[field("fundingScheme")], Title: field("title"),
 			Text: strings.Join(strings.Fields(field("objective")), " "), Amount: amount,
 			Phase: field("fundingScheme"), Date: date, URL: "https://cordis.europa.eu/project/id/" + field("id"),
 		})
@@ -81,6 +82,9 @@ func liveParseCORDIS(file *os.File, since int) ([]liveGrant, error) {
 		if !ok || field("name") == "" {
 			return
 		}
+		if participant, funded := liveCORDISCompany(field); funded {
+			grants[i].Participants = append(grants[i].Participants, participant)
+		}
 		order, _ := strconv.Atoi(field("order"))
 		score := order
 		if field("activityType") != "PRC" {
@@ -88,10 +92,20 @@ func liveParseCORDIS(file *os.File, since int) ([]liveGrant, error) {
 		}
 		if best, seen := rank[field("projectID")]; !seen || score < best {
 			rank[field("projectID")] = score
-			grants[i].Actor = field("name")
+			grants[i].Actor, grants[i].Country = field("name"), field("country")
 		}
 	})
-	return grants, err
+	return slices.DeleteFunc(grants, func(grant liveGrant) bool { return grant.Type == "" && len(grant.Participants) == 0 }), err
+}
+
+// liveCORDISCompany отбрасывает ассоциированного партнёра: денег ЕС он не получает и был бы ложным получателем гранта.
+func liveCORDISCompany(field func(string) string) (liveGrantParticipant, bool) {
+	sme, _ := strconv.ParseBool(field("SME"))
+	if field("activityType") != "PRC" && !sme || field("role") == "associatedPartner" {
+		return liveGrantParticipant{}, false
+	}
+	amount, _ := strconv.ParseFloat(strings.Replace(field("ecContribution"), ",", ".", 1), 64)
+	return liveGrantParticipant{Name: field("name"), Country: field("country"), Amount: amount}, true
 }
 
 func liveCORDISRows(archive *zip.Reader, name string, visit func(field func(string) string)) error {

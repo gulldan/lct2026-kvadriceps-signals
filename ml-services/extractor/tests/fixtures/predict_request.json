@@ -1,5 +1,5 @@
 {
- "_provenance": "Пример входа скопирован буква в букву из ml-services/extractor/ML_CLASSIFIER_HANDOFF.md (раздел «Вход»). Не редактировать: на нём стоит контрактный тест. model_version в тесте подменяется на версию сервиса.",
+ "_provenance": "Пример входа скопирован буква в букву из ml-services/extractor/README.md (раздел «Стык с радаром», «Вход»). Не редактировать: на нём стоит контрактный тест. model_version в тесте подменяется на версию сервиса.",
  "request": {
   "feature_schema": "weak-signal-features-v1",
   "model_version": "weak-signal-2026-09-17.1",

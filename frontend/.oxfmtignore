@@ -2,3 +2,5 @@
 dist/
 test-results/
 playwright-report/
+# Контур карты мира — сгенерирован scripts/world-map/build.py, одна строка на страну не нужна.
+src/features/trend/worldMap.json

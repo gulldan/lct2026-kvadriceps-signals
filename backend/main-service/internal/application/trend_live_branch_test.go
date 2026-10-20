@@ -1,6 +1,68 @@
 package application
 
-import "testing"
+import (
+	"encoding/json/v2"
+	"testing"
+)
+
+func TestLiveCuratedBranchRepairsSavedViewsWithoutRescoring(t *testing.T) {
+	t.Parallel()
+	for _, tc := range []struct {
+		id, name, source, branch, want string
+		curated                        bool
+	}{
+		{"mrna-therapeutics", "mRNA therapeutics and delivery", "curated", liveBranchComputing, liveBranchLife, true},
+		{"vertical-farming", "Controlled-environment agriculture", "curated", liveBranchComputing, liveBranchLife, true},
+		{"mrna-therapeutics", "Automatic topic", liveSourceDiscovered, liveBranchComputing, liveBranchComputing, false},
+		{"vertical-farming", "Automatic topic", "curated", liveBranchComputing, liveBranchComputing, false},
+		{"mrna-therapeutics", "Discovered topic", liveSourceDiscovered, liveBranchComputing, liveBranchComputing, true},
+		{liveGraphRAG, "GraphRAG", "curated", liveBranchComputing, liveBranchComputing, true},
+		{"unknown-family", "Unknown", "curated", "", "", true},
+	} {
+		t.Run(tc.id+"/"+tc.source+"/"+tc.name, func(t *testing.T) {
+			t.Parallel()
+			score := &LiveModelScore{Value: 0.42, Threshold: 0.75, Version: "saved-model", Label: liveClassifierNoise}
+			topic := LiveTopic{ID: tc.id, Name: tc.name, Source: tc.source, Curated: tc.curated,
+				Branch: tc.branch, Stage: studyStageUnassessed, ModelScore: score}
+			snapshot := LiveSnapshot{Version: liveVersion, Method: liveMethod,
+				ObservedAt: "2026-10-17T00:00:00Z", Topics: []LiveTopic{topic}}
+			raw, err := json.Marshal(snapshot)
+			if err != nil {
+				t.Fatal(err)
+			}
+			svc := NewTrendLiveService(nil, nil)
+			svc.loadSnapshot(raw)
+			answer := liveDirectionAnswer{Contract: "saved-contract", Candidates: []LiveTopic{
+				{ID: "inherited", Source: "candidate", Branch: liveBranchComputing, ModelScore: score},
+				{ID: "independent", Source: liveSourceDiscovered, Branch: liveBranchMaterials, ModelScore: score},
+			}}
+			svc.directions[tc.id] = answer
+			overview := svc.Overview()
+			detail, ok := svc.Topic(tc.id)
+			if !ok || len(overview.Topics) != 1 || len(detail.Candidates) != 2 {
+				t.Fatalf("saved view is missing: found=%v, topics=%d, candidates=%d", ok,
+					len(overview.Topics), len(detail.Candidates))
+			}
+			for _, got := range []LiveTopic{overview.Topics[0], detail.Topic} {
+				if got.Branch != tc.want || got.Stage != topic.Stage || got.ModelScore == nil ||
+					got.ModelScore.Value != score.Value || got.ModelScore.Threshold != score.Threshold ||
+					got.ModelScore.Version != score.Version || got.ModelScore.Label != score.Label {
+					t.Fatalf("saved assessment changed or wrong branch: %+v", got)
+				}
+			}
+			wantInherited := liveBranchComputing
+			if tc.want == liveBranchLife {
+				wantInherited = liveBranchLife
+			}
+			if detail.Candidates[0].Branch != wantInherited || detail.Candidates[1].Branch != liveBranchMaterials ||
+				detail.Candidates[0].ModelScore.Value != score.Value ||
+				overview.ObservedAt != snapshot.ObservedAt || detail.ObservedAt != snapshot.ObservedAt ||
+				svc.snapshot.Topics[0].Branch != tc.branch || answer.Candidates[0].Branch != liveBranchComputing {
+				t.Fatal("read changed saved data, independent discovery, observation date or candidate score")
+			}
+		})
+	}
+}
 
 func TestLiveBranchFollowsPrimaryCategory(t *testing.T) {
 	t.Parallel()

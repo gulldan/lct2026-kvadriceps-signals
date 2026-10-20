@@ -57,7 +57,8 @@ interface PageHeaderProps {
   title: string;
   /** Вложенные примеры каталога и документа сохраняют типографику без второго h1. */
   titleAs?: "h1" | "h2";
-  description?: string;
+  /** Узел, а не строка: описание тезиса приходит markdown со ссылками на источники. */
+  description?: ReactNode;
   descriptionWidth?: "reading" | "full";
   kicker?: string;
   badge?: ReactNode;
@@ -85,7 +86,7 @@ export function PageHeader({
           {badge}
         </div>
         {description && (
-          <p
+          <div
             data-slot="page-description"
             className={cn(
               "mt-2 text-sm leading-relaxed text-pretty text-muted-foreground",
@@ -93,7 +94,7 @@ export function PageHeader({
             )}
           >
             {description}
-          </p>
+          </div>
         )}
       </div>
       {actions && (

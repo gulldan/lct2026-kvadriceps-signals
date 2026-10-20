@@ -30,6 +30,9 @@ func liveGroundQualificationEvidence(evidence LiveQualificationEvidence, assessm
 	if index < 0 {
 		return evidence, fmt.Errorf("qualification review: absent source %q", evidence.SourceID)
 	}
+	if _, err := liveQualificationCriterionQuote(assessment.Candidate, index+1, documents); err != nil {
+		return evidence, fmt.Errorf("qualification review original candidate: %w", err)
+	}
 	mechanism, err := liveQualificationCriterionQuote(assessment.Mechanism, index+1, documents)
 	if err != nil {
 		return evidence, fmt.Errorf("qualification review mechanism: %w", err)
@@ -40,7 +43,8 @@ func liveGroundQualificationEvidence(evidence LiveQualificationEvidence, assessm
 	}
 	evidence.MechanismQuote, evidence.RelevanceQuote = mechanism, relevance
 	evidence.ScopeCriteria = slices.Clone(assessment.Relevance.Criteria)
-	evidence.IdentityReason = liveQualificationCriterionReason(assessment.Mechanism)
+	evidence.IdentityReason = liveQualificationCriterionReason(assessment.Candidate) + " " +
+		liveQualificationCriterionReason(assessment.Mechanism)
 	evidence.RelevanceReason = liveQualificationCriterionReason(assessment.Relevance)
 	return evidence, nil
 }

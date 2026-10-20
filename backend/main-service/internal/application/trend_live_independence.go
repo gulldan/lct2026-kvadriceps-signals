@@ -120,7 +120,9 @@ func liveIndependence(
 			result.ObservedAt = end.Add(-time.Nanosecond).Format(time.RFC3339Nano)
 		}
 	}
-	selected := liveDatedTopicPapers(topic, papers, cutoff)
+	selected := slices.DeleteFunc(liveDatedTopicPapers(topic, papers, cutoff), func(paper StudyPaper) bool {
+		return liveInvestorContext(metadata[paper.ID].Genre)
+	})
 	parent := make([]int, len(selected))
 	for i := range parent {
 		parent[i] = i
@@ -275,6 +277,7 @@ func liveChannelEvidenceMetadata(topic LiveTopic, metadata map[string]LivePaperM
 func liveRecordEvidenceMetadata(
 	record LiveSourceRecord, observedAt string, meta LivePaperMetadata, families map[string]string,
 ) LivePaperMetadata {
+	meta.Genre = cmp.Or(record.Genre, meta.Genre)
 	meta.SourceURL = record.URL
 	if len(record.Provenance) > 0 {
 		meta.SourceURL = record.Provenance[0].URL
@@ -306,6 +309,9 @@ func liveEvidenceRecords(
 	urls, links := []string{}, []LiveEvidenceLink{}
 	content := map[string]string{}
 	add := func(id, raw string) {
+		if liveInvestorContext(metadata[id].Genre) {
+			return
+		}
 		u, records := liveRecordLinks(raw, metadata[id], observation, content)
 		if u != "" {
 			urls = append(urls, u)
@@ -328,10 +334,7 @@ func liveEvidenceRecords(
 		}
 	}
 	for _, channel := range []*LiveChannel{topic.Patents, topic.Web} {
-		if channel == nil {
-			continue
-		}
-		for _, record := range channel.Records {
+		for _, record := range liveChannelRecords(channel) {
 			if liveBeforeCutoff(record.Date, cutoff) {
 				add(record.ID, record.URL)
 			}

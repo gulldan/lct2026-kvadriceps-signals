@@ -120,6 +120,7 @@ func liveVolume(detail LiveDetail, metadata map[string]LivePaperMetadata, scanne
 	}{
 		{"patents", detail.Topic.Patents}, {"patents_cn", detail.Topic.PatentsCN},
 		{"registry", detail.Topic.Registry}, {"web", detail.Topic.Web}, {"corpus", detail.Topic.Corpus},
+		{"research", detail.Topic.Research},
 	} {
 		if channel.body == nil {
 			continue

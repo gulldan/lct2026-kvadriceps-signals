@@ -53,6 +53,8 @@ for (const width of [390, 1440]) {
               ? "mature"
               : "insufficient_data";
         return Object.assign({}, candidate, {
+          // Число независимых подтверждений здесь фиксировано: проверяем именно решения модели.
+          independent_sources: 2,
           model_score: {
             value: 0.9,
             threshold: 0.75,
@@ -106,7 +108,7 @@ for (const width of [390, 1440]) {
           .replace("{{limit}}", "15"),
         { exact: true },
       );
-      if (count > 0 && decisions < 15) {
+      if (count > 0 && count < 15) {
         await expect(
           page.getByText(ru.signalList.incompleteTitle.replace("{{limit}}", "15"), { exact: true }),
         ).toBeVisible();
@@ -120,6 +122,13 @@ for (const width of [390, 1440]) {
       } else {
         await expect(warning).toHaveCount(0);
       }
+      const toppedUp = page.getByText(
+        ru.signalList.toppedUp.replace("{{count}}", String(decisions)).replace("{{limit}}", "15"),
+        { exact: true },
+      );
+      await expect(toppedUp.filter({ visible: true })).toHaveCount(
+        count === 15 && decisions < 15 ? 1 : 0,
+      );
       await expect(page.getByText(ru.signalList.empty, { exact: true })).toHaveCount(
         count === 0 ? 1 : 0,
       );

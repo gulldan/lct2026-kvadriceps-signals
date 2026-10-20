@@ -60,7 +60,13 @@ for (const [width, height, theme] of [
     ).toHaveCount(0);
     await expect(page.locator("summary").filter({ hasText: ru.study.live.how })).toHaveCount(0);
     await page.getByRole("button", { name: ru.study.live.quickQueries }).click();
-    await expect(page.getByRole("menuitem")).toHaveCount(6);
+    await expect(page.getByRole("menuitem")).toHaveCount(10);
+    await expect(
+      page.getByRole("menuitem", { name: ru.study.live.quickStarts.medicine, exact: true }),
+    ).toBeVisible();
+    await expect(
+      page.getByRole("menuitem", { name: ru.study.live.quickStarts.agriculture, exact: true }),
+    ).toBeVisible();
     await page.keyboard.press("Escape");
     await chooseRadio(page, ru.scope.technologies);
     await expect(page.getByRole("status", { name: ru.study.loading, exact: true })).toBeVisible();

@@ -7,6 +7,7 @@ import { channelTotal } from "../liveMetrics";
 import { comparisonRanges, growthTones, publicationChange } from "../liveMapMetrics";
 import { stageTones } from "../stageTones";
 import { LivePreviewHistory } from "./LivePreviewHistory";
+import { moneyTitle } from "../liveTopicMoney";
 
 /** Итоги и истории считаются по одному окну наблюдения, включая текущий период. */
 export function LiveTopicPreview({
@@ -107,6 +108,12 @@ export function LiveTopicPreview({
           </div>
         ))}
       </dl>
+      {(topic.money?.total ?? 0) > 0 && (
+        <p className="border-t pt-2 text-xs" data-testid="trend-preview-money">
+          <span className="font-semibold">{t("study.live.preview.money")}</span>{" "}
+          {moneyTitle(topic.money!, t)}
+        </p>
+      )}
       <div className="space-y-1 border-t pt-2">
         <dl className="flex flex-wrap justify-between gap-x-4 gap-y-1 text-xs">
           <div className="flex items-baseline gap-1.5">

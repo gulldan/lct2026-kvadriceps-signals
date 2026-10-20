@@ -19,6 +19,9 @@ const (
 	LiveLimitLineageBudget      = "lineage_budget"
 	LiveLimitLineageOff         = "lineage_unavailable"
 	liveLimitScholarCapped      = "scholar_capped"
+	liveLimitPubMedCapped       = "pubmed_capped"
+	liveLimitPubMedOff          = "pubmed_unavailable"
+	liveLimitPubMedAdded        = "pubmed_added"
 	// scholar_sampled — выборка из каждого месяца; при scholar_capped неизвестно, какие месяцы попали в сбор.
 	liveLimitScholarSampled    = "scholar_sampled"
 	liveLimitScholarJournals   = "scholar_journals"
@@ -45,6 +48,7 @@ const (
 const (
 	liveValuePapers = "papers"
 	liveValueFound  = "found"
+	liveValueTaken  = "taken"
 )
 
 type LiveLimit struct {

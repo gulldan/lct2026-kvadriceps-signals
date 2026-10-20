@@ -340,7 +340,7 @@ func liveMLOwnerEvidence(detail LiveDetail) bool {
 
 // liveMLDropTexts: исходные тексты нужны только входу /extract и не уходят в ответ, хранилище и карточки.
 func liveMLDropTexts(topic *LiveTopic) {
-	for _, channel := range []*LiveChannel{topic.Patents, topic.PatentsCN, topic.Registry, topic.Web, topic.Corpus} {
+	for _, channel := range []*LiveChannel{topic.Patents, topic.PatentsCN, topic.Registry, topic.Web, topic.Corpus, topic.Research} {
 		for i := range liveChannelRecords(channel) {
 			channel.Records[i].Text = ""
 		}

@@ -1,21 +1,17 @@
 package main
 
 import (
-	"encoding/json"
+	"errors"
 	"os"
 	"testing"
 )
 
 func TestShippedSourceConfigIsValid(t *testing.T) {
-	body, err := os.ReadFile("../../infra/trend-sources.json")
-	if err != nil {
+	config, err := loadConfig("../../infra/trend-sources.json")
+	if errors.Is(err, os.ErrNotExist) {
 		t.Skipf("конфигурация недоступна: %v", err)
 	}
-	config := defaultConfig()
-	if err := json.Unmarshal(body, &config); err != nil {
-		t.Fatalf("конфигурация не разбирается: %v", err)
-	}
-	if err := validateSourceConfig(config); err != nil {
+	if err != nil {
 		t.Fatalf("конфигурация не проходит проверку сервиса: %v", err)
 	}
 	if len(config.Web) < 40 {

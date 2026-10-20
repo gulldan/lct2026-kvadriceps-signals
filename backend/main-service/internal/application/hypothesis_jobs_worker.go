@@ -62,9 +62,13 @@ func (s *HypothesisJobService) run(parent context.Context, job *HypothesisJob) {
 	log := logger.From(ctx)
 	if err != nil {
 		job.Status = HypothesisJobFailed
-		job.Error = "operation_failed"
-		if errors.Is(err, ErrInsufficientContext) {
+		switch {
+		case errors.Is(err, ErrInsufficientContext):
 			job.Error = "insufficient_context"
+		case errors.Is(err, ErrUnparsableModelOutput):
+			job.Error = "unparsable_model_output"
+		default:
+			job.Error = "operation_failed"
 		}
 		log.Error().Err(err).Str("job_id", job.ID).Msg("hypothesis job failed")
 	} else {

@@ -11,6 +11,7 @@ import (
 	"fmt"
 	"io"
 	"log/slog"
+	"maps"
 	"net/http"
 	"net/url"
 	"slices"
@@ -199,9 +200,9 @@ func (s *liveSources) recordOAIRecord(id, date string, meta oaiMeta) StudyPaper 
 		ContentHash: "", URL: "https://arxiv.org/abs/" + id, Authors: authors, DocumentID: "", SnapshotID: ""}
 }
 
-func (s *TrendLiveService) loadWindowCache(ctx context.Context) liveWindowCache {
+func (s *TrendLiveService) loadWindowCache(ctx context.Context, key string, sets []string) liveWindowCache {
 	empty := liveWindowCache{Cursor: "", Sets: nil, Papers: nil, Metadata: nil}
-	raw, err := s.store.GetBytes(ctx, liveOAIWindowKey)
+	raw, err := s.store.GetBytes(ctx, key)
 	if err != nil {
 		return empty
 	}
@@ -215,13 +216,13 @@ func (s *TrendLiveService) loadWindowCache(ctx context.Context) liveWindowCache 
 		return empty
 	}
 	var cache liveWindowCache
-	if json.Unmarshal(plain, &cache) != nil || !slices.Equal(cache.Sets, liveOAISets()) {
+	if json.Unmarshal(plain, &cache) != nil || !slices.Equal(cache.Sets, sets) {
 		return empty
 	}
 	return cache
 }
 
-func (s *TrendLiveService) saveWindowCache(ctx context.Context, cache liveWindowCache) error {
+func (s *TrendLiveService) saveWindowCache(ctx context.Context, key string, cache liveWindowCache) error {
 	var buf bytes.Buffer
 	writer := gzip.NewWriter(&buf)
 	if err := json.MarshalWrite(writer, cache); err != nil {
@@ -230,7 +231,7 @@ func (s *TrendLiveService) saveWindowCache(ctx context.Context, cache liveWindow
 	if err := writer.Close(); err != nil {
 		return fmt.Errorf("live: compress window: %w", err)
 	}
-	if err := s.store.Put(ctx, liveOAIWindowKey, bytes.NewReader(buf.Bytes()), int64(buf.Len()),
+	if err := s.store.Put(ctx, key, bytes.NewReader(buf.Bytes()), int64(buf.Len()),
 		"application/gzip"); err != nil {
 		return fmt.Errorf("live: persist window: %w", err)
 	}
@@ -264,40 +265,68 @@ func liveMergeWindow(src *liveSources, cache liveWindowCache, fresh []StudyPaper
 	return papers
 }
 
-func (s *TrendLiveService) liveWindow(ctx context.Context, src *liveSources, periods []LivePeriod,
-) ([]StudyPaper, []int, error) {
+type liveHarvest func(context.Context, []LivePeriod, time.Time, time.Time) ([]StudyPaper, error)
+
+// liveWindowPart дособирает одну часть окна с курсора её кеша: у arXiv и препринтов свои курсоры. При отказе
+// источника отдаёт прежний кеш вместе с ошибкой — решать, роняет ли это сбор, вызывающему.
+func (s *TrendLiveService) liveWindowPart(ctx context.Context, src *liveSources, periods []LivePeriod, key string,
+	sets []string, harvest liveHarvest,
+) ([]StudyPaper, map[string]LivePaperMetadata, error) {
 	start := liveDay(periods[0].Start)
 	until := liveDay(periods[len(periods)-1].EndExclusive).AddDate(0, 0, -1)
-	cache := s.loadWindowCache(ctx)
+	cache := s.loadWindowCache(ctx, key, sets)
 	from := start
 	if cursor := liveDay(cache.Cursor); !cursor.Before(start) && !cursor.After(until) {
 		from = cursor
 	}
-	fresh, err := src.arxivHarvest(ctx, periods, from, until)
-	if err != nil {
-		return nil, nil, err
-	}
+	fresh, harvestErr := harvest(ctx, periods, from, until)
 	papers := liveMergeWindow(src, cache, fresh, periods)
-	population := make([]int, len(periods))
-	for _, paper := range papers {
-		if index := livePeriodIndex(periods, paper.Date); index >= 0 {
-			population[index]++
-		}
-	}
 	kept := map[string]LivePaperMetadata{}
 	for _, paper := range papers {
 		if meta, ok := src.metadata[paper.ID]; ok {
 			kept[paper.ID] = meta
 		}
 	}
-	if err := s.saveWindowCache(ctx, liveWindowCache{Cursor: until.Format(time.DateOnly), Sets: liveOAISets(),
+	if harvestErr != nil {
+		return papers, kept, harvestErr
+	}
+	if err := s.saveWindowCache(ctx, key, liveWindowCache{Cursor: until.Format(time.DateOnly), Sets: sets,
 		Papers: papers, Metadata: kept}); err != nil {
-		slog.Warn("radar window cache not persisted", "error", err)
+		slog.Warn("radar window cache not persisted", "key", key, "error", err)
+	}
+	slog.Info("radar window harvested", "sets", strings.Join(sets, ","), "from", from.Format(time.DateOnly),
+		"until", until.Format(time.DateOnly), "fresh", len(fresh), "total", len(papers))
+	return papers, kept, nil
+}
+
+func (s *TrendLiveService) liveWindow(ctx context.Context, src *liveSources, periods []LivePeriod,
+) ([]StudyPaper, []int, error) {
+	papers, kept, err := s.liveWindowPart(ctx, src, periods, liveOAIWindowKey, liveOAISets(), src.arxivHarvest)
+	if err != nil {
+		return nil, nil, err
+	}
+	// Препринты — дополнение к arXiv: при их отказе окно берёт прежний кеш, а сбор не падает.
+	bio, bioMeta, err := s.liveWindowPart(ctx, src, periods, liveRxivWindowKey, liveRxivServers(), src.rxivHarvest)
+	if err != nil {
+		slog.Warn("radar preprint window not refreshed", "cached", len(bio), "error", err)
+	}
+	papers = append(papers, bio...)
+	maps.Copy(kept, bioMeta)
+	other, otherMeta, err := s.liveWindowPart(ctx, src, periods, liveCrossrefWindowKey, liveCrossrefSets(),
+		src.crossrefHarvest)
+	if err != nil {
+		slog.Warn("radar preprint window not refreshed", "cached", len(other), "error", err)
+	}
+	papers = append(papers, other...)
+	maps.Copy(kept, otherMeta)
+	population := make([]int, len(periods))
+	for _, paper := range papers {
+		if index := livePeriodIndex(periods, paper.Date); index >= 0 {
+			population[index]++
+		}
 	}
 	// Поиску уходит kept, а не src.metadata: цикл дальше пишет в свою карту, поиск читает окно из
 	// HTTP-горутин, и общая карта роняла бы процесс «concurrent map read and map write».
 	s.setWindow(papers, kept)
-	slog.Info("arxiv window harvested", "from", from.Format(time.DateOnly), "until", until.Format(time.DateOnly),
-		"fresh", len(fresh), "total", len(papers))
 	return papers, population, nil
 }

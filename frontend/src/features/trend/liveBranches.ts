@@ -1,6 +1,6 @@
 import type { LiveTopic } from "./liveApi";
 
-export const BRANCHES = [
+const BRANCHES = [
   "computing",
   "quantum",
   "materials",

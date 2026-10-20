@@ -2,6 +2,7 @@ package application
 
 import (
 	"errors"
+	"slices"
 	"strings"
 	"unicode/utf8"
 )
@@ -23,7 +24,7 @@ func liveValidateQualificationName(qualification LiveQualification, documents []
 		return nil
 	}
 	words := liveWords(name)
-	if len(words) < 2 || len(words) > 12 || utf8.RuneCountInString(name) > 160 {
+	if !liveTechnicalPhrase(name) {
 		return errors.New("qualification: canonical name is not a bounded technical phrase")
 	}
 	selected := make(map[string]bool, len(qualification.Evidence))
@@ -43,20 +44,20 @@ func liveValidateQualificationName(qualification LiveQualification, documents []
 	return errors.New("qualification: canonical name is absent from selected sources")
 }
 
-func liveClassifierCanonicalPhrase(candidate LiveTopic, documents map[string]StudyPaper,
-	metadata map[string]LivePaperMetadata,
-) string {
+// Целое предложение буквально есть в статье, но поиск его как названия создаёт ложную нехватку работ.
+func liveTechnicalPhrase(name string) bool {
+	words := liveWords(name)
+	return len(words) >= 2 && len(words) <= 12 && utf8.RuneCountInString(name) <= 160 &&
+		!slices.ContainsFunc(words, func(word string) bool {
+			return slices.Contains([]string{"is", "are", "was", "were", "we", "our", "demonstrates", "achieves"}, word)
+		})
+}
+
+// Подтверждённое имя уже сверено с полными текстами при допуске; в сохранённом ответе аннотаций нет, и сверка
+// по одним заголовкам подменяла бы при дооценке фразу исходного поиска словами из ID кандидата.
+func liveClassifierCanonicalPhrase(candidate LiveTopic) string {
 	qualification := candidate.Qualification
-	if qualification == nil || !qualification.Verified || qualification.CanonicalName == "" {
-		return ""
-	}
-	selected := make([]LiveQualificationDocument, 0, len(qualification.Evidence))
-	for _, evidence := range qualification.Evidence {
-		if paper, ok := documents[evidence.SourceID]; ok {
-			selected = append(selected, LiveQualificationDocument{ID: paper.ID, Text: liveWorkLine(paper, metadata[paper.ID])})
-		}
-	}
-	if liveValidateQualificationName(*qualification, selected) != nil {
+	if qualification == nil || !qualification.Verified || !liveTechnicalPhrase(qualification.CanonicalName) {
 		return ""
 	}
 	return strings.Join(liveWords(qualification.CanonicalName), " ")

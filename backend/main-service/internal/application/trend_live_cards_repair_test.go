@@ -3,10 +3,78 @@ package application
 import (
 	"context"
 	"encoding/json/v2"
+	"errors"
 	"slices"
 	"strings"
 	"testing"
+
+	"github.com/example/main-service/internal/platform/aiclients"
 )
+
+type liveCorrectionGenerator struct {
+	fakeGenerator
+	answers      []string
+	requests     []aiclients.GenRequest
+	firstError   error
+	finishReason string
+}
+
+func (g *liveCorrectionGenerator) Generate(_ context.Context, request aiclients.GenRequest) (aiclients.GenResponse, error) {
+	g.requests = append(g.requests, request)
+	response := aiclients.GenResponse{Text: g.answers[min(len(g.requests)-1, len(g.answers)-1)],
+		Model: "correction-test", FinishReason: g.finishReason}
+	if len(g.requests) == 1 {
+		return response, g.firstError
+	}
+	return response, nil
+}
+
+func TestLiveCardRetryExpandsBudgetButNeverPublishesTruncatedJSON(t *testing.T) {
+	for _, truncated := range []bool{false, true} {
+		gen := &liveCorrectionGenerator{answers: []string{`{"fields":[]}`},
+			firstError: errors.New("generation: empty answer after sanitize")}
+		if truncated {
+			gen.firstError, gen.finishReason = nil, "length"
+		}
+		read := false
+		_, err := liveCardCall(t.Context(), gen, aiclients.GenRequest{MaxTokens: 4096}, func(aiclients.GenResponse) error {
+			read = true
+			return nil
+		})
+		if len(gen.requests) != 2 || gen.requests[1].MaxTokens != 8192 || read == truncated || (err != nil) != truncated {
+			t.Fatalf("неверный повтор после обрыва: requests=%+v read=%v err=%v", gen.requests, read, err)
+		}
+	}
+}
+
+func TestLiveCardCorrectionRequiresAnotherGroundedVerification(t *testing.T) {
+	const source = "Adding 30% GGBS increased the compressive strength to 61 MPa."
+	const original = "Добавление 30% GGBS повышает прочность до 99 МПа."
+	const correction = "Добавление 30% GGBS повышает прочность до 61 МПа."
+	draft := liveCardDraft{Advantage: original,
+		Evidence: []liveCardSelection{{Field: liveClaimAdvantage, Source: 1, From: 1, Through: 1}}}
+	for _, supported := range []bool{false, true} {
+		first := liveCardFieldReview{Field: liveClaimAdvantage, Verdict: "contradicted", Correction: correction,
+			Reason: "В источнике 61 МПа, а не 99 МПа."}
+		second := liveCardFieldReview{Field: liveClaimAdvantage, Verdict: "insufficient", Reason: "Нет подтверждения."}
+		if supported {
+			second = liveCardFieldReview{Field: liveClaimAdvantage, Verdict: "supported", SourceFact: source,
+				ClaimFact: correction, Reason: "Сохранены величина и условия испытания.", From: new(1), Through: new(1), Benefit: new(true)}
+		}
+		gen := &liveCorrectionGenerator{answers: []string{liveRepairJSON(t, draft),
+			liveEncodeCardReview(t, liveCardReview{Fields: []liveCardFieldReview{first}}),
+			liveEncodeCardReview(t, liveCardReview{Fields: []liveCardFieldReview{second}})}}
+		card, err := NewCandidateCard(gen, func(context.Context) bool { return true })(
+			liveFixtureScopeContext(t.Context(), "геополимерный бетон"), "геополимерный бетон",
+			LiveCardIdentity{Label: "Геополимерный бетон", Mechanism: "Шлак вводится в геополимерное вяжущее."}, []string{source})
+		if err != nil || (card.Advantage == correction) != supported || len(gen.requests) != 3 {
+			t.Fatalf("исправление обошло повторную проверку: card=%+v err=%v calls=%d", card, err, len(gen.requests))
+		}
+		if strings.Contains(gen.requests[2].Query, original) || !strings.Contains(gen.requests[2].Query, correction) {
+			t.Fatal("исправленный факт проверялся по старому утверждению")
+		}
+	}
+}
 
 func TestLiveCardVerifierRepairsOnlyOriginalCitation(t *testing.T) {
 	works := []string{
@@ -90,9 +158,10 @@ func TestLiveCardVerifierRepairsOnlyOriginalCitation(t *testing.T) {
 			if (err != nil) != tc.wantErr {
 				t.Fatalf("неверная граница ответа проверяющего: %v", err)
 			}
-			// Сбой формы проверки даёт ровно один повтор с тем же черновиком; исправление диапазона — ни одного.
+			// Повтор касается только оставшейся неподтверждённой привязки, а явный смысловой отказ не переигрывается.
 			calls := 2
-			if tc.wantErr {
+			if tc.wantErr || !tc.want && !slices.Contains([]string{"missing", "duplicate", "invalid_source"}, tc.writerMode) &&
+				tc.patch["verdict"] != "contradicted" && tc.patch["verdict"] != "insufficient" {
 				calls = 3
 			}
 			if len(gen.requests) != calls || tc.wantErr && !strings.Contains(gen.requests[2].Query, "отклонён проверкой формы") {
@@ -121,9 +190,14 @@ func TestLiveCardVerifierRepairsOnlyOriginalCitation(t *testing.T) {
 func liveRepairReview(field, claim, fact string) map[string]any {
 	review := map[string]any{"field": field, "verdict": "supported", "claim_fact": claim,
 		"source_fact": fact,
+		"performed":   field == liveClaimExample,
 		"reason":      "Сохранены механизм и условия исходного утверждения."}
 	if field == liveClaimAdvantage {
 		review["benefit"] = true
+	}
+	if field == liveClaimSummary {
+		review["parts"] = []LiveClaimPart{{Claim: claim, SourceFact: fact,
+			Direct: true, ScopePreserved: true, ModalityPreserved: true}}
 	}
 	return review
 }

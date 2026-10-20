@@ -59,23 +59,23 @@ func liveIndustryFamilies() []liveFamily {
 
 func liveHealthFamilies() []liveFamily {
 	return []liveFamily{
-		{id: "mrna-therapeutics", name: "mRNA therapeutics and delivery", query: LiveQuery{
+		{id: "mrna-therapeutics", name: "mRNA therapeutics and delivery", branch: liveBranchLife, query: LiveQuery{
 			Arxiv: `all:"mRNA vaccine" OR all:"lipid nanoparticle" OR all:"mRNA therapeutic"`,
 			Terms: []string{"mrna therapeutics", "lipid nanoparticle delivery", "mrna vaccine"}}},
-		{id: "ai-drug-discovery", name: "AI-driven drug discovery", query: LiveQuery{
+		{id: "ai-drug-discovery", name: "AI-driven drug discovery", branch: liveBranchLife, query: LiveQuery{
 			Arxiv: `all:"drug discovery" AND (all:"machine learning" OR all:"generative model" OR all:"molecular design")`,
 			Terms: []string{"ai drug discovery", "generative molecular design", "virtual screening"}}},
-		{id: "medical-foundation-models", name: "Medical foundation models", query: LiveQuery{
+		{id: "medical-foundation-models", name: "Medical foundation models", branch: liveBranchLife, query: LiveQuery{
 			Arxiv: `(all:"medical imaging" OR all:clinical) AND ` +
 				`(all:"foundation model" OR all:"vision-language" OR all:"large language model")`,
 			Terms: []string{"medical foundation model", "clinical language model", "medical imaging ai"}}},
-		{id: "wearable-biosensors", name: "Wearable biosensors", query: LiveQuery{
+		{id: "wearable-biosensors", name: "Wearable biosensors", branch: liveBranchLife, query: LiveQuery{
 			Arxiv: `all:"wearable sensor" OR all:biosensor OR all:"continuous glucose"`,
 			Terms: []string{"wearable biosensor", "continuous health monitoring", "continuous glucose monitoring"}}},
-		{id: "organoids", name: "Organoids and organ-on-chip", query: LiveQuery{
+		{id: "organoids", name: "Organoids and organ-on-chip", branch: liveBranchLife, query: LiveQuery{
 			Arxiv: `all:organoid OR all:"organ-on-chip" OR all:"microphysiological system"`,
 			Terms: []string{"organoid", "organ-on-a-chip", "microphysiological system"}}},
-		{id: "synthetic-biology", name: "Synthetic biology", query: LiveQuery{
+		{id: "synthetic-biology", name: "Synthetic biology", branch: liveBranchLife, query: LiveQuery{
 			Arxiv: `all:"synthetic biology" OR all:"metabolic engineering" OR all:"cell-free expression"`,
 			Terms: []string{"synthetic biology", "metabolic engineering", "engineered microbe"}}},
 	}
@@ -139,17 +139,17 @@ func liveMobilityFamilies() []liveFamily {
 
 func liveAgroFamilies() []liveFamily {
 	return []liveFamily{
-		{id: "precision-agriculture", name: "Precision agriculture", query: LiveQuery{
+		{id: "precision-agriculture", name: "Precision agriculture", branch: liveBranchLife, query: LiveQuery{
 			Arxiv: `all:"precision agriculture" OR all:"crop monitoring" OR all:"agricultural robot"`,
 			Terms: []string{"precision agriculture", "crop monitoring", "agricultural robotics"}}},
-		{id: "alternative-protein", name: "Alternative proteins", query: LiveQuery{
+		{id: "alternative-protein", name: "Alternative proteins", branch: liveBranchLife, query: LiveQuery{
 			Arxiv: `all:"cultivated meat" OR all:"cultured meat" OR all:"precision fermentation" OR ` +
 				`all:"plant-based protein"`,
 			Terms: []string{"cultivated meat", "precision fermentation", "alternative protein"}}},
-		{id: "vertical-farming", name: "Controlled-environment agriculture", query: LiveQuery{
+		{id: "vertical-farming", name: "Controlled-environment agriculture", branch: liveBranchLife, query: LiveQuery{
 			Arxiv: `all:"vertical farming" OR all:"controlled environment agriculture" OR all:hydroponic`,
 			Terms: []string{"vertical farming", "controlled environment agriculture", "hydroponics"}}},
-		{id: "crop-genomics", name: "Crop genomics and breeding", query: LiveQuery{
+		{id: "crop-genomics", name: "Crop genomics and breeding", branch: liveBranchLife, query: LiveQuery{
 			Arxiv: `all:"plant genomics" OR all:"crop breeding" OR all:"gene-edited crop" OR all:"genomic selection"`,
 			Terms: []string{"crop genomics", "genomic selection in breeding", "gene edited crop"}}},
 	}

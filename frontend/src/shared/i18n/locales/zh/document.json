@@ -153,6 +153,7 @@
     "versionDetails": "查看版本与来源",
     "preprintNotice": "arXiv 预印本，同行评审状态未经确认。首次发表日期与当前文本版本日期分别显示。",
     "repositoryNotice": "星标记录为观察日期的数值；更早的历史未知。创建仓库不代表技术出现。代码的官方性和生产应用未经确认。",
+    "investorNotice": "投资者的公开立场。交易或实际应用需要其他来源确认。",
     "fragments": "已保存的片段",
     "fragmentCount": "总计：{{count}}",
     "missingFragment": "此版本不包含指定片段，请检查来源链接。",
@@ -192,6 +193,8 @@
       "paper": "科学研究",
       "patent": "专利公开",
       "analysis": "分析报告",
+      "investment_thesis": "投资论点",
+      "investor_commentary": "投资者评论",
       "company_material": "公司资料",
       "software_repository": "软件实现",
       "hypothesis": "假设"

@@ -60,7 +60,7 @@ const format = (n: number) => formatNumber(n, { maximumFractionDigits: 1 });
 
 type ChartMode = "sources" | "share" | "groups";
 
-const CHANNEL_TABS = ["web", "registry", "corpus"] as const;
+const CHANNEL_TABS = ["web", "registry", "corpus", "research"] as const;
 
 const channelCount = (channel: LiveChannel | null | undefined, extra = 0) =>
   `${channel?.partial && channel.total > 0 ? "≥" : ""}${formatNumber((channel?.total ?? 0) + extra)}`;
@@ -113,12 +113,12 @@ export function LiveDetailView({
   const series = useMemo(
     () =>
       mode === "sources"
-        ? publicationSeries(topic, t, patents)
+        ? publicationSeries(topic, t, patents, detail.papers)
         : [
             topicSeries(topic, name, mode, t, format),
             ...(mode === "groups" ? [topicSeries(topic, name, mode, t, format, true)] : []),
           ],
-    [mode, topic, t, patents, name],
+    [mode, topic, t, patents, name, detail.papers],
   );
   const selected = detail.periods.find((row) => row.period === period);
   const lastPeriod = detail.periods.at(-1);

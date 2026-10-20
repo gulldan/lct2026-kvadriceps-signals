@@ -40,22 +40,23 @@ type ITCInput struct {
 	Composite *float64        `json:"composite_score"`
 }
 
-// StoreITC только сохраняет индекс: его считает itc-worker вне пути запроса. Строка перечитывается вместе
-// с id доказательств, чтобы обновление их не дублировало.
+// StoreITC сохраняет индекс связанной темы после проверки документов. Строка перечитывается вместе
+// с идентификаторами доказательств, чтобы обновление их не дублировало.
 func (s *HypothesisService) StoreITC(ctx context.Context, ownerID, id string, in ITCInput) (*commonv1.Hypothesis, error) {
 	h, err := s.GetHypothesis(ctx, ownerID, false, id)
 	if err != nil {
 		return nil, err
 	}
-	if in.ClusterID != "" {
-		cid := in.ClusterID
-		h.PrimaryClusterId = &cid
+	itc, err := s.documentBackedITC(ctx, ownerID, h, in.ClusterID)
+	if err != nil {
+		return nil, err
 	}
+	h.PrimaryClusterId = new(in.ClusterID)
 	// in.Composite намеренно не применяется: composite_score считает только ранжировщик rank-v1.
-	h.Assessment = mergeITC(h.GetAssessment(), in.ITC)
+	h.Assessment = mergeITC(h.GetAssessment(), itc)
 	rev := &commonv1.HypothesisRevision{
 		Action: actionScoreOverride, EditorId: editorSystem,
-		Summary: fmt.Sprintf("Индекс технологичности: %d/10", itcBand(in.ITC)),
+		Summary: fmt.Sprintf("Индекс связанной темы: %d/10", itcBand(itc)),
 	}
 	if uerr := s.cat.UpdateHypothesis(ctx, &dbv1.UpdateHypothesisRequest{Hypothesis: h, Revision: rev}); uerr != nil {
 		return nil, uerr

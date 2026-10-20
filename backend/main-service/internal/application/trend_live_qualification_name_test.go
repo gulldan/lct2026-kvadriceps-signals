@@ -15,8 +15,8 @@ func TestOptionalCanonicalNameDoesNotBypassOrBlockMechanismReview(t *testing.T) 
 		{ID: "survey", Text: "A survey calls this family Survey Alias Detector and compares several methods."},
 	}
 	for _, test := range []struct {
-		name, canonical, beforeReview, afterReview string
-		survey, refusedMechanism, refusedRelevance bool
+		name, canonical, beforeReview, afterReview                   string
+		survey, refusedMechanism, refusedRelevance, refusedCandidate bool
 	}{
 		{name: "literal name is retained", canonical: "Phase Coherence Detector",
 			beforeReview: "Phase Coherence Detector", afterReview: "Phase Coherence Detector"},
@@ -26,12 +26,15 @@ func TestOptionalCanonicalNameDoesNotBypassOrBlockMechanismReview(t *testing.T) 
 			survey: true, beforeReview: "Survey Alias Detector"},
 		{name: "missing name does not override mechanism refusal", canonical: "Invented Detector", refusedMechanism: true},
 		{name: "missing name does not override relevance refusal", canonical: "Invented Detector", refusedRelevance: true},
+		{name: "rewritten mechanism cannot replace the original candidate", canonical: "Phase Coherence Detector",
+			beforeReview: "Phase Coherence Detector", afterReview: "Phase Coherence Detector", refusedCandidate: true},
 	} {
 		t.Run(test.name, func(t *testing.T) {
 			evidence := []liveQualificationSelection{{Source: 1, From: 1, Through: 1, Criteria: []string{"b1"}}}
 			identity := qualificationIdentityFixture("direct", "introduces", true)
 			identity.Mechanism.Supported = new(!test.refusedMechanism)
 			identity.Relevance.Supported = new(!test.refusedRelevance)
+			identity.Candidate.Supported = new(!test.refusedCandidate)
 			identities := []liveQualificationIdentity{identity}
 			if test.survey {
 				evidence = append(evidence, liveQualificationSelection{Source: 2, From: 1, Through: 1, Criteria: []string{"b1"}})
@@ -61,7 +64,8 @@ func TestOptionalCanonicalNameDoesNotBypassOrBlockMechanismReview(t *testing.T) 
 				t.Fatalf("необязательное имя отменило независимую проверку: запросов %d, ошибка %v", len(generator.requests), err)
 			}
 			var input struct {
-				Proposal LiveQualification `json:"proposal"`
+				Candidate string            `json:"candidate"`
+				Proposal  LiveQualification `json:"proposal"`
 			}
 			if err := json.Unmarshal([]byte(generator.requests[1].Query), &input); err != nil {
 				t.Fatal(err)
@@ -70,12 +74,28 @@ func TestOptionalCanonicalNameDoesNotBypassOrBlockMechanismReview(t *testing.T) 
 				t.Fatalf("неподтверждённое имя сохранено или буквальное потеряно: вход %q, итог %q",
 					input.Proposal.CanonicalName, got.CanonicalName)
 			}
-			accepted := !test.refusedMechanism && !test.refusedRelevance
+			if input.Candidate != "phase coherence" {
+				t.Fatal("независимый проверяющий не получил исходную сущность до переименования")
+			}
+			accepted := !test.refusedMechanism && !test.refusedRelevance && !test.refusedCandidate
 			if got.Verified != accepted || accepted && (len(got.Evidence) != 1 || got.Evidence[0].SourceID != "direct" ||
 				got.Evidence[0].Quote != documents[0].Text || !liveGroundedQualificationEvidence(got.Evidence[0])) {
 				t.Fatalf("проверка механизма, области или прямых свидетельств потеряна: %+v", got)
 			}
 		})
+	}
+}
+
+func TestCanonicalNameRejectsLiteralSentenceWithoutTruncatingMechanism(t *testing.T) {
+	const sentence = "Superionic conductors are promising electrolyte candidates for all-solid-state batteries"
+	documents := []LiveQualificationDocument{{ID: "source", Text: sentence}}
+	qualification := LiveQualification{CanonicalName: sentence, Evidence: []LiveQualificationEvidence{{SourceID: "source"}}}
+	if liveLiteralQualificationName(qualification, documents) != "" {
+		t.Fatal("целое предложение попало в поиск как название технологии")
+	}
+	qualification.CanonicalName = "Superionic conductors"
+	if liveLiteralQualificationName(qualification, documents) != qualification.CanonicalName {
+		t.Fatal("исходный научный термин потерян")
 	}
 }
 
@@ -118,6 +138,8 @@ func TestLiveClassifierCanonicalName(t *testing.T) {
 			if err := liveValidateQualificationName(qualification, inputs); (err != nil) != test.invalid {
 				t.Fatalf("неверная проверка исходного имени: %v", err)
 			}
+			// Допуск стирает небуквальное имя, а классификатор доверяет уже сверенному.
+			qualification.CanonicalName = liveLiteralQualificationName(qualification, inputs)
 			candidate := LiveTopic{StudyTopic: StudyTopic{ID: originalID, PaperIDs: []string{sourceID}},
 				Name: "Fidelity-Driven Quantum Autoencoder (FiD-QAE)", Qualification: &qualification}
 			input := liveClassifierInput("банковский антифрод", "test", []LiveTopic{candidate}, documents, metadata)

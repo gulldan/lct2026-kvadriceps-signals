@@ -108,7 +108,7 @@ func liveAttachMarket(candidate *LiveTopic, channel *LiveChannel, term string) {
 	slices.SortStableFunc(picked, func(a, b LiveSourceRecord) int {
 		return cmp.Or(-cmp.Compare(liveTrustOrder(a.Trust), liveTrustOrder(b.Trust)), -cmp.Compare(a.Date, b.Date))
 	})
-	picked = picked[:min(len(picked), liveMarketRecords)]
+	picked = liveLimitMarketRecords(picked)
 	web := LiveChannel{SourceSet: channel.SourceSet, Source: channel.Source, ObservedAt: channel.ObservedAt,
 		Partial: channel.Partial, Counts: []*int{}}
 	if candidate.Web != nil {
@@ -120,19 +120,35 @@ func liveAttachMarket(candidate *LiveTopic, channel *LiveChannel, term string) {
 		"рыночные записи найдены отдельным запросом к сборщику лент: «%s» стоит в заголовке материала; "+
 			"остаются те, на которые опирается карточка", term))
 	candidate.Web = &web
-	ids := make([]string, len(picked))
-	for i, record := range picked {
-		ids[i] = liveEvidenceID(record)
+	ids := make([]string, 0, len(picked))
+	for _, record := range picked {
+		if !liveInvestorContext(record.Genre) {
+			ids = append(ids, liveEvidenceID(record))
+		}
 	}
 	// Записям карточка отдаёт три места из восьми по порядку списка: в конце рыночные уступали их патентам.
 	candidate.EvidenceIDs = slices.Concat(ids, candidate.EvidenceIDs)
 	candidate.marketIDs = append(candidate.marketIDs, ids...)
-	candidate.RecordsCount += len(picked)
-	candidate.DocumentsCount += len(picked)
+	candidate.RecordsCount += len(ids)
+	candidate.DocumentsCount += len(ids)
+}
+
+// Инвестиционный контекст имеет отдельный лимит, чтобы свежие позиции фондов не вытесняли подтверждения.
+func liveLimitMarketRecords(records []LiveSourceRecord) []LiveSourceRecord {
+	evidence, context := 0, 0
+	return slices.DeleteFunc(records, func(record LiveSourceRecord) bool {
+		if liveInvestorContext(record.Genre) {
+			context++
+			return context > liveMarketRecords
+		}
+		evidence++
+		return evidence > liveMarketRecords
+	})
 }
 
 // liveKeepCitedMarket оставляет только процитированные записи: общая фраза («real time») в заголовке часто о другом.
 func liveKeepCitedMarket(topic *LiveTopic) {
+	defer liveKeepCardContexts(topic)
 	if len(topic.marketIDs) == 0 {
 		return
 	}

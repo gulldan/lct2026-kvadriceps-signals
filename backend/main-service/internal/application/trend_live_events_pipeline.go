@@ -197,17 +197,23 @@ const liveEventWebSource = "web"
 // liveAttachEvents собирает список заново: ответ читают, пока опоздавшие события дописываются в копию.
 func liveAttachEvents(topic *LiveTopic, found []LiveAdoptionEvent, query LiveEventQuery) bool {
 	for _, record := range liveChannelRecords(topic.Web) {
-		if liveMarketPublisher(record.PublisherType) {
+		if !liveInvestorContext(record.Genre) && liveMarketPublisher(record.PublisherType) {
 			found = append(found, LiveAdoptionEvent{Source: liveEventWebSource, Record: record})
 		}
 	}
-	events := slices.Clone(topic.Events)
+	// Инвестиционная позиция остаётся контекстом, даже если в старом снимке её назвали событием.
+	events := slices.DeleteFunc(slices.Clone(topic.Events), func(event LiveAdoptionEvent) bool {
+		return liveInvestorContext(event.Record.Genre)
+	})
 	seen := map[string]bool{}
 	for _, event := range events {
 		seen[liveEventIdentityKey(event)] = true
 	}
-	added := false
+	added := len(events) != len(topic.Events)
 	for _, event := range found {
+		if liveInvestorContext(event.Record.Genre) {
+			continue
+		}
 		event.typed = event.typed || event.Type != ""
 		event.Record = liveEventPassport(event.Record)
 		// Тип счётчика задаёт источник: словарь по заголовку вроде «Transformer (deep learning)» только навредил бы.

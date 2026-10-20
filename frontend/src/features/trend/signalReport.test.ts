@@ -8,7 +8,7 @@ import {
   signalReportDoc,
   verdictReasons,
 } from "./signalReport";
-import { signalVerdict } from "./signalScore";
+import { signalScore, signalVerdict, thresholdLabelKey } from "./signalScore";
 import { readableReason, signalSources } from "./signalSources";
 import type { LiveDetail, LiveTopic } from "./liveApi";
 
@@ -153,12 +153,18 @@ describe("signalReportDoc — выгрузка повторяет требова
       "report.howScored",
       "report.advantage",
       "report.example",
+      "report.study_limitations",
       "report.report_assessment",
       "report.whySignal",
       "report.aboutMethod",
     ])
       expect(headings).toContain(key);
     expect(headings.some((h) => h.startsWith("report.sources"))).toBe(true);
+    expect(doc.blocks).toContainEqual({
+      kind: "paragraph",
+      muted: true,
+      text: "report.studyLimitationsMissing",
+    });
   });
 
   it("ставит рядом с вердиктом числа, которыми его можно оспорить", () => {
@@ -256,6 +262,23 @@ describe("signalReportDoc — выгрузка повторяет требова
     expect(scored(abstained).find((r) => r.label === "confidence.modelLabel")?.value).toBe(
       "report.modelClass.insufficient_data: report.dataGap.too_early · confidence.reference",
     );
+  });
+
+  it("«не могу решить» внутри конформной полосы не выдаёт оценку выше порога за решение", () => {
+    const undecided = {
+      ...candidate,
+      shortfall: undefined,
+      model_score: {
+        value: 0.27,
+        threshold: 0.23,
+        model: "weak-signal-logreg",
+        version: "v3",
+        basis: "полоса",
+        label: "undecided",
+      },
+    } as LiveTopic;
+    expect(signalVerdict(undecided, t).text).toBe("report.modelClass.undecided");
+    expect(thresholdLabelKey(signalScore(undecided)!)).toBe("report.modelClass.undecided");
   });
 
   it("называет версию метода и порог в разделе о расчёте: без них выгрузку не повторить", () => {

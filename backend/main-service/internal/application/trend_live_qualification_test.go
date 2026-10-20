@@ -358,6 +358,10 @@ func TestCandidateQualificationCountsDirectSubset(t *testing.T) {
 
 func qualificationIdentityFixture(id, role string, same bool) liveQualificationIdentity {
 	return liveQualificationIdentity{SourceID: id, SameTechnology: same, Role: role,
+		Candidate: liveQualificationCriterion{Supported: new(true), From: 1, Through: 1,
+			SourceFact: "Источник описывает исходный технический способ",
+			ClaimFact:  "Кандидат называет этот технический способ",
+			Reason:     "Определяющие признаки исходного кандидата сохранены"},
 		Mechanism: liveQualificationCriterion{Supported: new(true), From: 1, Through: 1,
 			SourceFact: "Источник описывает конкретный технический способ",
 			ClaimFact:  "Предложение описывает этот технический способ",
@@ -439,5 +443,19 @@ func TestLiveNamedLabelKeepsMethodName(t *testing.T) {
 		Card: &LiveCard{Summary: "OmniCalib — метод самонастройки.", Evidence: quote}}
 	if got := liveNamedLabel(transliterated); got != transliterated.Label {
 		t.Errorf("вторая приставка: %q", got)
+	}
+}
+
+func TestLiveDetailDropsLabelWithChineseFragment(t *testing.T) {
+	candidates := []LiveTopic{
+		{Name: "GigaBrain-0", Label: "GigaBrain-0: модели «视觉-语言-действие»"},
+		{Name: "retrieval augmented adaptation", Label: "Адаптация VLA на лету"},
+	}
+	detail := liveDetail(&LiveSnapshot{}, LiveTopic{}, nil, nil, candidates, nil, nil)
+	if got := detail.Candidates[0].Label; got != "GigaBrain-0" {
+		t.Errorf("смесь письменностей: %q", got)
+	}
+	if got := detail.Candidates[1].Label; got != "Адаптация VLA на лету" {
+		t.Errorf("русское название заменено: %q", got)
 	}
 }

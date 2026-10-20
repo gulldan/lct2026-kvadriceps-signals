@@ -31,6 +31,11 @@ func liveInBackground(ctx context.Context) context.Context {
 	return context.WithValue(ctx, liveBackgroundKey{}, true)
 }
 
+// LiveInBackground помечает работу без ожидающего человека: сборщик радара так метит свой проход.
+func LiveInBackground(ctx context.Context) context.Context {
+	return liveInBackground(ctx)
+}
+
 func liveBackground(ctx context.Context) bool {
 	background, _ := ctx.Value(liveBackgroundKey{}).(bool)
 	return background

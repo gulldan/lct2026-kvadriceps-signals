@@ -22,10 +22,8 @@ export const test = base.extend<{ api: TestApi; roles: Role[] | null }>({
         const request = route.request();
         const path = new URL(request.url()).pathname;
         if (path === "/api/v1/auth/refresh") {
-          await route.fulfill({
-            status: signedIn ? 200 : 401,
-            json: signedIn ? api.auth : { error: "Session ended" },
-          });
+          // Без cookie сервер отвечает 204: «сессии нет» — не ошибка.
+          await route.fulfill(signedIn ? { json: api.auth } : { status: 204 });
           return;
         }
         if (path === "/api/v1/auth/logout") {

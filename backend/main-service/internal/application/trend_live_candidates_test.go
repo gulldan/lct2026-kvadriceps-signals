@@ -189,6 +189,13 @@ func TestLiveDedupeSelectedDropsRepeatedTechnology(t *testing.T) {
 	if !strings.Contains(rejected[1].Reason, "4 из 5") {
 		t.Fatalf("причина не измерена: %q", rejected[1].Reason)
 	}
+	zkp, _ := liveDedupeSelected([]LiveTopic{
+		topic("Zero-Knowledge Proofs", "Доказательства с нулевым разглашением (ZKP)", "z1"),
+		topic("Zero Knowledge Proof", "Нулевое разглашение (Zero-Knowledge Proof)", "z2"),
+	}, nil)
+	if len(zkp) != 1 {
+		t.Fatalf("одна технология с разными русскими подписями заняла два места: %d", len(zkp))
+	}
 }
 
 func TestLiveAnswerDropsUmbrellaAndVariants(t *testing.T) {

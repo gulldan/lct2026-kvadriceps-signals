@@ -1,6 +1,8 @@
 import { expect, test } from "./fixture";
 import { inspectSurface } from "./checks";
 import app from "../../src/shared/i18n/locales/ru/app.json" with { type: "json" };
+import trend from "../../src/shared/i18n/locales/ru/trend.json" with { type: "json" };
+import money from "../fixtures/early-money.json" with { type: "json" };
 
 const luminance = async (page: import("@playwright/test").Page) =>
   page.evaluate(() => {
@@ -29,6 +31,40 @@ test.describe("dark theme", () => {
       await inspectSurface(page, info, `dark-${name}`);
     });
   }
+
+  test("early money stays readable with its industry table in the dark theme", async ({
+    page,
+  }, info) => {
+    await page.goto("/trends?entity=money");
+    await expect(page.getByRole("heading", { name: trend.money.title })).toBeVisible();
+    await expect(page.getByRole("table", { name: trend.money.rubricsTitle })).toBeVisible();
+    await expect(page.getByRole("link", { name: "Giraffe Bio" })).toBeVisible();
+    const rubrics = new Set(money.cells.filter((cell) => cell.rubric).map((cell) => cell.rubric));
+    await expect(page.locator("[data-money-rubric]")).toHaveCount(Math.min(rubrics.size, 12));
+    await inspectSurface(page, info, "dark-money");
+    await page.locator("#money-region").click();
+    await page.getByRole("option", { name: trend.money.regions.latam, exact: true }).click();
+    await page.locator("#money-kind").click();
+    const filtered = page.waitForRequest((request) => {
+      const url = new URL(request.url());
+      return (
+        url.pathname.endsWith("/trends/live/money") &&
+        url.searchParams.get("region") === "latam" &&
+        url.searchParams.get("kind") === "round"
+      );
+    });
+    await page.getByRole("option", { name: trend.money.kinds.round, exact: true }).click();
+    await filtered;
+    await expect(page.getByRole("link", { name: "Giraffe Bio" })).toBeVisible();
+    await page.locator("#money-region").click();
+    await expect(
+      page.getByRole("option", { name: trend.money.regions.americas, exact: true }),
+    ).toBeVisible();
+    await expect(
+      page.getByRole("option", { name: trend.money.regions.asia, exact: true }),
+    ).toBeVisible();
+    await page.keyboard.press("Escape");
+  });
 
   test("the header switch changes the theme without a reload and remembers it", async ({
     page,

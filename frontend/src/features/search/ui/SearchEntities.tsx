@@ -15,6 +15,7 @@ import { Badge } from "@/shared/ui/Badge";
 import { Button } from "@/shared/ui/Button";
 import { Kicker } from "@/shared/ui/Kicker";
 import { catalogueHits, matchTopics } from "../searchEntities";
+import { upperFirst } from "@/shared/lib/format";
 
 const CACHE_MS = 5 * 60_000;
 
@@ -38,7 +39,7 @@ export function SearchEntities({ question }: { question: string }) {
   const name = (topic: LiveTopic) => {
     const raw =
       topic.label || tTrend(`study.live.topics.${topic.id}`, { defaultValue: topic.name });
-    return raw.charAt(0).toUpperCase() + raw.slice(1);
+    return upperFirst(raw);
   };
   const topics = namesReady ? matchTopics(overview.data?.topics ?? [], question, name) : [];
   const hits = technologies.data ?? [];

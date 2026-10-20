@@ -118,3 +118,25 @@ async fn lineage_is_attached_when_previous_board_present() {
         .any(|l| l.previous_cluster_id == "prev-1" && l.jaccard > 0.99);
     assert!(matched, "the {{a,b,c}} cluster should match prev-1 with jaccard ~1.0");
 }
+
+#[tokio::test]
+async fn growing_corpus_keeps_a_bounded_document_selection() {
+    let service = ClusterService::new(MockSource { points: Vec::new() }, LeidenDetector);
+    for count in [100_011, 125_000, 125_001] {
+        let input = RunInput {
+            documents: (0..count)
+                .map(|id| DocumentRef { id: id.to_string(), filename: String::new() })
+                .collect(),
+            ..RunInput::default()
+        };
+        let result = service.run(input).await;
+        if count <= 125_000 {
+            assert!(result.is_ok(), "current corpus must fit: {result:?}");
+        } else {
+            assert!(result
+                .unwrap_err()
+                .to_string()
+                .contains("document selection exceeds graph budget"));
+        }
+    }
+}

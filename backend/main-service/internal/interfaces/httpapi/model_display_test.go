@@ -12,6 +12,7 @@ import (
 func TestModelDisplayNamesHideGatewayID(t *testing.T) {
 	const id = "corp/deepseek-v4-flash-abliterated"
 	t.Setenv("VLLM_MODEL", id)
+	t.Setenv("LLM_MODEL_DISPLAY_ALIASES", " corp/secondary-model,corp/last-model, ")
 	api := &API{}
 	handler := api.ModelDisplayNames(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		if r.URL.Path == "/trends/analyses/x/export" {
@@ -20,8 +21,9 @@ func TestModelDisplayNamesHideGatewayID(t *testing.T) {
 			return
 		}
 		httpx.JSON(w, http.StatusOK, map[string]any{
-			"card":  map[string]string{"model": id, "verification_model": id},
-			"title": "Uncensored " + id + " fine-tune",
+			"card":     map[string]string{"model": id, "verification_model": id},
+			"fallback": map[string]string{"model": "corp/secondary-model", "verification_model": "corp/last-model"},
+			"title":    "Uncensored " + id + " fine-tune",
 		})
 	}))
 	serve := func(path string) string {
@@ -30,7 +32,7 @@ func TestModelDisplayNamesHideGatewayID(t *testing.T) {
 		return rec.Body.String()
 	}
 	body := serve("/trends/live/search?q=x")
-	if strings.Count(body, `"`+modelDisplayDefault+`"`) != 2 || !strings.Contains(body, "Uncensored "+id) {
+	if strings.Count(body, `"`+modelDisplayDefault+`"`) != 4 || !strings.Contains(body, "Uncensored "+id) {
 		t.Fatalf("model fields are not renamed or document text changed: %s", body)
 	}
 	if !strings.Contains(serve("/trends/analyses/x/export"), id) {

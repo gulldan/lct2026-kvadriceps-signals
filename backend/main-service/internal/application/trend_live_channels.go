@@ -2,6 +2,7 @@ package application
 
 import (
 	"bytes"
+	"cmp"
 	"context"
 	"encoding/json/v2"
 	"errors"
@@ -12,6 +13,7 @@ import (
 	"os"
 	"slices"
 	"strings"
+	"sync"
 	"time"
 )
 
@@ -51,14 +53,17 @@ type LiveSourceProvenance struct {
 }
 
 type LiveSourceRecord struct {
-	ID            string `json:"id"`
-	Title         string `json:"title"`
-	Date          string `json:"date"`
-	URL           string `json:"url"`
-	Source        string `json:"source"`
-	Language      string `json:"language,omitempty"`
-	LanguageBasis string `json:"language_basis,omitempty"`
-	PublisherType string `json:"publisher_type,omitempty"`
+	DOI           string   `json:"doi,omitempty"`
+	DOIAliases    []string `json:"doi_aliases,omitempty"`
+	Authors       []string `json:"authors,omitempty"`
+	ID            string   `json:"id"`
+	Title         string   `json:"title"`
+	Date          string   `json:"date"`
+	URL           string   `json:"url"`
+	Source        string   `json:"source"`
+	Language      string   `json:"language,omitempty"`
+	LanguageBasis string   `json:"language_basis,omitempty"`
+	PublisherType string   `json:"publisher_type,omitempty"`
 	// Genre — что это за материал; издатель отвечает на «кто опубликовал».
 	Genre         string                 `json:"genre,omitempty"`
 	Trust         string                 `json:"trust,omitempty"`
@@ -104,8 +109,11 @@ func liveChannels(ctx context.Context, src *liveSources, topic *LiveTopic, perio
 		if base == "" {
 			continue
 		}
-		if err := src.channelErrors[target.env]; err != nil {
-			topic.Limits = append(topic.Limits, liveLimitFail(liveLimitChannelOff, target.env, err))
+		src.channelMu.Lock()
+		failed := src.channelErrors[target.env]
+		src.channelMu.Unlock()
+		if failed != nil {
+			topic.Limits = append(topic.Limits, liveLimitFail(liveLimitChannelOff, target.env, failed))
 			continue
 		}
 		channelTerms, web := terms, target.env == "WEB_COLLECTOR_URL"
@@ -123,10 +131,12 @@ func liveChannels(ctx context.Context, src *liveSources, topic *LiveTopic, perio
 		// Канал выключается до конца прохода только отказом самого сборщика: запрос одной темы, отвергнутый
 		// им, раньше оставлял без патентов и веба все следующие темы.
 		if !errors.Is(err, errLiveChannelQuery) {
+			src.channelMu.Lock()
 			if src.channelErrors == nil {
 				src.channelErrors = map[string]error{}
 			}
 			src.channelErrors[target.env] = err
+			src.channelMu.Unlock()
 		}
 		topic.Limits = append(topic.Limits, liveLimitFail(liveLimitChannelOff, target.env, err))
 	}
@@ -254,20 +264,23 @@ func (src *liveSources) queryChannelAt(ctx context.Context, endpoint string, lim
 	return &channel, nil
 }
 
-// Классификацию решает один реестр, а не каждый сборщик по-своему.
+// Реестр задаёт доверие к издателю; явный тип публикации из метаданных точнее эвристики заголовка.
 func stampPassports(records []LiveSourceRecord) {
 	for i := range records {
 		address := records[i].URL
 		if address == "" {
 			address = records[i].CanonicalURL
 		}
-		passport, genre := liveApplyGenre(ClassifySource(address), address, records[i].Title)
+		passport, genre := liveApplyRecordGenre(ClassifySource(address), address, records[i].Title, records[i].Genre)
 		records[i].PublisherType = passport.Publisher
 		records[i].Trust = passport.Trust
 		records[i].TrustBasis = passport.TrustBasis
-		records[i].Genre = genre
+		records[i].Genre = cmp.Or(strings.TrimSpace(records[i].Genre), genre)
 	}
 }
+
+// liveSourceRefreshWorkers согласован с cpus сборщиков в docker-compose.yml.
+const liveSourceRefreshWorkers = 4
 
 // RefreshSources сохраняет научные наблюдения и даты; публикацию защищает та же аренда писателя, что и полный сбор.
 func (s *TrendLiveService) RefreshSources(ctx context.Context) error {
@@ -287,16 +300,26 @@ func (s *TrendLiveService) RefreshSources(ctx context.Context) error {
 	snapshot.Discovered = slices.Clone(snapshot.Discovered)
 	s.mu.RUnlock()
 	src := s.newSources()
+	// 18.10 двести направлений подряд опрашивались около 50 минут при сроке 20: добор не публиковался
+	// с 14.10 и шёл по кругу. Каждый сборщик держит запрос на одном ядре, поэтому потоков не больше их ядер.
+	slots := make(chan struct{}, liveSourceRefreshWorkers)
+	var wg sync.WaitGroup
 	for _, topics := range [][]LiveTopic{snapshot.Topics, snapshot.Discovered} {
 		for i := range topics {
-			// Прошлые отказы снимаются перед опросом, иначе отказ неучтённого сборщика прилипал бы к теме навсегда.
-			topics[i].Limits = slices.DeleteFunc(slices.Clone(topics[i].Limits), func(limit LiveLimit) bool {
-				name, _, ok := strings.Cut(limit.Text, ":")
-				return ok && strings.HasSuffix(name, "_COLLECTOR_URL")
+			topic := &topics[i]
+			wg.Go(func() {
+				slots <- struct{}{}
+				defer func() { <-slots }()
+				// Прошлые отказы снимаются перед опросом, иначе отказ неучтённого сборщика прилипал бы к теме навсегда.
+				topic.Limits = slices.DeleteFunc(slices.Clone(topic.Limits), func(limit LiveLimit) bool {
+					name, _, ok := strings.Cut(limit.Text, ":")
+					return ok && strings.HasSuffix(name, "_COLLECTOR_URL")
+				})
+				liveChannels(ctx, src, topic, snapshot.Periods)
 			})
-			liveChannels(ctx, src, &topics[i], snapshot.Periods)
 		}
 	}
+	wg.Wait()
 	// Пересчёт свидетельств получает половину оставшегося срока, чтобы публикация успела при любом его исходе;
 	// при отказе прежние свидетельства остаются.
 	evidenceCtx, cancel := ctx, context.CancelFunc(func() {})

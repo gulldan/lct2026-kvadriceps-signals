@@ -295,6 +295,30 @@ export function GoalPromptDialog({
               }
             />
             {!existing && <p className="text-xs text-muted-foreground">{t("wizard.promptHint")}</p>}
+            {!existing && !prompt.trim() && (
+              <div className="flex flex-wrap items-center gap-x-3 gap-y-1 pt-1">
+                <span className="text-xs text-muted-foreground">{t("wizard.examplesTitle")}</span>
+                {(
+                  [
+                    "medicine",
+                    "agriculture",
+                    "energy",
+                    "environment",
+                    "materials",
+                    "computing",
+                  ] as const
+                ).map((key) => (
+                  <Button
+                    key={key}
+                    variant="link"
+                    size="inline"
+                    onClick={() => setPrompt(t(`wizard.examples.${key}.prompt`))}
+                  >
+                    {t(`wizard.examples.${key}.label`)}
+                  </Button>
+                ))}
+              </div>
+            )}
             {editKpi && <p className="text-xs text-muted-foreground">{t("wizard.editHint")}</p>}
           </div>
 

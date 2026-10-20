@@ -1,0 +1,1296 @@
+{
+  "status": "ready",
+  "built_at": "2026-10-18T09:00:00Z",
+  "from": "2025-10-01",
+  "mid": "2026-04-01",
+  "to": "2026-10-01",
+  "topics": 41,
+  "signals": [
+    {
+      "id": "long-duration-storage",
+      "name": "Long-duration energy storage",
+      "stage": "early_signal",
+      "branch": "engineering",
+      "first_year": "2025-09",
+      "terms": [
+        "Long-duration energy storage",
+        "long duration energy storage",
+        "flow battery",
+        "grid-scale storage"
+      ],
+      "radar_prior": 4,
+      "radar_recent": 13,
+      "groups": 16,
+      "new_groups": 9,
+      "share_ratio": 2.5901488625533506,
+      "science_prior": 267,
+      "science_recent": 217,
+      "lead": [
+        {
+          "country": "CN",
+          "count": 81
+        },
+        {
+          "country": "US",
+          "count": 43
+        },
+        {
+          "country": "GB",
+          "count": 17
+        }
+      ],
+      "money": {
+        "total": 2,
+        "kinds": {
+          "grant": 2
+        }
+      },
+      "source": "curated",
+      "technologies": 12
+    },
+    {
+      "id": "agent-memory",
+      "name": "Agent memory",
+      "stage": "early_signal",
+      "branch": "computing",
+      "first_year": "2025-09",
+      "terms": ["Agent memory", "agent memory", "long-term memory for agents"],
+      "radar_prior": 158,
+      "radar_recent": 422,
+      "groups": 362,
+      "new_groups": 240,
+      "share_ratio": 2.128613086655333,
+      "science_prior": 268,
+      "science_recent": 675,
+      "lead": [
+        {
+          "country": "CN",
+          "count": 144
+        },
+        {
+          "country": "US",
+          "count": 121
+        },
+        {
+          "country": "HK",
+          "count": 35
+        }
+      ],
+      "money": {
+        "total": 0,
+        "kinds": {}
+      },
+      "source": "discovered",
+      "technologies": null
+    },
+    {
+      "id": "vertical-farming",
+      "name": "Controlled-environment agriculture",
+      "stage": "early_signal",
+      "branch": "computing",
+      "first_year": "2025-09",
+      "terms": [
+        "Controlled-environment agriculture",
+        "vertical farming",
+        "controlled environment agriculture",
+        "hydroponics"
+      ],
+      "radar_prior": 5,
+      "radar_recent": 12,
+      "groups": 13,
+      "new_groups": 6,
+      "share_ratio": 1.9127253138855511,
+      "science_prior": 341,
+      "science_recent": 279,
+      "lead": [
+        {
+          "country": "IN",
+          "count": 40
+        },
+        {
+          "country": "ID",
+          "count": 18
+        },
+        {
+          "country": "IT",
+          "count": 18
+        }
+      ],
+      "money": {
+        "total": 0,
+        "kinds": {}
+      },
+      "source": "curated",
+      "technologies": null
+    },
+    {
+      "id": "kv-cache",
+      "name": "KV-cache compression",
+      "stage": "early_signal",
+      "branch": "computing",
+      "first_year": "2025-09",
+      "terms": ["KV-cache compression", "kv cache compression", "attention cache quantization"],
+      "radar_prior": 159,
+      "radar_recent": 370,
+      "groups": 367,
+      "new_groups": 229,
+      "share_ratio": 1.854581672268485,
+      "science_prior": 135,
+      "science_recent": 225,
+      "lead": [
+        {
+          "country": "CN",
+          "count": 60
+        },
+        {
+          "country": "US",
+          "count": 49
+        },
+        {
+          "country": "HK",
+          "count": 16
+        }
+      ],
+      "money": {
+        "total": 0,
+        "kinds": {}
+      },
+      "source": "curated",
+      "technologies": null
+    },
+    {
+      "id": "mrna-therapeutics",
+      "name": "mRNA therapeutics and delivery",
+      "stage": "emerging_signal",
+      "branch": "computing",
+      "first_year": "2025-11",
+      "terms": [
+        "mRNA therapeutics and delivery",
+        "mrna therapeutics",
+        "lipid nanoparticle delivery",
+        "mrna vaccine"
+      ],
+      "radar_prior": 4,
+      "radar_recent": 8,
+      "groups": 13,
+      "new_groups": 8,
+      "share_ratio": 1.5939377615712924,
+      "science_prior": 194,
+      "science_recent": 194,
+      "lead": [
+        {
+          "country": "CN",
+          "count": 57
+        },
+        {
+          "country": "US",
+          "count": 42
+        },
+        {
+          "country": "IN",
+          "count": 13
+        }
+      ],
+      "money": {
+        "total": 0,
+        "kinds": {}
+      },
+      "source": "curated",
+      "technologies": null
+    },
+    {
+      "id": "vla",
+      "name": "Vision-language-action models",
+      "stage": "emerging_signal",
+      "branch": "computing",
+      "first_year": "2025-09",
+      "terms": [
+        "Vision-language-action models",
+        "vision language action model",
+        "robot foundation model"
+      ],
+      "radar_prior": 611,
+      "radar_recent": 1172,
+      "groups": 315,
+      "new_groups": 193,
+      "share_ratio": 1.5287193588883425,
+      "science_prior": 451,
+      "science_recent": 626,
+      "lead": [
+        {
+          "country": "CN",
+          "count": 210
+        },
+        {
+          "country": "US",
+          "count": 118
+        },
+        {
+          "country": "HK",
+          "count": 33
+        }
+      ],
+      "money": {
+        "total": 0,
+        "kinds": {}
+      },
+      "source": "curated",
+      "technologies": null
+    },
+    {
+      "id": "climate-finance",
+      "name": "Climate risk in finance",
+      "stage": "early_signal",
+      "branch": "economics",
+      "first_year": "2025-09",
+      "terms": [
+        "Climate risk in finance",
+        "climate financial risk",
+        "transition risk",
+        "green finance"
+      ],
+      "radar_prior": 3,
+      "radar_recent": 5,
+      "groups": 11,
+      "new_groups": 4,
+      "share_ratio": 1.3282814679760768,
+      "science_prior": 4,
+      "science_recent": 6,
+      "lead": [
+        {
+          "country": "CN",
+          "count": 2
+        },
+        {
+          "country": "AZ",
+          "count": 1
+        },
+        {
+          "country": "HU",
+          "count": 1
+        }
+      ],
+      "money": {
+        "total": 0,
+        "kinds": {}
+      },
+      "source": "curated",
+      "technologies": null
+    },
+    {
+      "id": "deep-research",
+      "name": "Deep research agents",
+      "stage": "emerging_signal",
+      "branch": "computing",
+      "first_year": "2025-09",
+      "terms": [
+        "Deep research agents",
+        "deep research agent",
+        "agentic retrieval",
+        "autonomous research agent"
+      ],
+      "radar_prior": 292,
+      "radar_recent": 447,
+      "groups": 288,
+      "new_groups": 162,
+      "share_ratio": 1.220017430517753,
+      "science_prior": 101,
+      "science_recent": 111,
+      "lead": [
+        {
+          "country": "CN",
+          "count": 50
+        },
+        {
+          "country": "US",
+          "count": 31
+        },
+        {
+          "country": "HK",
+          "count": 14
+        }
+      ],
+      "money": {
+        "total": 0,
+        "kinds": {}
+      },
+      "source": "curated",
+      "technologies": null
+    },
+    {
+      "id": "green-steel",
+      "name": "Low-carbon metallurgy and cement",
+      "stage": "emerging_signal",
+      "branch": "materials",
+      "first_year": "2025-11",
+      "terms": [
+        "Low-carbon metallurgy and cement",
+        "green steel",
+        "hydrogen direct reduction of iron",
+        "low-carbon cement"
+      ],
+      "radar_prior": 2,
+      "radar_recent": 3,
+      "groups": 4,
+      "new_groups": 2,
+      "share_ratio": 1.1954533211784695,
+      "science_prior": 106,
+      "science_recent": 77,
+      "lead": [
+        {
+          "country": "DE",
+          "count": 8
+        },
+        {
+          "country": "IT",
+          "count": 6
+        },
+        {
+          "country": "CN",
+          "count": 5
+        }
+      ],
+      "money": {
+        "total": 0,
+        "kinds": {}
+      },
+      "source": "curated",
+      "technologies": null
+    },
+    {
+      "id": "mcp",
+      "name": "Model Context Protocol",
+      "stage": "emerging_signal",
+      "branch": "computing",
+      "first_year": "2025-09",
+      "terms": ["Model Context Protocol", "model context protocol", "agent tool protocol"],
+      "radar_prior": 182,
+      "radar_recent": 262,
+      "groups": 398,
+      "new_groups": 210,
+      "share_ratio": 1.1472848723397764,
+      "science_prior": 1058,
+      "science_recent": 1334,
+      "lead": [
+        {
+          "country": "US",
+          "count": 197
+        },
+        {
+          "country": "CN",
+          "count": 104
+        },
+        {
+          "country": "GB",
+          "count": 66
+        }
+      ],
+      "money": {
+        "total": 0,
+        "kinds": {}
+      },
+      "source": "curated",
+      "technologies": null
+    },
+    {
+      "id": "semantic:ca694b55b43e60c9",
+      "name": "Integrability to Chaos",
+      "stage": "early_signal",
+      "branch": "math",
+      "first_year": "2025-09",
+      "terms": ["Integrability to Chaos", "Integrability to Chaos", "Random Matrices"],
+      "radar_prior": 41,
+      "radar_recent": 57,
+      "groups": 90,
+      "new_groups": 44,
+      "share_ratio": 1.1079811269458986,
+      "science_prior": 49,
+      "science_recent": 66,
+      "lead": [
+        {
+          "country": "BR",
+          "count": 5
+        },
+        {
+          "country": "CN",
+          "count": 5
+        },
+        {
+          "country": "BE",
+          "count": 4
+        }
+      ],
+      "money": {
+        "total": 0,
+        "kinds": {}
+      },
+      "source": "curated",
+      "technologies": null
+    },
+    {
+      "id": "diffusion-lm",
+      "name": "Diffusion language models",
+      "stage": "emerging_signal",
+      "branch": "computing",
+      "first_year": "2025-09",
+      "terms": ["Diffusion language models", "diffusion language model", "masked diffusion model"],
+      "radar_prior": 268,
+      "radar_recent": 370,
+      "groups": 296,
+      "new_groups": 154,
+      "share_ratio": 1.1002928578010787,
+      "science_prior": 250,
+      "science_recent": 384,
+      "lead": [
+        {
+          "country": "US",
+          "count": 121
+        },
+        {
+          "country": "CN",
+          "count": 105
+        },
+        {
+          "country": "HK",
+          "count": 27
+        }
+      ],
+      "money": {
+        "total": 0,
+        "kinds": {}
+      },
+      "source": "curated",
+      "technologies": null
+    },
+    {
+      "id": "neutral-atom-qubits",
+      "name": "Neutral-atom quantum computers",
+      "stage": "emerging_signal",
+      "branch": "quantum",
+      "first_year": "2025-09",
+      "terms": [
+        "Neutral-atom quantum computers",
+        "neutral atom quantum computer",
+        "rydberg atom array"
+      ],
+      "radar_prior": 113,
+      "radar_recent": 156,
+      "groups": 141,
+      "new_groups": 66,
+      "share_ratio": 1.1002402248014231,
+      "science_prior": 32,
+      "science_recent": 32,
+      "lead": [
+        {
+          "country": "US",
+          "count": 9
+        },
+        {
+          "country": "DE",
+          "count": 7
+        },
+        {
+          "country": "CN",
+          "count": 4
+        }
+      ],
+      "money": {
+        "total": 0,
+        "kinds": {}
+      },
+      "source": "curated",
+      "technologies": null
+    },
+    {
+      "id": "bioprinting",
+      "name": "3D bioprinting",
+      "stage": "established",
+      "branch": "computing",
+      "first_year": "2025-09",
+      "terms": ["3D bioprinting", "bioprinting"],
+      "radar_prior": 2,
+      "radar_recent": 4,
+      "groups": 5,
+      "new_groups": 2,
+      "share_ratio": 1.5939377615712924,
+      "science_prior": 1500,
+      "science_recent": 1300,
+      "lead": [
+        {
+          "country": "CN",
+          "count": 275
+        },
+        {
+          "country": "US",
+          "count": 160
+        },
+        {
+          "country": "IN",
+          "count": 155
+        }
+      ],
+      "money": {
+        "total": 0,
+        "kinds": {}
+      },
+      "source": "curated",
+      "technologies": null
+    },
+    {
+      "id": "electric-propulsion",
+      "name": "Electric spacecraft propulsion",
+      "stage": "established",
+      "branch": "physics",
+      "first_year": "2025-09",
+      "terms": [
+        "Electric spacecraft propulsion",
+        "electric propulsion",
+        "hall thruster",
+        "spacecraft propulsion"
+      ],
+      "radar_prior": 12,
+      "radar_recent": 23,
+      "groups": 30,
+      "new_groups": 15,
+      "share_ratio": 1.5275236881724885,
+      "science_prior": 854,
+      "science_recent": 612,
+      "lead": [
+        {
+          "country": "CN",
+          "count": 122
+        },
+        {
+          "country": "US",
+          "count": 89
+        },
+        {
+          "country": "DE",
+          "count": 41
+        }
+      ],
+      "money": {
+        "total": 1,
+        "kinds": {
+          "grant": 1
+        }
+      },
+      "source": "curated",
+      "technologies": null
+    }
+  ],
+  "countries": {
+    "AE": {
+      "prior": 229,
+      "recent": 153
+    },
+    "AF": {
+      "prior": 6,
+      "recent": 8
+    },
+    "AL": {
+      "prior": 7,
+      "recent": 7
+    },
+    "AM": {
+      "prior": 12,
+      "recent": 12
+    },
+    "AR": {
+      "prior": 33,
+      "recent": 31
+    },
+    "AT": {
+      "prior": 189,
+      "recent": 122
+    },
+    "AU": {
+      "prior": 475,
+      "recent": 480
+    },
+    "AW": {
+      "prior": 0,
+      "recent": 1
+    },
+    "AZ": {
+      "prior": 31,
+      "recent": 44
+    },
+    "BA": {
+      "prior": 16,
+      "recent": 9
+    },
+    "BD": {
+      "prior": 302,
+      "recent": 198
+    },
+    "BE": {
+      "prior": 142,
+      "recent": 156
+    },
+    "BF": {
+      "prior": 3,
+      "recent": 3
+    },
+    "BG": {
+      "prior": 45,
+      "recent": 35
+    },
+    "BH": {
+      "prior": 37,
+      "recent": 16
+    },
+    "BI": {
+      "prior": 4,
+      "recent": 4
+    },
+    "BJ": {
+      "prior": 1,
+      "recent": 5
+    },
+    "BN": {
+      "prior": 6,
+      "recent": 7
+    },
+    "BO": {
+      "prior": 7,
+      "recent": 0
+    },
+    "BR": {
+      "prior": 288,
+      "recent": 254
+    },
+    "BT": {
+      "prior": 1,
+      "recent": 1
+    },
+    "BW": {
+      "prior": 6,
+      "recent": 2
+    },
+    "BY": {
+      "prior": 8,
+      "recent": 6
+    },
+    "CA": {
+      "prior": 522,
+      "recent": 457
+    },
+    "CD": {
+      "prior": 10,
+      "recent": 7
+    },
+    "CF": {
+      "prior": 2,
+      "recent": 0
+    },
+    "CG": {
+      "prior": 0,
+      "recent": 1
+    },
+    "CH": {
+      "prior": 225,
+      "recent": 200
+    },
+    "CI": {
+      "prior": 7,
+      "recent": 2
+    },
+    "CL": {
+      "prior": 61,
+      "recent": 47
+    },
+    "CM": {
+      "prior": 10,
+      "recent": 12
+    },
+    "CN": {
+      "prior": 5884,
+      "recent": 5274
+    },
+    "CO": {
+      "prior": 54,
+      "recent": 39
+    },
+    "CR": {
+      "prior": 7,
+      "recent": 5
+    },
+    "CU": {
+      "prior": 6,
+      "recent": 3
+    },
+    "CV": {
+      "prior": 0,
+      "recent": 1
+    },
+    "CW": {
+      "prior": 0,
+      "recent": 1
+    },
+    "CY": {
+      "prior": 41,
+      "recent": 32
+    },
+    "CZ": {
+      "prior": 118,
+      "recent": 85
+    },
+    "DE": {
+      "prior": 993,
+      "recent": 880
+    },
+    "DK": {
+      "prior": 128,
+      "recent": 103
+    },
+    "DO": {
+      "prior": 1,
+      "recent": 1
+    },
+    "DZ": {
+      "prior": 78,
+      "recent": 48
+    },
+    "EC": {
+      "prior": 47,
+      "recent": 36
+    },
+    "EE": {
+      "prior": 28,
+      "recent": 21
+    },
+    "EG": {
+      "prior": 160,
+      "recent": 122
+    },
+    "ES": {
+      "prior": 444,
+      "recent": 387
+    },
+    "ET": {
+      "prior": 50,
+      "recent": 48
+    },
+    "FI": {
+      "prior": 149,
+      "recent": 125
+    },
+    "FJ": {
+      "prior": 5,
+      "recent": 4
+    },
+    "FK": {
+      "prior": 1,
+      "recent": 0
+    },
+    "FR": {
+      "prior": 619,
+      "recent": 464
+    },
+    "GA": {
+      "prior": 3,
+      "recent": 1
+    },
+    "GB": {
+      "prior": 1358,
+      "recent": 1009
+    },
+    "GE": {
+      "prior": 10,
+      "recent": 8
+    },
+    "GF": {
+      "prior": 5,
+      "recent": 1
+    },
+    "GH": {
+      "prior": 67,
+      "recent": 73
+    },
+    "GM": {
+      "prior": 1,
+      "recent": 3
+    },
+    "GN": {
+      "prior": 1,
+      "recent": 1
+    },
+    "GR": {
+      "prior": 198,
+      "recent": 162
+    },
+    "GT": {
+      "prior": 1,
+      "recent": 3
+    },
+    "GY": {
+      "prior": 3,
+      "recent": 0
+    },
+    "HK": {
+      "prior": 399,
+      "recent": 484
+    },
+    "HR": {
+      "prior": 25,
+      "recent": 17
+    },
+    "HU": {
+      "prior": 66,
+      "recent": 43
+    },
+    "ID": {
+      "prior": 758,
+      "recent": 763
+    },
+    "IE": {
+      "prior": 91,
+      "recent": 69
+    },
+    "IL": {
+      "prior": 58,
+      "recent": 56
+    },
+    "IN": {
+      "prior": 3507,
+      "recent": 2384
+    },
+    "IQ": {
+      "prior": 161,
+      "recent": 133
+    },
+    "IR": {
+      "prior": 324,
+      "recent": 220
+    },
+    "IS": {
+      "prior": 12,
+      "recent": 7
+    },
+    "IT": {
+      "prior": 816,
+      "recent": 564
+    },
+    "JE": {
+      "prior": 0,
+      "recent": 1
+    },
+    "JM": {
+      "prior": 3,
+      "recent": 1
+    },
+    "JO": {
+      "prior": 111,
+      "recent": 100
+    },
+    "JP": {
+      "prior": 472,
+      "recent": 357
+    },
+    "KE": {
+      "prior": 75,
+      "recent": 63
+    },
+    "KG": {
+      "prior": 6,
+      "recent": 7
+    },
+    "KH": {
+      "prior": 4,
+      "recent": 10
+    },
+    "KM": {
+      "prior": 1,
+      "recent": 2
+    },
+    "KP": {
+      "prior": 0,
+      "recent": 2
+    },
+    "KR": {
+      "prior": 629,
+      "recent": 571
+    },
+    "KW": {
+      "prior": 27,
+      "recent": 18
+    },
+    "KY": {
+      "prior": 9,
+      "recent": 5
+    },
+    "KZ": {
+      "prior": 62,
+      "recent": 68
+    },
+    "LA": {
+      "prior": 0,
+      "recent": 4
+    },
+    "LB": {
+      "prior": 28,
+      "recent": 24
+    },
+    "LC": {
+      "prior": 2,
+      "recent": 1
+    },
+    "LI": {
+      "prior": 1,
+      "recent": 1
+    },
+    "LK": {
+      "prior": 60,
+      "recent": 26
+    },
+    "LR": {
+      "prior": 1,
+      "recent": 1
+    },
+    "LS": {
+      "prior": 0,
+      "recent": 1
+    },
+    "LT": {
+      "prior": 18,
+      "recent": 23
+    },
+    "LU": {
+      "prior": 55,
+      "recent": 17
+    },
+    "LV": {
+      "prior": 21,
+      "recent": 11
+    },
+    "LY": {
+      "prior": 16,
+      "recent": 21
+    },
+    "MA": {
+      "prior": 179,
+      "recent": 104
+    },
+    "MD": {
+      "prior": 0,
+      "recent": 6
+    },
+    "ME": {
+      "prior": 4,
+      "recent": 0
+    },
+    "MG": {
+      "prior": 1,
+      "recent": 4
+    },
+    "MK": {
+      "prior": 10,
+      "recent": 9
+    },
+    "MM": {
+      "prior": 6,
+      "recent": 2
+    },
+    "MN": {
+      "prior": 4,
+      "recent": 3
+    },
+    "MO": {
+      "prior": 63,
+      "recent": 36
+    },
+    "MT": {
+      "prior": 5,
+      "recent": 3
+    },
+    "MU": {
+      "prior": 3,
+      "recent": 1
+    },
+    "MV": {
+      "prior": 1,
+      "recent": 0
+    },
+    "MW": {
+      "prior": 2,
+      "recent": 1
+    },
+    "MX": {
+      "prior": 81,
+      "recent": 62
+    },
+    "MY": {
+      "prior": 332,
+      "recent": 228
+    },
+    "MZ": {
+      "prior": 4,
+      "recent": 3
+    },
+    "NA": {
+      "prior": 5,
+      "recent": 0
+    },
+    "NE": {
+      "prior": 1,
+      "recent": 2
+    },
+    "NG": {
+      "prior": 384,
+      "recent": 417
+    },
+    "NI": {
+      "prior": 0,
+      "recent": 1
+    },
+    "NL": {
+      "prior": 305,
+      "recent": 211
+    },
+    "NO": {
+      "prior": 120,
+      "recent": 91
+    },
+    "NP": {
+      "prior": 30,
+      "recent": 22
+    },
+    "NU": {
+      "prior": 0,
+      "recent": 2
+    },
+    "NZ": {
+      "prior": 38,
+      "recent": 42
+    },
+    "OM": {
+      "prior": 53,
+      "recent": 46
+    },
+    "PA": {
+      "prior": 1,
+      "recent": 2
+    },
+    "PE": {
+      "prior": 26,
+      "recent": 25
+    },
+    "PG": {
+      "prior": 6,
+      "recent": 2
+    },
+    "PH": {
+      "prior": 54,
+      "recent": 39
+    },
+    "PK": {
+      "prior": 338,
+      "recent": 225
+    },
+    "PL": {
+      "prior": 225,
+      "recent": 162
+    },
+    "PR": {
+      "prior": 4,
+      "recent": 2
+    },
+    "PS": {
+      "prior": 18,
+      "recent": 13
+    },
+    "PT": {
+      "prior": 150,
+      "recent": 100
+    },
+    "PY": {
+      "prior": 2,
+      "recent": 0
+    },
+    "QA": {
+      "prior": 66,
+      "recent": 22
+    },
+    "RE": {
+      "prior": 4,
+      "recent": 2
+    },
+    "RO": {
+      "prior": 121,
+      "recent": 116
+    },
+    "RS": {
+      "prior": 51,
+      "recent": 23
+    },
+    "RU": {
+      "prior": 324,
+      "recent": 230
+    },
+    "RW": {
+      "prior": 13,
+      "recent": 6
+    },
+    "SA": {
+      "prior": 432,
+      "recent": 349
+    },
+    "SD": {
+      "prior": 7,
+      "recent": 8
+    },
+    "SE": {
+      "prior": 183,
+      "recent": 159
+    },
+    "SG": {
+      "prior": 308,
+      "recent": 304
+    },
+    "SI": {
+      "prior": 24,
+      "recent": 24
+    },
+    "SJ": {
+      "prior": 0,
+      "recent": 1
+    },
+    "SK": {
+      "prior": 39,
+      "recent": 43
+    },
+    "SL": {
+      "prior": 1,
+      "recent": 3
+    },
+    "SM": {
+      "prior": 1,
+      "recent": 0
+    },
+    "SN": {
+      "prior": 11,
+      "recent": 3
+    },
+    "SO": {
+      "prior": 4,
+      "recent": 7
+    },
+    "SS": {
+      "prior": 2,
+      "recent": 5
+    },
+    "SV": {
+      "prior": 1,
+      "recent": 3
+    },
+    "SY": {
+      "prior": 10,
+      "recent": 10
+    },
+    "TC": {
+      "prior": 1,
+      "recent": 0
+    },
+    "TD": {
+      "prior": 1,
+      "recent": 0
+    },
+    "TG": {
+      "prior": 1,
+      "recent": 2
+    },
+    "TH": {
+      "prior": 107,
+      "recent": 102
+    },
+    "TJ": {
+      "prior": 3,
+      "recent": 3
+    },
+    "TL": {
+      "prior": 3,
+      "recent": 1
+    },
+    "TM": {
+      "prior": 1,
+      "recent": 0
+    },
+    "TN": {
+      "prior": 99,
+      "recent": 36
+    },
+    "TR": {
+      "prior": 314,
+      "recent": 337
+    },
+    "TT": {
+      "prior": 5,
+      "recent": 6
+    },
+    "TW": {
+      "prior": 187,
+      "recent": 165
+    },
+    "TZ": {
+      "prior": 15,
+      "recent": 10
+    },
+    "UA": {
+      "prior": 309,
+      "recent": 265
+    },
+    "UG": {
+      "prior": 33,
+      "recent": 35
+    },
+    "US": {
+      "prior": 3794,
+      "recent": 3585
+    },
+    "UY": {
+      "prior": 5,
+      "recent": 8
+    },
+    "UZ": {
+      "prior": 159,
+      "recent": 140
+    },
+    "VE": {
+      "prior": 3,
+      "recent": 5
+    },
+    "VI": {
+      "prior": 1,
+      "recent": 0
+    },
+    "VN": {
+      "prior": 165,
+      "recent": 155
+    },
+    "WS": {
+      "prior": 0,
+      "recent": 1
+    },
+    "XK": {
+      "prior": 5,
+      "recent": 5
+    },
+    "YE": {
+      "prior": 5,
+      "recent": 13
+    },
+    "ZA": {
+      "prior": 213,
+      "recent": 153
+    },
+    "ZM": {
+      "prior": 16,
+      "recent": 12
+    },
+    "ZW": {
+      "prior": 17,
+      "recent": 9
+    }
+  }
+}

@@ -42,11 +42,15 @@ export function TrendLivePage() {
   const topic = params.get("topic") ?? "";
   const query = params.get("q") ?? "";
   const thesis = params.get("thesis") ?? "";
-  const overviewRequest = useRequest<LiveOverview>("live-overview", getLiveOverview, {
-    pollMs: (value) => (value.status !== "ready" || value.topics.length === 0 ? POLL_MS : 0),
-    keepPrevious: true,
-    cacheMs: CACHE_MS,
-  });
+  const overviewRequest = useRequest<LiveOverview>(
+    topic || query ? null : "live-overview",
+    getLiveOverview,
+    {
+      pollMs: (value) => (value.status !== "ready" || value.topics.length === 0 ? POLL_MS : 0),
+      keepPrevious: true,
+      cacheMs: 0,
+    },
+  );
   const overview = overviewRequest.data;
   const overviewFailed = overviewRequest.status === "error";
   const search = useLiveSearch(query);
@@ -82,6 +86,10 @@ export function TrendLivePage() {
       if (selection.q) next.set("q", selection.q);
       // Иначе следующий запрос с карты записался бы в тезис, к которому не относится.
       if (!selection.topic && !selection.q) next.delete("thesis");
+      // Направление, открытое с карты мира, возвращает на карту, а не на обзор направлений.
+      if (!selection.topic && !selection.q && current.get("back") === "map")
+        next.set("entity", "map");
+      next.delete("back");
       return next;
     });
   const back = () => navigate();

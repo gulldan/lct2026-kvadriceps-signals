@@ -58,12 +58,7 @@ radar-analysis calibrate-burst < snapshot.json
 неизменной, двойной и четверной доле. Это инженерная калибровка, а не документальные метки.
 Пороги детектора обе команды не меняют.
 
-## Качество смысловой группировки
-
-Фикстуры — `internal/application/testdata/live-semantic-*.json`. Метки инженерные, не экспертные.
-На проверочной выборке полнота по синонимам не прошла порог, поэтому результат несёт
-`quality_status=development_not_frozen`. Утверждать научное качество группировки нельзя, пока нет
-независимой оценки.
+## Проверка
 
 ```sh
 go test -race ./internal/application ./internal/infrastructure/trendanalysis ./internal/infrastructure/trendsemantic ./cmd/radar-analysis

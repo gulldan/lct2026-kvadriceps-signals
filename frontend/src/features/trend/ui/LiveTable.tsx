@@ -8,9 +8,12 @@ import { LegendItem } from "@/shared/ui/LegendItem";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/shared/ui/Table";
 import { TimeSeriesChart } from "@/shared/ui/TimeSeriesChart";
 import { cn } from "@/shared/lib/cn";
+import { interleaveTies } from "@/shared/lib/interleaveBy";
 import { formatMonth } from "@/shared/lib/format";
 import type { LiveTopic } from "../liveApi";
 import { topicBranch } from "../liveBranches";
+import { researchCategoryLabelById } from "@/shared/lib/researchTaxonomy";
+import { moneyTitle } from "../liveTopicMoney";
 import { topicSeries } from "../series";
 import { channelTotal, lastNewGroups } from "../liveMetrics";
 import { stageTones } from "../stageTones";
@@ -19,6 +22,7 @@ import { groupTopics, SUBGROUP_ORDER } from "../liveGroups";
 const COLUMNS = [
   "name",
   "delta",
+  "money",
   "unique",
   "citations",
   "papers",
@@ -40,6 +44,10 @@ type RowProps = {
 
 /** name и onOpen — useCallback в LiveOverview, format — константа: иначе memo бесполезен. */
 const Row = memo(function Row({ topic, complete, name, format, onOpen, t }: RowProps) {
+  const { i18n } = useTranslation("trend");
+  const industry = researchCategoryLabelById(topic.industry, i18n.language);
+  const branch = topicBranch(topic);
+  const money = topic.money?.total ?? 0;
   const delta = topic.growth.delta_pp;
   const emerging = topic.stage === "emerging_signal";
   const Icon = delta === null || delta === 0 ? Minus : delta > 0 ? ArrowUpRight : ArrowDownRight;
@@ -47,10 +55,20 @@ const Row = memo(function Row({ topic, complete, name, format, onOpen, t }: RowP
   const hn = channelTotal(topic.discussions, topic.series.length);
   return (
     <TableRow
-      className={cn("cursor-pointer", emerging && "bg-brand-wash hover:bg-brand-wash")}
+      className={cn(
+        "group cursor-pointer hover:bg-muted",
+        emerging && "bg-brand-wash hover:bg-brand-wash",
+      )}
       onClick={() => onOpen(topic.id)}
     >
-      <TableCell className="max-w-56 min-w-40">
+      {/* На ноутбуке с открытым меню таблица шире экрана: имя остаётся на месте при прокрутке,
+          поэтому у ячейки и строки непрозрачный фон одного тона. */}
+      <TableCell
+        className={cn(
+          "sticky left-0 z-1 max-w-48 min-w-32 transition-colors",
+          emerging ? "bg-brand-wash" : "bg-background group-hover:bg-muted",
+        )}
+      >
         <Button
           variant="link"
           size="inline"
@@ -73,10 +91,10 @@ const Row = memo(function Row({ topic, complete, name, format, onOpen, t }: RowP
           </Badge>
         )}
       </TableCell>
-      <TableCell className="whitespace-nowrap text-muted-foreground">
-        {topicBranch(topic) ? t(`study.live.branches.${topicBranch(topic)!}`) : "—"}
+      <TableCell className="max-w-32 min-w-24 text-muted-foreground">
+        {industry ?? (branch ? t(`study.live.branches.${branch}`) : "—")}
       </TableCell>
-      <TableCell className="whitespace-nowrap">
+      <TableCell className="min-w-28">
         <LegendItem marker={stageTones[topic.stage].marker} className="text-xs">
           {t(`study.live.table.stages.${topic.stage}`)}
         </LegendItem>
@@ -98,6 +116,20 @@ const Row = memo(function Row({ topic, complete, name, format, onOpen, t }: RowP
         </span>
       </TableCell>
       <TableCell className="text-right font-mono text-xs tabular-nums">
+        {money > 0 ? (
+          <span
+            className="inline-flex items-center gap-1"
+            title={moneyTitle(topic.money!, t)}
+            aria-label={moneyTitle(topic.money!, t)}
+          >
+            <span aria-hidden className="size-2 rounded-full bg-map-money-4" />
+            {money}
+          </span>
+        ) : (
+          "—"
+        )}
+      </TableCell>
+      <TableCell className="text-right font-mono text-xs tabular-nums">
         {typeof topic.uniqueness !== "number" ? "—" : format(topic.uniqueness * 100, 0)}
       </TableCell>
       <TableCell className="text-right font-mono text-xs whitespace-nowrap tabular-nums">
@@ -117,7 +149,8 @@ const Row = memo(function Row({ topic, complete, name, format, onOpen, t }: RowP
       <TableCell className="text-right font-mono text-xs tabular-nums">
         {hn === null ? "—" : hn}
       </TableCell>
-      <TableCell className="text-right font-mono text-xs whitespace-nowrap tabular-nums">
+      {/* Месяц переносится под год: на живых данных строка «сентябрь 2025» выводила таблицу за колонку на 1920 px. */}
+      <TableCell className="min-w-20 text-right font-mono text-xs tabular-nums">
         {formatMonth(topic.first_year)}
       </TableCell>
     </TableRow>
@@ -138,8 +171,8 @@ export function LiveTable({
   onOpen: (id: string) => void;
 }) {
   const { t } = useTranslation("trend");
-  const [sort, setSort] = useState<{ column: Column; desc: boolean }>({
-    column: "delta",
+  const [sort, setSort] = useState<{ column: Column | null; desc: boolean }>({
+    column: null,
     desc: true,
   });
   const value = (topic: LiveTopic): number | string => {
@@ -147,7 +180,10 @@ export function LiveTable({
       case "name":
         return name(topic);
       case "delta":
+      case null:
         return topic.growth.delta_pp ?? -Infinity;
+      case "money":
+        return topic.money?.total ?? 0;
       case "unique":
         return topic.uniqueness ?? -1;
       case "citations":
@@ -164,8 +200,8 @@ export function LiveTable({
         return topic.first_year;
     }
   };
-  const sorted = (list: LiveTopic[]) =>
-    list.toSorted((a, b) => {
+  const sorted = (list: LiveTopic[]) => {
+    const ranked = list.toSorted((a, b) => {
       const [va, vb] = [value(a), value(b)];
       const order =
         typeof va === "string" || typeof vb === "string"
@@ -173,20 +209,29 @@ export function LiveTable({
           : va - vb;
       return sort.desc ? -order : order;
     });
+    // Отрасли чередуются только среди равного видимого роста: иначе +0,16 оказывался ниже строк с +0.
+    return sort.column === null
+      ? interleaveTies(
+          ranked,
+          (topic) => format(topic.growth.delta_pp ?? Number.NaN, 2),
+          (topic) => topic.industry ?? topic.branch ?? "",
+        )
+      : ranked;
+  };
   const groups = groupTopics(topics);
-  const header = (column: Column, label: string, align = "text-right") => {
+  const header = (column: Column, label: string, className = "px-1 text-right") => {
     const active = sort.column === column;
     const Icon = active && !sort.desc ? ChevronUp : ChevronDown;
     return (
       <TableHead
         aria-sort={active ? (sort.desc ? "descending" : "ascending") : "none"}
-        className={cn("whitespace-nowrap", align)}
+        className={className}
       >
         <Button
           variant="ghost"
           size="sm"
           aria-pressed={active}
-          className="gap-1 px-1 whitespace-nowrap"
+          className="gap-1 px-1 wrap-normal"
           onClick={() =>
             setSort((current) => ({
               column,
@@ -202,14 +247,28 @@ export function LiveTable({
   };
   return (
     <>
+      <Button
+        variant="ghost"
+        size="sm"
+        className="mb-2"
+        aria-pressed={sort.column === null}
+        onClick={() => setSort({ column: null, desc: true })}
+      >
+        {t("study.live.diverseOrder")}
+      </Button>
       <Table aria-label={t("study.live.table.aria")} className="text-sm">
         <TableHeader>
           <TableRow>
-            {header("name", t("study.live.table.name"), "text-left")}
-            <TableHead className="whitespace-nowrap">{t("study.live.table.branch")}</TableHead>
+            {header(
+              "name",
+              t("study.live.table.name"),
+              "sticky left-0 z-1 bg-background px-1 text-left",
+            )}
+            <TableHead className="whitespace-nowrap">{t("study.live.table.industry")}</TableHead>
             <TableHead className="whitespace-nowrap">{t("study.live.table.stage")}</TableHead>
             <TableHead className="w-32">{t("study.live.table.trend")}</TableHead>
             {header("delta", t("study.live.table.delta"))}
+            {header("money", t("study.live.table.money"))}
             {header("unique", t("study.live.table.unique"))}
             {header("citations", t("study.live.table.citations"))}
             {header("papers", t("study.live.table.papers"))}
@@ -222,7 +281,7 @@ export function LiveTable({
         {groups.map((group) => (
           <TableBody key={group.stage}>
             <TableRow className="bg-muted hover:bg-muted">
-              <TableCell colSpan={12} className="py-2">
+              <TableCell colSpan={13} className="py-2">
                 <span className="inline-flex flex-wrap items-baseline gap-x-2 gap-y-1 text-sm">
                   <LegendItem marker={stageTones[group.stage].marker} className="font-medium">
                     {t(`study.live.table.stages.${group.stage}`)}
@@ -253,7 +312,7 @@ export function LiveTable({
               if (key === "measured") return rows;
               return [
                 <TableRow key={`${group.stage}-${key}`} className="hover:bg-transparent">
-                  <TableCell colSpan={10} className="py-1.5 text-xs text-muted-foreground">
+                  <TableCell colSpan={13} className="py-1.5 text-xs text-muted-foreground">
                     <span className="font-medium text-foreground">
                       {t(`study.live.groups.sub.${key}`)}
                     </span>

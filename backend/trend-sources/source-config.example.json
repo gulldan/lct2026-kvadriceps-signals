@@ -26,6 +26,527 @@
   ],
   "web": [
     {
+      "name": "Crossref: финансовые технологии",
+      "url": "https://api.crossref.org/works?filter=type%3Ajournal-article&query.title=financial+technology+payments+inclusion",
+      "kind": "crossref",
+      "industry": "Финансовые технологии",
+      "pages": 1
+    },
+    {
+      "name": "Crossref: телекоммуникации",
+      "url": "https://api.crossref.org/works?filter=type%3Ajournal-article&query.title=telecommunications+wireless+networks",
+      "kind": "crossref",
+      "industry": "Телекоммуникации",
+      "pages": 1
+    },
+    {
+      "name": "Crossref: полупроводники",
+      "url": "https://api.crossref.org/works?filter=type%3Ajournal-article&query.title=semiconductor+fabrication+photonics",
+      "kind": "crossref",
+      "industry": "Полупроводники",
+      "pages": 1
+    },
+    {
+      "name": "Crossref: робототехника",
+      "url": "https://api.crossref.org/works?filter=type%3Ajournal-article&query.title=robotics+manipulation+actuators",
+      "kind": "crossref",
+      "industry": "Робототехника",
+      "pages": 1
+    },
+    {
+      "name": "Crossref: правовые технологии",
+      "url": "https://api.crossref.org/works?filter=type%3Ajournal-article&query.title=law+legal+regulation+technology",
+      "kind": "crossref",
+      "industry": "Правовые технологии",
+      "pages": 1
+    },
+    {
+      "name": "Crossref: медиа и контент",
+      "url": "https://api.crossref.org/works?filter=type%3Ajournal-article&query.title=media+journalism+digital+content",
+      "kind": "crossref",
+      "industry": "Медиа и цифровой контент",
+      "pages": 1
+    },
+    {
+      "name": "Crossref: мода и текстиль",
+      "url": "https://api.crossref.org/works?filter=type%3Ajournal-article&query.title=textiles+wearable+fibers",
+      "kind": "crossref",
+      "industry": "Мода и текстиль",
+      "pages": 1
+    },
+    {
+      "name": "Crossref: спорт",
+      "url": "https://api.crossref.org/works?filter=type%3Ajournal-article&query.title=sports+exercise+performance",
+      "kind": "crossref",
+      "industry": "Спорт",
+      "pages": 1
+    },
+    {
+      "name": "Crossref: туризм",
+      "url": "https://api.crossref.org/works?filter=type%3Ajournal-article&query.title=tourism+hospitality+sustainable+travel",
+      "kind": "crossref",
+      "industry": "Туризм и путешествия",
+      "pages": 1
+    },
+    {
+      "name": "Crossref: дети и семейные сервисы",
+      "url": "https://api.crossref.org/works?filter=type%3Ajournal-article&query.title=childcare+parenting+child+development",
+      "kind": "crossref",
+      "industry": "Детские товары и сервисы",
+      "pages": 1
+    },
+    {
+      "name": "Crossref: музыка",
+      "url": "https://api.crossref.org/works?filter=type%3Ajournal-article&query.title=music+acoustics+musical+instruments",
+      "kind": "crossref",
+      "industry": "Музыка",
+      "pages": 1
+    },
+    {
+      "name": "Y Combinator: Requests for Startups",
+      "url": "https://www.ycombinator.com/rfs",
+      "kind": "url",
+      "genre": "investment_thesis",
+      "industry": "Образование; Детские товары и сервисы; Медицина и здоровье; Энергетика; Инженерия и промышленное оборудование",
+      "pages": 1
+    },
+    {
+      "name": "a16z: Bio + Health и American Dynamism",
+      "url": "https://a16z.com/bio-health/",
+      "kind": "urls",
+      "genre": "investment_thesis",
+      "industry": "Медицина и здоровье; Биотехнологии; Инженерия и промышленное оборудование; Энергетика",
+      "pages": 2,
+      "urls": [
+        "https://a16z.com/bio-health/",
+        "https://a16z.com/american-dynamism/"
+      ]
+    },
+    {
+      "name": "a16z: новости и идеи",
+      "url": "https://www.a16z.news/feed",
+      "kind": "feed",
+      "genre": "investor_commentary",
+      "industry": "Корпоративное ПО и вычисления; Финансовые технологии; Медицина и здоровье",
+      "pages": 1
+    },
+    {
+      "name": "Sequoia: направления портфеля",
+      "url": "https://sequoiacap.com/our-companies",
+      "kind": "url",
+      "genre": "investment_thesis",
+      "industry": "Космос и астрономия; Туризм и путешествия; Финансовые технологии; Медиа и цифровой контент",
+      "pages": 1
+    },
+    {
+      "name": "Bessemer: дорожная карта наук о жизни",
+      "url": "https://www.bvp.com/atlas/roadmap-reinventing-life-sciences-with-ai",
+      "kind": "url",
+      "genre": "investment_thesis",
+      "industry": "Медицина и здоровье; Биотехнологии",
+      "pages": 1
+    },
+    {
+      "name": "GV: инвестиционный подход",
+      "url": "https://www.gv.com/about",
+      "kind": "url",
+      "genre": "investment_thesis",
+      "industry": "Медицина и здоровье; Биотехнологии; Корпоративное ПО и вычисления",
+      "pages": 1
+    },
+    {
+      "name": "General Catalyst: преобразование отраслей",
+      "url": "https://www.generalcatalyst.com/transformations",
+      "kind": "url",
+      "genre": "investment_thesis",
+      "industry": "Медицина и здоровье; Корпоративное ПО и вычисления",
+      "pages": 1
+    },
+    {
+      "name": "Khosla Ventures: технологические направления",
+      "url": "https://www.khoslaventures.com/",
+      "kind": "url",
+      "genre": "investment_thesis",
+      "industry": "Энергетика; Медицина и здоровье; Химия и материалы; Космос и астрономия",
+      "pages": 1
+    },
+    {
+      "name": "Lux Capital: Riskgaming",
+      "url": "https://blog.riskgaming.com/feed",
+      "kind": "feed",
+      "genre": "investor_commentary",
+      "industry": "Инженерия и промышленное оборудование; Кибербезопасность и защита; Полупроводники",
+      "pages": 1
+    },
+    {
+      "name": "DCVC: Deep Tech Opportunities",
+      "url": "https://www.dcvc.com/reports/deep-tech-opportunities-report-2026/",
+      "kind": "url",
+      "genre": "investment_thesis",
+      "industry": "Энергетика; Биотехнологии; Робототехника; Инженерия и промышленное оборудование",
+      "pages": 1
+    },
+    {
+      "name": "Breakthrough Energy: программы",
+      "url": "https://www.breakthroughenergy.org/programs",
+      "kind": "url",
+      "genre": "investment_thesis",
+      "industry": "Энергетика; Инженерия и промышленное оборудование; Сельское хозяйство; Транспорт и логистика; Недвижимость",
+      "pages": 1
+    },
+    {
+      "name": "Lowercarbon: климатический тезис",
+      "url": "https://lowercarbon.com/",
+      "kind": "url",
+      "genre": "investment_thesis",
+      "industry": "Климат и экология; Энергетика; Химия и материалы; Сельское хозяйство",
+      "pages": 1
+    },
+    {
+      "name": "Lowercarbon: новости",
+      "url": "https://lowercarbon.com/feed/",
+      "kind": "feed",
+      "genre": "investor_commentary",
+      "industry": "Климат и экология; Энергетика",
+      "pages": 1
+    },
+    {
+      "name": "SOSV: новости глубокой технологии",
+      "url": "https://sosv.com/feed/",
+      "kind": "feed",
+      "genre": "investor_commentary",
+      "industry": "Биотехнологии; Климат и экология; Медицина и здоровье; Пищевые технологии",
+      "pages": 1
+    },
+    {
+      "name": "SOSV HAX: инженерные технологии",
+      "url": "https://hax.co/feed/",
+      "kind": "feed",
+      "genre": "investor_commentary",
+      "industry": "Инженерия и промышленное оборудование; Робототехника; Энергетика; Мода и текстиль",
+      "pages": 1
+    },
+    {
+      "name": "IndieBio: архив публикаций программы",
+      "url": "https://indiebio.co/feed/",
+      "kind": "feed",
+      "genre": "investor_commentary",
+      "industry": "Биотехнологии; Медицина и здоровье; Пищевые технологии; Химия и материалы",
+      "pages": 1
+    },
+    {
+      "name": "AgFunderNews: агропродовольственные технологии",
+      "url": "https://agfundernews.com/feed",
+      "kind": "feed",
+      "genre": "investor_commentary",
+      "industry": "Сельское хозяйство; Пищевые технологии; Биотехнологии",
+      "pages": 1
+    },
+    {
+      "name": "BlueYard: технологический манифест",
+      "url": "https://blueyard.com/put-your-hand-in-the-box-the-spirit-of-blueyard/",
+      "kind": "url",
+      "genre": "investment_thesis",
+      "industry": "Корпоративное ПО и вычисления; Биотехнологии; Химия и материалы; Космос и астрономия",
+      "pages": 1
+    },
+    {
+      "name": "Eclipse: физическая экономика",
+      "url": "https://eclipse.capital/about",
+      "kind": "url",
+      "genre": "investment_thesis",
+      "industry": "Инженерия и промышленное оборудование",
+      "pages": 1
+    },
+    {
+      "name": "Space Capital: космическая экономика",
+      "url": "https://www.spacecapital.com/about",
+      "kind": "url",
+      "genre": "investment_thesis",
+      "industry": "Космос и астрономия; Телекоммуникации",
+      "pages": 1
+    },
+    {
+      "name": "PubMed: медицина и диагностика",
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=SRC%3AMED+AND+%28TITLE_ABS%3Adiagnostic+OR+TITLE_ABS%3Avaccine+OR+TITLE_ABS%3Atherapy%29",
+      "kind": "europe_pmc",
+      "industry": "Медицина и здоровье",
+      "pages": 2
+    },
+    {
+      "name": "Europe PMC: биотехнологии",
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=TITLE_ABS%3A%22gene+editing%22+OR+TITLE_ABS%3A%22synthetic+biology%22+OR+TITLE_ABS%3Abioprinting",
+      "kind": "europe_pmc",
+      "industry": "Биотехнологии",
+      "pages": 2
+    },
+    {
+      "name": "Europe PMC: агротехнологии и питание",
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=TITLE_ABS%3Aagriculture+OR+TITLE_ABS%3A%22food+security%22+OR+TITLE_ABS%3Aaquaculture",
+      "kind": "europe_pmc",
+      "industry": "Сельское хозяйство и продовольствие",
+      "pages": 2
+    },
+    {
+      "name": "Europe PMC: экология и климат",
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=TITLE_ABS%3Abioremediation+OR+TITLE_ABS%3Abiodiversity+OR+TITLE_ABS%3Amicroplastics",
+      "kind": "europe_pmc",
+      "industry": "Экология и климат",
+      "pages": 2
+    },
+    {
+      "name": "Europe PMC: нейронауки",
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=TITLE_ABS%3Aneurostimulation+OR+TITLE_ABS%3Aneuroprosthetics+OR+TITLE_ABS%3Aneuroscience",
+      "kind": "europe_pmc",
+      "industry": "Нейронауки и психология",
+      "pages": 2
+    },
+    {
+      "name": "Europe PMC: биоматериалы",
+      "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=TITLE_ABS%3Abiomaterials+OR+TITLE_ABS%3Abiosensor+OR+TITLE_ABS%3Abiopolymer",
+      "kind": "europe_pmc",
+      "industry": "Материалы и химия",
+      "pages": 2
+    },
+    {
+      "name": "Crossref: энергетика",
+      "url": "https://api.crossref.org/works?filter=type%3Ajournal-article&query.title=renewable+energy+hydrogen+battery",
+      "kind": "crossref",
+      "industry": "Энергетика",
+      "pages": 2
+    },
+    {
+      "name": "Crossref: материалы и химия",
+      "url": "https://api.crossref.org/works?filter=type%3Ajournal-article&query.title=materials+catalysts+polymers",
+      "kind": "crossref",
+      "industry": "Материалы и химия",
+      "pages": 2
+    },
+    {
+      "name": "Crossref: сельское хозяйство",
+      "url": "https://api.crossref.org/works?filter=type%3Ajournal-article&query.title=agriculture+food+aquaculture",
+      "kind": "crossref",
+      "industry": "Сельское хозяйство и продовольствие",
+      "pages": 2
+    },
+    {
+      "name": "Crossref: климат и экология",
+      "url": "https://api.crossref.org/works?filter=type%3Ajournal-article&query.title=climate+biodiversity+environment",
+      "kind": "crossref",
+      "industry": "Экология и климат",
+      "pages": 2
+    },
+    {
+      "name": "Crossref: транспорт",
+      "url": "https://api.crossref.org/works?filter=type%3Ajournal-article&query.title=transport+mobility+logistics",
+      "kind": "crossref",
+      "industry": "Транспорт и логистика",
+      "pages": 2
+    },
+    {
+      "name": "Crossref: промышленность",
+      "url": "https://api.crossref.org/works?filter=type%3Ajournal-article&query.title=manufacturing+metallurgy+recycling",
+      "kind": "crossref",
+      "industry": "Промышленность и производство",
+      "pages": 2
+    },
+    {
+      "name": "Crossref: космос и физика",
+      "url": "https://api.crossref.org/works?filter=type%3Ajournal-article&query.title=astronomy+astrophysics+space",
+      "kind": "crossref",
+      "industry": "Космос и физика",
+      "pages": 2
+    },
+    {
+      "name": "Crossref: экономика",
+      "url": "https://api.crossref.org/works?filter=type%3Ajournal-article&query.title=economics+development+finance",
+      "kind": "crossref",
+      "industry": "Экономика и общество",
+      "pages": 2
+    },
+    {
+      "name": "Crossref: образование",
+      "url": "https://api.crossref.org/works?filter=type%3Ajournal-article&query.title=education+learning+pedagogy",
+      "kind": "crossref",
+      "industry": "Образование и культура",
+      "pages": 2
+    },
+    {
+      "name": "Crossref: общество и демография",
+      "url": "https://api.crossref.org/works?filter=type%3Ajournal-article&query.title=demography+sociology+migration",
+      "kind": "crossref",
+      "industry": "Экономика и общество",
+      "pages": 2
+    },
+    {
+      "name": "Crossref: вода и океан",
+      "url": "https://api.crossref.org/works?filter=type%3Ajournal-article&query.title=water+ocean+desalination",
+      "kind": "crossref",
+      "industry": "Водные ресурсы и океан",
+      "pages": 2
+    },
+    {
+      "name": "Crossref: строительство и города",
+      "url": "https://api.crossref.org/works?filter=type%3Ajournal-article&query.title=construction+urban+infrastructure",
+      "kind": "crossref",
+      "industry": "Города и инфраструктура",
+      "pages": 2
+    },
+    {
+      "name": "DataCite: климатические данные",
+      "url": "https://api.datacite.org/dois?query=titles.title%3A%28climate+OR+ecology+OR+biodiversity%29&resource-type-id=dataset",
+      "kind": "datacite",
+      "industry": "Экология и климат",
+      "pages": 2
+    },
+    {
+      "name": "DataCite: данные о воде и океане",
+      "url": "https://api.datacite.org/dois?query=titles.title%3A%28ocean+OR+hydrology+OR+freshwater%29&resource-type-id=dataset",
+      "kind": "datacite",
+      "industry": "Водные ресурсы и океан",
+      "pages": 2
+    },
+    {
+      "name": "DataCite: данные о Земле",
+      "url": "https://api.datacite.org/dois?query=titles.title%3A%28geology+OR+geophysics+OR+seismic%29&resource-type-id=dataset",
+      "kind": "datacite",
+      "industry": "Геология и природные ресурсы",
+      "pages": 2
+    },
+    {
+      "name": "DataCite: аграрные данные",
+      "url": "https://api.datacite.org/dois?query=titles.title%3A%28agriculture+OR+soil+OR+crops%29&resource-type-id=dataset",
+      "kind": "datacite",
+      "industry": "Сельское хозяйство и продовольствие",
+      "pages": 2
+    },
+    {
+      "name": "DataCite: данные о материалах",
+      "url": "https://api.datacite.org/dois?query=titles.title%3A%28materials+OR+chemistry+OR+crystallography%29&resource-type-id=dataset",
+      "kind": "datacite",
+      "industry": "Материалы и химия",
+      "pages": 2
+    },
+    {
+      "name": "DataCite: социальные данные",
+      "url": "https://api.datacite.org/dois?query=titles.title%3A%28economics+OR+demography+OR+sociology%29&resource-type-id=dataset",
+      "kind": "datacite",
+      "industry": "Экономика и общество",
+      "pages": 2
+    },
+    {
+      "name": "ClinicalTrials.gov: клинические исследования",
+      "url": "https://clinicaltrials.gov/api/v2/studies",
+      "kind": "clinical_trials",
+      "industry": "Медицина и здоровье",
+      "pages": 2
+    },
+    {
+      "name": "bioRxiv: архив препринтов",
+      "url": "https://api.biorxiv.org/details/biorxiv",
+      "kind": "biorxiv",
+      "industry": "Биотехнологии",
+      "pages": 3
+    },
+    {
+      "name": "medRxiv: архив препринтов",
+      "url": "https://api.biorxiv.org/details/medrxiv",
+      "kind": "biorxiv",
+      "industry": "Медицина и здоровье",
+      "pages": 3
+    },
+    {
+      "name": "Zenodo: междисциплинарные данные",
+      "url": "https://zenodo.org/api/records?type=dataset",
+      "kind": "zenodo",
+      "industry": "Междисциплинарные исследования",
+      "pages": 2
+    },
+    {
+      "name": "Figshare: научные данные",
+      "url": "https://api.figshare.com/v2/articles?item_type=3",
+      "kind": "figshare",
+      "industry": "Междисциплинарные исследования",
+      "pages": 2
+    },
+    {
+      "name": "BioStudies: биологические эксперименты",
+      "url": "https://www.ebi.ac.uk/biostudies/api/v1/search",
+      "kind": "biostudies",
+      "industry": "Биотехнологии",
+      "pages": 2
+    },
+    {
+      "name": "Nature Climate Change",
+      "url": "https://www.nature.com/nclimate.rss",
+      "kind": "feed",
+      "industry": "Экология и климат",
+      "pages": 1
+    },
+    {
+      "name": "Nature Energy",
+      "url": "https://www.nature.com/nenergy.rss",
+      "kind": "feed",
+      "industry": "Энергетика",
+      "pages": 1
+    },
+    {
+      "name": "Nature Food",
+      "url": "https://www.nature.com/natfood.rss",
+      "kind": "feed",
+      "industry": "Сельское хозяйство и продовольствие",
+      "pages": 1
+    },
+    {
+      "name": "Nature Sustainability",
+      "url": "https://www.nature.com/natsustain.rss",
+      "kind": "feed",
+      "industry": "Экология и климат",
+      "pages": 1
+    },
+    {
+      "name": "Nature Medicine",
+      "url": "https://www.nature.com/nm.rss",
+      "kind": "feed",
+      "industry": "Медицина и здоровье",
+      "pages": 1
+    },
+    {
+      "name": "Nature Human Behaviour",
+      "url": "https://www.nature.com/nathumbehav.rss",
+      "kind": "feed",
+      "industry": "Экономика и общество",
+      "pages": 1
+    },
+    {
+      "name": "PLOS Biology",
+      "url": "https://journals.plos.org/plosbiology/feed/atom",
+      "kind": "feed",
+      "industry": "Биотехнологии",
+      "pages": 1
+    },
+    {
+      "name": "PLOS Climate",
+      "url": "https://journals.plos.org/climate/feed/atom",
+      "kind": "feed",
+      "industry": "Экология и климат",
+      "pages": 1
+    },
+    {
+      "name": "PLOS Water",
+      "url": "https://journals.plos.org/water/feed/atom",
+      "kind": "feed",
+      "industry": "Водные ресурсы и океан",
+      "pages": 1
+    },
+    {
+      "name": "PLOS Global Public Health",
+      "url": "https://journals.plos.org/globalpublichealth/feed/atom",
+      "kind": "feed",
+      "industry": "Медицина и здоровье",
+      "pages": 1
+    },
+    {
       "name": "MIT Energy",
       "url": "https://news.mit.edu/rss/topic/energy",
       "kind": "rss",
@@ -152,16 +673,43 @@
     }
   ],
   "allowed_domains": [
-    "news.mit.edu",
-    "nasa.gov",
-    "research.google",
-    "huggingface.co",
-    "journals.plos.org",
-    "www.frontiersin.org",
-    "quantum-journal.org",
+    "a16z.com",
+    "agfundernews.com",
+    "api.biorxiv.org",
+    "api.crossref.org",
+    "api.datacite.org",
+    "api.figshare.com",
+    "blog.riskgaming.com",
+    "blueyard.com",
+    "clinicaltrials.gov",
     "deepmind.google",
     "developer.nvidia.com",
-    "sciml.ai"
+    "eclipse.capital",
+    "hax.co",
+    "huggingface.co",
+    "indiebio.co",
+    "journals.plos.org",
+    "lowercarbon.com",
+    "nasa.gov",
+    "news.mit.edu",
+    "quantum-journal.org",
+    "research.google",
+    "sciml.ai",
+    "sequoiacap.com",
+    "sosv.com",
+    "www.a16z.news",
+    "www.breakthroughenergy.org",
+    "www.bvp.com",
+    "www.dcvc.com",
+    "www.ebi.ac.uk",
+    "www.frontiersin.org",
+    "www.generalcatalyst.com",
+    "www.gv.com",
+    "www.khoslaventures.com",
+    "www.nature.com",
+    "www.spacecapital.com",
+    "www.ycombinator.com",
+    "zenodo.org"
   ],
   "cn_documents": 40
 }

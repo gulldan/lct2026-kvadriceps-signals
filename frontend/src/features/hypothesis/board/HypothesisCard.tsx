@@ -2,7 +2,11 @@ import { Layers, Target } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 import type { ApiHypothesis } from "@/features/hypothesis/api";
-import { displayHypothesisTitle, priorityScore } from "@/features/hypothesis/model";
+import {
+  displayHypothesisTitle,
+  hasProjectedTheme,
+  priorityScore,
+} from "@/features/hypothesis/model";
 import { evidenceStats, originMeta, verdictMeta } from "@/features/hypothesis/board/model";
 import { SchemaCompleteness } from "@/features/hypothesis/ui/HypothesisInsights";
 import { Badge } from "@/shared/ui/Badge";
@@ -31,7 +35,7 @@ export function HypothesisCard({
   const evidence = evidenceStats(h);
   const title = displayHypothesisTitle(h);
   const rank = priorityScore(h);
-  const hasCluster = clusterTitle !== undefined;
+  const hasCluster = !hasProjectedTheme(h) && clusterTitle !== undefined;
   return (
     <CardButton onClick={onOpen} className="flex flex-col">
       <CardContent className="flex flex-1 flex-col gap-3 p-4">

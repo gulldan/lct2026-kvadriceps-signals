@@ -1,8 +1,8 @@
-import { useCallback, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { RefreshCw } from "lucide-react";
-import { getPerf, type PerfResponse } from "../api";
-import { JOB_TITLES, WORKER_LABELS, type WorkerStatus } from "@/features/task";
+import { getPerf } from "../api";
+import { JOB_TITLES, WORKER_LABELS, workerState, type WorkerStatus } from "@/features/task";
+import { useRequest } from "@/shared/lib/useRequest";
 import { formatDateTime, formatNumber } from "@/shared/lib/format";
 import { Badge } from "@/shared/ui/Badge";
 import { Button } from "@/shared/ui/Button";
@@ -64,22 +64,26 @@ const SERVICES = [
   },
 ] as const;
 
-export function PerformanceMetrics({ workers }: { workers: WorkerStatus[] }) {
+export function PerformanceMetrics({
+  workers,
+  onRefresh,
+}: {
+  workers: WorkerStatus[];
+  onRefresh: () => void;
+}) {
   const { t } = useTranslation("admin");
-  const [perf, setPerf] = useState<PerfResponse | null>(null);
-  const [phase, setPhase] = useState<"loading" | "ready" | "error">("loading");
-  const load = useCallback(async () => {
-    setPhase("loading");
-    try {
-      setPerf(await getPerf());
-      setPhase("ready");
-    } catch {
-      setPhase("error");
-    }
-  }, []);
-  useEffect(() => {
-    void load();
-  }, [load]);
+  const {
+    data: perf,
+    status: phase,
+    retry,
+  } = useRequest("admin-perf", getPerf, {
+    pollMs: 30_000,
+    keepPrevious: true,
+  });
+  const load = () => {
+    retry();
+    onRefresh();
+  };
   const seconds = (value: number | undefined) =>
     value === undefined || !Number.isFinite(value)
       ? "—"
@@ -103,12 +107,22 @@ export function PerformanceMetrics({ workers }: { workers: WorkerStatus[] }) {
           {t("actions.refresh")}
         </Button>
       </div>
-      {phase === "loading" ? (
+      {!perf && phase !== "error" ? (
         <Skeleton className="h-64 w-full" />
       ) : phase === "error" ? (
         <ErrorState message={t("metrics.loadFailed")} onRetry={() => void load()} />
       ) : (
         <>
+          {perf?.telemetry && perf.telemetry !== "available" && (
+            <output className="mb-5 block text-sm text-risk">
+              {t("metrics.telemetryUnavailable")}
+            </output>
+          )}
+          {perf?.observed_at && (
+            <p className="mb-5 text-xs text-muted-foreground">
+              {t("metrics.observedAt", { date: formatDateTime(perf.observed_at) })}
+            </p>
+          )}
           <div className="grid items-start gap-8 xl:grid-cols-2">
             {(["query", "ingest"] as const).map((group) => {
               const rows = SERVICES.filter((service) => service.phase === group).flatMap(
@@ -212,38 +226,60 @@ export function PerformanceMetrics({ workers }: { workers: WorkerStatus[] }) {
         <ul className="divide-y">
           {workers
             .filter((worker) => worker.name !== "eval")
-            .map((worker) => (
-              <li
-                key={worker.name}
-                className="flex flex-wrap items-center justify-between gap-3 py-3"
-              >
-                <div className="min-w-0 flex-1">
-                  <p className="text-sm font-medium">{WORKER_LABELS[worker.name] ?? worker.name}</p>
-                  {worker.state === "error" && (
-                    <p className="mt-1 text-xs break-words text-risk">{worker.lastError}</p>
-                  )}
-                  <p className="mt-1 text-xs text-muted-foreground">
-                    {worker.updatedAt
-                      ? formatDateTime(worker.updatedAt)
-                      : t("metrics.workers.neverRan")}
-                    {worker.lastRunSeconds !== null
-                      ? ` · ${t("metrics.workers.run", { duration: seconds(worker.lastRunSeconds) })}`
-                      : ""}
-                  </p>
-                </div>
-                <Badge
-                  variant={
-                    worker.state === "error"
-                      ? "risk"
-                      : worker.state === "running"
-                        ? "brand"
-                        : "muted"
-                  }
+            .map((worker) => {
+              const state = workerState(worker);
+              return (
+                <li
+                  key={worker.name}
+                  className="flex flex-wrap items-center justify-between gap-3 py-3"
                 >
-                  {t(`metrics.readable.workerState.${worker.state}`)}
-                </Badge>
-              </li>
-            ))}
+                  <div className="min-w-0 flex-1">
+                    <p className="text-sm font-medium">
+                      {WORKER_LABELS[worker.name] ?? worker.name}
+                    </p>
+                    {worker.state === "error" && (
+                      <p className="mt-1 text-xs break-words text-risk">{worker.lastError}</p>
+                    )}
+                    <p className="mt-1 text-xs text-muted-foreground">
+                      {worker.updatedAt
+                        ? t("metrics.workers.heartbeat", { date: formatDateTime(worker.updatedAt) })
+                        : t("metrics.workers.neverRan")}
+                    </p>
+                    <p className="mt-1 text-xs text-muted-foreground">
+                      {worker.lastSuccessAt
+                        ? t("metrics.workers.lastSuccess", {
+                            date: formatDateTime(worker.lastSuccessAt),
+                          })
+                        : t("metrics.workers.noSuccess")}
+                      {worker.lastRunSeconds !== null
+                        ? ` · ${t("metrics.workers.run", { duration: seconds(worker.lastRunSeconds) })}`
+                        : ""}
+                    </p>
+                    {state === "running" && worker.progressTotal !== null && (
+                      <p className="mt-1 font-mono text-xs text-muted-foreground">
+                        {t("metrics.workers.progress", {
+                          done: formatNumber(worker.progressDone ?? 0),
+                          total: formatNumber(worker.progressTotal),
+                        })}
+                      </p>
+                    )}
+                  </div>
+                  <Badge
+                    variant={
+                      state === "error"
+                        ? "risk"
+                        : state === "running"
+                          ? "brand"
+                          : state === "stale"
+                            ? "warn"
+                            : "muted"
+                    }
+                  >
+                    {t(`metrics.readable.workerState.${state}`)}
+                  </Badge>
+                </li>
+              );
+            })}
         </ul>
       </Section>
     </div>

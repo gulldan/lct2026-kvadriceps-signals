@@ -1,0 +1,262 @@
+[
+  {
+    "text": "Sodium ion battery cycling",
+    "want": "energy"
+  },
+  {
+    "text": "Smart textiles and apparel design",
+    "want": "fashion"
+  },
+  {
+    "text": "Digital payment fraud scoring",
+    "want": "fintech"
+  },
+  {
+    "text": "Food packaging freshness sensors",
+    "want": "food"
+  },
+  {
+    "text": "Cloud gaming latency optimization",
+    "want": "gaming"
+  },
+  {
+    "text": "Pediatric cancer diagnosis in children",
+    "want": "medicine"
+  },
+  {
+    "text": "Electric vehicle charging stations",
+    "want": "transport"
+  },
+  {
+    "text": "Distributed cloud storage for archival data",
+    "want": "hosting"
+  },
+  {
+    "text": "Property valuation using neural networks",
+    "want": "real_estate"
+  },
+  {
+    "text": "Soft robotic manipulation",
+    "want": "robotics"
+  },
+  {
+    "text": "Customer acquisition via advertising",
+    "want": "marketing"
+  },
+  {
+    "text": "News media misinformation",
+    "want": "media"
+  },
+  {
+    "text": "Contract analysis for legal services",
+    "want": "legal"
+  },
+  {
+    "text": "Wireless communication for 6G networks",
+    "want": "telecom"
+  },
+  {
+    "text": "Employee retention and recruitment analytics",
+    "want": "jobs_recruitment"
+  },
+  {
+    "text": "Smart home automation sensors",
+    "want": "home_living"
+  },
+  {
+    "text": "School achievement and teacher development",
+    "want": "education"
+  },
+  {
+    "text": "Logistic regression algorithms for text classification",
+    "want": "computing"
+  },
+  {
+    "text": "Online dating recommendation systems",
+    "want": "dating"
+  },
+  {
+    "text": "Conference management platform",
+    "want": "event_tech"
+  },
+  {
+    "text": "Semiconductor transistor fabrication",
+    "want": "semiconductors"
+  },
+  {
+    "text": "Cosmetic skincare product development",
+    "want": "wellness_beauty"
+  },
+  {
+    "text": "Childcare and parenting apps",
+    "want": "kids"
+  },
+  {
+    "text": "Music generation and musical instruments",
+    "want": "music"
+  },
+  {
+    "text": "Tourism and hotel booking",
+    "want": "travel"
+  },
+  {
+    "text": "Spacecraft attitude control",
+    "want": "space"
+  },
+  {
+    "text": "Sports athlete performance",
+    "want": "sports"
+  },
+  {
+    "text": "Smartphone acoustic sensor design",
+    "want": "consumer_electronics"
+  },
+  {
+    "text": "Cybersecurity intrusion detection",
+    "want": "security"
+  },
+  {
+    "text": "Извлечение меди и обогащение руд",
+    "want": "materials"
+  },
+  {
+    "text": "Predictive maintenance of machining tools",
+    "want": "industry"
+  },
+  {
+    "text": "Machine learning for crop irrigation",
+    "want": "agriculture"
+  },
+  {
+    "text": "Neural networks for wastewater treatment",
+    "want": "water"
+  },
+  {
+    "text": "Carbon capture and biodiversity",
+    "want": "environment"
+  },
+  {
+    "text": "Enzyme fermentation and synthetic biology",
+    "want": "biotechnology"
+  },
+  {
+    "text": "Inflation and monetary policy",
+    "want": "economics"
+  },
+  {
+    "text": "Quantum physics and mathematical theorems",
+    "want": "science"
+  },
+  {
+    "text": "Radiocarbon dating of ancient artifacts",
+    "want": "science"
+  },
+  {
+    "text": "Cellular network resource allocation",
+    "want": "telecom"
+  },
+  {
+    "text": "Solar cell efficiency",
+    "want": "energy"
+  },
+  {
+    "text": "Food security and crop yields",
+    "want": "agriculture"
+  },
+  {
+    "text": "Phase space in quantum physics",
+    "want": "science"
+  },
+  {
+    "text": "Neural networks for cancer diagnosis",
+    "want": "medicine"
+  },
+  {
+    "text": "Reinforcement learning enhancement",
+    "want": "computing"
+  },
+  {
+    "text": "Cement composites",
+    "want": "materials"
+  },
+  {
+    "text": "Algorithms with additive Gaussian noise",
+    "want": "computing"
+  },
+  {
+    "text": "A study with unknown scope",
+    "want": "unknown"
+  },
+  {
+    "text": "",
+    "want": "unknown"
+  },
+  {
+    "text": "Мультимодальные нейросети для поиска",
+    "want": "computing"
+  },
+  {
+    "text": "Образование полимерных плёнок",
+    "want": "materials"
+  },
+  {
+    "text": "Стабильность источника электропитания",
+    "want": "energy"
+  },
+  {
+    "text": "Teacher-student knowledge distillation for large language models",
+    "want": "computing"
+  },
+  {
+    "text": "Fish school search optimization for neural networks",
+    "want": "computing"
+  },
+  {
+    "text": "Образование плазмы в магнитном поле",
+    "want": "unknown"
+  },
+  {
+    "text": "Teacher education and student outcomes",
+    "want": "education"
+  },
+  {
+    "text": "Дистилляция знаний из модели-учителя в нейросеть",
+    "want": "computing"
+  },
+  {
+    "text": "Педагогические методы повышения успеваемости в системе образования",
+    "want": "education"
+  },
+  {
+    "text": "Транспорт ионов в мембранах",
+    "want": "unknown"
+  },
+  {
+    "text": "Механизм ионного транспорта через мембрану",
+    "want": "unknown"
+  },
+  {
+    "text": "Optimal transport in mathematical physics",
+    "want": "science"
+  },
+  {
+    "text": "Public transport networks and urban mobility",
+    "want": "transport"
+  },
+  {
+    "text": "Развитие общественного транспорта",
+    "want": "transport"
+  },
+  {
+    "text": "Технологии массового спорта",
+    "want": "sports"
+  },
+  {
+    "text": "Квантование весов снизит стоимость инференса на устройствах",
+    "want": "computing"
+  },
+  {
+    "text": "Квантовые состояния в физических системах",
+    "want": "science"
+  }
+]

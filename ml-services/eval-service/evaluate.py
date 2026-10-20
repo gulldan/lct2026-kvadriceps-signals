@@ -23,7 +23,6 @@ import json
 import math
 import os
 from worker_lease import guard_lease
-import re
 import statistics
 import time
 import uuid
@@ -64,6 +63,7 @@ JUDGE_BASE_URL = env("VLLM_URL").rstrip("/")
 JUDGE_URL = JUDGE_BASE_URL + "/v1/chat/completions" if JUDGE_BASE_URL else ""
 JUDGE_KEY = env("VLLM_API_KEY")
 JUDGE_MODEL = env("VLLM_MODEL")
+JUDGE_MAX_TOKENS = max(128, min(8192, int(os.environ.get("EVAL_JUDGE_MAX_TOKENS", "4096"))))
 
 GATE = "--gate" in __import__("sys").argv[1:] or os.environ.get("EVAL_GATE") == "1"
 
@@ -141,9 +141,10 @@ def cosine(a, b):
 JUDGE_SUFFIX = '\n\nОтветь СТРОГО в формате JSON без пояснений: {"score": <число от 0.0 до 1.0>}'
 
 
-def judge_payload(prompt):
+def judge_payload(prompt, attempt=0):
     payload = {"model": JUDGE_MODEL, "messages": [{"role": "user", "content": prompt}],
-               "max_tokens": 40, "temperature": 0}
+               "max_tokens": min(8192, JUDGE_MAX_TOKENS * (attempt + 1)), "temperature": 0,
+               "response_format": {"type": "json_object"}}
     if effort := os.environ.get("VLLM_REASONING_EFFORT", "").strip():
         payload["reasoning_effort"] = effort
     return payload
@@ -155,20 +156,19 @@ def judge(prompt):
     headers = {"X-Data-Logging-Enabled": "false"}
     if JUDGE_KEY:
         headers["Authorization"] = "Bearer " + JUDGE_KEY
-    try:
-        r = http(
-            JUDGE_URL,
-            judge_payload(prompt + JUDGE_SUFFIX),
-            headers,
-        )
-        txt = r["choices"][0]["message"]["content"]
-    except Exception:
-        return None  # тело ошибки без choices или сбой сети: метрика пропускается
-    m = re.search(r'"score"\s*:\s*([01](?:\.\d+)?)', txt)
-    if m:
-        return float(m.group(1))
-    m = re.search(r"[01](?:\.\d+)?", txt)
-    return float(m.group()) if m else None
+    for attempt in range(2):
+        try:
+            r = http(JUDGE_URL, judge_payload(prompt + JUDGE_SUFFIX, attempt), headers)
+            choice = r["choices"][0]
+            # Оборванный ответ и число из рассуждения не являются оценкой качества.
+            if choice.get("finish_reason") == "length":
+                continue
+            score = json.loads(choice["message"].get("content") or "").get("score")
+            if type(score) in (int, float) and math.isfinite(score) and 0 <= score <= 1:
+                return float(score)
+        except Exception:
+            continue
+    return None
 
 
 PROMPTS = {

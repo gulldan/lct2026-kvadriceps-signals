@@ -10,6 +10,7 @@ type liveQualificationIdentity struct {
 	SourceID       string                     `json:"source_id"`
 	SameTechnology bool                       `json:"same_technology"`
 	Role           string                     `json:"role"`
+	Candidate      liveQualificationCriterion `json:"candidate"`
 	Mechanism      liveQualificationCriterion `json:"mechanism"`
 	Relevance      liveQualificationCriterion `json:"relevance"`
 }
@@ -35,6 +36,10 @@ func liveApplyQualificationIdentity(qualification LiveQualification,
 		grounded, err := liveGroundQualificationEvidence(evidence, assessment, documents)
 		if err != nil {
 			return qualification, err
+		}
+		if !*assessment.Candidate.Supported {
+			rejection = assessment.Candidate.Reason
+			continue
 		}
 		if !*assessment.Mechanism.Supported {
 			if rejection == "" {

@@ -76,7 +76,8 @@ async function tryRefresh(): Promise<boolean> {
         body: "{}",
         signal: AbortSignal.timeout(8000),
       });
-      if (!resp.ok || generation !== authGeneration) return false;
+      // 204 — сервер ответил «сессии нет» без ошибки в консоли у того, кто ещё не вошёл.
+      if (resp.status === 204 || !resp.ok || generation !== authGeneration) return false;
       const fresh = (await resp.json()) as TokenResponse;
       if (!fresh.access_token || !fresh.user) return false;
       saveAuth(fresh);
@@ -91,8 +92,13 @@ async function tryRefresh(): Promise<boolean> {
   return refreshInFlight;
 }
 
-export async function restoreAuth(): Promise<TokenResponse | null> {
-  return (await tryRefresh()) ? loadAuth() : null;
+let restoring: Promise<TokenResponse | null> | undefined;
+
+/** Первым зовёт index.tsx, параллельно словарям; провайдер получает тот же ответ, а не второй
+ *  обмен токена. */
+export function restoreAuth(): Promise<TokenResponse | null> {
+  restoring ??= tryRefresh().then((ok) => (ok ? loadAuth() : null));
+  return restoring;
 }
 
 export async function endSession(): Promise<void> {

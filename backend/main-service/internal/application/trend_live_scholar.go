@@ -57,7 +57,7 @@ func (src *liveSources) liveScholarSearch(ctx context.Context, terms []string,
 	metadata := map[string]LivePaperMetadata{}
 	if src.oa == nil || !src.oa.Configured() || len(periods) == 0 {
 		return nil, metadata, []LiveLimit{
-			liveLimitOf(liveLimitScholarOff, "scholar: OpenAlex is not configured; arXiv only", nil)}
+			liveLimitOf(liveLimitScholarOff, "scholar: OpenAlex is not configured", nil)}
 	}
 	phrases := liveScholarPhrases(terms)
 	if len(phrases) == 0 {
@@ -125,7 +125,7 @@ func (src *liveSources) liveScholarSearch(ctx context.Context, terms []string,
 		// Пропуск месяцев — дырявое покрытие, стадию по нему называть нельзя; правило знает именно этот код.
 		limits = append(limits, liveLimitOf(liveLimitScholarCapped,
 			fmt.Sprintf("scholar: %d месяцев окна из %d не опрошены", failed, len(periods)),
-			map[string]int{"taken": len(papers), liveValueFound: total}))
+			map[string]int{liveValueTaken: len(papers), liveValueFound: total}))
 		if _, spent := errors.AsType[*openalex.BudgetError](failure); spent {
 			limits = append(limits, liveScholarFailure(failure))
 		}
@@ -266,6 +266,9 @@ func liveScholarMerge(arxiv []StudyPaper, arxivMeta map[string]LivePaperMetadata
 			continue
 		}
 		known[liveScholarTitleKey(paper.Title)] = true
+		if doi := strings.ToLower(paper.CanonicalID); doi != "" {
+			known[doi] = true
+		}
 		merged = append(merged, paper)
 		metadata[paper.ID] = scholarMeta[paper.ID]
 	}
@@ -280,20 +283,30 @@ func liveScholarTitleKey(title string) string {
 func (src *liveSources) withScholar(ctx context.Context, papers []StudyPaper,
 	metadata map[string]LivePaperMetadata, terms []string,
 	periods []LivePeriod) ([]StudyPaper, []LiveLimit) {
+	var pubmed []StudyPaper
+	var pubmedMeta map[string]LivePaperMetadata
+	var pubmedLimits []LiveLimit
+	var wg sync.WaitGroup
+	wg.Go(func() { pubmed, pubmedMeta, pubmedLimits = src.livePubMedSearch(ctx, terms, periods) })
 	scholar, scholarMeta, limits := src.liveScholarSearch(ctx, terms, periods)
 	scholar, revisionLimits := liveRefreshPublisherRevisions(ctx, scholar, scholarMeta, livePublisherClient())
 	limits = append(limits, revisionLimits...)
-	if len(scholar) == 0 {
-		return papers, limits
-	}
 	merged, mergedMeta := liveScholarMerge(papers, metadata, scholar, scholarMeta)
+	limits = append(limits, liveLimitOf(liveLimitScholarJournals,
+		fmt.Sprintf("scholar: добавлено %d работ из журналов вне arXiv", len(merged)-len(papers)),
+		map[string]int{"added": len(merged) - len(papers)}))
+	wg.Wait()
+	limits = append(limits, pubmedLimits...)
+	before := len(merged)
+	merged, mergedMeta = liveScholarMerge(merged, mergedMeta, pubmed, pubmedMeta)
+	if len(pubmed) > 0 {
+		limits = append(limits, liveLimitOf(liveLimitPubMedAdded, "PubMed: добавлены научные публикации",
+			map[string]int{"added": len(merged) - before}))
+	}
 	if src.metadata == nil {
 		src.metadata = map[string]LivePaperMetadata{}
 	}
 	maps.Copy(src.metadata, mergedMeta)
-	limits = append(limits, liveLimitOf(liveLimitScholarJournals,
-		fmt.Sprintf("scholar: добавлено %d работ из журналов вне arXiv", len(merged)-len(papers)),
-		map[string]int{"added": len(merged) - len(papers)}))
 	return merged, limits
 }
 

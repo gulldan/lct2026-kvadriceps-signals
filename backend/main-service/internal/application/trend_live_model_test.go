@@ -89,9 +89,14 @@ func TestLiveClassifierVersionRescoresStoredAnswer(t *testing.T) {
 	service := storeService(t, newFakeSearchStore())
 	candidate := storedCandidateFixture("c1")
 	candidate.Groups = 2
-	stored := liveScopedDetailFixture("запрос", LiveDetail{Candidates: []LiveTopic{candidate}})
+	// Имя сверено с аннотацией при допуске, а сохранённый ответ держит только заголовок.
+	candidate.Qualification.CanonicalName = "dual‐phase halide electrolyte"
+	stored := liveScopedDetailFixture("запрос", LiveDetail{Candidates: []LiveTopic{candidate},
+		Papers: []StudyPaper{{ID: "source:c1", Title: "Dual‐Phase Symbiotic Halide Solid Electrolytes"}}})
 	service.saveSearch(t.Context(), "запрос", stored, time.Now().Add(time.Hour))
+	phrase := ""
 	service.SetClassifier(func(_ context.Context, input LiveClassifierRequest) (LiveClassifierResponse, error) {
+		phrase = input.Candidates[0].phrase
 		return LiveClassifierResponse{FeatureSchema: LiveClassifierSchema, Predictions: []LiveClassifierPrediction{{
 			ID: "c1", LiveModelScore: LiveModelScore{Label: liveClassifierWeak, Value: 0.8, Threshold: 0.3,
 				Model: "m", Version: input.ModelVersion, FeatureSchema: LiveClassifierSchema,
@@ -106,6 +111,9 @@ func TestLiveClassifierVersionRescoresStoredAnswer(t *testing.T) {
 	if detail.ClassifierVersion != "new-artifact" || len(detail.Candidates) != 1 ||
 		detail.Candidates[0].ModelScore == nil || detail.Counters.ModelAboveThreshold != 1 {
 		t.Fatalf("ответ не получил оценку новой модели: %+v", detail)
+	}
+	if phrase != "dual phase halide electrolyte" {
+		t.Fatalf("дооценка сменила фразу исходного поиска: %q", phrase)
 	}
 	raw, err := json.Marshal(liveClassifierInput("запрос", "new-artifact", []LiveTopic{{
 		Confidence: &LiveConfidence{Value: 1}, Stage: "established",

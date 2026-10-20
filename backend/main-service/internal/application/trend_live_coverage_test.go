@@ -8,6 +8,20 @@ import (
 	"time"
 )
 
+func TestPubMedCoverageDoesNotDegradeOtherSources(t *testing.T) {
+	topic := LiveTopic{StudyTopic: StudyTopic{PaperIDs: []string{"arxiv:1", "openalex:2"},
+		Stage: liveStageEarly, Momentum: liveMomentumUp, Growth: StudyGrowth{DeltaPP: new(3.0)}},
+		Limits: []LiveLimit{{Code: liveLimitPubMedCapped}}}
+	if liveApplyTemporalCoverage(&topic) || topic.Growth.DeltaPP == nil || topic.Stage != liveStageEarly {
+		t.Fatal("неполная выборка PubMed обнулила измерения по другим научным каналам")
+	}
+	topic.PaperIDs = append(topic.PaperIDs, "pubmed:3")
+	topic.Limits = []LiveLimit{{Code: liveLimitPubMedCapped}}
+	if !liveApplyTemporalCoverage(&topic) || topic.Growth.DeltaPP != nil || topic.Stage != studyStageUnassessed {
+		t.Fatal("неполное покрытие стало измеренным ростом по PubMed")
+	}
+}
+
 func TestSearchWindowStratifiesCappedMatches(t *testing.T) {
 	periods := livePeriods(time.Date(2026, 9, 17, 12, 0, 0, 0, time.UTC))
 	// Окно переполняет потолок в пять тысяч: проверяется поведение на переполнении.

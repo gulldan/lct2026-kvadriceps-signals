@@ -86,9 +86,14 @@ type TrendLiveService struct {
 	directions           map[string]liveDirectionAnswer
 	directionTried       map[string]string
 	refreshingDirections bool
+	// directionFailed — когда пересчёт споткнулся о шлюз. Такую попытку повторяют через паузу, а не со
+	// следующим снимком: иначе получасовой сбой шлюза оставлял направления без технологий на сутки.
+	directionFailed map[string]time.Time
 	// directionDigests — по какому ответу направления уже пишутся пересказы: отказ шлюза не повторяется на
 	// каждом опросе страницы.
 	directionDigests map[string]liveDigestRun
+	// directionCounting — направления, которые без фона считаются по открытию страницы.
+	directionCounting map[string]bool
 	// background — отмены идущих фоновых работ: поиск или обращение человека прерывает их все, а друг друга
 	// они не ждут.
 	background    map[uint64]context.CancelFunc
@@ -149,6 +154,8 @@ type TrendLiveService struct {
 	classifierVersion   string
 	classifierOwnBudget bool
 	workers             func(ctx context.Context, key string, def int) int
+	// onDemand оставляет модель только запросам людей: пул в восемь потоков фон занимал целиком.
+	onDemand bool
 	// eventData — выгрузки грантов и темп EDGAR для источников событий раздела B.
 	eventData liveMarketState
 }
@@ -159,12 +166,18 @@ func NewTrendLiveService(store liveStore, token func(context.Context) string) *T
 		cache: map[string]liveCacheEntry{}, searchSlot: make(chan struct{}, 1),
 		searchJobs: map[string]*liveSearchJob{}, directions: map[string]liveDirectionAnswer{},
 		directionTried: map[string]string{}, directionDigests: map[string]liveDigestRun{},
-		collectorURL: os.Getenv("RADAR_COLLECTOR_URL"),
+		directionCounting: map[string]bool{},
+		collectorURL:      os.Getenv("RADAR_COLLECTOR_URL"), directionFailed: map[string]time.Time{},
 		scholarCache: newLiveScholarCache(store), hnCache: newLiveHNCache(""), events: newLiveEventCache(),
 		oa: liveOpenAlex(), opened: map[string]time.Time{}, background: map[uint64]context.CancelFunc{}}
+	// Один ограничитель запросов на сервис, а не на каждый поисковый запрос.
+	pubmed := newLivePubMedClient()
+	research := newLiveResearchClient()
 	s.newSources = func() *liveSources {
 		src := newLiveSources(token)
 		src.answerer, src.documents, src.scholarCache, src.oa = s.answerer, s.documents, s.scholarCache, s.oa
+		src.pubmed = pubmed
+		src.research = research
 		return src
 	}
 	return s
@@ -178,6 +191,10 @@ func (s *TrendLiveService) SetStageRecorder(record func(stage string, seconds fl
 func (s *TrendLiveService) SetWorkers(getInt func(ctx context.Context, key string, def int) int) {
 	s.workers = getInt
 }
+
+// SetOnDemand снимает с модели ночную пересборку запросов, пересчёт направлений и прогрев сохранённых ответов:
+// направление без ответа считается, когда его открывают.
+func (s *TrendLiveService) SetOnDemand(on bool) { s.onDemand = on }
 
 // llmWorkers не опускается ниже единицы: семафор нулевой ёмкости не замедлил
 // бы стадию, а остановил её навсегда.
@@ -197,6 +214,8 @@ func (s *TrendLiveService) Start(ctx context.Context) {
 			// Пересборка запросов операторов сама решает, пора ли: раз в сутки ночью.
 			go s.refreshStoredSearches(ctx)
 			go s.keepGrantDumps(ctx)
+			go s.keepMoney(ctx)
+			go s.keepMap(ctx)
 			if s.stale() {
 				err := s.Refresh(ctx)
 				switch {
@@ -248,14 +267,17 @@ func (s *TrendLiveService) Refresh(ctx context.Context) error {
 		Limits: []LiveLimit{}, GitHubAuth: s.token(ctx) != ""}
 	window, population, err := s.liveWindow(ctx, src, periods)
 	if err != nil {
-		return err
+		snapshot.Limits = append(snapshot.Limits, liveLimitFail(liveLimitArxivOff, "arxiv", err))
 	}
 	for i := range snapshot.Periods {
-		snapshot.Periods[i].Population = population[i]
+		if i < len(population) {
+			snapshot.Periods[i].Population = population[i]
+		}
 	}
 	if err := s.collectAll(ctx, src, &snapshot, window); err != nil {
 		return err
 	}
+	s.collectResearchDiscoveries(ctx, src, &snapshot)
 	if err := ctx.Err(); err != nil {
 		return fmt.Errorf("live: refresh canceled: %w", err)
 	}
@@ -266,7 +288,7 @@ func (s *TrendLiveService) Refresh(ctx context.Context) error {
 	s.describeTopics(ctx, &snapshot)
 	snapshot.Limits = append(snapshot.Limits, src.limits...)
 	snapshot.Duration = s.now().Sub(started).Round(time.Second).String()
-	if len(snapshot.Topics) == 0 {
+	if len(snapshot.Topics) == 0 && len(snapshot.Discovered) == 0 {
 		return errors.New("live: no family collected")
 	}
 	return s.publish(ctx, &snapshot)
@@ -303,6 +325,8 @@ func (s *TrendLiveService) StartReader(ctx context.Context) {
 			go s.refreshDirections(ctx)
 			go s.warmStoredSearches(ctx)
 			go s.keepGrantDumps(ctx)
+			go s.keepMoney(ctx)
+			go s.keepMap(ctx)
 			s.loadSearchTopics(ctx)
 			s.readCollection(ctx)
 			select {

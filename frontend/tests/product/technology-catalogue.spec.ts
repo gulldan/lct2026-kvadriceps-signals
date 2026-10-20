@@ -99,5 +99,8 @@ test("an empty catalogue is not offered as an entity on the radar", async ({ pag
   );
   await page.goto("/trends");
   await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
-  await expect(page.getByLabel(ru.scope.entity, { exact: true })).toHaveCount(0);
+  await expect(page.getByRole("radio", { name: ru.scope.technologies, exact: true })).toHaveCount(
+    0,
+  );
+  await expect(page.getByRole("radio", { name: ru.scope.map })).toHaveCount(1);
 });

@@ -154,12 +154,17 @@ func TestLiveWindowResumesFromCursor(t *testing.T) {
 	}))
 	defer server.Close()
 
+	emptyRxiv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, _ *http.Request) {
+		fmt.Fprint(w, `{"messages":[{"status":"no posts found"}],"collection":[]}`)
+	}))
+	defer emptyRxiv.Close()
 	store := memoryTestStore{}
 	service := NewTrendLiveService(store, func(context.Context) string { return "" })
 	periods := livePeriods(time.Date(2026, 9, 13, 0, 0, 0, 0, time.UTC))
 	newSource := func() *liveSources {
 		src := newLiveSources(func(context.Context) string { return "" })
 		src.oai, src.sleep = server.URL, func(context.Context, time.Duration) error { return nil }
+		src.rxiv, src.crossref = emptyRxiv.URL, emptyRxiv.URL
 		return src
 	}
 
@@ -213,12 +218,17 @@ func TestLiveWindowCarriesCacheWhenNothingIsNew(t *testing.T) {
 	}))
 	defer server.Close()
 
+	emptyRxiv := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, _ *http.Request) {
+		fmt.Fprint(w, `{"messages":[{"status":"no posts found"}],"collection":[]}`)
+	}))
+	defer emptyRxiv.Close()
 	store := memoryTestStore{}
 	service := NewTrendLiveService(store, func(context.Context) string { return "" })
 	periods := livePeriods(time.Date(2026, 9, 13, 0, 0, 0, 0, time.UTC))
 	newSource := func() *liveSources {
 		src := newLiveSources(func(context.Context) string { return "" })
 		src.oai, src.sleep = server.URL, func(context.Context, time.Duration) error { return nil }
+		src.rxiv, src.crossref = emptyRxiv.URL, emptyRxiv.URL
 		return src
 	}
 	if _, _, err := service.liveWindow(t.Context(), newSource(), periods); err != nil {

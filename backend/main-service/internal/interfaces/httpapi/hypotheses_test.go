@@ -1,6 +1,7 @@
 package httpapi_test
 
 import (
+	"encoding/json/v2"
 	"net/http"
 	"strings"
 	"testing"
@@ -91,7 +92,8 @@ func TestListResponsesArePruned(t *testing.T) {
 		Id: "h1", OwnerId: "alice", Title: "H", Status: "generated",
 		Assessment: `{"trl":{"level":4,"levels":[{"note":"big"}]},` +
 			`"check":{"verdict":"supported","supporting":["x"],"refuting":["y"]},` +
-			`"ranking":{"score":71,"factors":[{"note":"f"}]}}`,
+			`"ranking":{"score":71,"factors":[{"note":"f"}]},` +
+			`"itc":{"scope":"hypothesis(theme)","score":6,"techscore":0.54,"components":{"a":1}}}`,
 		Detail: `{"plan":"big"}`, Generation: `{"prompt":"big","kind":"bridge"}`,
 	})
 	h.cat.clusters["c1"] = &commonv1.Cluster{
@@ -103,15 +105,22 @@ func TestListResponsesArePruned(t *testing.T) {
 
 	board := h.do(t, http.MethodGet, "/hypotheses/board", tok, "").body
 	if strings.Contains(board, `"levels"`) || strings.Contains(board, `"supporting"`) ||
-		strings.Contains(board, `"refuting"`) || strings.Contains(board, `"factors"`) {
+		strings.Contains(board, `"refuting"`) || strings.Contains(board, `"factors"`) || strings.Contains(board, `"components"`) {
 		t.Fatalf("board assessment must be pruned, got %s", board)
 	}
-	if !strings.Contains(board, `"verdict":"supported"`) || !strings.Contains(board, `"score":71`) {
+	if !strings.Contains(board, `"verdict":"supported"`) || !strings.Contains(board, `"score":71`) ||
+		!strings.Contains(board, `"scope":"hypothesis(theme)"`) || !strings.Contains(board, `"score":6`) ||
+		!strings.Contains(board, `"techscore":0.54`) {
 		t.Fatalf("board must keep assessment scalars, got %s", board)
 	}
 	if !strings.Contains(board, `"detail":null`) || strings.Contains(board, `"prompt"`) ||
 		!strings.Contains(board, `"generation":{"kind":"bridge"}`) {
 		t.Fatalf("board must drop detail and keep only generation scalars, got %s", board)
+	}
+	fullHypothesis := h.do(t, http.MethodGet, "/hypotheses/h1", tok, "").body
+	if !strings.Contains(fullHypothesis, `"scope":"hypothesis(theme)"`) ||
+		!strings.Contains(fullHypothesis, `"components":{"a":1}`) {
+		t.Fatalf("hypothesis detail must keep raw assessment, got %s", fullHypothesis)
 	}
 
 	refs := h.do(t, http.MethodGet, "/hypotheses?view=ref", tok, "").body
@@ -249,14 +258,64 @@ func TestHypotheses_VerifyForeign(t *testing.T) {
 }
 
 func TestHypotheses_StoreITC(t *testing.T) {
-	h := newHarness(t)
-	h.cat.putHypothesis(&commonv1.Hypothesis{Id: "h1", OwnerId: "alice"})
-	body := `{"cluster_id":"cl1","itc":{"score":7},"composite_score":0.7}`
-	r := h.do(t, http.MethodPost, "/hypotheses/h1/itc", h.token(t, "alice"), body)
-	if r.code != http.StatusOK {
-		t.Fatalf("store itc = %d: %s", r.code, r.body)
+	for _, tc := range []struct {
+		name, stance, origin, clusterID string
+		contextDocument                 string
+		documents                       []string
+		ambiguous                       bool
+		accepted                        bool
+	}{
+		{name: "backed", stance: "supports", clusterID: "cl1", documents: []string{"d1", "d1"}, accepted: true},
+		{name: "no evidence", clusterID: "cl1"},
+		{name: "context only", stance: "context", clusterID: "cl1", documents: []string{"d1"}},
+		{name: "request only", stance: "supports", origin: "input", clusterID: "cl1", documents: []string{"d1"}},
+		{name: "split sources", stance: "supports", clusterID: "cl1", documents: []string{"d1", "d2"}},
+		{name: "outside context", stance: "supports", clusterID: "cl1", documents: []string{"d1"}, contextDocument: "d2"},
+		{name: "wrong theme", stance: "supports", clusterID: "cl2", documents: []string{"d1"}},
+		{name: "missing theme", stance: "supports", documents: []string{"d1"}},
+		{name: "ambiguous", stance: "supports", clusterID: "cl1", documents: []string{"d1"}, ambiguous: true},
+	} {
+		t.Run(tc.name, func(t *testing.T) {
+			h := newHarness(t)
+			h.cat.clusters["cl1"] = &commonv1.Cluster{Id: "cl1", OwnerId: "alice",
+				Params: `{"members":["d1"],"itc":{"score":7,"scope":"cluster"}}`}
+			h.cat.clusters["cl2"] = &commonv1.Cluster{Id: "cl2", OwnerId: "alice", Params: `{"members":["d2"],"itc":{"score":3}}`}
+			if tc.ambiguous {
+				h.cat.clusters["cl2"].Params = h.cat.clusters["cl1"].Params
+			}
+			stored := &commonv1.Hypothesis{Id: "h1", OwnerId: "alice",
+				Assessment: `{"check":{"verdict":"unverified"}}`, CompositeScore: new(0.42)}
+			for _, document := range tc.documents {
+				stored.Evidence = append(stored.Evidence, &commonv1.HypothesisEvidence{
+					DocumentId: new(document), Stance: tc.stance, Origin: tc.origin, Snippet: "Source quote"})
+			}
+			if tc.contextDocument != "" {
+				stored.Evidence = append(stored.Evidence, &commonv1.HypothesisEvidence{
+					DocumentId: new(tc.contextDocument), Stance: "context", Snippet: "Another source"})
+			}
+			h.cat.putHypothesis(stored)
+			body, err := json.Marshal(map[string]any{
+				"cluster_id": tc.clusterID, "itc": map[string]int{"score": 9}, "composite_score": 0.7})
+			if err != nil {
+				t.Fatal(err)
+			}
+			r := h.do(t, http.MethodPost, "/hypotheses/h1/itc", h.token(t, "alice"), string(body))
+			if !tc.accepted {
+				if r.code != http.StatusBadRequest || stored.GetPrimaryClusterId() != "" ||
+					strings.Contains(stored.GetAssessment(), `"itc"`) {
+					t.Fatalf("unconfirmed association changed stored data: %d %s", r.code, r.body)
+				}
+				return
+			}
+			if r.code != http.StatusOK || stored.GetPrimaryClusterId() != "cl1" || stored.GetCompositeScore() != 0.42 ||
+				!strings.Contains(stored.GetAssessment(), `"score":7`) ||
+				!strings.Contains(stored.GetAssessment(), `"scope":"hypothesis(document_membership)"`) ||
+				!strings.Contains(stored.GetAssessment(), `"document_ids":["d1"]`) ||
+				!strings.Contains(stored.GetAssessment(), `"verdict":"unverified"`) {
+				t.Fatalf("document-backed theme index was not preserved: %d %s", r.code, r.body)
+			}
+		})
 	}
-	_ = r.body
 }
 
 func TestRubrics(t *testing.T) {

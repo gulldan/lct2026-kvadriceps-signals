@@ -40,6 +40,8 @@ DOC_META_KEY = os.environ.get("RAPTOR_DOC_META_KEY", "rag:raptor:doc_meta")
 WORKER_STATUS_KEY = "rag:worker:raptor:status"
 CHECK_INTERVAL = int(os.environ.get("CHECK_INTERVAL", "60"))
 DEBOUNCE_SEC = int(os.environ.get("DEBOUNCE_SEC", "120"))
+# Срок прохода с запасом: прерванный проход выбросил бы уже готовые сводки.
+RUN_TIMEOUT = int(os.environ.get("RUN_TIMEOUT", "1800"))
 
 # Умолчания как у cluster-worker, но граф строится по фрагментам (granularity="chunk"), а не по
 # усреднённым документам.
@@ -100,6 +102,10 @@ def http(url, payload=None, token=None, timeout=180, method=None):
     with urllib.request.urlopen(req, timeout=timeout) as r:
         body = r.read().decode()
         return json.loads(body) if body else {}
+
+
+def chat(payload, timeout=180):
+    return http(VLLM_URL.rstrip("/") + "/v1/chat/completions", payload, token=VLLM_API_KEY, timeout=timeout)
 
 
 def qdrant_scroll(filter_body=None, with_vector=False, with_payload=True, limit=256):
@@ -291,11 +297,7 @@ def summarize(texts):
     for attempt in range(3):
         try:
             throttle_vllm()
-            resp = http(
-                VLLM_URL.rstrip("/") + "/v1/chat/completions",
-                vllm_payload(prompt, temperature=0.2, max_tokens=RAPTOR_SUMMARY_MAX_TOKENS),
-                token=VLLM_API_KEY,
-            )
+            resp = chat(vllm_payload(prompt, temperature=0.2, max_tokens=RAPTOR_SUMMARY_MAX_TOKENS))
             if isinstance(resp, dict):
                 record_llm_usage(VLLM_MODEL, "raptor_summary", resp.get("usage") or {})
             text = str(resp["choices"][0]["message"]["content"]).strip()
@@ -644,18 +646,21 @@ def incremental_raptor(r, epoch=None):
 
     skipped, pending = 0, 0
     candidates = []
+    # Снимки заменяют два сетевых чтения на каждый документ каждого пакета.
+    signatures = r.hgetall(DOC_SIG_KEY)
+    metadata = r.hgetall(DOC_META_KEY)
     for doc in docs:
-        if len(candidates) >= RAPTOR_INCREMENTAL_BATCH:
-            pending += 1
-            continue
         doc_id = str(doc.get("id") or "")
         meta_sig = doc_meta_signature(doc)
-        old = r.hget(DOC_SIG_KEY, doc_id)
+        old = signatures.get(doc_id.encode(), signatures.get(doc_id))
         old = old.decode("utf-8") if isinstance(old, bytes) else old
-        old_meta = r.hget(DOC_META_KEY, doc_id)
+        old_meta = metadata.get(doc_id.encode(), metadata.get(doc_id))
         old_meta = old_meta.decode("utf-8") if isinstance(old_meta, bytes) else old_meta
         if old and old_meta == meta_sig:
             skipped += 1
+            continue
+        if len(candidates) >= RAPTOR_INCREMENTAL_BATCH:
+            pending += 1
             continue
 
         chunks = fetch_doc_chunks(doc_id)
@@ -803,7 +808,7 @@ def main():
                     report_status("running", epoch=epoch)
                     outcome = run_command(r, "raptor", str(epoch),
                         [sys.executable, __file__, "--run-epoch", str(epoch)],
-                        completed_key=LAST_KEY, completed_value=epoch)
+                        timeout=RUN_TIMEOUT, completed_key=LAST_KEY, completed_value=epoch)
                     if outcome in ("succeeded", "failed"):
                         last = epoch
                         report_status("idle" if outcome == "succeeded" else "error", epoch=epoch)

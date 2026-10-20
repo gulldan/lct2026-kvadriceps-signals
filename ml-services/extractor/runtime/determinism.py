@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import logging
+import os
 import threading
 
 _LOGGER = logging.getLogger(__name__)
@@ -15,6 +16,8 @@ def initialize_torch_determinism() -> None:
     with _LOCK:
         if _INITIALIZED:
             return
+        # Детерминированный cuBLAS на CUDA требует рабочее пространство до первого вызова; образ задаёт то же значение.
+        os.environ.setdefault("CUBLAS_WORKSPACE_CONFIG", ":4096:8")
         import torch
 
         torch.use_deterministic_algorithms(True)

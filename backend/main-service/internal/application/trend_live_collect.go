@@ -20,9 +20,9 @@ import (
 const liveSourceDiscovered = "discovered"
 
 type liveFamily struct {
-	id, name string
-	query    LiveQuery
-	plan     *LiveQueryPlan
+	id, name, branch string
+	query            LiveQuery
+	plan             *LiveQueryPlan
 }
 
 // Названия и запросы семейств английские: окно arXiv англоязычное.
@@ -31,7 +31,8 @@ func liveFamilies() []liveFamily {
 		liveLifeAndEconomyFamilies(), liveFinanceFamilies(), liveSoftwareFamilies(),
 		liveSecurityFamilies(), liveIndustryFamilies(), liveHealthFamilies(),
 		liveSpaceFamilies(), liveEnergyFamilies(), liveMobilityFamilies(),
-		liveAgroFamilies(), liveClimateFamilies())
+		liveAgroFamilies(), liveClimateFamilies(), liveSectorFamilies(), liveSectorFamiliesMore(),
+		liveSectorFamiliesRest(), livePreprintFamilies())
 	for i := range families {
 		query := &families[i].query
 		if len(query.Terms) == 0 {
@@ -440,7 +441,7 @@ func liveBuild(ctx context.Context, src *liveSources, family liveFamily, periods
 	for _, paper := range papers {
 		topic.PaperIDs = append(topic.PaperIDs, paper.ID)
 	}
-	topic.Branch = liveTopicBranch(papers, src.metadata)
+	topic.Branch = cmp.Or(family.branch, liveTopicBranch(papers, src.metadata))
 	if src.emergence.Size > 0 {
 		topic.Emergence = liveEmergenceOf(periods, topic.Series, src.emergence)
 	}
@@ -452,6 +453,9 @@ func liveBuild(ctx context.Context, src *liveSources, family liveFamily, periods
 		liveParallelChannels(ctx, src, &topic, periods)
 	}
 	liveAssess(&topic, periods, papers)
+	liveResearchDedup(topic.Research, papers, src.metadata)
+	liveResearchCounts(topic.Research, periods)
+	liveResearchLimits(&topic)
 	topic.Comparison = liveCompare(periods, papers)
 	if topic.Registry != nil {
 		topic.Limits = append(topic.Limits, liveLimitTexts(topic.Registry.Limits)...)
@@ -465,7 +469,7 @@ func liveBuild(ctx context.Context, src *liveSources, family liveFamily, periods
 	topic.Confidence = new(liveConfidence(topic, liveAbsoluteBar()))
 	stampEventPassports(topic.External)
 	if src.metadata != nil {
-		stampPaperPassports(papers, src.metadata)
+		liveStampPaperPassports(papers, src.metadata)
 	}
 	return topic
 }
@@ -503,6 +507,10 @@ func liveParallelChannels(ctx context.Context, src *liveSources, topic *LiveTopi
 	wg.Go(func() { liveChannels(ctx, src, &channels, periods) })
 	wg.Go(func() { topic.Registry = liveRegistry(ctx, src, terms, periods) })
 	wg.Go(func() { topic.Corpus = liveCorpusSearch(ctx, src, src.owner, terms, periods) })
+	// Ночной проход опрашивает каталоги по областям: запрос на каждый кластер исчерпал бы часовой бюджет.
+	if src.excerpts {
+		wg.Go(func() { topic.Research = src.researchSearch(ctx, terms, periods) })
+	}
 	wg.Wait()
 	topic.Repos, topic.Discussions = github.Repos, hn.Discussions
 	topic.Patents, topic.PatentsCN, topic.Web = channels.Patents, channels.PatentsCN, channels.Web

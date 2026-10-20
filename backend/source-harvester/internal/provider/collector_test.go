@@ -48,3 +48,22 @@ func TestCollectorPatentIdentityAndMissingText(t *testing.T) {
 		t.Fatal("outside date accepted")
 	}
 }
+
+func TestCollectorPublicationIdentityAcrossCatalogues(t *testing.T) {
+	scope := Scope{Query: "energy", From: "2026-09-01", Through: "2026-09-11", PageSize: 1}
+	row := collectorRecord{ID: "https://europepmc.org/article/MED/123", DOI: "10.1234/ENERGY",
+		Title: "Energy storage", Text: "An abstract about storage materials.", TextStatus: "abstract_only",
+		Date: "2026-09-08", DateBasis: "publisher date", URL: "https://europepmc.org/article/MED/123"}
+	at := time.Date(2026, 9, 11, 0, 0, 0, 0, time.UTC)
+	for _, address := range []string{row.URL, "https://doi.org/10.1234/energy"} {
+		row.CanonicalURL = address
+		got, err := collectorDocument("web", row, jsontext.Value(`{"genre":"article"}`), scope, at)
+		if err != nil || got.Source.CanonicalID != "doi:10.1234/energy" || got.Source.TextStatus != "abstract_only" {
+			t.Fatalf("publication identity or abstract semantics lost: %+v, %v", got, err)
+		}
+	}
+	row.DOI = "10.1234/bad doi"
+	if _, err := collectorDocument("web", row, jsontext.Value(`{}`), scope, at); err == nil {
+		t.Fatal("invalid DOI accepted")
+	}
+}

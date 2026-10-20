@@ -91,3 +91,37 @@ test("missing snapshot and fragment never silently switch to current text", asyn
   await expect(page).toHaveURL(/snapshot=unpublished/);
   await expect(page.getByRole("heading", { name: evidence.title })).toHaveCount(0);
 });
+
+test("investor context retains its genre and unknown publication date", async ({ page }) => {
+  await page.route("**/api/v1/documents/source-proof/source*", (route) =>
+    route.fulfill({
+      json: {
+        ...evidence,
+        source: {
+          ...source,
+          source_kind: "analysis",
+          provider: "web",
+          genre: "investment_thesis",
+          publication: null,
+          observed_at: "2026-10-18T02:25:27Z",
+          arxiv: null,
+          github: null,
+        },
+      },
+    }),
+  );
+  await page.setViewportSize({ width: 390, height: 950 });
+  await page.goto("/sources/source-proof");
+  await expect(page.getByText("Инвестиционный тезис", { exact: true })).toBeVisible();
+  await page.getByText("Источник и даты", { exact: true }).click();
+  const provenance = page.locator("dl").filter({ visible: true });
+  await expect(
+    provenance.locator("div").filter({ has: page.getByText("Публикация", { exact: true }) }),
+  ).toContainText("Неизвестно");
+  await expect(
+    provenance.locator("div").filter({ has: page.getByText("Дата наблюдения", { exact: true }) }),
+  ).toContainText("2026-10-18T02:25:27Z");
+  await expect(
+    page.getByText("Публичная позиция инвестора.", { exact: false }).filter({ visible: true }),
+  ).toBeVisible();
+});

@@ -96,7 +96,8 @@
     "itc": "按技术指数",
     "novelty": "按新颖性",
     "trl": "按成熟度",
-    "recent": "最新优先"
+    "recent": "最新优先",
+    "diverse": "不同研究领域"
   },
   "actions": {
     "digest": "简报",
@@ -112,7 +113,7 @@
     "metricLine": "指标：{{value}}",
     "goalOnly": "将为该论点创建假设。",
     "goalTitle": "论点名称",
-    "goalTitlePlaceholder": "例如：2027 年可试点的 LLM 智能体防护",
+    "goalTitlePlaceholder": "例如：可进入临床研究的疾病早期诊断方法",
     "context": "背景（可选）",
     "contextPlaceholder": "领域、市场及已知情况",
     "constraints": "约束条件（可选）",
@@ -622,7 +623,8 @@
       "weak_signal": "弱信号",
       "mature": "成熟技术",
       "noise": "噪声",
-      "failed": "衰退方向"
+      "failed": "衰退方向",
+      "undecided": "无法判定"
     },
     "bet": {
       "title": "预测与指标",

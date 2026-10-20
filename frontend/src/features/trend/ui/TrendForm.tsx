@@ -1,12 +1,19 @@
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import { useTranslation } from "react-i18next";
-import { Search } from "lucide-react";
+import { ChevronDown, Search } from "lucide-react";
 import { Button } from "@/shared/ui/Button";
 import { Input } from "@/shared/ui/Input";
 import { FieldRow } from "@/shared/ui/Fields";
 import { Disclosure } from "@/shared/ui/Disclosure";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/shared/ui/DropdownMenu";
 import { Segmented } from "@/shared/ui/Segmented";
 import type { AnalysisRequest } from "../trendApi";
+import { IndustrySelect } from "./IndustrySelect";
 
 export interface TrendFormValue {
   query: string;
@@ -91,6 +98,43 @@ export function TrendForm({
           <Search aria-hidden />
           {t("analyze")}
         </Button>
+        {(!compact || settings) && (
+          <IndustrySelect disabled={busy} onChoose={(query) => change({ ...value, query })} />
+        )}
+        {(!compact || settings) && (
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="outline">
+                {t("examples")}
+                <ChevronDown aria-hidden />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="start">
+              {(
+                [
+                  ["medicine", "cancer immunotherapy"],
+                  ["agriculture", "drought resistant crops"],
+                  ["energy", "sodium ion batteries"],
+                  ["materials", "biodegradable polymers"],
+                  ["robotics", "robotics"],
+                  ["aiSecurity", "AI security"],
+                ] as const
+              ).map(([key, query]) => (
+                <DropdownMenuItem
+                  key={query}
+                  disabled={pending({ ...value, query })}
+                  onSelect={() => {
+                    const next = { ...value, query };
+                    change(next);
+                    submitValue(next);
+                  }}
+                >
+                  {t(`study.live.quickStarts.${key}`)}
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
+        )}
         {compact && (
           <Button
             variant="outline"
@@ -103,26 +147,6 @@ export function TrendForm({
       </div>
       {(!compact || settings) && (
         <>
-          <div className="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm">
-            <span id="trend-form-hint" className="text-muted-foreground">
-              {t("examples")}
-            </span>
-            {["RAG", "Robotics", "Solar cells", "CRISPR"].map((query) => (
-              <Button
-                key={query}
-                variant="link"
-                size="inline"
-                disabled={pending({ ...value, query })}
-                onClick={() => {
-                  const next = { ...value, query };
-                  change(next);
-                  submitValue(next);
-                }}
-              >
-                {query}
-              </Button>
-            ))}
-          </div>
           <Disclosure title={t("period", { start: value.start, end: value.cutoff })}>
             <div className="grid gap-4 sm:grid-cols-2">
               <FieldRow id="trend-start" label={t("start")}>

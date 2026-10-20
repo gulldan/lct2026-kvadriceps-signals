@@ -85,10 +85,12 @@ func liveMarketMaturity(topic LiveTopic, bar liveMarketBar) liveMaturity {
 	out := liveMaturity{}
 	// Два признака одного патентного канала — не два подтверждения: вердикт допустим лишь с явным
 	// утверждением и цитатой.
-	if topic.Market != nil && liveClaim(topic.Market.Evidence, liveClaimMarket) != nil &&
-		(topic.Market.Status == liveMarketEarly || topic.Market.Status == liveMarketMature) {
-		out.known, out.mature = true, topic.Market.Status == liveMarketMature
-		out.assessment = topic.Market
+	if topic.Market != nil && (topic.Market.Status == liveMarketEarly || topic.Market.Status == liveMarketMature) {
+		if claim := liveClaim(topic.Market.Evidence, liveClaimMarket); claim != nil &&
+			!liveInvestorSource(topic, claim.SourceID) {
+			out.known, out.mature = true, topic.Market.Status == liveMarketMature
+			out.assessment = topic.Market
+		}
 	}
 	out.level, out.eventFacts, out.eventChecks = liveEventMaturity(topic)
 	out.formed = out.level == liveMarketMature
@@ -247,7 +249,25 @@ func livePatentYear(record LiveSourceRecord) string {
 
 // livePublisher берёт хост адреса, а не имя ленты: одно издание приходит из разных лент под разными именами.
 func livePublisher(record LiveSourceRecord) string {
+	if liveInvestorContext(record.Genre) {
+		return ""
+	}
 	return cmp.Or(passportHost(cmp.Or(record.URL, record.CanonicalURL)), record.Source)
+}
+
+// Сохранённая цитата фонда остаётся его позицией, даже если раньше попала в подтверждённое поле карточки.
+func liveInvestorSource(topic LiveTopic, sourceID string) bool {
+	for _, channel := range []*LiveChannel{topic.Patents, topic.PatentsCN, topic.Registry, topic.Web,
+		topic.Corpus, topic.Research} {
+		for _, record := range liveChannelRecords(channel) {
+			if liveInvestorContext(record.Genre) && sourceID != "" &&
+				(sourceID == record.ID || sourceID == record.URL || sourceID == record.CanonicalURL ||
+					sourceID == liveEvidenceID(record)) {
+				return true
+			}
+		}
+	}
+	return false
 }
 
 func liveRecordMonth(record LiveSourceRecord) string {

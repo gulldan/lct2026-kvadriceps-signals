@@ -20,6 +20,20 @@
 | `scripts/` | `vendor-platform.sh`, `gen-proto.sh`, `radar-acceptance.py`, обучение модели этапа 1 (`weak-signal/`), гейт качества (`quality/`), `tools/` |
 | `datasets/`, `models/` | пример файла для проверки модели; веса моделей скачиваются при первом старте, в Git не входят |
 
+## Зоны ответственности
+
+Репозиторий ведут параллельно. Правило одно: не коммитить в чужую зону, даже если правка
+кажется очевидной.
+
+| Зона | Кто ведёт |
+| --- | --- |
+| `frontend/`, `backend/*/internal/interfaces`, `backend/db-service`, парсеры и конвейер документов, UX, производительность | наша |
+| `backend/main-service/internal/application/trend_live_*`, `study_*`, `backend/trend-sources` — контур слабых сигналов | наша |
+| Остальное в `backend/*/internal/application`, `backend/llm-service`, `ml-services/` | ML-коллега — не коммитить |
+
+Перед правкой — `git status --short` и `git rev-parse --abbrev-ref HEAD`: в одном чекауте может
+работать другая сессия. Смешанный коммит из двух зон разбирать потом некому.
+
 ## Сборка и проверки
 
 Команды запускаются из корня; проверены на macOS с Go 1.27, bun 1.4.2 и golangci-lint 2.14.
@@ -45,7 +59,6 @@
 
 Повторяющиеся последовательности вынесены в навыки `.claude/skills/`:
 [verify-before-commit](.claude/skills/verify-before-commit/SKILL.md) — проверки перед коммитом,
-[deploy-stand](.claude/skills/deploy-stand/SKILL.md) — точечная выкладка на стенд,
 [radar-acceptance](.claude/skills/radar-acceptance/SKILL.md) — приёмка живого поиска перед
 показом.
 
@@ -77,7 +90,7 @@
 | Фронтовые юниты | `bun run test` (это `test:ast` + `bun test src scripts`). Голый `bun test` подхватывает ещё и playwright-спеки из `frontend/tests/` и падает |
 | `make lint` | останавливается на первом модуле с ошибкой, остальные не проверяются. Прогонять до конца после починки |
 | `make proto` | требует `protoc` и `grpcio-tools`; после генерации обязателен `make vendor` |
-| Живой стенд | только точечная выкладка, `make up` там не запускать — навык [deploy-stand](.claude/skills/deploy-stand/SKILL.md) |
+| Живой стенд | только точечная выкладка `make deploy SERVICES="…"`, `make up` там не запускать |
 
 ## Ветки
 

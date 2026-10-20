@@ -10,6 +10,8 @@ import { isClosed, primaryQueue, verdictMeta } from "@/features/hypothesis/board
 import {
   cleanInternalTitle,
   displayHypothesisTitle,
+  hasProjectedTheme,
+  hypothesisClusterId,
   isFallbackDraft,
   isResearchDirection,
   priorityScore,
@@ -89,6 +91,15 @@ export async function loadReportData(): Promise<ReportData> {
     listKPIs(),
     listClusters().catch(() => [] as ApiCluster[]),
   ]);
+  // Шаг — фактический размер первой страницы: сервер может урезать limit. Страницы независимы,
+  // поэтому идут разом, а цикл ниже лишь добирает недостачу, если какая-то пришла короче.
+  const step = board.items.length;
+  const offsets: number[] = [];
+  if (step > 0) for (let offset = step; offset < board.total; offset += step) offsets.push(offset);
+  const pages = await Promise.all(
+    offsets.map((offset) => getHypothesisBoard({ limit: REPORT_PAGE_SIZE, offset })),
+  );
+  for (const page of pages) board.items.push(...page.items);
   while (board.items.length < board.total) {
     const page = await getHypothesisBoard({ limit: REPORT_PAGE_SIZE, offset: board.items.length });
     if (page.items.length === 0) throw new Error("Incomplete hypothesis portfolio");
@@ -126,7 +137,7 @@ export async function loadReportData(): Promise<ReportData> {
     constraints: await loadConstraints(pilots),
     themes: Object.fromEntries(
       pilots.flatMap((h) => {
-        const cluster = clusters.find((c) => c.id === h.primary_cluster_id);
+        const cluster = clusters.find((c) => c.id === hypothesisClusterId(h));
         return cluster ? [[cluster.id, cleanInternalTitle(cluster.label)]] : [];
       }),
     ),
@@ -178,7 +189,7 @@ export function hypothesisCard(h: ApiHypothesis, kpi?: ApiKPI, theme?: string) {
   const facts: ReportFact[] = [];
   if (kpi)
     facts.push({ label: t("hreport.p.goal"), value: `${kpi.title} (${kpiTargetLabel(kpi)})` });
-  if (theme) facts.push({ label: t("hreport.p.theme"), value: theme });
+  if (theme && !hasProjectedTheme(h)) facts.push({ label: t("hreport.p.theme"), value: theme });
   return {
     label: [h.trl === null ? "" : `TRL ${h.trl}`, statusMeta(h.status).label]
       .filter(Boolean)
@@ -222,7 +233,7 @@ export function portfolioReportDoc(data: ReportData): ReportDoc {
     const card = hypothesisCard(
       h,
       data.kpis.find((k) => k.id === h.kpi_id),
-      h.primary_cluster_id ? data.themes[h.primary_cluster_id] : undefined,
+      data.themes[hypothesisClusterId(h) ?? ""],
     );
     blocks.push({
       kind: "card",

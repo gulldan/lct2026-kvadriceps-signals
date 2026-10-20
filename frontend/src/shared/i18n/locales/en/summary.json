@@ -61,6 +61,7 @@
     "open": "Click to open the topic"
   },
   "sort": {
+    "diverse": "Different fields",
     "tech": "By theme index",
     "size": "By document count",
     "fresh": "By source recency",

@@ -1,12 +1,14 @@
 package application
 
 import (
+	"cmp"
 	"context"
 	"slices"
 	"strings"
 	"time"
 
 	commonv1 "github.com/example/main-service/internal/platform/genproto/common/v1"
+	"github.com/example/main-service/internal/platform/sourcedoc"
 )
 
 // Загруженные документы — ещё один канал свидетельств: ответ шлюза не нужен, берутся только найденные документы.
@@ -62,7 +64,9 @@ func liveCorpusSearch(ctx context.Context, src *liveSources, owner string, terms
 		if !ok {
 			continue
 		}
-		counts[index]++
+		if index >= 0 {
+			counts[index]++
+		}
 		channel.Records = append(channel.Records, record)
 	}
 	for i := range counts {
@@ -76,16 +80,12 @@ func liveCorpusSearch(ctx context.Context, src *liveSources, owner string, terms
 func liveCorpusRecord(ctx context.Context, documents liveDocumentReader, source *commonv1.Source,
 	periods []LivePeriod, observed string) (LiveSourceRecord, int, bool) {
 	id := source.GetDocumentId()
-	title := strings.TrimSpace(source.GetFilename())
-	date := ""
-	if documents != nil {
-		if document, err := documents.GetDocument(ctx, id); err == nil {
-			if named := strings.TrimSpace(document.GetTitle()); named != "" {
-				title = named
-			}
-			date = liveCorpusDate(document)
-		}
+	document := liveCorpusDocument(ctx, documents, id)
+	title := cmp.Or(strings.TrimSpace(document.GetTitle()), strings.TrimSpace(source.GetFilename()))
+	if record, ok := liveCorpusInvestorRecord(id, title, document.GetSourceMetadata()); ok {
+		return record, -1, true
 	}
+	date := liveCorpusDate(document)
 	index := livePeriodIndex(periods, date)
 	if title == "" || index < 0 {
 		return LiveSourceRecord{}, 0, false
@@ -98,6 +98,35 @@ func liveCorpusRecord(ctx context.Context, documents liveDocumentReader, source 
 		TrustBasis: "документ загружен в эту систему", ObservedAt: observed,
 		PublishedAt: date, TextStatus: "article_text",
 	}, index, true
+}
+
+func liveCorpusDocument(ctx context.Context, documents liveDocumentReader, id string) *commonv1.Document {
+	if documents == nil {
+		return nil
+	}
+	document, err := documents.GetDocument(ctx, id)
+	if err != nil {
+		return nil
+	}
+	return document
+}
+
+// Дата загрузки — не дата публикации фонда; импорт не превращает его позицию в собственное исследование.
+func liveCorpusInvestorRecord(id, title, metadata string) (LiveSourceRecord, bool) {
+	source, err := sourcedoc.Decode([]byte(metadata))
+	if title == "" || err != nil || !liveInvestorContext(source.Genre) {
+		return LiveSourceRecord{}, false
+	}
+	passport, genre := liveApplyRecordGenre(ClassifySource(source.URL), source.URL, title, source.Genre)
+	record := LiveSourceRecord{ID: id, Title: title, URL: "/sources/" + id, OriginalURL: source.URL,
+		Source: liveCorpusSource, Genre: genre, PublisherType: passport.Publisher,
+		Trust: passport.Trust, TrustBasis: passport.TrustBasis, ObservedAt: source.ObservedAt.UTC().Format(time.RFC3339),
+		ContentHash: source.ContentHash, TextStatus: cmp.Or(source.TextStatus, "metadata_only")}
+	if source.Publication != nil {
+		record.Date, record.PublishedAt, record.DateBasis = source.Publication.Value, source.Publication.Value,
+			source.Publication.Basis
+	}
+	return record, true
 }
 
 func liveCorpusDate(document *commonv1.Document) string {

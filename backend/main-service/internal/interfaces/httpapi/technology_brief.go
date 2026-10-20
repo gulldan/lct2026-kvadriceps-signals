@@ -1,19 +1,23 @@
 package httpapi
 
 import (
+	"bytes"
 	"cmp"
 	"context"
 	"crypto/sha256"
 	"encoding/hex"
+	"encoding/json/v2"
 	"errors"
+	"fmt"
+	"io"
 	"log/slog"
 	"net/http"
-	"slices"
-	"strings"
 
 	"github.com/example/main-service/internal/application"
+	"github.com/example/main-service/internal/domain"
 	"github.com/example/main-service/internal/platform/extractdoc"
 	"github.com/example/main-service/internal/platform/httpx"
+	"github.com/example/main-service/internal/platform/storage"
 )
 
 func (a *API) technologyRoutes(mux *http.ServeMux) {
@@ -27,8 +31,10 @@ func (a *API) technologyRoutes(mux *http.ServeMux) {
 	mux.HandleFunc("POST /technologies/{id}/brief", a.technologyBrief)
 }
 
-func (a *API) SetTechnologyBrief(write application.TechnologyBriefWriter) {
-	a.brief, a.briefs = write, map[string]application.TechnologyBrief{}
+// SetTechnologyBrief принимает хранилище объектов: бриф пишется моделью около 40 с, и без хранилища
+// каждая выкладка заставляла первого читателя карточки ждать его заново.
+func (a *API) SetTechnologyBrief(write application.TechnologyBriefWriter, store domain.ObjectStore) {
+	a.brief, a.briefs, a.briefStore = write, map[string]application.TechnologyBrief{}, store
 }
 
 // technologyBrief читает технологию в проекции читателя: бриф по недоступным ему источникам утёк бы
@@ -50,16 +56,19 @@ func (a *API) technologyBrief(w http.ResponseWriter, r *http.Request) {
 		a.reviewError(w, err)
 		return
 	}
-	// Ключ — технология плюс отпечаток её упоминаний: две проекции одной
-	// технологии не делят бриф, а новое упоминание делает старый бриф чужим.
-	key := briefKey(technology)
+	in := briefInput(technology)
+	key, err := briefKey(in)
+	if err != nil {
+		httpx.Error(w, http.StatusInternalServerError, "technology brief key")
+		return
+	}
 	w.Header().Set("Cache-Control", "no-store")
 	if r.Method == http.MethodGet {
-		a.briefMu.Lock()
-		brief, cached := a.briefs[key]
-		a.briefMu.Unlock()
+		brief, cached := a.storedBrief(r.Context(), key)
 		if !cached {
-			httpx.Error(w, http.StatusNotFound, "brief not written yet")
+			// «Ещё не написан» — обычное состояние карточки, как отсутствие обложки: 404 оставлял
+			// ошибку в консоли на каждом открытии.
+			w.WriteHeader(http.StatusNoContent)
 			return
 		}
 		httpx.JSON(w, http.StatusOK, brief)
@@ -69,7 +78,7 @@ func (a *API) technologyBrief(w http.ResponseWriter, r *http.Request) {
 	// срок ограничивает писатель.
 	// ponytail: одновременные открытия несчитанной технологии дают по вызову модели на каждое — общей
 	// записи «уже считаю» нет; если станет заметно, хватит канала ожидания в briefs.
-	brief, err := a.brief(context.WithoutCancel(r.Context()), briefInput(technology))
+	brief, err := a.brief(context.WithoutCancel(r.Context()), in)
 	switch {
 	case errors.Is(err, application.ErrLLMNotConfigured):
 		httpx.Error(w, http.StatusServiceUnavailable, "llm gateway not configured")
@@ -82,17 +91,54 @@ func (a *API) technologyBrief(w http.ResponseWriter, r *http.Request) {
 	a.briefMu.Lock()
 	a.briefs[key] = brief
 	a.briefMu.Unlock()
+	if raw, merr := json.Marshal(brief); merr == nil && a.briefStore != nil {
+		if perr := a.briefStore.Put(context.WithoutCancel(r.Context()), key, bytes.NewReader(raw), int64(len(raw)),
+			"application/json"); perr != nil {
+			slog.Warn("technology brief store", "technology", technology.TechnologyID, "error", perr)
+		}
+	}
 	httpx.JSON(w, http.StatusOK, brief)
 }
 
-func briefKey(technology extractdoc.Technology) string {
-	ids := make([]string, 0, len(technology.Mentions))
-	for _, mention := range technology.Mentions {
-		ids = append(ids, mention.MentionID)
+// storedBrief читает бриф сначала из памяти, затем из хранилища: после выкладки память пуста.
+func (a *API) storedBrief(ctx context.Context, key string) (application.TechnologyBrief, bool) {
+	a.briefMu.Lock()
+	brief, cached := a.briefs[key]
+	a.briefMu.Unlock()
+	if cached || a.briefStore == nil {
+		return brief, cached
 	}
-	slices.Sort(ids)
-	sum := sha256.Sum256([]byte(strings.Join(ids, "\n")))
-	return technology.TechnologyID + ":" + hex.EncodeToString(sum[:])
+	body, err := a.briefStore.Get(ctx, key)
+	if err != nil {
+		if !errors.Is(err, storage.ErrNotFound) {
+			slog.Warn("technology brief read", "key", key, "error", err)
+		}
+		return brief, false
+	}
+	defer func() { _ = body.Close() }()
+	raw, err := io.ReadAll(io.LimitReader(body, 1<<20))
+	if err != nil || json.Unmarshal(raw, &brief) != nil || brief.Hypothesis == "" {
+		return application.TechnologyBrief{}, false
+	}
+	a.briefMu.Lock()
+	a.briefs[key] = brief
+	a.briefMu.Unlock()
+	return brief, true
+}
+
+// technologyBriefContract поднимается, когда меняется запрос к модели: иначе из хранилища вернётся бриф
+// по прежнему запросу.
+const technologyBriefContract = "brief-v1"
+
+// briefKey — отпечаток всего, что видит модель, вместе с id технологии: две проекции одной технологии
+// не делят бриф, а новое упоминание или правка описания делают старый бриф чужим.
+func briefKey(in application.TechnologyBriefInput) (string, error) {
+	raw, err := json.Marshal(in, json.Deterministic(true))
+	if err != nil {
+		return "", fmt.Errorf("encode technology brief input: %w", err)
+	}
+	sum := sha256.Sum256(raw)
+	return "technologies/briefs/" + technologyBriefContract + "/" + hex.EncodeToString(sum[:]) + ".json", nil
 }
 
 // briefInput собирает упоминания по ревизиям источника: карточка перечисляет

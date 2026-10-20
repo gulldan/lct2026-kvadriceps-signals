@@ -145,12 +145,9 @@ func (p *liveCandidatePipeline) accept(result liveCandidateBatchResult, umbrella
 }
 
 func (p *liveCandidatePipeline) goalCount(candidates []LiveTopic) int {
-	if !p.modelRequired {
-		return len(candidates)
-	}
 	complete := 0
 	for _, candidate := range candidates {
-		if liveModelDecision(candidate.ModelScore) {
+		if liveCardComplete(candidate) && (!p.modelRequired || liveModelDecision(candidate.ModelScore)) {
 			complete++
 		}
 	}

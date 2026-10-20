@@ -241,6 +241,7 @@ func unreadCoverage(data *snapshot, previous []coverage, sources []webSource, re
 }
 
 func (s *service) sourceHistory(ctx context.Context, source webSource, data *snapshot, old map[string]record) {
+	start := len(data.Records)
 	switch source.Kind {
 	case kindWordPress:
 		s.wordpressHistory(ctx, source, data)
@@ -250,8 +251,17 @@ func (s *service) sourceHistory(ctx context.Context, source webSource, data *sna
 		s.catalogueHistory(ctx, source, data, old)
 	case kindBingNews:
 		s.bingHistory(ctx, source, data)
+	case kindEuropePMC, kindCrossref, kindClinicalTrials, kindBiorxiv, kindDataCite, kindZenodo, kindFigshare, kindBioStudies:
+		s.publicationHistory(ctx, source, data)
 	default:
 		s.feedHistory(ctx, source, data, old)
+	}
+	if source.Genre != "" {
+		for i := start; i < len(data.Records); i++ {
+			data.Records[i].Genre = source.Genre
+			data.Records[i].Limitations = appendLimitation(data.Records[i].Limitations,
+				"investor content; not proof of investment commitment or scientific validation")
+		}
 	}
 }
 

@@ -9,18 +9,19 @@ import (
 
 func TestStatusCountsTitlesWithoutChangingSnapshot(t *testing.T) {
 	s := &service{data: &snapshot{Records: []record{
-		{ID: "first", Title: "Hydrogen process"}, {ID: "missing"}, {ID: "last", Title: "Battery materials"},
+		{ID: "first", Title: "Hydrogen process", Date: "2026-09-10"}, {ID: "missing"}, {ID: "last", Title: "Battery materials"},
 	}}}
 	w := httptest.NewRecorder()
 	s.status(w, httptest.NewRequestWithContext(t.Context(), http.MethodGet, "/v1/status", nil))
 	var body struct {
 		Records int `json:"records"`
 		Titles  int `json:"dated_titles"`
+		Undated int `json:"undated_records"`
 	}
 	if err := json.Unmarshal(w.Body.Bytes(), &body); err != nil {
 		t.Fatal(err)
 	}
-	if w.Code != http.StatusOK || body.Records != 3 || body.Titles != 2 {
+	if w.Code != http.StatusOK || body.Records != 3 || body.Titles != 1 || body.Undated != 1 {
 		t.Fatalf("status counts changed: %s", w.Body.String())
 	}
 	if len(s.data.Records) != 3 || s.data.Records[1].ID != "missing" || s.data.Records[2].ID != "last" {

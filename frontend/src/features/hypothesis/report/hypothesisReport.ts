@@ -3,6 +3,7 @@ import { type ApiHypothesis, type ApiRevision } from "@/features/hypothesis/api"
 import { verdictMeta } from "@/features/hypothesis/board/model";
 import {
   displayHypothesisTitle,
+  hypothesisItc,
   pct,
   priorityScore,
   revisionActionLabel,
@@ -107,6 +108,7 @@ function targetEffect(h: ApiHypothesis, kpi?: ApiKPI): string {
 export function buildHypothesisReport(input: HypothesisReportInput): HypothesisReportDoc {
   const { h, kpi, clusterTitle, ownerName, revisions } = input;
   const a = h.assessment;
+  const itc = hypothesisItc(h);
   const d = h.detail;
   const gen = parseGeneration(h);
   const title = displayHypothesisTitle(h);
@@ -173,7 +175,7 @@ export function buildHypothesisReport(input: HypothesisReportInput): HypothesisR
     { label: t("hypothesis:hreport.p.confidence"), value: pct(h.confidence_score) },
     {
       label: t("hypothesis:hreport.p.itc"),
-      value: a.itc ? `${formatItcIndex(a.itc)}/100` : "",
+      value: itc ? `${formatItcIndex(itc)}/100` : "",
     },
     {
       label: t("hypothesis:hreport.p.trl"),
@@ -417,13 +419,13 @@ export function buildHypothesisReport(input: HypothesisReportInput): HypothesisR
         })
       : t("hypothesis:hreport.conclVerdictPending"),
   );
-  if (h.trl !== null || a.itc) {
+  if (h.trl !== null || itc) {
     const trlPart = h.trl === null ? "—" : `${h.trl}${a.trl?.name ? ` — ${a.trl.name}` : ""}`;
     conclusions.push(
-      a.itc
+      itc
         ? t("hypothesis:hreport.conclReadiness", {
             trl: trlPart,
-            itc: `${formatItcIndex(a.itc)}/100`,
+            itc: `${formatItcIndex(itc)}/100`,
           })
         : t("hypothesis:hreport.conclReadinessTrlOnly", { trl: trlPart }),
     );

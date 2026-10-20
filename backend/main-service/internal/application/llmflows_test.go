@@ -62,8 +62,29 @@ func TestVerify_MainPassError(t *testing.T) {
 func TestVerify_ParseError(t *testing.T) {
 	_, svc := seedHypothesis(newAnswerer(reply("not json at all")),
 		&commonv1.Hypothesis{Id: "h1", OwnerId: "alice", Statement: "s"})
-	if _, err := svc.Verify(context.Background(), "alice", "h1"); err == nil {
-		t.Fatal("unparseable verdict must surface")
+	if _, err := svc.Verify(context.Background(), "alice", "h1"); !errors.Is(err, ErrUnparsableModelOutput) {
+		t.Fatalf("unparseable verdict must surface as a format error, got %v", err)
+	}
+}
+
+func TestVerify_RetrievalAbstentionIsInsufficientVerdict(t *testing.T) {
+	// Дословный ответ llm-service при отказе: текст без JSON, причина — только в трассе.
+	abstained := answer{resp: &commonv1.RagResponse{
+		Answer:  "Не удалось найти достаточно релевантный контекст в базе знаний, чтобы дать обоснованный ответ.",
+		Sources: []*commonv1.Source{{ChunkId: "c1", Filename: "weak.pdf", Snippet: "unrelated text"}},
+		Trace:   &commonv1.RagTrace{AbstainReason: "weak_evidence"},
+	}}
+	a := newAnswerer(abstained)
+	cat, svc := seedHypothesis(a, &commonv1.Hypothesis{Id: "h1", OwnerId: "alice", Statement: "s"})
+	svc.SetPubSearcher(&fakePubs{works: []ExternalWork{{Title: "Study", Abstract: "Unread abstract"}}})
+
+	got, err := svc.Verify(context.Background(), "alice", "h1")
+	if err != nil {
+		t.Fatalf("abstention must not fail verification: %v", err)
+	}
+	if checkVerdict(got.GetAssessment()) != verdictInsufficient || len(got.GetEvidence()) != 0 ||
+		cat.updateCalls != 1 || strings.Contains(got.GetAssessment(), "external_works") {
+		t.Fatalf("abstention must persist a bare insufficient verdict: %s", got.GetAssessment())
 	}
 }
 
@@ -203,10 +224,16 @@ func TestPlanExperiment_Errors(t *testing.T) {
 
 // Составной балл из запроса игнорируется: composite_score считает только ранжировщик rank-v1.
 func TestStoreITC_StoresAndLinks(t *testing.T) {
-	cat, svc := seedHypothesis(newAnswerer(reply("{}")), &commonv1.Hypothesis{Id: "h1", OwnerId: "alice"})
+	cat, svc := seedHypothesis(newAnswerer(reply("{}")), &commonv1.Hypothesis{
+		Id: "h1", OwnerId: "alice",
+		Evidence: []*commonv1.HypothesisEvidence{{DocumentId: new("d1"), Snippet: "Source quote", Stance: "supports"}},
+	})
+	cat.clusters["cl1"] = &commonv1.Cluster{
+		Id: "cl1", OwnerId: "alice", Params: `{"members":["d1"],"itc":{"score":7}}`,
+	}
 	composite := 0.73
 	in := ITCInput{ClusterID: "cl1", ITC: []byte(`{"score":7}`), Composite: &composite}
-	got, err := svc.StoreITC(context.Background(), "alice", "h1", in)
+	got, err := svc.StoreITC(t.Context(), "alice", "h1", in)
 	if err != nil {
 		t.Fatalf("StoreITC: %v", err)
 	}

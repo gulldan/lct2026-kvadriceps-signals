@@ -53,7 +53,7 @@ func liveTermsKey(terms []string) string {
 }
 
 // liveSearchContract поднимается выкладкой, меняющей отбор или карточку: иначе из базы вернётся ответ без новых полей.
-const liveSearchContract = "search-v25"
+const liveSearchContract = "search-v32"
 
 func liveStoreKey(query string) string { return liveSearchContract + "|" + query }
 
@@ -87,6 +87,10 @@ func (s *TrendLiveService) storedSearch(ctx context.Context, query string, terms
 	if err := json.Unmarshal(stored.Detail, &detail); err != nil {
 		slog.Warn("live search store decode", "query", query, "error", err)
 		return LiveDetail{}, false
+	}
+	liveKeepCardContexts(&detail.Topic)
+	for i := range detail.Candidates {
+		liveKeepCardContexts(&detail.Candidates[i])
 	}
 	detail.storeVersion = stored.Version
 	detail.storeRunID = detail.RunID
@@ -128,7 +132,7 @@ func liveRecoveredModelAnswer(detail LiveDetail) bool {
 	}
 	for _, candidate := range detail.Candidates {
 		score := candidate.ModelScore
-		if candidate.Shortfall != nil || !liveVerifiedMechanism(candidate) || !liveCardAdmissible(candidate) ||
+		if candidate.Shortfall != nil || !liveVerifiedMechanism(candidate) || !liveCardComplete(candidate) ||
 			score == nil || score.Model == "" || score.Version != detail.ClassifierVersion ||
 			score.FeatureSchema != LiveClassifierSchema || !liveUnitInterval(score.Value) || !liveUnitInterval(score.Threshold) {
 			return false
@@ -249,6 +253,9 @@ func liveStoredRecords(detail LiveDetail) []analysisdoc.LiveSearchRecord {
 	}
 	if detail.Topic.Registry != nil {
 		add("registry", detail.Topic.Registry.Records)
+	}
+	if detail.Topic.Research != nil {
+		add("research", detail.Topic.Research.Records)
 	}
 	if detail.Topic.Web != nil {
 		add("web", detail.Topic.Web.Records)
@@ -397,7 +404,7 @@ const liveRefreshNightEnd = 5
 // refreshStoredSearches работает только в API-реплике: нужны и хранилище, и модель для карточек.
 func (s *TrendLiveService) refreshStoredSearches(ctx context.Context) {
 	store := s.searchStoreRef()
-	if store == nil || s.card == nil {
+	if store == nil || s.card == nil || s.onDemand {
 		return
 	}
 	now := s.now().UTC()
@@ -446,12 +453,16 @@ func (s *TrendLiveService) refreshStoredSearches(ctx context.Context) {
 // livePinnedSearches повторяет QUICK_STARTS из LiveOverview.tsx: их ответ должен открываться из сохранённого.
 func livePinnedSearches() []string {
 	return []string{
-		"слабые сигналы в edge-вычислениях",
-		"слабые сигналы в безопасности систем искусственного интеллекта",
-		"слабые сигналы в индустриальном искусственном интеллекте",
-		"инфраструктура для обучения и вывода больших моделей",
+		"слабые сигналы в медицине и диагностике",
+		"слабые сигналы в сельском хозяйстве и продовольствии",
+		"слабые сигналы в энергетике и хранении энергии",
+		"слабые сигналы в климате и экологии",
+		"слабые сигналы в новых материалах и химии",
+		"слабые сигналы в биотехнологиях и разработке лекарств",
+		"слабые сигналы в экономике и социальных науках",
+		"слабые сигналы в космосе и астрофизике",
 		"слабые сигналы в робототехнике",
-		"финансовые технологии цифровые платежи и реестры",
+		"слабые сигналы в безопасности систем искусственного интеллекта",
 	}
 }
 
@@ -564,7 +575,8 @@ func (s *TrendLiveService) openedSince(ctx context.Context, since time.Time) map
 func (s *TrendLiveService) warmStoredSearches(ctx context.Context) {
 	store := s.searchStoreRef()
 	s.mu.Lock()
-	if s.storedWarmed || store == nil {
+	// Без фона дооценка и пересказы делаются при открытии ответа человеком.
+	if s.storedWarmed || store == nil || s.onDemand {
 		s.mu.Unlock()
 		return
 	}

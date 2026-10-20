@@ -2,6 +2,7 @@ import type { ApiCluster } from "@/features/cluster";
 import type { ApiHypothesis } from "@/features/hypothesis/api";
 import {
   cleanInternalTitle,
+  hypothesisItc,
   isResearchDirection,
   priorityScore,
 } from "@/features/hypothesis/model";
@@ -15,7 +16,7 @@ import { i18n } from "@/shared/i18n";
 
 export type QueueKey = "all" | "needs_verify" | "needs_trl" | "ready" | "risk" | "insufficient";
 export type KindTab = "hypotheses" | "directions" | "drafts" | "graph" | "methodology";
-export type SortKey = "rank" | "learning" | "itc" | "novelty" | "trl" | "recent";
+export type SortKey = "diverse" | "rank" | "learning" | "itc" | "novelty" | "trl" | "recent";
 
 export const BOARD_LIMIT = 200;
 export const KIND_TABS = new Set<KindTab>([
@@ -31,6 +32,7 @@ export const SORTS: {
   labelKey: `sorts.${SortKey}`;
   value: (h: ApiHypothesis) => number;
 }[] = [
+  { key: "diverse", labelKey: "sorts.diverse", value: (h) => priorityScore(h) ?? 0 },
   { key: "rank", labelKey: "sorts.rank", value: (h) => priorityScore(h) ?? 0 },
   {
     key: "learning",
@@ -40,18 +42,19 @@ export const SORTS: {
   {
     key: "itc",
     labelKey: "sorts.itc",
-    value: (h) => h.assessment?.itc?.techscore ?? (h.assessment?.itc?.score ?? 0) / 10,
+    value: (h) => hypothesisItc(h)?.techscore ?? (hypothesisItc(h)?.score ?? 0) / 10,
   },
   {
     key: "novelty",
     labelKey: "sorts.novelty",
-    value: (h) => h.assessment?.itc?.axes?.novelty ?? h.novelty_score ?? 0,
+    value: (h) => hypothesisItc(h)?.axes?.novelty ?? h.novelty_score ?? 0,
   },
   { key: "trl", labelKey: "sorts.trl", value: (h) => h.trl ?? 0 },
   { key: "recent", labelKey: "sorts.recent", value: (h) => Date.parse(h.created_at) || 0 },
 ];
 
 export function serverOrderBy(sortBy: SortKey): string {
+  if (sortBy === "diverse") return "diversity";
   if (sortBy === "recent") return "created_at";
   if (sortBy === "trl") return "trl";
   if (sortBy === "novelty") return "novelty";

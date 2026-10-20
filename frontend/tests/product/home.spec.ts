@@ -29,24 +29,24 @@ for (const path of ["/search", "/search?q=%20%20"]) {
   });
 }
 
-test("topic suggestions skip unusable labels and change after every search", async ({
+test("topic suggestions skip unusable labels, retain different domains and rotate after search", async ({
   page,
   api,
 }) => {
   const base = api.state.clusters[0]!;
   const usable = [
-    "Флотация руд",
-    "Защитные покрытия",
-    "Углеродные волокна",
-    "Керамические материалы",
-    "Скоринг кредитных заявок",
-    "Цифровые двойники печей",
-    "Антифрод в платежах",
+    "Генеративное ранжирование",
+    "Анализ языковых моделей",
+    "Алгоритмы поиска",
+    "Компьютерное зрение",
+    "Нейросетевые адаптеры",
+    "Программная инфраструктура",
+    "Базы данных и вычисления",
     "Водородная энергетика",
-    "Предиктивное обслуживание",
-    "Порошковая металлургия",
-    "Обогащение угля",
-    "Промышленная робототехника",
+    "Медицинская диагностика",
+    "Сельскохозяйственные культуры",
+    "Экология и климат",
+    "Полимерные материалы",
   ];
   api.state.clusters = [
     ...usable.map((label, index) => ({ label, document_count: 40 - index })),
@@ -54,9 +54,9 @@ test("topic suggestions skip unusable labels and change after every search", asy
     { label: "Архивная тема", document_count: 80, status: "archived" },
     { label: "<metadata>", document_count: 70 },
     { label: "тематическая группа", document_count: 60 },
-    { label: "ФЛОТАЦИЯ РУД", document_count: 19 },
+    { label: "ГЕНЕРАТИВНОЕ РАНЖИРОВАНИЕ", document_count: 19 },
     { label: "Одиночная публикация", document_count: 1 },
-  ].map((topic, index) => Object.assign({}, base, topic, { id: `focus-${index}` }));
+  ].map((topic, index) => Object.assign({}, base, topic, { id: `focus-${index}`, keywords: [] }));
   const links = page.getByRole("region", { name: "Технологии в фокусе" }).getByRole("link");
   await page.goto("/search");
   await expect(links).toHaveCount(6);
@@ -69,7 +69,12 @@ test("topic suggestions skip unusable labels and change after every search", asy
   await page.getByRole("link", { name: "Поиск по документам", exact: true }).click();
   await expect(links).toHaveCount(6);
   const second = await links.allTextContents();
-  expect([...first, ...second].toSorted()).toEqual(usable.toSorted());
+  expect(second).not.toEqual(first);
+  for (const shown of [first, second]) {
+    expect(new Set(shown).size).toBe(6);
+    expect(shown.every((label) => usable.includes(label))).toBe(true);
+    for (const domain of usable.slice(7)) expect(shown).toContain(domain);
+  }
 });
 
 for (const state of ["empty", "unavailable"] as const) {

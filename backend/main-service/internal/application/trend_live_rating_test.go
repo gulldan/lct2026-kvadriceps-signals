@@ -50,3 +50,27 @@ func TestMaturityRating(t *testing.T) {
 		t.Fatalf("без оценки входы неизмерены: %v", inputs)
 	}
 }
+
+// «Дефицитное орошение» 17.10: ответ без уверенности давал стадии 4 из 4 оценку 0,99 вместо зрелой.
+func TestMaturityRatingWithoutConfidence(t *testing.T) {
+	model, err := LoadWeakSignalModel()
+	if err != nil {
+		t.Fatal(err)
+	}
+	for _, answer := range []string{`{"stage": 4, "failed_or_faded": false, "confidence": null}`,
+		`{"stage": 4, "failed_or_faded": false, "known_since": 19`,
+		`{"stage": 4, "failed_or_faded": false, "known_since": 1989, "confidence": 0`} {
+		rating, ok := liveReadRating(answer)
+		evidence := map[string]*WeakSignalEvidence{"deficit irrigation": {Rating: &rating}}
+		got := model.prediction("x", []string{"deficit irrigation"}, evidence, "2026-09")
+		if !ok || !math.IsNaN(LiveRatingInputs(&rating)[2]) || got.Label != liveClassifierMature {
+			t.Fatalf("%s: уверенность %v, класс %s, оценка %.3f", answer, rating.Confidence, got.Label, got.Value)
+		}
+	}
+	// Явный ноль модель не видела: вход прижат к краю обучения, и сигнал на нём не выдаётся.
+	zero := map[string]*WeakSignalEvidence{"deficit irrigation": {Rating: &LiveMaturityRating{Stage: 1}}}
+	if got := model.prediction("x", []string{"deficit irrigation"}, zero, "2026-09"); got.Label != liveClassifierInsufficient ||
+		!strings.Contains(got.Basis, "вне диапазона обучающей выборки") {
+		t.Fatalf("выброс входа не помечен: %s %q", got.Label, got.Basis)
+	}
+}

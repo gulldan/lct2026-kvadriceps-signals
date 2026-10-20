@@ -56,7 +56,7 @@ func TestLiveCardGroundingRejectsUnsupportedClaims(t *testing.T) {
 		t.Fatal(err)
 	}
 	gen := &liveCardTestGenerator{draft: string(encoded),
-		verified: liveCardTestReview(t, draft.Evidence, works, liveClaimSummary, liveClaimAdvantage, liveClaimMarket)}
+		verified: liveCardTestReview(t, draft, works, liveClaimSummary, liveClaimAdvantage, liveClaimMarket)}
 	card, err := NewCandidateCard(gen, func(context.Context) bool { return true })(
 		liveFixtureScopeContext(t.Context(), "обнаружение мошенничества по телефону"),
 		"обнаружение мошенничества по телефону", LiveCardIdentity{Label: "Проверка живости голоса",
@@ -70,7 +70,7 @@ func TestLiveCardGroundingRejectsUnsupportedClaims(t *testing.T) {
 	if card.market.Known || card.market.Status != liveMarketUnknown || len(card.market.Evidence) != 0 {
 		t.Fatalf("выдуманная цитата позволила утверждать ранний рынок: %+v", card.market)
 	}
-	if len(gen.requests) != 2 || !strings.Contains(gen.requests[1].Query, "обнаружение мошенничества по телефону") ||
+	if len(gen.requests) != 3 || !strings.Contains(gen.requests[1].Query, "обнаружение мошенничества по телефону") ||
 		!strings.Contains(gen.requests[1].Query, works[1]) {
 		t.Fatalf("проверяющая модель не получила контекст запроса и источник: %+v", gen.requests)
 	}
@@ -132,7 +132,7 @@ func TestLiveCardCannotBorrowNumberFromAnotherSource(t *testing.T) {
 	if len(claims) != 1 || len(claims[0].GroundingIssues) == 0 {
 		t.Fatalf("потеряна проверка чисел или исходное утверждение: %+v", claims)
 	}
-	evidence, err := liveApplyCardVerification(claims, liveCardTestReview(t, draft.Evidence, works, liveClaimExample))
+	evidence, err := liveApplyCardVerification(claims, liveCardTestReview(t, draft, works, liveClaimExample))
 	if err != nil || evidence[0].Verified {
 		t.Fatalf("число из другого источника принято: %+v, %v", evidence, err)
 	}
@@ -178,7 +178,7 @@ func TestLiveCardReportAssessmentIsOptionalAndAttributed(t *testing.T) {
 			if tc.supported {
 				fields = append(fields, LiveClaimReportAssessment)
 			}
-			gen := &liveCardTestGenerator{draft: string(raw), verified: liveCardTestReview(t, draft.Evidence, works, fields...)}
+			gen := &liveCardTestGenerator{draft: string(raw), verified: liveCardTestReview(t, draft, works, fields...)}
 			card, cardErr := NewCandidateCard(gen, func(context.Context) bool { return true })(
 				liveFixtureScopeContext(t.Context(), "Защита от повторного воспроизведения речи"),
 				"Защита от повторного воспроизведения речи", LiveCardIdentity{Label: "Одноразовая проверка голоса",
@@ -221,7 +221,7 @@ func TestLiveCardCarriesQualifiedIdentityThroughWriterAndVerifier(t *testing.T) 
 	}
 	works := []string{liveWorkLine(documents[0], metadata["source-a"])}
 	gen := &liveCardTestGenerator{draft: string(raw),
-		verified: liveCardTestReview(t, draft.Evidence, works, liveClaimSummary, liveClaimAdvantage, liveClaimExample)}
+		verified: liveCardTestReview(t, draft, works, liveClaimSummary, liveClaimAdvantage, liveClaimExample)}
 	service := NewTrendLiveService(nil, nil)
 	service.SetCardWriter(NewCandidateCard(gen, func(context.Context) bool { return true }))
 	candidates := []LiveTopic{
@@ -286,6 +286,46 @@ func TestLiveEnglishLeakCatchesMixedDigest(t *testing.T) {
 	} {
 		if liveEnglishLeak.MatchString(text) != leak {
 			t.Errorf("liveEnglishLeak(%q) = %v, want %v", text, !leak, leak)
+		}
+	}
+}
+
+func TestLiveStudyLimitationsRequireVerifiedLiteralEvidence(t *testing.T) {
+	works := []string{"Continuous drug delivery beyond 10 minutes causes interference between chambers " +
+		"in this brain organoid device."}
+	for _, supported := range []bool{true, false} {
+		draft := liveCardDraft{StudyLimitations: "В устройстве с органоидами мозга подача препарата дольше 10 минут " +
+			"вызывает влияние между камерами.",
+			Evidence: []liveCardSelection{{Field: liveClaimStudyLimitations, Source: 1, From: 1, Through: 1}}}
+		raw, err := json.Marshal(draft)
+		if err != nil {
+			t.Fatal(err)
+		}
+		var fields []string
+		if supported {
+			fields = []string{liveClaimStudyLimitations}
+		}
+		var review liveCardReview
+		if decodeErr := json.Unmarshal([]byte(liveCardTestReview(t, draft, works, fields...)), &review); decodeErr != nil {
+			t.Fatal(decodeErr)
+		}
+		if supported {
+			review.Fields[0].Parts = []LiveClaimPart{{Claim: draft.StudyLimitations, SourceFact: works[0],
+				Direct: true, ScopePreserved: true, ModalityPreserved: true}}
+		}
+		gen := &liveCardTestGenerator{draft: string(raw), verified: liveEncodeCardReview(t, review)}
+		card, err := NewCandidateCard(gen, func(context.Context) bool { return true })(
+			liveFixtureScopeContext(t.Context(), "органоиды для тестирования лекарств"), "органоиды для тестирования лекарств",
+			LiveCardIdentity{Label: "Органоиды мозга",
+				Mechanism: "Микрофлюидное устройство тестирования лекарств на органоидах мозга."}, works)
+		if err != nil || (card.StudyLimitations != "") != supported {
+			t.Fatalf("unsupported limitation: %+v %v", card, err)
+		}
+		if supported {
+			proof := liveClaim(card.Evidence, liveClaimStudyLimitations)
+			if proof == nil || proof.Quote != works[0] || !strings.Contains(gen.requests[1].Query, draft.StudyLimitations) {
+				t.Fatal("limitation lost its source or bypassed verification")
+			}
 		}
 	}
 }

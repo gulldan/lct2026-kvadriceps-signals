@@ -24,7 +24,8 @@
     "verify:ui": "bun run verify && bun run test:ui",
     "lint:ast": "ast-grep scan --config sgconfig.yml src",
     "test:ast": "ast-grep test --config sgconfig.yml --skip-snapshot-tests",
-    "hooks:install": "lefthook install"
+    "hooks:install": "lefthook install",
+    "taxonomy:generate": "bun scripts/research-taxonomy.ts"
   },
   "dependencies": {
     "@fontsource-variable/jetbrains-mono": "^5.3.0",

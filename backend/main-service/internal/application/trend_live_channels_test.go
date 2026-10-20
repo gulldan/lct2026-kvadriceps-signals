@@ -92,13 +92,14 @@ func TestLiveSourceRecoveryPreservesScienceAndReloadsSameObservation(t *testing.
 	}
 	reader.load(t.Context())
 	got := reader.snapshot
-	if calls != 2 || len(reader.cache) != 0 || got.ObservedAt != snapshot.ObservedAt ||
+	// Ответ оператора в кэше переживает переиздание снимка: в базу он ложится позже пересказов.
+	if calls != 2 || len(reader.cache) != 1 || got.ObservedAt != snapshot.ObservedAt ||
 		!reflect.DeepEqual(got.Papers, snapshot.Papers) ||
 		!reflect.DeepEqual(got.Topics[0].Semantic, snapshot.Topics[0].Semantic) ||
 		!reflect.DeepEqual(got.Topics[0].Comparison, snapshot.Topics[0].Comparison) || got.Topics[0].Patents.Total != 3 ||
 		len(got.Topics[0].Limits) != 1 || got.Topics[0].Limits[0].Text != "arxiv: bounded sample" ||
 		got.Topics[0].Limits[0].Code != liveLimitArxivKept {
-		t.Fatalf("source recovery changed science, lost provenance, or failed to reload: %+v", got)
+		t.Fatalf("source recovery changed science, lost provenance, dropped the search cache or failed to reload: %+v", got)
 	}
 	previous := service.snapshot
 	stored := slices.Clone(store.raw)

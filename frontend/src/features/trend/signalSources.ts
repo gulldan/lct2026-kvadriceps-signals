@@ -1,5 +1,6 @@
 import type { TFunction } from "i18next";
 import type { LiveDetail, LivePaperPassport, LiveTopic } from "./liveApi";
+import { upperFirst } from "@/shared/lib/format";
 
 /** Рыночные записи лежат в evidence_ids: кейс на новости или патенте по одним paper_ids не
  *  найти. */
@@ -24,6 +25,16 @@ export function signalSources(detail: LiveDetail, topic: LiveTopic) {
     }));
 }
 
+/** Новые источники — с датой не раньше полугода до наблюдения ответа; дата одним годом новизну не
+ *  доказывает и в счёт не идёт. */
+export function freshSourceCount(sources: { paper: { date: string } }[], observedAt: string) {
+  const since = new Date(observedAt);
+  if (Number.isNaN(since.getTime())) since.setTime(Date.now());
+  since.setUTCMonth(since.getUTCMonth() - 6);
+  const floor = since.toISOString().slice(0, 10);
+  return sources.filter(({ paper }) => paper.date.length >= 7 && paper.date >= floor).length;
+}
+
 // Английская присказка модели («Based on the title and abstract, …») есть и в сохранённых ответах;
 // английский термин перед запятой («Mixture of Experts, …») — часть пересказа.
 const PREAMBLE =
@@ -32,11 +43,15 @@ const SUBJECT = /^(?:this|the)\s+(?:material|paper|article|work|study)\s+(?=[а-
 
 function readableDigest(digest: string) {
   const text = digest.replace(PREAMBLE, "").replace(SUBJECT, "Материал ");
-  return text.charAt(0).toUpperCase() + text.slice(1);
+  return upperFirst(text);
 }
 
 function readablePassport(passport: LivePaperPassport | undefined) {
   return passport?.digest ? { ...passport, digest: readableDigest(passport.digest) } : passport;
+}
+
+export function sourceGenreLabel(genre: string, t: TFunction<"trend">) {
+  return t(`source.genre.${genre}`, { defaultValue: t("source.genre.other") });
 }
 
 /** Паспорт источника по ТЗ одной строкой для экрана, печати и Word. Неизвестные тип, язык и доверие
@@ -52,9 +67,7 @@ export function passportLine(
     date || t("source.unknownDate"),
     passport?.source_name,
     t(`source.publisher.${passport?.publisher_type || "unknown"}`, { defaultValue: "" }),
-    passport?.genre &&
-      passport.genre !== "unknown" &&
-      t(`source.genre.${passport.genre}`, { defaultValue: "" }),
+    passport?.genre && passport.genre !== "unknown" && sourceGenreLabel(passport.genre, t),
     t("source.language", {
       language: t(`source.languages.${language}`, { defaultValue: language.toUpperCase() }),
     }),

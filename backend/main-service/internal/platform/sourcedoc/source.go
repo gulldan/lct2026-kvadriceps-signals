@@ -18,13 +18,21 @@ const (
 	kindHypothesis = "hypothesis"
 	kindPaper      = "paper"
 	kindPatent     = "patent"
+	kindAnalysis   = "analysis"
+	kindCompany    = "company_material"
 	providerGitHub = "github"
 	kindRepository = "software_repository"
 	providerArXiv  = "arxiv"
 	providerManual = "manual"
+	providerWeb    = "web"
 	precisionYear  = "year"
 	precisionMonth = "month"
 	precisionDay   = "day"
+)
+
+const (
+	GenreInvestmentThesis   = "investment_thesis"
+	GenreInvestorCommentary = "investor_commentary"
 )
 
 const (
@@ -230,6 +238,7 @@ type Source struct {
 	Version     int    `json:"version"`
 	Kind        string `json:"source_kind"`
 	Provider    string `json:"provider"`
+	Genre       string `json:"genre,omitempty"`
 	NativeID    string `json:"native_id"`
 	URL         string `json:"url"`
 	CanonicalID string `json:"canonical_id"`
@@ -283,7 +292,18 @@ func Decode(raw []byte) (*Source, error) {
 }
 
 func (s Source) Validate() error {
-	return errors.Join(s.validateIdentity(), s.validateDates(), s.validateProvider())
+	return errors.Join(s.validateIdentity(), s.validateDates(), s.validateProvider(), s.validateGenre())
+}
+
+func (s Source) validateGenre() error {
+	if s.Genre == "" {
+		return nil
+	}
+	if !slices.Contains([]string{GenreInvestmentThesis, GenreInvestorCommentary}, s.Genre) ||
+		s.Provider != providerWeb || !slices.Contains([]string{kindAnalysis, kindCompany}, s.Kind) {
+		return errors.New("investor genre requires a web analysis or company material")
+	}
+	return nil
 }
 
 func (s Source) validateIdentity() error {
@@ -294,9 +314,9 @@ func (s Source) validateIdentity() error {
 		return errors.New("unsupported source text status")
 	}
 	if s.Version != 1 ||
-		!slices.Contains([]string{kindPaper, kindPatent, "company_material", "analysis", kindRepository, kindHypothesis}, s.Kind) ||
+		!slices.Contains([]string{kindPaper, kindPatent, kindCompany, kindAnalysis, kindRepository, kindHypothesis}, s.Kind) ||
 		!slices.Contains([]string{
-			providerArXiv, providerGitHub, "openalex", "crossref", providerManual, "generated", kindPatent, "web",
+			providerArXiv, providerGitHub, "openalex", "crossref", providerManual, "generated", kindPatent, providerWeb,
 		}, s.Provider) {
 		return errors.New("unsupported source version, kind or provider")
 	}
@@ -378,7 +398,8 @@ func (s Source) validateAvailability() error {
 }
 
 func (s Source) validateProvider() error {
-	if (s.Provider == kindPatent && s.Kind != kindPatent) || (s.Provider == "web" && s.Kind != "analysis") {
+	if (s.Provider == kindPatent && s.Kind != kindPatent) ||
+		(s.Provider == providerWeb && s.Kind != kindAnalysis && (s.Kind != kindCompany || s.Genre == "")) {
 		return errors.New("patent/web collector kind does not match provider")
 	}
 	if err := s.validatePatent(); err != nil {

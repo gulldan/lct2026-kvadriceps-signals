@@ -1,7 +1,7 @@
 import type { TFunction } from "i18next";
 import { passportLine, signalSources } from "./signalSources";
 import type { ReportBlock, ReportDoc } from "@/shared/report/blocks";
-import { formatDate, formatMonth, formatNumber, humanSize } from "@/shared/lib/format";
+import { formatDate, formatMonth, formatNumber, humanSize, upperFirst } from "@/shared/lib/format";
 import { currentLanguage } from "@/shared/i18n";
 import type {
   LiveChannel,
@@ -209,9 +209,7 @@ function limitLines(limits: LiveLimit[], t: TFunction<"trend">) {
     });
     if (!line.includes("{{") && line !== neutral) return line;
     const body = limit.text.replace(/^[a-z_]+:\s*/, "").trim();
-    return currentLanguage() === "ru" && /[а-яё]/i.test(body)
-      ? body.charAt(0).toUpperCase() + body.slice(1)
-      : neutral;
+    return currentLanguage() === "ru" && /[а-яё]/i.test(body) ? upperFirst(body) : neutral;
   });
   return [...new Set(lines)];
 }
@@ -567,7 +565,7 @@ export function signalReportDoc({
     blocks.push({ kind: "list", items: why.against });
   }
 
-  for (const field of ["advantage", "example", "report_assessment"] as const) {
+  for (const field of ["advantage", "example", "study_limitations", "report_assessment"] as const) {
     blocks.push({ kind: "heading", text: t(`report.${field}`) });
     const text = card?.[field];
     blocks.push(
@@ -575,11 +573,13 @@ export function signalReportDoc({
         ? { kind: "paragraph", text }
         : {
             kind: "paragraph",
-            muted: field === "report_assessment",
+            muted: field === "report_assessment" || field === "study_limitations",
             text: t(
               field === "report_assessment"
                 ? "report.reportAssessmentMissing"
-                : "report.missingField",
+                : field === "study_limitations"
+                  ? "report.studyLimitationsMissing"
+                  : "report.missingField",
             ),
           },
     );
@@ -626,6 +626,29 @@ export function signalReportDoc({
         t,
       ),
     );
+  }
+
+  if (card?.prior_art) {
+    const prior = card.prior_art;
+    blocks.push({ kind: "heading", text: t("report.priorArt") });
+    blocks.push({ kind: "paragraph", text: prior.note });
+    if (prior.query && prior.before) {
+      blocks.push({
+        kind: "paragraph",
+        muted: true,
+        text: t("report.priorArtQuery", { query: prior.query, date: formatDate(prior.before) }),
+      });
+    }
+    if (prior.works?.length) {
+      blocks.push({
+        kind: "references",
+        items: prior.works.map((work, index) => ({
+          n: index + 1,
+          url: work.url,
+          text: `${work.title} · ${formatDate(work.date)}`,
+        })),
+      });
+    }
   }
 
   blocks.push({ kind: "heading", text: t("report.sources", { count: sources.length }) });
@@ -733,6 +756,7 @@ export function directionReportDoc({
     [t("study.live.channels.web"), channelTotal(topic.web)],
     [t("study.live.channels.registry"), channelTotal(topic.registry)],
     [t("study.live.channels.corpus"), channelTotal(topic.corpus)],
+    [t("study.live.channels.research"), channelTotal(topic.research)],
   ];
   const blocks: ReportDoc["blocks"] = [
     {

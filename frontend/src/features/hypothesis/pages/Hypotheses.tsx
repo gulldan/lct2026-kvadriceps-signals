@@ -24,6 +24,7 @@ import {
   hypothesesToJSON,
   hypothesesToJiraCSV,
   hypothesesToTasksJSON,
+  hypothesisClusterId,
   isFallbackDraft,
   isResearchDirection,
   researchTypeMeta,
@@ -55,6 +56,8 @@ import { DigestDialog } from "@/features/hypothesis/board/dialogs";
 import { loadReportData, portfolioReportDoc } from "@/features/hypothesis/report/reportData";
 import { ReportExport, type ExportItem } from "@/shared/report/ReportExport";
 import { saveFile } from "@/shared/lib/download";
+import { interleaveBy } from "@/shared/lib/interleaveBy";
+import { hypothesisResearchDomain } from "../board/researchDomain";
 
 import { Button } from "@/shared/ui/Button";
 import { Badge } from "@/shared/ui/Badge";
@@ -123,7 +126,7 @@ export function Hypotheses() {
   const [queue, setQueue] = useState<QueueKey>(() => {
     const fromUrl = searchParams.get("queue");
     if (fromUrl && WORK_QUEUES.some((q) => q.key === fromUrl)) return fromUrl as QueueKey;
-    return searchParams.get("kpi") ? "all" : "ready";
+    return "all";
   });
   // URL — единственный источник фасетов, запись — только по действию пользователя: эффект при
   // загрузке мог отменить уже начавшийся переход по меню.
@@ -149,7 +152,7 @@ export function Hypotheses() {
       { replace: true },
     );
   };
-  const [sortBy, setSortBy] = useState<SortKey>("rank");
+  const [sortBy, setSortBy] = useState<SortKey>("diverse");
   const initialKind = searchParams.get("kind") as KindTab | null;
   const [kind, setKind] = useState<KindTab>(
     initialKind && KIND_TABS.has(initialKind) ? initialKind : "hypotheses",
@@ -199,14 +202,15 @@ export function Hypotheses() {
       const seq = ++requestSeq.current;
       if (!silent) setPhase("loading");
       try {
-        const board = await getHypothesisBoard({
-          ...boardParams,
-          limit: silent ? Math.max(BOARD_LIMIT, loadedCount.current) : BOARD_LIMIT,
-          offset: 0,
-        });
+        const count = silent ? Math.max(BOARD_LIMIT, loadedCount.current) : BOARD_LIMIT;
+        const pages = await Promise.all(
+          Array.from({ length: Math.ceil(count / BOARD_LIMIT) }, (_, index) =>
+            getHypothesisBoard({ ...boardParams, offset: index * BOARD_LIMIT }),
+          ),
+        );
         if (seq !== requestSeq.current) return;
-        setHyps(board.items);
-        setBoardTotal(board.total);
+        setHyps(pages.flatMap((page) => page.items));
+        setBoardTotal(pages[0]!.total);
         setPhase("ready");
       } catch (e) {
         if (seq !== requestSeq.current) return;
@@ -321,15 +325,16 @@ export function Hypotheses() {
     setBoardPage(1);
   }, [kind, queue, search, selectedFacets, sortBy]);
 
-  const kpiById = useMemo(() => new Map(kpis.map((k) => [k.id, k.title])), [kpis]);
+  const kpiById = useMemo(() => new Map(kpis.map((k) => [k.id, k])), [kpis]);
   const clusterById = useMemo(
     () => new Map((clusters ?? []).map((c) => [c.id, clusterLabel(c)])),
     [clusters],
   );
   // null — тема есть, но список тем ещё едет: место под подпись держим заранее.
   const clusterTitleOf = (h: ApiHypothesis) => {
-    if (!h.primary_cluster_id) return undefined;
-    return clusters === null ? null : clusterById.get(h.primary_cluster_id);
+    const clusterId = hypothesisClusterId(h);
+    if (!clusterId) return undefined;
+    return clusters === null ? null : clusterById.get(clusterId);
   };
 
   const byKind = useMemo(() => {
@@ -361,13 +366,16 @@ export function Hypotheses() {
       activeKindRows.map((h) => ({
         h,
         company: visibleMeta(h.organization) ?? "",
-        func: visibleMeta(h.function_area) ?? "",
+        func:
+          visibleMeta(kpiById.get(h.kpi_id ?? "")?.function_area ?? "") ??
+          visibleMeta(h.function_area) ??
+          "",
         source: visibleMeta(h.source_type) ?? "",
         trl: h.trl === null ? "" : String(h.trl),
         research: researchTypeTag(h.tags) ?? "",
         kpi: h.kpi_id ?? "",
       })),
-    [activeKindRows],
+    [activeKindRows, kpiById],
   );
   const rowMatchesFacets = useCallback(
     (row: (typeof facetRows)[number], skip?: FacetKey) =>
@@ -402,7 +410,10 @@ export function Hypotheses() {
       source: make("source", (v) => sourceTypeLabel(v) ?? v),
       trl: make("trl", (v) => t("trl.value", { trl: v })),
       research: make("research", (v) => researchTypeMeta(v as ResearchTypeTag)?.label ?? v),
-      kpi: make("kpi", (v) => kpiById.get(v) || t("board.goalUnavailable", { id: v.slice(-8) })),
+      kpi: make(
+        "kpi",
+        (v) => kpiById.get(v)?.title || t("board.goalUnavailable", { id: v.slice(-8) }),
+      ),
     };
   }, [facetRows, rowMatchesFacets, selectedFacets, kpiById, t]);
 
@@ -443,8 +454,11 @@ export function Hypotheses() {
   const sorted = useMemo(() => {
     const cmp = SORTS.find((s) => s.key === sortBy) ?? SORTS[0];
     if (!cmp) return filtered;
-    return filtered.toSorted((a, b) => cmp.value(b) - cmp.value(a));
-  }, [filtered, sortBy]);
+    const ranked = filtered.toSorted((a, b) => cmp.value(b) - cmp.value(a));
+    return sortBy === "diverse"
+      ? interleaveBy(ranked, (h) => hypothesisResearchDomain(h, kpiById.get(h.kpi_id ?? "")))
+      : ranked;
+  }, [filtered, sortBy, kpiById]);
 
   const boardPageCount = Math.max(1, Math.ceil(sorted.length / BOARD_PAGE));
   const safeBoardPage = Math.min(boardPage, boardPageCount);
@@ -462,16 +476,16 @@ export function Hypotheses() {
   );
 
   const facetsActive = FACET_KEYS.some((k) => selectedFacets[k].length > 0);
-  const filtersActive =
-    search !== "" || (kind === "hypotheses" && queue !== "ready") || facetsActive;
+  const filtersActive = search !== "" || (kind === "hypotheses" && queue !== "all") || facetsActive;
   const showToolbar = !showingMethodology && (activeKindRows.length > 0 || filtersActive);
   const resetFilters = () => {
     setSearch("");
-    setQueue("ready");
+    setQueue("all");
     setSearchParams(
       (prev) => {
         const next = new URLSearchParams(prev);
         for (const key of FACET_KEYS) next.delete(key);
+        next.set("queue", "all");
         return next;
       },
       { replace: true },
@@ -564,7 +578,7 @@ export function Hypotheses() {
       />
       {thesisFilter && kpiById.has(thesisFilter) && (
         <p className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-muted-foreground">
-          <span>{t("board.thesis", { title: kpiById.get(thesisFilter) })}</span>
+          <span>{t("board.thesis", { title: kpiById.get(thesisFilter)?.title })}</span>
           <Button variant="link" size="inline" asChild>
             <Link to={`/kpi/${thesisFilter}`}>
               <ArrowLeft className="size-4" aria-hidden />
@@ -752,13 +766,16 @@ export function Hypotheses() {
                     ? t("board.rangeFiltered", { total: activeKindRows.length })
                     : ""}
                 </p>
+                {/* Заголовки карточек — третьего уровня: без раздела между ними и заголовком
+                    страницы читалка видела разрыв в оглавлении. */}
+                <h2 className="sr-only">{kindTabs.find((tab) => tab.id === kind)?.label}</h2>
                 <div className="mt-3 grid grid-cols-[repeat(auto-fill,minmax(min(100%,21rem),1fr))] gap-4">
                   {pagedRows.map((h) => (
                     <HypothesisCard
                       key={h.id}
                       h={h}
                       owner={ownerName(h.owner_id)}
-                      kpiTitle={h.kpi_id ? kpiById.get(h.kpi_id) : undefined}
+                      kpiTitle={h.kpi_id ? kpiById.get(h.kpi_id)?.title : undefined}
                       clusterTitle={clusterTitleOf(h)}
                       onOpen={() =>
                         navigate(

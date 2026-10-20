@@ -17,7 +17,7 @@ import {
 import type { LucideIcon } from "lucide-react";
 
 import type { ApiHypothesis, Verdict } from "@/features/hypothesis/api";
-import { pct, trlMeta } from "@/features/hypothesis/model";
+import { hypothesisItc, pct, trlMeta } from "@/features/hypothesis/model";
 import { radarStageCode, stageReason, tzStageLabel } from "@/features/hypothesis/betPassport";
 import { ConfidenceSplit, RankingExplainer } from "@/features/hypothesis/ui/HypothesisInsights";
 import { ConsensusMeter } from "@/features/hypothesis/ui/detail/ConsensusMeter";
@@ -168,7 +168,7 @@ export function Scoreboard({
   const scores = a.scores;
   const ranking = a.ranking;
   const learning = a.learning_priority;
-  const itc = a.itc;
+  const itc = hypothesisItc(hypothesis);
   const trl = trlMeta(hypothesis.trl);
   const verdict = check?.verdict
     ? (VERDICT_META[check.verdict] ?? VERDICT_META.insufficient)

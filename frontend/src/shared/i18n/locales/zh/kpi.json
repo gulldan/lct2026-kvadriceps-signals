@@ -23,7 +23,10 @@
     "viewAria": "论点筛选",
     "activeTab": "进行中（{{count}}）",
     "archivedTab": "归档（{{count}}）",
-    "archiveEmpty": "此列表暂时为空。"
+    "archiveEmpty": "此列表暂时为空。",
+    "sortAria": "研究命题排序",
+    "sortDiverse": "不同研究领域",
+    "sortRecent": "最新优先"
   },
   "empty": {
     "title": "创建第一个论点",
@@ -82,7 +85,7 @@
   "dialog": {
     "title": "新建论点",
     "name": "名称",
-    "namePlaceholder": "例如：可在企业环境试点的 LLM 智能体防护",
+    "namePlaceholder": "例如：可开展工业试点的储能技术",
     "description": "描述",
     "descriptionPlaceholder": "简要说明，选填",
     "metric": "指标（如何判断预测是否应验）",
@@ -94,7 +97,7 @@
     "targetPlaceholder": "选填",
     "directionNote": "变化方向会自动判断。若目标值暂不确定，可以不填写。",
     "functionArea": "领域",
-    "functionAreaPlaceholder": "例如：AI 安全，选填",
+    "functionAreaPlaceholder": "例如：医学、能源或农业",
     "cancel": "取消",
     "create": "创建",
     "creating": "创建中…",
@@ -133,7 +136,7 @@
     "newGoal": "新论点——用文字描述",
     "prompt": "寻找什么、为什么",
     "promptExisting": "补充说明与限制",
-    "promptPlaceholder": "例如：未来 2–3 年内将设备端 AI 推理成本降低数倍的技术。关注已在设备厂商开展首批试点的方案；到 2027 年底希望有两项处于试点及以上阶段的技术。",
+    "promptPlaceholder": "哪些技术可能在三年内减少农业用水，同时不降低作物产量？请寻找田间试验和两种适合试点的方法。",
     "promptExistingPlaceholder": "例如：期限至 2027 年底，仅限开放许可的方案。",
     "promptHint": "系统会自动从文本中提取论点名称、指标和限制条件。",
     "addFiles": "添加文件或拖拽到此处",
@@ -159,7 +162,34 @@
     "addMoreFiles": "再添加文件",
     "save": "保存",
     "saveAndGenerate": "保存并生成",
-    "detachError": "移除文档失败"
+    "detachError": "移除文档失败",
+    "examplesTitle": "领域示例：",
+    "examples": {
+      "medicine": {
+        "label": "医学",
+        "prompt": "哪些新兴疾病早期诊断方法可能在三年内进入临床研究？请提供已发表结果、局限性和可测量的准确性指标。"
+      },
+      "agriculture": {
+        "label": "农业",
+        "prompt": "哪些技术可能在三年内减少农业用水，同时不降低作物产量？请寻找田间试验和两种适合试点的方法。"
+      },
+      "energy": {
+        "label": "能源",
+        "prompt": "哪些新兴储能技术可能在三年内适合开展工业试点？请比较使用寿命、储能成本和试验证据。"
+      },
+      "environment": {
+        "label": "环境",
+        "prompt": "哪些新型水污染物去除方法可能在三年内开展试点？请提供效率、能耗和副产物信息。"
+      },
+      "materials": {
+        "label": "材料",
+        "prompt": "哪些可生物降解材料可能在三年内替代多层包装？请比较阻隔性能、降解条件和生产成熟度。"
+      },
+      "computing": {
+        "label": "计算",
+        "prompt": "哪些方法能在不降低质量的情况下减少设备端计算能耗？请寻找可复现的测量结果以及适合三年内开展试点的候选方案。"
+      }
+    }
   },
   "page": {
     "back": "全部论点",

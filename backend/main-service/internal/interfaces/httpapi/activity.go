@@ -55,11 +55,12 @@ func (a *API) systemActivity(w http.ResponseWriter, r *http.Request) {
 			_ = json.Unmarshal([]byte(raw), &ws)
 			ws.Name = name
 		}
-		if ws.State == nil && (name == keyITC || name == "eval") {
+		if name == keyITC || name == "eval" {
 			if raw, found, err := a.metrics.Get(ctx, "rag:"+name+":last_status"); err == nil && found {
-				s := strings.TrimSpace(raw)
-				ws.State = &s
+				a.applyMaintenanceActivity(ctx, &ws, raw)
 			}
+		} else if ws.LastSuccessAt == nil {
+			a.applyMaintenanceSuccess(ctx, &ws, "rag:work:{"+name+"}")
 		}
 		view.Workers = append(view.Workers, ws)
 	}

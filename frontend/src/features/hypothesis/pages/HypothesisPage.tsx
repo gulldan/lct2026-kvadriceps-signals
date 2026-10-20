@@ -13,7 +13,11 @@ import { listClusters } from "@/features/cluster";
 import { listKPIs, type ApiKPI } from "@/features/kpi";
 import { HypothesisDetailPanel } from "@/features/hypothesis/ui/HypothesisDetailPanel";
 import { DirectionDetailPanel } from "@/features/hypothesis/ui/DirectionDetailPanel";
-import { cleanInternalTitle, isResearchDirection } from "@/features/hypothesis/model";
+import {
+  cleanInternalTitle,
+  hypothesisClusterId,
+  isResearchDirection,
+} from "@/features/hypothesis/model";
 import { useOwnerNames } from "@/features/hypothesis/owners";
 import { buildHypothesisReport } from "@/features/hypothesis/report/hypothesisReport";
 import { betPassportDoc } from "@/features/hypothesis/betPassport";
@@ -51,9 +55,10 @@ export function HypothesisPage() {
         ]);
         setHyp(h);
         setKpi(h.kpi_id ? kpis.find((k) => k.id === h.kpi_id) : undefined);
+        const clusterId = hypothesisClusterId(h);
         setClusterTitle(
-          h.primary_cluster_id
-            ? cleanInternalTitle(clusters.find((c) => c.id === h.primary_cluster_id)?.label ?? "")
+          clusterId
+            ? cleanInternalTitle(clusters.find((c) => c.id === clusterId)?.label ?? "")
             : undefined,
         );
         setPhase("ready");

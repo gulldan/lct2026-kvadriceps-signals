@@ -38,7 +38,7 @@ def annotations() -> list[SpanAnnotation]:
 
 @pytest.fixture(scope="session")
 def handoff_request() -> dict:
-    """Пример /predict из ML_CLASSIFIER_HANDOFF.md байт в байт."""
+    """Пример /predict из README.md (раздел «Стык с радаром») байт в байт."""
     return load("predict_request.json")["request"]
 
 

@@ -30,6 +30,7 @@ export function LegendItem({
       <span
         aria-hidden
         className={cn(
+          "shrink-0",
           SIZES[size],
           shape === "round" && "rounded-full",
           marker,

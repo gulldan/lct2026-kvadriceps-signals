@@ -18,6 +18,7 @@ export function LiveMapLegend({
     return change ? [change] : [];
   });
   const fresh = changes.map((change) => change.fresh);
+  const funded = topics.filter((topic) => (topic.money?.total ?? 0) > 0).length;
   return (
     <div className="mt-2 flex flex-wrap items-center gap-x-5 gap-y-2">
       {/* Не общий formatDate: в карточке предпросмотра шириной 320 px полные месяцы её рвут. */}
@@ -33,14 +34,23 @@ export function LiveMapLegend({
           <span className="size-3 rounded-full bg-foreground" />
         </span>
         <span>{t("study.live.map.size")}</span>
-        <InfoHint label={t("study.live.map.groupsHelp")}>
-          {t("study.live.map.groupsGuide", {
-            min: Math.min(...fresh),
-            max: Math.max(...fresh),
-            period: ranges.recent,
-          })}
-        </InfoHint>
+        {fresh.length > 0 && (
+          <InfoHint label={t("study.live.map.groupsHelp")}>
+            {t("study.live.map.groupsGuide", {
+              min: Math.min(...fresh),
+              max: Math.max(...fresh),
+              period: ranges.recent,
+            })}
+          </InfoHint>
+        )}
       </div>
+      {funded > 0 && (
+        <div className="flex items-center gap-1.5 text-xs" data-testid="trend-money-legend">
+          <span aria-hidden className="size-3 rounded-full outline-2 outline-map-money-4" />
+          <span>{t("study.live.map.money")}</span>
+          <span className="font-mono text-muted-foreground tabular-nums">{funded}</span>
+        </div>
+      )}
       <div
         className="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs"
         data-testid="trend-growth-legend"

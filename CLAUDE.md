@@ -18,5 +18,4 @@
   `./frontend/node_modules/.bin/oxfmt --config frontend/.oxfmtrc.json DESIGN.md` — pre-commit хук
   проверяет формат этого файла.
 - На живом стенде не запускать `make up`: `env-bootstrap` рассинхронит пароль Postgres и контур
-  ляжет. Только точечный `compose up -d --build <сервисы>` — см.
-  [.claude/skills/deploy-stand/SKILL.md](.claude/skills/deploy-stand/SKILL.md).
+  ляжет. Только точечный `make deploy SERVICES="<сервисы>"`.

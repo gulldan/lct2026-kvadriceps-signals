@@ -15,6 +15,7 @@ type LiveCounters struct {
 	Registry            int `json:"registry"`
 	Patents             int `json:"patents"`
 	Web                 int `json:"web"`
+	Research            int `json:"research,omitempty"`
 	External            int `json:"external"`
 	TrustedSources      int `json:"trusted_sources"`
 	LoweredSources      int `json:"lowered_sources"`
@@ -34,8 +35,9 @@ const liveMinIndependent = 2
 // технология не входит — по тому же правилу экран не ставит ей вердикт «слабый сигнал» (signalScore.ts).
 func liveModelAbove(candidate LiveTopic) bool {
 	score := candidate.ModelScore
-	return score != nil && score.Label != liveClassifierInsufficient && math.Round(score.Value*100) > 75 &&
-		liveIndependentSources(candidate) >= liveMinIndependent
+	// «Не могу решить» — не уверенность модели, какой бы ни была оценка.
+	return score != nil && score.Label != liveClassifierInsufficient && score.Label != liveClassifierUndecided &&
+		math.Round(score.Value*100) > 75 && liveIndependentSources(candidate) >= liveMinIndependent
 }
 
 // Рыночные записи дописываются после подсчёта авторских групп, поэтому их издатели считаются отдельно, а все
@@ -69,6 +71,7 @@ func liveCounters(topic LiveTopic, papers []StudyPaper, metadata map[string]Live
 		{topic.Patents, &counters.Patents},
 		{topic.PatentsCN, &counters.Patents},
 		{topic.Web, &counters.Web},
+		{topic.Research, &counters.Research},
 	} {
 		tally.addChannel(channel.channel, channel.into)
 	}

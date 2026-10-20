@@ -27,6 +27,7 @@ type webSource struct {
 	URL      string   `json:"url"`
 	Kind     string   `json:"kind"`
 	Industry string   `json:"industry"`
+	Genre    string   `json:"genre,omitempty"`
 	URLs     []string `json:"urls,omitempty"`
 	Pages    int      `json:"pages,omitempty"`
 }
@@ -76,11 +77,15 @@ func defaultConfig() sourceConfig {
 		"hydrogen", "perovskite", "solid state batter", "sodium ion", "carbon capture",
 		"gene editing", "crispr", "bioprint", "additive manufactur",
 	}}
+	c.Web = append(c.Web, domainArchiveSources()...)
+	c.Web = append(c.Web, ventureResearchSources()...)
+	c.Web = append(c.Web, investorSources()...)
+	c.Web = append(c.Web, domainResearchFeeds()...)
 	for _, f := range defaultFeeds() {
 		if f.Name == "NASA" {
 			continue
 		}
-		c.Web = append(c.Web, webSource{Name: f.Name, URL: f.URL, Kind: "rss", Industry: strings.TrimPrefix(f.Name, "MIT ")})
+		c.Web = append(c.Web, webSource{Name: f.Name, URL: f.URL, Kind: kindRSS, Industry: strings.TrimPrefix(f.Name, "MIT ")})
 	}
 	c.Web = append(c.Web, researchSources()...)
 	c.Web = append(c.Web,
@@ -99,8 +104,9 @@ func loadConfig(name string) (sourceConfig, error) {
 		if err != nil {
 			return c, fmt.Errorf("read source config: %w", err)
 		}
-		if len(raw) > 64<<10 {
-			return c, errors.New("source config exceeds64KiB")
+		// 18.10 ленты ранних денег довели файл до 66,7 КиБ: прежние 64 КиБ уронили сборщик при перезапуске.
+		if len(raw) > 128<<10 {
+			return c, errors.New("source config exceeds 128KiB")
 		}
 		if err = json.Unmarshal(raw, &c, json.RejectUnknownMembers(true)); err != nil {
 			return c, fmt.Errorf("decode source config: %w", err)
@@ -112,11 +118,11 @@ func loadConfig(name string) (sourceConfig, error) {
 	return c, nil
 }
 
-// maxWebSources ограничивает один проход сбора, а не размер панели источников.
-const maxWebSources = 192
+// maxWebSources ограничивает один проход сбора, а не размер панели источников: 270 лент проходят за полтора часа.
+const maxWebSources = 320
 
 // maxPanelDomains равен потолку числа лент: почти каждая лента приносит свой домен.
-const maxPanelDomains = 192
+const maxPanelDomains = 320
 
 func validateSourceConfig(c sourceConfig) error {
 	if !validBudgets(c) || len(c.Web) == 0 || len(c.Web) > maxWebSources || len(c.PatentTerms) > 64 {
@@ -125,17 +131,21 @@ func validateSourceConfig(c sourceConfig) error {
 	names := map[string]bool{}
 	panel := c.domains()
 	if len(panel) == 0 || len(panel) > maxPanelDomains {
-		return errors.New("the collected panel must name 1..192 domains")
+		return errors.New("the collected panel must name 1..320 domains")
 	}
 	for _, f := range c.Web {
 		u, e := url.Parse(f.URL)
 		if e != nil || u.Scheme != schemeHTTPS || u.Host == "" || u.User != nil || f.Name == "" || names[f.Name] ||
-			!slices.Contains([]string{kindFeed, "rss", kindWordPress, kindURL, kindURLs, kindSitemap,
-				kindCNCF, kindTechPort, kindHFPapers, kindHFModels, kindBingNews}, f.Kind) {
-			return errors.New("source requires unique name, HTTPS URL and feed/rss/wordpress/url/urls/sitemap kind")
+			!slices.Contains([]string{kindFeed, kindRSS, kindWordPress, kindURL, kindURLs, kindSitemap,
+				kindCNCF, kindTechPort, kindHFPapers, kindHFModels, kindBingNews, kindEuropePMC,
+				kindCrossref, kindClinicalTrials, kindBiorxiv, kindDataCite, kindZenodo, kindFigshare, kindBioStudies}, f.Kind) {
+			return errors.New("source requires unique name, HTTPS URL and a supported collector kind")
 		}
 		if f.Pages < 0 || f.Pages > 500 || (f.Kind == kindURLs) != (len(f.URLs) > 0) || len(f.URLs) > 500 {
 			return errors.New("a URL list belongs to kind=urls and holds at most 500 pages")
+		}
+		if !validInvestorGenre(f) {
+			return errors.New("source genre must be investment_thesis or investor_commentary on a feed or configured page")
 		}
 		names[f.Name] = true
 	}
@@ -162,7 +172,7 @@ func (c sourceConfig) fingerprint(kind string) string {
 	if kind == kindCNPatents {
 		b = append([]byte(cnParserVersion+"\x00"), b...)
 	} else if kind != kindPatents {
-		b = append([]byte(webArticleParserVersion+"\x00"+webFeedParserVersion+"\x00"), b...)
+		b = append([]byte(webArticleParserVersion+"\x00"+webFeedParserVersion+"\x00"+publicationVersion+"\x00"), b...)
 	}
 	return hashBytes(b)
 }
@@ -180,6 +190,7 @@ type coverage struct {
 	From                string       `json:"from"`
 	Through             string       `json:"through"`
 	Received            int          `json:"received"`
+	Undated             int          `json:"undated"`
 	Titles              int          `json:"titles"`
 	Content             int          `json:"content"`
 	MissingTitles       int          `json:"missing_titles"`
@@ -247,6 +258,10 @@ func summarizeCoverage(data *snapshot) {
 		c := &data.Coverage[i]
 		ids := map[string]bool{}
 		for _, r := range data.Records {
+			if r.Source == c.Source && r.Date == "" && exportInWindow(r, c.From, c.Through, true) {
+				c.Undated++
+				continue
+			}
 			if r.Source != c.Source || r.Date < c.From || r.Date > c.Through {
 				continue
 			}
@@ -335,6 +350,10 @@ func (s *service) exportRecords(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, "valid calendar required", http.StatusBadRequest)
 		return
 	}
+	if err = validateExportFilters(q, s.kind); err != nil {
+		http.Error(w, err.Error(), http.StatusBadRequest)
+		return
+	}
 	s.mu.RLock()
 	data := s.data
 	s.mu.RUnlock()
@@ -344,8 +363,7 @@ func (s *service) exportRecords(w http.ResponseWriter, r *http.Request) {
 	}
 	candidates := []record{}
 	for _, v := range data.Records {
-		if v.Date >= q.Get("from") && v.Date <= q.Get("through") && v.Title != "" && v.ExcludedReason == "" &&
-			exportMatches(v, q.Get("query")) {
+		if exportKeeps(v, q) {
 			candidates = append(candidates, v)
 		}
 	}
@@ -378,6 +396,39 @@ func (s *service) exportRecords(w http.ResponseWriter, r *http.Request) {
 		"total": len(candidates), "observed_at": data.ObservedAt, "source_set": data.SourceSet,
 		"coverage": data.Coverage, "limits": data.Limits,
 	})
+}
+
+func exportKeeps(v record, q url.Values) bool {
+	genre, sources := q.Get("genre"), q["source"]
+	return exportInWindow(v, q.Get("from"), q.Get("through"), q.Get("include_undated") == "1") &&
+		v.Title != "" && v.ExcludedReason == "" && (genre == "" || v.Genre == genre) &&
+		(len(sources) == 0 || slices.Contains(sources, v.Source)) && exportMatches(v, q.Get("query"))
+}
+
+func validateExportFilters(q url.Values, kind string) error {
+	if value := q.Get("include_undated"); value != "" && value != "0" && value != "1" {
+		return errors.New("include_undated must be 0 or 1")
+	}
+	if (q.Has("genre") || q.Has("include_undated")) && kind != kindWeb {
+		return errors.New("genre and include_undated are available only for web records")
+	}
+	if genre := q.Get("genre"); genre != "" && !isInvestorGenre(genre) {
+		return errors.New("genre must be investment_thesis or investor_commentary")
+	}
+	// Слой ранних денег читает свои ленты целиком; без фильтра по источнику он листал бы весь снимок.
+	if len(q["source"]) > 32 {
+		return errors.New("at most 32 source names")
+	}
+	return nil
+}
+
+// Дата наблюдения отбирает недатированный контекст только по явному запросу; датой публикации она не становится.
+func exportInWindow(row record, from, through string, includeUndated bool) bool {
+	day := row.Date
+	if day == "" && includeUndated {
+		day = sourceDay(row.ObservedAt)
+	}
+	return day != "" && day >= from && day <= through
 }
 
 // Темы уже отобраны панелью сборщика: английских ключевых слов в китайском тексте не требуем.

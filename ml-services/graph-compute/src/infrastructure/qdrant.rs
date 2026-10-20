@@ -5,6 +5,7 @@ use anyhow::{ensure, Context, Result};
 use serde_json::{json, Value};
 
 use crate::application::VectorSource;
+use crate::domain::config::MAX_GRAPH_NODES;
 use crate::domain::vector::{chunk_index_of, extract_vector, ChunkPoint};
 
 const SCROLL_LIMIT: u32 = 256;
@@ -12,7 +13,7 @@ const MAX_PAGE_BYTES: usize = 16 << 20;
 // Общего потолка по байтам нет: память держат MAX_POINTS и страница, время — срок
 // сбора. Вектор в JSON весит ~13 КБ, и потолок в гигабайт на 48 тыс. документов
 // ронял доску тем.
-const MAX_POINTS: usize = 200_000;
+const MAX_POINTS: usize = MAX_GRAPH_NODES * 2;
 
 /// Без границы бюджет точек съедают документы с полным текстом (50–150 чанков), и
 /// собранные роботом статьи в граф не попадают. Два — столько, сколько весит
@@ -158,7 +159,10 @@ fn parse_point(point: &Value) -> Option<ChunkPoint> {
     // Проверка страхует фильтр запроса и потому открывается тем же флагом: иначе
     // запрос уходит расширенным, а разбор молча выбрасывает всё расширение.
     if !*ALLOW_SNAPSHOT_SOURCES
-        && payload.get("source_index_snapshot").and_then(Value::as_str).is_some_and(|v| !v.is_empty())
+        && payload
+            .get("source_index_snapshot")
+            .and_then(Value::as_str)
+            .is_some_and(|v| !v.is_empty())
     {
         return None;
     }

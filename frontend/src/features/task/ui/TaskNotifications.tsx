@@ -3,7 +3,12 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import { useBackgroundTasks, type BackgroundTask } from "@/features/task/TaskContext";
-import { WORKER_LABELS, type SystemActivity, type WorkerStatus } from "@/features/task/api";
+import {
+  WORKER_LABELS,
+  workerState,
+  type SystemActivity,
+  type WorkerStatus,
+} from "@/features/task/api";
 import { ackWatch, useWatches, WatchDigests, type Watch } from "@/features/watch";
 import { statusTone, toneClasses } from "@/shared/design-system/tones";
 import { cn } from "@/shared/lib/cn";
@@ -40,6 +45,8 @@ function taskTime(task: BackgroundTask): string {
 }
 
 function WorkerRow({ worker }: { worker: WorkerStatus }) {
+  const { t } = useTranslation("task");
+  const state = workerState(worker);
   const label = WORKER_LABELS[worker.name] ?? worker.name;
   const progress =
     worker.progressTotal && worker.progressTotal > 0
@@ -47,14 +54,17 @@ function WorkerRow({ worker }: { worker: WorkerStatus }) {
       : "";
   return (
     <div className="flex items-center gap-2 rounded-md px-2 py-1.5">
-      <StatusIcon state={worker.state} className="shrink-0" />
+      <StatusIcon state={state} className="shrink-0" />
       <div className="min-w-0 flex-1">
         <p className="truncate text-sm">
           {label}
-          {worker.state === "running" && (
+          {state === "running" && (
             <span className="font-mono text-xs text-muted-foreground">{progress}</span>
           )}
         </p>
+        {(state === "stale" || state === "unknown") && (
+          <p className="mt-0.5 text-xs text-muted-foreground">{t(`workerState.${state}`)}</p>
+        )}
         {worker.state === "error" && worker.lastError && (
           <p className="mt-0.5 line-clamp-2 text-xs text-risk">{worker.lastError}</p>
         )}
@@ -65,7 +75,7 @@ function WorkerRow({ worker }: { worker: WorkerStatus }) {
 
 function SystemPulse({ activity }: { activity: SystemActivity }) {
   const { t } = useTranslation("task");
-  const busy = activity.workers.filter((w) => w.state !== "idle");
+  const busy = activity.workers.filter((w) => workerState(w) !== "idle");
   if (activity.workers.length === 0) return null;
   return (
     <>

@@ -14,7 +14,7 @@ import { ReportBlocks } from "@/shared/report/ReportBlocks";
 import { ReportExport } from "@/shared/report/ReportExport";
 import { cn } from "@/shared/lib/cn";
 import { formatDate, formatNumber } from "@/shared/lib/format";
-import type { LiveClaimEvidence, LiveDetail, LiveTopic } from "../liveApi";
+import type { LiveClaimEvidence, LiveDetail, LivePriorArt, LiveTopic } from "../liveApi";
 import { topicBranch } from "../liveBranches";
 import { liveTopicName } from "./LiveOverview";
 import { TopicHeader } from "./TopicHeader";
@@ -144,6 +144,19 @@ export function LiveSignalReport({
                 />
               </Field>
               <section className="space-y-2">
+                <SectionTitle>{t("report.study_limitations")}</SectionTitle>
+                {card?.study_limitations ? (
+                  <>
+                    <Prose>{card.study_limitations}</Prose>
+                    <Evidence field="study_limitations" topic={candidate} sources={sources} />
+                  </>
+                ) : (
+                  <p className="text-sm text-muted-foreground">
+                    {t("report.studyLimitationsMissing")}
+                  </p>
+                )}
+              </section>
+              <section className="space-y-2">
                 <SectionTitle>{t("report.report_assessment")}</SectionTitle>
                 {card?.report_assessment ? (
                   <>
@@ -194,6 +207,7 @@ export function LiveSignalReport({
                   />
                 </section>
               )}
+              {card?.prior_art && <PriorArt result={card.prior_art} />}
               <SourceList detail={detail} sources={sources} />
             </ReadingContent>
             <ScorePanel
@@ -208,6 +222,38 @@ export function LiveSignalReport({
         </Card>
       </div>
     </>
+  );
+}
+
+function PriorArt({ result }: { result: LivePriorArt }) {
+  const { t } = useTranslation("trend");
+  return (
+    <section className="space-y-3">
+      <SectionTitle>{t("report.priorArt")}</SectionTitle>
+      <Prose>{result.note}</Prose>
+      {result.query && result.before && (
+        <p className="text-sm text-muted-foreground">
+          {t("report.priorArtQuery", { query: result.query, date: formatDate(result.before) })}
+        </p>
+      )}
+      {!!result.works?.length && (
+        <ul className="space-y-3">
+          {result.works.map((work) => (
+            <li key={work.id}>
+              <a
+                href={work.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline underline-offset-4"
+              >
+                {work.title}
+              </a>
+              <p className="text-sm text-muted-foreground">{formatDate(work.date)}</p>
+            </li>
+          ))}
+        </ul>
+      )}
+    </section>
   );
 }
 
@@ -279,6 +325,8 @@ function ScorePanel({
               <span className="font-semibold">{signalVerdict(candidate, t).text}. </span>
               {notPassedNote(candidate.shortfall, detail.papers.length, t)}
             </Notice>
+          ) : model?.label === "undecided" ? (
+            <Notice className="text-caption">{t("report.undecidedReason")}</Notice>
           ) : (
             score.passed &&
             !isConfirmedSignal(candidate) && (

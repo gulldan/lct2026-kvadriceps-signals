@@ -77,6 +77,7 @@ export function SourceProvenance({ evidence }: { evidence: SourceEvidence }) {
     <div className="space-y-6">
       {s.arxiv && <Notice tone="brand">{t("source.preprintNotice")}</Notice>}
       {s.github && <Notice tone="brand">{t("source.repositoryNotice")}</Notice>}
+      {s.genre && <Notice tone="brand">{t("source.investorNotice")}</Notice>}
       <dl className="grid gap-x-8 gap-y-5 sm:grid-cols-2">
         {fields.map(([label, value]) => (
           <div key={label} className="min-w-0">

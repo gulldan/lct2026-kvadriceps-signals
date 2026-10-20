@@ -202,7 +202,7 @@ func (s *TrendLiveService) finishCandidateBatch(ctx context.Context, query strin
 	classify := s.classifyAsync(ctx, query, umbrella, candidates, documents, metadata)
 	s.writeWave(ctx, query, candidates, documents, metadata)
 	s.assessEvents(ctx, umbrella, candidates, documents, metadata)
-	candidates, rejected := liveAdmitCards(candidates, nil)
+	candidates, rejected := liveAdmitCards(candidates)
 	candidates, rejected = classify(candidates, rejected)
 	if s.classifier != nil {
 		candidates, rejected = liveRequireModelScores(candidates, rejected)

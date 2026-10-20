@@ -271,6 +271,10 @@ func TestRefreshMissingToken(t *testing.T) {
 	if got := resp.decode(t)["error"]; got != "refresh session required" {
 		t.Fatalf("error = %v", got)
 	}
+	browser := post(t, srv, "/refresh", `{}`, map[string]string{"X-Auth-Mode": "browser", "Origin": srv.URL})
+	if browser.status != http.StatusNoContent {
+		t.Fatalf("browser without cookie: status = %d, want 204", browser.status)
+	}
 }
 
 func TestRefreshUnknownSession(t *testing.T) {

@@ -14,6 +14,7 @@ import (
 
 const webFeedParserVersion = "gofeed@v1.4.2+publication-v4"
 const kindFeed = "feed"
+const kindRSS = "rss"
 
 type feed struct{ URL, Name string }
 

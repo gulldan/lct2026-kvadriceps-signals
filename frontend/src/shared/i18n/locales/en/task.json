@@ -19,7 +19,8 @@
   "toasts": {
     "done": "Task completed",
     "failed": "Failed to complete the task",
-    "insufficientContext": "The sources do not contain enough information to enrich the hypothesis. Add materials or clarify the wording."
+    "insufficientContext": "The sources do not contain enough information to enrich the hypothesis. Add materials or clarify the wording.",
+    "unparsableModelOutput": "The model replied in an unexpected format, so nothing was saved. Try again."
   },
   "notifications": {
     "bellAria": "Background tasks: {{count}}",
@@ -56,5 +57,9 @@
       "unchanged": "unchanged",
       "weakening": "weakening"
     }
+  },
+  "workerState": {
+    "stale": "No recent signal",
+    "unknown": "Status unknown"
   }
 }

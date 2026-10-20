@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { Link, useSearchParams } from "react-router-dom";
 import { toneClasses, type Tone } from "@/shared/design-system/tones";
 import { cn } from "@/shared/lib/cn";
-import { formatDate, formatNumber } from "@/shared/lib/format";
+import { formatDate, formatNumber, upperFirst } from "@/shared/lib/format";
 import { useRequest } from "@/shared/lib/useRequest";
 import { AiNote } from "@/shared/ui/AiNote";
 import { Button } from "@/shared/ui/Button";
@@ -58,9 +58,7 @@ export function ExecutiveDialog({
       <DialogContent className="max-h-[85dvh] gap-6 overflow-y-auto sm:max-w-3xl">
         <DialogHeader className="space-y-2">
           <Kicker>{t("executive.docType")}</Kicker>
-          <DialogTitle className="text-2xl leading-tight">
-            {title.charAt(0).toLocaleUpperCase() + title.slice(1)}
-          </DialogTitle>
+          <DialogTitle className="text-2xl leading-tight">{upperFirst(title)}</DialogTitle>
           <DialogDescription>
             {brief.data ? (
               <>

@@ -61,7 +61,7 @@ func TestLiveCardCallBudgetsRespectParent(t *testing.T) {
 					t.Fatal(err)
 				}
 				gen := &liveTimedCardGenerator{draft: string(raw),
-					verified: liveCardTestReview(t, draft.Evidence, []string{source}, fields...)}
+					verified: liveCardTestReview(t, draft, []string{source}, fields...)}
 				ctx, cancel := context.WithTimeout(t.Context(), tc.parent)
 				defer cancel()
 				started := time.Now()
@@ -86,8 +86,7 @@ func TestLiveCardCallBudgetsRespectParent(t *testing.T) {
 	}
 }
 
-// Правило 2 из 3: описание обязательно, к нему — преимущество или кейс, каждое со своей цитатой.
-func TestLiveCardAdmissibleNeedsSummaryAndOneMore(t *testing.T) {
+func TestLiveCardCompleteNeedsAllThreeVerifiedFields(t *testing.T) {
 	card := func(fields ...string) LiveTopic {
 		c := LiveCard{VerificationModel: "fixture", ExampleID: "p1"}
 		for _, field := range fields {
@@ -107,13 +106,14 @@ func TestLiveCardAdmissibleNeedsSummaryAndOneMore(t *testing.T) {
 		fields []string
 		want   bool
 	}{
-		{[]string{liveClaimSummary, liveClaimAdvantage}, true},
-		{[]string{liveClaimSummary, liveClaimExample}, true},
+		{[]string{liveClaimSummary, liveClaimAdvantage, liveClaimExample}, true},
+		{[]string{liveClaimSummary, liveClaimAdvantage}, false},
+		{[]string{liveClaimSummary, liveClaimExample}, false},
 		{[]string{liveClaimSummary}, false},
 		{[]string{liveClaimAdvantage, liveClaimExample}, false},
 	} {
-		if got := liveCardAdmissible(card(tc.fields...)); got != tc.want {
-			t.Fatalf("fields %v: admissible=%v, want %v", tc.fields, got, tc.want)
+		if got := liveCardComplete(card(tc.fields...)); got != tc.want {
+			t.Fatalf("fields %v: complete=%v, want %v", tc.fields, got, tc.want)
 		}
 	}
 }

@@ -22,7 +22,8 @@ func (s *Service) ClusterHead(ctx context.Context, ownerID string) (string, erro
 func (s *Service) PublishClusters(ctx context.Context, ownerID, requestID, expected string,
 	clusters []*domain.Cluster,
 ) ([]*domain.Cluster, error) {
-	if _, err := uuid.Parse(requestID); err != nil || strings.TrimSpace(ownerID) == "" || len(clusters) > 2000 {
+	// Корпус из 100 тысяч документов уже даёт более 2000 тем; общий размер по-прежнему ограничен 32 МиБ.
+	if _, err := uuid.Parse(requestID); err != nil || strings.TrimSpace(ownerID) == "" || len(clusters) > 5000 {
 		return nil, domain.ErrInvalidArgument
 	}
 	if expected != "" {

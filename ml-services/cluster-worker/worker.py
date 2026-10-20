@@ -81,6 +81,8 @@ LABEL_REUSE_STABILITY = max(0.0, min(1.0, float(os.environ.get("LABEL_REUSE_STAB
 # RAPTOR, ответ в 200 токенов идёт больше минуты, и при 45 с падал каждый запрос разметки.
 LABEL_LLM_ATTEMPTS = max(1, int(os.environ.get("LABEL_LLM_ATTEMPTS", "2")))
 LABEL_LLM_TIMEOUT = max(5, int(os.environ.get("LABEL_LLM_TIMEOUT", "180")))
+# Рассуждение расходует тот же бюджет, что и короткий итог: старые 1024 токена обрывали названия.
+LABEL_LLM_MAX_TOKENS = max(512, min(8192, int(os.environ.get("LABEL_LLM_MAX_TOKENS", "4096"))))
 # Ответ модели на тему идёт ~20 с при 7–13 ток/с на поток, а шлюз суммарно держит десятки потоков:
 # по одной теме 350 новых тем размечались почти два часа.
 LABEL_CONCURRENCY = max(1, int(os.environ.get("LABEL_CONCURRENCY", "8")))
@@ -558,6 +560,10 @@ def http(url, payload=None, token=None, timeout=180, method=None):
         return json.loads(body) if body else {}
 
 
+def chat(payload, timeout=180):
+    return http(VLLM_URL.rstrip("/") + "/v1/chat/completions", payload, token=VLLM_API_KEY, timeout=timeout)
+
+
 def throttle_vllm():
     if VLLM_RPM <= 0:
         return
@@ -615,18 +621,17 @@ def label_community(signals, representatives=None):
                 throttle_vllm()
                 payload = {"model": VLLM_MODEL,
                            "messages": [{"role": "user", "content": retry_prompt or prompt}],
-                           "temperature": 0.2, "max_tokens": 1024}
+                           "temperature": 0.2, "max_tokens": min(8192, LABEL_LLM_MAX_TOKENS * (attempt + 1)),
+                           "response_format": {"type": "json_object"}}
                 if effort := os.environ.get("VLLM_REASONING_EFFORT", "").strip():
                     payload["reasoning_effort"] = effort
-                resp = http(
-                    VLLM_URL.rstrip("/") + "/v1/chat/completions",
-                    payload,
-                    token=VLLM_API_KEY,
-                    timeout=LABEL_LLM_TIMEOUT,
-                )
+                resp = chat(payload, LABEL_LLM_TIMEOUT)
                 if isinstance(resp, dict):
                     record_llm_usage(VLLM_MODEL, "cluster_label", resp.get("usage") or {})
-                c = resp["choices"][0]["message"]["content"]
+                choice = resp["choices"][0]
+                if choice.get("finish_reason") == "length":
+                    raise ValueError("label response was truncated")
+                c = choice["message"]["content"]
                 obj = json.loads(c[c.index("{"): c.rindex("}") + 1])
                 label = obj.get("label", "")
                 foreign = bool(label) and not re.search(r"[А-Яа-яЁё]", label)

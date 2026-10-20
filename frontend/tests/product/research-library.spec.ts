@@ -365,6 +365,8 @@ test("query changes cancel the old finale while reduced motion and saved searche
   await expect(page.getByRole("tablist")).toHaveCount(0);
   await expect(page.getByRole("heading", { name: `Ищем «${nextQuery}»…` })).toBeVisible();
   await page.emulateMedia({ reducedMotion: "no-preference" });
+  // Без ожидания финал под нагрузкой ещё видел «меньше движения» и сразу отдавал результаты.
+  await expect(library).toHaveAttribute("data-reduced-motion", "false");
 
   searches[nextQuery] = {
     ...searches[nextQuery]!,

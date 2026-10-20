@@ -1,12 +1,19 @@
 import type { ApiHypothesis } from "@/features/hypothesis/api";
 import { formatItcIndex } from "@/features/hypothesis/itcProfile";
-import { CONFIDENCE_FACETS, pct, priorityScore, trlMeta } from "@/features/hypothesis/model";
+import {
+  CONFIDENCE_FACETS,
+  hypothesisItc,
+  pct,
+  priorityScore,
+  trlMeta,
+} from "@/features/hypothesis/model";
 import type { ReportBlock } from "@/shared/report/blocks";
 import { itcComponents } from "./reportData";
 import { t, riskLevel } from "./reportText";
 
 export function assessmentBlocks(h: ApiHypothesis): ReportBlock[] {
   const a = h.assessment;
+  const itc = hypothesisItc(h);
   const blocks: ReportBlock[] = [];
 
   blocks.push({
@@ -100,12 +107,12 @@ export function assessmentBlocks(h: ApiHypothesis): ReportBlock[] {
       });
     }
   }
-  if (a.itc) {
+  if (itc) {
     blocks.push({
       kind: "paragraph",
-      text: `${t("hypothesis:hreport.p.itc")}: ${formatItcIndex(a.itc)}/100`,
+      text: `${t("hypothesis:hreport.p.itc")}: ${formatItcIndex(itc)}/100`,
     });
-    const comps = itcComponents(a.itc);
+    const comps = itcComponents(itc);
     if (comps.length > 0) {
       blocks.push({
         kind: "kv",

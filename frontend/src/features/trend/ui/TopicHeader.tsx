@@ -61,7 +61,15 @@ export function TopicHeader({
                 {t(`study.stage.${topic.stage}`)}
               </Badge>
             )}
-            {branch && <Badge variant="outline">{t(`study.live.branches.${branch}`)}</Badge>}
+            {/* Без подписи область науки читали как отрасль и видели противоречие с таблицей. */}
+            {branch && (
+              <span className="inline-flex items-center gap-1.5">
+                <span className="text-caption text-muted-foreground">
+                  {t("study.live.branchLabel")}
+                </span>
+                <Badge variant="outline">{t(`study.live.branches.${branch}`)}</Badge>
+              </span>
+            )}
             {topic.source === "discovered" && (
               <span className="inline-flex items-center gap-1">
                 <Badge variant="outline">{t("study.live.discoveredBadge")}</Badge>

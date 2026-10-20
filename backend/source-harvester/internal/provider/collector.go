@@ -26,12 +26,14 @@ type Collector struct {
 	fetcher        *fetcher
 }
 
+const providerWeb = "web"
+
 func NewCollector(kind string) (*Collector, error) {
-	if kind != providerPatent && kind != "web" {
+	if kind != providerPatent && kind != providerWeb {
 		return nil, errors.New("collector must be patent or web")
 	}
 	key, endpoint := "PATENT_COLLECTOR_URL", "http://patent-collector:8090"
-	if kind == "web" {
+	if kind == providerWeb {
 		key, endpoint = "WEB_COLLECTOR_URL", "http://web-collector:8090"
 	}
 	if value := os.Getenv(key); value != "" {
@@ -59,6 +61,8 @@ func (a *Collector) SetRequestGate(g Gate) { a.fetcher.gate = g }
 
 type collectorRecord struct {
 	ID            string             `json:"id"`
+	DOI           string             `json:"doi"`
+	Genre         string             `json:"genre"`
 	KindCode      string             `json:"kind_code"`
 	Title         string             `json:"title"`
 	Text          string             `json:"text"`
@@ -148,6 +152,10 @@ func (a *Collector) Fetch(ctx context.Context, scope Scope, cursor string) (Page
 	}
 	q := url.Values{"from": {scope.From}, "through": {scope.Through},
 		"query": {scope.Query}, "limit": {strconv.Itoa(scope.PageSize)}}
+	if a.kind == providerWeb && scope.WorkType == sourcedoc.GenreInvestmentThesis {
+		q.Set("genre", sourcedoc.GenreInvestmentThesis)
+		q.Set("include_undated", "1")
+	}
 	if cursor != "" {
 		q.Set("cursor", cursor)
 	}
@@ -213,33 +221,47 @@ func collectorPatentDates(source *sourcedoc.Source, row collectorRecord) {
 	}
 }
 
+func collectorCanonical(kind string, row collectorRecord) (string, error) {
+	if kind == providerPatent {
+		if row.FamilyID != "" {
+			return "patent-family:" + row.FamilyID, nil
+		}
+		return "patent:" + row.ID, nil
+	}
+	if row.DOI != "" {
+		doi := strings.ToLower(strings.TrimSpace(row.DOI))
+		if !strings.HasPrefix(doi, "10.") || !strings.Contains(doi, "/") || strings.ContainsAny(doi, " \t\r\n") {
+			return "", errors.New("invalid collector DOI")
+		}
+		// Одна публикация из нескольких каталогов сохраняет общую идентичность.
+		return "doi:" + doi, nil
+	}
+	return cmp.Or(row.OriginalURL, row.CanonicalURL, row.URL), nil
+}
+
 func collectorDocument(kind string, row collectorRecord, raw jsontext.Value, scope Scope, observed time.Time) (Record, error) {
 	result := Record{Title: row.Title, TextStatus: row.TextStatus, Raw: raw}
 	text := strings.TrimSpace(row.Title + "\n\n" + row.Text)
 	if row.Title == "" || len(row.Title) > 4096 || len(text) > 512<<10 {
 		return result, errors.New("invalid collector title/text")
 	}
-	canonical := row.CanonicalURL
-	if canonical == "" {
-		canonical = row.URL
-	}
-	if row.OriginalURL != "" {
-		canonical = row.OriginalURL
+	canonical, err := collectorCanonical(kind, row)
+	if err != nil {
+		return result, err
 	}
 	sourceKind := "analysis"
 	if kind == providerPatent {
 		sourceKind = providerPatent
-		canonical = "patent:" + row.ID
-		if row.FamilyID != "" {
-			canonical = "patent-family:" + row.FamilyID
-		}
 	}
 	source := sourcedoc.Source{Version: 1, Kind: sourceKind, Provider: kind, NativeID: row.ID, URL: row.URL,
 		CanonicalID: canonical, Publication: &sourcedoc.Date{Value: row.Date, Precision: precisionDay, Basis: row.DateBasis},
 		ObservedAt: observed, Revision: digest([]byte(text)), ContentHash: digest([]byte(text)),
 		HashAlgorithm: hashSHA256, AccessScope: scopePublic}
 	source.Publication.Basis = cmp.Or(source.Publication.Basis, "collector publisher record")
-	if at, e := time.Parse(time.RFC3339, row.AvailableAt); e == nil && !at.After(observed) {
+	if err = collectorInvestorContext(&source, row, scope); err != nil {
+		return result, err
+	}
+	if at, e := time.Parse(time.RFC3339, row.AvailableAt); e == nil && !at.After(source.ObservedAt) {
 		source.AvailableAt = new(at)
 		source.AvailableBasis = "first successful source observation"
 	}

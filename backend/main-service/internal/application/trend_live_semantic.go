@@ -63,6 +63,9 @@ func liveTitleProfile(topic LiveTopic, papers []StudyPaper) ([]string, []string)
 	for _, id := range topic.PaperIDs {
 		ids[id] = true
 	}
+	for _, record := range liveChannelRecords(topic.Research) {
+		ids[liveEvidenceID(record)] = true
+	}
 	selected := []StudyPaper{}
 	for _, paper := range papers {
 		if ids[paper.ID] && strings.TrimSpace(paper.Title) != "" {

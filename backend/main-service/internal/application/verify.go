@@ -14,6 +14,10 @@ import (
 
 const verifyEvidenceTop = 10
 
+const verifyAbstainRationale = "В базе знаний не нашлось достаточно релевантных фрагментов, чтобы проверить гипотезу."
+
+var errVerifyAbstained = errors.New("verify retrieval abstained")
+
 const (
 	verdictSupported    = "supported"
 	verdictRefuted      = "refuted"
@@ -47,6 +51,11 @@ func (s *HypothesisService) Verify(ctx context.Context, ownerID, id string) (*co
 	// Документы, которые сами являются готовыми гипотезами («слитые ответы»), не должны стать доказательством.
 	excludeDocIDs := s.answerDocIDs(llmCtx, ownerID)
 	main, mainSrc, model, merr := s.judgeStatement(llmCtx, ownerID, stmt, prompt, excludeDocIDs)
+	// Отказ поиска — законный вердикт «недостаточно данных», а не сбой. Вторичные проходы видят его как
+	// ошибку и молча пропускаются, чтобы не приписать вердикту публикации, которых модель не читала.
+	if errors.Is(merr, errVerifyAbstained) {
+		main, merr = verifyResult{Verdict: verdictInsufficient, Rationale: verifyAbstainRationale}, nil
+	}
 	if merr != nil {
 		return nil, merr
 	}
@@ -113,6 +122,10 @@ func (s *HypothesisService) judgeStatement(
 	if err != nil {
 		return verifyResult{}, nil, "", err
 	}
+	// Модель не вызывалась, и вместо JSON пришла служебная фраза — разбирать её нечего.
+	if resp.GetTrace().GetAbstainReason() != "" {
+		return verifyResult{}, nil, "", errVerifyAbstained
+	}
 	res, perr := parseVerify(resp.GetAnswer())
 	if perr != nil {
 		return verifyResult{}, nil, "", perr
@@ -162,9 +175,9 @@ func parseVerify(answer string) (verifyResult, error) {
 	var r verifyResult
 	if err := decodeJSONObject(answer, &r, json.Unmarshal); err != nil {
 		if errors.Is(err, errNoJSONObject) {
-			return verifyResult{}, errors.New("no JSON object in verify output")
+			return verifyResult{}, fmt.Errorf("no JSON object in verify output: %w", ErrUnparsableModelOutput)
 		}
-		return verifyResult{}, fmt.Errorf("parse verify result: %w", err)
+		return verifyResult{}, fmt.Errorf("parse verify result: %w: %w", ErrUnparsableModelOutput, err)
 	}
 	return r, nil
 }

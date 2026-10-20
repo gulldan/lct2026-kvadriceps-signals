@@ -9,10 +9,13 @@ import { PageHeader } from "@/shared/ui/PageHeader";
 import { Section } from "@/shared/ui/Section";
 import { listTopClusters } from "@/features/cluster";
 import { cleanInternalTitle } from "@/features/hypothesis";
+import { interleaveBy } from "@/shared/lib/interleaveBy";
+import { researchDomain } from "@/shared/lib/researchDomain";
 
 interface FocusTopic {
   id: string;
   label: string;
+  domain: ReturnType<typeof researchDomain>;
 }
 
 // Пул больше показанного, чтобы подсказки менялись от захода к заходу; часть отсеется.
@@ -43,13 +46,16 @@ function useFocusTopics(): FocusTopic[] {
           const key = label.toLowerCase();
           if (!label || seen.has(key)) continue;
           seen.add(key);
-          next.push({ id: cluster.id, label });
+          next.push({
+            id: cluster.id,
+            label,
+            domain: researchDomain(label, ...(cluster.keywords ?? [])),
+          });
         }
         const start = focusOffset % Math.max(1, next.length);
         focusOffset = start + FOCUS_SHOWN;
-        setTopics(
-          next.filter((_, index) => (index - start + next.length) % next.length < FOCUS_SHOWN),
-        );
+        const rotated = [...next.slice(start), ...next.slice(0, start)];
+        setTopics(interleaveBy(rotated, (topic) => topic.domain).slice(0, FOCUS_SHOWN));
       })
       .catch(() => {
         if (!cancelled) setTopics([]);

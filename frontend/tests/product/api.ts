@@ -4,6 +4,9 @@ import trendLive from "../fixtures/trend-live.json" with { type: "json" };
 import trendLiveTopic from "../fixtures/trend-live-topic.json" with { type: "json" };
 import trendLiveModel from "../fixtures/trend-live-model.json" with { type: "json" };
 import technology from "../fixtures/technology.json" with { type: "json" };
+import earlyMoney from "../fixtures/early-money.json" with { type: "json" };
+import worldMap from "../fixtures/trend-live-world.json" with { type: "json" };
+import investors from "../fixtures/investors.json" with { type: "json" };
 import type { ApiHypothesis } from "../../src/features/hypothesis/api";
 
 type Reply = { status: number; json?: unknown; pdf?: boolean; text?: string };
@@ -160,6 +163,33 @@ export function createTestApi() {
     if (key === "GET /trends/live") return ok(trendLive);
     if (key === "GET /trends/live/topics/mcp") return ok(trendLiveTopic);
     if (key === "GET /trends/live/model") return ok(trendLiveModel);
+    if (key === "GET /trends/live/money") {
+      const region = url.searchParams.get("region");
+      const kind = url.searchParams.get("kind");
+      const matches = (event: { region: string; kind: string }) =>
+        (!region || event.region === region) && (!kind || event.kind === kind);
+      const cells = earlyMoney.cells.filter(matches);
+      return ok({
+        ...earlyMoney,
+        cells,
+        latest: earlyMoney.latest.filter(matches),
+        total: cells.reduce((total, cell) => total + cell.count, 0),
+        unsorted: cells
+          .filter((cell) => !cell.rubric)
+          .reduce((total, cell) => total + cell.count, 0),
+      });
+    }
+    if (key === "GET /trends/live/map") return ok(worldMap);
+    if (key === "GET /trends/live/investors") {
+      const region = url.searchParams.get("region");
+      const country = url.searchParams.get("country");
+      const items = investors.items.filter(
+        (item) => (!region || item.region === region) && (!country || item.country === country),
+      );
+      return ok({ ...investors, matched: items.length, items });
+    }
+    if (key === "GET /trends/live/money/match")
+      return ok({ status: "ready", total: 1, kinds: { round: 1 }, events: earlyMoney.latest });
     if (method === "GET" && /^\/trends\/live\/papers\/[^/]+\/cover$/.test(path)) return missing();
     if (key === "GET /trends/live/searches") return ok({ entries: state.searches });
     if (key === "GET /trends/live/search")

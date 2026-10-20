@@ -13,6 +13,8 @@ const FAILURES = new Set([
   "openalex_exhausted",
   "patents_unavailable",
   "previous_snapshot",
+  "pubmed_unavailable",
+  "research_unavailable",
   "scholar_unavailable",
   "semantic_unavailable",
   "source_unavailable",

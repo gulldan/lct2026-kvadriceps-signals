@@ -8,11 +8,38 @@ import (
 	"errors"
 	"fmt"
 	"log/slog"
+	"strconv"
 	"strings"
 	"testing"
+	"time"
 
 	"github.com/example/main-service/internal/platform/aiclients"
+	"github.com/example/main-service/internal/platform/llmusage"
 )
+
+type liveUsageTestKV map[string]map[string]int64
+
+func (kv liveUsageTestKV) AddUsage(_ context.Context, day, _, prefix string, prompt, completion, cost int64,
+	_, _ time.Duration,
+) error {
+	if kv[day] == nil {
+		kv[day] = map[string]int64{}
+	}
+	for metric, n := range map[string]int64{"req": 1, "pt": prompt, "ct": completion, "cost": cost} {
+		kv[day][prefix+metric] += n
+	}
+	return nil
+}
+
+func (kv liveUsageTestKV) HGetAll(_ context.Context, key string) (map[string]string, error) {
+	out := map[string]string{}
+	for field, n := range kv[key] {
+		out[field] = strconv.FormatInt(n, 10)
+	}
+	return out, nil
+}
+
+func (liveUsageTestKV) GetInt(context.Context, string) (int64, error) { return 0, nil }
 
 type liveAuditTestGenerator struct {
 	request  aiclients.GenRequest
@@ -37,7 +64,8 @@ func (g *liveAuditTestGenerator) Stream(ctx context.Context, request aiclients.G
 	return response, err
 }
 
-// Обе формы вызова и отказ: данные и текст ошибки провайдера не выходят в журнал.
+// Обе формы вызова и отказ: данные и текст ошибки провайдера не выходят в журнал, а в реестр расхода
+// попадают только вызовы с отчётом о токенах.
 func TestLiveLLMAuditPreservesProvenanceWithoutContent(t *testing.T) {
 	var output bytes.Buffer
 	previous := slog.Default()
@@ -73,7 +101,8 @@ func TestLiveLLMAuditPreservesProvenanceWithoutContent(t *testing.T) {
 				response.Model = ""
 			}
 			upstream := &liveAuditTestGenerator{response: response, err: tc.err}
-			generator := NewLiveAuditedGenerator(upstream, func(context.Context) string { return "configured-model-v2" })
+			usage := liveUsageTestKV{}
+			generator := NewLiveAuditedGenerator(upstream, func(context.Context) string { return "configured-model-v2" }, usage)
 			var got aiclients.GenResponse
 			var err error
 			var streamed string
@@ -119,6 +148,55 @@ func TestLiveLLMAuditPreservesProvenanceWithoutContent(t *testing.T) {
 			if _, exists := record["cost_usd"]; exists {
 				t.Fatal("audit inferred a price without reported cost")
 			}
+			cells, _ := llmusage.ReadDay(ctx, usage, time.Now())
+			want := llmusage.Cell{Model: "test-model-v1", Operation: tc.operation, Requests: 1, PromptTokens: 12, CompletionTokens: 4}
+			if tc.measured != (len(cells) == 1) || tc.measured && cells[0] != want {
+				t.Fatalf("usage ledger = %+v; measured=%v", cells, tc.measured)
+			}
 		})
+	}
+}
+
+// За минуту до конца прогона вызов не начинается: срок оборвал бы его посреди генерации. Пропуск
+// опознаётся как истечение срока и в журнал вызовов не попадает; без срока прогона вызов идёт.
+func TestLiveRunEndingSkipsCallsThatCannotFinish(t *testing.T) {
+	var output bytes.Buffer
+	previous := slog.Default()
+	slog.SetDefault(slog.New(slog.NewJSONHandler(&output, nil)))
+	t.Cleanup(func() { slog.SetDefault(previous) })
+	request := aiclients.GenRequest{System: liveCardSystem, Query: "query"}
+	for _, tc := range []struct {
+		name    string
+		left    time.Duration
+		skipped bool
+	}{
+		{"ending", 30 * time.Second, true},
+		{"room_left", 5 * time.Minute, false},
+		{"no_run_budget", 0, false},
+	} {
+		t.Run(tc.name, func(t *testing.T) {
+			output.Reset()
+			ctx := t.Context()
+			if tc.left > 0 {
+				ctx = context.WithValue(ctx, liveRunDeadlineKey{}, time.Now().Add(tc.left))
+			}
+			upstream := &liveAuditTestGenerator{response: aiclients.GenResponse{Text: "ok"}}
+			generator := NewLiveAuditedGenerator(upstream, func(context.Context) string { return "model" }, nil)
+			_, err := generator.Generate(ctx, request)
+			_, streamErr := generator.Stream(ctx, request, func(string) error { return nil })
+			called := upstream.request.System != ""
+			if tc.skipped != !called || tc.skipped != errors.Is(err, context.DeadlineExceeded) ||
+				tc.skipped != errors.Is(streamErr, context.DeadlineExceeded) {
+				t.Fatalf("called=%v err=%v stream=%v", called, err, streamErr)
+			}
+			if tc.skipped == strings.Contains(output.String(), "radar_llm_call") {
+				t.Fatalf("журнал вызовов: %s", output.String())
+			}
+		})
+	}
+	ctx, cancel := liveRunBudget(t.Context())
+	defer cancel()
+	if deadline, _ := ctx.Value(liveRunDeadlineKey{}).(time.Time); time.Until(deadline) <= liveSearchBudget-time.Minute {
+		t.Fatalf("срок прогона не запомнен: %v", deadline)
 	}
 }

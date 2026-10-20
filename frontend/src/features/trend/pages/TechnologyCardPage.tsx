@@ -29,6 +29,7 @@ import { ImplementationHypothesisDialog } from "../ui/ImplementationHypothesisDi
 import { TechnologyBrief } from "../ui/TechnologyBrief";
 import { groupBySource, TechnologySources } from "../ui/TechnologySources";
 import { TechnologyReview } from "../ui/TechnologyReview";
+import { MoneyPlaque } from "../ui/MoneyPlaque";
 
 const STATUS_TONE = { proposed: "muted", verified: "ok", needs_review: "warn" } as const;
 
@@ -57,14 +58,16 @@ export function TechnologyCardPage() {
           : "technology.back";
   const here = location.pathname + location.search;
 
-  // Готовый бриф отдаётся из кэша без обращения к модели; 404 — «ещё не написан».
+  // Готовый бриф отдаётся из кэша без обращения к модели; пустой ответ — «ещё не написан».
   useEffect(() => {
     const controller = new AbortController();
     setBrief(null);
     setMissing(false);
     getTechnologyBrief(id, controller.signal)
       .then((result) => {
-        if (!controller.signal.aborted) setBrief(result);
+        if (controller.signal.aborted) return;
+        if (result) setBrief(result);
+        else setMissing(true);
       })
       .catch(() => {
         if (!controller.signal.aborted) setMissing(true);
@@ -218,6 +221,12 @@ export function TechnologyCardPage() {
                 </Section>
               </div>
               <div className="space-y-8">
+                <MoneyPlaque
+                  terms={[
+                    technology.canonical_name,
+                    ...technology.aliases.map((alias) => alias.value),
+                  ]}
+                />
                 <Section title={t("technology.aliases.title")}>
                   {technology.aliases.length === 0 ? (
                     <p className="text-sm text-muted-foreground">{t("technology.aliases.empty")}</p>
@@ -232,7 +241,9 @@ export function TechnologyCardPage() {
                           >
                             <span className="font-medium">{alias.value}</span>
                             <span className="text-xs text-muted-foreground">
-                              {alias.language}
+                              {t(`source.languages.${alias.language}`, {
+                                defaultValue: alias.language,
+                              })}
                               {" · "}
                               {basis ? t(`technology.aliases.basis.${basis}`) : alias.basis}
                             </span>

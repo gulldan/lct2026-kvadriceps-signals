@@ -27,7 +27,7 @@ import (
 //go:embed trend_live_classifier_weights.json
 var liveWeakSignalWeights []byte
 
-// Отчёт пишется той же командой обучения: экран проверки модели показывает ровно ту версию, что работает в радаре.
+// Отчёт относится к обученным весам; политика покрытия источников живого радара версионируется отдельно.
 //
 //go:embed trend_live_classifier_evaluation.json
 var liveWeakSignalEvaluation []byte
@@ -41,6 +41,7 @@ func WeakSignalArtifacts() (weights, evaluation []byte, err error) {
 	if embedding, ok := artifact["embedding"].(map[string]any); ok {
 		artifact["embedding"] = map[string]any{"model": embedding["model"], "coef": embedding["coef"]}
 	}
+	artifact["embedded_inference_version"] = fmt.Sprint(artifact["version"]) + liveSourceCoverageVersion
 	if weights, err = json.Marshal(artifact); err != nil {
 		return nil, nil, fmt.Errorf("weak signal model: %w", err)
 	}
@@ -52,13 +53,36 @@ type WeakSignalModel struct {
 	Version       string              `json:"version"`
 	FeatureSchema string              `json:"feature_schema"`
 	Threshold     float64             `json:"threshold"`
+	Conformal     WeakSignalConformal `json:"conformal"`
 	Intercept     float64             `json:"intercept"`
 	Inputs        []string            `json:"inputs"`
 	Impute        []float64           `json:"impute"`
 	Mean          []float64           `json:"mean"`
 	Scale         []float64           `json:"scale"`
 	Coef          []float64           `json:"coef"`
+	Min           []float64           `json:"min"`
+	Max           []float64           `json:"max"`
 	Embedding     WeakSignalEmbedding `json:"embedding"`
+}
+
+// WeakSignalConformal — квантили несоответствия по классам (Mondrian) по внепапочным оценкам обучения: метка
+// «сигнал» допустима при 1 − p ≤ Weak, «не сигнал» — при p ≤ NotWeak, и каждая покрывает свой класс не реже
+// 1 − Alpha. Обе допустимы — гарантия не позволяет выбрать, и модель честно говорит «не могу решить».
+type WeakSignalConformal struct {
+	Alpha   float64 `json:"alpha"`
+	Weak    float64 `json:"weak"`
+	NotWeak float64 `json:"not_weak"`
+}
+
+func (c WeakSignalConformal) undecided(value float64) bool {
+	return 1-value <= c.Weak && value <= c.NotWeak
+}
+
+func (c WeakSignalConformal) basis(value float64) string {
+	return fmt.Sprintf("Не могу решить: оценка %.0f %% лежит в полосе %.0f–%.0f %%, где при гарантии %.0f %% "+
+		"для каждого класса допустимы и «слабый сигнал», и «не слабый сигнал». Модель не может отличить кандидата "+
+		"от хайпа с этой гарантией; нужна проверка рыночного слоя.",
+		value*100, (1-c.Weak)*100, c.NotWeak*100, (1-c.Alpha)*100)
 }
 
 type WeakSignalEmbedding struct {
@@ -102,10 +126,15 @@ func LoadWeakSignalModel() (WeakSignalModel, error) {
 	if err := json.Unmarshal(liveWeakSignalWeights, &m); err != nil {
 		return m, fmt.Errorf("weak signal model: %w", err)
 	}
-	n, e := len(m.Inputs), m.Embedding
+	n, e, c := len(m.Inputs), m.Embedding, m.Conformal
+	// Порог внутри полосы «не могу решить»: вне неё решение множества совпадает с решением порога, и метка
+	// не спорит с порогом, который видит читатель.
 	shaped := m.Version != "" && m.FeatureSchema == LiveClassifierSchema && liveUnitInterval(m.Threshold) &&
+		c.Alpha > 0 && c.Alpha < 1 && liveUnitInterval(c.Weak) && liveUnitInterval(c.NotWeak) &&
+		1-c.Weak <= m.Threshold && m.Threshold <= c.NotWeak &&
 		slices.Equal(m.Inputs, WeakSignalInputNames()) &&
 		len(m.Impute) == n && len(m.Mean) == n && len(m.Scale) == n && len(m.Coef) == n &&
+		len(m.Min) == n && len(m.Max) == n &&
 		len(e.Components) > 0 && len(e.Coef) == len(e.Components) && len(e.PostMean) == len(e.Components) &&
 		len(e.PostScale) == len(e.Components) && len(e.Scale) == len(e.Mean) && len(e.PCAMean) == len(e.Mean)
 	for _, component := range e.Components {
@@ -159,6 +188,7 @@ func (e WeakSignalEmbedding) contribution(vector []float64) float64 {
 // WeakSignalEvidence с nil — источник не ответил: вход заменяется медианой обучения и называется неизмеренным.
 type WeakSignalEvidence struct {
 	Window    *LivePhraseWindow
+	Journals  *LiveRatingEvidence
 	History   LiveTermHistory
 	HN        *LiveHNCounts
 	Rating    *LiveMaturityRating
@@ -273,6 +303,7 @@ func (s *TrendLiveService) EmbeddedClassifier() (CandidateClassifier, string, er
 	if err != nil {
 		return nil, "", err
 	}
+	model.Version += liveSourceCoverageVersion
 	classify := func(ctx context.Context, input LiveClassifierRequest) (LiveClassifierResponse, error) {
 		s.mu.RLock()
 		snapshot := s.snapshot
@@ -293,25 +324,27 @@ func (s *TrendLiveService) EmbeddedClassifier() (CandidateClassifier, string, er
 		}
 		sourceCtx, cancel := context.WithTimeout(ctx, liveClassifierStage)
 		defer cancel()
-		evidence := s.weakSignalEvidence(ctx, sourceCtx,
-			slices.DeleteFunc(slices.Clone(phrases), func(p string) bool { return p == "" }), periods, model.Embedding.Model)
+		evidence := s.weakSignalCandidateEvidence(ctx, sourceCtx, input.Candidates, phrases, periods, model.Embedding.Model)
 		if err := ctx.Err(); err != nil {
 			return LiveClassifierResponse{}, fmt.Errorf("embedded classifier canceled: %w", err)
 		}
 		output := LiveClassifierResponse{FeatureSchema: LiveClassifierSchema,
 			Predictions: make([]LiveClassifierPrediction, len(input.Candidates))}
 		for i, candidate := range input.Candidates {
-			own := evidence
+			own := map[string]*WeakSignalEvidence{phrases[i]: evidence[i]}
 			if phrases[i] == "" {
 				// Без фразы кандидата окно берётся по его источникам, остальное неизмерено, и оценка вне области обучения.
 				own = map[string]*WeakSignalEvidence{"": {Window: &LivePhraseWindow{
 					LiveClassifierFeatures: candidate.Features, Total: candidate.Features.Documents}}}
 			}
 			output.Predictions[i] = model.prediction(candidate.ID, phrases[i:i+1], own, month)
-			if gap := liveDataGap(own[phrases[i]]); gap != "" {
-				p := &output.Predictions[i]
+			// Нехватка данных важнее полосы: оценка на медианах вместо входов ни о чём не говорит, и причина одна.
+			switch p, gap := &output.Predictions[i], liveDataGap(own[phrases[i]]); {
+			case gap != "":
 				p.Label, p.DataGap = liveClassifierInsufficient, gap
 				p.Basis += " " + liveDataGapBasis(gap, own[phrases[i]])
+			case p.Label == liveClassifierUndecided:
+				p.Basis += " " + model.Conformal.basis(p.Value)
 			}
 		}
 		return output, nil
@@ -353,10 +386,13 @@ func liveThinEvidence(e *WeakSignalEvidence) string {
 		return ""
 	}
 	works, history := max(e.Window.Total, e.Window.Documents), liveHistoryWorks(e.History, math.MaxInt)
+	if e.Journals != nil {
+		works = max(works, e.Journals.Total)
+	}
 	switch hn := e.HN.Before + e.HN.Mid + e.HN.Recent; {
 	case works == 0 && history == 0 && hn == 0:
 		return liveGapNotFound
-	case works == 1 && history <= 1 && hn == 0:
+	case max(works, history) == 1 && hn == 0:
 		return liveGapTooEarly
 	}
 	return ""
@@ -366,10 +402,10 @@ func liveDataGapBasis(gap string, e *WeakSignalEvidence) string {
 	const tail = " Оценка модели показана для справки и на данных не основана."
 	switch gap {
 	case liveGapNotFound:
-		return "Мало данных: фраза не найдена ни в окне arXiv, ни в OpenAlex, ни на Hacker News — возможно, " +
-			"технологию называют иначе." + tail
+		return "Мало данных: фраза не найдена в собранных научных материалах, истории OpenAlex " +
+			"и Hacker News — возможно, технологию называют иначе." + tail
 	case liveGapTooEarly:
-		return "Мало данных: фраза пока встречается в одной работе — одна в окне arXiv, не больше одной в " +
+		return "Мало данных: фраза пока встречается в одной научной работе, не больше одной в " +
 			"OpenAlex за всю историю, ни одной на Hacker News. Судить о распространении рано." + tail
 	}
 	missing := []string{}
@@ -391,13 +427,26 @@ func liveDataGapBasis(gap string, e *WeakSignalEvidence) string {
 // SetMaturityRater с nil оставляет вход неизмеренным, и модель считает по остальным.
 func (s *TrendLiveService) SetMaturityRater(rater *LiveMaturityRater) { s.rater = rater }
 
-// Окно считается первым: оно быстрое и нужно подсказке модели языка; остальные источники идут одновременно.
+// История и окно общие для фразы; журнальные свидетельства и оценка зрелости принадлежат конкретному кандидату.
 func (s *TrendLiveService) weakSignalEvidence(ctx, sourceCtx context.Context, phrases []string, periods []LivePeriod,
-	embeddingModel string,
+	embeddingModel string, journals map[string]*LiveRatingEvidence,
 ) map[string]*WeakSignalEvidence {
 	phrases = slices.Compact(slices.Sorted(slices.Values(phrases)))
+	out := s.weakSignalFacts(sourceCtx, phrases, periods, embeddingModel)
+	rows := make([]*WeakSignalEvidence, len(phrases))
+	for i, phrase := range phrases {
+		out[phrase].Journals = journals[phrase]
+		rows[i] = out[phrase]
+	}
+	s.rateWeakSignalEvidence(ctx, phrases, rows)
+	return out
+}
+
+func (s *TrendLiveService) weakSignalFacts(ctx context.Context, phrases []string, periods []LivePeriod,
+	embeddingModel string,
+) map[string]*WeakSignalEvidence {
 	month := periods[len(periods)-1].ID
-	windows := s.phraseWindows(sourceCtx, phrases, periods)
+	windows := s.phraseWindows(ctx, phrases, periods)
 	out := make(map[string]*WeakSignalEvidence, len(phrases))
 	for _, phrase := range phrases {
 		out[phrase] = &WeakSignalEvidence{}
@@ -408,46 +457,45 @@ func (s *TrendLiveService) weakSignalEvidence(ctx, sourceCtx context.Context, ph
 	var history map[string]LiveTermHistory
 	var hn map[string]*LiveHNCounts
 	var embeddings [][]float64
-	ratings := make([]*LiveMaturityRating, len(phrases))
-	var wg, sources sync.WaitGroup
-	sources.Go(func() { embeddings = s.phraseEmbeddings(sourceCtx, phrases, embeddingModel) })
-	sources.Go(func() { history = s.termHistory().histories(sourceCtx, phrases, month) })
-	sources.Go(func() { hn = s.hnCache.counts(sourceCtx, phrases, month) })
-	// Оценка зрелости ждёт истории и Hacker News: фразе без данных модель решения не выносит, и самый дорогой
-	// вызов шлюза ей не нужен.
+	var sources sync.WaitGroup
+	sources.Go(func() { embeddings = s.phraseEmbeddings(ctx, phrases, embeddingModel) })
+	sources.Go(func() { history = s.termHistory().histories(ctx, phrases, month) })
+	sources.Go(func() { hn = s.hnCache.counts(ctx, phrases, month) })
 	sources.Wait()
-	for _, phrase := range phrases {
+	for i, phrase := range phrases {
 		out[phrase].History, out[phrase].HN = history[phrase], hn[phrase]
-	}
-	// Источники уже завершены; ожидание места вместе с карточками ограничено исходным сроком поиска.
-	// Восемь оценок одновременно — как при сборе выборки; внутри поиска каждая ещё занимает место общего
-	// предела вызовов шлюза (Rate), а не добавляет своё.
-	slot := make(chan struct{}, liveRatingParallel)
-	for i, phrase := range phrases {
-		e := out[phrase]
-		if s.rater == nil || e.Window == nil || liveThinEvidence(e) != "" {
-			// Без окна подсказка сказала бы «работ нет» и потянула оценку к новому: лучше неизмеренный вход.
-			continue
-		}
-		wg.Go(func() {
-			slot <- struct{}{}
-			defer func() { <-slot }()
-			rating, err := s.rater.Rate(ctx, phrase, LiveRatingEvidence{Total: e.Window.Total, Titles: e.Window.Titles})
-			if err != nil {
-				slog.Warn("radar maturity rating", "phrase", phrase, "error", err)
-				return
-			}
-			ratings[i] = rating
-		})
-	}
-	wg.Wait()
-	for i, phrase := range phrases {
-		out[phrase].Rating = ratings[i]
 		if embeddings != nil {
 			out[phrase].Embedding = embeddings[i]
 		}
 	}
 	return out
+}
+
+// Ожидание места для языковой оценки ограничено исходным сроком поиска, а не сроком сбора источников.
+func (s *TrendLiveService) rateWeakSignalEvidence(ctx context.Context, phrases []string, rows []*WeakSignalEvidence) {
+	var wg sync.WaitGroup
+	slot := make(chan struct{}, liveRatingParallel)
+	for i, phrase := range phrases {
+		e := rows[i]
+		if s.rater == nil || e.Window == nil && !e.hasJournalEvidence() || liveThinEvidence(e) != "" {
+			continue
+		}
+		wg.Go(func() {
+			select {
+			case slot <- struct{}{}:
+				defer func() { <-slot }()
+			case <-ctx.Done():
+				return
+			}
+			rating, err := s.rater.Rate(ctx, phrase, e.ratingEvidence())
+			if err != nil {
+				slog.Warn("radar maturity rating", "phrase", phrase, "error", err)
+				return
+			}
+			e.Rating = rating
+		})
+	}
+	wg.Wait()
 }
 
 // Ответ не той модели, что при обучении, отбрасывается: чужое пространство дало бы уверенную бессмыслицу.
@@ -484,10 +532,17 @@ func (s *TrendLiveService) termHistory() *liveHistoryCache {
 func (m WeakSignalModel) prediction(id string, phrases []string, evidence map[string]*WeakSignalEvidence, month string,
 ) LiveClassifierPrediction {
 	inputs, embedding, ordered := weakSignalRow(phrases, evidence, month)
+	m.applySourceCoverage(inputs, ordered, evidence)
+	outside := m.clipToSupport(inputs)
 	value, contributions, semantic := m.Score(inputs, embedding)
-	label := liveClassifierMature
-	if value >= m.Threshold {
-		label = liveClassifierWeak
+	label := m.decide(value)
+	// После прижатия оценка посчитана по ближайшему значению, которое модель видела, и ни одна метка не
+	// экстраполирует. Несимметрично намеренно: «сигнал» и «не могу решить» оставляют кандидата в пятнадцати как
+	// новизну, а её модель не утверждает на значении вне выборки. «Не сигнал» остаётся видимым отказом с оговоркой
+	// в объяснении: воздержание вернуло бы зрелые термины в пятнадцать.
+	unseen := label != liveClassifierMature && len(outside) > 0
+	if unseen {
+		label = liveClassifierInsufficient
 	}
 	basis := fmt.Sprintf("Логистическая регрессия %s. Обучена на ста сигналах эталона организаторов против "+
 		"зрелых технологий, угасшего и текущего хайпа и давних малоизвестных технологий по фразе технологии в "+
@@ -500,9 +555,33 @@ func (m WeakSignalModel) prediction(id string, phrases []string, evidence map[st
 		basis += " У кандидата нет фразы для поиска: окно взято по его проверенным источникам, остальные " +
 			"источники не спрашивались, и оценка лежит вне области обучения."
 	}
+	if slices.ContainsFunc(ordered, func(phrase string) bool { return evidence[phrase].journalCoverage() }) {
+		basis += " При наличии научных публикаций по той же фразе вне arXiv пустое окно arXiv имеет нулевой вклад. " +
+			"Проверка достаточности данных остаётся обязательной; найденные научные работы используются для оценки зрелости. " +
+			"Это отдельная политика покрытия источников, " +
+			"не переобучение; прежние метрики качества её не оценивают."
+	}
+	if len(outside) > 0 {
+		basis += " В строках «" + strings.Join(outside, "», «") + "» значения вне диапазона обучающей выборки: они " +
+			"прижаты к его краю, и оценка посчитана по ближайшему значению, которое модель видела."
+	}
+	if unseen {
+		basis += " Мало данных для решения: новизну на значении вне выборки модель не утверждает, оценка показана для справки."
+	}
 	return LiveClassifierPrediction{ID: id, LiveModelScore: LiveModelScore{Label: label, Value: value,
 		Threshold: m.Threshold, Model: m.Model, Version: m.Version, FeatureSchema: LiveClassifierSchema,
 		Basis: basis, Features: weakSignalExplanation(ordered, evidence, month, contributions, semantic, embedding != nil)}}
+}
+
+// Внутри конформной полосы ни порог, ни гарантия не дают метки; вне её порог совпадает с множеством.
+func (m WeakSignalModel) decide(value float64) string {
+	switch {
+	case m.Conformal.undecided(value):
+		return liveClassifierUndecided
+	case value >= m.Threshold:
+		return liveClassifierWeak
+	}
+	return liveClassifierMature
 }
 
 // Читателю нужно, какой источник сдвинул решение, а не наклон ряда: пять строк по источникам вместо сорока шести входов.
@@ -511,8 +590,7 @@ func weakSignalExplanation(ordered []string, evidence map[string]*WeakSignalEvid
 ) []LiveModelFeature {
 	year, _ := strconv.Atoi(month[:min(4, len(month))])
 	shown := slices.Compact([]string{ordered[0], ordered[len(ordered)-1]})
-	names := []string{"Окно arXiv за 14 месяцев", "История термина в OpenAlex", "Обсуждения на Hacker News",
-		"Оценка зрелости моделью языка"}
+	names := weakSignalGroupNames()
 	rows := make([]LiveModelFeature, 0, len(names)+1)
 	start := 0
 	for group, kinds := range weakSignalKinds() {
@@ -545,6 +623,8 @@ func weakSignalExplanation(ordered []string, evidence map[string]*WeakSignalEvid
 func (e *WeakSignalEvidence) describe(group, year int) string {
 	switch {
 	case e == nil:
+	case group == 0 && e.journalCoverage():
+		return e.coverageDescription()
 	case group == 0 && e.Window != nil:
 		return fmt.Sprintf("работ %d, месяцев с публикациями %d из %d, авторских групп %d",
 			max(e.Window.Total, e.Window.Documents), e.Window.ActivePeriods, liveMonths, e.Window.AuthorGroups)
@@ -561,10 +641,38 @@ func (e *WeakSignalEvidence) describe(group, year int) string {
 			year-6, year-3, e.HN.Mid, year-2, year-1, e.HN.Recent)
 	case group == 3 && e.Rating != nil:
 		faded := map[bool]string{true: "да", false: "нет"}[e.Rating.Failed]
-		return fmt.Sprintf("стадия %d из 4 (%s), угасла: %s, уверенность %.0f %%", e.Rating.Stage,
-			liveRatingStageName(e.Rating.Stage), faded, e.Rating.Confidence*100)
+		confidence := "не указана"
+		if !math.IsNaN(e.Rating.Confidence) {
+			confidence = fmt.Sprintf("%.0f %%", e.Rating.Confidence*100)
+		}
+		return fmt.Sprintf("стадия %d из 4 (%s), угасла: %s, уверенность %s", e.Rating.Stage,
+			liveRatingStageName(e.Rating.Stage), faded, confidence)
 	}
 	return "не измерено"
+}
+
+func weakSignalGroupNames() []string {
+	return []string{"Окно arXiv за 14 месяцев", "История термина в OpenAlex", "Обсуждения на Hacker News",
+		"Оценка зрелости моделью языка"}
+}
+
+// clipToSupport прижимает входы к диапазону обучения: за краем линейная модель продолжает наклон без данных,
+// и один выброс (уверенность 0 при обученных 0,3–1) перевешивал все источники. Возвращает группы выпавших входов.
+func (m WeakSignalModel) clipToSupport(inputs []float64) []string {
+	outside := []string{}
+	start := 0
+	for group, kinds := range weakSignalKinds() {
+		end := start + 2*len(kinds)
+		for i := start; i < end; i++ {
+			// NaN — пропуск, Score заменит его медианой, а она внутри диапазона.
+			if clipped := min(max(inputs[i], m.Min[i]), m.Max[i]); !math.IsNaN(inputs[i]) && clipped != inputs[i] {
+				inputs[i] = clipped
+				outside = append(outside, weakSignalGroupNames()[group])
+			}
+		}
+		start = end
+	}
+	return slices.Compact(outside)
 }
 
 func liveRatingStageName(stage int) string {

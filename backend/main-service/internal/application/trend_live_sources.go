@@ -16,6 +16,7 @@ import (
 	"os"
 	"strconv"
 	"strings"
+	"sync"
 	"time"
 
 	"github.com/example/main-service/internal/platform/jsonx"
@@ -34,14 +35,20 @@ const (
 
 // liveSources держит темп на каждый источник: без токена GitHub даёт анонимно 10 запросов в минуту.
 type liveSources struct {
+	// channelMu нужен добору источников: он опрашивает сборщики по нескольким направлениям сразу.
+	channelMu     sync.Mutex
 	channelErrors map[string]error
 	metadata      map[string]LivePaperMetadata
 	http          *http.Client
 	arxiv         string
 	oai           string
+	rxiv          string
+	crossref      string
 	github        string
 	hn            string
 	oa            *openalex.Client
+	pubmed        *livePubMedClient
+	research      *liveResearchClient
 	// scholarCache принадлежит сервису: источники создаются на каждый поиск, а кеш нужен между поисками.
 	scholarCache *liveScholarCache
 	token        func(context.Context) string
@@ -74,7 +81,7 @@ func (s *liveSources) step(name string, wait time.Duration) {
 func newLiveSources(token func(context.Context) string) *liveSources {
 	return &liveSources{
 		http: &http.Client{Timeout: liveHTTPTimeout}, arxiv: cmp.Or(os.Getenv("ARXIV_API_URL"), liveArxivBase),
-		oai:    cmp.Or(os.Getenv("ARXIV_OAI_URL"), liveOAIBase),
+		oai: cmp.Or(os.Getenv("ARXIV_OAI_URL"), liveOAIBase), rxiv: liveRxivBase, crossref: liveCrossrefBase,
 		github: liveGitHubBase, hn: liveHNBase,
 		oa:    liveOpenAlex(),
 		token: token, sleep: liveSleep, limits: []LiveLimit{}, ghDown: false,

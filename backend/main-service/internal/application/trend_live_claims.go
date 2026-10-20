@@ -7,6 +7,7 @@ import (
 	"regexp"
 	"strconv"
 	"strings"
+	"unicode"
 	"unicode/utf8"
 )
 
@@ -108,7 +109,7 @@ func liveCardQuote(claim string, parts []liveIndexedExcerpt, from, through int) 
 	return quote, issues
 }
 
-func (d liveCardDraft) claimText(field string) string {
+func (d *liveCardDraft) claimText(field string) string {
 	switch field {
 	case liveClaimSummary:
 		return d.Summary
@@ -118,6 +119,8 @@ func (d liveCardDraft) claimText(field string) string {
 		return d.Example
 	case LiveClaimReportAssessment:
 		return d.ReportAssessment
+	case liveClaimStudyLimitations:
+		return d.StudyLimitations
 	case liveClaimMarket:
 		return d.Market + ": " + d.MarketBasis
 	case liveClaimAdoption:
@@ -131,13 +134,22 @@ var liveClaimNumber = regexp.MustCompile(`\d+(?:[.,]\d+)?`)
 // Проверка чисел — дополнительный барьер, а не доказательство смысла.
 func liveClaimNumbersFit(claim, quote string) bool {
 	numbers := map[float64]bool{}
+	for _, value := range liveWrittenNumbers(quote) {
+		numbers[value] = true
+	}
 	for _, raw := range liveClaimNumber.FindAllString(quote, -1) {
 		value, err := strconv.ParseFloat(strings.ReplaceAll(raw, ",", "."), 64)
 		if err == nil {
 			numbers[value] = true
 		}
 	}
-	for _, raw := range liveClaimNumber.FindAllString(claim, -1) {
+	for _, bounds := range liveClaimNumber.FindAllStringIndex(claim, -1) {
+		// Индекс формулы или имя материала не являются числовым результатом: их смысл сверяет модель.
+		before, _ := utf8.DecodeLastRuneInString(claim[:bounds[0]])
+		if unicode.Is(unicode.Latin, before) {
+			continue
+		}
+		raw := claim[bounds[0]:bounds[1]]
 		value, err := strconv.ParseFloat(strings.ReplaceAll(raw, ",", "."), 64)
 		if err != nil || !numbers[value] {
 			return false

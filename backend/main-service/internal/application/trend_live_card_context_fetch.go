@@ -40,6 +40,26 @@ type liveCardContextBudget struct {
 	maxDocuments   int
 	requestTimeout time.Duration
 	fetch          func(context.Context, string) (liveCardContextDocument, error)
+	partitioned    bool
+	providerTime   [2]time.Duration
+	providerDocs   [2]int
+}
+
+// Журнальная цепочка из нескольких запросов не должна вытеснять быстрые препринты.
+func liveAllocateCardContext(ctx context.Context, papers []StudyPaper, metadata map[string]LivePaperMetadata) {
+	budget, ok := ctx.Value(liveCardContextKey{}).(*liveCardContextBudget)
+	if !ok {
+		return
+	}
+	arxiv, journals := false, false
+	for _, paper := range papers {
+		id, _ := liveCardArxivID(paper, metadata[paper.ID])
+		arxiv = arxiv || id != ""
+		journals = journals || id == "" && liveCardDOI(paper, metadata[paper.ID]) != ""
+	}
+	budget.partitioned = arxiv && journals && liveCardGatewayURL() != "" && os.Getenv("RADAR_PAPER_CONTEXTS") != livePaperDisabled
+	budget.providerTime = [2]time.Duration{liveCardContextBudgetTime / 3, liveCardContextBudgetTime * 2 / 3}
+	budget.providerDocs = [2]int{budget.maxDocuments / 3, budget.maxDocuments - budget.maxDocuments/3}
 }
 
 func liveWithCardContext(ctx context.Context) context.Context {
@@ -48,7 +68,7 @@ func liveWithCardContext(ctx context.Context) context.Context {
 	}
 	budget := &liveCardContextBudget{entries: map[string]*liveCardContextResult{}, slots: make(chan struct{}, 2),
 		remaining: liveCardContextBudgetTime, maxDocuments: liveCardContextDocuments, requestTimeout: liveCardContextRequest,
-		fetch: liveCardHTMLFetcher(liveCardGatewayURL())}
+		fetch: liveCardSourceFetcher(liveCardGatewayURL())}
 	return context.WithValue(ctx, liveCardContextKey{}, budget)
 }
 
@@ -63,12 +83,16 @@ func (b *liveCardContextBudget) get(ctx context.Context, id string) (liveCardCon
 			return liveCardContextDocument{}, fmt.Errorf("wait for source context: %w", ctx.Err())
 		}
 	}
-	if len(b.entries) >= b.maxDocuments {
+	provider := liveCardContextProvider(id)
+	if len(b.entries) >= b.maxDocuments || b.partitioned && b.providerDocs[provider] == 0 {
 		b.mu.Unlock()
 		return liveCardContextDocument{}, errCardContextBudget
 	}
 	result := &liveCardContextResult{done: make(chan struct{})}
 	b.entries[id] = result
+	if b.partitioned {
+		b.providerDocs[provider]--
+	}
 	b.mu.Unlock()
 	result.document, result.err = b.read(ctx, id)
 	close(result.done)
@@ -84,10 +108,17 @@ func (b *liveCardContextBudget) read(ctx context.Context, id string) (liveCardCo
 	defer func() { <-b.slots }()
 	b.mu.Lock()
 	allowance := min(b.remaining, b.requestTimeout)
+	provider := liveCardContextProvider(id)
+	if b.partitioned {
+		allowance = min(allowance, b.providerTime[provider])
+	}
 	if deadline, ok := ctx.Deadline(); ok {
 		allowance = min(allowance, max(0, time.Until(deadline)-liveCandidateWaveReserve))
 	}
 	b.remaining -= allowance
+	if b.partitioned {
+		b.providerTime[provider] -= allowance
+	}
 	b.mu.Unlock()
 	if allowance <= 0 {
 		return liveCardContextDocument{}, errCardContextBudget
@@ -97,9 +128,20 @@ func (b *liveCardContextBudget) read(ctx context.Context, id string) (liveCardCo
 	defer cancel()
 	document, err := b.fetch(readCtx, id)
 	b.mu.Lock()
-	b.remaining += allowance - min(allowance, time.Since(start))
+	refund := allowance - min(allowance, time.Since(start))
+	b.remaining += refund
+	if b.partitioned {
+		b.providerTime[provider] += refund
+	}
 	b.mu.Unlock()
 	return document, err
+}
+
+func liveCardContextProvider(id string) int {
+	if strings.HasPrefix(id, "doi:") {
+		return 1
+	}
+	return 0
 }
 
 func liveCardBudgetFailure(err error) string {

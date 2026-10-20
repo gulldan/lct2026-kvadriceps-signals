@@ -65,6 +65,9 @@ func TestLiveTopUpFillsFifteenWithinExclusions(t *testing.T) {
 			t.Fatalf("excluded candidate is eligible for top-up: %s %s", excluded.Code, excluded.topic.ID)
 		}
 	}
+	if selected, remaining := liveTopUp(umbrella, nil, rejected, nil); len(selected) != 0 || len(remaining) != len(rejected) {
+		t.Fatal("нехватка пятнадцати обошла запрет зрелых, чужих или непроверенных технологий")
+	}
 	// Решение модели этапа 1 «слабый сигнал» допускает непроверенное извлечение к добору.
 	decided := general
 	decided.ModelScore = &LiveModelScore{Label: liveClassifierWeak, Value: 0.9, Threshold: 0.23}
@@ -80,5 +83,28 @@ func TestLiveTopUpFillsFifteenWithinExclusions(t *testing.T) {
 	got[14].Qualification = &foreign
 	if liveValidAnswerScope(scope, query, got) {
 		t.Fatal("a top-up checked against another scope was accepted")
+	}
+}
+
+// Полная карточка среди отклонённых идёт в добор раньше недописанной, даже если отказ недописанной ближе к проходу.
+func TestLiveTopUpPrefersCompleteCards(t *testing.T) {
+	const query = "квантовое измерение"
+	service, candidates, documents, _ := liveWaveFixture(t, 16)
+	for i := range candidates {
+		qualification, err := service.qualify(t.Context(), query, candidates[i].Name,
+			[]LiveQualificationDocument{{ID: documents[i].ID, Text: documents[i].Title}})
+		if err != nil {
+			t.Fatal(err)
+		}
+		candidates[i].Qualification = &qualification
+	}
+	incomplete, complete := candidates[14], candidates[15]
+	incomplete.Card = &LiveCard{Summary: "описание", Missing: []string{"кейс-пример"}, VerificationModel: "m"}
+	complete.Card = &LiveCard{Summary: "описание", VerificationModel: "m"}
+	got, _ := liveTopUp(LiveTopic{Label: "Квантовое измерение"}, slices.Clone(candidates[:14]), []LiveRejection{
+		liveRejection(incomplete, liveRejectRank, "ниже первых"), liveRejection(complete, liveRejectCard, "нет кейса"),
+	}, nil)
+	if len(got) != liveTopCandidates || got[liveTopCandidates-1].ID != complete.ID {
+		t.Fatalf("top-up took the unfinished card first: %s", got[len(got)-1].ID)
 	}
 }

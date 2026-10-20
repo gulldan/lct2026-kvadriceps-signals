@@ -80,7 +80,14 @@ for (const width of [390, 1440]) {
   });
 }
 
-for (const query of ["RAG", "Robotics", "Solar cells", "CRISPR"]) {
+for (const [key, query] of [
+  ["medicine", "cancer immunotherapy"],
+  ["agriculture", "drought resistant crops"],
+  ["energy", "sodium ion batteries"],
+  ["materials", "biodegradable polymers"],
+  ["robotics", "robotics"],
+  ["aiSecurity", "AI security"],
+] as const) {
   test(`${query} preset starts one normal analysis without a second submit`, async ({ page }) => {
     const requests: Record<string, string>[] = [];
     const job = analysisFixture(0, "preset-run", query);
@@ -93,7 +100,8 @@ for (const query of ["RAG", "Robotics", "Solar cells", "CRISPR"]) {
       route.fulfill({ json: job }),
     );
     await page.goto("/trends?view=analysis");
-    await page.getByRole("button", { name: query, exact: true }).click();
+    await page.getByRole("button", { name: ru.examples, exact: true }).click();
+    await page.getByRole("menuitem", { name: ru.study.live.quickStarts[key], exact: true }).click();
     await expect(page).toHaveURL(/run=preset-run/);
     await expect(page.getByRole("figure", { name: ru.map.network })).toBeVisible();
     expect(requests).toHaveLength(1);

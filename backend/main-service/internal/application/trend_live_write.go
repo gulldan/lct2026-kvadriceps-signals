@@ -10,6 +10,8 @@ import (
 	"errors"
 	"fmt"
 	"io"
+	"log/slog"
+	"slices"
 )
 
 type liveStore interface {
@@ -20,6 +22,8 @@ type liveStore interface {
 func (s *TrendLiveService) load(ctx context.Context) {
 	raw, err := s.store.GetBytes(ctx, liveSnapshotKey)
 	if err != nil {
+		// Без снимка карта пуста и направления не пересчитываются: 06.10 радар так молча простоял полдня.
+		slog.Warn("radar snapshot unavailable", "error", err)
 		return
 	}
 	s.loadSnapshot(raw)
@@ -34,15 +38,17 @@ func (s *TrendLiveService) loadSnapshot(raw []byte) {
 		return
 	}
 	var snapshot LiveSnapshot
-	if json.Unmarshal(raw, &snapshot) != nil || snapshot.Version != liveVersion ||
+	if err := json.Unmarshal(raw, &snapshot); err != nil || snapshot.Version != liveVersion ||
 		(snapshot.Method != liveMethod && snapshot.Method != livePriorMethod) {
+		slog.Warn("radar snapshot rejected", "error", err, "version", snapshot.Version, "method", snapshot.Method)
 		return
 	}
 	liveAnnotate(snapshot.Topics, snapshot.Discovered)
 	s.mu.Lock()
+	// Кэш ответов операторов переживает новый снимок: ответ ложится в базу только после поздних
+	// пересказов, и 08.10 опрос между переизданием снимка и записью получил из базы ответ 27.09.
 	s.snapshot, s.status = &snapshot, "ready"
 	s.loadedHash = hash
-	clear(s.cache)
 	s.mu.Unlock()
 }
 
@@ -59,6 +65,14 @@ func (s *TrendLiveService) publish(ctx context.Context, snapshot *LiveSnapshot) 
 	}
 	if version, ok := ctx.Value(liveVersionContext{}).(liveWriteVersion); ok {
 		snapshot.WriterEpoch = version.epoch
+	}
+	// Журнал прочитанных страниц источника одинаков у всех направлений и занимал почти половину снимка: 06.10
+	// снимок перерос лимит чтения хранилища, и радар встал. Страницам он не нужен, полный журнал хранит сборщик.
+	for _, topics := range []*[]LiveTopic{&snapshot.Topics, &snapshot.Discovered} {
+		*topics = slices.Clone(*topics)
+		for i := range *topics {
+			(*topics)[i] = withoutProvenance((*topics)[i])
+		}
 	}
 	raw, err := json.Marshal(snapshot, json.Deterministic(true))
 	if err != nil {

@@ -149,7 +149,8 @@ func TestLiveDigestSourcesStopsQueuedWorkOnCancel(t *testing.T) {
 			<-ctx.Done()
 			return "", "", fmt.Errorf("digest canceled: %w", ctx.Err())
 		}
-		ids := make([]string, liveLateDigestWorkers+5)
+		workers := int32(service.lateDigestWorkers(t.Context()))
+		ids := make([]string, workers+5)
 		for i := range ids {
 			ids[i] = fmt.Sprintf("source-%d", i)
 		}
@@ -158,11 +159,11 @@ func TestLiveDigestSourcesStopsQueuedWorkOnCancel(t *testing.T) {
 		done := make(chan map[string]liveDigest)
 		go func() { done <- service.digestSources(ctx, ids, nil, nil) }()
 		synctest.Wait()
-		if calls.Load() != liveLateDigestWorkers {
+		if calls.Load() != workers {
 			t.Fatalf("workers were not bounded: %d", calls.Load())
 		}
 		cancel()
-		if filled := <-done; len(filled) != 0 || calls.Load() != liveLateDigestWorkers {
+		if filled := <-done; len(filled) != 0 || calls.Load() != workers {
 			t.Fatalf("queued sources started after cancellation: digests=%v calls=%d", filled, calls.Load())
 		}
 	})

@@ -1,4 +1,4 @@
-import { memo } from "react";
+import { memo, type ReactNode } from "react";
 import Markdown, { type Components } from "react-markdown";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
@@ -16,6 +16,17 @@ interface RichTextInnerProps {
   components?: Components;
 }
 
+// Текст пишут модель и корпус: ссылкой становится только http(s), и новая вкладка не получает
+// доступ к нашей через window.opener.
+function ExternalLink({ href, children }: { href?: string; children?: ReactNode }) {
+  if (!href || !/^https?:\/\//i.test(href)) return <>{children}</>;
+  return (
+    <a href={href} target="_blank" rel="noopener noreferrer">
+      {children}
+    </a>
+  );
+}
+
 // Лениво: ~726 КБ markdown и формул вне стартового бандла. Мемо: перерисовка KaTeX — самая дорогая
 // работа длинных тредов.
 function RichTextInner({ children, className, components }: RichTextInnerProps) {
@@ -24,7 +35,7 @@ function RichTextInner({ children, className, components }: RichTextInnerProps) 
       <Markdown
         remarkPlugins={[remarkGfm, remarkMath, remarkCurrency]}
         rehypePlugins={[rehypeKatex]}
-        components={components}
+        components={{ a: ExternalLink, ...components }}
       >
         {children}
       </Markdown>

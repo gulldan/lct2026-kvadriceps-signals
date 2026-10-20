@@ -5,6 +5,7 @@ import (
 	"encoding/json/v2"
 	"errors"
 	"fmt"
+	"regexp"
 	"strings"
 	"time"
 
@@ -41,7 +42,7 @@ func NewLiveQueryPlanner(gen aiclients.Generator, configured func(context.Contex
 		ctx, cancel := context.WithTimeout(ctx, 60*time.Second)
 		defer cancel()
 		out, err := gen.Generate(ctx, aiclients.GenRequest{
-			System: liveSearchTermsSystem, Query: query, JSONMode: true, MaxTokens: 640, Temperature: 0,
+			System: liveSearchTermsSystem, Query: liveQuerySubject(query), JSONMode: true, MaxTokens: 640, Temperature: 0,
 		})
 		if err != nil {
 			return LiveQueryPlan{}, fmt.Errorf("live query plan: %w", err)
@@ -59,12 +60,60 @@ func NewLiveQueryPlanner(gen aiclients.Generator, configured func(context.Contex
 		if plan.Scope != nil {
 			plan.Scope.Query, _ = normalizeLiveQuery(query)
 		}
+		liveClampQueryPlan(&plan)
 		if err := liveValidateQueryPlan(plan, query); err != nil {
 			return LiveQueryPlan{}, err
 		}
 		plan.Terms = liveDropCoveredWords(plan.Terms)
 		return plan, nil
 	}
+}
+
+// Замер 19.10: «слабые сигналы в экономике и социальных науках» и «… в климате и экологии» Haiku разобрал как
+// исследования ранних индикаторов и переломных точек, вопреки запрету рамки в промпте, — 0 и 1 полная карточка
+// из 15. Рамка снимается до разбора; scope.Query остаётся исходным запросом.
+var liveFramingPrefix = regexp.MustCompile(
+	`(?i)^\s*(?:слабые|ранние)\s+сигналы\s+(в|во|по)\s+|^\s*(?:weak|early)\s+signals\s+(in|of)\s+`)
+
+func liveQuerySubject(query string) string {
+	match := liveFramingPrefix.FindStringSubmatch(query)
+	switch {
+	case match == nil:
+		return query
+	case match[1] != "":
+		return "новые технологии " + match[1] + " " + query[len(match[0]):]
+	default:
+		return "emerging technologies " + match[2] + " " + query[len(match[0]):]
+	}
+}
+
+// Замер 19.10 на стенде: 2 разбора из 16 превышали пределы — 14 фраз и задача в 162 знака — и роняли весь поиск
+// за секунды. Лишние фразы — хвост списка подсказок, длинная формулировка обрезается по слову; смысл и форма
+// плана по-прежнему проверяются.
+func liveClampQueryPlan(plan *LiveQueryPlan) {
+	plan.Terms = plan.Terms[:min(len(plan.Terms), LiveSearchTerms)]
+	if plan.Scope == nil {
+		return
+	}
+	for i := range plan.Scope.Branches {
+		plan.Scope.Branches[i].Task = liveClampScopeText(plan.Scope.Branches[i].Task)
+	}
+	for i := range plan.Scope.Required {
+		plan.Scope.Required[i].Condition = liveClampScopeText(plan.Scope.Required[i].Condition)
+	}
+}
+
+func liveClampScopeText(text string) string {
+	text = strings.TrimSpace(text)
+	runes := []rune(text)
+	if len(runes) <= liveScopeTextRunes {
+		return text
+	}
+	cut := string(runes[:liveScopeTextRunes])
+	if space := strings.LastIndexByte(cut, ' '); space > len(cut)/2 {
+		cut = cut[:space]
+	}
+	return strings.TrimRight(cut, " ,;:(-")
 }
 
 func liveValidateQueryPlan(plan LiveQueryPlan, query string) error {

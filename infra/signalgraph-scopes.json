@@ -622,5 +622,104 @@
     },
     "limit": 200,
     "industry": "Строительство и материалы"
+  },
+  {
+    "provider": "crossref",
+    "current_month": true,
+    "scope": {
+      "query": "public health epidemiology prevention",
+      "page_size": 1,
+      "work_type": "journal-article"
+    },
+    "limit": 200,
+    "industry": "Общественное здоровье и профилактика"
+  },
+  {
+    "provider": "crossref",
+    "current_month": true,
+    "scope": {
+      "query": "cancer immunotherapy clinical trial",
+      "page_size": 1,
+      "work_type": "journal-article"
+    },
+    "limit": 200,
+    "industry": "Медицина: иммунотерапия и клинические исследования"
+  },
+  {
+    "provider": "crossref",
+    "current_month": true,
+    "scope": {
+      "query": "biodiversity ecosystem conservation",
+      "page_size": 1,
+      "work_type": "journal-article"
+    },
+    "limit": 200,
+    "industry": "Экология и биоразнообразие"
+  },
+  {
+    "provider": "crossref",
+    "current_month": true,
+    "scope": {
+      "query": "wastewater treatment water purification",
+      "page_size": 1,
+      "work_type": "journal-article"
+    },
+    "limit": 200,
+    "industry": "Водные ресурсы и очистка воды"
+  },
+  {
+    "provider": "crossref",
+    "current_month": true,
+    "scope": {
+      "query": "crop resilience soil microbiome",
+      "page_size": 1,
+      "work_type": "journal-article"
+    },
+    "limit": 200,
+    "industry": "Агротехнологии: почвы и устойчивость урожая"
+  },
+  {
+    "provider": "crossref",
+    "current_month": true,
+    "scope": {
+      "query": "education learning outcomes",
+      "page_size": 1,
+      "work_type": "journal-article"
+    },
+    "limit": 200,
+    "industry": "Образование и педагогика"
+  },
+  {
+    "provider": "crossref",
+    "current_month": true,
+    "scope": {
+      "query": "labor economics social policy",
+      "page_size": 1,
+      "work_type": "journal-article"
+    },
+    "limit": 200,
+    "industry": "Экономика труда и социальная политика"
+  },
+  {
+    "provider": "crossref",
+    "current_month": true,
+    "scope": {
+      "query": "archaeology cultural heritage conservation",
+      "page_size": 1,
+      "work_type": "journal-article"
+    },
+    "limit": 200,
+    "industry": "Археология и культурное наследие"
+  },
+  {
+    "provider": "crossref",
+    "current_month": true,
+    "scope": {
+      "query": "marine ecology ocean acidification",
+      "page_size": 1,
+      "work_type": "journal-article"
+    },
+    "limit": 200,
+    "industry": "Морская экология и океанология"
   }
 ]

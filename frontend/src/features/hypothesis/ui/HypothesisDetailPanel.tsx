@@ -44,6 +44,8 @@ import { GLOSSARY } from "@/shared/glossary";
 import {
   directionMeta,
   displayHypothesisTitle,
+  hasProjectedTheme,
+  hypothesisClusterId,
   isResearchDirection,
   researchTypeMeta,
   researchTypeTag,
@@ -374,17 +376,19 @@ export function HypothesisDetailPanel({
   const functionArea = visibleMeta(hypothesis.function_area);
   const location = visibleMeta(hypothesis.location);
   const sourceType = sourceTypeLabel(hypothesis.source_type);
+  const clusterId = hypothesisClusterId(hypothesis);
   const meta = [
     owner && { icon: UserRound, text: t("hero.owner", { name: owner }) },
     organization && { icon: FlaskConical, text: organization },
     functionArea && { icon: null, text: functionArea },
     location && { icon: MapPin, text: location },
     kpiTitle && { icon: Target, text: kpiTitle, to: `/kpi/${hypothesis.kpi_id}` },
-    clusterTitle && {
-      icon: Layers,
-      text: clusterTitle,
-      to: hypothesis.primary_cluster_id ? `/clusters/${hypothesis.primary_cluster_id}` : undefined,
-    },
+    clusterTitle &&
+      !hasProjectedTheme(hypothesis) && {
+        icon: Layers,
+        text: clusterTitle,
+        to: clusterId ? `/clusters/${clusterId}` : undefined,
+      },
     { icon: Clock, text: formatDateShort(hypothesis.created_at) },
   ].filter(Boolean) as {
     icon: ComponentType<{ className?: string }> | null;

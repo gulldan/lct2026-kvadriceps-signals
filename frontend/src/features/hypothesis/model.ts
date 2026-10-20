@@ -3,6 +3,20 @@ import { i18n } from "@/shared/i18n";
 
 import type { ApiHypothesis, AssessmentScores, HypothesisStatus } from "./api";
 
+/** Ближайшая тема и её индекс не подтверждают принадлежность и оценку самой гипотезы. */
+export function hasProjectedTheme(h: ApiHypothesis): boolean {
+  return h.assessment?.itc?.scope === "hypothesis(theme)";
+}
+
+export function hypothesisItc(h: ApiHypothesis) {
+  const itc = h.assessment?.itc;
+  return hasProjectedTheme(h) || itc?.scope === "hypothesis(document_membership)" ? undefined : itc;
+}
+
+export function hypothesisClusterId(h: ApiHypothesis): string | undefined {
+  return hasProjectedTheme(h) ? undefined : h.primary_cluster_id;
+}
+
 export function successCriteriaLines(value: string | string[] | undefined): string[] {
   if (value === undefined) return [];
   const arr = Array.isArray(value) ? value : [value];

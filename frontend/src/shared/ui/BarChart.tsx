@@ -7,14 +7,23 @@ export interface BarDatum {
   displayValue: string;
 }
 
+/** Подпись под несколькими соседними столбцами: окно сравнения, а не отдельный столбец. */
+export interface BarSpan {
+  id: string;
+  label: ReactNode;
+  size: number;
+}
+
 export function BarChart({
   data,
   label,
   action,
+  spans,
 }: {
   data: BarDatum[];
   label: string;
   action?: ReactNode;
+  spans?: BarSpan[];
 }) {
   const [active, setActive] = useState<number | null>(null);
   const maximum = Math.max(1, ...data.map((item) => item.value));
@@ -56,10 +65,24 @@ export function BarChart({
           </li>
         ))}
       </ul>
-      <div className="mt-2 flex justify-between text-xs text-muted-foreground" aria-hidden>
-        <span>{data[0]?.label}</span>
-        <span>{data.length > 1 ? data.at(-1)?.label : ""}</span>
-      </div>
+      {spans ? (
+        <div className="mt-2 flex gap-1 text-xs text-muted-foreground">
+          {spans.map((span) => (
+            <span
+              key={span.id}
+              className="min-w-0 border-t-2 pt-1 text-center"
+              style={{ flex: span.size }}
+            >
+              {span.label}
+            </span>
+          ))}
+        </div>
+      ) : (
+        <div className="mt-2 flex justify-between text-xs text-muted-foreground" aria-hidden>
+          <span>{data[0]?.label}</span>
+          <span>{data.length > 1 ? data.at(-1)?.label : ""}</span>
+        </div>
+      )}
     </figure>
   );
 }

@@ -32,6 +32,7 @@ import type { Role } from "@/shared/types";
 const PREFETCH: (() => Promise<unknown>)[] = [];
 
 const WARM = new Set(["Hypotheses", "SummaryPage", "SearchHome", "OperatorDocuments", "KpiPage"]);
+const WARM_DELAY_MS = 5000;
 
 // Почему не React.lazy — в shared/lib/loadable.
 function page<K extends string>(
@@ -75,9 +76,15 @@ function PrefetchPages() {
     };
     const idle = window.requestIdleCallback ?? ((fn: () => void) => window.setTimeout(fn, 1500));
     const cancel = window.cancelIdleCallback ?? window.clearTimeout;
-    const handle = idle(() => void warm(), { timeout: 4000 });
+    let handle = 0;
+    // Прогрев ждёт, пока открытая страница получит свои данные и шрифты: на медленной сети чужие
+    // чанки отнимали у неё полосу.
+    const delay = window.setTimeout(() => {
+      handle = idle(() => void warm(), { timeout: 4000 });
+    }, WARM_DELAY_MS);
     return () => {
       cancelled = true;
+      window.clearTimeout(delay);
       cancel(handle);
     };
   }, []);
@@ -157,6 +164,16 @@ const TechnologyCatalogue = loadable(
   () => import("@/features/trend/pages/TechnologyCatalogue").then((m) => m.TechnologyCatalogue),
   <TrendCatalogueLoading />,
 );
+// Ранние деньги — отдельный вид той же страницы: на первом экране радара ему нет места по высоте.
+const EarlyMoney = loadable(
+  () => import("@/features/trend/ui/EarlyMoney").then((m) => m.EarlyMoney),
+  <TrendCatalogueLoading />,
+);
+// Карта мира везёт контур стран (135 КБ) — только по запросу.
+const WorldMap = loadable(
+  () => import("@/features/trend/ui/WorldMap").then((m) => m.WorldMap),
+  <TrendCatalogueLoading />,
+);
 const TechnologyCardPage = page(
   () => import("@/features/trend/pages/TechnologyCardPage"),
   "TechnologyCardPage",
@@ -209,6 +226,23 @@ function warmRoute(path: string) {
   void MENU_PAGES[path]?.warm();
 }
 
+// Те же ленивые виды, что выбирает TrendsPage по параметру entity.
+const ENTITY_PAGES: Record<string, { warm: () => Promise<unknown> }> = {
+  technologies: TechnologyCatalogue,
+  money: EarlyMoney,
+  map: WorldMap,
+};
+
+/** Открытая по ссылке страница грузится вместе со стартовыми словарями, а не после проверки
+ *  сессии: на медленной сети это целый лишний круг до сервера. */
+export function warmStartRoute(): void {
+  const { pathname, search } = window.location;
+  if (pathname === "/trends")
+    void ENTITY_PAGES[new URLSearchParams(search).get("entity") ?? ""]?.warm();
+  else if (pathname.startsWith("/technologies/")) void TechnologyCardPage.warm();
+  else warmRoute(pathname);
+}
+
 function RequireAuth({ children }: { children: ReactNode }) {
   const { auth } = useAuth();
   const location = useLocation();
@@ -259,6 +293,18 @@ function TrendsPage() {
     return (
       <TrendWorkspace>
         <TechnologyCatalogue />
+      </TrendWorkspace>
+    );
+  if (params.get("entity") === "money")
+    return (
+      <TrendWorkspace>
+        <EarlyMoney />
+      </TrendWorkspace>
+    );
+  if (params.get("entity") === "map")
+    return (
+      <TrendWorkspace>
+        <WorldMap />
       </TrendWorkspace>
     );
   if (params.has("run") || params.has("request") || params.get("view") === "analysis")

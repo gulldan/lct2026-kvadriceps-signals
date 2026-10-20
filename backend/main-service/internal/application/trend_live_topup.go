@@ -44,7 +44,7 @@ func liveTopUp(umbrella LiveTopic, selected []LiveTopic, rejected []LiveRejectio
 	}
 	slices.SortStableFunc(order, func(a, b int) int {
 		x, y := *rejected[a].topic, *rejected[b].topic
-		return cmp.Or(cmp.Compare(liveWithoutCard(x), liveWithoutCard(y)), liveConfirmedOrder(x, y),
+		return cmp.Or(cmp.Compare(liveCardCompleteness(x), liveCardCompleteness(y)), liveConfirmedOrder(x, y),
 			// Названные извлечением и направления карты раньше n-грамм: n-граммы — широкие области и обрывки фраз.
 			cmp.Compare(liveTopUpPhrase(x), liveTopUpPhrase(y)),
 			cmp.Compare(liveTopUpUnverified(x), liveTopUpUnverified(y)),
@@ -66,7 +66,6 @@ func liveTopUp(umbrella LiveTopic, selected []LiveTopic, rejected []LiveRejectio
 			selected, taken[i] = kept, true
 		}
 	}
-	selected = liveFillFifteen(umbrella, selected, rejected, taken)
 	liveFallbackSummaries(selected[start:], metadata)
 	kept := make([]LiveRejection, 0, len(rejected)-len(taken))
 	for i, rejection := range rejected {
@@ -95,11 +94,16 @@ func liveTopUpAllowed(umbrella LiveTopic, rejection LiveRejection) bool {
 	return !mature && liveUmbrellaRestated(umbrella, *topic) == ""
 }
 
-func liveWithoutCard(topic LiveTopic) int {
-	if topic.Card != nil && topic.Card.Summary != "" {
-		return 0
+// liveCardCompleteness: в добор сначала карточки, подтверждённые цитатами целиком, затем недописанные, затем без
+// карточки — иначе «Разбор не дописан» вставал в выдачу при наличии полной карточки среди отклонённых.
+func liveCardCompleteness(topic LiveTopic) int {
+	switch {
+	case topic.Card == nil || topic.Card.Summary == "":
+		return 2
+	case len(topic.Card.Missing) > 0 || topic.Card.VerificationModel == "":
+		return 1
 	}
-	return 1
+	return 0
 }
 
 func liveTopUpPhrase(topic LiveTopic) int {
@@ -125,11 +129,12 @@ func liveTopUpLate(topic LiveTopic) int {
 
 // scoreTopUpPool оценивает моделью этапа 1 лучших непроверенных кандидатов извлечения, когда волн не хватило до
 // пятнадцати: их признаки (история термина, зрелость) отсекают общие и давние понятия. Срок поиска к этому моменту
-// почти исчерпан, поэтому у оценки свой срок стадии; её сбой не помечает весь ответ «модель недоступна».
+// почти исчерпан: оценка ограничена сроком отбора, чтобы не съесть резерв финального чтения.
+// Её сбой не помечает весь ответ «модель недоступна».
 func (s *TrendLiveService) scoreTopUpPool(ctx context.Context, query string, umbrella LiveTopic, need int,
 	rejected []LiveRejection, documents []StudyPaper, metadata map[string]LivePaperMetadata,
 ) []LiveRejection {
-	if need <= 0 || s.classifier == nil || liveOffTopicAnswer(umbrella) {
+	if need <= 0 || s.classifier == nil || liveOffTopicAnswer(umbrella) || !liveCandidateTimeLeft(ctx, liveCallReserve) {
 		return rejected
 	}
 	pool := []LiveTopic{}
@@ -144,7 +149,7 @@ func (s *TrendLiveService) scoreTopUpPool(ctx context.Context, query string, umb
 	if len(pool) == 0 {
 		return rejected
 	}
-	work, cancel := context.WithTimeout(context.WithoutCancel(ctx), liveClassifierStage)
+	work, cancel := context.WithTimeout(ctx, liveClassifierStage)
 	defer cancel()
 	input := liveClassifierInput(query, s.classifierVersion, pool, documents, metadata)
 	output, err := s.classifier(work, input)
@@ -157,31 +162,4 @@ func (s *TrendLiveService) scoreTopUpPool(ctx context.Context, query string, umb
 		return rejected
 	}
 	return liveScoreRejected(rejected, scores)
-}
-
-// Решение владельца 27.09: в выдаче всегда пятнадцать. Если разрешённых отказов не хватило, добор идёт любыми
-// оставшимися кандидатами, кроме повтора самого запроса; причина отказа видна на плашке каждой строки.
-func liveFillFifteen(umbrella LiveTopic, selected []LiveTopic, rejected []LiveRejection, taken map[int]bool,
-) []LiveTopic {
-	rest := []int{}
-	for i, rejection := range rejected {
-		if !taken[i] && rejection.topic != nil && liveUmbrellaRestated(umbrella, *rejection.topic) == "" {
-			rest = append(rest, i)
-		}
-	}
-	slices.SortStableFunc(rest, func(a, b int) int { return liveCandidateOrder(*rejected[a].topic, *rejected[b].topic) })
-	for _, i := range rest {
-		if len(selected) >= liveTopCandidates {
-			break
-		}
-		candidate := *rejected[i].topic
-		candidate.Shortfall = &LiveShortfall{Code: rejected[i].Code, Reason: rejected[i].Reason}
-		if candidate.Qualification != nil && candidate.Qualification.Scope == nil {
-			candidate.Qualification = nil
-		}
-		if kept, _ := liveDedupeSelected(append(slices.Clone(selected), candidate), nil); len(kept) > len(selected) {
-			selected, taken[i] = kept, true
-		}
-	}
-	return selected
 }

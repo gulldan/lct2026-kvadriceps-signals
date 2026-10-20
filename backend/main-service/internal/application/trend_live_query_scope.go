@@ -90,9 +90,11 @@ func liveValidateQueryScope(scope *LiveQueryScope, query string) error {
 	return nil
 }
 
+const liveScopeTextRunes = 160
+
 func liveScopeText(text string) bool {
 	return strings.TrimSpace(text) == text && utf8.RuneCountInString(text) >= 2 &&
-		utf8.RuneCountInString(text) <= 160 && !strings.ContainsFunc(text, unicode.IsControl)
+		utf8.RuneCountInString(text) <= liveScopeTextRunes && !strings.ContainsFunc(text, unicode.IsControl)
 }
 
 func liveValidateScopeCriteria(scope *LiveQueryScope, criteria []string) error {

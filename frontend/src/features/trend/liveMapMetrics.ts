@@ -65,7 +65,10 @@ export function comparisonRanges(
   };
 }
 
-export function calendarRange(periods: LiveOverview["periods"], locale: string) {
+export function calendarRange(
+  periods: Pick<LiveOverview["periods"][number], "start" | "end_exclusive">[],
+  locale: string,
+) {
   const first = periods[0];
   const last = periods.at(-1);
   if (!first || !last) return "—";

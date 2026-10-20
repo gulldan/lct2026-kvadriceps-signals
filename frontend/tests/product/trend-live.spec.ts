@@ -68,7 +68,7 @@ test("radar map has one tab stop and keyboard access to every direction after fi
   await first.press("End");
   const filter = page.getByRole("combobox", { name: ru.study.live.filterLabel });
   await filter.click();
-  await page.getByRole("option", { name: /^зарождается/ }).click();
+  await page.getByRole("option", { name: /^Зарождается/ }).click();
   await expect(points).toHaveCount(82);
   await expect(filter).toBeFocused();
   await expect(entry).toHaveCount(1);
@@ -285,7 +285,7 @@ for (const width of [320, 390, 768, 1440]) {
     await expect(preview).toHaveCount(0);
     const chart = page.getByRole("figure", { name: ru.study.live.typesChart, exact: true });
     await expect(chart).toBeVisible();
-    await expect(chart.locator("svg > g > path")).toHaveCount(5);
+    await expect(chart.locator("svg > g > path")).toHaveCount(6);
     await expect(chart).not.toContainText("%");
     await expect(
       page.getByText(ru.study.live.partialQuarter.replace("{{period}}", "2026-Q3"), {
@@ -382,7 +382,7 @@ test("growth colours and sizes are independent of filters, axes fit the visible 
   await expect(page.locator("[data-live-topic]")).toHaveCount(3);
   const emerging = page.getByRole("combobox", { name: ru.study.live.filterLabel });
   await emerging.click();
-  await page.getByRole("option", { name: /^зарождается/ }).click();
+  await page.getByRole("option", { name: /^Зарождается/ }).click();
   await expect(emerging).toContainText("2");
   await expect(page.locator("[data-live-topic]")).toHaveCount(2);
   await expect(first).not.toHaveAttribute("style", position!);
@@ -651,7 +651,7 @@ test("a saved query exports all 15 complete cards to Word and opens with its tec
   await expect(found).toHaveAttribute("aria-selected", "false");
 });
 
-test("radar directions filter by field of science and the detail names the field", async ({
+test("radar directions filter by industry and the detail names the field of science", async ({
   page,
 }) => {
   await page.goto("/trends");
@@ -662,13 +662,14 @@ test("radar directions filter by field of science and the detail names the field
     .locator("tbody tr")
     .filter({ has: page.getByRole("button") });
   await expect(rows).toHaveCount(3);
-  const branch = page.getByRole("combobox", { name: ru.study.live.branchLabel, exact: true });
-  await branch.click();
-  await page.getByRole("option", { name: new RegExp(ru.study.live.branches.materials) }).click();
+  // Фильтр «Отрасль» заменил научную область: инвестор ищет, куда идут деньги.
+  const industry = page.getByRole("combobox", { name: ru.study.live.industryLabel, exact: true });
+  await industry.click();
+  await page.getByRole("option", { name: "Химия и материалы · 1", exact: true }).click();
   await expect(rows).toHaveCount(1);
-  await expect(rows.first()).toContainText(ru.study.live.branches.materials);
-  await branch.click();
-  await page.getByRole("option", { name: new RegExp(`^${ru.study.live.all}`) }).click();
+  await expect(rows.first()).toContainText("Химия и материалы");
+  await industry.click();
+  await page.getByRole("option", { name: `${ru.study.live.industryAll} · 3`, exact: true }).click();
   await expect(rows).toHaveCount(3);
   await expect(
     page.getByRole("columnheader", { name: ru.study.live.table.citations }),
@@ -678,6 +679,7 @@ test("radar directions filter by field of science and the detail names the field
     .getByRole("button", { name: /Model Context Protocol/ })
     .first()
     .click();
+  await expect(page.getByText(ru.study.live.branchLabel, { exact: true })).toBeVisible();
   // Подпись строки повторяется у луча круговой сводки, поэтому ищем в самом списке профиля.
   const profileRows = page
     .getByRole("region", { name: ru.study.profile.measures, exact: true })
@@ -700,7 +702,7 @@ test("a direction from the map shows its technologies exactly like a query answe
   page,
 }) => {
   await page.goto("/trends?topic=mcp");
-  await expect(page.getByRole("tab")).toHaveCount(8);
+  await expect(page.getByRole("tab")).toHaveCount(9);
   await page.getByRole("button", { name: ru.sources, exact: true }).hover();
   await expect(page.getByRole("tooltip")).toContainText(ru.study.live.tabsLegend);
   const found = page.getByRole("tab", { name: new RegExp(ru.study.live.types.found) });

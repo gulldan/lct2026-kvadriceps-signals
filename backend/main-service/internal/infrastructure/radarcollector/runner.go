@@ -114,9 +114,10 @@ func collect(ctx context.Context, live *application.TrendLiveService, coordinato
 	}
 	timeout := jobLimit
 	if kind != scienceJob {
-		// Добор источников опрашивает три сборщика по сотне направлений и пересчитывает
-		// свидетельства, поэтому в пять минут он не укладывается.
-		timeout = 20 * time.Minute
+		// Добор источников опрашивает три сборщика по всем направлениям и пересчитывает свидетельства.
+		// 18.10 на 206 направлениях опрос съедал все 20 минут, публикация падала по сроку и добор
+		// повторялся каждые 21 минуту впустую; с отраслевыми направлениями их около 250.
+		timeout = 45 * time.Minute
 	}
 	jobCtx, stop := context.WithTimeout(ctx, timeout)
 	var jobErr error

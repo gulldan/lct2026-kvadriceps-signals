@@ -8,8 +8,10 @@ import (
 	"encoding/json/v2"
 	"errors"
 	"fmt"
+	"hash/maphash"
 	"io"
 	"log/slog"
+	"math"
 	"net/http"
 	"os"
 	"os/signal"
@@ -26,6 +28,9 @@ import (
 const kindWeb = "web"
 
 type record struct {
+	DOI            string               `json:"doi,omitempty"`
+	DOIAliases     []string             `json:"doi_aliases,omitempty"`
+	Genre          string               `json:"genre,omitempty"`
 	KindCode       string               `json:"kind_code,omitempty"`
 	ExcludedReason string               `json:"excluded_reason,omitempty"`
 	PriorityBasis  string               `json:"priority_basis,omitempty"`
@@ -117,6 +122,7 @@ type snapshot struct {
 	Records         []record                `json:"records"`
 	Pages           []provenance            `json:"pages"`
 	Limits          []string                `json:"limits"`
+	index           *stemIndex
 }
 
 type service struct {
@@ -214,6 +220,7 @@ func (s *service) publish(data *snapshot) error {
 	if err := atomicSourceJSON(filepath.Join(s.dir, "snapshot.json"), *data); err != nil {
 		return err
 	}
+	data.index = newStemIndex(data.Records)
 	s.mu.Lock()
 	s.data = data
 	s.mu.Unlock()
@@ -282,6 +289,7 @@ func (s *service) restore(dir string) {
 	if json.Unmarshal(raw, &data) != nil || data.ObservedAt == "" || (data.Version != 2 && data.Version != 3) {
 		return
 	}
+	data.index = newStemIndex(data.Records)
 	s.data = &data
 	if data.PatentMetadata != nil {
 		s.metadataProgress = *data.PatentMetadata
@@ -367,16 +375,21 @@ func (s *service) status(w http.ResponseWriter, _ *http.Request) {
 		respond(w, 503, map[string]any{"status": "collecting", "error": s.lastError})
 		return
 	}
-	titles := 0
+	titles, undated := 0, 0
 	for _, row := range s.data.Records {
 		if row.Title != "" && row.ExcludedReason == "" {
-			titles++
+			if row.Date == "" {
+				undated++
+			} else {
+				titles++
+			}
 		}
 	}
 	respond(w, http.StatusOK, map[string]any{
 		"status": "ready", "source": s.data.Source, "observed_at": s.data.ObservedAt,
 		"records": len(s.data.Records), "dated_titles": titles, "from": s.data.From, "through": s.data.Through,
-		"pages": s.data.Pages[:min(16, len(s.data.Pages))], "pages_total": len(s.data.Pages),
+		"undated_records": undated,
+		"pages":           s.data.Pages[:min(16, len(s.data.Pages))], "pages_total": len(s.data.Pages),
 		"limits": s.data.Limits, "error": s.lastError, "source_set": s.data.SourceSet, "coverage": s.data.Coverage,
 		"next_run_at": formatTime(s.nextRunAt), "collecting": s.collecting, "patent_metadata": s.metadataProgress,
 	})
@@ -472,7 +485,8 @@ func (s *service) query(w http.ResponseWriter, r *http.Request) {
 	fullText := r.URL.Query().Get("full_text") == "1"
 	counts := make([]*int, len(q.Periods))
 	records := []record{}
-	for _, row := range data.Records {
+	for _, at := range data.index.candidates(q.Terms, len(data.Records)) {
+		row := data.Records[at]
 		if row.Title == "" || row.ExcludedReason != "" || !matches(queryText(row, q), q.Terms) {
 			continue
 		}
@@ -605,6 +619,86 @@ func matches(text string, terms []string) bool {
 	return false
 }
 
+// stemIndex — пары «хеш основы в старших 32 битах, номер записи в младших» по возрастанию: восемь байт на пару
+// вместо словаря строк, а совпадение хешей лишь добавляет кандидата, которого всё равно проверяет matches.
+type stemIndex struct {
+	seed  maphash.Seed
+	pairs []uint64
+}
+
+func newStemIndex(rows []record) *stemIndex {
+	index := &stemIndex{seed: maphash.MakeSeed()}
+	var keys []uint64
+	for at, row := range rows {
+		if row.Title == "" || row.ExcludedReason != "" {
+			continue
+		}
+		keys = keys[:0]
+		for _, word := range tokens(row.Title + " " + row.Text) {
+			keys = append(keys, index.key(word)|uint64(at))
+		}
+		slices.Sort(keys)
+		index.pairs = append(index.pairs, slices.Compact(keys)...)
+	}
+	slices.Sort(index.pairs)
+	return index
+}
+
+func (x *stemIndex) key(word string) uint64 {
+	return maphash.String(x.seed, stem(word)) &^ math.MaxUint32
+}
+
+// candidates — номера записей по возрастанию, где есть все основы хотя бы одной фразы; последнее слово с «*»
+// ищется по началу, а не по основе, поэтому фраза без других слов и снимок без индекса проверяют все записи.
+func (x *stemIndex) candidates(terms []string, total int) []int {
+	all := func() []int {
+		every := make([]int, total)
+		for i := range every {
+			every[i] = i
+		}
+		return every
+	}
+	if x == nil {
+		return all()
+	}
+	found := []int{}
+	for _, term := range terms {
+		want := tokens(term)
+		if len(want) == 0 {
+			continue
+		}
+		if strings.HasSuffix(strings.TrimSpace(term), "*") {
+			if want = want[:len(want)-1]; len(want) == 0 {
+				return all()
+			}
+		}
+		keys := make([]uint64, len(want))
+		for i, word := range want {
+			keys[i] = x.key(word)
+		}
+		rarest := slices.MinFunc(keys, func(a, b uint64) int {
+			return cmp.Compare(len(x.postings(a)), len(x.postings(b)))
+		})
+		for _, pair := range x.postings(rarest) {
+			at := pair & math.MaxUint32
+			if !slices.ContainsFunc(keys, func(key uint64) bool {
+				_, ok := slices.BinarySearch(x.pairs, key|at)
+				return !ok
+			}) {
+				found = append(found, int(at))
+			}
+		}
+	}
+	slices.Sort(found)
+	return slices.Compact(found)
+}
+
+func (x *stemIndex) postings(key uint64) []uint64 {
+	start, _ := slices.BinarySearch(x.pairs, key)
+	end, _ := slices.BinarySearch(x.pairs[start:], key|math.MaxUint32)
+	return x.pairs[start : start+end]
+}
+
 func matchRun(title, stems, want, wantStems []string, prefix bool) bool {
 	for i := range want {
 		if prefix && i == len(want)-1 {
@@ -644,10 +738,9 @@ func mergeRetained(data *snapshot, old *snapshot, now time.Time, keep func(recor
 	}
 	seen := map[string]bool{}
 	for _, row := range rows {
-		if !inSnapshotWindow(row, data, now) || seen[row.ID] {
+		if !inSnapshotWindow(row, data, now) || publicationDuplicate(row, seen) {
 			continue
 		}
-		seen[row.ID] = true
 		if previous, ok := previousByID[row.ID]; ok && previous.AvailableAt != "" {
 			row.AvailableAt = previous.AvailableAt
 		}

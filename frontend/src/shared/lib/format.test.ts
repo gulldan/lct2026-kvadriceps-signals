@@ -2,7 +2,7 @@ import { beforeAll, describe, expect, test } from "bun:test";
 
 import { initI18n } from "@/shared/i18n";
 
-import { formatDate, formatElapsed, humanSize } from "./format";
+import { formatDate, formatElapsed, humanSize, upperFirst } from "./format";
 
 beforeAll(async () => {
   // В bun test нет DOM; initI18n выставляет document.documentElement.lang.
@@ -58,4 +58,12 @@ describe("formatElapsed", () => {
     expect(formatElapsed("2027-01-01", now)).toBe("—");
     expect(formatElapsed("", now)).toBe("—");
   });
+});
+
+test("заглавная буква не ломает написание вроде «мРНК» и «iPhone»", () => {
+  expect(upperFirst("мРНК-препараты")).toBe("мРНК-препараты");
+  expect(upperFirst("iPhone")).toBe("iPhone");
+  expect(upperFirst("квантовые сенсоры")).toBe("Квантовые сенсоры");
+  expect(upperFirst("5G-сети")).toBe("5G-сети");
+  expect(upperFirst("")).toBe("");
 });

@@ -12,15 +12,17 @@
 Каждая ось — перцентильный ранг среди тем корпуса: читается как «выше/ниже медианы»
 и не схлопывается в ноль на маленьком или однородном корпусе. Состав темы берётся из
 params.members, представители — запасной вариант: так считаются и доски без них.
-Гипотеза наследует ИТЦ ближайшей темы. Формула — рубрика
+Связь гипотезы с темой требует однозначного членства процитированных документов.
+Индекс остаётся индексом темы, а не самостоятельной оценкой гипотезы. Формула — рубрика
 main-service/internal/application/itc_rubric.json, её же отдаёт GET /itc/rubric.
 """
 import bisect
 from datetime import date, timedelta
 import datetime
+import hashlib
 import json
 import os
-from worker_lease import guard_lease
+from worker_lease import guard_lease, redis_client
 import re
 import sys
 import urllib.error
@@ -43,6 +45,11 @@ DATED_SHARE_MIN = 0.25
 # «Свежие» работы — за последний год корпуса, считая от его новейшей даты.
 RECENT_DAYS = 365
 DRY = os.environ.get("ITC_DRY", "") not in ("", "0", "false")
+# Подпись входов последнего полного расчёта: почасовой прогон без изменений не трогает шлюз.
+SIGNATURE_KEY = os.environ.get("ITC_SIGNATURE_KEY", "rag:itc:input_signature")
+EPOCH_KEY = os.environ.get("EPOCH_KEY", "rag:corpus_epoch:shared")
+# Запрос из админки или от cluster-worker считается заново даже при той же подписи.
+FORCE = os.environ.get("ITC_FORCE", "") not in ("", "0", "false")
 LOCAL_RUBRIC = os.path.join(os.path.dirname(__file__), "itc_rubric.json")
 REPO_RUBRIC = os.path.join(
     os.path.dirname(__file__), "..", "main-service", "internal", "application", "itc_rubric.json"
@@ -268,6 +275,24 @@ def cluster_members(c):
     return []
 
 
+def evidence_document_ids(evidence):
+    cited = [e for e in evidence
+        if e.get("document_id") and (e.get("snippet") or "").strip()
+        and e.get("origin") != "input"]
+    if not any(e.get("stance") in ("supports", "contradicts") for e in cited):
+        return set()
+    # Фоновые цитаты тоже входят в область источников: нельзя выбрать только удобную часть.
+    return {e["document_id"] for e in cited}
+
+
+def document_backed_cluster(evidence, members_by_cluster):
+    documents = evidence_document_ids(evidence)
+    if not documents:
+        return None
+    matches = [cid for cid, members in members_by_cluster.items() if documents <= members]
+    return matches[0] if len(matches) == 1 else None
+
+
 def probe_doc_ids(c):
     """Документы, чей первый фрагмент идёт в библиометрию и центроиды."""
     ids = [
@@ -286,29 +311,29 @@ def rep_snippets(c):
     return out
 
 
-def main():
-    with open(RUBRIC_PATH, encoding="utf-8") as f:
-        rubric = json.load(f)
-    login()
+def signature_store():
+    """Подпись ведёт только прогон под арендой воркера: ручной и сухой запуск считают всё заново."""
+    return redis_client() if os.getenv("RAG_WORK_LEASE") and not DRY else None
 
-    clusters = gw("/clusters?view=full")
-    hyps = gw("/hypotheses")
-    graph = gw("/hypotheses/graph")
-    docs_meta = {d["id"]: d for d in load_documents() if isinstance(d, dict) and d.get("id")}
-    edges = graph.get("edges", [])
-    # цитируемость документа — число входящих в него рёбер доказательств графа
-    cite_by_doc = {}
-    for e in edges:
-        cite_by_doc[e["target"]] = cite_by_doc.get(e["target"], 0) + 1
-    print(
-        f"clusters={len(clusters)} hypotheses={len(hyps)} graph_edges={len(edges)} docs={len(docs_meta)}",
-        file=sys.stderr,
+
+def input_signature(rubric, clusters, docs_meta, edges, epoch):
+    """Всё, от чего зависит индекс тем. Записанный индекс из params не входит, иначе подпись менялась бы
+    каждым прогоном. Дата входит: отсев дат из будущего сверяется с сегодняшним днём."""
+    themes = [
+        (c["id"], c.get("document_count", 0), cluster_members(c), probe_doc_ids(c), rep_snippets(c))
+        for c in clusters
+    ]
+    docs = sorted(
+        (str(i), str(d.get("published_at") or ""), str(d.get("updated_at") or "")) for i, d in docs_meta.items()
     )
+    cited = sorted(str(e["target"]) for e in edges)
+    epoch = epoch.decode() if isinstance(epoch, bytes) else epoch
+    state = [rubric, themes, docs, cited, epoch, date.today().isoformat(), REPS_PER_CLUSTER]
+    return hashlib.sha256(json.dumps(state, sort_keys=True, ensure_ascii=False).encode()).hexdigest()
 
-    probe_ids_by_cluster = {c["id"]: probe_doc_ids(c) for c in clusters}
-    missing = [c["id"] for c in clusters if c.get("document_count", 0) > 0 and not probe_ids_by_cluster[c["id"]]]
-    if missing:
-        raise ValueError(f"{len(missing)} themes have no document membership; rebuild themes before calculating ITC")
+
+def score_themes(rubric, clusters, docs_meta, cite_by_doc, probe_ids_by_cluster):
+    """Индекс каждой темы: первые фрагменты, эмбеддинги и ранги по корпусу — дорогая часть прогона."""
     all_probe_ids = {d for ids in probe_ids_by_cluster.values() for d in ids}
     chunk_cache = {}
     with ThreadPoolExecutor(max_workers=8) as ex:
@@ -332,8 +357,6 @@ def main():
             if t:
                 probe_text[(c["id"], did)] = t
                 want(t)
-    for h in hyps:
-        want(h.get("statement", "") or h.get("title", ""))
     vecs = np.asarray(embed_all(emb_texts), dtype=np.float32) if emb_texts else np.zeros((0, 1))
     print(f"embedded {len(emb_texts)} texts", file=sys.stderr)
 
@@ -420,7 +443,6 @@ def main():
     ip_p = percentile_ranks([r["ip_raw"] for r in raw])
     hr_p = percentile_ranks([r["hr_raw"] for r in raw])
 
-    cluster_itc = {}
     rows = []
     for i, r in enumerate(raw):
         c = r["cluster"]
@@ -444,34 +466,91 @@ def main():
             "novelty_available": r["nov_dist"] is not None,
         }
         itc = build_itc(rubric, comps, norms, tech, band, signals, "cluster")
-        cluster_itc[c["id"]] = itc
         rows.append((band, tech, c.get("label", "")[:42], comps))
         if not DRY:
             gw(f"/clusters/{c['id']}/itc", {"itc": itc})
+    return rows
+
+
+def main():
+    with open(RUBRIC_PATH, encoding="utf-8") as f:
+        rubric = json.load(f)
+    login()
+
+    clusters = gw("/clusters?view=full")
+    hyps = gw("/hypotheses")
+    graph = gw("/hypotheses/graph")
+    docs_meta = {d["id"]: d for d in load_documents() if isinstance(d, dict) and d.get("id")}
+    edges = graph.get("edges", [])
+    # цитируемость документа — число входящих в него рёбер доказательств графа
+    cite_by_doc = {}
+    for e in edges:
+        cite_by_doc[e["target"]] = cite_by_doc.get(e["target"], 0) + 1
+    print(
+        f"clusters={len(clusters)} hypotheses={len(hyps)} graph_edges={len(edges)} docs={len(docs_meta)}",
+        file=sys.stderr,
+    )
+
+    probe_ids_by_cluster = {c["id"]: probe_doc_ids(c) for c in clusters}
+    missing = [c["id"] for c in clusters if c.get("document_count", 0) > 0 and not probe_ids_by_cluster[c["id"]]]
+    if missing:
+        raise ValueError(f"{len(missing)} themes have no document membership; rebuild themes before calculating ITC")
+    store = signature_store()
+    signature = input_signature(rubric, clusters, docs_meta, edges, store.get(EPOCH_KEY)) if store is not None else None
+    if store is not None and not FORCE and store.get(SIGNATURE_KEY) == signature.encode():
+        rows = None
+        print("theme inputs unchanged since the last full run; theme index kept", file=sys.stderr)
+    else:
+        rows = score_themes(rubric, clusters, docs_meta, cite_by_doc, probe_ids_by_cluster)
+        if store is not None:
+            guard_lease()
+            store.set(SIGNATURE_KEY, signature)
 
     assigned = 0
-    cl_ids = [c["id"] for c in clusters if c["id"] in centroids]
-    cl_mat = np.asarray([centroids[i] for i in cl_ids], dtype=np.float32) if cl_ids else np.zeros((0, 1))
+    members_by_cluster = {c["id"]: set(cluster_members(c)) for c in clusters}
     for h in hyps:
-        stmt = h.get("statement", "") or h.get("title", "")
-        if not stmt or not cl_ids:
+        writing = False
+        try:
+            # Списочный ответ не содержит свидетельств; этот путь не запускает проверку карточки.
+            evidence = gw(f"/hypotheses/{h['id']}/evidence")
+            best = document_backed_cluster(evidence, members_by_cluster)
+            if best is None:
+                continue
+            if not DRY:
+                # API повторно сверяет источники и берёт индекс самой темы.
+                writing = True
+                gw(f"/hypotheses/{h['id']}/itc", {"cluster_id": best})
+        except urllib.error.HTTPError as error:
+            if error.code not in (400, 404, 409):
+                raise
+            try:
+                body = json.loads(error.read(4096))
+            except ValueError:
+                raise error
+            reason = body.get("error") if isinstance(body, dict) else None
+            missing = error.code == 404 and reason == "not found"
+            unconfirmed = writing and error.code == 400 and reason in (
+                "invalid argument: topic association requires cited documents",
+                "invalid argument: cited documents belong to multiple topics",
+                "invalid argument: topic membership is not supported by cited documents",
+            )
+            changed = writing and error.code == 409 and reason == "resource changed; reload before retrying"
+            if not (missing or unconfirmed or changed):
+                raise
+            # Изменение источников между чтением и записью не отменяет остальные расчёты.
+            print(f"  hypothesis {h['id']}: association skipped ({reason})", file=sys.stderr)
             continue
-        hv = vec_for(stmt)
-        sims = cl_mat @ hv / (np.linalg.norm(cl_mat, axis=1) * (np.linalg.norm(hv) or 1.0) + 1e-9)
-        best = cl_ids[int(np.argmax(sims))]
-        itc = dict(cluster_itc[best])
-        itc["scope"] = "hypothesis(theme)"
-        if not DRY:
-            # composite_score не отправляется: main-service его игнорирует.
-            gw(f"/hypotheses/{h['id']}/itc", {"cluster_id": best, "itc": itc})
         assigned += 1
 
+    if rows is None:
+        print(f"\nthemes unchanged, index kept;  hypotheses linked to theme index: {assigned}")
+        return
     rows.sort(key=lambda row: row[:3], reverse=True)
     print("\n=== ITC per theme (top by band) ===")
     for band, tech, label, comps in rows[:40]:
         cs = " ".join(f"{k}={comps[k]['value']:>3}" for k in ("SM", "NV", "IP", "HR"))
         print(f"  {band:>2}/10  tech={tech:.2f}  {cs}  {label}")
-    print(f"\nclusters scored: {len(rows)};  hypotheses linked+scored: {assigned}"
+    print(f"\nclusters scored: {len(rows)};  hypotheses linked to theme index: {assigned}"
           f"{'  (DRY RUN — nothing written)' if DRY else ''}")
 
 

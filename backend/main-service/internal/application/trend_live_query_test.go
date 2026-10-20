@@ -31,6 +31,15 @@ func TestLiveQueryPlanRetainsComplementarySubareas(t *testing.T) {
 			t.Fatal("журнальный поиск отрезал часть поднаправлений общего плана")
 		}
 	}
+	for query, want := range map[string]string{
+		"слабые сигналы в экономике и социальных науках": "новые технологии в экономике и социальных науках",
+		"Weak signals in robotics": "emerging technologies in robotics",
+		"методы обнаружения слабых сигналов в радарах": "методы обнаружения слабых сигналов в радарах",
+	} {
+		if got := liveQuerySubject(query); got != want {
+			t.Errorf("рамка запроса %q снята как %q", query, got)
+		}
+	}
 }
 
 func TestQueryPlannerRejectsIncompletePlansAndHonorsBudget(t *testing.T) {
@@ -48,6 +57,10 @@ func TestQueryPlannerRejectsIncompletePlansAndHonorsBudget(t *testing.T) {
 		{name: "null_required", response: strings.Replace(valid, `"required":[]`, `"required":null`, 1), wantErr: true},
 		{name: "bad_mode", response: strings.Replace(valid, `"any"`, `"maybe"`, 1), wantErr: true},
 		{name: "truncated", response: valid, finish: "length", wantErr: true},
+		{name: "extra_terms", response: strings.Replace(valid, `["fraud detection"]`,
+			`["a1","a2","a3","a4","a5","a6","a7","a8","a9","a10","a11","a12","a13","a14"]`, 1), finish: "stop"},
+		{name: "long_task", response: strings.Replace(valid, `"task":"fraud detection"`,
+			`"task":"`+strings.Repeat("обнаружение мошенничества ", 7)+`"`, 1), finish: "stop"},
 		{name: "deadline", response: valid, parent: 12 * time.Minute, delay: 61 * time.Second, wantErr: true},
 		{name: "parent_canceled", response: valid, parent: 5 * time.Second, delay: 40 * time.Second, wantErr: true},
 	} {

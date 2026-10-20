@@ -1,4 +1,4 @@
-const ENTITIES = ["directions", "technologies"] as const;
+const ENTITIES = ["directions", "technologies", "map", "money"] as const;
 export type Entity = (typeof ENTITIES)[number];
 
 /** Пороги стадии (§7.1) есть только у этих каналов. */

@@ -5,7 +5,7 @@ import (
 	"strings"
 )
 
-// Области выводятся из первичных категорий arXiv, а не назначаются вручную: направление из физики не попадёт в ИИ.
+// Научные ветви объединяют темы радара; отраслевые рубрики корпуса задаются отдельно.
 const (
 	liveBranchComputing   = "computing"
 	liveBranchQuantum     = "quantum"
@@ -22,6 +22,18 @@ const (
 
 // LiveDiscoveryRequestLimit вдвое больше бюджета эмбеддингов: анализ ещё раз прореживает выборку по областям.
 const LiveDiscoveryRequestLimit = 2 * liveSemanticDiscoveryLimit
+
+// Предмет заданного семейства не меняется из-за преобладания вычислительных методов в выборке статей.
+func liveCuratedBranch(topic LiveTopic) string {
+	if !topic.Curated || topic.Source != "curated" {
+		return ""
+	}
+	families := liveFamilies()
+	if i := slices.IndexFunc(families, func(family liveFamily) bool { return family.id == topic.ID }); i >= 0 {
+		return families[i].branch
+	}
+	return ""
+}
 
 func liveBranchOrder() []string {
 	return []string{liveBranchComputing, liveBranchQuantum, liveBranchMaterials, liveBranchPhysics, liveBranchSpace,
@@ -48,8 +60,16 @@ func liveBranch(category string) string {
 		return liveBranchMaterials
 	case "astro-ph":
 		return liveBranchSpace
-	case "q-bio":
+	case "q-bio", liveServerBioRxiv, liveServerMedRxiv:
 		return liveBranchLife
+	case liveServerChemRxiv:
+		return liveBranchMaterials
+	case "eartharxiv", "essoar":
+		return liveBranchEarth
+	case "engrxiv":
+		return liveBranchEngineering
+	case "psyarxiv", "socarxiv", "edarxiv":
+		return liveBranchEconomics
 	case "eess":
 		return liveBranchEngineering
 	case "q-fin", "econ":

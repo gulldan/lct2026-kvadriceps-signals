@@ -1,5 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { Badge } from "@/shared/ui/Badge";
+import { sourceGenreLabel } from "../signalSources";
 
 export function SourcePassport({
   publisherType,
@@ -45,7 +46,7 @@ export function SourcePassport({
         </Badge>
       )}
       {genre && genre !== "unknown" && (
-        <Badge variant="outline">{t(`source.genre.${genre}`, { defaultValue: genre })}</Badge>
+        <Badge variant="outline">{sourceGenreLabel(genre, t)}</Badge>
       )}
       {language && (
         <span>

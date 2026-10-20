@@ -1,0 +1,84 @@
+{
+  "status": "ready",
+  "built_at": "2026-10-18T06:00:00Z",
+  "total": 3,
+  "matched": 3,
+  "money_status": "ready",
+  "money_from": "2026-04-01",
+  "money_through": "2026-10-18",
+  "facets": {
+    "regions": { "europe": 1, "americas": 1, "asia": 1 },
+    "countries": { "DE": 1, "US": 1, "CN": 1 },
+    "types": { "seed_fund": 1, "angel_network": 1, "accelerator": 1 },
+    "stages": { "pre_seed": 2, "seed": 3, "series_a": 1 },
+    "rubrics": { "energy": 2, "computing": 2, "robotics": 1 }
+  },
+  "items": [
+    {
+      "name": "Rhine Seed Partners",
+      "type": "seed_fund",
+      "country": "DE",
+      "city": "Köln",
+      "stages": ["seed", "series_a"],
+      "website": "https://rhine-seed.example",
+      "n_investments": 42,
+      "sources": [
+        {
+          "source": "Fundraising Fox",
+          "url": "https://fundraising-fox.example/rhine",
+          "license": "CC BY 4.0"
+        }
+      ],
+      "region": "europe",
+      "rubrics": ["energy", "computing"],
+      "deals": {
+        "total": 2,
+        "latest": [
+          {
+            "company": "Graphit Storage",
+            "date": "2026-09-14",
+            "stage": "seed",
+            "rubric": "energy",
+            "url": "https://news.example/graphit"
+          }
+        ]
+      }
+    },
+    {
+      "name": "Pacific Angels",
+      "type": "angel_network",
+      "country": "US",
+      "city": "Seattle",
+      "stages": ["pre_seed", "seed"],
+      "n_investments": 18,
+      "sources": [
+        {
+          "source": "Fundraising Fox",
+          "url": "https://fundraising-fox.example/pacific",
+          "license": "CC BY 4.0"
+        }
+      ],
+      "region": "americas",
+      "rubrics": ["computing"]
+    },
+    {
+      "name": "Shenzhen Hardware Accelerator",
+      "type": "accelerator",
+      "country": "CN",
+      "city": "Shenzhen",
+      "stages": ["pre_seed", "seed"],
+      "n_investments": 64,
+      "sources": [
+        {
+          "source": "Fundraising Fox",
+          "url": "https://fundraising-fox.example/shenzhen",
+          "license": "CC BY 4.0"
+        }
+      ],
+      "region": "asia",
+      "rubrics": ["robotics", "energy"],
+      "deals": { "total": 0, "latest": [] }
+    }
+  ],
+  "sources": [{ "name": "Fundraising Fox", "license": "CC BY 4.0", "count": 3 }]
+}

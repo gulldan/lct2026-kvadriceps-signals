@@ -9,7 +9,6 @@ SERVICES := backend/archive-worker backend/auth backend/chunk-splitter backend/d
             backend/trend-sources
 PLATFORM := backend/platform
 GOBIN    ?= $(shell if command -v go >/dev/null 2>&1; then go env GOPATH; else printf '%s/go' "$$HOME"; fi)/bin
-COVER_MIN ?= 80
 PYTHON   ?= python3
 ENV_EXAMPLE := infra/.env.example
 

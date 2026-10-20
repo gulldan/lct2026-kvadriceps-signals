@@ -328,6 +328,10 @@ func ClassifySource(rawURL string) SourcePassport {
 	if host == "" {
 		return SourcePassport{PublisherUnknown, TrustLowered, "адрес источника не разобран"}
 	}
+	// Работы окна препринтов ссылаются на DOI: издателя выдаёт префикс сервера, а не общий doi.org.
+	if host == "doi.org" && livePreprintDOI(rawURL) {
+		return SourcePassport{PublisherPreprint, TrustMedium, basisPreprint}
+	}
 	hosts := passportByHost()
 	for domain := host; domain != ""; domain = parentDomain(domain) {
 		if rule, ok := hosts[domain]; ok {
@@ -382,6 +386,11 @@ func stampPaperPassports(papers []StudyPaper, metadata map[string]LivePaperMetad
 		meta.Genre = cmp.Or(meta.Genre, genre)
 		meta.Trust = passport.Trust
 		meta.TrustBasis = passport.TrustBasis
+		if liveSourceOf(paper.ID) == livePubMedSource {
+			// Индексация медицинской библиотекой подтверждает происхождение записи, а не качество результата.
+			meta.PublisherType, meta.Trust = PublisherAggregator, TrustMedium
+			meta.TrustBasis = "публикация индексируется в PubMed; качество исследования отдельно не проверено"
+		}
 		meta.Language, meta.LanguageBasis = livePaperLanguage(paper, meta)
 		metadata[paper.ID] = meta
 	}
@@ -476,10 +485,18 @@ func livePaperPassports(papers []StudyPaper, metadata map[string]LivePaperMetada
 			Digest: meta.Digest, DigestModel: meta.DigestModel}
 		// У агрегатора поле категории — название издания, а у препринта — тематический код, не издатель.
 		switch source := liveSourceOf(paper.ID); source {
-		case "openalex":
+		case "openalex", livePubMedSource:
 			card.SourceName, card.DiscoverySource = meta.Category, source
+		case "rec":
+			if name := cmp.Or(liveJournalProvider(paper.ID), liveJournalProvider(meta.Category)); name != "" {
+				card.SourceName, card.DiscoverySource = name, liveSourceOf(strings.TrimPrefix(paper.ID, liveRecordPrefix))
+			}
 		case "arxiv":
 			card.SourceName, card.DiscoverySource = "arXiv", source
+		default:
+			if name := livePreprintServerName(source); name != "" {
+				card.SourceName, card.DiscoverySource = name, source
+			}
 		}
 		if card == (LivePaperPassport{}) {
 			continue

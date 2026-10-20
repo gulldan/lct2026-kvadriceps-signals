@@ -23,7 +23,7 @@ WHERE id = $1 AND version = sqlc.arg('expected_version') AND owner_id = sqlc.arg
 -- name: ListHypotheses :many
 SELECT id,owner_id,run_id,title,statement,rationale,method,status,kpi_id,primary_cluster_id,trl,novelty_score,risk_score,value_score,confidence_score,composite_score,measurable,organization,function_area,source_type,location,tags,CASE WHEN sqlc.arg('compact')::boolean THEN jsonb_strip_nulls(jsonb_build_object(
  'check',jsonb_build_object('verdict',assessment#>'{check,verdict}'),'ranking',jsonb_build_object('score',assessment#>'{ranking,score}'),
- 'learning_priority',assessment->'learning_priority','itc',jsonb_build_object('score',assessment#>'{itc,score}',
+ 'learning_priority',assessment->'learning_priority','itc',jsonb_build_object('scope',assessment#>'{itc,scope}','score',assessment#>'{itc,score}',
  'techscore',assessment#>'{itc,techscore}','band',assessment#>'{itc,band}','axes',assessment#>'{itc,axes}'),
  'scores',assessment->'scores','schema',assessment->'schema','trl',jsonb_build_object('level',assessment#>'{trl,level}',
  'name',assessment#>'{trl,name}'))) ELSE assessment END::jsonb AS assessment,
@@ -51,6 +51,9 @@ WHERE (sqlc.arg('before_id')::text='' OR (created_at,id)<
   AND (sqlc.arg('queue')::text IN ('','all') OR hypothesis_queue(status,assessment)=sqlc.arg('queue')
  OR (sqlc.arg('queue')='needs_trl' AND trl IS NULL AND status NOT IN ('rejected','archived')))
 ORDER BY
+  CASE WHEN sqlc.arg('order_by')::text = 'diversity' THEN row_number() OVER (
+    PARTITION BY research_topic(concat_ws(' ',function_area,title,statement))
+    ORDER BY composite_score DESC NULLS LAST,created_at DESC,id DESC) END ASC NULLS LAST,
   CASE WHEN sqlc.arg('order_by')::text = 'created_at' THEN extract(epoch FROM created_at) END DESC NULLS LAST,
   CASE WHEN sqlc.arg('order_by')::text = 'trl' THEN trl::double precision END DESC NULLS LAST,
   CASE WHEN sqlc.arg('order_by')::text = 'novelty' THEN novelty_score END DESC NULLS LAST,

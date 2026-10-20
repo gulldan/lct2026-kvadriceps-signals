@@ -201,11 +201,11 @@ func run(log zerolog.Logger) error {
 	setupRuntimeSettings(ctx, api, db, vk, ovr, log)
 	collector := radarcollector.New(config.Get("VALKEY_ADDR", "valkey:6379"), config.Get("VALKEY_PASSWORD", ""))
 	defer func() { _ = collector.Close() }()
-	gateway, configured := liveGateway(ovr)
+	gateway, configured := liveGateway(ovr, vk)
 	live := startTrendLive(ctx, store, ovr, collector, db, llm, metrics, gateway, configured)
 	api.SetTrendLive(live)
 	api.SetLiveWatches(startLiveWatches(ctx, live, vk, db))
-	setBriefs(api, gateway, configured)
+	setBriefs(api, gateway, configured, store)
 	handler := apiHandler(api, hub, jwtMgr, vk, log)
 
 	srv := httpx.NewServer(config.Get("HTTP_ADDR", ":8080"), handler, log)
@@ -239,17 +239,19 @@ func apiHandler(
 	)
 }
 
-func setBriefs(api *httpapi.API, gateway aiclients.Generator, configured func(context.Context) bool) {
-	api.SetTechnologyBrief(application.NewTechnologyBriefWriter(gateway, configured))
+func setBriefs(
+	api *httpapi.API, gateway aiclients.Generator, configured func(context.Context) bool, store *platformstorage.Client,
+) {
+	api.SetTechnologyBrief(application.NewTechnologyBriefWriter(gateway, configured), store)
 	api.SetSignalBrief(application.NewLiveSignalBriefWriter(gateway, configured))
 }
 
 // liveGateway — шлюз LLM с журналом вызовов радара; один на все черновики, потому что настройки
 // шлюза читаются на каждом вызове.
-func liveGateway(ovr *runtimecfg.Overrides) (aiclients.Generator, func(context.Context) bool) {
+func liveGateway(ovr *runtimecfg.Overrides, vk *valkey.Client) (aiclients.Generator, func(context.Context) bool) {
 	gateway := application.NewLiveAuditedGenerator(
 		aiclients.NewDynamicGenerator(application.LLMTarget(ovr.Get), nil),
-		func(ctx context.Context) string { return ovr.Get(ctx, "VLLM_MODEL", "") })
+		func(ctx context.Context) string { return ovr.Get(ctx, "VLLM_MODEL", "") }, vk)
 	return gateway, func(ctx context.Context) bool { return ovr.Get(ctx, "VLLM_URL", "") != "" }
 }
 
@@ -286,6 +288,8 @@ func startTrendLive(
 	live.SetTechnologyPhraser(application.NewTechnologyPhraser(gateway, configured))
 	live.SetMaturityRater(application.NewLiveMaturityRater(gateway, configured))
 	live.SetWorkers(ovr.GetInt)
+	// Шлюз в восемь потоков фон занимал целиком, и поиск жюри ждал в очереди: фоновая работа с моделью включается явно.
+	live.SetOnDemand(!config.GetBool("RADAR_BACKGROUND_LLM", false))
 	// Сервис ML-команды приоритетен; без его адреса работает встроенная модель этапа 1.
 	if classifier := application.NewCandidateClassifier(config.Get("RADAR_CLASSIFIER_URL", "")); classifier != nil {
 		live.SetClassifier(classifier, config.Get("RADAR_CLASSIFIER_VERSION", ""))

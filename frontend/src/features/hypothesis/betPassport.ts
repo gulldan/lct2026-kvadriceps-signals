@@ -1,6 +1,12 @@
 import type { TFunction } from "i18next";
 import { i18n } from "@/shared/i18n";
-import { formatDateShort, formatDateTime, formatNumber, formatPercent } from "@/shared/lib/format";
+import {
+  formatDateShort,
+  formatDateTime,
+  formatNumber,
+  formatPercent,
+  upperFirst,
+} from "@/shared/lib/format";
 import type { ReportBlock, ReportDoc, ReportFact } from "@/shared/report/blocks";
 import type { ApiEvidence, ApiHypothesis, ApiRevision } from "./api";
 import { verdictMeta } from "./board/model";
@@ -52,7 +58,7 @@ export function stageReason(basis: string | undefined) {
   const reason = basis
     ?.replace(/^стадия \d+ — [^:]+:\s*/i, "")
     .replace(/^утверждение карточки проверено по цитате:\s*/i, "");
-  return reason ? reason.charAt(0).toLocaleUpperCase() + reason.slice(1) : "";
+  return upperFirst(reason ?? "");
 }
 
 export function tzStageLabel(code: number, t: T = i18n.getFixedT(null, "hypothesis")): string {

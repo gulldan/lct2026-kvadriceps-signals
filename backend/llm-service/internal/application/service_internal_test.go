@@ -3,6 +3,7 @@ package application
 import (
 	"context"
 	"errors"
+	"sync"
 	"testing"
 
 	"github.com/example/llm-service/internal/domain"
@@ -24,12 +25,16 @@ func (errGetCache) Get(context.Context, string) (domain.Result, bool, error) {
 func (errGetCache) Set(context.Context, string, domain.Result) error { return nil }
 func (errGetCache) Epoch(context.Context, string) int64              { return 0 }
 
+// Соседние документы ответа читаются параллельно, поэтому запись владельца в подделке защищена.
 type fakeChunkSource struct {
+	mu       sync.Mutex
 	gotOwner string
 	chunks   []domain.StoredChunk
 }
 
 func (f *fakeChunkSource) DocumentChunks(_ context.Context, ownerID, _ string) ([]domain.StoredChunk, error) {
+	f.mu.Lock()
+	defer f.mu.Unlock()
 	f.gotOwner = ownerID
 	return f.chunks, nil
 }

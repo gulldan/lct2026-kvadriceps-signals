@@ -188,7 +188,7 @@ export function UsageMetrics() {
                             ? t("metrics.usage.free")
                             : provider.kind === "notional" && provider.cost_usd === 0
                               ? t("metrics.readable.unpriced")
-                              : `${formatNumber(provider.currency === "₽" || provider.currency === "RUB" ? provider.cost_rub : provider.cost_usd, { maximumFractionDigits: 4 })} ${provider.currency}`}
+                              : `${formatNumber(provider.currency === "₽" || provider.currency === "RUB" ? provider.cost_rub : provider.cost_usd, { maximumFractionDigits: provider.currency === "₽" || provider.currency === "RUB" ? 2 : 4 })} ${provider.currency}`}
                           <p className="mt-1 font-sans text-xs text-muted-foreground">
                             {provider.cost_estimated ? t("metrics.usage.estimatedNote") : ""}
                           </p>

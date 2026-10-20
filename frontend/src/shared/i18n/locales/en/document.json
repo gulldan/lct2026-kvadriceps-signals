@@ -157,6 +157,7 @@
     "versionDetails": "Inspect version and provenance",
     "preprintNotice": "arXiv preprint. Peer review is unconfirmed. First publication and this text version have separate dates.",
     "repositoryNotice": "Stars are recorded as of the observation date; earlier history is unknown. Creating a repository does not mean the technology appeared. Official status of the code and industrial adoption are not confirmed.",
+    "investorNotice": "An investor’s public position. A deal or adoption needs confirmation from a separate source.",
     "fragments": "Saved fragments",
     "fragmentCount": "Total: {{count}}",
     "missingFragment": "This fragment is absent from this version. Check the source link.",
@@ -196,6 +197,8 @@
       "paper": "Scientific work",
       "patent": "Patent publication",
       "analysis": "Analysis",
+      "investment_thesis": "Investment thesis",
+      "investor_commentary": "Investor commentary",
       "company_material": "Company material",
       "software_repository": "Software implementation",
       "hypothesis": "Hypothesis"

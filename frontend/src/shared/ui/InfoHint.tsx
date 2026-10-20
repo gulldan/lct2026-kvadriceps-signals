@@ -7,10 +7,12 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "@/shared/ui/Tooltip";
 
 export function InfoHint({
   children,
+  container,
   className,
   label,
 }: {
   children: ReactNode;
+  container?: HTMLElement | null;
   className?: string;
   label?: string;
 }) {
@@ -29,7 +31,10 @@ export function InfoHint({
           <Info className="size-3.5" aria-hidden />
         </button>
       </TooltipTrigger>
-      <TooltipContent className="max-w-xs text-left leading-relaxed whitespace-normal">
+      <TooltipContent
+        container={container}
+        className="max-w-xs text-left leading-relaxed whitespace-normal"
+      >
         {children}
       </TooltipContent>
     </Tooltip>

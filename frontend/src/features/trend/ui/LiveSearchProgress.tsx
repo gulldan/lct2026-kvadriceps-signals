@@ -11,7 +11,8 @@ import { LibraryStagePanel } from "./LibraryStagePanel";
 
 // Сервер обрывает сбор на 12-й минуте (liveSearchBudget), выдача готова к 12:10–12:41. Предупреждать
 // раньше значит пугать обычным поиском, позже — молчать о настоящей задержке.
-const LONG_SEARCH_MINUTES = 14;
+// Обычный поиск идёт 3–5 минут на быстрых моделях; дольше восьми — повод сказать, что ждём источник.
+const LONG_SEARCH_MINUTES = 8;
 
 function duration(seconds: number) {
   const whole = Math.max(0, Math.floor(seconds));

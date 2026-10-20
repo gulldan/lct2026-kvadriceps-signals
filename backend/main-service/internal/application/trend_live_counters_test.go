@@ -54,7 +54,7 @@ func TestLiveVerdictNeedsIndependentEvidence(t *testing.T) {
 	patent := LiveTopic{StudyTopic: StudyTopic{ID: "p"}, Patents: &LiveChannel{Records: []LiveSourceRecord{
 		{URL: "https://patents.google.com/patent/CN1", Title: "Способ хранения"},
 	}}}
-	_, rejected := liveAdmitCards([]LiveTopic{hype, patent}, nil)
+	_, rejected := liveAdmitCards([]LiveTopic{hype, patent})
 	if len(rejected) != 2 || rejected[0].Code != liveRejectHype || rejected[1].Code == liveRejectHype {
 		t.Fatalf("пресс-релиз и соцсеть не отсечены как шум или патент принят за шум: %+v", rejected)
 	}

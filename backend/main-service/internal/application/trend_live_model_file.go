@@ -488,7 +488,8 @@ func (s *TrendLiveService) WeakSignalFileResult(id string) (WeakSignalFileCheck,
 	return s.fileResult, id != "" && s.fileResult.ID == id
 }
 
-// ScoreWeakSignalRows собирает признаки тем же кодом, что и для кандидатов радара.
+// ScoreWeakSignalRows проверяет обученный артефакт. В файле нет проверенных источников кандидатов,
+// поэтому политика покрытия живого радара здесь не применяется; версия отчёта остаётся версией весов.
 func (s *TrendLiveService) ScoreWeakSignalRows(ctx context.Context, model WeakSignalModel, periods []LivePeriod,
 	rows []WeakSignalFileRow,
 ) WeakSignalFileReport {
@@ -496,7 +497,7 @@ func (s *TrendLiveService) ScoreWeakSignalRows(ctx context.Context, model WeakSi
 	s.fillPhrases(ctx, rows, s.phrase)
 	weakSignalKeepFound(rows, s.phraseWindows(ctx, weakSignalAllPhrases(rows), periods))
 	// Остальные источники — после отбора фраз шлюза: отсеянная фраза не тратит ни кредит OpenAlex, ни вызов модели.
-	evidence := s.weakSignalEvidence(ctx, ctx, weakSignalAllPhrases(rows), periods, model.Embedding.Model)
+	evidence := s.weakSignalEvidence(ctx, ctx, weakSignalAllPhrases(rows), periods, model.Embedding.Model, nil)
 	for i := range rows {
 		row := &rows[i]
 		if row.Note != "" {

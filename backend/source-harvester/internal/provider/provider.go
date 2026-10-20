@@ -46,6 +46,9 @@ func (s Scope) ValidateFor(provider string) error {
 	if err := s.Validate(); err != nil {
 		return err
 	}
+	if s.WorkType == sourcedoc.GenreInvestmentThesis && provider != providerWeb {
+		return errors.New("investment_thesis work_type is available only for web collector scopes")
+	}
 	return harvest.Scope(s).ValidateProvider(provider)
 }
 

@@ -49,6 +49,12 @@ export interface AdminDocumentsStats {
   uploads_by_day: { day: string; count: number }[];
   top_by_chunks: { id: string; filename: string; title?: string; chunk_count: number }[];
   indexed_pct: number;
+  topic_distribution?: {
+    classified_documents: number;
+    unclassified_documents: number;
+    method: string;
+    topics: { id: string; label: string; count: number }[];
+  };
 }
 
 export function adminDocumentsStats(): Promise<AdminDocumentsStats> {
@@ -73,6 +79,8 @@ export interface PerfResponse {
   pipeline: Record<string, StageLatency>;
   ingestion: Record<string, StageLatency>;
   hypothesis_jobs: HypothesisJobStat[];
+  telemetry?: "available" | "partial" | "unavailable";
+  observed_at?: string;
 }
 
 export function getPerf(): Promise<PerfResponse> {

@@ -132,7 +132,7 @@ func boardAssessmentPaths() [][]string {
 	return [][]string{
 		{"ranking", "score"},
 		{"learning_priority"},
-		{keyITC, "score"}, {keyITC, "techscore"}, {keyITC, "band"}, {keyITC, "axes"},
+		{keyITC, "scope"}, {keyITC, "score"}, {keyITC, "techscore"}, {keyITC, "band"}, {keyITC, "axes"},
 		{"check", "verdict"},
 		{"scores"},
 		{"schema"},

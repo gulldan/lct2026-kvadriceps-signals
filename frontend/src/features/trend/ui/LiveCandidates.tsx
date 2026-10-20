@@ -4,6 +4,7 @@ import {
   ArrowRight,
   Check,
   Factory,
+  FilePlus,
   Lightbulb,
   Rocket,
   TrendingDown,
@@ -18,7 +19,7 @@ import { Notice } from "@/shared/ui/Notice";
 import { ResultGrid, ResultItem, ResultTile, ResultTileMedia } from "@/shared/ui/ResultCard";
 import { Segmented } from "@/shared/ui/Segmented";
 import { CounterStrip, type CounterItem } from "@/shared/ui/CounterStrip";
-import { formatNumber } from "@/shared/lib/format";
+import { formatNumber, upperFirst } from "@/shared/lib/format";
 import type { LiveDetail, LiveRejection, LiveTopic } from "../liveApi";
 import { LiveLimits } from "./LiveLimits";
 import { LiveCandidatesTable, RejectedTable } from "./LiveCandidatesTable";
@@ -38,7 +39,7 @@ import {
   signalVerdict,
 } from "../signalScore";
 import { growthLabel } from "../signalReport";
-import { signalSources } from "../signalSources";
+import { freshSourceCount, signalSources } from "../signalSources";
 import { TechnologyCover } from "./TechnologyCover";
 
 const REJECTED_PAGE = 12;
@@ -163,16 +164,20 @@ export function LiveCandidates({
         <section className="space-y-3">
           <p className="text-caption text-muted-foreground">{t("tile.order")}</p>
           <ResultGrid ordered tiles>
-            {candidates.map((candidate) => (
-              <ResultItem key={candidate.id}>
-                <TechnologyTile
-                  topic={candidate}
-                  sources={signalSources(detail, candidate).length}
-                  covers={covers}
-                  onOpen={() => onOpen(candidate)}
-                />
-              </ResultItem>
-            ))}
+            {candidates.map((candidate) => {
+              const sources = signalSources(detail, candidate);
+              return (
+                <ResultItem key={candidate.id}>
+                  <TechnologyTile
+                    topic={candidate}
+                    sources={sources.length}
+                    fresh={freshSourceCount(sources, detail.observed_at)}
+                    covers={covers}
+                    onOpen={() => onOpen(candidate)}
+                  />
+                </ResultItem>
+              );
+            })}
           </ResultGrid>
         </section>
       )}
@@ -262,11 +267,13 @@ const GROWTH = {
 function TechnologyTile({
   topic,
   sources,
+  fresh,
   covers,
   onOpen,
 }: {
   topic: LiveTopic;
   sources: number;
+  fresh: number;
   covers: boolean;
   onOpen: () => void;
 }) {
@@ -296,6 +303,12 @@ function TechnologyTile({
                   <Badge variant={Growth.tone} className="gap-1">
                     <Growth.icon className="size-3 shrink-0" aria-hidden />
                     {growth.label}
+                  </Badge>
+                )}
+                {fresh > 0 && (
+                  <Badge variant="media" className="gap-1" title={t("tile.freshHint")}>
+                    <FilePlus className="size-3 shrink-0" aria-hidden />
+                    {t("tile.fresh", { count: fresh })}
                   </Badge>
                 )}
                 {StageIcon && (
@@ -358,7 +371,7 @@ function RejectedTile({ rejection, name }: { rejection: LiveRejection; name: str
           </span>
         }
         title={name}
-        meta={rejection.reason.charAt(0).toLocaleUpperCase() + rejection.reason.slice(1)}
+        meta={upperFirst(rejection.reason)}
       />
     </Card>
   );

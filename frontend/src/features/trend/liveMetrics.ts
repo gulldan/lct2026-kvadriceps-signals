@@ -1,5 +1,6 @@
 import type { TFunction } from "i18next";
 import type { LiveChannel, LiveTopic } from "./liveApi";
+import type { StudyPaper } from "./studyApi";
 import type { TimeSeries } from "@/shared/ui/TimeSeriesChart";
 import { formatNumber } from "@/shared/lib/format";
 
@@ -43,14 +44,27 @@ export function publicationSeries(
   topic: LiveTopic,
   t: TFunction<"trend">,
   patents: LiveChannel | null,
+  papers: StudyPaper[],
 ): TimeSeries[] {
+  const paperCounts = new Map<string, number>();
+  for (const paper of papers) {
+    const period = paper.date.slice(0, 7);
+    paperCounts.set(period, (paperCounts.get(period) ?? 0) + 1);
+  }
   return (
     [
-      { id: "papers", values: topic.series.map((row) => row.count), partial: false },
+      {
+        id: "papers",
+        values: topic.series.map((row) =>
+          topic.research ? (paperCounts.get(row.period) ?? 0) : row.count,
+        ),
+        partial: false,
+      },
       { id: "repos", values: topic.repos, partial: false },
       { id: "hn", values: topic.discussions, partial: false },
       { id: "patents", values: patents?.counts, partial: patents?.partial },
       { id: "web", values: topic.web?.counts, partial: topic.web?.partial },
+      { id: "research", values: topic.research?.counts, partial: topic.research?.partial },
     ] as const
   ).map(({ id, values, partial }) => {
     // Накопление: на месячных значениях редкие каналы читались как пустые. После несобранного

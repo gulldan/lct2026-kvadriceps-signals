@@ -23,7 +23,10 @@
     "viewAria": "Theses filter",
     "activeTab": "Active ({{count}})",
     "archivedTab": "Archive ({{count}})",
-    "archiveEmpty": "This list is empty for now."
+    "archiveEmpty": "This list is empty for now.",
+    "sortAria": "Thesis order",
+    "sortDiverse": "Different areas",
+    "sortRecent": "Newest first"
   },
   "empty": {
     "title": "Create your first thesis",
@@ -88,7 +91,7 @@
   "dialog": {
     "title": "New thesis",
     "name": "Title",
-    "namePlaceholder": "e.g. LLM agent security ready for an enterprise pilot",
+    "namePlaceholder": "For example: energy storage ready for an industrial pilot",
     "description": "Description",
     "descriptionPlaceholder": "brief, optional",
     "metric": "Indicator (how you will know the forecast came true)",
@@ -100,7 +103,7 @@
     "targetPlaceholder": "optional",
     "directionNote": "The direction of change is inferred automatically. You can leave the exact target value empty if it is not known yet.",
     "functionArea": "Area",
-    "functionAreaPlaceholder": "e.g. AI security, optional",
+    "functionAreaPlaceholder": "For example: medicine, energy or agriculture",
     "cancel": "Cancel",
     "create": "Create",
     "creating": "Creating…",
@@ -139,7 +142,7 @@
     "newGoal": "New thesis — I'll describe it in text",
     "prompt": "What we look for and why",
     "promptExisting": "Clarifications and constraints",
-    "promptPlaceholder": "E.g.: technologies that will cut the cost of on-device AI inference several-fold within 2–3 years. We are interested in solutions with first pilots at device makers; by the end of 2027 we want two technologies at pilot stage or later.",
+    "promptPlaceholder": "Which technologies could reduce agricultural water use within three years without reducing crop yields? Find field trials and two approaches for a pilot.",
     "promptExistingPlaceholder": "E.g.: horizon — until the end of 2027, open-license solutions only.",
     "promptHint": "The system extracts the thesis title, indicator and constraints from your text.",
     "addFiles": "Add files or drop them here",
@@ -165,7 +168,34 @@
     "addMoreFiles": "Add more files",
     "save": "Save",
     "saveAndGenerate": "Save and generate",
-    "detachError": "Failed to remove the document"
+    "detachError": "Failed to remove the document",
+    "examplesTitle": "Example areas:",
+    "examples": {
+      "medicine": {
+        "label": "Medicine",
+        "prompt": "Which emerging approaches to early disease detection could enter clinical studies within three years? Include published results, limitations and measurable accuracy indicators."
+      },
+      "agriculture": {
+        "label": "Agriculture",
+        "prompt": "Which technologies could reduce agricultural water use within three years without reducing crop yields? Find field trials and two approaches for a pilot."
+      },
+      "energy": {
+        "label": "Energy",
+        "prompt": "Which emerging energy storage technologies could be ready for an industrial pilot within three years? Compare service life, storage cost and evidence from trials."
+      },
+      "environment": {
+        "label": "Environment",
+        "prompt": "Which emerging water pollutant removal methods could be piloted within three years? Include effectiveness, energy consumption and by-products."
+      },
+      "materials": {
+        "label": "Materials",
+        "prompt": "Which biodegradable materials could replace multilayer packaging within three years? Compare barrier properties, degradation conditions and production readiness."
+      },
+      "computing": {
+        "label": "Computing",
+        "prompt": "Which approaches reduce on-device computing energy use without reducing quality? Find reproducible measurements and candidates for a pilot within three years."
+      }
+    }
   },
   "page": {
     "back": "All theses",

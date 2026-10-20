@@ -11,6 +11,8 @@ import {
 import {
   cleanInternalTitle,
   displayHypothesisTitle,
+  hasProjectedTheme,
+  hypothesisItc,
   directionMeta,
 } from "@/features/hypothesis/model";
 import { useBackgroundTasks } from "@/features/task";
@@ -45,8 +47,10 @@ export function DirectionDetailPanel({ direction, clusterTitle }: DirectionDetai
 
   const title = displayHypothesisTitle(direction);
   const meta = directionMeta();
+  const itc = hypothesisItc(direction);
   const clusterLabel =
-    cleanInternalTitle(generationText(direction, "cluster_label") ?? "") || clusterTitle;
+    cleanInternalTitle(generationText(direction, "cluster_label") ?? "") ||
+    (hasProjectedTheme(direction) ? undefined : clusterTitle);
   const evidenceArticles = evidenceArticleCount(direction.evidence);
   const taskKey = `direction:${direction.id}:generate`;
   const generating = isTaskRunning(taskKey);
@@ -228,9 +232,9 @@ export function DirectionDetailPanel({ direction, clusterTitle }: DirectionDetai
         </div>
 
         <aside className="order-first space-y-4 lg:sticky lg:top-6 lg:order-2">
-          {direction.assessment.itc && (
+          {itc && (
             <ItcSummary
-              itc={direction.assessment.itc}
+              itc={itc}
               title={t("direction.itcTitle")}
               evidenceCitationLabel={t("direction.itcCitations")}
             />

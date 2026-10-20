@@ -37,13 +37,16 @@ export function SelectTrigger({
 }
 
 export function SelectContent({
+  container,
   className,
   children,
   position = "popper",
   ...props
-}: ComponentProps<typeof SelectPrimitive.Content>) {
+}: ComponentProps<typeof SelectPrimitive.Content> & {
+  container?: ComponentProps<typeof SelectPrimitive.Portal>["container"];
+}) {
   return (
-    <SelectPrimitive.Portal>
+    <SelectPrimitive.Portal container={container}>
       <SelectPrimitive.Content
         position={position}
         className={cn(

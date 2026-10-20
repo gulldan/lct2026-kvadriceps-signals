@@ -44,6 +44,7 @@ import {
   type ApiHypothesis,
 } from "@/features/hypothesis";
 import { GoalPromptDialog } from "@/features/kpi/ui/GoalPromptDialog";
+import { kpiResearchDomain } from "@/features/kpi/model";
 import { AiNote } from "@/shared/ui/AiNote";
 import { Badge } from "@/shared/ui/Badge";
 import { Button } from "@/shared/ui/Button";
@@ -64,6 +65,7 @@ import { Pagination } from "@/shared/ui/Pagination";
 import { RichText } from "@/shared/ui/RichText";
 import { Section } from "@/shared/ui/Section";
 import { Segmented } from "@/shared/ui/Segmented";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/shared/ui/Select";
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from "@/shared/ui/Sheet";
 import { Spinner } from "@/shared/ui/Spinner";
 import { Tooltip, TooltipContent, TooltipTrigger } from "@/shared/ui/Tooltip";
@@ -71,6 +73,7 @@ import { InfoHint } from "@/shared/ui/InfoHint";
 import { useBackgroundTasks } from "@/features/task";
 import { i18n } from "@/shared/i18n";
 import { formatNumber } from "@/shared/lib/format";
+import { interleaveBy } from "@/shared/lib/interleaveBy";
 import { GLOSSARY } from "@/shared/glossary";
 import {
   fetchHypothesisRuntimeSettings,
@@ -119,6 +122,7 @@ export function KpiPage() {
     editKpi?: ApiKPI | null;
   }>({ open: false });
   const [view, setView] = useState<"active" | "archived">("active");
+  const [sort, setSort] = useState("diverse");
   const [toDelete, setToDelete] = useState<ApiKPI | null>(null);
   const [deleteBusy, setDeleteBusy] = useState(false);
 
@@ -181,7 +185,11 @@ export function KpiPage() {
 
   const activeKpis = kpis.filter((k) => k.status !== "archived");
   const archivedKpis = kpis.filter((k) => k.status === "archived");
-  const shownKpis = view === "archived" ? archivedKpis : activeKpis;
+  const recentKpis = (view === "archived" ? archivedKpis : activeKpis).toSorted(
+    (a, b) => (Date.parse(b.created_at) || 0) - (Date.parse(a.created_at) || 0),
+  );
+  const shownKpis =
+    sort === "diverse" ? interleaveBy(recentKpis, (k) => kpiResearchDomain(k)) : recentKpis;
   const kpiPageCount = Math.max(1, Math.ceil(shownKpis.length / KPI_PAGE));
   const safeKpiPage = Math.min(kpiPage, kpiPageCount);
   const pagedKpis = shownKpis.slice((safeKpiPage - 1) * KPI_PAGE, safeKpiPage * KPI_PAGE);
@@ -248,7 +256,9 @@ export function KpiPage() {
   const loadSuggestions = async () => {
     setSuggestPhase("loading");
     try {
-      setSuggestions(await suggestKPIs());
+      setSuggestions(
+        interleaveBy(await suggestKPIs(), (item) => kpiResearchDomain(item, item.rationale)),
+      );
       setSuggestPhase("ready");
     } catch {
       setSuggestPhase("error");
@@ -343,22 +353,47 @@ export function KpiPage() {
         </div>
       )}
       {phase === "ready" && kpis.length > 0 && (
-        <Segmented
-          aria-label={t("list.viewAria")}
-          className="mt-6"
-          value={view}
-          onChange={(v) => {
-            setView(v);
-            setKpiPage(1);
-          }}
-          options={[
-            { value: "active", label: t("list.activeTab", { count: activeKpis.length }) },
-            { value: "archived", label: t("list.archivedTab", { count: archivedKpis.length }) },
-          ]}
-        />
+        <div className="mt-6 flex flex-wrap items-center justify-between gap-3">
+          <Segmented
+            aria-label={t("list.viewAria")}
+            value={view}
+            onChange={(v) => {
+              setView(v);
+              setKpiPage(1);
+            }}
+            options={[
+              { value: "active", label: t("list.activeTab", { count: activeKpis.length }) },
+              { value: "archived", label: t("list.archivedTab", { count: archivedKpis.length }) },
+            ]}
+          />
+          <Select
+            value={sort}
+            onValueChange={(value) => {
+              setSort(value);
+              setKpiPage(1);
+            }}
+          >
+            <SelectTrigger className="w-auto min-w-44" aria-label={t("list.sortAria")}>
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="diverse">{t("list.sortDiverse")}</SelectItem>
+              <SelectItem value="recent">{t("list.sortRecent")}</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
       )}
       {phase === "ready" && kpis.length > 0 && shownKpis.length === 0 && (
         <p className="mt-6 text-sm text-muted-foreground">{t("list.archiveEmpty")}</p>
+      )}
+      {/* Заголовки карточек — третьего уровня: без раздела между ними и заголовком страницы
+          читалка видела разрыв в оглавлении. */}
+      {phase === "ready" && shownKpis.length > 0 && (
+        <h2 className="sr-only">
+          {t(view === "archived" ? "list.archivedTab" : "list.activeTab", {
+            count: shownKpis.length,
+          })}
+        </h2>
       )}
       {phase === "ready" && shownKpis.length > 0 && (
         <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -440,7 +475,9 @@ export function KpiPage() {
                   )}
 
                   {k.description && (
-                    <p className="line-clamp-2 text-sm text-muted-foreground">{k.description}</p>
+                    <RichText className="line-clamp-2 text-sm text-muted-foreground">
+                      {k.description}
+                    </RichText>
                   )}
 
                   <div className="mt-auto space-y-3 pt-1">

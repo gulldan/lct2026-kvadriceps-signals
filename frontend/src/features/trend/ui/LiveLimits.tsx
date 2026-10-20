@@ -1,6 +1,6 @@
 import { useTranslation } from "react-i18next";
 import { Disclosure } from "@/shared/ui/Disclosure";
-import { formatNumber } from "@/shared/lib/format";
+import { formatNumber, upperFirst } from "@/shared/lib/format";
 import { liveLimitFailure, liveLimitKind } from "../liveLimits";
 import type { LiveLimit } from "../liveApi";
 
@@ -56,5 +56,5 @@ export function LiveLimits({ limits }: { limits: (LiveLimit | string)[] }) {
 function russian(text: string): string | null {
   const body = text.replace(/^[a-z_]+:\s*/, "").trim();
   if (!/[а-яё]/i.test(body)) return null;
-  return body.charAt(0).toUpperCase() + body.slice(1);
+  return upperFirst(body);
 }

@@ -13,6 +13,7 @@ import (
 	"sync"
 	"sync/atomic"
 	"testing"
+	"testing/synctest"
 	"time"
 	"unicode/utf8"
 
@@ -83,11 +84,14 @@ func (g *liveFulltextTestGenerator) Generate(_ context.Context, request aiclient
 				review.Fields = append(review.Fields, liveCardFieldReview{Field: claim.Field, Verdict: verdict,
 					From: new(claim.From), Through: new(claim.Through),
 					SourceFact: fact,
-					ClaimFact:  "Карточка описывает преобразование и результат испытания.",
-					Reason:     "Таблица и условия лабораторного испытания определяют границы утверждения."})
+					Parts: []LiveClaimPart{{Claim: claim.Claim, SourceFact: fact,
+						Direct: true, ScopePreserved: true, ModalityPreserved: true}},
+					ClaimFact: "Карточка описывает преобразование и результат испытания.",
+					Reason:    "Таблица и условия лабораторного испытания определяют границы утверждения."})
 				if claim.Field == liveClaimAdvantage {
 					review.Fields[len(review.Fields)-1].Benefit = new(true)
 				}
+				review.Fields[len(review.Fields)-1].Performed = new(claim.Field == liveClaimExample)
 			}
 		}
 		response = review
@@ -392,5 +396,53 @@ func TestLiveCardContextIdentityAndWholeBlocks(t *testing.T) {
 	if proof.ArxivID != latest.arxivID || proof.Coverage != liveCardContextFull ||
 		proof.Text != latest.text || strings.Contains(proof.Text, "outdated") {
 		t.Fatalf("old unversioned snapshot was attributed to the newly fetched version: %+v", proof)
+	}
+}
+
+func TestLiveCardContextSharesReadingAcrossCardsAndProviders(t *testing.T) {
+	t.Setenv("ARXIV_FULLTEXT_URL", "http://gateway.test")
+	papers := []StudyPaper{{ID: "a", URL: "https://arxiv.org/abs/2511.12739"}, {ID: "b"}, {ID: "c"}, {ID: "d"}}
+	metadata := map[string]LivePaperMetadata{"b": {DOI: "10.1234/b", Genre: "article"},
+		"c": {DOI: "10.1234/c", Genre: "article"}, "d": {DOI: "10.1234/d", Genre: "article"}}
+	synctest.Test(t, func(t *testing.T) {
+		ctx := liveWithCardContext(t.Context())
+		liveAllocateCardContext(ctx, papers, metadata)
+		budget, ok := ctx.Value(liveCardContextKey{}).(*liveCardContextBudget)
+		if !ok {
+			t.Fatal("missing budget")
+		}
+		budget.requestTimeout = time.Minute
+		budget.fetch = func(ctx context.Context, id string) (liveCardContextDocument, error) {
+			if strings.HasPrefix(id, "doi:") {
+				<-ctx.Done()
+				return liveCardContextDocument{}, ctx.Err()
+			}
+			return liveCardContextDocument{text: "A complete paper with its experimental limitations."}, nil
+		}
+		_, _ = budget.get(ctx, "doi:10.1234/b")
+		if _, err := budget.get(ctx, "doi:10.1234/c"); !errors.Is(err, errCardContextBudget) {
+			t.Fatalf("journal quota ignored: %v", err)
+		}
+		if _, err := budget.get(ctx, "2511.12739"); err != nil {
+			t.Fatalf("journals exhausted the preprint reserve: %v", err)
+		}
+	})
+	ctx := liveWithCardContext(t.Context())
+	liveAllocateCardContext(ctx, papers[1:], metadata)
+	budget, ok := ctx.Value(liveCardContextKey{}).(*liveCardContextBudget)
+	if !ok || budget.partitioned {
+		t.Fatal("single-provider corpus lost part of its budget")
+	}
+	var calls int
+	budget.fetch = func(context.Context, string) (liveCardContextDocument, error) {
+		calls++
+		return liveCardContextDocument{text: "A complete paper with its experimental limitations."}, nil
+	}
+	byID := map[string]StudyPaper{"b": papers[1], "c": papers[2], "d": papers[3]}
+	works := []string{"Abstract B", "Abstract C", "Abstract D"}
+	contexts := liveCardContexts(ctx, works, []string{"b", "c", "d"}, byID, metadata)
+	if calls != 1 || contexts[0].Coverage != liveCardContextFull || contexts[1].Coverage != liveCardContextAbstract ||
+		contexts[1].Limitation == "" || works[2] != "Abstract D" {
+		t.Fatal("one card consumed other cards' reading allowance")
 	}
 }

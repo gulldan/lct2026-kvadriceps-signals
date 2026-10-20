@@ -14,7 +14,9 @@ import (
 const (
 	liveTopCandidates = 15
 	// Общие словарные фразы ограничены отдельно: этот предел не обрезает извлечённые конкретные механизмы.
-	liveCandidatePool = 4 * liveTopCandidates
+	// На быстрых маршрутах поиск укладывается в 4–5 минут из двенадцати: из 60 фраз полную карточку получала
+	// каждая пятая, и до пятнадцати добирались недописанные. Координатор всё равно останавливается на 15 полных.
+	liveCandidatePool = 6 * liveTopCandidates
 	// Один прямой источник допустим; малый объём свидетельств отражает уверенность, а не запрет допуска.
 	liveCandidateMinDocuments = 1
 	// Фразы с двумя документами оказывались шумом; технологии даёт извлечение.
@@ -283,8 +285,11 @@ func liveDedupeSelected(candidates []LiveTopic, rejected []LiveRejection) ([]Liv
 					count++
 				}
 			}
+			// Русские подписи одной технологии модель пишет по-разному: «Доказательства с нулевым разглашением (ZKP)»
+			// и «Нулевое разглашение (Zero-Knowledge Proof)» заняли два места добора 19.10.
 			sameName := liveSameTechnology(candidate.Label, earlier.Label) ||
-				liveVariantLabels(liveCandidateName(candidate), liveCandidateName(earlier))
+				liveVariantLabels(liveCandidateName(candidate), liveCandidateName(earlier)) ||
+				liveVariantLabels(candidate.Name, earlier.Name)
 			if sameName || (len(own) > 0 && float64(count) >= liveOverlapSkip*float64(len(own)) &&
 				!liveDifferentMechanisms(candidate, earlier)) {
 				twin, shared = liveCandidateName(earlier), count
@@ -392,6 +397,10 @@ func liveCandidateOrder(a, b LiveTopic) int {
 	if order := liveConfirmedOrder(a, b); order != 0 {
 		return order
 	}
+	// Два заполненных поля не должны вытеснять карточку, прошедшую весь обязательный контракт.
+	if order := cmp.Compare(liveRequiredCardFields(b), liveRequiredCardFields(a)); order != 0 {
+		return order
+	}
 	// Решение выше воздержания и отсутствующей оценки; кандидаты без решения сравниваются по правилам.
 	decidedA := liveModelDecision(a.ModelScore)
 	decidedB := liveModelDecision(b.ModelScore)
@@ -473,6 +482,8 @@ func liveCandidateTopic(umbrella LiveTopic, candidate liveCandidate, periods []L
 	topic.PatentsCN = liveChannelMentions(umbrella.PatentsCN, tokens, cited)
 	topic.Registry = liveChannelMentions(umbrella.Registry, tokens, cited)
 	topic.Web = liveChannelMentions(umbrella.Web, tokens, cited)
+	topic.Research = liveChannelMentions(umbrella.Research, tokens, cited)
+	liveResearchCounts(topic.Research, periods)
 	liveAssess(&topic, periods, candidate.dated())
 	// Правило одной группы спрашивает обо всех коллективах за технологией, а не о вынесших фразу в заголовок.
 	topic.Groups, topic.TopGroupShare = studyConcentration(candidate.papers, len(candidate.papers) > 0)
@@ -562,6 +573,7 @@ func liveInheritRecords(umbrella LiveTopic, candidate *LiveTopic) {
 	}{
 		{umbrella.Patents, &candidate.Patents}, {umbrella.PatentsCN, &candidate.PatentsCN},
 		{umbrella.Registry, &candidate.Registry}, {umbrella.Web, &candidate.Web},
+		{umbrella.Research, &candidate.Research},
 	} {
 		for _, record := range liveLabelRecords(pair.from, pair.into, candidate.Label, tokens) {
 			candidate.EvidenceIDs = append(candidate.EvidenceIDs, liveRecordPrefix+cmp.Or(record.ID, record.URL))
@@ -707,12 +719,16 @@ func liveChannelDocuments(topic LiveTopic) []StudyPaper {
 	// Каналы собираются не по запросу, и без отбора по теме реестр отдаёт свои записи любому направлению.
 	terms := liveQueryTerms(topic)
 	documents := []StudyPaper{}
-	for _, channel := range []*LiveChannel{topic.Patents, topic.PatentsCN, topic.Registry, topic.Web, topic.Corpus} {
+	for _, channel := range []*LiveChannel{topic.Patents, topic.PatentsCN, topic.Registry, topic.Web, topic.Corpus, topic.Research} {
 		if channel == nil {
 			continue
 		}
 		for _, record := range channel.Records {
-			if document, ok := liveRecordDocument(record); ok && liveAboutQuery(record.Title, terms) {
+			text := record.Title
+			if channel == topic.Research {
+				text += " " + record.Excerpt
+			}
+			if document, ok := liveRecordDocument(record); ok && liveAboutQuery(text, terms) {
 				documents = append(documents, document)
 			}
 		}
@@ -731,6 +747,18 @@ func liveChannelDocuments(topic LiveTopic) []StudyPaper {
 }
 
 func liveRecordDocument(record LiveSourceRecord) (StudyPaper, bool) {
+	// Позиция инвестора полезна в контексте, но не подтверждает существование или работоспособность технологии.
+	if liveInvestorContext(record.Genre) {
+		return StudyPaper{}, false
+	}
+	authors := record.Authors
+	if len(authors) == 0 {
+		authors = []string{cmp.Or(record.Source, passportHost(record.URL))}
+		if liveJournalProvider(record.Source) != "" {
+			// Два агрегатора не подтверждают существование двух авторских коллективов.
+			authors = []string{"research:unknown-authors"}
+		}
+	}
 	date := cmp.Or(record.Date, record.PublishedAt, record.AvailableAt)
 	if record.Title == "" || date == "" {
 		return StudyPaper{}, false
@@ -738,7 +766,7 @@ func liveRecordDocument(record LiveSourceRecord) (StudyPaper, bool) {
 	return StudyPaper{
 		ID: liveRecordPrefix + cmp.Or(record.ID, record.URL), Title: record.Title,
 		Date: date[:min(len(date), 10)], URL: record.URL,
-		Authors: []string{cmp.Or(record.Source, passportHost(record.URL))},
+		Authors: authors, CanonicalID: liveResearchDOI(record.DOI),
 	}, true
 }
 

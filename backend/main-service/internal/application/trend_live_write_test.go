@@ -85,3 +85,30 @@ func TestCancelledPublicationDoesNotWrite(t *testing.T) {
 		t.Fatal("local sources/full guard missing")
 	}
 }
+
+func TestPublishedSnapshotDropsSourcePageLog(t *testing.T) {
+	store := &conditionalTestStore{}
+	svc := NewTrendLiveService(store, nil)
+	ctx, finish, err := svc.beginWrite(t.Context())
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer finish()
+	patents := &LiveChannel{Records: []LiveSourceRecord{{ID: "record:1", URL: "https://patents.example/1"}},
+		Coverage: []LiveSourceCoverage{{Source: "patent", NextCursor: "page-7",
+			Pages: []LiveSourceProvenance{{URL: "https://patents.example/page/1"}}}}}
+	topics := []LiveTopic{{Name: "Аддитивное производство", Patents: patents}}
+	if err := svc.publish(ctx, &LiveSnapshot{Version: liveVersion, Method: liveMethod, Topics: topics}); err != nil {
+		t.Fatal(err)
+	}
+	raw, _, _ := store.GetVersion(t.Context(), "")
+	if strings.Contains(string(raw), "patents.example/page/1") {
+		t.Fatal("page log of the source is copied into every direction of the snapshot")
+	}
+	if !strings.Contains(string(raw), "page-7") || !strings.Contains(string(raw), "patents.example/1") {
+		t.Fatalf("coverage cursor or records lost: %s", raw)
+	}
+	if len(patents.Coverage[0].Pages) != 1 {
+		t.Fatal("publication changed the caller's channel")
+	}
+}

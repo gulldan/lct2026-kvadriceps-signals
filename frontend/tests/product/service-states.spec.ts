@@ -38,7 +38,7 @@ for (const theme of ["light", "dark"]) {
         }),
       );
       await page.goto("/trends?q=Новые%20технологии%20хранения%20энергии");
-      await expect(page.getByText("Обычно 12–13 минут", { exact: true })).toBeVisible();
+      await expect(page.getByText("Обычно 3–5 минут", { exact: true })).toBeVisible();
       await expect(page.getByRole("switch", { name: "Анимация", exact: true })).toHaveCount(0);
       await page.emulateMedia({ reducedMotion: "reduce" });
       await expect(page.locator(".research-library")).toHaveAttribute(
@@ -128,7 +128,7 @@ test("a live search keeps honest time and findings through reconnection and comp
   await expect(timer).toHaveText("2:02");
   state = { ...state, elapsed_seconds: 860, step: "cards", step_index: 10 };
   await page.clock.runFor(2200);
-  await expect(page.getByText(/Поиск идёт дольше 14 минут/)).toBeVisible();
+  await expect(page.getByText(/Поиск идёт дольше 8 минут/)).toBeVisible();
   await expect(page.getByRole("listitem").filter({ hasText: "Текущий этап." })).toContainText(
     "Написание описаний",
   );
@@ -174,7 +174,7 @@ test("saved results skip the collection plan and a 503 retries the same query", 
   await page.getByRole("button", { name: "Повторить", exact: true }).click();
   await expect(page.getByRole("heading", { name: /Открываем сохранённый ответ/ })).toBeVisible();
   await expect(page.getByRole("region", { name: "Этапы исследования" })).toBeHidden();
-  await expect(page.getByText("Обычно 12–13 минут", { exact: true })).toBeHidden();
+  await expect(page.getByText("Обычно 3–5 минут", { exact: true })).toBeHidden();
   await expect(page).toHaveURL(/q=/);
 });
 

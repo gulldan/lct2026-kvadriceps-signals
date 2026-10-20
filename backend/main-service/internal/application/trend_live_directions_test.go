@@ -4,7 +4,9 @@ import (
 	"context"
 	"errors"
 	"sync"
+	"sync/atomic"
 	"testing"
+	"testing/synctest"
 	"time"
 )
 
@@ -59,11 +61,18 @@ func TestDirectionScopeChangeDoesNotRepeatFailedRecount(t *testing.T) {
 				}
 				return liveFixtureQueryPlan(query, []string{"new technology"}), nil
 			})
+			now := time.Date(2026, 10, 6, 7, 20, 0, 0, time.UTC)
+			service.now = func() time.Time { return now }
 			service.refreshDirections(t.Context())
 			service.refreshDirections(t.Context())
 			if calls != 1 || service.directionTried[topic.ID] != service.snapshot.ObservedAt {
 				t.Fatalf("invalid old scope created a repeated background run: calls=%d tried=%q", calls,
 					service.directionTried[topic.ID])
+			}
+			now = now.Add(liveDirectionRetry)
+			service.refreshDirections(t.Context())
+			if want := map[string]int{"failed": 2, "empty": 1}[mode]; calls != want {
+				t.Fatalf("after the retry pause: %d planner calls, want %d", calls, want)
 			}
 			shown, found := service.Topic(topic.ID)
 			if !found || len(shown.Candidates) != 0 || shown.Scope != nil {
@@ -130,4 +139,35 @@ func TestDirectionsRecountTwoAtOnceWeakFirst(t *testing.T) {
 	if peak != liveDirectionParallel || len(order) != 3 || order[2] != "Зрелое" {
 		t.Fatalf("want two recounts at once, weak signals first: peak=%d order=%v", peak, order)
 	}
+}
+
+func TestOnDemandDirectionCountsOnlyWhenOpened(t *testing.T) {
+	synctest.Test(t, func(t *testing.T) {
+		service := NewTrendLiveService(memoryTestStore{}, nil)
+		service.SetOnDemand(true)
+		service.card = func(context.Context, string, LiveCardIdentity, []string) (LiveCard, error) {
+			return LiveCard{}, nil
+		}
+		topic := LiveTopic{Name: "Новое", StudyTopic: StudyTopic{ID: "new", Stage: liveStageEmerging}}
+		service.snapshot = &LiveSnapshot{ObservedAt: "2026-10-12", Topics: []LiveTopic{topic}}
+		var calls atomic.Int32
+		service.SetPlanner(func(context.Context, string) (LiveQueryPlan, error) {
+			calls.Add(1)
+			return LiveQueryPlan{}, errors.New("stop after planning")
+		})
+		service.refreshDirections(t.Context())
+		synctest.Wait()
+		if calls.Load() != 0 {
+			t.Fatalf("background recount called the model %d times", calls.Load())
+		}
+		if detail, ok := service.OpenTopic(t.Context(), topic.ID); !ok || !detail.DigestsPending {
+			t.Fatalf("opened direction without an answer is not counted: %+v", detail)
+		}
+		synctest.Wait()
+		service.OpenTopic(t.Context(), topic.ID)
+		synctest.Wait()
+		if calls.Load() != 1 {
+			t.Fatalf("direction counted %d times for one snapshot", calls.Load())
+		}
+	})
 }

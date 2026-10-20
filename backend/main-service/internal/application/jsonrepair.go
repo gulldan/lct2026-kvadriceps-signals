@@ -7,6 +7,10 @@ import (
 
 var errNoJSONObject = errors.New("no JSON object")
 
+// ErrUnparsableModelOutput отделяет ответ не по формату от недоступной модели: в задаче пользователь
+// должен увидеть, что повтор может помочь, а не общий сбой.
+var ErrUnparsableModelOutput = errors.New("unparsable model output")
+
 // decodeJSONObject при двух неудачах возвращает исходную ошибку разбора, а не ошибку после починки.
 func decodeJSONObject(answer string, dest any, unmarshal func([]byte, any) error) error {
 	_, body, found := strings.Cut(answer, "{")
