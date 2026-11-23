@@ -3,12 +3,7 @@ all-features = true
 
 [advisories]
 yanked = "deny"
-ignore = [
-  # Transitive via parquet; no safe upgrade path is available yet.
-  "RUSTSEC-2024-0436",
-  # Transitive via ort/ureq during ONNX runtime bootstrap; no safe upgrade path is available yet.
-  "RUSTSEC-2025-0134",
-]
+ignore = []
 
 [bans]
 multiple-versions = "warn"
